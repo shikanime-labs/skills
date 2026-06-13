@@ -1,4 +1,4 @@
-# skills
+# Skills
 
 A curated catalog of self-improved agent skills for Hermes and compatible agents. Each skill lives in its own directory with a `SKILL.md`.
 
