@@ -1,15 +1,32 @@
-# skills
+# Agents
 
-Curated catalog of self-improved agent skills for Hermes and compatible agents.
+This repository is a catalog of self-improved agent skills for Hermes and
+compatible agents. Each skill lives in its own directory with a `SKILL.md`.
 
-**Language:** Markdown (SKILL.md)
+## Coding Style
 
-**Structure:** `skills/` — individual skill dirs with `SKILL.md`; `README.md` — install docs
+- Keep `SKILL.md` files focused and actionable.
+- Use YAML frontmatter with `name` and `description` fields.
+- Include a `## Trigger` section when the skill has specific activation
+  conditions.
+- Include a `## Pitfalls` section for known issues and workarounds.
+- Keep lines wrapped at 80 columns.
+- Run `nix fmt` before shipping.
 
-**Commit style:** Plain-text capitalized title, no prefix. Body with labels: `Design:`, `Related:`, `Closes #`.
+## Adding a New Skill
 
-**Stack:** 1 commit == 1 PR via ghstack. Amend + `ghstack` to resubmit. `ghstack land` on head PR to land stack. Never `gh pr merge`. Never force-push.
+1. Create a directory under the appropriate category.
+2. Write a `SKILL.md` following the
+   [skill authoring](https://hermes-agent.nousresearch.com/docs) format.
+3. Add the skill to the catalog table in `README.md`.
+4. Commit with a descriptive message.
 
-**Protect `main`:** 1 review, linear history, signed commits, squash+rebase only.
+## Skill Categories
 
-*Each skill needs valid YAML frontmatter in SKILL.md. Test against target agent*
+- `autonomous-ai` — Agent orchestration and delegation
+- `devops` — Infrastructure, Nix, Kubernetes, CI/CD
+- `github` — GitHub workflows, issues, PRs
+- `productivity` — Communication, documents, automation
+- `reconnaissance` — Domain intelligence, OSINT
+- `software-dev` — Development workflows, debugging, testing
+- `vcs` — Version control systems
