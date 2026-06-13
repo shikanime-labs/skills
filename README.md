@@ -31,15 +31,11 @@ npx skills add shikanime-studio/skills -g -a claude-code -a cursor -y
 
 ### Install as a Hermes skill source
 
-Add the repo as a tap and configure the external directory:
+Add the repo as a tap:
 
 ```bash
 # Add as a tap
 hermes skills tap add shikanime-studio/skills
-
-# Configure external directory for auto-loading
-hermes config set skills.externalDirs \
-  '["~/Source/Repos/github.com/shikanime-studio/skills/skills"]'
 
 # Verify loaded skills
 hermes skills list
@@ -95,6 +91,7 @@ These skills were created from scratch and are not part of any upstream hub:
 | `home-manager-pitfalls` | devops | Home Manager module gotchas and silent failures |
 | `nix-module-bulk-edit` | devops | Bulk-edit Nix module files using reliable patterns |
 | `system-migration-audit` | devops | Audit and plan system package manager migrations |
+| `gpg-key-rotation` | devops | Annual GPG signing key rotation: generate, configure git/jj/sl, upload to GitHub |
 | `jj-workflow` | vcs | Jujutsu daily workflow: commit, push, rebase, conflicts |
 | `windows-hermes-setup` | hermes | Windows-specific Hermes setup, pitfalls, and workarounds |
 
