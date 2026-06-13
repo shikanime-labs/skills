@@ -13,7 +13,10 @@ metadata:
 
 # GitHub Repository Management
 
-Create, clone, fork, configure, and manage GitHub repositories. Each section shows `gh` first, then the `git` + `curl` fallback.
+<!-- markdownlint-disable MD013 MD034 MD075 -->
+
+Create, clone, fork, configure, and manage GitHub repositories. Each section
+shows `gh` first, then the `git` + `curl` fallback.
 
 ## Prerequisites
 
@@ -355,7 +358,9 @@ for s in json.load(sys.stdin)['secrets']:
     print(f\"  {s['name']:30}  updated: {s['updated_at']}\")"
 ```
 
-Note: For secrets, `gh secret set` is dramatically simpler. If setting secrets is needed and `gh` isn't available, recommend installing it for just that operation.
+Note: For secrets, `gh secret set` is dramatically simpler. If setting secrets
+is needed and `gh` isn't available, recommend installing it for just that
+operation.
 
 ## 8. Releases
 
@@ -503,14 +508,14 @@ for g in json.load(sys.stdin):
 
 ## Quick Reference Table
 
-| Action | gh | git + curl |
-|--------|-----|-----------|
-| Clone | `gh repo clone o/r` | `git clone https://github.com/o/r.git` |
-| Create repo | `gh repo create name --public` | `curl POST /user/repos` |
-| Fork | `gh repo fork o/r --clone` | `curl POST /repos/o/r/forks` + `git clone` |
-| Repo info | `gh repo view o/r` | `curl GET /repos/o/r` |
-| Edit settings | `gh repo edit --...` | `curl PATCH /repos/o/r` |
-| Create release | `gh release create v1.0` | `curl POST /repos/o/r/releases` |
-| List workflows | `gh workflow list` | `curl GET /repos/o/r/actions/workflows` |
-| Rerun CI | `gh run rerun ID` | `curl POST /repos/o/r/actions/runs/ID/rerun` |
-| Set secret | `gh secret set KEY` | `curl PUT /repos/o/r/actions/secrets/KEY` (+ encryption) |
+| Action         | gh                             | git + curl                                               |
+| -------------- | ------------------------------ | -------------------------------------------------------- |
+| Clone          | `gh repo clone o/r`            | `git clone https://github.com/o/r.git`                   |
+| Create repo    | `gh repo create name --public` | `curl POST /user/repos`                                  |
+| Fork           | `gh repo fork o/r --clone`     | `curl POST /repos/o/r/forks` + `git clone`               |
+| Repo info      | `gh repo view o/r`             | `curl GET /repos/o/r`                                    |
+| Edit settings  | `gh repo edit --...`           | `curl PATCH /repos/o/r`                                  |
+| Create release | `gh release create v1.0`       | `curl POST /repos/o/r/releases`                          |
+| List workflows | `gh workflow list`             | `curl GET /repos/o/r/actions/workflows`                  |
+| Rerun CI       | `gh run rerun ID`              | `curl POST /repos/o/r/actions/runs/ID/rerun`             |
+| Set secret     | `gh secret set KEY`            | `curl PUT /repos/o/r/actions/secrets/KEY` (+ encryption) |

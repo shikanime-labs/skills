@@ -10,7 +10,7 @@
 
 <!-- How could it work? Include API sketches, CLI examples, or mockups if helpful -->
 
-```
+```text
 # Example usage
 ```
 

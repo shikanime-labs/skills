@@ -1,6 +1,8 @@
 # Threat Modeling Prompt Template for LLMs
 
-This reference provides a disciplined, repo-grounded prompt that produces AppSec-usable threat models. Use it when you need a reliable output contract and a consistent process to assemble the threat model output
+This reference provides a disciplined, repo-grounded prompt that produces
+AppSec-usable threat models. Use it when you need a reliable output contract and
+a consistent process to assemble the threat model output
 
 ## System prompt
 
@@ -53,7 +55,7 @@ Diagram requirements:
 
 ## Repository summary prompt
 
-```
+```text
 We have a codebase located at {repo_directory/path}, currently on branch {branch_name}.
 
 Please produce a security-oriented summary of the repository (or the specified sub-path) with the goal of helping a follow-on security engineer quickly understand the system well enough to build an initial threat model and investigate potential security hypotheses.
@@ -89,11 +91,10 @@ Tooling Notes
 If Ripgrep (rg) is available, use it to explore the codebase. When using grep or rg, always include the -I flag to avoid searching through binary files.
 ```
 
-
-
 ## User prompt template
 
-Use this as the task prompt, filling in what you know and marking the rest as assumptions:
+Use this as the task prompt, filling in what you know and marking the rest as
+assumptions:
 
 ```text
 # Inputs
@@ -133,7 +134,7 @@ You MUST follow this process and reflect outputs in the final document:
       - sandboxing/isolation, privilege boundaries, subprocess execution
       - logging/auditing and error handling paths
       - CI/build/release: pipelines, dependency management, artifact publishing
-   
+
 2) System model
    a. Summarize the primary components (runtime plus critical build/CI components when relevant).
    b. Enumerate data flows and trust boundaries.
@@ -253,3 +254,4 @@ Rules:
 
 - Fill in known context, but allow the model to infer and mark assumptions.
 - Include 1–2 repo-path anchors per major claim; do not dump every match.
+```

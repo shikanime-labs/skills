@@ -13,7 +13,8 @@ metadata:
 
 # Codex CLI
 
-Delegate coding tasks to [Codex](https://github.com/openai/codex) via the Hermes terminal. Codex is OpenAI's autonomous coding agent CLI.
+Delegate coding tasks to [Codex](https://github.com/openai/codex) via the Hermes
+terminal. Codex is OpenAI's autonomous coding agent CLI.
 
 ## When to use
 
@@ -40,18 +41,19 @@ that Codex auth is missing.
 
 ## One-Shot Tasks
 
-```
+```text
 terminal(command="codex exec 'Add dark mode toggle to settings'", workdir="~/project", pty=true)
 ```
 
 For scratch work (Codex needs a git repo):
-```
+
+```text
 terminal(command="cd $(mktemp -d) && git init && codex exec 'Build a snake game in Python'", pty=true)
 ```
 
 ## Background Mode (Long Tasks)
 
-```
+```text
 # Start in background with PTY
 terminal(command="codex exec --full-auto 'Refactor the auth module'", workdir="~/project", background=true, pty=true)
 # Returns session_id
@@ -69,23 +71,23 @@ process(action="kill", session_id="<id>")
 
 ## Key Flags
 
-| Flag | Effect |
-|------|--------|
-| `exec "prompt"` | One-shot execution, exits when done |
-| `--full-auto` | Sandboxed but auto-approves file changes in workspace |
-| `--yolo` | No sandbox, no approvals (fastest, most dangerous) |
+| Flag            | Effect                                                |
+| --------------- | ----------------------------------------------------- |
+| `exec "prompt"` | One-shot execution, exits when done                   |
+| `--full-auto`   | Sandboxed but auto-approves file changes in workspace |
+| `--yolo`        | No sandbox, no approvals (fastest, most dangerous)    |
 
 ## PR Reviews
 
 Clone to a temp directory for safe review:
 
-```
+```text
 terminal(command="REVIEW=$(mktemp -d) && git clone https://github.com/user/repo.git $REVIEW && cd $REVIEW && gh pr checkout 42 && codex review --base origin/main", pty=true)
 ```
 
 ## Parallel Issue Fixing with Worktrees
 
-```
+```text
 # Create worktrees
 terminal(command="git worktree add -b fix/issue-78 /tmp/issue-78 main", workdir="~/project")
 terminal(command="git worktree add -b fix/issue-99 /tmp/issue-99 main", workdir="~/project")
@@ -107,7 +109,7 @@ terminal(command="git worktree remove /tmp/issue-78", workdir="~/project")
 
 ## Batch PR Reviews
 
-```
+```text
 # Fetch all PR refs
 terminal(command="git fetch origin '+refs/pull/*/head:refs/remotes/origin/pr/*'", workdir="~/project")
 
@@ -121,10 +123,14 @@ terminal(command="gh pr comment 86 --body '<review>'", workdir="~/project")
 
 ## Rules
 
-1. **Always use `pty=true`** — Codex is an interactive terminal app and hangs without a PTY
-2. **Git repo required** — Codex won't run outside a git directory. Use `mktemp -d && git init` for scratch
+1. **Always use `pty=true`** — Codex is an interactive terminal app and hangs
+   without a PTY
+2. **Git repo required** — Codex won't run outside a git directory. Use
+   `mktemp -d && git init` for scratch
 3. **Use `exec` for one-shots** — `codex exec "prompt"` runs and exits cleanly
 4. **`--full-auto` for building** — auto-approves changes within the sandbox
-5. **Background for long tasks** — use `background=true` and monitor with `process` tool
-6. **Don't interfere** — monitor with `poll`/`log`, be patient with long-running tasks
+5. **Background for long tasks** — use `background=true` and monitor with
+   `process` tool
+6. **Don't interfere** — monitor with `poll`/`log`, be patient with long-running
+   tasks
 7. **Parallel is fine** — run multiple Codex processes at once for batch work

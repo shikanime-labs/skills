@@ -11,7 +11,7 @@
 
 CI job `unit-tests / Unit tests` failed with:
 
-```
+```text
 Error [RollupError]: Expected ';', '}' or <eof>
 ...
 Excluding it from coverage.
@@ -24,7 +24,8 @@ V8 coverage tried to parse `.sql` migration files as JavaScript.
 
 ## Resolution
 
-Added `'**/*.sql'` to the coverage `exclude` list in `apps/server/vitest.config.ts`.
+Added `'**/*.sql'` to the coverage `exclude` list in
+`apps/server/vitest.config.ts`.
 
 ```ts
 coverage: {
@@ -51,5 +52,8 @@ coverage: {
 
 ## Notes
 
-- The lockfile regenerated with workspace-specific tags (`file:plugins/argocd(...)`). Do not commit lockfile changes unless intentionally updating dependencies.
-- `prepare-app.spec.ts` imports the app and DB connections; coverage of migration SQL is never needed.
+- The lockfile regenerated with workspace-specific tags
+  (`file:plugins/argocd(...)`). Do not commit lockfile changes unless
+  intentionally updating dependencies.
+- `prepare-app.spec.ts` imports the app and DB connections; coverage of
+  migration SQL is never needed.

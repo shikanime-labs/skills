@@ -13,7 +13,8 @@ metadata:
 
 # GitHub Issues Management
 
-Create, search, triage, and manage GitHub issues. Each section shows `gh` first, then the `curl` fallback.
+Create, search, triage, and manage GitHub issues. Each section shows `gh` first,
+then the `curl` fallback.
 
 ## Prerequisites
 
@@ -142,7 +143,7 @@ curl -s -X POST \
 
 ### Bug Report Template
 
-```
+```text
 ## Bug Description
 <What's happening>
 
@@ -163,7 +164,7 @@ curl -s -X POST \
 
 ### Feature Request Template
 
-```
+```text
 ## Feature Description
 <What you want>
 
@@ -275,9 +276,10 @@ curl -s -X PATCH \
 
 ### Linking Issues to PRs
 
-Issues are automatically closed when a PR merges with the right keywords in the body:
+Issues are automatically closed when a PR merges with the right keywords in the
+body:
 
-```
+```text
 Closes #42
 Fixes #42
 Resolves #42
@@ -300,7 +302,10 @@ git checkout -b fix/issue-42-login-redirect
 
 ## 4. Issue Triage Workflow
 
-When asked to triage issues or update an issue "taking inspiration from other issues", do the work end-to-end with `gh`; do not stop at suggesting commands. First inspect the target issue, recent/similar issues, available labels, and milestones so labels/milestone/assignee follow repository conventions.
+When asked to triage issues or update an issue "taking inspiration from other
+issues", do the work end-to-end with `gh`; do not stop at suggesting commands.
+First inspect the target issue, recent/similar issues, available labels, and
+milestones so labels/milestone/assignee follow repository conventions.
 
 Useful inspection commands:
 
@@ -312,7 +317,9 @@ gh label list --limit 200 --json name,description
 gh api repos/{owner}/{repo}/milestones --paginate --jq '.[] | [.title,.state,.open_issues,.due_on] | @tsv'
 ```
 
-For substantial body rewrites, write the body to a temporary Markdown file and use `--body-file`; this avoids shell quoting damage and keeps French accents/backticks intact:
+For substantial body rewrites, write the body to a temporary Markdown file and
+use `--body-file`; this avoids shell quoting damage and keeps French
+accents/backticks intact:
 
 ```bash
 gh issue edit 42 \
@@ -323,7 +330,8 @@ gh issue edit 42 \
   --add-assignee "@me"
 ```
 
-Use `--add-assignee`, not `--assignee`. After editing, verify with JSON output and report the actual resulting labels, milestone, and assignees:
+Use `--add-assignee`, not `--assignee`. After editing, verify with JSON output
+and report the actual resulting labels, milestone, and assignees:
 
 ```bash
 gh issue view 42 --json number,title,body,labels,milestone,assignees,state,url \
@@ -388,13 +396,13 @@ curl -s \
 
 ## Quick Reference Table
 
-| Action | gh | curl endpoint |
-|--------|-----|--------------|
-| List issues | `gh issue list` | `GET /repos/{o}/{r}/issues` |
-| View issue | `gh issue view N` | `GET /repos/{o}/{r}/issues/N` |
-| Create issue | `gh issue create ...` | `POST /repos/{o}/{r}/issues` |
-| Add labels | `gh issue edit N --add-label ...` | `POST /repos/{o}/{r}/issues/N/labels` |
-| Assign | `gh issue edit N --add-assignee ...` | `POST /repos/{o}/{r}/issues/N/assignees` |
-| Comment | `gh issue comment N --body ...` | `POST /repos/{o}/{r}/issues/N/comments` |
-| Close | `gh issue close N` | `PATCH /repos/{o}/{r}/issues/N` |
-| Search | `gh issue list --search "..."` | `GET /search/issues?q=...` |
+| Action       | gh                                   | curl endpoint                            |
+| ------------ | ------------------------------------ | ---------------------------------------- |
+| List issues  | `gh issue list`                      | `GET /repos/{o}/{r}/issues`              |
+| View issue   | `gh issue view N`                    | `GET /repos/{o}/{r}/issues/N`            |
+| Create issue | `gh issue create ...`                | `POST /repos/{o}/{r}/issues`             |
+| Add labels   | `gh issue edit N --add-label ...`    | `POST /repos/{o}/{r}/issues/N/labels`    |
+| Assign       | `gh issue edit N --add-assignee ...` | `POST /repos/{o}/{r}/issues/N/assignees` |
+| Comment      | `gh issue comment N --body ...`      | `POST /repos/{o}/{r}/issues/N/comments`  |
+| Close        | `gh issue close N`                   | `PATCH /repos/{o}/{r}/issues/N`          |
+| Search       | `gh issue list --search "..."`       | `GET /search/issues?q=...`               |

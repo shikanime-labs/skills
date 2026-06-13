@@ -8,36 +8,49 @@ platforms: [linux, macos, windows]
 metadata:
   hermes:
     tags: [delegation, subagent, implementation, workflow, parallel]
-    related_skills: [writing-plans, requesting-code-review, test-driven-development]
+    related_skills:
+      [writing-plans, requesting-code-review, test-driven-development]
 ---
 
 # Subagent-Driven Development
 
 ## Overview
 
-Execute implementation plans by dispatching fresh subagents per task with systematic two-stage review.
+Execute implementation plans by dispatching fresh subagents per task with
+systematic two-stage review.
 
-**Core principle:** Fresh subagent per task + two-stage review (spec then quality) = high quality, fast iteration.
+**Core principle:** Fresh subagent per task + two-stage review (spec then
+quality) = high quality, fast iteration.
 
 ## Pattern-Repetition Optimization (Skip Review)
 
-When dispatching multiple subagents for SAME-PATTERN boilerplate (e.g., creating 6+ route files that all follow the same TanStack Router convention, or generating 10+ similar components), you may **skip the two-stage review** if:
+When dispatching multiple subagents for SAME-PATTERN boilerplate (e.g., creating
+6+ route files that all follow the same TanStack Router convention, or
+generating 10+ similar components), you may **skip the two-stage review** if:
 
-1. **Pattern is fully deterministic** — every file follows the same template with only parameter substitutions (route name, variable names)
-2. **Risk of deviation is zero** — the subagent literally cannot produce a wrong file shape because the goal constrains it to a well-known pattern
-3. **A structural test validates existence** — you've written a unit test (`vitest`) that checks all expected files exist and the route tree registers them
+1. **Pattern is fully deterministic** — every file follows the same template
+   with only parameter substitutions (route name, variable names)
+2. **Risk of deviation is zero** — the subagent literally cannot produce a wrong
+   file shape because the goal constrains it to a well-known pattern
+3. **A structural test validates existence** — you've written a unit test
+   (`vitest`) that checks all expected files exist and the route tree registers
+   them
 
 **When to skip:**
-- Creating multiple TanStack Router route files (same `createFileRoute` boilerplate)
+
+- Creating multiple TanStack Router route files (same `createFileRoute`
+  boilerplate)
 - Creating Zod schema files (same validation pattern)
 - Creating multiple form pages (same input/button/validation pattern)
 
 **When NEVER to skip:**
+
 - Business logic (any task with branching, edge cases, or decision-making)
 - Data model changes (schema changes affect everything downstream)
 - Any task where "close enough" could cause subtle bugs
 
 **Pattern for skip-review dispatch:**
+
 ```python
 # Same-pattern route files: skip review, rely on existence test
 for route in ["index", "new", "edit"]:
@@ -51,6 +64,7 @@ terminal("npx vitest run src/routes.test.ts")
 ```
 
 **Pattern when review IS needed:**
+
 ```python
 # Different logic per task: use full two-stage review
 delegate_task(goal="Implement payment validation", ...)
@@ -58,12 +72,15 @@ delegate_task(goal="Implement payment validation", ...)
 ```
 
 Use this skill when:
-- You have an implementation plan (from writing-plans skill or user requirements)
+
+- You have an implementation plan (from writing-plans skill or user
+  requirements)
 - Tasks are mostly independent
 - Quality and spec compliance are important
 - You want automated review between tasks
 
 **vs. manual execution:**
+
 - Fresh context per task (no confusion from accumulated state)
 - Automated review process catches issues early
 - Consistent quality checks across all tasks
@@ -73,7 +90,8 @@ Use this skill when:
 
 ### 1. Read and Parse Plan
 
-Read the plan file. Extract ALL tasks with their full text and context upfront. Create a todo list:
+Read the plan file. Extract ALL tasks with their full text and context upfront.
+Create a todo list:
 
 ```python
 # Read the plan
@@ -87,7 +105,8 @@ todo([
 ])
 ```
 
-**Key:** Read the plan ONCE. Extract everything. Don't make subagents read the plan file — provide the full task text directly in context.
+**Key:** Read the plan ONCE. Extract everything. Don't make subagents read the
+plan file — provide the full task text directly in context.
 
 ### 2. Per-Task Workflow
 
@@ -152,7 +171,8 @@ delegate_task(
 )
 ```
 
-**If spec issues found:** Fix gaps, then re-run spec review. Continue only when spec-compliant.
+**If spec issues found:** Fix gaps, then re-run spec review. Continue only when
+spec-compliant.
 
 #### Step 3: Dispatch Code Quality Reviewer
 
@@ -228,9 +248,11 @@ git add -A && git commit -m "feat: complete [feature name] implementation"
 **Each task = 2-5 minutes of focused work.**
 
 **Too big:**
+
 - "Implement user authentication system"
 
 **Right size:**
+
 - "Create User model with email and password fields"
 - "Add password hashing function"
 - "Create login endpoint"
@@ -275,16 +297,19 @@ git add -A && git commit -m "feat: complete [feature name] implementation"
 ## Efficiency Notes
 
 **Why fresh subagent per task:**
+
 - Prevents context pollution from accumulated state
 - Each subagent gets clean, focused context
 - No confusion from prior tasks' code or reasoning
 
 **Why two-stage review:**
+
 - Spec review catches under/over-building early
 - Quality review ensures the implementation is well-built
 - Catches issues before they compound across tasks
 
 **Cost trade-off:**
+
 - More subagent invocations (implementer + 2 reviewers per task)
 - But catches issues early (cheaper than debugging compounded problems later)
 
@@ -293,12 +318,14 @@ git add -A && git commit -m "feat: complete [feature name] implementation"
 ### With writing-plans
 
 This skill EXECUTES plans created by the writing-plans skill:
+
 1. User requirements → writing-plans → implementation plan
 2. Implementation plan → subagent-driven-development → working code
 
 ### With test-driven-development
 
 Implementer subagents should follow TDD:
+
 1. Write failing test first
 2. Implement minimal code
 3. Verify test passes
@@ -308,11 +335,13 @@ Include TDD instructions in every implementer context.
 
 ### With requesting-code-review
 
-The two-stage review process IS the code review. For final integration review, use the requesting-code-review skill's review dimensions.
+The two-stage review process IS the code review. For final integration review,
+use the requesting-code-review skill's review dimensions.
 
 ### With systematic-debugging
 
 If a subagent encounters bugs during implementation:
+
 1. Follow systematic-debugging process
 2. Find root cause before fixing
 3. Write regression test
@@ -320,7 +349,7 @@ If a subagent encounters bugs during implementation:
 
 ## Example Workflow
 
-```
+```text
 [Read plan: docs/plans/auth-feature.md]
 [Create todo list with 5 tasks]
 
@@ -367,7 +396,7 @@ If a subagent encounters bugs during implementation:
 
 ## Remember
 
-```
+```text
 Fresh subagent per task
 Two-stage review every time
 Spec compliance FIRST
@@ -380,9 +409,20 @@ Catch issues early
 
 ## Further reading (load when relevant)
 
-When the orchestration involves significant context usage, long review loops, or complex validation checkpoints, load these references for the specific discipline:
+When the orchestration involves significant context usage, long review loops, or
+complex validation checkpoints, load these references for the specific
+discipline:
 
-- **`references/context-budget-discipline.md`** — Four-tier context degradation model (PEAK / GOOD / DEGRADING / POOR), read-depth rules that scale with context window size, and early warning signs of silent degradation. Load when a run will clearly consume significant context (multi-phase plans, many subagents, large artifacts).
-- **`references/gates-taxonomy.md`** — The four canonical gate types (Pre-flight, Revision, Escalation, Abort) with behavior, recovery, and examples. Load when designing or reviewing any workflow that has validation checkpoints — use the vocabulary explicitly so each gate has defined entry, failure behavior, and resumption rules.
+- **`references/context-budget-discipline.md`** — Four-tier context degradation
+  model (PEAK / GOOD / DEGRADING / POOR), read-depth rules that scale with
+  context window size, and early warning signs of silent degradation. Load when
+  a run will clearly consume significant context (multi-phase plans, many
+  subagents, large artifacts).
+- **`references/gates-taxonomy.md`** — The four canonical gate types
+  (Pre-flight, Revision, Escalation, Abort) with behavior, recovery, and
+  examples. Load when designing or reviewing any workflow that has validation
+  checkpoints — use the vocabulary explicitly so each gate has defined entry,
+  failure behavior, and resumption rules.
 
-Both references adapted from gsd-build/get-shit-done (MIT © 2025 Lex Christopherson).
+Both references adapted from gsd-build/get-shit-done (MIT © 2025 Lex
+Christopherson).
