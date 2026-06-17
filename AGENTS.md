@@ -7,8 +7,20 @@ agents. Each skill lives in its own directory with a `SKILL.md`.
 
 ## Structure
 
-- `skills/` — Individual skill directories, each containing a `SKILL.md`
+- `skills/workflow/` — The strict development workflow skills, each a directory
+  with a `SKILL.md`
+- `docs/agents/` — Durable substrate (`issue-tracker.md`, `domain.md`,
+  `workflow.md`) the workflow reads
 - `README.md` — Installation and usage documentation
+
+## Workflow
+
+One narrative, not a toolbox. The pipeline validates every feature as a GitHub
+issue before code; the minimalism discipline is the always-on minimalism guard
+woven through every coding step (defined in `docs/agents/workflow.md`, not a
+separate skill); features ship behind feature-driven tests and property-based
+stability tests. Full flow in `docs/agents/workflow.md`. Skills: `bootstrap`,
+`to-spec`, `to-tickets`, `triage`, `implement`, `code-review`, `ask`.
 
 ## Commit Style
 
@@ -16,14 +28,21 @@ agents. Each skill lives in its own directory with a `SKILL.md`.
 - Body with labels: `Design:`, `Related:`, `Closes #`
 - Keep Markdown lines wrapped at 80 columns and run `nix fmt` before shipping
 
-## Stack
+## Stack (atomic delivery)
 
-- 1 commit == 1 PR via ghstack
-- Amend + `ghstack` to resubmit
-- `ghstack land` on head PR to land the entire stack
-- Never `gh pr merge` (creates poisoned commits)
-- Never force-push ghstack branches
-- ghstack only works on HEAD commit chains, not detached HEADs
+- One ticket → one branch → one PR; PRs stack on the previous ticket's branch.
+- Each PR is atomic: one objective, linked issue (`Closes #N`), small enough for
+  a human to review in one sitting.
+- 1 commit == 1 PR via ghstack, or manual per-ticket branches with
+  `gh pr create`.
+- Agent runs `code-review` as pre-flight; **a human approving review is the
+  gate** before landing (protect `main`).
+- Amend + `ghstack` to resubmit; `ghstack land` on the head PR to land the
+  stack.
+- Never `gh pr merge` (poisoned commits). Never force-push stacked branches.
+- ghstack needs a HEAD commit chain, not a detached HEAD.
+- Prefer `jj`; ghstack is git-only, so under jj replicate the stack manually
+  (one bookmark per ticket + `gh pr create`).
 
 ## Protect `main`
 
@@ -48,7 +67,6 @@ agents. Each skill lives in its own directory with a `SKILL.md`.
 - `productivity` — Communication, documents, automation
 - `reconnaissance` — Domain intelligence, OSINT
 - `software-dev` — Development workflows, debugging, testing
-- `vcs` — Version control systems
 
 _Each skill must include a valid `SKILL.md` with YAML frontmatter. Test against
 the target agent before submitting_

@@ -3,9 +3,16 @@
 A curated catalog of self-improved agent skills for
 [Hermes](https://hermes-agent.nousresearch.com/docs) and compatible agents.
 
-These skills are either **original creations** written from scratch, or
-**substantially modified** versions of upstream skills adapted for this agent's
-workflow. They are not mass-generated — each has been tested in production use.
+This catalog encodes **one strict development workflow**: a spec-as-issue
+pipeline where every feature is drafted as a GitHub issue to validate it before
+code exists, combined with an always-on minimalism discipline (write only what
+the task needs) woven through every coding step rather than split into separate
+skills. `docs/agents/` holds the durable substrate so maintainers, humans, and
+other agents share one map; features ship behind feature-driven tests and
+property-based stability tests.
+
+See `docs/agents/workflow.md` for the **Inspiration** note crediting the two
+MIT-licensed sources this workflow adapts.
 
 ## Quick Start
 
@@ -22,7 +29,7 @@ npx skills add shikanime-studio/skills --list
 npx skills add shikanime-studio/skills -g -y
 
 # Install a specific skill
-npx skills add shikanime-studio/skills --skill github-auth -g
+npx skills add shikanime-studio/skills --skill implement -g
 
 # Install all skills for specific agents
 npx skills add shikanime-studio/skills -g -a claude-code -a cursor -y
@@ -44,10 +51,10 @@ hermes skills list
 
 ```bash
 # Install a single skill from the tap
-hermes skills install shikanime-studio/skills/kanban-worker
+hermes skills install shikanime-studio/skills/workflow/implement
 
 # Or copy manually
-cp -r skills/github/github-auth ~/.hermes/skills/github/
+cp -r skills/workflow/implement ~/.hermes/skills/workflow/
 ```
 
 ### Install via npm
@@ -61,70 +68,57 @@ npx agents export --target claude
 ```
 
 The `agents` field in `package.json` and the `skills.json` manifest at the repo
-root enable discovery by npm-based skill managers.
+root enable discovery by npm-based skill managers. Both now list only the 7
+workflow skills; the minimalism discipline is part of the workflow, not a
+separate entry.
+
+## The Workflow
+
+A single narrative, not a toolbox. Read `docs/agents/workflow.md` for the full
+flow; in short:
+
+1. **`bootstrap`** — run once per repo; writes `docs/agents/*`.
+2. **`to-spec`** — turn a discussion into a spec and publish it as a GitHub
+   issue (the validation gate). Also keeps `docs/agents/` current.
+3. **`to-tickets`** — split a spec into tracer-bullet tickets with blocking
+   edges.
+4. **`triage`** — move issues through the state machine.
+5. **`implement`** — feature-driven tests → implement to green → property-based
+   stability tests, on the minimalism ladder, then `code-review`, then commit.
+6. **`code-review`** — Standards + Spec (+ Stability) review.
+7. **`ask`** — router over the catalog.
+
+Each ticket ships as **one atomic PR** through a required human review gate —
+the agent's `code-review` is a pre-flight, a human approves the merge. See
+`docs/agents/workflow.md` → _Delivery: atomic stacked PRs_.
+
+**The minimalism discipline is not a skill — it is the always-on discipline
+woven through every coding step.** The ladder (YAGNI → reuse → stdlib → native →
+dep → one line → minimum), the non-negotiable guarantees (validation, error
+handling, security, accessibility), the `deferral:` marker, the over-engineering
+audit, and the deferral ledger all live in `docs/agents/workflow.md` and are
+invoked by `implement`, `to-spec`, `to-tickets`, and `code-review`.
 
 ## What's Here
 
-Skills are organized by category. Each skill is a self-contained directory with
-a `SKILL.md` that follows the
-[Agent Skills](https://agentskills.io/specification) specification and is
-compatible with the [Hermes format](https://hermes-agent.nousresearch.com/docs).
+All skills live under `skills/workflow/` and follow the
+[Agent Skills](https://agentskills.io/specification) specification, compatible
+with the [Hermes format](https://hermes-agent.nousresearch.com/docs).
 
-### Custom Skills (Original Creations)
+| Skill         | Description                                                                                               |
+| ------------- | --------------------------------------------------------------------------------------------------------- |
+| `bootstrap`   | Bootstrap a repo: write `docs/agents/*`                                                                   |
+| `to-spec`     | Discussion → spec issue (validation gate) + docs update                                                   |
+| `to-tickets`  | Spec → tracer-bullet tickets with blocking edges                                                          |
+| `triage`      | Issue state machine: categorise, brief, transition                                                        |
+| `implement`   | Feature tests → impl → property tests + over-engineering audit, on the ladder, then `code-review`, commit |
+| `code-review` | Three-axis (Standards + Spec + Stability) review                                                          |
+| `ask`         | Router over the workflow catalog                                                                          |
 
-These skills were created from scratch and are not part of any upstream hub:
-
-| Skill                      | Category      | Description                                                                      |
-| -------------------------- | ------------- | -------------------------------------------------------------------------------- |
-| `apple-notes`              | apple         | Manage Apple Notes via memo CLI                                                  |
-| `apple-reminders`          | apple         | Apple Reminders via remindctl                                                    |
-| `claude-code`              | autonomous-ai | Delegate coding to Claude Code CLI                                               |
-| `codex`                    | autonomous-ai | Delegate coding to OpenAI Codex CLI                                              |
-| `kanban-worker`            | autonomous-ai | Pitfalls and examples for Hermes Kanban workers                                  |
-| `github-auth`              | github        | GitHub auth setup: HTTPS tokens, SSH keys, gh CLI                                |
-| `github-code-review`       | github        | Review PRs: diffs, inline comments via gh or REST                                |
-| `github-issues`            | github        | Create, triage, label, assign GitHub issues                                      |
-| `github-repo-management`   | github        | Clone/create/fork repos; manage remotes, releases                                |
-| `ghstack-workflow`         | github        | Stacked PRs with ghstack + jj: create, update, land stacks                       |
-| `darwin-host-provisioning` | devops        | Provision and restore macOS Nix-Darwin hosts                                     |
-| `home-manager-pitfalls`    | devops        | Home Manager module gotchas and silent failures                                  |
-| `nix-module-bulk-edit`     | devops        | Bulk-edit Nix module files using reliable patterns                               |
-| `system-migration-audit`   | devops        | Audit and plan system package manager migrations                                 |
-| `gpg-key-rotation`         | devops        | Annual GPG signing key rotation: generate, configure git/jj/sl, upload to GitHub |
-| `jj-workflow`              | vcs           | Jujutsu daily workflow: commit, push, rebase, conflicts                          |
-| `windows-hermes-setup`     | hermes        | Windows-specific Hermes setup, pitfalls, and workarounds                         |
-
-### Improved Skills (Substantially Modified)
-
-These skills have been improved from their upstream versions:
-
-| Skill                           | Category | Description                                   |
-| ------------------------------- | -------- | --------------------------------------------- |
-| `dogfood`                       | dogfood  | Exploratory QA of web apps                    |
-| `security-best-practices`       | security | Language/framework security best practices    |
-| `security-threat-model`         | security | Repository-grounded threat modeling           |
-| `yuanbao`                       | yuanbao  | Yuanbao groups: @mention, query info/members  |
-| `hermes-agent-skill-authoring`  | hermes   | Author in-repo SKILL.md                       |
-| `plan`                          | hermes   | Write implementation plans                    |
-| `writing-plans`                 | hermes   | Write implementation plans (obra/superpowers) |
-| `spike`                         | hermes   | Throwaway experiments                         |
-| `systematic-debugging`          | hermes   | 4-phase root cause debugging                  |
-| `test-driven-development`       | hermes   | Enforce RED-GREEN-REFACTOR                    |
-| `subagent-driven-development`   | hermes   | Execute plans via delegate_task subagents     |
-| `multi-repo-review`             | hermes   | Review multiple repositories in parallel      |
-| `requesting-code-review`        | hermes   | Pre-commit review workflow                    |
-| `dependency-upgrades`           | hermes   | Upgrade pnpm monorepo dependencies            |
-| `vitest-configuration`          | hermes   | Troubleshoot Vitest config issues             |
-| `python-debugpy`                | hermes   | Debug Python via pdb + debugpy                |
-| `node-inspect-debugger`         | hermes   | Debug Node.js via Chrome DevTools Protocol    |
-| `debugging-hermes-tui-commands` | hermes   | Debug Hermes TUI slash commands               |
-| `sonarqube-refactoring`         | hermes   | Fix SonarQube quality gate issues             |
-| `nix-docker-builds`             | hermes   | Build Docker images with Nix                  |
-| `nestjs-build-fixing`           | nestjs   | Fix NestJS + TypeScript build errors          |
-| `nestjs-logging`                | nestjs   | Add logging to NestJS modules                 |
-| `nestjs-module-migration`       | nestjs   | Migrate legacy backend modules to NestJS      |
-| `cpn-console-plugins`           | cpn      | Develop cloud-pi-native console plugins       |
-| `cpn-documentation`             | cpn      | Write cloud-pi-native documentation           |
+**Minimalism discipline** (ladder, non-negotiable guarantees, `deferral:`
+marker, over-engineering audit, deferral ledger) is defined once in
+`docs/agents/workflow.md` and applied by `implement`, `to-spec`, `to-tickets`,
+and `code-review` — it is not a separate skill.
 
 ## Development
 
