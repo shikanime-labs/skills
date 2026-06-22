@@ -92,6 +92,10 @@
         "path": "skills/hermes/hermes-agent-skill-authoring"
       },
       {
+        "name": "hermes-tweet",
+        "path": "skills/hermes/hermes-tweet"
+      },
+      {
         "name": "multi-repo-review",
         "path": "skills/hermes/multi-repo-review"
       },
