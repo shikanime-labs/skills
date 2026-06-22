@@ -91,6 +91,7 @@ These skills were created from scratch and are not part of any upstream hub:
 | `nix-module-bulk-edit`     | devops        | Bulk-edit Nix module files using reliable patterns                               |
 | `system-migration-audit`   | devops        | Audit and plan system package manager migrations                                 |
 | `gpg-key-rotation`         | devops        | Annual GPG signing key rotation: generate, configure git/jj/sl, upload to GitHub |
+| `hermes-tweet`             | hermes        | X/Twitter research, social listening, and approval-gated actions                 |
 | `jj-workflow`              | vcs           | Jujutsu daily workflow: commit, push, rebase, conflicts                          |
 | `windows-hermes-setup`     | hermes        | Windows-specific Hermes setup, pitfalls, and workarounds                         |
 

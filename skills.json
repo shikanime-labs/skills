@@ -105,6 +105,11 @@
       "path": "skills/hermes/hermes-agent-skill-authoring"
     },
     {
+      "name": "hermes-tweet",
+      "description": "Use Hermes Tweet for X/Twitter research, social listening, and approval-gated account actions in Hermes Agent.",
+      "path": "skills/hermes/hermes-tweet"
+    },
+    {
       "name": "multi-repo-review",
       "description": "Review multiple repositories in parallel for code quality, security, configuration issues.",
       "path": "skills/hermes/multi-repo-review"
