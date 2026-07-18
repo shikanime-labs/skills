@@ -1,130 +1,69 @@
 # Skills
 
-A curated catalog of self-improved agent skills for
+A single, strict development workflow for
 [Hermes](https://hermes-agent.nousresearch.com/docs) and compatible agents.
 
-These skills are either **original creations** written from scratch, or
-**substantially modified** versions of upstream skills adapted for this agent's
-workflow. They are not mass-generated — each has been tested in production use.
+This repo no longer ships a catalog of separate skills. It ships **one**
+comprehensive skill — `dev-workflow` — that encodes the entire pipeline so the
+behavior is consistent and self-contained.
 
-## Quick Start
+## The workflow
 
-### Install via npx skills (Claude Code, Codex, Cursor, OpenCode, …)
+Every feature is **drafted as a GitHub issue** to validate the task or feature
+before any code is written. A **strategic documentation substrate** in
+`docs/agents/` keeps maintainers, humans, and other agents on one map. The
+**Ponytail laziness ladder** runs through every coding step, so the code that
+ships is only what the task needs — never cutting validation, security, or
+accessibility.
 
-[skills.sh](https://skills.sh/) is the open agent skills registry. Install any
-skill from this repo:
+Two forces drive it:
 
-```bash
-# List available skills
-npx skills add shikanime-studio/skills --list
+- **The pipeline** (Matt Pocock's engineering skills): idea → spec → tickets →
+  triage → implement → review. Nothing is built until it exists as a validated
+  issue.
+- **The ladder** (Ponytail): an always-on guard on any coding step — write only
+  what the task needs.
 
-# Install all skills globally
-npx skills add shikanime-studio/skills -g -y
-
-# Install a specific skill
-npx skills add shikanime-studio/skills --skill github-auth -g
-
-# Install all skills for specific agents
-npx skills add shikanime-studio/skills -g -a claude-code -a cursor -y
-```
-
-### Install as a Hermes skill source
-
-Add the repo as a tap:
+## Install
 
 ```bash
 # Add as a tap
-hermes skills tap add shikanime-studio/skills
+hermes skills tap add shikanime-labs/skills
 
 # Verify loaded skills
 hermes skills list
 ```
 
-### Install individual skills
-
 ```bash
-# Install a single skill from the tap
-hermes skills install shikanime-studio/skills/kanban-worker
-
 # Or copy manually
-cp -r skills/github/github-auth ~/.hermes/skills/github/
+cp -r skills/dev-workflow ~/.hermes/skills/
 ```
 
-### Install via npm
+## What's inside `dev-workflow`
 
-```bash
-# Install as an npm package (skills are bundled via the agents field)
-npm install @shikanime-studio/skills
+The skill is one `SKILL.md` with sequential phases you jump between:
 
-# Then export to your agent's skill directory
-npx agents export --target claude
-```
+| Phase        | Purpose                                               |
+| ------------ | ----------------------------------------------------- |
+| § Setup      | Bootstrap a repo: tracker, labels, docs layout        |
+| § Spec       | Turn a discussion into a validated GitHub issue       |
+| § Tickets    | Decompose a spec into tracer-bullet tickets           |
+| § Triage     | Move issues through the triage state machine          |
+| § Implement  | Build a ticket: TDD at the seams, on the ladder       |
+| § Review     | Two-axis (Standards + Spec) review + over-engineering |
+| § Debt       | Harvest `ponytail:` deferral markers into a ledger    |
+| § The Ladder | The always-on simplest-solution discipline            |
 
-The `agents` field in `package.json` and the `skills.json` manifest at the repo
-root enable discovery by npm-based skill managers.
+## The substrate: `docs/agents/`
 
-## What's Here
+The pipeline reads configuration from three files instead of guessing. § Setup
+writes them; day-to-day tweaks are just edits.
 
-Skills are organized by category. Each skill is a self-contained directory with
-a `SKILL.md` that follows the
-[Agent Skills](https://agentskills.io/specification) specification and is
-compatible with the [Hermes format](https://hermes-agent.nousresearch.com/docs).
-
-### Custom Skills (Original Creations)
-
-These skills were created from scratch and are not part of any upstream hub:
-
-| Skill                      | Category      | Description                                                                      |
-| -------------------------- | ------------- | -------------------------------------------------------------------------------- |
-| `apple-notes`              | apple         | Manage Apple Notes via memo CLI                                                  |
-| `apple-reminders`          | apple         | Apple Reminders via remindctl                                                    |
-| `claude-code`              | autonomous-ai | Delegate coding to Claude Code CLI                                               |
-| `codex`                    | autonomous-ai | Delegate coding to OpenAI Codex CLI                                              |
-| `kanban-worker`            | autonomous-ai | Pitfalls and examples for Hermes Kanban workers                                  |
-| `github-auth`              | github        | GitHub auth setup: HTTPS tokens, SSH keys, gh CLI                                |
-| `github-code-review`       | github        | Review PRs: diffs, inline comments via gh or REST                                |
-| `github-issues`            | github        | Create, triage, label, assign GitHub issues                                      |
-| `github-repo-management`   | github        | Clone/create/fork repos; manage remotes, releases                                |
-| `ghstack-workflow`         | github        | Stacked PRs with ghstack + jj: create, update, land stacks                       |
-| `darwin-host-provisioning` | devops        | Provision and restore macOS Nix-Darwin hosts                                     |
-| `home-manager-pitfalls`    | devops        | Home Manager module gotchas and silent failures                                  |
-| `nix-module-bulk-edit`     | devops        | Bulk-edit Nix module files using reliable patterns                               |
-| `system-migration-audit`   | devops        | Audit and plan system package manager migrations                                 |
-| `gpg-key-rotation`         | devops        | Annual GPG signing key rotation: generate, configure git/jj/sl, upload to GitHub |
-| `jj-workflow`              | vcs           | Jujutsu daily workflow: commit, push, rebase, conflicts                          |
-| `windows-hermes-setup`     | hermes        | Windows-specific Hermes setup, pitfalls, and workarounds                         |
-
-### Improved Skills (Substantially Modified)
-
-These skills have been improved from their upstream versions:
-
-| Skill                           | Category | Description                                   |
-| ------------------------------- | -------- | --------------------------------------------- |
-| `dogfood`                       | dogfood  | Exploratory QA of web apps                    |
-| `security-best-practices`       | security | Language/framework security best practices    |
-| `security-threat-model`         | security | Repository-grounded threat modeling           |
-| `yuanbao`                       | yuanbao  | Yuanbao groups: @mention, query info/members  |
-| `hermes-agent-skill-authoring`  | hermes   | Author in-repo SKILL.md                       |
-| `plan`                          | hermes   | Write implementation plans                    |
-| `writing-plans`                 | hermes   | Write implementation plans (obra/superpowers) |
-| `spike`                         | hermes   | Throwaway experiments                         |
-| `systematic-debugging`          | hermes   | 4-phase root cause debugging                  |
-| `test-driven-development`       | hermes   | Enforce RED-GREEN-REFACTOR                    |
-| `subagent-driven-development`   | hermes   | Execute plans via delegate_task subagents     |
-| `multi-repo-review`             | hermes   | Review multiple repositories in parallel      |
-| `requesting-code-review`        | hermes   | Pre-commit review workflow                    |
-| `dependency-upgrades`           | hermes   | Upgrade pnpm monorepo dependencies            |
-| `vitest-configuration`          | hermes   | Troubleshoot Vitest config issues             |
-| `python-debugpy`                | hermes   | Debug Python via pdb + debugpy                |
-| `node-inspect-debugger`         | hermes   | Debug Node.js via Chrome DevTools Protocol    |
-| `debugging-hermes-tui-commands` | hermes   | Debug Hermes TUI slash commands               |
-| `sonarqube-refactoring`         | hermes   | Fix SonarQube quality gate issues             |
-| `nix-docker-builds`             | hermes   | Build Docker images with Nix                  |
-| `nestjs-build-fixing`           | nestjs   | Fix NestJS + TypeScript build errors          |
-| `nestjs-logging`                | nestjs   | Add logging to NestJS modules                 |
-| `nestjs-module-migration`       | nestjs   | Migrate legacy backend modules to NestJS      |
-| `cpn-console-plugins`           | cpn      | Develop cloud-pi-native console plugins       |
-| `cpn-documentation`             | cpn      | Write cloud-pi-native documentation           |
+- `docs/agents/issue-tracker.md` — where work lives, auth, label vocabulary, how
+  to create issues and blocking edges.
+- `docs/agents/domain.md` — glossary (`CONTEXT.md`) + ADR layout and consumer
+  rules.
+- `docs/agents/workflow.md` — the pipeline, written for humans and other agents.
 
 ## Development
 
