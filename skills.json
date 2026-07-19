@@ -1,5 +1,5 @@
 {
-  "name": "shikanime-studio/skills",
+  "name": "shikanime-labs/skills",
   "version": "1.1.0",
   "description": "A strict development workflow for Hermes and compatible agents: spec-as-issue pipeline + always-on minimalism discipline, with feature-driven and property-based stability tests. The minimalism discipline is woven through the pipeline, not a separate skill.",
   "license": "Apache-2.0",
@@ -38,6 +38,21 @@
       "name": "triage",
       "description": "Move issues and external PRs through a state machine of triage roles: categorise, verify, grill if needed, and write agent-ready briefs.",
       "path": "skills/workflow/triage"
+    },
+    {
+      "name": "github-issue-workflow",
+      "description": "GitHub issue lifecycle: create, edit, label, assign, and comment via gh CLI. Keep the body to relevant content; set fields per github-issue-metadata.",
+      "path": "skills/github/github-issue-workflow"
+    },
+    {
+      "name": "github-issue-metadata",
+      "description": "Set all issue metadata at creation: labels, assignee, project, type, priority, parent/child links, and mermaid-structured bodies.",
+      "path": "skills/github/github-issue-metadata"
+    },
+    {
+      "name": "github-release-management",
+      "description": "Release workflow: milestones (REST), project boards, and GitHub Releases via gh CLI.",
+      "path": "skills/github/github-release-management"
     }
   ]
 }

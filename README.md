@@ -23,16 +23,16 @@ skill from this repo:
 
 ```bash
 # List available skills
-npx skills add shikanime-studio/skills --list
+npx skills add shikanime-labs/skills --list
 
 # Install all skills globally
-npx skills add shikanime-studio/skills -g -y
+npx skills add shikanime-labs/skills -g -y
 
 # Install a specific skill
-npx skills add shikanime-studio/skills --skill implement -g
+npx skills add shikanime-labs/skills --skill implement -g
 
 # Install all skills for specific agents
-npx skills add shikanime-studio/skills -g -a claude-code -a cursor -y
+npx skills add shikanime-labs/skills -g -a claude-code -a cursor -y
 ```
 
 ### Install as a Hermes skill source
@@ -41,7 +41,7 @@ Add the repo as a tap:
 
 ```bash
 # Add as a tap
-hermes skills tap add shikanime-studio/skills
+hermes skills tap add shikanime-labs/skills
 
 # Verify loaded skills
 hermes skills list
@@ -51,7 +51,7 @@ hermes skills list
 
 ```bash
 # Install a single skill from the tap
-hermes skills install shikanime-studio/skills/workflow/implement
+hermes skills install shikanime-labs/skills/workflow/implement
 
 # Or copy manually
 cp -r skills/workflow/implement ~/.hermes/skills/workflow/
@@ -61,7 +61,7 @@ cp -r skills/workflow/implement ~/.hermes/skills/workflow/
 
 ```bash
 # Install as an npm package (skills are bundled via the agents field)
-npm install @shikanime-studio/skills
+npm install @shikanime-labs/skills
 
 # Then export to your agent's skill directory
 npx agents export --target claude
@@ -101,19 +101,23 @@ invoked by `implement`, `to-spec`, `to-tickets`, and `code-review`.
 
 ## What's Here
 
-All skills live under `skills/workflow/` and follow the
+Workflow skills live under `skills/workflow/`; GitHub operations under
+`skills/github/`. All follow the
 [Agent Skills](https://agentskills.io/specification) specification, compatible
 with the [Hermes format](https://hermes-agent.nousresearch.com/docs).
 
-| Skill         | Description                                                                                               |
-| ------------- | --------------------------------------------------------------------------------------------------------- |
-| `bootstrap`   | Bootstrap a repo: write `docs/agents/*`                                                                   |
-| `to-spec`     | Discussion → spec issue (validation gate) + docs update                                                   |
-| `to-tickets`  | Spec → tracer-bullet tickets with blocking edges                                                          |
-| `triage`      | Issue state machine: categorise, brief, transition                                                        |
-| `implement`   | Feature tests → impl → property tests + over-engineering audit, on the ladder, then `code-review`, commit |
-| `code-review` | Three-axis (Standards + Spec + Stability) review                                                          |
-| `ask`         | Router over the workflow catalog                                                                          |
+| Skill                   | Description                                                                                               |
+| ----------------------- | --------------------------------------------------------------------------------------------------------- |
+| `bootstrap`             | Bootstrap a repo: write `docs/agents/*`                                                                   |
+| `to-spec`               | Discussion → spec issue (validation gate) + docs update                                                   |
+| `to-tickets`            | Spec → tracer-bullet tickets with blocking edges                                                          |
+| `triage`                | Issue state machine: categorise, brief, transition                                                        |
+| `implement`             | Feature tests → impl → property tests + over-engineering audit, on the ladder, then `code-review`, commit |
+| `code-review`           | Three-axis (Standards + Spec + Stability) review                                                          |
+| `ask`                   | Router over the workflow catalog                                                                          |
+| `github-issue-workflow` | Issue lifecycle via gh CLI; bodies carry relevant content only, fields via `github-issue-metadata`        |
+| `github-issue-metadata` | Set all issue metadata at creation: labels, assignee, project, type, priority, parent/child, mermaid body |
+| `github-release-management` | Milestones (REST), project boards, and GitHub Releases via gh CLI                                       |
 
 **Minimalism discipline** (ladder, non-negotiable guarantees, `deferral:`
 marker, over-engineering audit, deferral ledger) is defined once in
