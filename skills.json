@@ -1,203 +1,43 @@
 {
   "name": "shikanime-studio/skills",
-  "version": "1.0.0",
-  "description": "A curated catalog of self-improved agent skills for Hermes and compatible agents.",
+  "version": "1.1.0",
+  "description": "A strict development workflow for Hermes and compatible agents: spec-as-issue pipeline + always-on minimalism discipline, with feature-driven and property-based stability tests. The minimalism discipline is woven through the pipeline, not a separate skill.",
   "license": "Apache-2.0",
   "skills": [
     {
-      "name": "apple-notes",
-      "description": "Manage Apple Notes via memo CLI: create, search, edit.",
-      "path": "skills/apple/apple-notes"
+      "name": "ask",
+      "description": "Router over the workflow catalog. Ask which skill or flow fits your situation and get pointed at the right one. Use when unsure where to start.",
+      "path": "skills/workflow/ask"
     },
     {
-      "name": "apple-reminders",
-      "description": "Apple Reminders via remindctl: add, list, complete.",
-      "path": "skills/apple/apple-reminders"
+      "name": "code-review",
+      "description": "Three-axis review of a diff against a fixed point: Standards (does it follow this repo's coding standards?), Spec (does it match the originating issue/PRD?), and Stability (were the spec's property-based tests shipped?). Runs axes as parallel sub-agents.",
+      "path": "skills/workflow/code-review"
     },
     {
-      "name": "claude-code",
-      "description": "Delegate coding to Claude Code CLI (features, PRs).",
-      "path": "skills/autonomous-ai/claude-code"
+      "name": "implement",
+      "description": "Build the work described by a spec or ticket: draft feature-driven tests, implement to green, then add property-based stability tests — all on the minimalism ladder, run the over-engineering audit, close with code-review, then commit.",
+      "path": "skills/workflow/implement"
     },
     {
-      "name": "codex",
-      "description": "Delegate coding to OpenAI Codex CLI (features, PRs).",
-      "path": "skills/autonomous-ai/codex"
+      "name": "bootstrap",
+      "description": "Bootstrap a repo for the strict development workflow: discover issue tracker, triage labels, and docs layout, then write docs/agents/*.",
+      "path": "skills/workflow/bootstrap"
     },
     {
-      "name": "kanban-worker",
-      "description": "Pitfalls, examples, and edge cases for Hermes Kanban workers.",
-      "path": "skills/autonomous-ai/kanban-worker"
+      "name": "to-spec",
+      "description": "Turn the current conversation into a spec (Problem, Solution, User Stories, Decisions), update docs/agents/, and publish it as a GitHub issue. Validates a feature before any code is written.",
+      "path": "skills/workflow/to-spec"
     },
     {
-      "name": "cpn-console-plugins",
-      "description": "Develop, debug, and fix plugins for the cloud-pi-native console.",
-      "path": "skills/cpn/cpn-console-plugins"
+      "name": "to-tickets",
+      "description": "Break a spec, plan, or conversation into tracer-bullet tickets, each declaring its blocking edges, published as GitHub sub-issues.",
+      "path": "skills/workflow/to-tickets"
     },
     {
-      "name": "cpn-documentation",
-      "description": "Write and maintain cloud-pi-native/documentation (VitePress site).",
-      "path": "skills/cpn/cpn-documentation"
-    },
-    {
-      "name": "home-manager-pitfalls",
-      "description": "Home Manager module gotchas — silent failures, hidden dependencies.",
-      "path": "skills/devops/home-manager-pitfalls"
-    },
-    {
-      "name": "darwin-host-provisioning",
-      "description": "Provision and restore macOS Nix-Darwin hosts, including host configuration, home-manager, SOPS secrets, and flake registration.",
-      "path": "skills/devops/darwin-host-provisioning"
-    },
-    {
-      "name": "nix-module-bulk-edit",
-      "description": "Bulk-edit Nix module files using reliable patterns.",
-      "path": "skills/devops/nix-module-bulk-edit"
-    },
-    {
-      "name": "system-migration-audit",
-      "description": "Audit and plan system package manager migrations (e.g. Homebrew to MacPorts), including inventory, categorization, migration planning, and cleanup.",
-      "path": "skills/devops/system-migration-audit"
-    },
-    {
-      "name": "dogfood",
-      "description": "Exploratory QA of web apps: find bugs, evidence, reports.",
-      "path": "skills/dogfood"
-    },
-    {
-      "name": "ghstack-workflow",
-      "description": "Stacked PRs with ghstack + Jujutsu (jj). Create, update, land, and manage stacked pull requests.",
-      "path": "skills/github/ghstack-workflow"
-    },
-    {
-      "name": "github-auth",
-      "description": "GitHub auth setup: HTTPS tokens, SSH keys, gh CLI login.",
-      "path": "skills/github/github-auth"
-    },
-    {
-      "name": "github-code-review",
-      "description": "Review PRs: diffs, inline comments via gh or REST.",
-      "path": "skills/github/github-code-review"
-    },
-    {
-      "name": "github-issues",
-      "description": "Create, triage, label, assign GitHub issues via gh or REST.",
-      "path": "skills/github/github-issues"
-    },
-    {
-      "name": "github-repo-management",
-      "description": "Clone/create/fork repos; manage remotes, releases.",
-      "path": "skills/github/github-repo-management"
-    },
-    {
-      "name": "debugging-hermes-tui-commands",
-      "description": "Debug Hermes TUI slash commands: Python, gateway, Ink UI.",
-      "path": "skills/hermes/debugging-hermes-tui-commands"
-    },
-    {
-      "name": "dependency-upgrades",
-      "description": "Upgrade dependencies in a pnpm monorepo — surgical targeted upgrades vs blanket major bumps.",
-      "path": "skills/hermes/dependency-upgrades"
-    },
-    {
-      "name": "hermes-agent-skill-authoring",
-      "description": "Author in-repo SKILL.md: frontmatter, validator, structure.",
-      "path": "skills/hermes/hermes-agent-skill-authoring"
-    },
-    {
-      "name": "multi-repo-review",
-      "description": "Review multiple repositories in parallel for code quality, security, configuration issues.",
-      "path": "skills/hermes/multi-repo-review"
-    },
-    {
-      "name": "nix-docker-builds",
-      "description": "Build Docker images with Nix: pure Nix vs hybrid builder patterns.",
-      "path": "skills/hermes/nix-docker-builds"
-    },
-    {
-      "name": "node-inspect-debugger",
-      "description": "Debug Node.js via --inspect + Chrome DevTools Protocol CLI.",
-      "path": "skills/hermes/node-inspect-debugger"
-    },
-    {
-      "name": "plan",
-      "description": "Plan mode: write an actionable markdown plan to .hermes/plans/, no execution.",
-      "path": "skills/hermes/plan"
-    },
-    {
-      "name": "python-debugpy",
-      "description": "Debug Python: pdb REPL + debugpy remote (DAP).",
-      "path": "skills/hermes/python-debugpy"
-    },
-    {
-      "name": "requesting-code-review",
-      "description": "Pre-commit review: security scan, quality gates, auto-fix.",
-      "path": "skills/hermes/requesting-code-review"
-    },
-    {
-      "name": "sonarqube-refactoring",
-      "description": "Fix SonarQube quality gate issues: cognitive complexity, unnecessary assertions.",
-      "path": "skills/hermes/sonarqube-refactoring"
-    },
-    {
-      "name": "spike",
-      "description": "Throwaway experiments to validate an idea before build.",
-      "path": "skills/hermes/spike"
-    },
-    {
-      "name": "subagent-driven-development",
-      "description": "Execute plans via delegate_task subagents (2-stage review).",
-      "path": "skills/hermes/subagent-driven-development"
-    },
-    {
-      "name": "systematic-debugging",
-      "description": "4-phase root cause debugging: understand bugs before fixing.",
-      "path": "skills/hermes/systematic-debugging"
-    },
-    {
-      "name": "test-driven-development",
-      "description": "TDD: enforce RED-GREEN-REFACTOR, tests before code.",
-      "path": "skills/hermes/test-driven-development"
-    },
-    {
-      "name": "vitest-configuration",
-      "description": "Troubleshoot and fix Vitest configuration issues.",
-      "path": "skills/hermes/vitest-configuration"
-    },
-    {
-      "name": "writing-plans",
-      "description": "Write implementation plans: bite-sized tasks, paths, code.",
-      "path": "skills/hermes/writing-plans"
-    },
-    {
-      "name": "nestjs-build-fixing",
-      "description": "Fix NestJS + TypeScript build errors and migrate auth/routes from legacy Fastify to NestJS.",
-      "path": "skills/nestjs/nestjs-build-fixing"
-    },
-    {
-      "name": "nestjs-logging",
-      "description": "Add consistent, debug-friendly logging to NestJS modules.",
-      "path": "skills/nestjs/nestjs-logging"
-    },
-    {
-      "name": "nestjs-module-migration",
-      "description": "Migrate a legacy backend module into the NestJS monorepo.",
-      "path": "skills/nestjs/nestjs-module-migration"
-    },
-    {
-      "name": "security-best-practices",
-      "description": "Language/framework security best-practice reviews (Python, JS/TS, Go).",
-      "path": "skills/security/security-best-practices"
-    },
-    {
-      "name": "security-threat-model",
-      "description": "Repository-grounded threat modeling that enumerates trust boundaries, assets, attack paths.",
-      "path": "skills/security/security-threat-model"
-    },
-    {
-      "name": "yuanbao",
-      "description": "Yuanbao (元宝) groups: @mention users, query info/members.",
-      "path": "skills/yuanbao"
+      "name": "triage",
+      "description": "Move issues and external PRs through a state machine of triage roles: categorise, verify, grill if needed, and write agent-ready briefs.",
+      "path": "skills/workflow/triage"
     }
   ]
 }
