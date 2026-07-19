@@ -1,7 +1,5 @@
 ---
 name: implement
----
-name: implement
 description:
   "Load context for a task: read the spec/ticket, explore the codebase surface,
   and present the task context to the user. The user controls implementation."
@@ -55,8 +53,8 @@ touch. Fetch the originating issue per `docs/agents/issue-tracker.md`.
 The minimalism discipline is always on (see `docs/agents/workflow.md` for the
 canonical ladder): stop at the first rung that holds — (1) does this need to
 exist? (YAGNI) → skip; (2) already in this codebase? → reuse; (3) stdlib does
-it? → use it; (4) native platform feature? → use it; (5) installed dependency?
-→ use it; (6) one line? → one line; (7) only then the minimum that works.
+it? → use it; (4) native platform feature? → use it; (5) installed dependency? →
+use it; (6) one line? → one line; (7) only then the minimum that works.
 
 Never cut validation, error handling, security, or accessibility.
 
@@ -64,8 +62,8 @@ Never cut validation, error handling, security, or accessibility.
 
 A ticket names a symptom. Before presenting context, find every caller of the
 affected function and present the **root cause** location where all callers
-route through — one guard in the shared function, not one in every caller.
-Note the regression test strategy.
+route through — one guard in the shared function, not one in every caller. Note
+the regression test strategy.
 
 ## Boundaries
 

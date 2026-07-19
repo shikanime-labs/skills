@@ -36,11 +36,13 @@ stability tests. Full flow in `docs/agents/workflow.md`. Skills: `bootstrap`,
 
 Example: Wire release management, milestone metadata, trunk-based jj stacking
 
-    Encode four principles into the workflow substrate and skills.
+```text
+Encode four principles into the workflow substrate and skills.
 
-    Design: docs/agents/workflow.md, docs/agents/issue-tracker.md
-    Related: skills/workflow/{to-spec,to-tickets,implement,ask}
-    Signed-off-by: Shikanime Deva <william.phetsinorath@shikanime.studio>
+Design: docs/agents/workflow.md, docs/agents/issue-tracker.md
+Related: skills/workflow/{to-spec,to-tickets,implement,ask}
+Signed-off-by: Shikanime Deva <william.phetsinorath@shikanime.studio>
+```
 
 ## Stack (atomic delivery)
 

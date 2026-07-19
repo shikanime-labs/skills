@@ -83,8 +83,8 @@ flow; in short:
 3. **`to-tickets`** — split a spec into tracer-bullet tickets with blocking
    edges.
 4. **`triage`** — move issues through the state machine.
-5. **`implement`** — load context for a task (read spec/ticket, explore codebase,
-   present task context). The user controls implementation.
+5. **`implement`** — load context for a task (read spec/ticket, explore
+   codebase, present task context). The user controls implementation.
 6. **User implements** — the user writes code, tests it, and prepares the PR.
 7. **`code-review`** — Standards + Spec (+ Stability) review.
 8. **`ask`** — router over the catalog.
@@ -106,15 +106,15 @@ All skills live under `skills/workflow/` and follow the
 [Agent Skills](https://agentskills.io/specification) specification, compatible
 with the [Hermes format](https://hermes-agent.nousresearch.com/docs).
 
-| Skill         | Description                                                                                               |
-| ------------- | --------------------------------------------------------------------------------------------------------- |
-| `bootstrap`   | Bootstrap a repo: write `docs/agents/*`                                                                   |
-| `to-spec`     | Discussion → spec issue (validation gate) + docs update                                                   |
-| `to-tickets`  | Spec → tracer-bullet tickets with blocking edges                                                          |
-| `triage`      | Issue state machine: categorise, brief, transition                                                        |
+| Skill         | Description                                                                                                      |
+| ------------- | ---------------------------------------------------------------------------------------------------------------- |
+| `bootstrap`   | Bootstrap a repo: write `docs/agents/*`                                                                          |
+| `to-spec`     | Discussion → spec issue (validation gate) + docs update                                                          |
+| `to-tickets`  | Spec → tracer-bullet tickets with blocking edges                                                                 |
+| `triage`      | Issue state machine: categorise, brief, transition                                                               |
 | `implement`   | Load context for a task: read spec/ticket, explore codebase, present task context. User controls implementation. |
-| `code-review` | Three-axis (Standards + Spec + Stability) review                                                          |
-| `ask`         | Router over the workflow catalog                                                                          |
+| `code-review` | Three-axis (Standards + Spec + Stability) review                                                                 |
+| `ask`         | Router over the workflow catalog                                                                                 |
 
 **Minimalism discipline** (ladder, non-negotiable guarantees, `deferral:`
 marker, over-engineering audit, deferral ledger) is defined once in
