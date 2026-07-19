@@ -28,14 +28,14 @@ Two forces run through the whole pipeline:
    the meta issue so the work rolls up.
 4. **`triage`** — move issues through the state machine
    (`needs-triage → needs-info → ready-for-agent → ready-for-human → wontfix`).
-5. **`implement`** — build a `ready-for-agent` ticket. Drive
-   `test-driven development` at pre-agreed seams (feature-driven tests first),
-   stay on the minimalism ladder throughout, then add **property-based stability
-   tests** for the spec's invariants, close with `code-review` before
-   committing.
-6. **`code-review`** — three-axis review (Standards + Spec + Stability) of the
+5. **`implement`** — load context for a `ready-for-agent` ticket. Read the
+   spec/ticket, explore the codebase surface, and present the task context to
+   the user. The user is in control of implementation.
+6. **User implements** — the user writes the code, tests it, and prepares the PR
+   based on the context loaded by `implement`.
+7. **`code-review`** — three-axis review (Standards + Spec + Stability) of the
    diff against a fixed point, in parallel sub-agents.
-7. **Release** — when the milestone's issues are all landed on `main`, cut the
+8. **Release** — when the milestone's issues are all landed on `main`, cut the
    release (see _Release management_ below).
 
 For a single-session change, skip 3 and go spec → implement in one context.
@@ -60,9 +60,9 @@ to exactly one PR so a human reviews one clear objective at a time.
 - Each PR carries the **milestone** (`gh pr create --milestone "vX.Y.Z"`)
   matching the ticket's issue, so the release cut finds every merged change for
   that version.
-- Size for a human: small enough to review in one sitting — feature tests +
-  implementation + property tests for that single ticket. If it won't fit, the
-  ticket was too big; split it (back to `to-tickets`).
+- Size for a human: small enough to review in one sitting — context loaded by
+  `implement` + implementation + tests for that single ticket. If it won't fit,
+  the ticket was too big; split it (back to `to-tickets`).
 - Each PR carries what a reviewer needs: a one-line objective in the title, the
   linked issue, and the acceptance criteria it satisfies. The agent runs
   `code-review` (three-axis) before marking it `ready-for-human`.
@@ -140,10 +140,9 @@ shares one milestone, which is how the cut stays consistent.
 ## Always-on: the minimalism discipline
 
 The minimalism discipline is **not a separate step or a separate skill** — it is
-the standing behaviour every coding skill in this workflow runs. The pipeline
+the standing behaviour the user applies during implementation. The pipeline
 decides _what_ to build; the ladder decides _how minimally_ to build it. Every
-other skill in this catalog (`to-spec`, `to-tickets`, `triage`, `implement`,
-`code-review`) invokes this discipline as part of its process.
+implementation step should invoke this discipline as part of the process.
 
 ### The ladder
 

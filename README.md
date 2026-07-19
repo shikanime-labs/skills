@@ -83,10 +83,11 @@ flow; in short:
 3. **`to-tickets`** — split a spec into tracer-bullet tickets with blocking
    edges.
 4. **`triage`** — move issues through the state machine.
-5. **`implement`** — feature-driven tests → implement to green → property-based
-   stability tests, on the minimalism ladder, then `code-review`, then commit.
-6. **`code-review`** — Standards + Spec (+ Stability) review.
-7. **`ask`** — router over the catalog.
+5. **`implement`** — load context for a task (read spec/ticket, explore codebase,
+   present task context). The user controls implementation.
+6. **User implements** — the user writes code, tests it, and prepares the PR.
+7. **`code-review`** — Standards + Spec (+ Stability) review.
+8. **`ask`** — router over the catalog.
 
 Each ticket ships as **one atomic PR** through a required human review gate —
 the agent's `code-review` is a pre-flight, a human approves the merge. See
@@ -97,7 +98,7 @@ woven through every coding step.** The ladder (YAGNI → reuse → stdlib → na
 dep → one line → minimum), the non-negotiable guarantees (validation, error
 handling, security, accessibility), the `deferral:` marker, the over-engineering
 audit, and the deferral ledger all live in `docs/agents/workflow.md` and are
-invoked by `implement`, `to-spec`, `to-tickets`, and `code-review`.
+applied by the user during implementation.
 
 ## What's Here
 
@@ -111,14 +112,14 @@ with the [Hermes format](https://hermes-agent.nousresearch.com/docs).
 | `to-spec`     | Discussion → spec issue (validation gate) + docs update                                                   |
 | `to-tickets`  | Spec → tracer-bullet tickets with blocking edges                                                          |
 | `triage`      | Issue state machine: categorise, brief, transition                                                        |
-| `implement`   | Feature tests → impl → property tests + over-engineering audit, on the ladder, then `code-review`, commit |
+| `implement`   | Load context for a task: read spec/ticket, explore codebase, present task context. User controls implementation. |
 | `code-review` | Three-axis (Standards + Spec + Stability) review                                                          |
 | `ask`         | Router over the workflow catalog                                                                          |
 
 **Minimalism discipline** (ladder, non-negotiable guarantees, `deferral:`
 marker, over-engineering audit, deferral ledger) is defined once in
-`docs/agents/workflow.md` and applied by `implement`, `to-spec`, `to-tickets`,
-and `code-review` — it is not a separate skill.
+`docs/agents/workflow.md` and applied by the user during implementation — it is
+not a separate skill.
 
 ## Development
 

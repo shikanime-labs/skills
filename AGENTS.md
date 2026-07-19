@@ -34,8 +34,7 @@ stability tests. Full flow in `docs/agents/workflow.md`. Skills: `bootstrap`,
   - `Change-Id:` — keep the originating change's id when amending.
 - Wrap Markdown lines at 80 columns and run `nix fmt` before shipping.
 
-Example:
-    Wire release management, milestone metadata, trunk-based jj stacking
+Example: Wire release management, milestone metadata, trunk-based jj stacking
 
     Encode four principles into the workflow substrate and skills.
 
