@@ -74,8 +74,8 @@ touch. Fetch the originating issue per `docs/agents/issue-tracker.md`.
     and whose **target is always `main`** (trunk). Link the issue **and the
     milestone** (`--milestone "v1.4.0"`) so the release cut stays consistent.
     One-line objective in the title, linked issue, acceptance criteria in the
-    body. After `code-review` passes, label it `ready-for-human` and wait for the
-    human approving review — never self-merge. Stacks are short-lived: land
+    body. After `code-review` passes, label it `ready-for-human` and wait for
+    the human approving review — never self-merge. Stacks are short-lived: land
     bottom-up as reviews pass, rebase the next bookmark onto `main`, repeat.
 
 ## Bug fixes

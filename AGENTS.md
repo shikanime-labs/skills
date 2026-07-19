@@ -24,9 +24,24 @@ stability tests. Full flow in `docs/agents/workflow.md`. Skills: `bootstrap`,
 
 ## Commit Style
 
-- Plain-text capitalized title, no conventional-commit prefix
-- Body with labels: `Design:`, `Related:`, `Closes #`
-- Keep Markdown lines wrapped at 80 columns and run `nix fmt` before shipping
+- Plain-text capitalized title, no conventional-commit prefix.
+- Body is labeled, one label per line where applicable:
+  - `Design:` — files or skills the change is grounded in.
+  - `Related:` — companion files, issues, or PRs.
+  - `Closes #N` — the linked ticket (required for atomic delivery).
+- Footers mandated by policy:
+  - `Signed-off-by:` — required; commits must be signed (see Protect `main`).
+  - `Change-Id:` — keep the originating change's id when amending.
+- Wrap Markdown lines at 80 columns and run `nix fmt` before shipping.
+
+Example:
+    Wire release management, milestone metadata, trunk-based jj stacking
+
+    Encode four principles into the workflow substrate and skills.
+
+    Design: docs/agents/workflow.md, docs/agents/issue-tracker.md
+    Related: skills/workflow/{to-spec,to-tickets,implement,ask}
+    Signed-off-by: Shikanime Deva <william.phetsinorath@shikanime.studio>
 
 ## Stack (atomic delivery)
 

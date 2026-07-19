@@ -80,8 +80,8 @@ curl -s -X POST -H "Authorization: token ***" \
   -d '{"title":"TITLE","body":"BODY","labels":["enhancement","ready-for-agent"],"milestone":MILESTONE_NUMBER}'
 ```
 
-- **Milestone** schedules the work by version; attach the same milestone to every
-  issue/PR in that release so the board and the release cut line up.
+- **Milestone** schedules the work by version; attach the same milestone to
+  every issue/PR in that release so the board and the release cut line up.
 - **Project** visualizes the milestone board; `--project` takes the project
   **title**, not the number.
 - **Parent** rolls a ticket up under its meta/spec issue: `--parent <meta>`.

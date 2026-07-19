@@ -43,19 +43,19 @@ The route most work travels:
 
 ## Pick by intent
 
-| You want to...                                    | Reach for                                    |
-| ------------------------------------------------- | -------------------------------------------- |
-| Set this repo up for the workflow                 | `bootstrap`                                  |
-| Turn a discussion into a validated feature        | `to-spec`                                    |
-| Break a spec into buildable tickets               | `to-tickets`                                 |
-| Sort / label / brief issues                       | `triage`                                     |
-| Build a spec or ticket                            | `implement`                                  |
-| Plan / cut a release from a milestone              | release management (`docs/agents/workflow.md`) |
-| Review a branch/PR (Standards + Spec + Stability) | `code-review`                                |
-| Add stability/invariant tests over generated data | property-based (in `implement`)              |
-| Find what to delete / is this over-engineered     | minimalism audit (`docs/agents/workflow.md`) |
-| See the shortcuts we deferred                     | deferral ledger (`docs/agents/workflow.md`)  |
-| Simplest-solution discipline on any coding task   | minimalism ladder (always on)                |
+| You want to...                                    | Reach for                                      |
+| ------------------------------------------------- | ---------------------------------------------- |
+| Set this repo up for the workflow                 | `bootstrap`                                    |
+| Turn a discussion into a validated feature        | `to-spec`                                      |
+| Break a spec into buildable tickets               | `to-tickets`                                   |
+| Sort / label / brief issues                       | `triage`                                       |
+| Build a spec or ticket                            | `implement`                                    |
+| Plan / cut a release from a milestone             | release management (`docs/agents/workflow.md`) |
+| Review a branch/PR (Standards + Spec + Stability) | `code-review`                                  |
+| Add stability/invariant tests over generated data | property-based (in `implement`)                |
+| Find what to delete / is this over-engineered     | minimalism audit (`docs/agents/workflow.md`)   |
+| See the shortcuts we deferred                     | deferral ledger (`docs/agents/workflow.md`)    |
+| Simplest-solution discipline on any coding task   | minimalism ladder (always on)                  |
 
 ## Context hygiene
 

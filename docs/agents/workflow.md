@@ -52,14 +52,14 @@ to exactly one PR so a human reviews one clear objective at a time.
   temporary series of PRs that each target `main` while they wait in review; the
   moment a bottom PR lands, rebase the next bookmark onto `main` and its target
   stays `main`.
-- A PR's **review base** (what `gh` shows as the comparison) is the prior ticket's
-  bookmark so reviewers see one logical slice: `feat/A` ← `feat/B` ← `feat/C`.
-  Landing order follows the blocking graph from `to-tickets`.
+- A PR's **review base** (what `gh` shows as the comparison) is the prior
+  ticket's bookmark so reviewers see one logical slice: `feat/A` ← `feat/B` ←
+  `feat/C`. Landing order follows the blocking graph from `to-tickets`.
 - A PR is **atomic**: one objective, one logical change, the issue it closes
   linked in title/body (`Closes #N`). No scope creep, no "and also" fixes.
-- Each PR carries the **milestone** (`gh pr create --milestone "vX.Y.Z"`) matching
-  the ticket's issue, so the release cut finds every merged change for that
-  version.
+- Each PR carries the **milestone** (`gh pr create --milestone "vX.Y.Z"`)
+  matching the ticket's issue, so the release cut finds every merged change for
+  that version.
 - Size for a human: small enough to review in one sitting — feature tests +
   implementation + property tests for that single ticket. If it won't fit, the
   ticket was too big; split it (back to `to-tickets`).
@@ -96,8 +96,8 @@ gh pr create --head feat/B --base main --milestone "vX.Y.Z" --title "feat(B): ..
   `jj bookmark` ≈ `git branch`.
 - Land **bottom-up**: after the human approves `feat/A`, let it squash into
   `main`, then `jj rebase -d main feat/B` so `B`'s review base becomes `main`.
-  Repeat up the stack. Stacks are short-lived — collapse them as soon as
-  reviews pass.
+  Repeat up the stack. Stacks are short-lived — collapse them as soon as reviews
+  pass.
 - ghstack is git-only and not used under `jj`; the _Delivery_ discipline is
   identical, only the tooling differs.
 
