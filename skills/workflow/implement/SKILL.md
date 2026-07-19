@@ -67,11 +67,16 @@ touch. Fetch the originating issue per `docs/agents/issue-tracker.md`.
    `GitHub_get_check_runs`. Do not open the PR with a red CI.
 9. **Close with `code-review`** — the three-axis (Standards + Spec + Stability)
    review of the diff — before committing.
-10. **Commit & open the PR.** Commit to the ticket branch, referencing the issue
-    (`Closes #N`). Open a PR based on the previous ticket's branch: a one-line
-    objective in the title, the linked issue, and the acceptance criteria it
-    satisfies. After `code-review` passes, label it `ready-for-human` and wait
-    for the human approving review — never self-merge.
+10. **Commit & open the PR (trunk-based, stacked, jj).** Under `jj`, give the
+    ticket its own bookmark based on the previous ticket's bookmark (the stack
+    order from `to-tickets`' blocking graph). Commit referencing the issue
+    (`Closes #N`), then open a PR whose **base is the prior ticket's bookmark**
+    and whose **target is always `main`** (trunk). Link the issue **and the
+    milestone** (`--milestone "v1.4.0"`) so the release cut stays consistent.
+    One-line objective in the title, linked issue, acceptance criteria in the
+    body. After `code-review` passes, label it `ready-for-human` and wait for the
+    human approving review — never self-merge. Stacks are short-lived: land
+    bottom-up as reviews pass, rebase the next bookmark onto `main`, repeat.
 
 ## Bug fixes
 

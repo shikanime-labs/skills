@@ -56,16 +56,37 @@ defaults.
 
 Every triaged issue carries exactly one category label and one state label.
 
-## Creating an issue
+## Creating an issue with full metadata
+
+Set every structured field at creation — the body carries only relevant content
+(narrative, context, acceptance criteria); labels, assignee, project, milestone,
+type, priority, and parent/child are fields, not prose. Structure the body with
+`##` headings and mermaid (`flowchart` for logic, `sequenceDiagram` for
+request/response, `gitGraph` for branch/parent-child).
 
 ```bash
-# gh
-gh issue create --title "TITLE" --body "BODY" --label "enhancement,ready-for-agent"
-# curl
-curl -s -X POST -H "Authorization: token $GITHUB_TOKEN" \
-  "https://api.github.com/repos/$OWNER/$REPO/issues" \
-  -d '{"title":"TITLE","body":"BODY","labels":["enhancement","ready-for-agent"]}'
+# gh — full-set at creation
+gh issue create --title "TITLE" --body-file body.md \
+  --label "enhancement,ready-for-agent" \
+  --assignee "@me" \
+  --project "Project Title" \
+  --milestone "v1.4.0"
 ```
+
+```bash
+# curl — REST equivalent (milestone by number)
+curl -s -X POST -H "Authorization: token ***" \
+  "https://api.github.com/repos/$OWNER/$REPO/issues" \
+  -d '{"title":"TITLE","body":"BODY","labels":["enhancement","ready-for-agent"],"milestone":MILESTONE_NUMBER}'
+```
+
+- **Milestone** schedules the work by version; attach the same milestone to every
+  issue/PR in that release so the board and the release cut line up.
+- **Project** visualizes the milestone board; `--project` takes the project
+  **title**, not the number.
+- **Parent** rolls a ticket up under its meta/spec issue: `--parent <meta>`.
+- Custom single-select fields (Type, Priority) are set after creation via
+  `gh project item-edit`, which needs field/option **node IDs**, not names.
 
 ## Meta issues (strategic)
 

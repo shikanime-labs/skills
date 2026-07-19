@@ -45,8 +45,11 @@ throughout, and respect ADRs in the area you touch.
    expectations.
 4. **Write the spec** using the template, then publish it as an issue. This
    issue is the **meta issue** for the work (strategic, like an epic) — label it
-   `ready-for-human` so a human approves direction before any code. Hand back
-   the issue URL; `to-tickets` parents the tactical tickets to it.
+   `ready-for-human` so a human approves direction before any code. Set its
+   **milestone** (the target release), assignee, project, type, and priority at
+   creation; keep the body to relevant content only (per
+   `docs/agents/issue-tracker.md`). Hand back the issue URL; `to-tickets`
+   parents the tactical tickets to it.
 
 <spec-template>
 
@@ -76,8 +79,8 @@ is a snippet from a prototype that encodes a decision more precisely than prose.
 ## Publishing
 
 Create the issue via the GitHub MCP (`GitHub_issue_write`) or `gh issue create`,
-per `docs/agents/issue-tracker.md`. Title it in the domain's vocabulary. Hand
-back the issue URL.
+per `docs/agents/issue-tracker.md`, setting labels, **milestone**, assignee, and
+project. Title it in the domain's vocabulary. Hand back the issue URL.
 
 ## Boundaries
 

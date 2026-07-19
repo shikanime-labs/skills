@@ -67,12 +67,13 @@ contract ticket removes the old form once all batches land.
 ### 4. Publish
 
 Create one issue per ticket via the GitHub MCP (`GitHub_issue_write`,
-`GitHub_sub_issue_write`) or `gh`. Model blocking edges as native sub-issues, or
-a `Blocked by: #N` line in the body. **If a meta issue exists for this work, set
-each ticket's parent to it** (`gh issue create ... --parent <meta>`) so the
-tactical tickets roll up under the strategic epic. Apply the `ready-for-agent`
-label to tickets with no unresolved blockers. Hand back the ticket URLs and the
-blocking graph.
+`GitHub_sub_issue_write`) or `gh`. Set the full field set at creation:
+**milestone** (the release the meta issue carries), **assignee** (`@me`),
+**project**, labels, and **parent** to the meta issue
+(`gh issue create ... --parent <meta>`) so the tactical tickets roll up under the
+strategic epic. Model blocking edges as native sub-issues, or a
+`Blocked by: #N` line in the body. Apply the `ready-for-agent` label to tickets
+with no unresolved blockers. Hand back the ticket URLs and the blocking graph.
 
 ### 5. Hand off to delivery
 

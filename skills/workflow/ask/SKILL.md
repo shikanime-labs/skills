@@ -33,7 +33,8 @@ The route most work travels:
 1. **Sharpen the idea** in conversation against the codebase — terminology into
    `CONTEXT.md`, decisions into ADRs (`docs/agents/domain.md`).
 2. **`to-spec`** — turn the thread into a spec and publish it as a GitHub issue
-   (the validation gate). Nothing gets built until it's a reviewed spec issue.
+   (the validation gate). Set its milestone, assignee, and project at creation;
+   label it `ready-for-human` — a human approves direction before any code.
 3. Multi-session build? **`to-tickets`** — split the spec into tracer-bullet
    tickets with blocking edges. Single-session? Skip to step 5.
 4. **`triage`** — move issues through the state machine as work is evaluated.
@@ -49,6 +50,7 @@ The route most work travels:
 | Break a spec into buildable tickets               | `to-tickets`                                 |
 | Sort / label / brief issues                       | `triage`                                     |
 | Build a spec or ticket                            | `implement`                                  |
+| Plan / cut a release from a milestone              | release management (`docs/agents/workflow.md`) |
 | Review a branch/PR (Standards + Spec + Stability) | `code-review`                                |
 | Add stability/invariant tests over generated data | property-based (in `implement`)              |
 | Find what to delete / is this over-engineered     | minimalism audit (`docs/agents/workflow.md`) |

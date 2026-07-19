@@ -18,11 +18,14 @@ Two forces run through the whole pipeline:
    into `CONTEXT.md`, record decisions as ADRs (`docs/agents/domain.md`).
 2. **`to-spec`** — turn the conversation into a spec (Problem / Solution / User
    Stories / Implementation Decisions) and **publish it as a GitHub issue**
-   labelled `ready-for-agent`. This is the validation gate: no spec issue, no
-   build.
+   labelled `ready-for-human`. This is the validation gate: no spec issue, no
+   build. Set its **milestone** (the target release), assignee, project, type,
+   and priority at creation — the issue body carries only relevant content.
 3. **`to-tickets`** — break the spec into tracer-bullet tickets (vertical
    slices, each demoable, each sized for one context window), published as
-   sub-issues with blocking edges.
+   sub-issues with blocking edges. Each ticket inherits the meta issue's
+   **milestone**, assignee, and project at creation, and sets its **parent** to
+   the meta issue so the work rolls up.
 4. **`triage`** — move issues through the state machine
    (`needs-triage → needs-info → ready-for-agent → ready-for-human → wontfix`).
 5. **`implement`** — build a `ready-for-agent` ticket. Drive
@@ -32,21 +35,31 @@ Two forces run through the whole pipeline:
    committing.
 6. **`code-review`** — three-axis review (Standards + Spec + Stability) of the
    diff against a fixed point, in parallel sub-agents.
+7. **Release** — when the milestone's issues are all landed on `main`, cut the
+   release (see _Release management_ below).
 
 For a single-session change, skip 3 and go spec → implement in one context.
 
-## Delivery: atomic stacked PRs
+## Delivery: trunk-based, atomic, stacked PRs
 
 Tickets are the unit of work; **PRs are the unit of review.** Each ticket maps
 to exactly one PR so a human reviews one clear objective at a time.
 
-### One ticket → one branch → one PR
+### One ticket → one bookmark → one PR (trunk-based)
 
-- Branch from the previous ticket's branch (not `main`) so PRs form a **stack**:
-  `feat/A` ← `feat/B` ← `feat/C`. A PR's base is the PR beneath it; landing
-  order follows the blocking graph from `to-tickets`.
+- Base every PR's **target on `main`** (trunk-based development): work lands
+  directly to `main`, not through long-lived feature branches. A stack is a
+  temporary series of PRs that each target `main` while they wait in review; the
+  moment a bottom PR lands, rebase the next bookmark onto `main` and its target
+  stays `main`.
+- A PR's **review base** (what `gh` shows as the comparison) is the prior ticket's
+  bookmark so reviewers see one logical slice: `feat/A` ← `feat/B` ← `feat/C`.
+  Landing order follows the blocking graph from `to-tickets`.
 - A PR is **atomic**: one objective, one logical change, the issue it closes
   linked in title/body (`Closes #N`). No scope creep, no "and also" fixes.
+- Each PR carries the **milestone** (`gh pr create --milestone "vX.Y.Z"`) matching
+  the ticket's issue, so the release cut finds every merged change for that
+  version.
 - Size for a human: small enough to review in one sitting — feature tests +
   implementation + property tests for that single ticket. If it won't fit, the
   ticket was too big; split it (back to `to-tickets`).
@@ -61,28 +74,68 @@ lands (squash+rebase, signed, linear). The agent's `code-review` is a
 pre-flight, not the gate — a human makes the call. After the agent review
 passes, the PR moves to `ready-for-human` and waits; it must not self-merge.
 
-### Stacking mechanics
-
-- **ghstack** — 1 commit == 1 PR; amend + `ghstack` to resubmit; `ghstack land`
-  lands the whole stack. Needs a HEAD commit chain, not a detached HEAD.
-- **Manual stack** — one branch per ticket based on the prior, `gh pr create`
-  per branch. Same discipline, no extra tooling.
-
-## Version control
+### Stacking mechanics (jj)
 
 Prefer **`jj`** (Jujutsu) for all VCS operations; fall back to `git` only when
-`jj` is not installed. Common mappings:
+`jj` is not installed. Under `jj`, stacking is manual — one **bookmark per
+ticket** based on the previous, then `gh pr create` per bookmark:
 
-- status / dirty check: `jj status` ≈ `git status`
-- diff vs a fixed point: `jj diff -r <fixed>..@` ≈ `git diff <fixed>...HEAD`
-- log: `jj log -r <fixed>..@` ≈ `git log <fixed>..HEAD`
-- commit / amend: `jj commit` / `jj desc` + `jj commit` ≈ `git commit` /
-  `--amend`
-- branch: `jj bookmark` ≈ `git branch`
+```bash
+# ticket A: branch off main
+jj bookmark create -r @ feat/A
+# ticket B: branch off A's bookmark
+jj bookmark set feat/B -r <rev-after-A>
+# ... open each PR targeting main, base = prior bookmark
+gh pr create --head feat/A --base main --milestone "vX.Y.Z" --title "feat(A): ..."
+gh pr create --head feat/B --base main --milestone "vX.Y.Z" --title "feat(B): ..."
+```
 
-Stacking: ghstack is **git-only**. Under `jj`, replicate the stack manually —
-one bookmark per ticket based on the previous, then `gh pr create` per bookmark
-(the _Delivery_ discipline is identical; only the tooling differs).
+- Common mappings: `jj status` ≈ `git status`; `jj diff -r <fixed>..@` ≈
+  `git diff <fixed>...HEAD`; `jj log -r <fixed>..@` ≈ `git log <fixed>..HEAD`;
+  `jj commit` / `jj desc` + `jj commit` ≈ `git commit` / `--amend`;
+  `jj bookmark` ≈ `git branch`.
+- Land **bottom-up**: after the human approves `feat/A`, let it squash into
+  `main`, then `jj rebase -d main feat/B` so `B`'s review base becomes `main`.
+  Repeat up the stack. Stacks are short-lived — collapse them as soon as
+  reviews pass.
+- ghstack is git-only and not used under `jj`; the _Delivery_ discipline is
+  identical, only the tooling differs.
+
+## Release management
+
+A release is the **milestone** closing out: every issue and PR in that release
+shares one milestone, which is how the cut stays consistent.
+
+### Order of operations
+
+1. **Open the milestone** for `vX.Y.Z` (GitHub has no `gh milestone` command —
+   use the REST API): `gh api repos/$OWNER/$REPO/milestones -f title="vX.Y.Z"`.
+   List names with `gh api repos/$OWNER/$REPO/milestones --jq '.[].title'`.
+2. **Attach the milestone at issue creation.** `to-spec` sets it on the meta
+   issue; `to-tickets` inherits it on every tactical ticket. PRs inherit it via
+   `gh pr create --milestone "vX.Y.Z"`.
+3. **Track on the board.** Add the milestone's issues/PRs to the project board
+   (`gh project item-add <number> --owner $OWNER --url <issue-url>`).
+4. **Land the stack** through the human review gate (above).
+5. **Cut the release.** Tag **signed** first, then ship with auto-generated
+   notes:
+
+   ```bash
+   git tag -s vX.Y.Z -m "vX.Y.Z" && git push origin vX.Y.Z
+   gh release create vX.Y.Z --repo $OWNER/$REPO \
+     --title "vX.Y.Z" --generate-notes --target main
+   ```
+
+   `--generate-notes` pulls PR/commit titles since the last tag. For the first
+   release there is no prior tag; pass `-F notes-file.md` instead.
+
+### Pitfalls
+
+- Milestone name must match exactly (the REST list is the source of truth) —
+  `--milestone` fails on a typo with "milestone not found".
+- `gh release create` needs the signed tag pushed first; use `--verify-tag` to
+  catch a missing one.
+- No `gh milestone` command exists — do not invent one; use the REST endpoint.
 
 ## Always-on: the minimalism discipline
 
