@@ -1,5 +1,5 @@
 {
-  "name": "@shikanime-studio/skills",
+  "name": "@shikanime-labs/skills",
   "version": "1.0.0",
   "description": "A curated catalog of self-improved agent skills for Hermes and compatible agents.",
   "keywords": [
@@ -11,11 +11,11 @@
     "hermes-agent",
     "skills"
   ],
-  "homepage": "https://github.com/shikanime-studio/skills",
+  "homepage": "https://github.com/shikanime-labs/skills",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/shikanime-studio/skills.git"
+    "url": "https://github.com/shikanime-labs/skills.git"
   },
   "agents": {
     "skills": [

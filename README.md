@@ -23,16 +23,16 @@ skill from this repo:
 
 ```bash
 # List available skills
-npx skills add shikanime-studio/skills --list
+npx skills add shikanime-labs/skills --list
 
 # Install all skills globally
-npx skills add shikanime-studio/skills -g -y
+npx skills add shikanime-labs/skills -g -y
 
 # Install a specific skill
-npx skills add shikanime-studio/skills --skill implement -g
+npx skills add shikanime-labs/skills --skill implement -g
 
 # Install all skills for specific agents
-npx skills add shikanime-studio/skills -g -a claude-code -a cursor -y
+npx skills add shikanime-labs/skills -g -a claude-code -a cursor -y
 ```
 
 ### Install as a Hermes skill source
@@ -41,7 +41,7 @@ Add the repo as a tap:
 
 ```bash
 # Add as a tap
-hermes skills tap add shikanime-studio/skills
+hermes skills tap add shikanime-labs/skills
 
 # Verify loaded skills
 hermes skills list
@@ -51,7 +51,7 @@ hermes skills list
 
 ```bash
 # Install a single skill from the tap
-hermes skills install shikanime-studio/skills/workflow/implement
+hermes skills install shikanime-labs/skills/workflow/implement
 
 # Or copy manually
 cp -r skills/workflow/implement ~/.hermes/skills/workflow/
@@ -61,7 +61,7 @@ cp -r skills/workflow/implement ~/.hermes/skills/workflow/
 
 ```bash
 # Install as an npm package (skills are bundled via the agents field)
-npm install @shikanime-studio/skills
+npm install @shikanime-labs/skills
 
 # Then export to your agent's skill directory
 npx agents export --target claude
