@@ -59,8 +59,8 @@ keep them. If the repo already uses different strings for the same roles, map
 onto those — never invent labels that already exist under another name. Record
 the final mapping in `docs/agents/issue-tracker.md`.
 
-**C — Domain docs layout.** Assume single-context (one `CONTEXT.md` + ADRs kept
-inline in `docs/agents/domain.md`) unless monorepo signals appeared, in which
+**C — Domain docs layout.** Assume single-context (one `CONTEXT.md` + ADRs in
+`docs/adr/`) unless monorepo signals appeared, in which
 case propose a `CONTEXT-MAP.md`.
 
 ### 3. Write

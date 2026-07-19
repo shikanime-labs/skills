@@ -31,7 +31,7 @@ and docs layout and writes `docs/agents/*`. If `to-spec`, `to-tickets`, or
 The route most work travels:
 
 1. **Sharpen the idea** in conversation against the codebase — terminology into
-   `CONTEXT.md`, decisions into ADRs (`docs/agents/domain.md`).
+   `CONTEXT.md`, decisions into ADRs (`docs/adr/`).
 2. **`to-spec`** — turn the thread into a spec and publish it as a GitHub issue
    (the validation gate). Set its milestone, assignee, and project at creation;
    label it `ready-for-human` — a human approves direction before any code.

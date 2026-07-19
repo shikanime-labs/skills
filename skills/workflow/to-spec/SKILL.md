@@ -36,7 +36,7 @@ throughout, and respect ADRs in the area you touch.
 2. **Update the strategic docs** so the feature is maintainable by humans and
    other agents. Sharpen any new terminology into `CONTEXT.md` and, if the
    feature commits to a non-obvious approach, record it as an ADR in
-   `docs/agents/domain.md` (per `docs/agents/domain.md`). The spec issue
+   `docs/adr/` (per `docs/agents/domain.md`). The spec issue
    references these.
 3. **Sketch the seams** at which you'll test the feature. Prefer existing seams
    to new ones; use the highest seam possible; fewer is better (ideal: one).

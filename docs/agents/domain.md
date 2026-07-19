@@ -6,13 +6,14 @@ confirms this layout per-repo; this is the default.
 
 ## Layout
 
-Most repos have a single context. ADRs live inline in this file (see below) — no
-separate `docs/adr/` directory:
+Most repos have a single context. ADRs live in `docs/adr/` — one file per
+decision:
 
 ```text
 /
 ├── CONTEXT.md              ← ubiquitous language / glossary
 ├── docs/
+│   ├── adr/                ← ADR-NNNN-*.md, one file per decision
 │   └── agents/             ← domain.md, issue-tracker.md, workflow.md
 └── src/
 ```
@@ -21,7 +22,7 @@ If `CONTEXT-MAP.md` exists at the root, the repo has multiple bounded contexts
 and the map points to where each `CONTEXT.md` lives.
 
 Create files lazily — only when there is something to write. First resolved term
-→ create `CONTEXT.md`. First decision that needs recording → add an ADR below.
+→ create `CONTEXT.md`. First decision that needs recording → add an ADR in `docs/adr/`.
 
 ## CONTEXT.md — the glossary
 
@@ -30,11 +31,12 @@ mean two things by it. When someone uses a term that conflicts with the
 glossary, or a vague/overloaded term, sharpen it and write the resolution down
 immediately.
 
-## ADRs — architectural decision records (in this file)
+## ADRs — architectural decision records (`docs/adr/`)
 
-One ADR per decision, appended here: context, the decision, and consequences.
-Number them sequentially. An ADR is immutable once accepted; supersede it with a
-new ADR rather than editing it.
+One ADR per decision, one file per ADR, in `docs/adr/`: context, the decision,
+and consequences. Number files sequentially (`ADR-NNNN-*.md`). An ADR is
+immutable once accepted; supersede it with a new ADR file rather than editing
+it.
 
 ```markdown
 # NNNN. <short decision title>

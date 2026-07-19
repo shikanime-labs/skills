@@ -15,7 +15,7 @@ Two forces run through the whole pipeline:
 ## The main flow: idea → ship
 
 1. **Sharpen the idea.** Discuss it against the codebase. Sharpen terminology
-   into `CONTEXT.md`, record decisions as ADRs (`docs/agents/domain.md`).
+   into `CONTEXT.md`, record decisions as ADRs (`docs/adr/`).
 2. **`to-spec`** — turn the conversation into a spec (Problem / Solution / User
    Stories / Implementation Decisions) and **publish it as a GitHub issue**
    labelled `ready-for-human`. This is the validation gate: no spec issue, no
