@@ -49,15 +49,11 @@ Signed-off-by: Shikanime Deva <william.phetsinorath@shikanime.studio>
 - One ticket → one branch → one PR; PRs stack on the previous ticket's branch.
 - Each PR is atomic: one objective, linked issue (`Closes #N`), small enough for
   a human to review in one sitting.
-- 1 commit == 1 PR via ghstack, or manual per-ticket branches with
   `gh pr create`.
 - Agent runs `code-review` as pre-flight; **a human approving review is the
   gate** before landing (protect `main`).
-- Amend + `ghstack` to resubmit; `ghstack land` on the head PR to land the
   stack.
 - Never `gh pr merge` (poisoned commits). Never force-push stacked branches.
-- ghstack needs a HEAD commit chain, not a detached HEAD.
-- Prefer `jj`; ghstack is git-only, so under jj replicate the stack manually
   (one bookmark per ticket + `gh pr create`).
 
 ## Protect `main`
