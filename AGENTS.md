@@ -43,26 +43,6 @@ Design: docs/agents/workflow.md, docs/agents/issue-tracker.md
 Related: skills/workflow/{to-spec,to-tickets,implement,ask}
 Signed-off-by: Shikanime Deva <william.phetsinorath@shikanime.studio>
 ```
-
-## Stack (atomic delivery)
-
-- One ticket → one branch → one PR; PRs stack on the previous ticket's branch.
-- Each PR is atomic: one objective, linked issue (`Closes #N`), small enough for
-  a human to review in one sitting.
-  `gh pr create`.
-- Agent runs `code-review` as pre-flight; **a human approving review is the
-  gate** before landing (protect `main`).
-  stack.
-- Never `gh pr merge` (poisoned commits). Never force-push stacked branches.
-  (one bookmark per ticket + `gh pr create`).
-
-## Protect `main`
-
-- Require 1 approving review
-- Require linear history (no merge commits)
-- Require signed commits
-- Squash+rebase merge only
-
 ## Adding a New Skill
 
 1. Create a directory under the appropriate category
