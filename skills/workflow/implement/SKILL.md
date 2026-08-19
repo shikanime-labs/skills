@@ -22,6 +22,18 @@ the context so the user can implement it.
 Read `docs/agents/domain.md` for vocabulary and respect the ADRs in the area you
 touch. Fetch the originating issue per `docs/agents/issue-tracker.md`.
 
+## Working tree & agent fork convention
+- Check out (or work from) the deterministic local layout
+  `~/Source/Repos/<hostname>/<orga>/<repo>`
+  (e.g. `~/Source/Repos/github.com/shikanime-labs/manifests`). Do not scatter
+  clones across arbitrary paths.
+- **Agent mode (Hermes acting as the `yohra-automata` user):** fork the target
+  repo into the `yohra-automata` organisation, work in that fork, and open PRs
+  from `yohra-automata:<branch>` against the canonical `<orga>/<repo>`. The agent
+  never pushes to the canonical org directly; the human owner lands changes
+  upstream. The local fork lives at
+  `~/Source/Repos/github.com/yohra-automata/<repo>`.
+
 ## Process
 
 1. **Understand the task.** Read the spec/ticket thoroughly. Identify:
