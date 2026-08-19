@@ -32,7 +32,12 @@ replaced by looking.
 
 Read what already exists; don't assume:
 
-- `git remote -v` — is this a GitHub repo? Which owner/repo?
+- `git remote -v` — is this a GitHub repo? Which owner/repo? Confirm the
+  checkout is at the deterministic local layout
+  `~/Source/Repos/<hostname>/<orga>/<repo>`. If acting as the `yohra-automata`
+  agent user, expect the repo to be a fork under `yohra-automata` and open PRs
+  from `yohra-automata:<branch>` against the canonical org — never push to the
+  canonical org directly.
 - `AGENTS.md` / `CLAUDE.md` at root — does either exist? Is there already an
   `## Agent skills` section?
 - `CONTEXT.md`, `CONTEXT-MAP.md` at root.
