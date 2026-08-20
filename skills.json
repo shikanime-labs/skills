@@ -1,43 +1,63 @@
 {
   "name": "shikanime-labs/skills",
-  "version": "1.1.0",
-  "description": "A strict development workflow for Hermes and compatible agents: spec-as-issue pipeline + always-on minimalism discipline, with feature-driven and property-based stability tests. The minimalism discipline is woven through the pipeline, not a separate skill.",
+  "version": "2.0.0",
+  "description": "A curated catalog of self-improved agent skills for Hermes and compatible agents: two parallel org workflows (shikanime sk-*, cloud-pi-native cpn-*) covering the full discussion, issue, and PR lifecycle, with proven-done gates, assumption validation, jj-workspace parallel fan-out, and stacked PR landing.",
   "license": "Apache-2.0",
   "skills": [
     {
-      "name": "ask",
-      "description": "Router over the workflow catalog. Ask which skill or flow fits your situation and get pointed at the right one. Use when unsure where to start.",
-      "path": "skills/workflow/ask"
+      "name": "sk-dev-workflow",
+      "description": "Branch and push discipline for shikanime repos: upstream-only push, jj bookmark tracking, assumption validation, issue-first lifecycle, and landing via gh stack or direct push.",
+      "path": "skills/shikanime/sk-dev-workflow"
     },
     {
-      "name": "code-review",
-      "description": "Three-axis review of a diff against a fixed point: Standards (does it follow this repo's coding standards?), Spec (does it match the originating issue/PRD?), and Stability (were the spec's property-based tests shipped?). Runs axes as parallel sub-agents.",
-      "path": "skills/workflow/code-review"
+      "name": "sk-async",
+      "description": "Split work into parallel isolated jj workspaces (depth-tree fan-out), join with multi-parent commits, and land as independent PRs or gh stack chains.",
+      "path": "skills/shikanime/sk-async"
     },
     {
-      "name": "implement",
-      "description": "Build the work described by a spec or ticket: draft feature-driven tests, implement to green, then add property-based stability tests — all on the minimalism ladder, run the over-engineering audit, close with code-review, then commit.",
-      "path": "skills/workflow/implement"
+      "name": "sk-commit",
+      "description": "Commit in shikanime-labs and shikanime-studio repos: plain English imperative titles, Automata co-author trailer, repo-enforced hooks (gitlint, DCO) win.",
+      "path": "skills/shikanime/sk-commit"
     },
     {
-      "name": "bootstrap",
-      "description": "Bootstrap a repo for the strict development workflow: discover issue tracker, triage labels, and docs layout, then write docs/agents/*.",
-      "path": "skills/workflow/bootstrap"
+      "name": "sk-discussion",
+      "description": "Open RFC Discussions in shikanime orgs as the pre-issue stage: converge on the problem, then derive the issue.",
+      "path": "skills/shikanime/sk-discussion"
     },
     {
-      "name": "to-spec",
-      "description": "Turn the current conversation into a spec (Problem, Solution, User Stories, Decisions), update docs/agents/, and publish it as a GitHub issue. Validates a feature before any code is written.",
-      "path": "skills/workflow/to-spec"
+      "name": "sk-issue",
+      "description": "Open issues in shikanime-labs and shikanime-studio: body is the problem statement, acceptance criteria as command-decidable tasklist (the gate ledger), findings as comments.",
+      "path": "skills/shikanime/sk-issue"
     },
     {
-      "name": "to-tickets",
-      "description": "Break a spec, plan, or conversation into tracer-bullet tickets, each declaring its blocking edges, published as GitHub sub-issues.",
-      "path": "skills/workflow/to-tickets"
+      "name": "sk-pr",
+      "description": "Open PRs in shikanime orgs upstream-only: PR derived from the commit message, many-to-many issue linkage via Related, no auto-close keywords.",
+      "path": "skills/shikanime/sk-pr"
     },
     {
-      "name": "triage",
-      "description": "Move issues and external PRs through a state machine of triage roles: categorise, verify, grill if needed, and write agent-ready briefs.",
-      "path": "skills/workflow/triage"
+      "name": "cpn-dev-workflow",
+      "description": "Work inside the local cloud-pi-native console repo: contribution rules, dev cycle, gates, and PR workflow.",
+      "path": "skills/devops/cpn-dev-workflow"
+    },
+    {
+      "name": "cpn-commit",
+      "description": "Commit to cloud-pi-native/console with conventional format.",
+      "path": "skills/vcs/cpn-commit"
+    },
+    {
+      "name": "cpn-discussion",
+      "description": "Create/edit console Discussions (French, GraphQL).",
+      "path": "skills/github/cpn-discussion"
+    },
+    {
+      "name": "cpn-issue",
+      "description": "Open CPN console issues with French templates and the definition-of-done gate ledger.",
+      "path": "skills/github/cpn-issue"
+    },
+    {
+      "name": "cpn-pr",
+      "description": "Open cloud-pi-native org PRs with French body and conventional title.",
+      "path": "skills/github/cpn-pr"
     }
   ]
 }
