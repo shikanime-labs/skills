@@ -45,23 +45,23 @@
       },
       {
         "name": "cpn-dev-workflow",
-        "path": "skills/devops/cpn-dev-workflow"
+        "path": "skills/cloud-pi-native/cpn-dev-workflow"
       },
       {
         "name": "cpn-commit",
-        "path": "skills/vcs/cpn-commit"
+        "path": "skills/cloud-pi-native/cpn-commit"
       },
       {
         "name": "cpn-discussion",
-        "path": "skills/github/cpn-discussion"
+        "path": "skills/cloud-pi-native/cpn-discussion"
       },
       {
         "name": "cpn-issue",
-        "path": "skills/github/cpn-issue"
+        "path": "skills/cloud-pi-native/cpn-issue"
       },
       {
         "name": "cpn-pr",
-        "path": "skills/github/cpn-pr"
+        "path": "skills/cloud-pi-native/cpn-pr"
       }
     ]
   }

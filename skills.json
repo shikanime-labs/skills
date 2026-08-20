@@ -37,27 +37,27 @@
     {
       "name": "cpn-dev-workflow",
       "description": "Work inside the local cloud-pi-native console repo: contribution rules, dev cycle, gates, and PR workflow.",
-      "path": "skills/devops/cpn-dev-workflow"
+      "path": "skills/cloud-pi-native/cpn-dev-workflow"
     },
     {
       "name": "cpn-commit",
       "description": "Commit to cloud-pi-native/console with conventional format.",
-      "path": "skills/vcs/cpn-commit"
+      "path": "skills/cloud-pi-native/cpn-commit"
     },
     {
       "name": "cpn-discussion",
       "description": "Create/edit console Discussions (French, GraphQL).",
-      "path": "skills/github/cpn-discussion"
+      "path": "skills/cloud-pi-native/cpn-discussion"
     },
     {
       "name": "cpn-issue",
       "description": "Open CPN console issues with French templates and the definition-of-done gate ledger.",
-      "path": "skills/github/cpn-issue"
+      "path": "skills/cloud-pi-native/cpn-issue"
     },
     {
       "name": "cpn-pr",
       "description": "Open cloud-pi-native org PRs with French body and conventional title.",
-      "path": "skills/github/cpn-pr"
+      "path": "skills/cloud-pi-native/cpn-pr"
     }
   ]
 }

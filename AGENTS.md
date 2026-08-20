@@ -8,8 +8,7 @@ agents. Each skill lives in its own directory with a `SKILL.md`.
 ## Structure
 
 - `skills/shikanime/` — the shikanime `sk-*` workflow family
-- `skills/devops/`, `skills/github/`, `skills/vcs/` — the cloud-pi-native
-  `cpn-*` workflow family
+- `skills/cloud-pi-native/` — the cloud-pi-native `cpn-*` workflow family
 - `README.md` — Installation and usage documentation
 
 ## Workflow
@@ -41,7 +40,7 @@ Example: Wire release management, milestone metadata, trunk-based jj stacking
 Encode four principles into the workflow substrate and skills.
 
 Design: README.md, AGENTS.md
-Related: skills/shikanime/, skills/devops/, skills/github/, skills/vcs/
+Related: skills/shikanime/, skills/cloud-pi-native/
 Signed-off-by: Shikanime Deva <william.phetsinorath@shikanime.studio>
 ```
 
@@ -73,9 +72,8 @@ Signed-off-by: Shikanime Deva <william.phetsinorath@shikanime.studio>
 ## Skill Categories
 
 - `shikanime` — the shikanime org workflow family (`sk-*`)
-- `devops` — Infrastructure, Nix, Kubernetes, CI/CD (`cpn-*`)
-- `github` — GitHub workflows, issues, PRs (`cpn-*`)
-- `vcs` — Commit conventions (`cpn-*`)
+- `cloud-pi-native` — the cloud-pi-native org workflow family (`cpn-*`): console
+  dev loop, GitHub lifecycle, and commit conventions
 
 _Each skill must include a valid `SKILL.md` with YAML frontmatter. Test against
 the target agent before submitting_
