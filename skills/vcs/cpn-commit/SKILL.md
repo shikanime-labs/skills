@@ -12,9 +12,9 @@ metadata:
 # CPN Org Commit
 
 Create commits in `cloud-pi-native/console` honoring the repo's enforced
-commitlint config. Covers the conventional-commit contract that drives
-Release Please and the PR-title rule (see `cpn-pr`). It does NOT push, open
-PRs, or run CI — those live in `cpn-pr` / `cpn-dev-workflow`.
+commitlint config. Covers the conventional-commit contract that drives Release
+Please and the PR-title rule (see `cpn-pr`). It does NOT push, open PRs, or run
+CI — those live in `cpn-pr` / `cpn-dev-workflow`.
 
 ## When to Use
 
@@ -33,20 +33,20 @@ PRs, or run CI — those live in `cpn-pr` / `cpn-dev-workflow`.
 
 ## How to Run
 
-Stage files and commit through the `terminal` tool with `jj commit -m`. Do
-NOT hand-type a long message into an editor; pass `-m` blocks so the
+Stage files and commit through the `terminal` tool with `jj commit -m`. Do NOT
+hand-type a long message into an editor; pass `-m` blocks so the
 body-leading-blank rule is satisfied.
 
 ## Quick Reference
 
-| Rule | Value |
-|---|---|
-| Types | `feat`, `fix`, `chore`, `docs`, `refactor`, `revert`, `build` (also `feature` recognized by release-please) |
-| Scope | optional, `type(scope):` |
-| Breaking | `type!:`, or `type(scope)!:` (triggers MAJOR bump per release-please) |
-| Subject | imperative, lowercase start, no trailing period |
-| Body | optional, but MUST be separated from subject by exactly one blank line |
-| Footer | optional `Closes #N`, `BREAKING CHANGE:`, etc. |
+| Rule     | Value                                                                                                       |
+| -------- | ----------------------------------------------------------------------------------------------------------- |
+| Types    | `feat`, `fix`, `chore`, `docs`, `refactor`, `revert`, `build` (also `feature` recognized by release-please) |
+| Scope    | optional, `type(scope):`                                                                                    |
+| Breaking | `type!:`, or `type(scope)!:` (triggers MAJOR bump per release-please)                                       |
+| Subject  | imperative, lowercase start, no trailing period                                                             |
+| Body     | optional, but MUST be separated from subject by exactly one blank line                                      |
+| Footer   | optional `Closes #N`, `BREAKING CHANGE:`, etc.                                                              |
 
 ## Procedure
 
@@ -82,9 +82,10 @@ EOF
 )"
 ```
 
-Agent attribution (ALWAYS, per operator): add the co-author trailer as a
-second `-m` block — two `-m` = subject paragraph + trailer paragraph, blank
-line auto-inserted (satisfies `body-leading-blank`):
+Agent attribution (ALWAYS, per operator): add the co-author trailer as a second
+`-m` block — two `-m` = subject paragraph + trailer paragraph, blank line
+auto-inserted (satisfies `body-leading-blank`):
+
 ```bash
 jj describe -m "fix: prevent null group lookup in Keycloak sync" \
   -m "Co-authored-by: Automata <automata@shikanime.studio>"
@@ -106,30 +107,34 @@ jj log -1 --pretty=%B
 - **Trailing period in subject** → violates conventional style; while
   commitlint's default `subject-full-stop` rule is warning-level here, keep
   subjects period-free.
-- **Uppercase / non-imperative subject** → `feat: Added X` is wrong; use `feat:
-  add X`.
+- **Uppercase / non-imperative subject** → `feat: Added X` is wrong; use
+  `feat: add X`.
 - **User preference vs repo rule**: the operator prefers short, bodyless
   messages — COMPATIBLE with the repo (the only hard constraint is the blank
-  line after the subject). The one standing exception: the `Co-authored-by:
-  Automata <automata@shikanime.studio>` trailer is ALWAYS added (explicit
-  operator instruction) even on bodyless commits — it lands via the second `-m`
-  block. Do not add OTHER trailers (`Signed-off-by`, DCO) unless the operator
-  explicitly asks; console does not require DCO.
+  line after the subject). The one standing exception: the
+  `Co-authored-by: Automata <automata@shikanime.studio>` trailer is ALWAYS added
+  (explicit operator instruction) even on bodyless commits — it lands via the
+  second `-m` block. Do not add OTHER trailers (`Signed-off-by`, DCO) unless the
+  operator explicitly asks; console does not require DCO.
 - **`main` is protected**: commit locally on a feature/`hotfix/*` branch; do not
   commit directly to `main`.
 - **Author vs committer vs trailers**: when a commit already carries a
-  `Signed-off-by` and `Change-Id` trailer for a specific identity, the author
-  AND committer should match that identity — not the bare `git config user.*`.
-  If they diverge (e.g. author = `shikanime`, committer = `William Phetsinorath`
-  with a William `Signed-off-by`), align them. To set both author and committer
-  on a fresh commit, recreate it: `jj new <base> && jj restore --from <old> &&
-  jj describe -m "..." && jj commit --config 'user.name=...' --config
-  'user.email=...' -m "..."`. jj signs new commits automatically
-  (`signing.behavior = own`). Do NOT hand-edit the `Signed-off-by` line to a
-  different person than who actually authored it.
+
+  ```bash
+  jj new <base> && jj restore --from <old> && jj describe -m "..."
+  jj commit --config 'user.name=...' --config 'user.email=...'
+  ```
+
+  ```text
+
+  jj signs new commits automatically (`signing.behavior = own`). Do NOT
+  hand-edit the `Signed-off-by` line to a different person than who actually
+  authored it.
+  ```
+
 - **Existing `Signed-off-by` trailers are kept, not stripped**: this operator's
   commits legitimately carry `Signed-off-by` + `Change-Id` footers (from prior
-  jj workflow). The "no DCO unless asked" rule means *don't add new* trailers to
+  jj workflow). The "no DCO unless asked" rule means _don't add new_ trailers to
   a bodyless commit the operator just wrote; it does NOT mean delete trailers
   that are already part of the commit history being squashed/extended.
 

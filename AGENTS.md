@@ -14,14 +14,14 @@ agents. Each skill lives in its own directory with a `SKILL.md`.
 
 ## Workflow
 
-Two orgs, one doctrine — the lifecycle is **discussion → issue → issue
-comments → PR** for both families. The issue body is the problem statement
-with acceptance criteria as a command-decidable tasklist (the gate ledger);
-the PR proves it. shikanime skills are written in English with plain-English
-commits + Automata co-author trailer; cloud-pi-native skills operate in
-French with conventional commits. Skills: `sk-dev-workflow`, `sk-async`,
-`sk-commit`, `sk-discussion`, `sk-issue`, `sk-pr`, `cpn-dev-workflow`,
-`cpn-commit`, `cpn-discussion`, `cpn-issue`, `cpn-pr`.
+Two orgs, one doctrine — the lifecycle is **discussion → issue → issue comments
+→ PR** for both families. The issue body is the problem statement with
+acceptance criteria as a command-decidable tasklist (the gate ledger); the PR
+proves it. shikanime skills are written in English with plain-English commits +
+Automata co-author trailer; cloud-pi-native skills operate in French with
+conventional commits. Skills: `sk-dev-workflow`, `sk-async`, `sk-commit`,
+`sk-discussion`, `sk-issue`, `sk-pr`, `cpn-dev-workflow`, `cpn-commit`,
+`cpn-discussion`, `cpn-issue`, `cpn-pr`.
 
 ## Commit Style
 
@@ -77,5 +77,5 @@ Signed-off-by: Shikanime Deva <william.phetsinorath@shikanime.studio>
 - `github` — GitHub workflows, issues, PRs (`cpn-*`)
 - `vcs` — Commit conventions (`cpn-*`)
 
-_Each skill must include a valid `SKILL.md` with YAML frontmatter. Test
-against the target agent before submitting_
+_Each skill must include a valid `SKILL.md` with YAML frontmatter. Test against
+the target agent before submitting_

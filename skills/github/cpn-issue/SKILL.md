@@ -11,9 +11,9 @@ metadata:
 
 # CPN Org Issue Creation
 
-Create GitHub issues for `cloud-pi-native/console` using the repo's French
-issue templates and label conventions. Issue-first is the repo norm: create
-the issue before any PR, then link the PR to it (see `cpn-pr`).
+Create GitHub issues for `cloud-pi-native/console` using the repo's French issue
+templates and label conventions. Issue-first is the repo norm: create the issue
+before any PR, then link the PR to it (see `cpn-pr`).
 
 ## When to Use
 
@@ -33,11 +33,11 @@ All mutations go through the `terminal` tool with `gh`.
 
 ## Quick Reference
 
-| Goal | Command |
-|---|---|
-| Bug issue | `gh issue create --repo cloud-pi-native/console --title "🐛 [BUG] - <t>" --label bug --body "$(cat <<'EOF' … EOF)"` |
+| Goal          | Command                                                                                                                         |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| Bug issue     | `gh issue create --repo cloud-pi-native/console --title "🐛 [BUG] - <t>" --label bug --body "$(cat <<'EOF' … EOF)"`             |
 | Feature issue | `gh issue create --repo cloud-pi-native/console --title "💡 [REQUEST] - <t>" --label enhancement --body "$(cat <<'EOF' … EOF)"` |
-| Verify | `gh issue view <N> --repo cloud-pi-native/console --json number,title,labels` |
+| Verify        | `gh issue view <N> --repo cloud-pi-native/console --json number,title,labels`                                                   |
 
 ## Procedure
 
@@ -120,35 +120,39 @@ domain labels only if the team uses them (verify with
 `gh label list --repo cloud-pi-native/console --limit 100`).
 
 **Assignee** — default to the active `gh` identity:
+
 ```bash
 ASSIGNEE=$(gh api user --jq .login)
 gh issue edit <N> --repo cloud-pi-native/console --add-assignee "$ASSIGNEE"
 ```
 
 **Project** — only if the team boards issues. Org Projects (v2) use a project
-number: `gh issue edit <N> --repo cloud-pi-native/console --add-project
-  <number>`.
+number:
+`gh issue edit <N> --repo cloud-pi-native/console --add-project   <number>`.
 Skip if no project is configured for this repo.
 
 **Milestone** — rule by issue type:
-- **bug / fix → current latest *patch* milestone** (the highest open patch on
+
+- **bug / fix → current latest _patch_ milestone** (the highest open patch on
   the current minor line, e.g. `vX.Y.Z` with the max `Z`).
 - **enhancement / feature → next milestone** (the next minor/major after the
   current patch line, e.g. `vX.(Y+1).0`).
 
 List open milestones and pick by semver:
+
 ```bash
 gh api repos/cloud-pi-native/console/milestones?state=open \
   --jq '.[] | "\(.number)\t\(.title)\t\(.due_on)"'
 ```
-Then apply: `gh issue edit <N> --repo cloud-pi-native/console --milestone
-  <number>`.
+
+Then apply:
+`gh issue edit <N> --repo cloud-pi-native/console --milestone   <number>`.
 
 ## Comment vs Body convention
 
 - **Body** = the problem statement only. Edit it solely to clarify or correct
   the reported incident (Description, reproduction steps, affected version,
-  *Définition du fini*). Never embed investigation results there.
+  _Définition du fini_). Never embed investigation results there.
 - **Findings go in comments.** Any root-cause analysis, code references,
   regression commits, or proposed fixes are posted with
   `gh issue comment <N> --repo cloud-pi-native/console --body-file <file>`.
@@ -156,15 +160,16 @@ Then apply: `gh issue edit <N> --repo cloud-pi-native/console --milestone
   findings evolve and should not rewrite it.
 
 ### Définition du fini = the gate ledger
+
 The body's `Définition du fini` tasklist is the work item's ledger (unlazy
 method): each `- [ ]` item phrased so a command can decide it, mirrored as
-`todo` items in-session (todo is the working copy, the issue is the record).
-An item is done only once its check ran — not from memory. The PR (cpn-pr)
-proves the ledger: N of N, numbers re-measured at writing time. A genuinely
-impossible criterion is struck with a comment, never silently dropped. Several
-PRs may jointly solve one issue — linkage stays `Issues liées` / `Refs`
-(auto-close avoided; see cpn-pr); the ledger stays one per issue, and closure
-is deliberate: verified N of N after the final merge, then
+`todo` items in-session (todo is the working copy, the issue is the record). An
+item is done only once its check ran — not from memory. The PR (cpn-pr) proves
+the ledger: N of N, numbers re-measured at writing time. A genuinely impossible
+criterion is struck with a comment, never silently dropped. Several PRs may
+jointly solve one issue — linkage stays `Issues liées` / `Refs` (auto-close
+avoided; see cpn-pr); the ledger stays one per issue, and closure is deliberate:
+verified N of N after the final merge, then
 `gh issue close <N> -c "<evidence>"`.
 
 ```bash
@@ -197,9 +202,10 @@ gh issue view <N> --repo cloud-pi-native/console --json number,title,labels
 ```
 
 Confirm: title carries `🐛 [BUG]` or `💡 [REQUEST]`, and label is
-  `bug`/`enhancement`.
+`bug`/`enhancement`.
 
 ## See also
+
 - `cpn-pr` — the PR that solves this issue must link it via `Issues liées: #N`
   (auto-close avoided unless explicitly one-to-one); the PR title is
   conventional and its body restates the linked commit (commit is the source of

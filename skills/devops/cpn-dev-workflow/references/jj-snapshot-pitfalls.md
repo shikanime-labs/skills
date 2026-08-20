@@ -2,9 +2,9 @@
 
 The console repo is **jj-backed**. Raw `git` commands (git apply, git checkout,
 git diff) drive the working tree, but jj owns the commit graph. Mixing them
-produces snapshot desync that looks like lost or phantom edits. This file is
-the proven recovery sequence from a session that rebuilt two PR-2529 commits
-after a tangled jj/git state.
+produces snapshot desync that looks like lost or phantom edits. This file is the
+proven recovery sequence from a session that rebuilt two PR-2529 commits after a
+tangled jj/git state.
 
 ## Symptoms you will see
 
@@ -20,8 +20,9 @@ after a tangled jj/git state.
   `jj diff -r A` (one-sided, vs parent) or `jj log -p -r A`.
 - `jj bookmark move <name> -t @` fails: `The target ... is not a descendant`
   when the move is sideways (sibling commits).
-- `jj git push --bookmark <name>` refuses: `Refusing to create new remote
-  bookmark <name>@origin` — the name already exists on the fork (`origin`).
+- `jj git push --bookmark <name>` refuses:
+  `Refusing to create new remote bookmark <name>@origin` — the name already
+  exists on the fork (`origin`).
 
 ## Recovery sequence (proven)
 
@@ -31,8 +32,8 @@ after a tangled jj/git state.
    - capture unrelated edits first: `git diff main -- <paths> > /tmp/x.patch`
 2. **Force jj re-snapshot**: `touch <changed-files>` (this is the key step jj
    skips after raw git writes).
-3. Fold into a child you own: `jj squash --into @ --config ui.editor=cat`.
-   Use `jj new main -m "fix(...)"` first if `@` is not an empty child of main.
+3. Fold into a child you own: `jj squash --into @ --config ui.editor=cat`. Use
+   `jj new main -m "fix(...)"` first if `@` is not an empty child of main.
 4. **Verify with `jj diff -r @`** (grep for a known token). Do NOT trust the
    squash stdout message.
 5. Bookmark + push:

@@ -62,9 +62,9 @@ npm install @shikanime-labs/skills
 npx agents export --target claude
 ```
 
-The `agents` field in `package.json` and the `skills.json` manifest at the
-repo root enable discovery by npm-based skill managers. Both list the 11
-skills below.
+The `agents` field in `package.json` and the `skills.json` manifest at the repo
+root enable discovery by npm-based skill managers. Both list the 11 skills
+below.
 
 ## The Two Workflows
 
@@ -79,42 +79,41 @@ issue comments → PR** — with org-specific conventions:
 
 Shared doctrine across both families:
 
-1. **Issue-first** — a PR always solves an issue; the issue body is the
-   problem statement, acceptance criteria are a command-decidable tasklist
-   (the gate ledger), findings go in comments.
-2. **Done is proven, not asserted** — every landing claim is verified
-   against real command output; a red check is surfaced, never `--admin`'d
-   past.
+1. **Issue-first** — a PR always solves an issue; the issue body is the problem
+   statement, acceptance criteria are a command-decidable tasklist (the gate
+   ledger), findings go in comments.
+2. **Done is proven, not asserted** — every landing claim is verified against
+   real command output; a red check is surfaced, never `--admin`'d past.
 3. **Validate assumptions before work** — probe identity, push rights,
    toolchain, and issue existence; report `BLOCKED:` with evidence and a
    recovery path rather than silently narrowing scope.
 4. **Parallelize in a graph** — `sk-async` splits multi-unit work into jj
-   workspaces (fan-out), joins with multi-parent commits, lands as
-   independent PRs or stacked chains.
-5. **Many-to-many linkage** — link PRs with `Related:` / `Issues liées:`;
-   avoid auto-close keywords; close deliberately after verifying the ledger.
+   workspaces (fan-out), joins with multi-parent commits, lands as independent
+   PRs or stacked chains.
+5. **Many-to-many linkage** — link PRs with `Related:` / `Issues liées:`; avoid
+   auto-close keywords; close deliberately after verifying the ledger.
 
 ## What's Here
 
-All skills follow the
-[Agent Skills](https://agentskills.io/specification) specification, compatible
-with the [Hermes format](https://hermes-agent.nousresearch.com/docs).
+All skills follow the [Agent Skills](https://agentskills.io/specification)
+specification, compatible with the
+[Hermes format](https://hermes-agent.nousresearch.com/docs).
 
 ### shikanime family (`skills/shikanime/`)
 
-| Skill             | Description                                        |
-| ----------------- | -------------------------------------------------- |
-| `sk-dev-workflow` | Branch/push discipline, gates, landing             |
+| Skill             | Description                                          |
+| ----------------- | ---------------------------------------------------- |
+| `sk-dev-workflow` | Branch/push discipline, gates, landing               |
 | `sk-async`        | jj workspace fan-out + stacked PRs for parallel work |
-| `sk-commit`       | shikanime commit style + Automata co-author trailer |
-| `sk-discussion`   | RFC Discussions (pre-issue stage)                  |
-| `sk-issue`        | Issues with the gate-ledger tasklist               |
-| `sk-pr`           | Fork-first PRs derived from the commit             |
+| `sk-commit`       | shikanime commit style + Automata co-author trailer  |
+| `sk-discussion`   | RFC Discussions (pre-issue stage)                    |
+| `sk-issue`        | Issues with the gate-ledger tasklist                 |
+| `sk-pr`           | Fork-first PRs derived from the commit               |
 
 ### cloud-pi-native family
 
-| Skill              | Description                              |
-| ------------------ | ---------------------------------------- |
+| Skill              | Description                               |
+| ------------------ | ----------------------------------------- |
 | `cpn-dev-workflow` | Console repo dev loop, gates, PR workflow |
 | `cpn-commit`       | Conventional commits for console          |
 | `cpn-discussion`   | French Discussions via GraphQL            |

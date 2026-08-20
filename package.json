@@ -19,17 +19,50 @@
   },
   "agents": {
     "skills": [
-      {"name": "sk-dev-workflow", "path": "skills/shikanime/sk-dev-workflow"},
-      {"name": "sk-async", "path": "skills/shikanime/sk-async"},
-      {"name": "sk-commit", "path": "skills/shikanime/sk-commit"},
-      {"name": "sk-discussion", "path": "skills/shikanime/sk-discussion"},
-      {"name": "sk-issue", "path": "skills/shikanime/sk-issue"},
-      {"name": "sk-pr", "path": "skills/shikanime/sk-pr"},
-      {"name": "cpn-dev-workflow", "path": "skills/devops/cpn-dev-workflow"},
-      {"name": "cpn-commit", "path": "skills/vcs/cpn-commit"},
-      {"name": "cpn-discussion", "path": "skills/github/cpn-discussion"},
-      {"name": "cpn-issue", "path": "skills/github/cpn-issue"},
-      {"name": "cpn-pr", "path": "skills/github/cpn-pr"}
+      {
+        "name": "sk-dev-workflow",
+        "path": "skills/shikanime/sk-dev-workflow"
+      },
+      {
+        "name": "sk-async",
+        "path": "skills/shikanime/sk-async"
+      },
+      {
+        "name": "sk-commit",
+        "path": "skills/shikanime/sk-commit"
+      },
+      {
+        "name": "sk-discussion",
+        "path": "skills/shikanime/sk-discussion"
+      },
+      {
+        "name": "sk-issue",
+        "path": "skills/shikanime/sk-issue"
+      },
+      {
+        "name": "sk-pr",
+        "path": "skills/shikanime/sk-pr"
+      },
+      {
+        "name": "cpn-dev-workflow",
+        "path": "skills/devops/cpn-dev-workflow"
+      },
+      {
+        "name": "cpn-commit",
+        "path": "skills/vcs/cpn-commit"
+      },
+      {
+        "name": "cpn-discussion",
+        "path": "skills/github/cpn-discussion"
+      },
+      {
+        "name": "cpn-issue",
+        "path": "skills/github/cpn-issue"
+      },
+      {
+        "name": "cpn-pr",
+        "path": "skills/github/cpn-pr"
+      }
     ]
   }
 }

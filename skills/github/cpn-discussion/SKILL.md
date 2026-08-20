@@ -53,7 +53,7 @@ Match sibling discussions (#2467, #2474). Pattern:
   only. Do NOT add "Décision attendue" / "Définition du fini" — that scaffolding
   belongs on issues (cpn-issue), not discussions. Keep it short.
 - Lifecycle position: **discussion → issue → issue comments → PR.** A discussion
-  is the pre-issue RFC — its purpose is to converge on the *problem* before
+  is the pre-issue RFC — its purpose is to converge on the _problem_ before
   committing to an issue. When converged, derive the issue (cpn-issue) and link
   the discussion back from it; do not keep solving in the discussion.
 - Categories in use: `General`, `Ideas`. Pick `General` for decision/discussion
@@ -87,12 +87,18 @@ gh api graphql --input /tmp/disc_input.json
 
 where `/tmp/disc_input.json` is a JSON envelope:
 
-```json
-{
-  "query": "mutation($id:ID!,$body:String!){updateDiscussion(input:{discussionId:$id,body:$body}){discussion{number title}}}",
-  "variables": { "id": "D_kwDOHpbzm84AoamW", "body": "## Contexte\n..." }
+```graphql
+mutation ($id: ID!, $body: String!) {
+  updateDiscussion(input: { discussionId: $id, body: $body }) {
+    discussion {
+      number
+      title
+    }
+  }
 }
 ```
+
+Variables via `--input`: `{"id": "D_kwDOHpbzm84AoamW", "body": "..."}`
 
 ### Creating a discussion (if ever needed)
 
@@ -109,17 +115,28 @@ query {
 }'
 ```
 
-then `mutation {
-  createDiscussion(input:{repositoryId:$r,categoryId:$c,title:$t,body:$b}){
-  discussion { number } } }`
+then
+
+```graphql
+mutation {
+  createDiscussion(
+    input: { repositoryId: $r, categoryId: $c, title: $t, body: $b }
+  ) {
+    discussion {
+      number
+    }
+  }
+}
+```
+
 via the `--input` envelope.
 
 ## Pitfalls
 
 - **`gh api graphql -F variables=@file.json` FAILS** with
-  `Variable $id of type ID! was provided invalid value`. `-F` passes the file
-  as a raw string, not a JSON variable map. Always use `--input file.json` with
-  an envelope of `{ "query": "...", "variables": {...} }`.
+  `Variable $id of type ID! was provided invalid value`. `-F` passes the file as
+  a raw string, not a JSON variable map. Always use `--input file.json` with an
+  envelope of `{ "query": "...", "variables": {...} }`.
 - **Discussions ≠ Issues.** There is no `gh discussion edit`; body edits go
   through the `updateDiscussion` GraphQL mutation. Do not reach for
   `gh issue edit` for discussions.
@@ -129,12 +146,17 @@ via the `--input` envelope.
 ## Verification
 
 ```bash
-gh api graphql -f query='query{repository(owner:"cloud-pi-native",name:"console"){discussion(number:2474){title body category{name}}}}' | python3 -m json.tool
+gh api graphql -f query='query {
+  repository(owner: "cloud-pi-native", name: "console") {
+    discussion(number: 2474) { title body category { name } }
+  }
+}'
 ```
 
 Confirm title/body/category match intent and the body follows the house
 structure.
 
 ## See also
+
 - `cpn-issue` — derive the issue once the discussion converges.
 - `sk-discussion` — shikanime twin (English, pre-issue RFC stage).
