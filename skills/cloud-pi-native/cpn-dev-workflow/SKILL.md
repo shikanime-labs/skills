@@ -82,6 +82,13 @@ through `terminal` (parent re-verification; see "Gates" below).
    skill); link the PR with `Refs #N` — never an auto-close keyword unless
    explicitly one-to-one (see stacked-PR rule). Do not implement from a bare
    request, and never open a PR without an issue behind it.
+4b. **Triage the issue before work starts** (`cpn-triage` skill). Assign every
+    available metadata the repo exposes — labels (conventional-prefix → type
+    label), assignee (active `gh` identity), milestone (bug → current patch,
+    feature → next release), project board if one is obvious, and reviewers for
+    the eventual PR. Apply only fields that are empty and determinable from the
+    item's own content; never invent a label the repo does not have. A
+    triaged issue is the gates ledger in its final shape before code is written.
 4. From `console`, install and build:
    - `pnpm install`
    - `pnpm build`
@@ -146,6 +153,13 @@ gh pr create --draft --fill --body "Refs #N"
 Do not mark ready / do not merge until review passes. If a module is still WIP
 at handoff, leave it draft and say so. (User preference: migration PRs are draft
 unless explicitly told otherwise.)
+
+10b. **Run code review before requesting merge** (`cpn-code-review` skill).
+     Adversarial review over the diff: architecture fit, conventional-commit +
+     French artifact rules, security at trust boundaries, and root-cause vs
+     symptom. Treat the review as the gate that decides whether the PR is
+     ready — do not mark it ready until the findings are resolved or
+     explicitly waived by the user.
 
 ## Validate assumptions before work — report unmet requirements
 
@@ -270,7 +284,9 @@ the closest thing and mirror its shape:
 
 For deeper module conventions load the sub-skills: `cpn-server-nestjs`
 (service + vitest spec rules), `cpn-plugins`, `cpn-nestjs-client` (module
-client + pagination), `cpn-monorepo-nav` (layout), `cpn-tsc-resolution`.
+client + pagination), `cpn-monorepo-nav` (layout), `cpn-tsc-resolution`,
+`cpn-triage` (assign issue/PR metadata), `cpn-code-review` (pre-merge
+adversarial review).
 
 ## Testing practice (vitest specs — inline rules)
 
