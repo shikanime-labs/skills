@@ -32,8 +32,8 @@ English bodies (no French). Never invent a value the repo does not have.
 
 - `N` : issue or PR number.
 - `R` : `OWNER/REPO`. Defaults to the `origin` remote of the current working
-  directory, validated to sit under `shikanime-labs/` or `shikanime-studio/`. If
-  not in such a repo, ask the user for `R`.
+  directory, validated to sit under `shikanime-labs/` or `shikanime-studio/`.
+  If not in such a repo, ask the user for `R`.
 
 ## Procedure
 
@@ -96,6 +96,41 @@ auto-close unless the PR is explicitly one-to-one with the issue (see `sk-pr`).
 ```bash
 gh issue view "$N" --repo "$R" --json number,title,labels,assignees,milestone
 ```
+
+### 7. Close issues that will not be worked
+
+Triage may resolve an issue by closing it rather than assigning metadata.
+Always close with a rationale; never silently close.
+
+**Obtain the rationale (`REASON`).** Two paths:
+
+- **Prompt (default).** Ask the user for the free-text closure rationale via the
+  clarify tool (open-ended, no choices). Use this unless the autonomous path
+  applies. Never guess a generic string.
+- **Autonomous (only when perfectly legitimate).** Close without prompting only
+  when one of these holds, with the evidence present in the issue or a linked
+  issue — never on the agent's own inference:
+  - A maintainer comment on the issue states the decision ("wontfix", "out of
+    scope", "won't be worked").
+  - Verifiable duplicate of an open issue `#M` whose body is the same request.
+  - Already superseded — a merged PR or existing issue/feature already covers it
+    (cite it).
+  Derive `REASON` verbatim from that evidence and cite it. On any doubt, prompt.
+
+- **Not planned** — no milestone fit, out of scope, or explicitly decided
+  against. Close with the `not planned` reason and the rationale:
+  ```bash
+  gh issue close "$N" --repo "$R" --reason "not planned" -c "Not planned: $REASON"
+  ```
+- **Duplicate** — same intent as an existing issue `#M`. Point to the
+  canonical issue, then close:
+  ```bash
+  gh issue comment "$N" --repo "$R" -b "Duplicate of #M — $REASON"
+  gh issue close "$N" --repo "$R" --reason "not planned"
+  ```
+- **PRs are not closed by triage.** A stray PR goes through `sk-pr` or back to
+  its author. Closing a PR discards authored work — only the author or a
+  maintainer does that.
 
 ## Pitfalls
 

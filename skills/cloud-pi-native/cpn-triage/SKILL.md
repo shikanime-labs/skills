@@ -94,6 +94,42 @@ Avoid auto-close unless the PR is explicitly one-to-one with the issue (see
 gh issue view "$N" --repo "$R" --json number,title,labels,assignees,milestone
 ```
 
+### 7. Fermer les issues qui ne seront pas traitées
+
+La triage peut résoudre une issue en la fermant plutôt qu'en renseignant des
+métadonnées. Toujours fermer avec un motif ; jamais silencieusement.
+
+**Obtenir le motif (`REASON`).** Deux chemins :
+
+- **Demande (par défaut).** Demander le motif libre à l'utilisateur via l'outil
+  clarify (question ouverte, sans choix). À utiliser sauf si le chemin autonome
+  s'applique. Ne jamais deviner.
+- **Autonome (uniquement si parfaitement légitime).** Fermer sans demander
+  uniquement si l'un de ces cas s'applique, avec la preuve dans l'issue ou une
+  issue liée — jamais sur l'inférence de l'agent :
+  - Un commentaire de mainteneur sur l'issue indique la décision (« wontfix »,
+    « hors périmètre », « ne sera pas traité »).
+  - Doublon vérifiable de l'issue ouverte `#M` dont le corps est la même demande.
+  - Déjà remplacée — une PR mergée ou une issue/fonctionnalité existante couvre
+    déjà la demande (la citer).
+  Déduire `REASON` textuellement de cette preuve et la citer. En cas de doute,
+  demander.
+
+- **Sans suite** — aucun jalon adapté, hors périmètre, ou décision explicite de
+  ne pas traiter. Fermer avec le motif `not planned` et le motif :
+  ```bash
+  gh issue close "$N" --repo "$R" -c "Sans suite : $REASON" --reason "not planned"
+  ```
+- **Doublon** — même sujet qu'une issue existante `#M`. Renvoyer à l'issue
+  canonique, puis fermer :
+  ```bash
+  gh issue comment "$N" --repo "$R" -b "Doublon de #M — $REASON"
+  gh issue close "$N" --repo "$R" --reason "not planned"
+  ```
+- **Les PR ne sont pas fermées par la triage.** Une PR parasite passe par
+  `cpn-pr` ou revient à son auteur. Fermer une PR supprime un travail rédigé —
+  seul l'auteur ou un mainteneur le fait.
+
 ## Pitfalls
 
 - Inventing labels — always filter against `gh label list`.
