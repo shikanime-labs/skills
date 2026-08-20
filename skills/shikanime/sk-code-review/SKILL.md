@@ -33,7 +33,9 @@ NOT auto-commit, auto-merge, or auto-fix: it reports, you act. Relies only on
 
 Frame execution through the `terminal` tool; read context with `read_file` /
 `search_files`. For an independent verdict, dispatch a `delegate_task` reviewer
-with ONLY the diff (no shared context — no agent verifies its own work).
+with ONLY the diff (no shared context — no agent verifies its own work). Load
+`references/review-doctrine.md` for the shared review standard (Google
+eng-practices + superpowers distillation).
 
 ## Quick Reference
 
@@ -64,8 +66,20 @@ verify). If >15k chars, split by file.
 security (below), maintainability (naming, DRY, no premature abstraction), and
 convention compliance (below).
 
-**Phase 4 — Summary.** Tag every finding with a severity and present structured
-feedback (Critical / Warnings / Suggestions / Looks Good).
+**Phase 4 — Summary.** Tag every finding with a severity and post each one
+inline at its line. Judge by the approving standard
+(`references/review-doctrine.md`): approve when the change definitely improves
+code health, even if imperfect; request changes only on `blocking` findings.
+Never block on polish.
+
+## Posting (PRs)
+
+Post findings as ONE review with inline comments anchored per line
+(`references/inline-comments.md`), NOT one big block comment: each finding at
+its `path`/`line`, severity-prefixed; the review body is a 2-3 sentence
+verdict + praise. If commit messages violate the repo conventions, suggest a
+corrected commit message in the body (author amends — the reviewer does not
+push).
 
 ## Severity Labels
 
@@ -121,8 +135,11 @@ boundaries.
 
 ## Verification
 
-A review is complete when a structured summary (severity-tagged findings +
-decision) is produced for every changed file. For PRs, post via
-`gh pr review <N> --comment` or `--request-changes`.
+A review is complete when: every finding is posted inline at its line
+(severity-prefixed) via a single review, the review body states the verdict +
+praise in 2-3 sentences, and a corrected commit message is suggested when the
+history violates conventions. Verdict mapping: any `blocking` →
+`REQUEST_CHANGES`; else `APPROVE` when confident, `COMMENT` otherwise
+(`gh pr review <N> --request-changes|--approve|--comment`).
 
 Related: `requesting-code-review`, `github-code-review`.

@@ -1,8 +1,50 @@
-# Modèle de retour de revue (PR comment — français)
+# Modèles de revue (commentaires inline — français)
 
-Collez ce modèle en commentaire de PR via
-`gh pr comment <N> --body "$(cat ...)"`. Langue des artifacts cpn : français.
-Pas de `(...)` dans les titres.
+Langue des artifacts cpn : français. Pas de `(...)` dans les titres. Chaque
+constat est posté en commentaire inline sur SA ligne (revue unique via l'API),
+pas en un seul gros commentaire. Voir
+`shikanime/sk-code-review/references/inline-comments.md` pour les commandes
+`gh api`.
+
+## Corps de la revue (2-3 phrases max + éloge)
+
+```markdown
+**Verdict :** Changements demandés | Approuvé | Commentaire
+
+<2-3 phrases : synthèse du changement, son effet sur la santé du code, et un
+point positif précis (pourquoi c'est bien).>
+```
+
+## Commentaire inline (un par constat, sur sa ligne)
+
+```markdown
+[🔴 Bloquant] <problème>. Suggestion : <correctif>. [🟠 Important] <problème>.
+[🟡 Nit] <préférence de style>. [⚪ Suggestion] <amélioration optionnelle>. [✨
+Éloge] <bonne pratique — pourquoi.>
+```
+
+## Message de commit suggéré (si commitlint rejette)
+
+```markdown
+Message de commit suggéré :
+
+    fix(<scope>): <description impérative, minuscule, <= 72 car>
+
+    <corps optionnel : pourquoi, pas quoi>
+```
+
+L'auteur amende sa branche (`jj describe` / rebase) ; le réviseur ne pousse
+jamais.
+
+<!-- Legacy block-comment template (local review summary only):
+
+## Revue de code — <titre court>
+
+**Verdict :** Changements demandés | Approuvé | Commentaire
+
+### 🔴 Bloquant (à corriger avant fusion)
+- **<chemin:fichié:ligne>** — <problème>. Suggestion : <correctif>.
+-->
 
 ```markdown
 ## Revue de code — <titre court>

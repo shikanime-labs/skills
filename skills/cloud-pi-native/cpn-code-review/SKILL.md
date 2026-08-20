@@ -41,8 +41,10 @@ rules. Does NOT commit or merge. `git` + `gh` only.
 
 Use `terminal` for `git`/`gh`/`pnpm`; `read_file`/`search_files` for context.
 For PRs, `gh pr checkout <N>` then review locally. Load
-`references/console-architecture.md` for the architecture checkpoint and
-`references/review-output.md` for the French output template.
+`references/console-architecture.md` for the architecture checkpoint,
+`references/review-output.md` for the French templates, and
+`references/review-doctrine.md` (in `shikanime/sk-code-review`) for the shared
+review standard (Google eng-practices + superpowers distillation).
 
 ## Quick Reference
 
@@ -74,9 +76,14 @@ comments, conventional commit prefixes
 (`feat|fix|chore|docs|refactor|revert| build`). Check
 `references/console-architecture.md` per-area pitfalls.
 
-**Phase 4 — Summary.** Severity-tag findings, write the FR summary (template in
-`references/review-output.md`), and post via `gh pr review`. Approve only if no
-`blocking`/`important`; else `--request-changes`.
+**Phase 4 — Summary.** Severity-tag findings, then post inline: each finding as
+a French review comment anchored at its line (`references/review-output.md`),
+NOT one big block comment; the review body is a 2-3 sentence verdict + praise.
+Judge by the approving standard (`references/review-doctrine.md`): approve when
+the change definitely improves code health, even if imperfect. If commits
+violate commitlint, suggest a corrected conventional message (author amends).
+Verdict: `gh pr review <N> --request-changes` only on `blocking`/`important`;
+else `--approve`.
 
 ## Severity Labels
 
@@ -129,9 +136,10 @@ comments, conventional commit prefixes
 
 ## Verification
 
-Review complete when: every changed file has a severity-tagged finding, the FR
-summary (per `references/review-output.md`) is produced, and the verdict is
-posted via `gh pr review`. For local-only review, present the structured summary
-to the user.
+Review complete when: every finding is posted inline at its line
+(severity-prefixed, French) via a single review, the review body carries the 2-3
+sentence verdict + praise, and a corrected conventional commit message is
+suggested when commitlint would reject. For local-only review, present the
+structured summary to the user.
 
 Related: `sk-code-review`, `github-code-review`.
