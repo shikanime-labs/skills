@@ -3,16 +3,11 @@
 A curated catalog of self-improved agent skills for
 [Hermes](https://hermes-agent.nousresearch.com/docs) and compatible agents.
 
-This catalog encodes **one strict development workflow**: a spec-as-issue
-pipeline where every feature is drafted as a GitHub issue to validate it before
-code exists, combined with an always-on minimalism discipline (write only what
-the task needs) woven through every coding step rather than split into separate
-skills. `docs/agents/` holds the durable substrate so maintainers, humans, and
-other agents share one map; features ship behind feature-driven tests and
-property-based stability tests.
-
-See `docs/agents/workflow.md` for the **Inspiration** note crediting the two
-MIT-licensed sources this workflow adapts.
+This catalog encodes **two parallel org workflows** distilled from practice —
+the shikanime `sk-*` family and the cloud-pi-native `cpn-*` family — covering
+the full lifecycle: **discussion → issue → issue comments → PR**, with
+proven-done gates, assumption validation, jj-workspace parallel fan-out, and
+stacked PR landing.
 
 ## Quick Start
 
@@ -29,7 +24,7 @@ npx skills add shikanime-labs/skills --list
 npx skills add shikanime-labs/skills -g -y
 
 # Install a specific skill
-npx skills add shikanime-labs/skills --skill implement -g
+npx skills add shikanime-labs/skills --skill sk-dev-workflow -g
 
 # Install all skills for specific agents
 npx skills add shikanime-labs/skills -g -a claude-code -a cursor -y
@@ -51,10 +46,10 @@ hermes skills list
 
 ```bash
 # Install a single skill from the tap
-hermes skills install shikanime-labs/skills/workflow/implement
+hermes skills install shikanime-labs/skills/shikanime/sk-dev-workflow
 
 # Or copy manually
-cp -r skills/workflow/implement ~/.hermes/skills/workflow/
+cp -r skills/shikanime/sk-dev-workflow ~/.hermes/skills/shikanime/
 ```
 
 ### Install via npm
@@ -67,59 +62,64 @@ npm install @shikanime-labs/skills
 npx agents export --target claude
 ```
 
-The `agents` field in `package.json` and the `skills.json` manifest at the repo
-root enable discovery by npm-based skill managers. Both now list only the 7
-workflow skills; the minimalism discipline is part of the workflow, not a
-separate entry.
+The `agents` field in `package.json` and the `skills.json` manifest at the
+repo root enable discovery by npm-based skill managers. Both list the 11
+skills below.
 
-## The Workflow
+## The Two Workflows
 
-A single narrative, not a toolbox. Read `docs/agents/workflow.md` for the full
-flow; in short:
+Two orgs, one doctrine. The lifecycle is identical — **discussion → issue →
+issue comments → PR** — with org-specific conventions:
 
-1. **`bootstrap`** — run once per repo; writes `docs/agents/*`.
-2. **`to-spec`** — turn a discussion into a spec and publish it as a GitHub
-   issue (the validation gate). Also keeps `docs/agents/` current.
-3. **`to-tickets`** — split a spec into tracer-bullet tickets with blocking
-   edges.
-4. **`triage`** — move issues through the state machine.
-5. **`implement`** — load context for a task (read spec/ticket, explore
-   codebase, present task context). The user controls implementation.
-6. **User implements** — the user writes code, tests it, and prepares the PR.
-7. **`code-review`** — Standards + Spec (+ Stability) review.
-8. **`ask`** — router over the catalog.
+- **shikanime (`sk-*`)**: plain English commits with the Automata co-author
+  trailer, `gh stack` landing, direct push on explicit instruction.
+- **cloud-pi-native (`cpn-*`)**: French artifacts, conventional commits,
+  upstream-only PRs from `cloud-pi-native/*` (never a fork), Release Please
+  versioning.
 
-Each ticket ships as **one atomic PR** through a required human review gate —
-the agent's `code-review` is a pre-flight, a human approves the merge. See
-`docs/agents/workflow.md` → _Delivery: atomic stacked PRs_.
+Shared doctrine across both families:
 
-**The minimalism discipline is not a skill — it is the always-on discipline
-woven through every coding step.** The ladder (YAGNI → reuse → stdlib → native →
-dep → one line → minimum), the non-negotiable guarantees (validation, error
-handling, security, accessibility), the `deferral:` marker, the over-engineering
-audit, and the deferral ledger all live in `docs/agents/workflow.md` and are
-applied by the user during implementation.
+1. **Issue-first** — a PR always solves an issue; the issue body is the
+   problem statement, acceptance criteria are a command-decidable tasklist
+   (the gate ledger), findings go in comments.
+2. **Done is proven, not asserted** — every landing claim is verified
+   against real command output; a red check is surfaced, never `--admin`'d
+   past.
+3. **Validate assumptions before work** — probe identity, push rights,
+   toolchain, and issue existence; report `BLOCKED:` with evidence and a
+   recovery path rather than silently narrowing scope.
+4. **Parallelize in a graph** — `sk-async` splits multi-unit work into jj
+   workspaces (fan-out), joins with multi-parent commits, lands as
+   independent PRs or stacked chains.
+5. **Many-to-many linkage** — link PRs with `Related:` / `Issues liées:`;
+   avoid auto-close keywords; close deliberately after verifying the ledger.
 
 ## What's Here
 
-All skills live under `skills/workflow/` and follow the
+All skills follow the
 [Agent Skills](https://agentskills.io/specification) specification, compatible
 with the [Hermes format](https://hermes-agent.nousresearch.com/docs).
 
-| Skill         | Description                                                                                                      |
-| ------------- | ---------------------------------------------------------------------------------------------------------------- |
-| `bootstrap`   | Bootstrap a repo: write `docs/agents/*`                                                                          |
-| `to-spec`     | Discussion → spec issue (validation gate) + docs update                                                          |
-| `to-tickets`  | Spec → tracer-bullet tickets with blocking edges                                                                 |
-| `triage`      | Issue state machine: categorise, brief, transition                                                               |
-| `implement`   | Load context for a task: read spec/ticket, explore codebase, present task context. User controls implementation. |
-| `code-review` | Three-axis (Standards + Spec + Stability) review                                                                 |
-| `ask`         | Router over the workflow catalog                                                                                 |
+### shikanime family (`skills/shikanime/`)
 
-**Minimalism discipline** (ladder, non-negotiable guarantees, `deferral:`
-marker, over-engineering audit, deferral ledger) is defined once in
-`docs/agents/workflow.md` and applied by the user during implementation — it is
-not a separate skill.
+| Skill             | Description                                        |
+| ----------------- | -------------------------------------------------- |
+| `sk-dev-workflow` | Branch/push discipline, gates, landing             |
+| `sk-async`        | jj workspace fan-out + stacked PRs for parallel work |
+| `sk-commit`       | shikanime commit style + Automata co-author trailer |
+| `sk-discussion`   | RFC Discussions (pre-issue stage)                  |
+| `sk-issue`        | Issues with the gate-ledger tasklist               |
+| `sk-pr`           | Fork-first PRs derived from the commit             |
+
+### cloud-pi-native family
+
+| Skill              | Description                              |
+| ------------------ | ---------------------------------------- |
+| `cpn-dev-workflow` | Console repo dev loop, gates, PR workflow |
+| `cpn-commit`       | Conventional commits for console          |
+| `cpn-discussion`   | French Discussions via GraphQL            |
+| `cpn-issue`        | French issue templates + gate ledger      |
+| `cpn-pr`           | French PRs, upstream-only, conventional   |
 
 ## Development
 
