@@ -323,3 +323,9 @@ gh pr view <N> --repo cloud-pi-native/<repo> --json title,baseRefName,body
 Confirm: base is `main` (or repo default), title is conventional, and the body
 contains `## Issues liées` plus the linked issue. If the repo has no template,
 the canonical French sections still apply.
+
+## See also
+- `cpn-commit` — the commit this PR must restate (parity rule).
+- `cpn-dev-workflow` — branch discipline and pre-push checks upstream of this
+  PR.
+- `sk-pr` — shikanime twin (fork-first, plain-English titles).

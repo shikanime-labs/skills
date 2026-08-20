@@ -79,3 +79,7 @@ acceptance criteria, no tasklist (that is issue scaffolding).
 gh api graphql -f query='query{repository(owner:"<org>",name:"<repo>"){discussion(number:N){title body category{name}}}}'
 ```
 Confirm title/body/category and that the body stays context + open questions.
+
+## See also
+- `sk-issue` — once the discussion converges, derive the issue from it.
+- `cpn-discussion` — French twin for cloud-pi-native console.

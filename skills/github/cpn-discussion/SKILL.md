@@ -134,3 +134,7 @@ gh api graphql -f query='query{repository(owner:"cloud-pi-native",name:"console"
 
 Confirm title/body/category match intent and the body follows the house
 structure.
+
+## See also
+- `cpn-issue` — derive the issue once the discussion converges.
+- `sk-discussion` — shikanime twin (English, pre-issue RFC stage).

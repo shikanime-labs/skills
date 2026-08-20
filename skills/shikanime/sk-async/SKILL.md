@@ -42,9 +42,11 @@ splitting component of `sk-dev-workflow` (and `cpn-dev-workflow`).
 1. **Tree before work** — decompose against the issue ledger; write the tree
    (trunk, units, edges) into the plan/`todo` with gates fixed per leaf
    BEFORE any fan-out (contracts before delegation).
-2. **Fan out** — one workspace per parallel unit, rooted at the trunk:
+2. **Fan out** — one workspace per parallel unit, rooted at the trunk; name
+   workspaces `<repo-name>.<unit>` (workspace names are repo-global, dot-
+   qualification prevents collisions across repos):
    ```bash
-   jj workspace add ../<repo>-<unit> --name <unit>
+   jj workspace add ../<repo-name>.<unit> --name <repo-name>.<unit>
    ```
    A new workspace's working-copy commit is a child of the current `@`; for
    depth > 1, root the stream inside it with `jj new <parent>`.

@@ -72,3 +72,8 @@ the issue.
 gh issue view <N> --repo <org>/<repo> --json number,title,labels
 ```
 Confirm title + label are set and the issue lives in the upstream org repo.
+
+## See also
+- `sk-discussion` — the pre-issue stage when the problem is not yet converged.
+- `sk-pr` — the solver; links back via `Related:` without auto-close.
+- `cpn-issue` — French twin with cloud-pi-native issue templates.

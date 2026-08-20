@@ -193,3 +193,9 @@ jj status && jj log -r @ -T 'bookmarks ++ " "'
 ```
 Confirm the branch tracks the fork remote and only the intended
 change is staged.
+
+## See also
+- `sk-commit` — the commit shape (subject, Automata co-author trailer) the
+  landing steps assume.
+- `sk-pr` / `sk-async` — single fork PR vs stacked fan-out landing.
+- `cpn-dev-workflow` — cloud-pi-native twin (upstream-only, no fork).

@@ -487,3 +487,9 @@ before touching it; if it isn't, surface the conflict and ask the user how to
 Run `read_file` on `console/CONTRIBUTING.md` and confirm it states
   `apps/server-nestjs` as the backend target and lists `pnpm lint`, `pnpm test`,
   and `pnpm playwright:test` as pre-submission checks.
+
+## See also
+- `cpn-commit` — the commit shape (French conventional subject, author
+  identity, SSH signing) this workflow lands.
+- `cpn-pr` — upstream-only PR opening from these commits.
+- `sk-dev-workflow` — shikanime twin (fork-first landing).

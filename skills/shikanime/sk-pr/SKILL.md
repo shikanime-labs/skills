@@ -160,3 +160,8 @@ gh pr view <N> --repo <org>/<repo> --json title,baseRefName,body
 ```
 Confirm base is `main` (or repo default), title is plain-English/`doc:`, and the
 body links the correct issue.
+
+## See also
+- `sk-commit` — the commit this PR must restate (parity rule).
+- `sk-async` — landing multi-branch work as stacked fork PRs (`gh stack`).
+- `cpn-pr` — cloud-pi-native twin: French, conventional, upstream-only.
