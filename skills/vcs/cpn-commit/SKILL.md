@@ -9,7 +9,7 @@ metadata:
     tags: [conventional-commits, git, commit]
 ---
 
-# CPN Console Commit
+# CPN Org Commit
 
 Create commits in `cloud-pi-native/console` honoring the repo's enforced
 commitlint config. Covers the conventional-commit contract that drives

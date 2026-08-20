@@ -9,7 +9,7 @@ metadata:
     tags: [GitHub, Issues, cloud-pi-native, French]
 ---
 
-# CPN Console Issue Creation
+# CPN Org Issue Creation
 
 Create GitHub issues for `cloud-pi-native/console` using the repo's French
 issue templates and label conventions. Issue-first is the repo norm: create

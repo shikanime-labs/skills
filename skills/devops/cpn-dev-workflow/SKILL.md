@@ -15,7 +15,7 @@ metadata:
     - Platform
 ---
 
-# Cloud Pi Native Development Workflow
+# CPN Org Dev Workflow
 
 Covers the local `cloud-pi-native` console repo's development workflow:
   structure, tech stack, contribution rules, local dev modes, quality gates, and

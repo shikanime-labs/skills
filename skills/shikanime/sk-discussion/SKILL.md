@@ -9,7 +9,7 @@ metadata:
     tags: [GitHub, Discussions, shikanime-labs, shikanime-studio, RFC]
 ---
 
-# Shikanime Org Discussions (RFC stage)
+# Shikanime Org Discussion
 
 Discussions are the **pre-issue RFC** in the work-item lifecycle
 **discussion → issue → issue comments → PR** (see `sk-dev-workflow`): converge

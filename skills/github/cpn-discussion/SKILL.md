@@ -9,7 +9,7 @@ metadata:
     tags: [GitHub, Discussions, cloud-pi-native, French]
 ---
 
-# CPN Console Discussion
+# CPN Org Discussion
 
 GitHub **Discussions** for `cloud-pi-native/console` are a GraphQL-only surface
 (no REST equivalent for body edits). Use this for "discussion issue" / "open a

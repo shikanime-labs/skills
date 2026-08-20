@@ -10,7 +10,7 @@ metadata:
     tags: [GitHub, Pull-Requests, cloud-pi-native, Conventional-Commits]
 ---
 
-# cloud-pi-native Org PR Creation
+# CPN Org PR Creation
 
 Open pull requests against any `cloud-pi-native/*` repository following the
 org-wide PR conventions: a conventional PR title, the French PR body, and an

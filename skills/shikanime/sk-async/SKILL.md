@@ -9,7 +9,7 @@ metadata:
 tags: [jj, workspaces, parallel, stacked-prs, gh-stack, delegation, shikanime]
 ---
 
-# sk-async — Isolated parallel streams (jj workspaces + gh stack)
+# Shikanime Org Parallel Streams
 
 Split a multi-unit change into parallel, isolated streams that cannot conflict,
 then land each as an independent PR or a stacked chain. Distills the unlazy
