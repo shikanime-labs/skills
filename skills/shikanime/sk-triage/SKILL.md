@@ -93,9 +93,42 @@ auto-close unless the PR is explicitly one-to-one with the issue (see `sk-pr`).
 
 ### 6. Verify
 
-```bash
-gh issue view "$N" --repo "$R" --json number,title,labels,assignees,milestone
-```
+````bash
+### 7. Close issues that will not be worked
+
+Triage may resolve an issue by closing it rather than assigning metadata.
+Always close with a rationale; never silently close.
+
+Ask the user for the free-text closure rationale. Never guess or reuse a
+generic string. Use it as `REASON`. Every close must first post a comment
+explaining why, then close.
+
+- **Not planned** — no milestone fit, out of scope, or explicitly decided
+  against:
+  ```bash
+  gh issue comment "$N" --repo "$R" -b "Closing as not planned — $REASON"
+  gh issue close "$N" --repo "$R" -c "Not planned: $REASON" --reason "not planned"
+````
+
+- **Duplicate** — same intent as an existing issue `#M`. Point to the canonical
+  issue, then close:
+
+  ```bash
+  gh issue comment "$N" --repo "$R" -b "Duplicate of #M — $REASON"
+  gh issue close "$N" --repo "$R" --reason "not planned"
+  ```
+
+- **Completed** — resolved by another change, or no longer needed because the
+  work is done:
+
+  ```bash
+  gh issue comment "$N" --repo "$R" -b "Closing as completed — $REASON"
+  gh issue close "$N" --repo "$R" -c "Completed: $REASON" --reason "completed"
+  ```
+
+- **PRs are not closed by triage.** A stray PR goes through `sk-pr` or back to
+  its author. Closing a PR discards authored work — only the author or a
+  maintainer does that.
 
 ## Pitfalls
 

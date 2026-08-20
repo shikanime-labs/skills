@@ -90,9 +90,42 @@ Avoid auto-close unless the PR is explicitly one-to-one with the issue (see
 
 ### 6. Verify
 
-```bash
-gh issue view "$N" --repo "$R" --json number,title,labels,assignees,milestone
-```
+````bash
+### 7. Fermer les issues qui ne seront pas traitées
+
+La triage peut résoudre une issue en la fermant plutôt qu'en renseignant des
+métadonnées. Toujours fermer avec un motif ; jamais silencieusement.
+
+Demander le motif libre à l'utilisateur. Ne jamais deviner. Stocker la
+réponse dans `REASON`. Chaque fermeture doit d'abord poster un commentaire
+expliquant pourquoi, puis fermer.
+
+- **Sans suite** — aucun jalon adapté, hors périmètre, ou décision explicite de
+  ne pas traiter :
+  ```bash
+  gh issue comment "$N" --repo "$R" -b "Fermeture sans suite — $REASON"
+  gh issue close "$N" --repo "$R" -c "Sans suite : $REASON" --reason "not planned"
+````
+
+- **Doublon** — même sujet qu'une issue existante `#M`. Renvoyer à l'issue
+  canonique, puis fermer :
+
+  ```bash
+  gh issue comment "$N" --repo "$R" -b "Doublon de #M — $REASON"
+  gh issue close "$N" --repo "$R" --reason "not planned"
+  ```
+
+- **Terminé** — résolu par un autre changement, ou sans objet car le travail est
+  fait :
+
+  ```bash
+  gh issue comment "$N" --repo "$R" -b "Fermeture terminée — $REASON"
+  gh issue close "$N" --repo "$R" -c "Terminé : $REASON" --reason "completed"
+  ```
+
+- **Les PR ne sont pas fermées par la triage.** Une PR parasite passe par
+  `cpn-pr` ou revient à son auteur. Fermer une PR supprime un travail rédigé —
+  seul l'auteur ou un mainteneur le fait.
 
 ## Pitfalls
 

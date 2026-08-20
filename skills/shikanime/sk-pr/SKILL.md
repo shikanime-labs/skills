@@ -175,5 +175,5 @@ body links the correct issue.
 - `sk-commit` — the commit this PR must restate (parity rule).
 - `sk-async` — landing multi-branch work as stacked fork PRs (`gh stack`).
 - `cpn-pr` — cloud-pi-native twin: French, conventional, upstream-only.
-- `sk-triage` — assigns PR/issue metadata (labels, assignee, milestone,
-  project, reviewers); run it after creation.
+- `sk-triage` — assigns PR/issue metadata (labels, assignee, milestone, project,
+  reviewers); run it after creation.

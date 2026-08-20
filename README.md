@@ -63,8 +63,8 @@ npx agents export --target claude
 ```
 
 The `agents` field in `package.json` and the `skills.json` manifest at the repo
-root enable discovery by npm-based skill managers. Both list the 11 skills
-below.
+root enable discovery by npm-based skill managers. Both stay in sync with the
+tables below.
 
 ## The Two Workflows
 
@@ -101,28 +101,28 @@ specification, compatible with the
 
 ### shikanime family (`skills/shikanime/`)
 
-| Skill             | Description                                          |
-| ----------------- | ---------------------------------------------------- |
-| `sk-dev-workflow` | Branch/push discipline, gates, landing               |
-| `sk-async`        | jj workspace fan-out + stacked PRs for parallel work |
-| `sk-commit`       | shikanime commit style + Automata co-author trailer  |
-| `sk-discussion`   | RFC Discussions (pre-issue stage)                    |
-| `sk-issue`        | Issues with the gate-ledger tasklist                 |
-| `sk-triage`       | Assign every available metadata to an issue or PR    |
-| `sk-pr`           | Fork-first PRs derived from the commit               |
-| `sk-code-review`  | Code review: YAGNI, root-cause, conventions          |
+| Skill             | Description                                                                                                                                                                      |
+| ----------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `sk-dev-workflow` | Branch and push discipline for shikanime repos: fork-first landing, jj bookmark tracking, assumption validation, issue-first lifecycle, and landing via gh stack or direct push. |
+| `sk-async`        | Split work into parallel isolated jj workspaces (depth-tree fan-out), join with multi-parent commits, and land as independent PRs or gh stack chains.                            |
+| `sk-commit`       | Commit in shikanime-labs and shikanime-studio repos: plain English imperative titles, Automata co-author trailer, repo-enforced hooks (gitlint, DCO) win.                        |
+| `sk-discussion`   | Open RFC Discussions in shikanime orgs as the pre-issue stage: converge on the problem, then derive the issue.                                                                   |
+| `sk-issue`        | Open issues in shikanime-labs and shikanime-studio: body is the problem statement, acceptance criteria as command-decidable tasklist (the gate ledger), findings as comments.    |
+| `sk-triage`       | Assign every available metadata (labels, assignee, milestone, project, reviewers) to an existing shikanime-labs or shikanime-studio issue or PR, never inventing values.         |
+| `sk-pr`           | Open PRs in shikanime orgs fork-first: PR derived from the commit message, many-to-many issue linkage via Related, no auto-close keywords.                                       |
+| `sk-code-review`  | Code review discipline for shikanime repos: YAGNI, root-cause, repo conventions, security scan, severity-tagged findings.                                                        |
 
-### cloud-pi-native family
+### cloud-pi-native family (`skills/cloud-pi-native/`)
 
-| Skill              | Description                                |
-| ------------------ | ------------------------------------------ |
-| `cpn-dev-workflow` | Console repo dev loop, gates, PR workflow  |
-| `cpn-commit`       | Conventional commits for console           |
-| `cpn-discussion`   | French Discussions via GraphQL             |
-| `cpn-issue`        | French issue templates + gate ledger       |
-| `cpn-pr`           | French PRs, upstream-only, conventional    |
-| `cpn-code-review`  | Review console PRs: arch, French artifacts |
-| `cpn-triage`       | Assign every available metadata to an issue or PR   |
+| Skill              | Description                                                                                                                                                                       |
+| ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `cpn-dev-workflow` | Work inside the local cloud-pi-native console repo: contribution rules, dev cycle, gates, and PR workflow.                                                                        |
+| `cpn-commit`       | Commit to cloud-pi-native/console with conventional format.                                                                                                                       |
+| `cpn-discussion`   | Create/edit console Discussions (French, GraphQL).                                                                                                                                |
+| `cpn-issue`        | Open CPN console issues with French templates and the definition-of-done gate ledger.                                                                                             |
+| `cpn-pr`           | Open cloud-pi-native org PRs with French body and conventional title.                                                                                                             |
+| `cpn-code-review`  | Review cloud-pi-native console PRs: four-phase process, architecture checkpoints, French artifacts.                                                                               |
+| `cpn-triage`       | Assign every available metadata (labels, assignee, milestone, project, reviewers) to an existing cloud-pi-native console issue or PR, French conventions, never inventing values. |
 
 ## Development
 

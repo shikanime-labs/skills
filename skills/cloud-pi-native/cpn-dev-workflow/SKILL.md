@@ -39,17 +39,17 @@ The work-item lifecycle as an ordered, navigable sequence for the console repo.
 Each phase names its owner skill; gate phases are the mechanical walls a change
 must clear.
 
-| # | Phase | Owner | Gate |
-| - | ----- | ----- | ---- |
-| 0 | Discussion (RFC) — only if the problem isn't converged | `cpn-discussion` | entry |
-| 1 | Issue — French problem statement + `Définition du fini` ledger | `cpn-issue` | ledger set |
-| 2 | Triage — labels/assignee/milestone/project/reviewers | `cpn-triage` | ledger settled |
-| 3 | Branch + implement (jj workspace, conventional commits) | this skill | — |
-| 4 | Commit (French conventional, SSH-signed) | `cpn-commit` | commit shape |
-| 5 | Code review (adversarial pre-merge) | `cpn-code-review` | review gate |
-| 6 | PR (upstream-only draft, link `Issues liées`) | `cpn-pr` | — |
-| 7 | Land (merge / `gh stack` + merge queue) | this skill | branch protection |
-| 8 | Close deliberately (verify N of N) | `cpn-issue` | ledger discharged |
+| #   | Phase                                                          | Owner             | Gate              |
+| --- | -------------------------------------------------------------- | ----------------- | ----------------- |
+| 0   | Discussion (RFC) — only if the problem isn't converged         | `cpn-discussion`  | entry             |
+| 1   | Issue — French problem statement + `Définition du fini` ledger | `cpn-issue`       | ledger set        |
+| 2   | Triage — labels/assignee/milestone/project/reviewers           | `cpn-triage`      | ledger settled    |
+| 3   | Branch + implement (jj workspace, conventional commits)        | this skill        | —                 |
+| 4   | Commit (French conventional, SSH-signed)                       | `cpn-commit`      | commit shape      |
+| 5   | Code review (adversarial pre-merge)                            | `cpn-code-review` | review gate       |
+| 6   | PR (upstream-only draft, link `Issues liées`)                  | `cpn-pr`          | —                 |
+| 7   | Land (merge / `gh stack` + merge queue)                        | this skill        | branch protection |
+| 8   | Close deliberately (verify N of N)                             | `cpn-issue`       | ledger discharged |
 
 Phases 2 and 5 are the before-code and before-merge gates. The console
 `Procedure` (steps 1–10b) is the implementation of phases 3–7 in this repo.
@@ -102,14 +102,14 @@ through `terminal` (parent re-verification; see "Gates" below).
    problem. One issue per work item. If none exists, create it (`cpn-issue`
    skill); link the PR with `Refs #N` — never an auto-close keyword unless
    explicitly one-to-one (see stacked-PR rule). Do not implement from a bare
-   request, and never open a PR without an issue behind it.
-4b. **Triage the issue before work starts** (`cpn-triage` skill). Assign every
-    available metadata the repo exposes — labels (conventional-prefix → type
-    label), assignee (active `gh` identity), milestone (bug → current patch,
-    feature → next release), project board if one is obvious, and reviewers for
-    the eventual PR. Apply only fields that are empty and determinable from the
-    item's own content; never invent a label the repo does not have. A
-    triaged issue is the gates ledger in its final shape before code is written.
+   request, and never open a PR without an issue behind it. 4b. **Triage the
+   issue before work starts** (`cpn-triage` skill). Assign every available
+   metadata the repo exposes — labels (conventional-prefix → type label),
+   assignee (active `gh` identity), milestone (bug → current patch, feature →
+   next release), project board if one is obvious, and reviewers for the
+   eventual PR. Apply only fields that are empty and determinable from the
+   item's own content; never invent a label the repo does not have. A triaged
+   issue is the gates ledger in its final shape before code is written.
 4. From `console`, install and build:
    - `pnpm install`
    - `pnpm build`
@@ -176,11 +176,10 @@ at handoff, leave it draft and say so. (User preference: migration PRs are draft
 unless explicitly told otherwise.)
 
 10b. **Run code review before requesting merge** (`cpn-code-review` skill).
-     Adversarial review over the diff: architecture fit, conventional-commit +
-     French artifact rules, security at trust boundaries, and root-cause vs
-     symptom. Treat the review as the gate that decides whether the PR is
-     ready — do not mark it ready until the findings are resolved or
-     explicitly waived by the user.
+Adversarial review over the diff: architecture fit, conventional-commit + French
+artifact rules, security at trust boundaries, and root-cause vs symptom. Treat
+the review as the gate that decides whether the PR is ready — do not mark it
+ready until the findings are resolved or explicitly waived by the user.
 
 ## Validate assumptions before work — report unmet requirements
 
