@@ -31,7 +31,7 @@
     },
     {
       "name": "sk-triage",
-      "description": "Assign every available metadata (labels, assignee, milestone, project, reviewers) to an existing shikanime-labs or shikanime-studio issue or PR, never inventing values.",
+      "description": "Assign every available metadata (labels, assignee, milestone, project, reviewers) to an existing shikanime-labs or shikanime-studio issue or PR, never inventing values. May also close issues (not planned / duplicate / completed) with a required rationale comment.",
       "path": "skills/shikanime/sk-triage"
     },
     {
@@ -76,7 +76,7 @@
     },
     {
       "name": "cpn-triage",
-      "description": "Assign every available metadata (labels, assignee, milestone, project, reviewers) to an existing cloud-pi-native console issue or PR, French conventions, never inventing values.",
+      "description": "Assign every available metadata (labels, assignee, milestone, project, reviewers) to an existing cloud-pi-native console issue or PR, French conventions, never inventing values. May also close issues (sans suite / doublon / terminé) with a required rationale comment.",
       "path": "skills/cloud-pi-native/cpn-triage"
     }
   ]
