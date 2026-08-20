@@ -35,6 +35,11 @@
       "path": "skills/shikanime/sk-pr"
     },
     {
+      "name": "sk-code-review",
+      "description": "Code review discipline for shikanime repos: YAGNI, root-cause, repo conventions, security scan, severity-tagged findings.",
+      "path": "skills/shikanime/sk-code-review"
+    },
+    {
       "name": "cpn-dev-workflow",
       "description": "Work inside the local cloud-pi-native console repo: contribution rules, dev cycle, gates, and PR workflow.",
       "path": "skills/cloud-pi-native/cpn-dev-workflow"
@@ -58,6 +63,11 @@
       "name": "cpn-pr",
       "description": "Open cloud-pi-native org PRs with French body and conventional title.",
       "path": "skills/cloud-pi-native/cpn-pr"
+    },
+    {
+      "name": "cpn-code-review",
+      "description": "Review cloud-pi-native console PRs: four-phase process, architecture checkpoints, French artifacts.",
+      "path": "skills/cloud-pi-native/cpn-code-review"
     }
   ]
 }
