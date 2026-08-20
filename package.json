@@ -44,6 +44,10 @@
         "path": "skills/shikanime/sk-pr"
       },
       {
+        "name": "sk-code-review",
+        "path": "skills/shikanime/sk-code-review"
+      },
+      {
         "name": "cpn-dev-workflow",
         "path": "skills/cloud-pi-native/cpn-dev-workflow"
       },
@@ -62,6 +66,10 @@
       {
         "name": "cpn-pr",
         "path": "skills/cloud-pi-native/cpn-pr"
+      },
+      {
+        "name": "cpn-code-review",
+        "path": "skills/cloud-pi-native/cpn-code-review"
       }
     ]
   }

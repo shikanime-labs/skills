@@ -109,16 +109,18 @@ specification, compatible with the
 | `sk-discussion`   | RFC Discussions (pre-issue stage)                    |
 | `sk-issue`        | Issues with the gate-ledger tasklist                 |
 | `sk-pr`           | Fork-first PRs derived from the commit               |
+| `sk-code-review`  | Code review: YAGNI, root-cause, conventions          |
 
 ### cloud-pi-native family
 
-| Skill              | Description                               |
-| ------------------ | ----------------------------------------- |
-| `cpn-dev-workflow` | Console repo dev loop, gates, PR workflow |
-| `cpn-commit`       | Conventional commits for console          |
-| `cpn-discussion`   | French Discussions via GraphQL            |
-| `cpn-issue`        | French issue templates + gate ledger      |
-| `cpn-pr`           | French PRs, upstream-only, conventional   |
+| Skill              | Description                                |
+| ------------------ | ------------------------------------------ |
+| `cpn-dev-workflow` | Console repo dev loop, gates, PR workflow  |
+| `cpn-commit`       | Conventional commits for console           |
+| `cpn-discussion`   | French Discussions via GraphQL             |
+| `cpn-issue`        | French issue templates + gate ledger       |
+| `cpn-pr`           | French PRs, upstream-only, conventional    |
+| `cpn-code-review`  | Review console PRs: arch, French artifacts |
 
 ## Development
 
