@@ -1,7 +1,7 @@
 {
   "name": "@shikanime-labs/skills",
-  "version": "1.0.0",
-  "description": "A curated catalog of self-improved agent skills for Hermes and compatible agents.",
+  "version": "2.0.0",
+  "description": "A curated catalog of self-improved agent skills for Hermes and compatible agents: two parallel org workflows (shikanime sk-*, cloud-pi-native cpn-*) covering the full discussion, issue, and PR lifecycle.",
   "keywords": [
     "agent-skills",
     "ai-agents",
@@ -20,32 +20,48 @@
   "agents": {
     "skills": [
       {
-        "name": "ask",
-        "path": "skills/workflow/ask"
+        "name": "sk-dev-workflow",
+        "path": "skills/shikanime/sk-dev-workflow"
       },
       {
-        "name": "code-review",
-        "path": "skills/workflow/code-review"
+        "name": "sk-async",
+        "path": "skills/shikanime/sk-async"
       },
       {
-        "name": "implement",
-        "path": "skills/workflow/implement"
+        "name": "sk-commit",
+        "path": "skills/shikanime/sk-commit"
       },
       {
-        "name": "bootstrap",
-        "path": "skills/workflow/bootstrap"
+        "name": "sk-discussion",
+        "path": "skills/shikanime/sk-discussion"
       },
       {
-        "name": "to-spec",
-        "path": "skills/workflow/to-spec"
+        "name": "sk-issue",
+        "path": "skills/shikanime/sk-issue"
       },
       {
-        "name": "to-tickets",
-        "path": "skills/workflow/to-tickets"
+        "name": "sk-pr",
+        "path": "skills/shikanime/sk-pr"
       },
       {
-        "name": "triage",
-        "path": "skills/workflow/triage"
+        "name": "cpn-dev-workflow",
+        "path": "skills/devops/cpn-dev-workflow"
+      },
+      {
+        "name": "cpn-commit",
+        "path": "skills/vcs/cpn-commit"
+      },
+      {
+        "name": "cpn-discussion",
+        "path": "skills/github/cpn-discussion"
+      },
+      {
+        "name": "cpn-issue",
+        "path": "skills/github/cpn-issue"
+      },
+      {
+        "name": "cpn-pr",
+        "path": "skills/github/cpn-pr"
       }
     ]
   }

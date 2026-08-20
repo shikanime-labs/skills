@@ -7,20 +7,21 @@ agents. Each skill lives in its own directory with a `SKILL.md`.
 
 ## Structure
 
-- `skills/workflow/` — The strict development workflow skills, each a directory
-  with a `SKILL.md`
-- `docs/agents/` — Durable substrate (`issue-tracker.md`, `domain.md`,
-  `workflow.md`) the workflow reads
+- `skills/shikanime/` — the shikanime `sk-*` workflow family
+- `skills/devops/`, `skills/github/`, `skills/vcs/` — the cloud-pi-native
+  `cpn-*` workflow family
 - `README.md` — Installation and usage documentation
 
 ## Workflow
 
-One narrative, not a toolbox. The pipeline validates every feature as a GitHub
-issue before code; the minimalism discipline is the always-on minimalism guard
-woven through every coding step (defined in `docs/agents/workflow.md`, not a
-separate skill); features ship behind feature-driven tests and property-based
-stability tests. Full flow in `docs/agents/workflow.md`. Skills: `bootstrap`,
-`to-spec`, `to-tickets`, `triage`, `implement`, `code-review`, `ask`.
+Two orgs, one doctrine — the lifecycle is **discussion → issue → issue comments
+→ PR** for both families. The issue body is the problem statement with
+acceptance criteria as a command-decidable tasklist (the gate ledger); the PR
+proves it. shikanime skills are written in English with plain-English commits +
+Automata co-author trailer; cloud-pi-native skills operate in French with
+conventional commits. Skills: `sk-dev-workflow`, `sk-async`, `sk-commit`,
+`sk-discussion`, `sk-issue`, `sk-pr`, `cpn-dev-workflow`, `cpn-commit`,
+`cpn-discussion`, `cpn-issue`, `cpn-pr`.
 
 ## Commit Style
 
@@ -39,8 +40,8 @@ Example: Wire release management, milestone metadata, trunk-based jj stacking
 ```text
 Encode four principles into the workflow substrate and skills.
 
-Design: docs/agents/workflow.md, docs/agents/issue-tracker.md
-Related: skills/workflow/{to-spec,to-tickets,implement,ask}
+Design: README.md, AGENTS.md
+Related: skills/shikanime/, skills/devops/, skills/github/, skills/vcs/
 Signed-off-by: Shikanime Deva <william.phetsinorath@shikanime.studio>
 ```
 
@@ -49,12 +50,9 @@ Signed-off-by: Shikanime Deva <william.phetsinorath@shikanime.studio>
 - One ticket → one branch → one PR; PRs stack on the previous ticket's branch.
 - Each PR is atomic: one objective, linked issue (`Closes #N`), small enough for
   a human to review in one sitting.
-  `gh pr create`.
-- Agent runs `code-review` as pre-flight; **a human approving review is the
-  gate** before landing (protect `main`).
-  stack.
+- Agent runs a review as pre-flight; **a human approving review is the gate**
+  before landing (protect `main`).
 - Never `gh pr merge` (poisoned commits). Never force-push stacked branches.
-  (one bookmark per ticket + `gh pr create`).
 
 ## Protect `main`
 
@@ -68,17 +66,16 @@ Signed-off-by: Shikanime Deva <william.phetsinorath@shikanime.studio>
 1. Create a directory under the appropriate category
 2. Write a `SKILL.md` following the
    [skill authoring](https://hermes-agent.nousresearch.com/docs) format
-3. Add the skill to the catalog table in `README.md`
+3. Add the skill to the catalog table in `README.md` and both manifests
+   (`skills.json`, `package.json` `agents.skills`)
 4. Commit with a descriptive message
 
 ## Skill Categories
 
-- `autonomous-ai` — Agent orchestration and delegation
-- `devops` — Infrastructure, Nix, Kubernetes, CI/CD
-- `github` — GitHub workflows, issues, PRs
-- `productivity` — Communication, documents, automation
-- `reconnaissance` — Domain intelligence, OSINT
-- `software-dev` — Development workflows, debugging, testing
+- `shikanime` — the shikanime org workflow family (`sk-*`)
+- `devops` — Infrastructure, Nix, Kubernetes, CI/CD (`cpn-*`)
+- `github` — GitHub workflows, issues, PRs (`cpn-*`)
+- `vcs` — Commit conventions (`cpn-*`)
 
 _Each skill must include a valid `SKILL.md` with YAML frontmatter. Test against
 the target agent before submitting_
