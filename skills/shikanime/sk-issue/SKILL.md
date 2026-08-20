@@ -57,19 +57,12 @@ deliberately — ledger verified N of N after the final merge — never by a
 merge-time auto-close keyword unless the PR is explicitly one-to-one with the
 issue.
 
-### 3. Triage metadata
+### 3. Apply triage metadata
 
-- **Assignee**: default to active `gh` identity:
-
-  ```bash
-  ASSIGNEE=$(gh api user --jq .login)
-  gh issue edit <N> --repo <org>/<repo> --add-assignee "$ASSIGNEE"
-  ```
-
-- **Labels**: set by `--label` above; add domain labels only if the repo uses
-  them.
-- **Project / Milestone**: only if the repo boards issues (Org Projects v2 use a
-  number). Skip otherwise.
+Delegate to `sk-triage` (#N): it enumerates the repo's available metadata and
+sets each empty, determinable field — labels, assignee, milestone, project. The
+rules (label inference by prefix, additive `--add-label`, milestone-by-type)
+live in `sk-triage`; do not re-derive them here.
 
 ## Pitfalls
 
@@ -92,3 +85,5 @@ Confirm title + label are set and the issue lives in the upstream org repo.
 - `sk-discussion` — the pre-issue stage when the problem is not yet converged.
 - `sk-pr` — the solver; links back via `Related:` without auto-close.
 - `cpn-issue` — French twin with cloud-pi-native issue templates.
+- `sk-triage` — assigns issue/PR metadata (labels, assignee, milestone,
+  project); run it after creation.

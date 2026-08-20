@@ -131,38 +131,13 @@ EOF
 )"
 ```
 
-### 2b. Apply triage metadata (labels, assignee, project, milestone)
+### 2b. Apply triage metadata
 
-After the PR is created, apply org triage metadata. This is always against the
-upstream `cloud-pi-native/<repo>` (see Internal policy: no fork).
-
-**Labels** — `gh pr edit <N> --repo cloud-pi-native/<repo> --add-label <name>`.
-Add domain labels only if the team uses them (verify with
-`gh label list --repo cloud-pi-native/<repo> --limit 100`).
-
-**Assignee** — default to the active `gh` identity:
-
-```bash
-ASSIGNEE=$(gh api user --jq .login)
-gh pr edit <N> --repo cloud-pi-native/<repo> --add-assignee "$ASSIGNEE"
-```
-
-**Project** — only if the team boards PRs. Org Projects (v2) use a project
-number: `gh pr edit <N> --repo cloud-pi-native/<repo> --add-project <number>`.
-Skip if no project is configured.
-
-**Milestone** — rule by PR conventional type (from the title):
-
-- **`fix:` / `chore:` / `build:` / `refactor:` → current latest _patch_
-  milestone** (highest open `vX.Y.Z` on the current minor line, max `Z`).
-- **`feat:` → next milestone** (next minor/major after the current patch line,
-  e.g. `vX.(Y+1).0`).
-
-```bash
-gh api repos/cloud-pi-native/<repo>/milestones?state=open \
-  --jq '.[] | "\(.number)\t\(.title)\t\(.due_on)"'
-gh pr edit <N> --repo cloud-pi-native/<repo> --milestone <number>
-```
+After the PR is created, delegate to `cpn-triage` (#N): it enumerates the repo's
+available metadata and sets each empty, determinable field — labels, assignee,
+project, milestone (by conventional type), and reviewers. The rules live in
+`cpn-triage`; do not re-derive them here. This is always against the upstream
+`cloud-pi-native/<repo>` (see Internal policy: no fork).
 
 ### 3. Repo-specific post-steps
 
@@ -358,3 +333,5 @@ the canonical French sections still apply.
 - `cpn-dev-workflow` — branch discipline and pre-push checks upstream of this
   PR.
 - `sk-pr` — shikanime twin (fork-first, plain-English titles).
+- `cpn-triage` — assigns PR/issue metadata (labels, assignee, milestone,
+  project, reviewers); run it after creation.

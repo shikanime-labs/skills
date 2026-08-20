@@ -21,6 +21,26 @@ Pairs with `sk-commit` and `sk-pr`.
 - Starting a work item: issue first (`sk-issue`), then branch, then PR.
 - Any multi-step change in a shikanime repo needing branch + remote discipline.
 
+## Phases
+
+The work-item lifecycle as an ordered, navigable sequence. Each phase names its
+owner skill; gate phases are the mechanical walls a change must clear.
+
+| # | Phase | Owner | Gate |
+| - | ----- | ----- | ---- |
+| 0 | Discussion (RFC) — only if the problem isn't converged | `sk-discussion` | entry |
+| 1 | Issue — problem statement + `- [ ]` gate ledger | `sk-issue` | ledger set |
+| 2 | Triage — labels/assignee/milestone/project/reviewers | `sk-triage` | ledger settled |
+| 3 | Branch + implement | this skill | — |
+| 4 | Commit (plain-English, Automata trailer) | `sk-commit` | commit shape |
+| 5 | Code review (adversarial pre-merge) | `sk-code-review` | review gate |
+| 6 | PR (open from fork, link `Related:`) | `sk-pr` | — |
+| 7 | Land (merge / `gh stack`) | `sk-async` / this skill | branch protection |
+| 8 | Close issue deliberately (verify N of N) | `sk-issue` | ledger discharged |
+
+Phases 2 and 5 are the before-code and before-merge gates: never skip triage
+(the ledger is unsettled) or review (the PR isn't ready).
+
 ## Core rule: fork-first landing
 
 Push working branches to a personal fork of the target repo — never to the org

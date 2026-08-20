@@ -33,6 +33,27 @@ environments unless instructed.
   module-consistent, tested)
 - "Write a vitest spec or e2e spec for a server-nestjs module"
 
+## Phases
+
+The work-item lifecycle as an ordered, navigable sequence for the console repo.
+Each phase names its owner skill; gate phases are the mechanical walls a change
+must clear.
+
+| # | Phase | Owner | Gate |
+| - | ----- | ----- | ---- |
+| 0 | Discussion (RFC) — only if the problem isn't converged | `cpn-discussion` | entry |
+| 1 | Issue — French problem statement + `Définition du fini` ledger | `cpn-issue` | ledger set |
+| 2 | Triage — labels/assignee/milestone/project/reviewers | `cpn-triage` | ledger settled |
+| 3 | Branch + implement (jj workspace, conventional commits) | this skill | — |
+| 4 | Commit (French conventional, SSH-signed) | `cpn-commit` | commit shape |
+| 5 | Code review (adversarial pre-merge) | `cpn-code-review` | review gate |
+| 6 | PR (upstream-only draft, link `Issues liées`) | `cpn-pr` | — |
+| 7 | Land (merge / `gh stack` + merge queue) | this skill | branch protection |
+| 8 | Close deliberately (verify N of N) | `cpn-issue` | ledger discharged |
+
+Phases 2 and 5 are the before-code and before-merge gates. The console
+`Procedure` (steps 1–10b) is the implementation of phases 3–7 in this repo.
+
 ## Prerequisites
 
 - Local checkout at `~/Source/Repos/github.com/cloud-pi-native`
