@@ -63,8 +63,8 @@ npx agents export --target claude
 ```
 
 The `agents` field in `package.json` and the `skills.json` manifest at the repo
-root enable discovery by npm-based skill managers. Both list the 11 skills
-below.
+root enable discovery by npm-based skill managers. Both stay in sync with the
+tables below.
 
 ## The Two Workflows
 
@@ -114,15 +114,15 @@ specification, compatible with the
 
 ### cloud-pi-native family
 
-| Skill              | Description                                |
-| ------------------ | ------------------------------------------ |
-| `cpn-dev-workflow` | Console repo dev loop, gates, PR workflow  |
-| `cpn-commit`       | Conventional commits for console           |
-| `cpn-discussion`   | French Discussions via GraphQL             |
-| `cpn-issue`        | French issue templates + gate ledger       |
-| `cpn-pr`           | French PRs, upstream-only, conventional    |
-| `cpn-code-review`  | Review console PRs: arch, French artifacts |
-| `cpn-triage`       | Assign every available metadata to an issue or PR   |
+| Skill              | Description                                       |
+| ------------------ | ------------------------------------------------- |
+| `cpn-dev-workflow` | Console repo dev loop, gates, PR workflow         |
+| `cpn-commit`       | Conventional commits for console                  |
+| `cpn-discussion`   | French Discussions via GraphQL                    |
+| `cpn-issue`        | French issue templates + gate ledger              |
+| `cpn-pr`           | French PRs, upstream-only, conventional           |
+| `cpn-code-review`  | Review console PRs: arch, French artifacts        |
+| `cpn-triage`       | Assign every available metadata to an issue or PR |
 
 ## Development
 
