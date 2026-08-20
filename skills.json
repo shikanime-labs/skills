@@ -30,6 +30,11 @@
       "path": "skills/shikanime/sk-issue"
     },
     {
+      "name": "sk-triage",
+      "description": "Assign every available metadata (labels, assignee, milestone, project, reviewers) to an existing shikanime-labs or shikanime-studio issue or PR, never inventing values.",
+      "path": "skills/shikanime/sk-triage"
+    },
+    {
       "name": "sk-pr",
       "description": "Open PRs in shikanime orgs fork-first: PR derived from the commit message, many-to-many issue linkage via Related, no auto-close keywords.",
       "path": "skills/shikanime/sk-pr"
@@ -68,6 +73,11 @@
       "name": "cpn-code-review",
       "description": "Review cloud-pi-native console PRs: four-phase process, architecture checkpoints, French artifacts.",
       "path": "skills/cloud-pi-native/cpn-code-review"
+    },
+    {
+      "name": "cpn-triage",
+      "description": "Assign every available metadata (labels, assignee, milestone, project, reviewers) to an existing cloud-pi-native console issue or PR, French conventions, never inventing values.",
+      "path": "skills/cloud-pi-native/cpn-triage"
     }
   ]
 }

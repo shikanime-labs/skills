@@ -108,6 +108,7 @@ specification, compatible with the
 | `sk-commit`       | shikanime commit style + Automata co-author trailer  |
 | `sk-discussion`   | RFC Discussions (pre-issue stage)                    |
 | `sk-issue`        | Issues with the gate-ledger tasklist                 |
+| `sk-triage`       | Assign every available metadata to an issue or PR    |
 | `sk-pr`           | Fork-first PRs derived from the commit               |
 | `sk-code-review`  | Code review: YAGNI, root-cause, conventions          |
 
@@ -121,6 +122,7 @@ specification, compatible with the
 | `cpn-issue`        | French issue templates + gate ledger       |
 | `cpn-pr`           | French PRs, upstream-only, conventional    |
 | `cpn-code-review`  | Review console PRs: arch, French artifacts |
+| `cpn-triage`       | Assign every available metadata to an issue or PR   |
 
 ## Development
 
