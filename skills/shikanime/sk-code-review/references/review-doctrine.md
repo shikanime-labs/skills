@@ -1,17 +1,8 @@
-# Review Doctrine (distilled)
+# Review Doctrine
 
-Shared review doctrine for `sk-code-review` and `cpn-code-review`, distilled
-from three well-known sources:
+Shared review doctrine for `sk-code-review` and `cpn-code-review`.
 
-- Google eng-practices — The Standard of Code Review, Speed of Code Reviews, How
-  to Write Code Review Comments, What to Look For
-  (google.github.io/eng-practices).
-- obra/superpowers — `requesting-code-review` reviewer template
-  (github.com/obra/superpowers).
-- Local review practice — Ponytail ladder, org conventions, severity labels,
-  verified-diff discipline.
-
-## The standard (Google)
+## The standard
 
 Approve when the change definitely improves overall code health, even if not
 perfect. There is no perfect code, only better code. Never approve a change that
@@ -21,7 +12,7 @@ never "just style" — weigh them on principles; if the author can show two
 approaches are equally valid, accept the author's. Otherwise the fallback is
 consistency with the existing codebase.
 
-## What to look for (Google, in priority order)
+## What to look for, in priority order
 
 1. **Design** — do the pieces interact sensibly; does the change belong here or
    in a library; is now the right time.
@@ -30,7 +21,9 @@ consistency with the existing codebase.
    reading, not running).
 3. **Complexity** — "too complex" = cannot be understood quickly, or invites
    bugs when modified. Over-engineering (speculative generality,
-   future-proofing) is a defect: solve the problem that exists now.
+   future-proofing) is a defect: solve the problem that exists now. Classic
+   smells: parameter sprawl, leaky abstractions, nested conditionals,
+   stringly-typed code, redundant state.
 4. **Tests** — added in the same change; will they actually fail when the code
    breaks; simple, useful assertions; tests are maintained code too — no
    complexity pass for tests.
@@ -40,7 +33,7 @@ consistency with the existing codebase.
 7. **Good things** — say what was done well; praise with a why is mentoring, and
    reinforces the practices you want repeated.
 
-## Comment mechanics (Google + local practice)
+## Comment mechanics
 
 - Be kind; comment on the code, never the developer.
 - Explain why; balance pointing out problems with giving direction — but fixing
@@ -49,10 +42,21 @@ consistency with the existing codebase.
   authors can prioritize; unlabeled comments read as mandatory.
 - An explanation that lives only in the review tool helps nobody — ask for
   clearer code or a why-comment in the code itself.
-- LGTM-with-comments is legitimate when remaining comments are minor, optional,
-  or trusted to be addressed.
+- Approval-with-comments is legitimate when remaining comments are minor,
+  optional, or trusted to be addressed.
+- Prefer questions over verdicts when unsure ("What happens if `items` is
+  empty?" beats "This will fail on empty input"), and suggestions over commands
+  ("async/await might read cleaner — thoughts?" beats "You must use
+  async/await").
 
-## Reviewer discipline (superpowers template)
+## Automation boundary
+
+Never spend human review on what a tool owns: formatting, import order, lint
+violations, typos — route those to the linter and say nothing. Review budget
+goes to logic, security, design, tests, and naming. If a formatting rule is
+missing, fix the config, not the PR.
+
+## Reviewer discipline
 
 - Read-only review: never mutate the working tree, index, or HEAD to review; use
   `git show`/`git diff`/`git log`, or a separate worktree.
@@ -66,8 +70,9 @@ consistency with the existing codebase.
 - Tests verify real behavior, not mocks; check production readiness — migration
   strategy on schema change, backward compatibility.
 
-## Speed (Google)
+## Speed
 
 Respond within one business day; fast individual responses matter more than fast
 total processing. Ask for large changes to be split into a stack rather than
-reviewing one huge diff. Never trade standards for imagined velocity.
+reviewing one huge diff (rule of thumb: over ~400 changed lines, request a
+split). Never trade standards for imagined velocity.

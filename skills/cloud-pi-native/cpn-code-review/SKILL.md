@@ -43,8 +43,8 @@ Use `terminal` for `git`/`gh`/`pnpm`; `read_file`/`search_files` for context.
 For PRs, `gh pr checkout <N>` then review locally. Load
 `references/console-architecture.md` for the architecture checkpoint,
 `references/review-output.md` for the French templates, and
-`references/review-doctrine.md` (in `shikanime/sk-code-review`) for the shared
-review standard (Google eng-practices + superpowers distillation).
+`references/review-doctrine.md` (in `sk-code-review`) for the shared review
+standard.
 
 ## Quick Reference
 

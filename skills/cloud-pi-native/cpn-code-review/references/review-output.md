@@ -3,8 +3,7 @@
 Langue des artifacts cpn : français. Pas de `(...)` dans les titres. Chaque
 constat est posté en commentaire inline sur SA ligne (revue unique via l'API),
 pas en un seul gros commentaire. Voir
-`shikanime/sk-code-review/references/inline-comments.md` pour les commandes
-`gh api`.
+`sk-code-review/references/inline-comments.md` pour les commandes `gh api`.
 
 ## Corps de la revue (2-3 phrases max + éloge)
 

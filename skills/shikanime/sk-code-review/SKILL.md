@@ -34,8 +34,7 @@ NOT auto-commit, auto-merge, or auto-fix: it reports, you act. Relies only on
 Frame execution through the `terminal` tool; read context with `read_file` /
 `search_files`. For an independent verdict, dispatch a `delegate_task` reviewer
 with ONLY the diff (no shared context — no agent verifies its own work). Load
-`references/review-doctrine.md` for the shared review standard (Google
-eng-practices + superpowers distillation).
+`references/review-doctrine.md` for the shared review standard.
 
 ## Quick Reference
 
