@@ -21,6 +21,26 @@ Pairs with `sk-commit` and `sk-pr`.
 - Starting a work item: issue first (`sk-issue`), then branch, then PR.
 - Any multi-step change in a shikanime repo needing branch + remote discipline.
 
+## Phases
+
+The work-item lifecycle as an ordered, navigable sequence. Each phase names its
+owner skill; gate phases are the mechanical walls a change must clear.
+
+| # | Phase | Owner | Gate |
+| - | ----- | ----- | ---- |
+| 0 | Discussion (RFC) — only if the problem isn't converged | `sk-discussion` | entry |
+| 1 | Issue — problem statement + `- [ ]` gate ledger | `sk-issue` | ledger set |
+| 2 | Triage — labels/assignee/milestone/project/reviewers | `sk-triage` | ledger settled |
+| 3 | Branch + implement | this skill | — |
+| 4 | Commit (plain-English, Automata trailer) | `sk-commit` | commit shape |
+| 5 | Code review (adversarial pre-merge) | `sk-code-review` | review gate |
+| 6 | PR (open from fork, link `Related:`) | `sk-pr` | — |
+| 7 | Land (merge / `gh stack`) | `sk-async` / this skill | branch protection |
+| 8 | Close issue deliberately (verify N of N) | `sk-issue` | ledger discharged |
+
+Phases 2 and 5 are the before-code and before-merge gates: never skip triage
+(the ledger is unsettled) or review (the PR isn't ready).
+
 ## Core rule: fork-first landing
 
 Push working branches to a personal fork of the target repo — never to the org
@@ -103,6 +123,13 @@ Work-item lifecycle: **discussion → issue → issue comments → PR.**
   `gh issue close <n> -c "<landing commit hash>"` after landing, or leave it to
   the owner. Where a repo's AGENTS.md requires `Related: <issue URL>`, that
   convention wins.
+- **Triage the issue before work starts** (`sk-triage` skill). Assign every
+  available metadata — labels (conventional-prefix → type label), assignee
+  (active `gh` identity), milestone (bug → current patch, feature → next
+  release), project board if one is obvious, and reviewers for the eventual PR.
+  Apply only fields that are empty and determinable from the item's own content;
+  never invent a label the repo does not have. Triage settles the gates ledger
+  before any code is written.
 
 ## Push flow (git)
 
@@ -142,6 +169,12 @@ Without `track`, the push to the fork remote is rejected.
 
 - **Direct push**: only when the user explicitly says "push to main" / "land it"
   — then push directly to `main` on the org remote, skip the PR.
+- **Run code review before requesting merge** (`sk-code-review` skill).
+  Adversarial review over the diff: architecture fit, plain-English commit
+  convention, YAGNI, root-cause vs symptom, and security at trust boundaries.
+  Treat the review as the gate that decides whether the PR is ready — do not
+  mark it ready until the findings are resolved or explicitly waived by the
+  user.
 - **Merge PRs**: `nix-containers` requires `gh pr merge --squash --admin` when
   the user says "merge the PRs". Other repos: merge per allowed strategy
   post-review.
@@ -214,4 +247,6 @@ staged.
 - `sk-commit` — the commit shape (subject, Automata co-author trailer) the
   landing steps assume.
 - `sk-pr` / `sk-async` — single fork PR vs stacked fan-out landing.
+- `sk-triage` / `sk-code-review` — assign issue/PR metadata, then adversarial
+  pre-merge review (both gate the work before and after code).
 - `cpn-dev-workflow` — cloud-pi-native twin (upstream-only, no fork).

@@ -110,43 +110,14 @@ EOF
 )"
 ```
 
-## Triage metadata (labels, assignee, project, milestone)
+## Triage metadata
 
-After the issue body is set, apply org triage metadata. The fork has Issues
-disabled, so this is always done against upstream `cloud-pi-native/console`.
-
-**Labels** — already set by the template flag (`bug` / `enhancement`); add
-domain labels only if the team uses them (verify with
-`gh label list --repo cloud-pi-native/console --limit 100`).
-
-**Assignee** — default to the active `gh` identity:
-
-```bash
-ASSIGNEE=$(gh api user --jq .login)
-gh issue edit <N> --repo cloud-pi-native/console --add-assignee "$ASSIGNEE"
-```
-
-**Project** — only if the team boards issues. Org Projects (v2) use a project
-number:
-`gh issue edit <N> --repo cloud-pi-native/console --add-project   <number>`.
-Skip if no project is configured for this repo.
-
-**Milestone** — rule by issue type:
-
-- **bug / fix → current latest _patch_ milestone** (the highest open patch on
-  the current minor line, e.g. `vX.Y.Z` with the max `Z`).
-- **enhancement / feature → next milestone** (the next minor/major after the
-  current patch line, e.g. `vX.(Y+1).0`).
-
-List open milestones and pick by semver:
-
-```bash
-gh api repos/cloud-pi-native/console/milestones?state=open \
-  --jq '.[] | "\(.number)\t\(.title)\t\(.due_on)"'
-```
-
-Then apply:
-`gh issue edit <N> --repo cloud-pi-native/console --milestone   <number>`.
+After the issue body is set, delegate to `cpn-triage` (#N): it enumerates the
+repo's available metadata and sets each empty, determinable field — labels
+(already seeded by the template), assignee, project, and milestone (bug →
+current patch, enhancement → next release). The rules live in `cpn-triage`; do
+not re-derive them here. This is always against upstream
+`cloud-pi-native/console` (the fork has Issues disabled).
 
 ## Comment vs Body convention
 
@@ -212,3 +183,5 @@ Confirm: title carries `🐛 [BUG]` or `💡 [REQUEST]`, and label is
   truth, see `cpn-dev-workflow`).
 - `cpn-dev-workflow` — branch discipline, upstream-only push, and the full local
   dev loop this issue feeds into.
+- `cpn-triage` — assigns issue/PR metadata (labels, assignee, milestone,
+  project); run it after creation.
