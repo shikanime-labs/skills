@@ -96,6 +96,9 @@ Confirm title + label are set and the issue lives in the upstream org repo.
 
 - `sk-discussion` — the pre-issue stage when the problem is not yet converged.
 - `sk-pr` — the solver; links back via `Related:` without auto-close.
+- `sk-issue-refine` — the iteration loop extracted from this skill; after the
+  issue exists, use it to resolve open questions within the issue via comments
+  (research + candidate solutions) until the acceptance criteria converge.
 - `cpn-issue` — French twin with cloud-pi-native issue templates.
 - `sk-issue-triage` — assigns issue metadata (labels, assignee, milestone,
   project); run it after creation.

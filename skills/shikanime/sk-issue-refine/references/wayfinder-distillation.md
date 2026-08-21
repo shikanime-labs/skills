@@ -10,19 +10,19 @@ Every unit holds a question whose resolution is a **decision**, not a slice of a
 build to execute. The map is finished when nothing is left to decide; then it
 hands off — it does NOT carry on into code.
 
-- A `task` ticket is the only type that *does* rather than decides, and it earns
+- A `task` ticket is the only type that _does_ rather than decides, and it earns
   its place only by **unblocking a decision**, never by delivering a piece of
   the destination.
 - An agent that starts writing product code inside the map has broken the skill.
 
 ## Four decision-ticket types (→ question kinds in the parent SKILL.md)
 
-| wayfinder type | shikanime kind | Mode | Resolved by |
-| --- | --- | --- | --- |
-| `grilling` | `grilling` | HITL | Talking it through (default). |
-| `prototype` | `prototype` | HITL | A built artifact; **selection stays with the human**. |
-| `research` | `research` | AFK | A research subagent, fired at charting time. |
-| `task` | `task` | Either | Manual work that unblocks a decision. |
+| wayfinder type | shikanime kind | Mode   | Resolved by                                           |
+| -------------- | -------------- | ------ | ----------------------------------------------------- |
+| `grilling`     | `grilling`     | HITL   | Talking it through (default).                         |
+| `prototype`    | `prototype`    | HITL   | A built artifact; **selection stays with the human**. |
+| `research`     | `research`     | AFK    | A research subagent, fired at charting time.          |
+| `task`         | `task`         | Either | Manual work that unblocks a decision.                 |
 
 `research` is the only type that fans out (one subagent per fact, parallel).
 HITL types are serial with the human.

@@ -194,6 +194,8 @@ body links the correct issue.
 ## See also
 
 - `sk-commit` — the commit this PR must restate (parity rule).
+- `sk-issue-refine` — the loop that iterates the problem _within its issue_ via
+  comments; ensures the linked issue is a converged problem statement, not fog.
 - `sk-async` — landing multi-branch work as stacked fork PRs (`gh stack`).
 - `cpn-pr` — cloud-pi-native twin: French, conventional, upstream-only.
 - `sk-pr-triage` — assigns PR metadata (labels, assignee, milestone, project,

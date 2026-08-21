@@ -26,18 +26,18 @@ Pairs with `sk-commit` and `sk-pr`.
 The work-item lifecycle as an ordered, navigable sequence. Each phase names its
 owner skill; gate phases are the mechanical walls a change must clear.
 
-| #   | Phase                                                  | Owner                              | Gate              |
-| --- | ------------------------------------------------------ | ---------------------------------- | ----------------- |
-| 0   | Discussion (RFC) — only if the problem isn't converged | `sk-discussion`                    | entry             |
-| 1   | Issue — problem statement + `- [ ]` gate ledger        | `sk-issue`                         | ledger set        |
-| 1.5 | Issue refinement — iterate the problem *within the issue* via research + candidate-solution comments until the acceptance criteria converge | `sk-issue-refine` | problem converged |
-| 2   | Triage — labels/assignee/milestone/project/reviewers   | `«redacted:sk-…»` / `sk-pr-triage` | ledger settled    |
-| 3   | Branch + implement                                     | this skill                         | —                 |
-| 4   | Commit (plain-English, Automata trailer)               | `sk-commit`                        | commit shape      |
-| 5   | Code review (adversarial pre-merge)                    | `sk-code-review`                   | review gate       |
-| 6   | PR (open from fork, link `Related:`)                   | `sk-pr`                            | —                 |
-| 7   | Land (merge / `gh stack`)                              | `sk-async` / this skill            | branch protection |
-| 8   | Close issue deliberately (verify N of N)               | `sk-issue`                         | ledger discharged |
+| #   | Phase                                                                                                                                       | Owner                              | Gate              |
+| --- | ------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------- | ----------------- |
+| 0   | Discussion (RFC) — only if the problem isn't converged                                                                                      | `sk-discussion`                    | entry             |
+| 1   | Issue — problem statement + `- [ ]` gate ledger                                                                                             | `sk-issue`                         | ledger set        |
+| 1.5 | Issue refinement — iterate the problem _within the issue_ via research + candidate-solution comments until the acceptance criteria converge | `sk-issue-refine`                  | problem converged |
+| 2   | Triage — labels/assignee/milestone/project/reviewers                                                                                        | `«redacted:sk-…»` / `sk-pr-triage` | ledger settled    |
+| 3   | Branch + implement                                                                                                                          | this skill                         | —                 |
+| 4   | Commit (plain-English, Automata trailer)                                                                                                    | `sk-commit`                        | commit shape      |
+| 5   | Code review (adversarial pre-merge)                                                                                                         | `sk-code-review`                   | review gate       |
+| 6   | PR (open from fork, link `Related:`)                                                                                                        | `sk-pr`                            | —                 |
+| 7   | Land (merge / `gh stack`)                                                                                                                   | `sk-async` / this skill            | branch protection |
+| 8   | Close issue deliberately (verify N of N)                                                                                                    | `sk-issue`                         | ledger discharged |
 
 Phases 2 and 5 are the before-code and before-merge gates: never skip triage
 (the ledger is unsettled) or review (the PR isn't ready).
