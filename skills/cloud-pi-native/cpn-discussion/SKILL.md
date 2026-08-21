@@ -22,6 +22,9 @@ discussion" / "reword discussion #N" requests on this repo.
 - Aligning a discussion body to the repo's existing structure.
 - NOTE: a "discussion issue" request means a **discussion**, not a GitHub Issue.
   The issue template (cpn-issue) is the wrong artifact — route here.
+- The discussion is the **iteration space**: use it when the problem is _not_
+  yet clear. Explore, pose open questions, reflect on the shape of the problem
+  here. Do not jump to an issue while the problem is still unsettled.
 
 ## Prerequisites
 
@@ -52,10 +55,10 @@ Match sibling discussions (#2467, #2474). Pattern:
 - A discussion is an **opening**, not a tracked ticket: context + open questions
   only. Do NOT add "Décision attendue" / "Définition du fini" — that scaffolding
   belongs on issues (cpn-issue), not discussions. Keep it short.
-- Lifecycle position: **discussion → issue → issue comments → PR.** A discussion
-  is the pre-issue RFC — its purpose is to converge on the _problem_ before
-  committing to an issue. When converged, derive the issue (cpn-issue) and link
-  the discussion back from it; do not keep solving in the discussion.
+- Lifecycle position: **discussion → issue → issue comments → PR.** The
+  discussion is the pre-issue RFC — converge on the _problem_ here (see the
+  iteration space note above), then derive the issue (cpn-issue) and link back;
+  do not open an issue prematurely.
 - Categories in use: `General`, `Ideas`. Pick `General` for decision/discussion
   openings.
 
