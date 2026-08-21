@@ -14,7 +14,7 @@ metadata:
 Structured review of local diffs and GitHub PRs through the Ponytail/YAGNI lens,
 enforcing the accumulated shikanime review practice and repo conventions. Does
 NOT auto-commit, auto-merge, or auto-fix: it reports, you act. Relies only on
-`git`, `gh`, and standard Hermes tools — no extra dependencies.
+`jj`, `gh`, and standard Hermes tools — no extra dependencies.
 
 ## When to Use
 
@@ -24,7 +24,7 @@ NOT auto-commit, auto-merge, or auto-fix: it reports, you act. Relies only on
 
 ## Prerequisites
 
-- Inside a git repository
+- Inside a jj repository (colocated or jj-native)
 - `gh` authenticated for any PR-level interaction
 - Optional language tooling (`ruff`, `eslint`, `tsc`, `go vet`, `pytest`) —
   skill skips silently if absent
@@ -39,10 +39,10 @@ with ONLY the diff (no shared context — no agent verifies its own work). Load
 ## Quick Reference
 
 ```bash
-git diff --staged                      # what would be committed
-git diff main...HEAD --stat            # PR scope
-git diff main...HEAD --name-only       # changed files
-git log main..HEAD --oneline           # intent
+jj diff -r @                           # working-copy change
+jj diff --from main --to @ --stat      # PR scope
+jj diff --from main --to @ --name-only # changed files
+jj log --no-graph -r 'main..@' -T 'description ++ "\n"'  # intent
 gh pr view <N> && gh pr diff <N>       # PR context
 gh pr checkout <N>                     # full local review
 ```
@@ -94,10 +94,10 @@ push).
 ## Security Scan (added lines only)
 
 ```bash
-git diff --staged | grep "^+" | grep -iE "(api_key|secret|password|token|passwd)\s*=\s*['\"][^'\"]{6,}['\"]"
-git diff --staged | grep "^+" | grep -E "os\.system\(|subprocess.*shell=True|\beval\(|\bexec\("
-git diff --staged | grep "^+" | grep -E "pickle\.loads?\("
-git diff --staged | grep "^+" | grep -E "execute\(f\"|\.format\(.*SELECT"
+jj diff -r @ | grep "^+" | grep -iE "(api_key|secret|password|token|passwd)\s*=\s*['\"][^'\"]{6,}['\"]"
+jj diff -r @ | grep "^+" | grep -E "os\.system\(|subprocess.*shell=True|\beval\(|\bexec\("
+jj diff -r @ | grep "^+" | grep -E "pickle\.loads?\("
+jj diff -r @ | grep "^+" | grep -E "execute\(f\"|\.format\(.*SELECT"
 ```
 
 Any match = `blocking`. Also check hardcoded secrets, SQL/Shell injection, path
@@ -125,7 +125,7 @@ boundaries.
 
 ## Pitfalls
 
-- Empty diff → check `git status`, tell user nothing to verify.
+- Empty diff → check `jj status`, tell user nothing to verify.
 - Large diff (>15k chars) → split by file, review each.
 - `delegate_task` returns non-JSON → treat as FAIL (fail-closed).
 - False positives → note intentional patterns in the report, don't block.

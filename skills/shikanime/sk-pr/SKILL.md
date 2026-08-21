@@ -38,13 +38,13 @@ there, and open with `--head <login>:<branch>`
   `gh auth switch`. The fork carries the branch — collaborator status is not
   required to open a fork-based PR.
 - Linked issue should already exist (see `sk-issue`); verify it actually matches
-  the PR's change (trace `git log -S` / `git blame` if unsure).
+  the PR's change (`jj file annotate` / `jj show <commit>` if unsure).
 - Branch pushed to the fork remote before opening.
 
 ## Org PR conventions
 
 1. **Base branch** — `main` unless the repo default differs (detect:
-   `git symbolic-ref refs/remotes/origin/HEAD`).
+   `gh repo view <org>/<repo> --json defaultBranchRef`).
 2. **Title** — derived from the commit subject (plain English imperative /
    `doc:`). NO conventional prefix. Keep PR and commit titles in parity.
 3. **Body** — derived from the commit body; do NOT let the PR description
@@ -113,8 +113,9 @@ gh stack sync                          # later: rebase+pull+sync stack state
 ```bash
 OWNER=$(gh api user --jq .login)
 gh repo fork <org>/<repo> --clone=false 2>/dev/null || true
-git remote add fork "git@github.com:$OWNER/<repo>.git" 2>/dev/null || true
-git push -u fork <branch>
+jj git remote add fork "git@github.com:$OWNER/<repo>.git" 2>/dev/null || true
+jj bookmark track <branch> --remote=fork
+jj git push --remote fork
 gh pr create --repo <org>/<repo> --base main --head "$OWNER:<branch>" \
   --title "<title>" --body "$(cat <<'EOF'
 ## What

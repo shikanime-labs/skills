@@ -6,7 +6,7 @@ author: Hermes Agent
 license: Apache-2.0
 metadata:
   hermes:
-    tags: [git, workflow, shikanime-labs, shikanime-studio, jj]
+    tags: [jj, workflow, shikanime-labs, shikanime-studio]
 ---
 
 # Shikanime Org Dev Workflow (sk-dev-workflow)
@@ -70,8 +70,8 @@ unmet requirement is a reported blocker, never a silent scope change:
 - Push right: `gh api repos/<org>/<repo> --jq .viewerPermission` — need
   `write`/`admin` on the ORG repo to open a fork-based PR (PR authors need no
   org-repo push right beyond that).
-- jj repo: `.jj/` / `jj status` → `jj bookmark track` before push; else plain
-  git.
+- jj repo: `.jj/` / `jj status` → `jj bookmark track` before push. All repos are
+  operated through jj (colocated or jj-native).
 - `gh stack` extension present: `gh extension list` (landing path).
 - The issue exists (issue-first lifecycle) — else create it (`sk-issue`).
 - NixOS repos: `nix` available (build-verify gate).
@@ -131,24 +131,17 @@ Work-item lifecycle: **discussion → issue → issue comments → PR.**
   never invent a label the repo does not have. Triage settles the gates ledger
   before any code is written.
 
-## Push flow (git)
+## Push flow
 
 ```bash
 OWNER=$(gh api user --jq .login)
-git remote add fork "git@github.com:$OWNER/<repo>.git" 2>/dev/null || true
-git push -u fork <branch>
-```
-
-## Push flow (jj)
-
-jj does not auto-track fork bookmarks. Before pushing:
-
-```bash
+jj git remote add fork "git@github.com:$OWNER/<repo>.git" 2>/dev/null || true
 jj bookmark track <branch> --remote=fork
 jj git push --remote fork
 ```
 
-Without `track`, the push to the fork remote is rejected.
+jj does not auto-track fork bookmarks. Without `track`, the push to the fork
+remote is rejected.
 
 ## Landing
 
@@ -217,7 +210,7 @@ act in this repo, append a **short** note to `AGENTS.md` — one or two lines, n
 prose. Record only steering-grade info: repo-enforced hooks (gitlint/commitlint/
 DCO), branch protection, no-fork policy, or a mid-task quirk (e.g. broken `#N` /
 `owner/repo#N` link shorthand → use full `https://…` URL). Skip per-task detail
-and anything a `git log` already shows.
+and anything a `jj log` already shows.
 
 ## Pitfalls
 
@@ -234,8 +227,6 @@ and anything a `git log` already shows.
 ## Verification
 
 ```bash
-git status --short && git log --oneline -3
-# jj:
 jj status && jj log -r @ -T 'bookmarks ++ " "'
 ```
 

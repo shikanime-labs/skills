@@ -220,7 +220,7 @@ runnable CHECK/EXPECT, and required checks + draft-by-default are the wall.**
   the criteria as `todo` items for in-session tracking; `todo` is the working
   copy, the issue is the ledger.
 - **Runnable checks = `terminal` + CI.** Repo checks — `pnpm lint`, `pnpm test`,
-  per-module vitest per-module vitest:
+  per-module vitest:
 
   ```bash
   pnpm --filter @cpn-console/server-nestjs exec vitest run \
@@ -470,7 +470,7 @@ blocked.
   clean `main` and verifies its file set before publishing:
 
 1. Save the user's FULL in-flight WIP so nothing is lost:
-   `git diff main > /tmp/wip.patch` (capture any untracked files separately).
+   `jj diff > /tmp/wip.patch` (capture any untracked files separately).
 2. Reset the working copy to a clean `main` (disk now matches `main`, all WIP
    off disk): `jj restore --from main --to @`.
 3. Create an empty child of `main` for the fix: `jj new main -m "fix(...)"`.
@@ -488,12 +488,13 @@ blocked.
    `--allow-backwards`; the working copy and WIP are untouched).
 7. Push only to upstream:
    `jj git push --bookmark fix/<topic> --remote upstream`.
-8. Restore the user's WIP to the working tree: `git apply /tmp/wip.patch`. If
-   the fix and WIP touched the SAME file(s), the full patch won't apply (it was
-   diffed against the pre-fix baseline) — split it to exclude the fix's files:
-   drop the `diff --git` blocks whose path matches the fix's files with a small
-   `python3` regex and apply the rest. Never bundle unrelated work into one PR.
-   After any raw `git` write (`git apply`/`git checkout`/`git restore`), jj's
+8. Restore the user's WIP to the working tree:
+   `jj restore --from <saved-wip> --to @` (or apply `/tmp/wip.patch` by hand
+   with `patch`/`write_file`). If the fix and WIP touched the SAME file(s), the
+   full patch won't apply (it was diffed against the pre-fix baseline) — split
+   it to exclude the fix's files: drop the affected hunks whose path matches the
+   fix's files with a small `python3` regex and apply the rest. Never bundle
+   unrelated work into one PR. After any raw file write outside jj, jj's
    snapshot lags until you `touch` the file — `jj squash` then reports "Nothing
    changed" and `jj diff` shows nothing. Full recovery:
    `references/jj-snapshot-pitfalls.md`.
