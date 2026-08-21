@@ -30,6 +30,11 @@
       "path": "skills/shikanime/sk-issue"
     },
     {
+      "name": "sk-issue-refine",
+      "description": "Iterate a problem to convergence inside its GitHub issue via research + comments: classify open questions (fog), resolve AFK research via delegate_task fan-out, post findings and candidate solutions as comments, then converge the body into a clean problem statement + decidable gate ledger.",
+      "path": "skills/shikanime/sk-issue-refine"
+    },
+    {
       "name": "sk-issue-triage",
       "description": "Triage an existing shikanime org issue: labels, assignee, milestone, project; close with rationale if not workable.",
       "path": "skills/shikanime/sk-issue-triage"

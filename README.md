@@ -101,19 +101,20 @@ specification, compatible with the
 
 ### shikanime family (`skills/shikanime/`)
 
-| Skill                  | Description                                          |
-| ---------------------- | ---------------------------------------------------- |
-| `sk-dev-workflow`      | Branch/push discipline, gates, landing               |
-| `sk-async`             | jj workspace fan-out + stacked PRs for parallel work |
-| `sk-commit`            | shikanime commit style + Automata co-author trailer  |
-| `sk-discussion`        | RFC Discussions (pre-issue stage)                    |
-| `sk-issue`             | Issues with the gate-ledger tasklist                 |
-| `sk-issue-triage`      | Issue triage: metadata + rationale closes            |
-| `sk-pr-triage`         | PR triage: metadata, reviewers, issue linkage        |
-| `sk-discussion-triage` | Discussion triage: category + lifecycle (GraphQL)    |
-| `sk-pr`                | Fork-first PRs derived from the commit               |
-| `sk-land`              | Merge PRs after DoD + review gates pass              |
-| `sk-code-review`       | Code review: YAGNI, root-cause, conventions          |
+| Skill                  | Description                                                               |
+| ---------------------- | ------------------------------------------------------------------------- |
+| `sk-dev-workflow`      | Branch/push discipline, gates, landing                                    |
+| `sk-async`             | jj workspace fan-out + stacked PRs for parallel work                      |
+| `sk-commit`            | shikanime commit style + Automata co-author trailer                       |
+| `sk-discussion`        | RFC Discussions (pre-issue stage)                                         |
+| `sk-issue`             | Issues with the gate-ledger tasklist                                      |
+| `sk-issue-refine`      | Iterate a problem to convergence within its issue via research + comments |
+| `sk-issue-triage`      | Issue triage: metadata + rationale closes                                 |
+| `sk-pr-triage`         | PR triage: metadata, reviewers, issue linkage                             |
+| `sk-discussion-triage` | Discussion triage: category + lifecycle (GraphQL)                         |
+| `sk-pr`                | Fork-first PRs derived from the commit                                    |
+| `sk-land`              | Merge PRs after DoD + review gates pass                                   |
+| `sk-code-review`       | Code review: YAGNI, root-cause, conventions                               |
 
 ### cloud-pi-native family
 
