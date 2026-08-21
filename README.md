@@ -108,9 +108,9 @@ specification, compatible with the
 | `sk-commit`            | shikanime commit style + Automata co-author trailer  |
 | `sk-discussion`        | RFC Discussions (pre-issue stage)                    |
 | `sk-issue`             | Issues with the gate-ledger tasklist                 |
-| `sk-triage-issue`      | Issue triage: metadata + rationale closes            |
-| `sk-triage-pr`         | PR triage: metadata, reviewers, issue linkage        |
-| `sk-triage-discussion` | Discussion triage: category + lifecycle (GraphQL)    |
+| `sk-issue-triage`      | Issue triage: metadata + rationale closes            |
+| `sk-pr-triage`         | PR triage: metadata, reviewers, issue linkage        |
+| `sk-discussion-triage` | Discussion triage: category + lifecycle (GraphQL)    |
 | `sk-pr`                | Fork-first PRs derived from the commit               |
 | `sk-land`              | Merge PRs after DoD + review gates pass              |
 | `sk-code-review`       | Code review: YAGNI, root-cause, conventions          |
@@ -125,9 +125,9 @@ specification, compatible with the
 | `cpn-issue`             | French issue templates + gate ledger               |
 | `cpn-pr`                | French PRs, upstream-only, conventional            |
 | `cpn-code-review`       | Review console PRs: arch, French artifacts         |
-| `cpn-triage-issue`      | Triage d'issue : métadonnées + fermetures motivées |
-| `cpn-triage-pr`         | Triage de PR : métadonnées, reviewers, lien issue  |
-| `cpn-triage-discussion` | Triage de discussion : catégorie + cycle (GraphQL) |
+| `cpn-issue-triage`      | Triage d'issue : métadonnées + fermetures motivées |
+| `cpn-pr-triage`         | Triage de PR : métadonnées, reviewers, lien issue  |
+| `cpn-discussion-triage` | Triage de discussion : catégorie + cycle (GraphQL) |
 
 ## Development
 

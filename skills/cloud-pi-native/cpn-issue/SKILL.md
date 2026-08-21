@@ -112,11 +112,11 @@ EOF
 
 ## Triage metadata
 
-After the issue body is set, delegate to `cpn-triage-issue` (#N): it enumerates
+After the issue body is set, delegate to `cpn-issue-triage` (#N): it enumerates
 the repo's available metadata and sets each empty, determinable field — labels
 (already seeded by the template), assignee, project, and milestone (bug →
 current patch, enhancement → next release). The rules live in
-`cpn-triage-issue`; do not re-derive them here. This is always against upstream
+`cpn-issue-triage`; do not re-derive them here. This is always against upstream
 `cloud-pi-native/console` (the fork has Issues disabled).
 
 ## Comment vs Body convention
@@ -193,5 +193,5 @@ Confirm: title carries `🐛 [BUG]` or `💡 [REQUEST]`, and label is
   truth, see `cpn-dev-workflow`).
 - `cpn-dev-workflow` — branch discipline, upstream-only push, and the full local
   dev loop this issue feeds into.
-- `cpn-triage-issue` — assigns issue metadata (labels, assignee, milestone,
+- `cpn-issue-triage` — assigns issue metadata (labels, assignee, milestone,
   project); run it after creation.

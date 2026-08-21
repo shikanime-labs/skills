@@ -30,19 +30,19 @@
       "path": "skills/shikanime/sk-issue"
     },
     {
-      "name": "sk-triage-issue",
+      "name": "sk-issue-triage",
       "description": "Triage an existing shikanime org issue: labels, assignee, milestone, project; close with rationale if not workable.",
-      "path": "skills/shikanime/sk-triage-issue"
+      "path": "skills/shikanime/sk-issue-triage"
     },
     {
-      "name": "sk-triage-pr",
+      "name": "sk-pr-triage",
       "description": "Triage an existing shikanime org PR: labels, assignee, milestone, reviewers, issue linkage.",
-      "path": "skills/shikanime/sk-triage-pr"
+      "path": "skills/shikanime/sk-pr-triage"
     },
     {
-      "name": "sk-triage-discussion",
+      "name": "sk-discussion-triage",
       "description": "Triage an existing shikanime org discussion: category, body shape, Q\u0026A answer marking, lifecycle close (GraphQL).",
-      "path": "skills/shikanime/sk-triage-discussion"
+      "path": "skills/shikanime/sk-discussion-triage"
     },
     {
       "name": "sk-pr",
@@ -90,19 +90,19 @@
       "path": "skills/cloud-pi-native/cpn-code-review"
     },
     {
-      "name": "cpn-triage-issue",
+      "name": "cpn-issue-triage",
       "description": "Triage une issue existante du dépôt cloud-pi-native/console : labels, assignee, jalon, projet ; fermeture motivée si non traitable.",
-      "path": "skills/cloud-pi-native/cpn-triage-issue"
+      "path": "skills/cloud-pi-native/cpn-issue-triage"
     },
     {
-      "name": "cpn-triage-pr",
+      "name": "cpn-pr-triage",
       "description": "Triage une PR existante du dépôt cloud-pi-native/console : labels, assignee, jalon, reviewers, lien issue.",
-      "path": "skills/cloud-pi-native/cpn-triage-pr"
+      "path": "skills/cloud-pi-native/cpn-pr-triage"
     },
     {
-      "name": "cpn-triage-discussion",
+      "name": "cpn-discussion-triage",
       "description": "Triage une discussion existante du dépôt cloud-pi-native/console : catégorie, forme du corps, réponse Q\u0026A, clôture de cycle (GraphQL).",
-      "path": "skills/cloud-pi-native/cpn-triage-discussion"
+      "path": "skills/cloud-pi-native/cpn-discussion-triage"
     }
   ]
 }

@@ -1,5 +1,5 @@
 ---
-name: cpn-triage-issue
+name: cpn-issue-triage
 description:
   "Triage une issue existante du dépôt cloud-pi-native/console : labels,
   assignee, jalon, projet ; fermeture motivée si non traitable."
@@ -120,5 +120,4 @@ pourquoi, puis fermer.
 
 ## Voir aussi
 
-- `cpn-triage` — routeur.
 - `cpn-issue` — conventions de création (français).

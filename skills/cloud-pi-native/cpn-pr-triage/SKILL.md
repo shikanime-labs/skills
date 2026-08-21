@@ -1,5 +1,5 @@
 ---
-name: cpn-triage-pr
+name: cpn-pr-triage
 description:
   "Triage une PR existante du dépôt cloud-pi-native/console : labels, assignee,
   jalon, reviewers, lien issue."

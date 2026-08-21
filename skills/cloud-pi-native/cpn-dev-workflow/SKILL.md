@@ -43,7 +43,7 @@ must clear.
 | --- | -------------------------------------------------------------- | ------------------------------------ | ----------------- |
 | 0   | Discussion (RFC) — only if the problem isn't converged         | `cpn-discussion`                     | entry             |
 | 1   | Issue — French problem statement + `Définition du fini` ledger | `cpn-issue`                          | ledger set        |
-| 2   | Triage — labels/assignee/milestone/project/reviewers           | `cpn-triage-issue` / `cpn-triage-pr` | ledger settled    |
+| 2   | Triage — labels/assignee/milestone/project/reviewers           | `cpn-issue-triage` / `cpn-pr-triage` | ledger settled    |
 | 3   | Branch + implement (jj workspace, conventional commits)        | this skill                           | —                 |
 | 4   | Commit (conventional, SSH-signed)                              | `cpn-commit`                         | commit shape      |
 | 5   | Code review (adversarial pre-merge)                            | `cpn-code-review`                    | review gate       |
@@ -103,7 +103,7 @@ through `terminal` (parent re-verification; see "Gates" below).
    skill); link the PR with `Refs #N` — never an auto-close keyword unless
    explicitly one-to-one (see stacked-PR rule). Do not implement from a bare
    request, and never open a PR without an issue behind it.
-4. **Triage the issue before work starts** (`cpn-triage-issue` skill). Assign
+4. **Triage the issue before work starts** (`cpn-issue-triage` skill). Assign
    every available metadata the repo exposes — labels (conventional-prefix →
    type label), assignee (active `gh` identity), milestone (bug → current patch,
    feature → next release), project board if one is obvious, and reviewers for
@@ -307,8 +307,8 @@ the closest thing and mirror its shape:
 - `@cpn-console/hooks` helpers: flag strings are `'enabled'`/`'disabled'`, NOT
   `'true'`/`'false'` — use `specificallyEnabled`/`specificallyDisabled`.
 
-For deeper module conventions load the sub-skills: `cpn-triage-issue` /
-`cpn-triage-pr` (assign issue/PR metadata), `cpn-code-review` (pre-merge
+For deeper module conventions load the sub-skills: `cpn-issue-triage` /
+`cpn-pr-triage` (assign issue/PR metadata), `cpn-code-review` (pre-merge
 adversarial review).
 
 ## Testing practice (vitest specs — inline rules)

@@ -1,5 +1,5 @@
 ---
-name: sk-triage-discussion
+name: sk-discussion-triage
 description:
   "Triage an existing shikanime org discussion: category, body shape, Q&A answer
   marking, lifecycle close (GraphQL)."
@@ -74,5 +74,4 @@ query {
 
 ## See also
 
-- `sk-triage` — router.
 - `sk-discussion` — discussion creation + body conventions (English).

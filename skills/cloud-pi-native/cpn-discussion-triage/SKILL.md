@@ -1,5 +1,5 @@
 ---
-name: cpn-triage-discussion
+name: cpn-discussion-triage
 description:
   "Triage une discussion existante du dépôt cloud-pi-native/console : catégorie,
   forme du corps, réponse Q&A, clôture de cycle (GraphQL)."
