@@ -92,4 +92,5 @@ Confirm title/body/category and that the body stays context + open questions.
 ## See also
 
 - `sk-issue` — once the discussion converges, derive the issue from it.
+- `sk-triage` — discussion triage (category, lifecycle routing, closure).
 - `cpn-discussion` — French twin for cloud-pi-native console.
