@@ -22,8 +22,8 @@ hooks) is detected per repo, not assumed.
 **All PRs open from a personal fork of the target repo — never from a branch
 pushed to the org repo.** Create the fork once
 (`gh repo fork <org>/<repo> --clone=false`), add it as remote `origin`, push
-there, and open with `--head <login>:<branch>`. Remote naming convention
-(both families): **`upstream` = org repo, `origin` = personal fork.**
+there, and open with `--head <login>:<branch>`. Remote naming convention (both
+families): **`upstream` = org repo, `origin` = personal fork.**
 (`OWNER=$(gh api user --jq .login)`). The local checkout path may read
 `shikanime-labs` while the gh remote is `shikanime-studio` (e.g. nix-containers)
 — trust the gh remote as canonical.
@@ -96,6 +96,11 @@ gh stack sync                          # later: rebase+pull+sync stack state
 
 - `--auto` uses the commit subject as the PR title and the commit body as the PR
   description, so the commit already drives the PR — no separate divergent text.
+- **Branch conflict check** — before submit, verify the branch still merges:
+  `gh pr view <N> --json mergeable,mergeStateStatus` (existing PR) or probe
+  locally with `jj rebase -d main` (conflict markers = author rebases; do not
+  push a conflict). `jj rebase -d main` at the top of this block covers the
+  local case — resolve conflicts there before continuing.
 - Existing single-PR branches (e.g. `fix/rwx-nfs-v4.0`) are adopted by
   `gh stack init` and `submit` simply updates the in-place PR into the stack.
 - For a lone branch use the plain fork PR (step 2 of Procedure); the parity rule

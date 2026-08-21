@@ -47,11 +47,10 @@ Push working branches to a personal fork of the target repo — never to the org
 remote (`shikanime-labs` / `shikanime-studio`). The org remote receives `main`
 only. The fork lives under the ACTIVE gh identity:
 `OWNER=$(gh api user --jq .login)`; create once with
-`gh repo fork <org>/<repo> --clone=false` and add it as remote `origin`
-(remote convention, both families: `upstream` = org repo, `origin` = personal
-fork). The gh
-remote stays canonical even when the local path says otherwise (nix-containers:
-path `shikanime-labs`, remote `shikanime-studio`).
+`gh repo fork <org>/<repo> --clone=false` and add it as remote `origin` (remote
+convention, both families: `upstream` = org repo, `origin` = personal fork). The
+gh remote stays canonical even when the local path says otherwise
+(nix-containers: path `shikanime-labs`, remote `shikanime-studio`).
 
 ## Local path & agent fork convention
 
@@ -147,8 +146,8 @@ remote (`origin`) is rejected.
 
 ## Landing
 
-- **Fork PR (default)**: push to the fork remote (`origin`), then open the PR on the org repo
-  with the fork branch as head:
+- **Fork PR (default)**: push to the fork remote (`origin`), then open the PR on
+  the org repo with the fork branch as head:
   `gh pr create --repo <org>/<repo> --head <login>:<branch>`. Required when
   `main` is protected or the user didn't authorize direct push.
 - **PR via `gh stack` (preferred for stacked work)**: `gh stack` submits from
