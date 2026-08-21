@@ -58,8 +58,10 @@ wayfinder's research/grilling/fog-of-war cycle onto the issue's comment thread.
 1. **Load the issue** — `gh issue view <N>`; read the body (problem statement +
    ledger) and existing comments. If the problem cannot yet be stated, stop and
    route to `sk-discussion` instead.
-2. **Enumerate the fog** — list every open question as a one-line comment on the
-   issue. Each must read as a _question_, never "build the X".
+2. **Enumerate the fog** — list every open question as a one-line item in your
+   in-agent working set (todo/notes). Each must read as a _question_, never
+   "build the X". Do not post this raw enumeration to the issue; it is the
+   scratchpad, not the thread.
 3. **Classify** each question into one of the four kinds.
 4. **Resolve AFK work in parallel** — for `research` items, fan out via
    `delegate_task` (one child per independent fact; isolate on a
@@ -95,6 +97,11 @@ wayfinder's research/grilling/fog-of-war cycle onto the issue's comment thread.
 - **Editing the body with findings** — findings belong in comments; the body is
   the stable problem statement. Only the durable References section may move
   into the body.
+- **Leaking the thinking process** — fog drafts, classification rationale, and
+  status chatter stay in-agent. The issue thread is a clean conversation for any
+  reader — human or another agent; it receives only the resolved follow-up
+  comment (finding + candidate solution + Reference). Post the conclusion, never
+  the scratchpad. Interim comments may be deleted once the thread converges.
 - **English only** — no French; do not carry cpn templates in.
 
 ## Verification
