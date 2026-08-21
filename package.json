@@ -44,6 +44,10 @@
         "path": "skills/shikanime/sk-pr"
       },
       {
+        "name": "sk-land",
+        "path": "skills/shikanime/sk-land"
+      },
+      {
         "name": "sk-code-review",
         "path": "skills/shikanime/sk-code-review"
       },

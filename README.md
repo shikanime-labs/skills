@@ -110,6 +110,7 @@ specification, compatible with the
 | `sk-issue`        | Issues with the gate-ledger tasklist                 |
 | `sk-triage`       | Assign every available metadata to an issue or PR    |
 | `sk-pr`           | Fork-first PRs derived from the commit               |
+| `sk-land`         | Merge PRs after DoD + review gates pass              |
 | `sk-code-review`  | Code review: YAGNI, root-cause, conventions          |
 
 ### cloud-pi-native family
