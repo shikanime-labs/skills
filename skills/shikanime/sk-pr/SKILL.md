@@ -73,6 +73,10 @@ there, and open with `--head <login>:<branch>`
    the PR body MUST restate the commit message. The commit is the source of
    truth; the PR must not add new rationale the commit doesn't state (see
    `sk-commit`).
+6. **Draft-first** — always open with `--draft`. The PR stays a draft and is
+   iterated (push fixups, address review) until `sk-code-review` is satisfied
+   **and** CI is green; only then mark it ready (`gh pr ready`). Never open a PR
+   as ready-for-review while review or checks are still pending.
 
 ## Landing via `gh stack` (preferred for single- or multi-branch work)
 
@@ -129,7 +133,8 @@ EOF
 )"
 ```
 
-Use `--draft` when checks aren't green yet.
+Always open with `--draft`; iterate until `sk-code-review` is satisfied and CI
+is green, then `gh pr ready` (see rule 6).
 
 ### 3. Apply triage metadata
 
@@ -175,5 +180,5 @@ body links the correct issue.
 - `sk-commit` — the commit this PR must restate (parity rule).
 - `sk-async` — landing multi-branch work as stacked fork PRs (`gh stack`).
 - `cpn-pr` — cloud-pi-native twin: French, conventional, upstream-only.
-- `sk-triage` — assigns PR/issue metadata (labels, assignee, milestone,
-  project, reviewers); run it after creation.
+- `sk-triage` — assigns PR/issue metadata (labels, assignee, milestone, project,
+  reviewers); run it after creation.

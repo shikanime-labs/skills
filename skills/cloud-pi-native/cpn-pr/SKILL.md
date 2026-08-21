@@ -61,6 +61,10 @@ historical fork-based GitHub flow. (Pre-2026-08 guidance referenced
    the final PR merges, verify the tasklist N of N and close deliberately
    (`gh   issue close <N> -c "<evidence>"`).
 4. **Base branch** — `main` unless the repo's default branch differs.
+5. **Draft-first** — always open with `--draft`. The PR stays a draft and is
+   iterated (push fixups, address review) until `cpn-code-review` is satisfied
+   **and** CI is green; only then mark it ready (`gh pr ready`). Never open a PR
+   as ready-for-review while review or checks are still pending.
 
 ## Repo-Class Detection (adapt, don't assume)
 
