@@ -47,7 +47,9 @@ Push working branches to a personal fork of the target repo — never to the org
 remote (`shikanime-labs` / `shikanime-studio`). The org remote receives `main`
 only. The fork lives under the ACTIVE gh identity:
 `OWNER=$(gh api user --jq .login)`; create once with
-`gh repo fork <org>/<repo> --clone=false` and add it as remote `fork`. The gh
+`gh repo fork <org>/<repo> --clone=false` and add it as remote `origin`
+(remote convention, both families: `upstream` = org repo, `origin` = personal
+fork). The gh
 remote stays canonical even when the local path says otherwise (nix-containers:
 path `shikanime-labs`, remote `shikanime-studio`).
 
@@ -135,17 +137,17 @@ Work-item lifecycle: **discussion → issue → issue comments → PR.**
 
 ```bash
 OWNER=$(gh api user --jq .login)
-jj git remote add fork "git@github.com:$OWNER/<repo>.git" 2>/dev/null || true
-jj bookmark track <branch> --remote=fork
-jj git push --remote fork
+jj git remote add origin "git@github.com:$OWNER/<repo>.git" 2>/dev/null || true
+jj bookmark track <branch> --remote=origin
+jj git push --remote origin
 ```
 
 jj does not auto-track fork bookmarks. Without `track`, the push to the fork
-remote is rejected.
+remote (`origin`) is rejected.
 
 ## Landing
 
-- **Fork PR (default)**: push to `fork` remote, then open the PR on the org repo
+- **Fork PR (default)**: push to the fork remote (`origin`), then open the PR on the org repo
   with the fork branch as head:
   `gh pr create --repo <org>/<repo> --head <login>:<branch>`. Required when
   `main` is protected or the user didn't authorize direct push.
@@ -200,7 +202,7 @@ protection where present are the mechanical gate.** GitHub is the durable ledger
 | `AGENTS.md` with commit-body `Related:` URL     | Follow it (e.g. `manifests`) — overrides plain-English default                                  |
 | `doc:` prefix convention                        | Doc repo — use `doc:` titles                                                                    |
 | branch protection on `main`                     | PR mandatory; no direct push                                                                    |
-| jj repo (`.jj/`)                                | `jj bookmark track <branch> --remote=fork` before push                                          |
+| jj repo (`.jj/`)                                | `jj bookmark track <branch> --remote=origin` before push                                         |
 | NixOS/infra repo (`machines`, `nix-containers`) | build-verify (`nix eval` / `nix build`) before switch; control-plane changes need quorum checks |
 
 ## Keep AGENTS.md current
@@ -218,7 +220,7 @@ and anything a `jj log` already shows.
   remote receives `main` only.
 - Forgetting to record a steering-changing discovery in AGENTS.md — next agent
   repeats the mistake.
-- jj push without `jj bookmark track <branch> --remote=fork` — rejected by
+- jj push without `jj bookmark track <branch> --remote=origin` — rejected by
   remote.
 - Direct-pushing `main` on protected repos — rejected; use PR.
 - Assuming conventional commits — shikanime code repos use plain English.

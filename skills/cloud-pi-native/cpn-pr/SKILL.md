@@ -229,40 +229,40 @@ These git patterns bit us and were recovered — encode them:
 
 - **Squash to one commit**:
   `git reset --soft <base> && git add -A && git commit -m "doc: <subject>"`.
-  `<base>` = `origin/main` is ONLY correct if the branch was cut from the
+  `<base>` = `upstream/main` is ONLY correct if the branch was cut from the
   CURRENT main.
-- **`origin/main` may have advanced** since the branch was cut.
-  `git reset --soft origin/main` then stages spurious REVERTS of unrelated main
-  commits (it rebases the branch onto the new main tip). Always find the TRUE
-  base first:
+- **`upstream/main` may have advanced** since the branch was cut.
+  `git reset --soft upstream/main` then stages spurious REVERTS of unrelated
+  main commits (it rebases the branch onto the new main tip). Always find the
+  TRUE base first:
 
 ```bash
 git merge-base --is-ancestor \
-  $(git rev-parse <oldest-pr-commit>^) origin/main
+  $(git rev-parse <oldest-pr-commit>^) upstream/main
 ```
 
 → if NO, the branch predates current main; use
-`git rebase --onto origin/main <true-base> <branch>` instead of reset-soft.
+`git rebase --onto upstream/main <true-base> <branch>` instead of reset-soft.
 
 - **Recover before pushing**: if you staged wrong state (e.g. the reset-soft
   mistake), `git reset --hard <last-good-sha>` immediately — before any push.
   Nothing was published, so no harm done.
 - **Force-push with lease**: `--force-with-lease` alone rejects with "stale
   info" when the local tracking ref is stale. Pin it:
-  `git fetch origin <branch>` then
+  `git fetch upstream <branch>` then
 
 ```bash
 git push --force-with-lease=refs/heads/<branch>:<known-remote-sha> \
-  origin <branch>
+  upstream <branch>
 ```
 
-Get `<known-remote-sha>` from `git ls-remote origin refs/heads/<branch>`.
+Get `<known-remote-sha>` from `git ls-remote upstream refs/heads/<branch>`.
 
 - **Verify after force-push**: `gh pr view ... --json commits` lags (eventual
   consistency). Confirm the branch tip with
-  `git ls-remote origin refs/heads/<branch>` — it must equal your local HEAD.
+  `git ls-remote upstream refs/heads/<branch>` — it must equal your local HEAD.
 - **Split a stacked branch into 2 PRs**: cut each slice with
-  `git rebase --onto origin/main <slice-base> <temp-branch>`, then resolve
+  `git rebase --onto upstream/main <slice-base> <temp-branch>`, then resolve
   cross-file overlaps by `git rm` the file already covered by the earlier PR (it
   already sits on main-side). Amend the later PR's message to drop the
   now-absent file from its description.
@@ -301,22 +301,22 @@ Get `<known-remote-sha>` from `git ls-remote origin refs/heads/<branch>`.
   table's old "documentation prefers plain-English no prefix" note was wrong.
   `documentation` and `documentation-interne-socle` both require `doc:`-prefixed
   subjects; only the PR _title_ is conventional everywhere.
-- **`reset --soft origin/main` after main advanced** stages spurious reverts of
-  unrelated main commits (it rebases onto the new main tip). Find the true base
-  — parent of the oldest PR commit — and use
-  `git rebase --onto origin/main <true-base> <branch>` instead.
+- **`reset --soft upstream/main` after main advanced** stages spurious reverts
+  of unrelated main commits (it rebases onto the new main tip). Find the true
+  base — parent of the oldest PR commit — and use
+  `git rebase --onto upstream/main <true-base> <branch>` instead.
 - **`--force-with-lease` "stale info"** → the local tracking ref is stale.
-  `git fetch origin <branch>` then pin:
+  `git fetch upstream <branch>` then pin:
 
 ```bash
 git push --force-with-lease=refs/heads/<branch>:<known-remote-sha> \
-  origin <branch>
+  upstream <branch>
 ```
 
 (sha from `git ls-remote`).
 
 - **`gh pr view --json commits` lags after force-push** (eventual consistency).
-  Verify the branch tip with `git ls-remote origin refs/heads/<branch>` — it
+  Verify the branch tip with `git ls-remote upstream refs/heads/<branch>` — it
   must equal your local HEAD.
 - **Duplicate issues**: when a PR links a newer issue that duplicates an older
   one, relink the PR to the OLDER canonical issue (`gh pr edit ... --body-file`)
