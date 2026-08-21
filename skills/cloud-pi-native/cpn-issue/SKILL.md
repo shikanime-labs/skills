@@ -147,6 +147,15 @@ verified N of N after the final merge, then
 gh issue comment <N> --repo cloud-pi-native/console --body-file /tmp/finding.md
 ```
 
+## References and evidence
+
+The issue body carries a **References** section: official material (upstream
+documentation, linked issues/PRs, commits, changelogs, specs) attesting a
+potential solution or adding context about the problem statement. The agent may
+post additional material as comments (`gh issue comment`) to help steer
+resolution toward a solution. Proof of the solution itself belongs in the PR
+(see `cpn-pr`), not the issue.
+
 ## Investigation — tracing a change's rationale
 
 When the issue needs a root cause (not just a symptom report), trace the code
