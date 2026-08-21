@@ -60,8 +60,16 @@
         "path": "skills/shikanime/sk-land"
       },
       {
-        "name": "sk-code-review",
-        "path": "skills/shikanime/sk-code-review"
+        "name": "sk-issue-workflow",
+        "path": "skills/shikanime/sk-issue-workflow"
+      },
+      {
+        "name": "sk-pr-workflow",
+        "path": "skills/shikanime/sk-pr-workflow"
+      },
+      {
+        "name": "«redacted:sk-…»",
+        "path": "skills/shikanime/«redacted:sk-…»"
       },
       {
         "name": "cpn-dev-workflow",

@@ -111,6 +111,8 @@ specification, compatible with the
 | `sk-issue-refine`      | Iterate a problem to convergence within its issue via research + comments |
 | `sk-issue-triage`      | Issue triage: metadata + rationale closes                                 |
 | `sk-pr-triage`         | PR triage: metadata, reviewers, issue linkage                             |
+| `sk-issue-workflow`    | Issue side end-to-end: create → refine → triage                           |
+| `sk-pr-workflow`       | PR side end-to-end: issue-exists → open → triage                          |
 | `sk-discussion-triage` | Discussion triage: category + lifecycle (GraphQL)                         |
 | `sk-pr`                | Fork-first PRs derived from the commit                                    |
 | `sk-land`              | Merge PRs after DoD + review gates pass                                   |
