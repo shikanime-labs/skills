@@ -130,12 +130,6 @@ gh pr create \
 Non.
 
 ## Autres informations
-
-### Références
-
-<official material proving the solution: upstream docs, linked issues/PRs,
-commits, changelogs, specs — the issue gathers evidence, this PR proves the
-solution>
 EOF
 )"
 ```
