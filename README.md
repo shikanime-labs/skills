@@ -101,29 +101,33 @@ specification, compatible with the
 
 ### shikanime family (`skills/shikanime/`)
 
-| Skill             | Description                                          |
-| ----------------- | ---------------------------------------------------- |
-| `sk-dev-workflow` | Branch/push discipline, gates, landing               |
-| `sk-async`        | jj workspace fan-out + stacked PRs for parallel work |
-| `sk-commit`       | shikanime commit style + Automata co-author trailer  |
-| `sk-discussion`   | RFC Discussions (pre-issue stage)                    |
-| `sk-issue`        | Issues with the gate-ledger tasklist                 |
-| `sk-triage`       | Assign every available metadata to an issue or PR    |
-| `sk-pr`           | Fork-first PRs derived from the commit               |
-| `sk-land`         | Merge PRs after DoD + review gates pass              |
-| `sk-code-review`  | Code review: YAGNI, root-cause, conventions          |
+| Skill                  | Description                                          |
+| ---------------------- | ---------------------------------------------------- |
+| `sk-dev-workflow`      | Branch/push discipline, gates, landing               |
+| `sk-async`             | jj workspace fan-out + stacked PRs for parallel work |
+| `sk-commit`            | shikanime commit style + Automata co-author trailer  |
+| `sk-discussion`        | RFC Discussions (pre-issue stage)                    |
+| `sk-issue`             | Issues with the gate-ledger tasklist                 |
+| `sk-triage-issue`      | Issue triage: metadata + rationale closes            |
+| `sk-triage-pr`         | PR triage: metadata, reviewers, issue linkage        |
+| `sk-triage-discussion` | Discussion triage: category + lifecycle (GraphQL)    |
+| `sk-pr`                | Fork-first PRs derived from the commit               |
+| `sk-land`              | Merge PRs after DoD + review gates pass              |
+| `sk-code-review`       | Code review: YAGNI, root-cause, conventions          |
 
 ### cloud-pi-native family
 
-| Skill              | Description                                       |
-| ------------------ | ------------------------------------------------- |
-| `cpn-dev-workflow` | Console repo dev loop, gates, PR workflow         |
-| `cpn-commit`       | Conventional commits for console                  |
-| `cpn-discussion`   | French Discussions via GraphQL                    |
-| `cpn-issue`        | French issue templates + gate ledger              |
-| `cpn-pr`           | French PRs, upstream-only, conventional           |
-| `cpn-code-review`  | Review console PRs: arch, French artifacts        |
-| `cpn-triage`       | Assign every available metadata to an issue or PR |
+| Skill                   | Description                                        |
+| ----------------------- | -------------------------------------------------- |
+| `cpn-dev-workflow`      | Console repo dev loop, gates, PR workflow          |
+| `cpn-commit`            | Conventional commits for console                   |
+| `cpn-discussion`        | French Discussions via GraphQL                     |
+| `cpn-issue`             | French issue templates + gate ledger               |
+| `cpn-pr`                | French PRs, upstream-only, conventional            |
+| `cpn-code-review`       | Review console PRs: arch, French artifacts         |
+| `cpn-triage-issue`      | Triage d'issue : métadonnées + fermetures motivées |
+| `cpn-triage-pr`         | Triage de PR : métadonnées, reviewers, lien issue  |
+| `cpn-triage-discussion` | Triage de discussion : catégorie + cycle (GraphQL) |
 
 ## Development
 

@@ -148,9 +148,9 @@ Use `--draft` when checks aren't green yet.
 
 ### 3. Apply triage metadata
 
-Delegate to `sk-triage` (#N): it enumerates the repo's available metadata and
+Delegate to `sk-triage-pr` (#N): it enumerates the repo's available metadata and
 sets each empty, determinable field — labels, assignee, milestone, project,
-reviewers. The rules live in `sk-triage`; do not re-derive them here.
+reviewers. The rules live in `sk-triage-pr`; do not re-derive them here.
 
 ## Post-steps
 
@@ -190,5 +190,5 @@ body links the correct issue.
 - `sk-commit` — the commit this PR must restate (parity rule).
 - `sk-async` — landing multi-branch work as stacked fork PRs (`gh stack`).
 - `cpn-pr` — cloud-pi-native twin: French, conventional, upstream-only.
-- `sk-triage` — assigns PR/issue metadata (labels, assignee, milestone, project,
+- `sk-triage-pr` — assigns PR metadata (labels, assignee, milestone, project,
   reviewers); run it after creation.

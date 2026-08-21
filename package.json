@@ -40,6 +40,18 @@
         "path": "skills/shikanime/sk-issue"
       },
       {
+        "name": "sk-triage-issue",
+        "path": "skills/shikanime/sk-triage-issue"
+      },
+      {
+        "name": "sk-triage-pr",
+        "path": "skills/shikanime/sk-triage-pr"
+      },
+      {
+        "name": "sk-triage-discussion",
+        "path": "skills/shikanime/sk-triage-discussion"
+      },
+      {
         "name": "sk-pr",
         "path": "skills/shikanime/sk-pr"
       },
@@ -70,6 +82,18 @@
       {
         "name": "cpn-pr",
         "path": "skills/cloud-pi-native/cpn-pr"
+      },
+      {
+        "name": "cpn-triage-issue",
+        "path": "skills/cloud-pi-native/cpn-triage-issue"
+      },
+      {
+        "name": "cpn-triage-pr",
+        "path": "skills/cloud-pi-native/cpn-triage-pr"
+      },
+      {
+        "name": "cpn-triage-discussion",
+        "path": "skills/cloud-pi-native/cpn-triage-discussion"
       },
       {
         "name": "cpn-code-review",
