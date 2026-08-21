@@ -40,6 +40,11 @@
       "path": "skills/shikanime/sk-pr"
     },
     {
+      "name": "sk-land",
+      "description": "Merge a shikanime org PR only after the linked issue's definition-of-done tasklist is discharged and sk-code-review approval is in place; squash+rebase or gh stack merge, then close the issue deliberately.",
+      "path": "skills/shikanime/sk-land"
+    },
+    {
       "name": "sk-code-review",
       "description": "Code review discipline for shikanime repos: YAGNI, root-cause, repo conventions, security scan, severity-tagged findings.",
       "path": "skills/shikanime/sk-code-review"
