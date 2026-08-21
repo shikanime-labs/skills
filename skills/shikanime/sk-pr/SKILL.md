@@ -21,8 +21,9 @@ hooks) is detected per repo, not assumed.
 
 **All PRs open from a personal fork of the target repo — never from a branch
 pushed to the org repo.** Create the fork once
-(`gh repo fork <org>/<repo> --clone=false`), add it as remote `fork`, push
-there, and open with `--head <login>:<branch>`
+(`gh repo fork <org>/<repo> --clone=false`), add it as remote `origin`, push
+there, and open with `--head <login>:<branch>`. Remote naming convention
+(both families): **`upstream` = org repo, `origin` = personal fork.**
 (`OWNER=$(gh api user --jq .login)`). The local checkout path may read
 `shikanime-labs` while the gh remote is `shikanime-studio` (e.g. nix-containers)
 — trust the gh remote as canonical.
@@ -39,7 +40,7 @@ there, and open with `--head <login>:<branch>`
   required to open a fork-based PR.
 - Linked issue should already exist (see `sk-issue`); verify it actually matches
   the PR's change (`jj file annotate` / `jj show <commit>` if unsure).
-- Branch pushed to the fork remote before opening.
+- Branch pushed to the fork remote (`origin`) before opening.
 
 ## Org PR conventions
 
@@ -68,7 +69,8 @@ there, and open with `--head <login>:<branch>`
      after the final merge (verify tasklist N of N, then `gh issue close`).
      Direct pushes never auto-close (commits have no body) — same deliberate
      close (see `sk-dev-workflow`).
-4. **Fork head** — `--head <login>:<branch>`; push to the fork remote only.
+4. **Fork head** — `--head <login>:<branch>`; push to the fork remote (`origin`)
+   only.
 5. **Parity with the commit** — the PR title MUST equal the commit subject and
    the PR body MUST restate the commit message. The commit is the source of
    truth; the PR must not add new rationale the commit doesn't state (see
@@ -113,9 +115,9 @@ gh stack sync                          # later: rebase+pull+sync stack state
 ```bash
 OWNER=$(gh api user --jq .login)
 gh repo fork <org>/<repo> --clone=false 2>/dev/null || true
-jj git remote add fork "git@github.com:$OWNER/<repo>.git" 2>/dev/null || true
-jj bookmark track <branch> --remote=fork
-jj git push --remote fork
+jj git remote add origin "git@github.com:$OWNER/<repo>.git" 2>/dev/null || true
+jj bookmark track <branch> --remote=origin
+jj git push --remote origin
 gh pr create --repo <org>/<repo> --base main --head "$OWNER:<branch>" \
   --title "<title>" --body "$(cat <<'EOF'
 ## What

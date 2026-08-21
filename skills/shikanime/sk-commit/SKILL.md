@@ -28,7 +28,7 @@ win over the defaults below — detect them per repo, don't assume.
   say `shikanime-labs` while the gh remote is `shikanime-studio`
   (nix-containers) — trust the gh remote.
 - jj repos: ensure the branch is tracked on the fork remote
-  (`jj bookmark track <branch> --remote=fork`) before any push.
+  (`jj bookmark track <branch> --remote=origin`) before any push.
 
 ## Org default commit style (when no hook enforces otherwise)
 
@@ -91,8 +91,8 @@ Confirm the hook accepted it (`jj log -1`).
 
 ## Push / landing
 
-- Fork-first: push branches to the fork remote (`sk-dev-workflow`); open PRs
-  from `--head <login>:<branch>` (`sk-pr`).
+- Fork-first: push branches to the fork remote (`origin`); open PRs from
+  `--head <login>:<branch>` (`sk-pr`).
 - **Do NOT push to `main`** unless the user explicitly authorizes ("push to
   main" / "land it") — then push directly to the org remote, no PR needed.
 - Protected `main` (e.g. `shikanime-studio/actions`) -> open a PR instead;
@@ -106,7 +106,7 @@ Confirm the hook accepted it (`jj log -1`).
 - Ignoring a repo hook (gitlint/DCO) -> local commit rejected; detect first.
 - Pushing a working branch to the org remote — policy is fork-first; the org
   remote receives `main` only.
-- Forgetting `jj bookmark track <branch> --remote=fork` on jj repos -> push to
+- Forgetting `jj bookmark track <branch> --remote=origin` on jj repos -> push to
   the fork fails.
 - Trailing period or lowercase start in subject — keep imperative, capitalized.
 - `manifests` gitlint: the `Signed-off-by` trailer rule still applies — keep
