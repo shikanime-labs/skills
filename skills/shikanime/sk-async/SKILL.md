@@ -6,7 +6,7 @@ author: Hermes Agent
 license: Apache-2.0
 metadata:
   hermes:
-    tags: [jj, workspaces, parallel, stacked-prs, gh-stack, delegation, GitHub, shikanime-labs, shikanime-studio]
+    tags: [jj, workspaces, parallel, stacked-prs, gh-stack, delegation, github, shikanime-labs, shikanime-studio]
 ---
 
 # Shikanime Org Parallel Streams

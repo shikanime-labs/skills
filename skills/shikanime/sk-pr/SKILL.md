@@ -6,7 +6,7 @@ author: Hermes Agent
 license: Apache-2.0
 metadata:
   hermes:
-    tags: [GitHub, Pull-Requests, shikanime-labs, shikanime-studio]
+    tags: [github, pull-requests, shikanime-labs, shikanime-studio]
 ---
 
 # Shikanime Org PR Creation

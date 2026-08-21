@@ -9,7 +9,7 @@ license: Apache-2.0
 platforms: [macos, linux]
 metadata:
   hermes:
-    tags: [Cloud, Kubernetes, NestJS, GitOps, Platform, GitHub, cloud-pi-native]
+    tags: [cloud, kubernetes, nestjs, gitops, platform, github, cloud-pi-native]
 ---
 
 # CPN Org Dev Workflow

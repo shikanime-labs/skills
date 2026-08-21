@@ -6,7 +6,7 @@ author: Hermes Agent
 license: Apache-2.0
 metadata:
   hermes:
-    tags: [code-review, yagni, conventions, security, GitHub, Pull-Requests, shikanime-labs, shikanime-studio]
+    tags: [code-review, yagni, conventions, security, github, pull-requests, shikanime-labs, shikanime-studio]
 ---
 
 # Code Review (sk-code-review)

@@ -6,7 +6,7 @@ author: Hermes Agent
 license: Apache-2.0
 metadata:
   hermes:
-    tags: [GitHub, Discussions, shikanime-labs, shikanime-studio, RFC]
+    tags: [github, discussions, shikanime-labs, shikanime-studio, rfc]
 ---
 
 # Shikanime Org Discussion

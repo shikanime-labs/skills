@@ -6,7 +6,7 @@ author: Hermes Agent
 license: Apache-2.0
 metadata:
   hermes:
-    tags: [GitHub, Discussions, cloud-pi-native, French]
+    tags: [github, discussions, cloud-pi-native, french]
 ---
 
 # CPN Org Discussion

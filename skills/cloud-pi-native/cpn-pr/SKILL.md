@@ -7,7 +7,7 @@ author: Hermes Agent
 license: Apache-2.0
 metadata:
   hermes:
-    tags: [GitHub, Pull-Requests, cloud-pi-native, conventional-commits]
+    tags: [github, pull-requests, cloud-pi-native, conventional-commits]
 ---
 
 # CPN Org PR Creation

@@ -8,7 +8,7 @@ author: Hermes Agent
 license: Apache-2.0
 metadata:
   hermes:
-    tags: [GitHub, Triage, Issues, cloud-pi-native, French]
+    tags: [github, triage, issues, cloud-pi-native, french]
 ---
 
 # CPN Issue Triage

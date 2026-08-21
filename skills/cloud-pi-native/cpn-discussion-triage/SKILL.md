@@ -8,7 +8,7 @@ author: Hermes Agent
 license: Apache-2.0
 metadata:
   hermes:
-    tags: [GitHub, Triage, Discussions, GraphQL, cloud-pi-native, French]
+    tags: [github, triage, discussions, graphql, cloud-pi-native, french]
 ---
 
 # CPN Discussion Triage
