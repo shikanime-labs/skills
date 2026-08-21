@@ -106,6 +106,13 @@ submitted from a stale base: `jj rebase -d main`. Resolve any conflict markers
 there; do not push a conflicted branch. For an existing PR, verify mergeability:
 `gh pr view <N> --json mergeable,mergeStateStatus`.
 
+**Temp body files are NOT hard-wrapped.** Author the `--body` heredoc /
+`--body-file` in semantic line breaks (one sentence per line, no 80-col wrap).
+GitHub joins consecutive non-blank lines into one flowing paragraph, so it
+reads naturally — and a one-sentence edit only churns that one line in the
+diff instead of reflowing the whole block. Never run `nix fmt` / `mdformat`
+over a temp body file.
+
 PR **title must be conventional**. Use the repo template verbatim if present;
 otherwise the canonical org body:
 

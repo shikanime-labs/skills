@@ -42,6 +42,13 @@ gh issue create --repo <org>/<repo> --title "<summary>" --label <type> --body ".
 
 ### 2. Body = problem statement only
 
+**Temp body files are NOT hard-wrapped.** Author the `--body-file` / heredoc in
+semantic line breaks (one sentence per line, no 80-col wrap). GitHub joins
+consecutive non-blank lines into one flowing paragraph, so it reads naturally —
+and a one-sentence edit only churns that one line in the diff instead of
+reflowing the whole block. Never run `nix fmt` / `mdformat` over a temp body
+file.
+
 Keep the body a clean problem statement (Description, reproduction steps,
 affected version, impact). Post root-cause / investigation findings as a
 **comment** (`gh issue comment <N> --repo <org>/<repo> --body-file <file>`), not

@@ -51,6 +51,12 @@ families): **`upstream` = org repo, `origin` = personal fork.**
 3. **Body** — derived from the commit body; do NOT let the PR description
    diverge from what the commit message states. The commit message is the source
    of truth; the PR must restate it (what/why/scope), not invent new rationale.
+   - **Temp body files are NOT hard-wrapped.** Author the `--body-file` /
+     heredoc in semantic line breaks (one sentence per line, no 80-col wrap).
+     GitHub joins consecutive non-blank lines into one flowing paragraph, so it
+     reads naturally — and a one-sentence edit only churns that one line in the
+     diff instead of reflowing the whole block. Never run `nix fmt` / `mdformat`
+     over a temp body file.
    - Use full issue URLs — never bare `#XXXX` or `owner/repo#XXXX` shorthand
      (both render broken on GitHub):
      `Related: https://github.com/<org>/<repo>/issues/N` (same repo) or
