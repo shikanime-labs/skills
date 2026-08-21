@@ -19,6 +19,10 @@ the PR, then link the PR to it (see `sk-pr`).
 
 - "Open an issue on <repo>" / "create a bug/feature ticket".
 - Any issue creation in a shikanime-owned repo.
+- **Convert a discussion into an issue** — but only once the discussion's
+  reflection is complete and its problem statement is clear (see
+  `sk-discussion`). Do not open an issue while the problem is still being
+  iterated.
 
 ## Prerequisites
 

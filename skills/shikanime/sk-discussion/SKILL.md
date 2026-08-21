@@ -14,13 +14,19 @@ metadata:
 Discussions are the **pre-issue RFC** in the work-item lifecycle **discussion →
 issue → issue comments → PR** (see `sk-dev-workflow`): converge on the _problem_
 before committing to an issue. Once converged, derive the issue (`sk-issue`) and
-link back; do not keep solving in the discussion. English bodies (no French).
-Parity with `cpn-discussion`.
+link back; do not keep solving in the discussion. A discussion is the
+iteration/reflection space: keep working the problem here until its statement is
+clear. Only once reflection is done and the problem statement is clear do you
+derive the issue (`sk-issue`) and link the discussion back from it; do not open
+an issue prematurely. English bodies (no French). Parity with `cpn-discussion`.
 
 ## When to Use
 
 - "Let's discuss X before opening an issue" / "RFC for <design>".
 - No explicit issue can be stated yet — the problem itself is unsettled.
+- The discussion is the **iteration space**: use it when the problem is _not_
+  yet clear. Explore, pose open questions, reflect on the shape of the problem
+  here. Do not jump to an issue while the problem is still unsettled.
 
 ## Verified surface state (checked 2026-08-20)
 

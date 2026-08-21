@@ -19,6 +19,10 @@ before any PR, then link the PR to it (see `cpn-pr`).
 
 - "Open an issue on console" / "create a bug/feature ticket for console".
 - Any creation task in `cloud-pi-native/console` requiring a French issue body.
+- **Convert a discussion into an issue** — but only once the discussion's
+  reflection is complete and its problem statement is clear (see
+  `cpn-discussion`). Do not open an issue while the problem is still being
+  iterated.
 
 ## Prerequisites
 
