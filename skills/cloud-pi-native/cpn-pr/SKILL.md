@@ -101,6 +101,9 @@ Then apply only what the repo actually has:
 
 ### 2. Open the PR with French body + issue linkage
 
+Rebase the branch onto `origin/main` before pushing/opening — a PR must never be
+submitted from a stale base: `git fetch origin && git rebase origin/main`.
+
 PR **title must be conventional**. Use the repo template verbatim if present;
 otherwise the canonical org body:
 

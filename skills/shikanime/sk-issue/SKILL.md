@@ -52,7 +52,13 @@ command can decide it — this is the work item's gate ledger (unlazy method):
 `todo` mirrors it in-session (working copy), the issue is the record. An item is
 done only once its check ran, never from memory; a genuinely impossible
 criterion is struck with a comment, never silently dropped. Candidate solutions
-do NOT go in the tasklist or body — they are comments. The issue closes
+do NOT go in the tasklist or body — they are comments. The body carries a
+**References** section: official material (upstream documentation, linked
+issues/PRs, commits, changelogs, specs) attesting a potential solution or
+adding context about the problem statement. The agent may post additional
+material as comments (`gh issue comment`) to help steer resolution toward a
+solution. Proof of the solution itself belongs in the PR, not the issue. The
+issue closes
 deliberately — ledger verified N of N after the final merge — never by a
 merge-time auto-close keyword unless the PR is explicitly one-to-one with the
 issue.

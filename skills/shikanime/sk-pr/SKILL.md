@@ -85,6 +85,7 @@ header); the `gh-stack` extension is released but the feature is subject to
 change — fine for internal shikanime use.
 
 ```bash
+jj rebase -d main                      # ALWAYS rebase onto trunk before submit
 gh stack init <branch>                 # adopt current branch into a stack (trunk=main)
 gh stack add -Am "Next layer"          # optional: stack another branch on top
 gh stack submit --auto --open          # push branches, create/update PR(s) + stack
@@ -121,6 +122,12 @@ gh pr create --repo <org>/<repo> --base main --head "$OWNER:<branch>" \
 
 ## Why
 ...
+
+## References
+
+<official material proving the solution: upstream docs, linked issues/PRs,
+commits, changelogs, specs — the issue gathers evidence, this PR proves the
+solution>
 
 Related: https://github.com/<org>/<repo>/issues/N   # same repo
 # Cross-repo: Related: https://github.com/owner/repo/issues/N
