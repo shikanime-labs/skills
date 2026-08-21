@@ -1,6 +1,6 @@
 ---
 name: sk-triage
-description: "Assign metadata to a shikanime org issue or PR."
+description: "Assign metadata to a shikanime org issue, PR, or discussion."
 version: 0.1.0
 author: Hermes Agent
 license: Apache-2.0
@@ -11,15 +11,16 @@ metadata:
 
 # Shikanime Triage — Assign Every Available Metadata
 
-Given an existing issue or PR in a `shikanime-labs/*` or `shikanime-studio/*`
-repo, enumerate every metadata capability the repo exposes and set each field
-that is **empty on the item** and **determinable from the item's own content**.
-English bodies (no French). Never invent a value the repo does not have.
+Given an existing issue, PR, or discussion in a `shikanime-labs/*` or
+`shikanime-studio/*` repo, enumerate every metadata capability the repo exposes
+and set each field that is **empty on the item** and **determinable from the
+item's own content**. English bodies (no French). Never invent a value the repo
+does not have.
 
 ## When to Use
 
-- "Triage issue/PR #N", "label/assign/milestone that ticket".
-- Any existing shikanime-owned issue or PR missing metadata.
+- "Triage issue/PR/discussion #N", "label/assign/milestone that ticket".
+- Any existing shikanime-owned issue, PR, or discussion missing metadata.
 
 ## Prerequisites
 
@@ -30,7 +31,7 @@ English bodies (no French). Never invent a value the repo does not have.
 
 ## Inputs
 
-- `N` : issue or PR number.
+- `N` : issue, PR, or discussion number.
 - `R` : `OWNER/REPO`. Defaults to the `origin` remote of the current working
   directory, validated to sit under `shikanime-labs/` or `shikanime-studio/`. If
   not in such a repo, ask the user for `R`.
@@ -48,7 +49,15 @@ if [ "$KIND" = pr ]; then
 else
   gh issue view "$N" --repo "$R" --json number,title,body,labels,assignees,milestone,projectCards
 fi
+# Distinguish discussion from issue: issues have labels; discussions do not.
+if [ "$KIND" = issue ] && ! gh issue view "$N" --repo "$R" \
+  --json id >/dev/null 2>&1; then
+  KIND=discussion
+fi
 ```
+
+If `KIND=discussion`, jump to **Step 8 (Discussions)** — steps 2–7 are
+issue/PR-only surfaces.
 
 ### 2. Discover available metadata (the source of truth)
 
@@ -134,6 +143,46 @@ why, then close.
   its author. Closing a PR discards authored work — only the author or a
   maintainer does that.
 
+### 8. Discussions (GraphQL only)
+
+Discussions have no labels/assignees/milestones. The only triage metadata is
+**category** and lifecycle routing. Probe first — discussions may be disabled:
+
+```bash
+gh api repos/"$R" --jq .has_discussions
+```
+
+Fetch the discussion (node `id` is required for mutations):
+
+```bash
+OWNER=${R%/*}; NAME=${R#*/}
+gh api graphql -f query='
+query {
+  repository(owner: "'"$OWNER"'", name: "'"$NAME"'") {
+    discussion(number: '"$N"') {
+      id title body category { name slug }
+      answer { id }  # Q&A only
+    }
+    discussionCategories(first: 10) { nodes { id name slug } }
+  }
+}'
+```
+
+Decide + apply (via the `--input` envelope, never `-F variables=@file`):
+
+- **category** — if it does not match intent: RFC/design openings → `Ideas`;
+  decision/discussion threads → `General`; questions → `Q&A`. Recategorize with
+  `updateDiscussion(input:{discussionId:$id, categoryId:$c})`.
+- **body shape** — must stay context + open questions (see `sk-discussion`). If
+  solution scaffolding crept in, trim via `updateDiscussion` body edit.
+- **converged → derive issue** — if the open questions are resolved, say so in a
+  comment and route to `sk-issue`. Do not keep solving in the discussion.
+- **mark answered** (Q&A only) — if a reply resolves the question:
+  `markDiscussionCommentAsAnswer(input:{id:<commentNodeId>})`.
+- **close as resolved/duplicate** — GraphQL only:
+  `closeDiscussion(input:{discussionId:$id, reason:RESOLVED|DUPLICATE|OUTDATED})`.
+  Post a rationale comment first; never silently close.
+
 ## Pitfalls
 
 - Inventing labels — always filter against `gh label list`.
@@ -143,9 +192,14 @@ why, then close.
 - Targeting a personal fork where Issues/PRs are disabled — use the upstream org
   repo.
 - PR↔issue auto-close — avoid unless explicitly one-to-one.
+- Discussions are GraphQL-only — no `gh issue edit`, no REST. Use the `--input`
+  envelope for mutations; `-F variables=@file` fails.
+- Recategorizing a discussion without probing `.has_discussions` first —
+  creation/mutation 404s when disabled.
 
 ## See also
 
 - `sk-issue` / `sk-pr` — creation + linking conventions (English).
+- `sk-discussion` — discussion creation + body conventions (English).
 - `github-issue-metadata` — Projects v2 / sub-issue plumbing.
 - `cpn-triage` — French twin for cloud-pi-native.
