@@ -45,7 +45,17 @@
       "path": "skills/shikanime/sk-pr-triage"
     },
     {
-      "name": "sk-discussion-triage",
+      "name": "sk-issue-workflow",
+      "description": "Single entry point for the shikanime issue side: create the issue, refine the problem to convergence within it, then triage immediately.",
+      "path": "skills/shikanime/sk-issue-workflow"
+    },
+    {
+      "name": "sk-pr-workflow",
+      "description": "Single entry point for the shikanime PR side: ensure the issue exists, open the fork-first PR derived from the commit, then triage immediately.",
+      "path": "skills/shikanime/sk-pr-workflow"
+    },
+    {
+      "name": "«redacted:sk-…»",
       "description": "Triage an existing shikanime org discussion: category, body shape, Q\u0026A answer marking, lifecycle close (GraphQL).",
       "path": "skills/shikanime/sk-discussion-triage"
     },
