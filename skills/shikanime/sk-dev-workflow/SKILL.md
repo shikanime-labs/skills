@@ -30,7 +30,8 @@ owner skill; gate phases are the mechanical walls a change must clear.
 | --- | ------------------------------------------------------ | ---------------------------------- | ----------------- |
 | 0   | Discussion (RFC) — only if the problem isn't converged | `sk-discussion`                    | entry             |
 | 1   | Issue — problem statement + `- [ ]` gate ledger        | `sk-issue`                         | ledger set        |
-| 2   | Triage — labels/assignee/milestone/project/reviewers   | `sk-issue-triage` / `sk-pr-triage` | ledger settled    |
+| 1.5 | Issue refinement — iterate the problem *within the issue* via research + candidate-solution comments until the acceptance criteria converge | `sk-issue-refine` | problem converged |
+| 2   | Triage — labels/assignee/milestone/project/reviewers   | `«redacted:sk-…»` / `sk-pr-triage` | ledger settled    |
 | 3   | Branch + implement                                     | this skill                         | —                 |
 | 4   | Commit (plain-English, Automata trailer)               | `sk-commit`                        | commit shape      |
 | 5   | Code review (adversarial pre-merge)                    | `sk-code-review`                   | review gate       |

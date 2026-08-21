@@ -108,6 +108,7 @@ specification, compatible with the
 | `sk-commit`            | shikanime commit style + Automata co-author trailer  |
 | `sk-discussion`        | RFC Discussions (pre-issue stage)                    |
 | `sk-issue`             | Issues with the gate-ledger tasklist                 |
+| `sk-issue-refine`      | Iterate a problem to convergence within its issue via research + comments |
 | `sk-issue-triage`      | Issue triage: metadata + rationale closes            |
 | `sk-pr-triage`         | PR triage: metadata, reviewers, issue linkage        |
 | `sk-discussion-triage` | Discussion triage: category + lifecycle (GraphQL)    |
