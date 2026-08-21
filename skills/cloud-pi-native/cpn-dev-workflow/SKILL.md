@@ -39,20 +39,20 @@ The work-item lifecycle as an ordered, navigable sequence for the console repo.
 Each phase names its owner skill; gate phases are the mechanical walls a change
 must clear.
 
-| # | Phase | Owner | Gate |
-| - | ----- | ----- | ---- |
-| 0 | Discussion (RFC) — only if the problem isn't converged | `cpn-discussion` | entry |
-| 1 | Issue — French problem statement + `Définition du fini` ledger | `cpn-issue` | ledger set |
-| 2 | Triage — labels/assignee/milestone/project/reviewers | `cpn-triage` | ledger settled |
-| 3 | Branch + implement (jj workspace, conventional commits) | this skill | — |
-| 4 | Commit (French conventional, SSH-signed) | `cpn-commit` | commit shape |
-| 5 | Code review (adversarial pre-merge) | `cpn-code-review` | review gate |
-| 6 | PR (upstream-only draft, link `Issues liées`) | `cpn-pr` | — |
-| 7 | Land (merge / `gh stack` + merge queue) | this skill | branch protection |
-| 8 | Close deliberately (verify N of N) | `cpn-issue` | ledger discharged |
+| #   | Phase                                                          | Owner             | Gate              |
+| --- | -------------------------------------------------------------- | ----------------- | ----------------- |
+| 0   | Discussion (RFC) — only if the problem isn't converged         | `cpn-discussion`  | entry             |
+| 1   | Issue — French problem statement + `Définition du fini` ledger | `cpn-issue`       | ledger set        |
+| 2   | Triage — labels/assignee/milestone/project/reviewers           | `cpn-triage`      | ledger settled    |
+| 3   | Branch + implement (jj workspace, conventional commits)        | this skill        | —                 |
+| 4   | Commit (conventional, SSH-signed)                              | `cpn-commit`      | commit shape      |
+| 5   | Code review (adversarial pre-merge)                            | `cpn-code-review` | review gate       |
+| 6   | PR (upstream-only draft, link `Issues liées`)                  | `cpn-pr`          | —                 |
+| 7   | Land (merge / `gh stack` + merge queue)                        | this skill        | branch protection |
+| 8   | Close deliberately (verify N of N)                             | `cpn-issue`       | ledger discharged |
 
 Phases 2 and 5 are the before-code and before-merge gates. The console
-`Procedure` (steps 1–10b) is the implementation of phases 3–7 in this repo.
+`Procedure` (steps 1–12) is the implementation of phases 3–7 in this repo.
 
 ## Prerequisites
 
@@ -103,36 +103,35 @@ through `terminal` (parent re-verification; see "Gates" below).
    skill); link the PR with `Refs #N` — never an auto-close keyword unless
    explicitly one-to-one (see stacked-PR rule). Do not implement from a bare
    request, and never open a PR without an issue behind it.
-4b. **Triage the issue before work starts** (`cpn-triage` skill). Assign every
-    available metadata the repo exposes — labels (conventional-prefix → type
-    label), assignee (active `gh` identity), milestone (bug → current patch,
-    feature → next release), project board if one is obvious, and reviewers for
-    the eventual PR. Apply only fields that are empty and determinable from the
-    item's own content; never invent a label the repo does not have. A
-    triaged issue is the gates ledger in its final shape before code is written.
-4. From `console`, install and build:
+4. **Triage the issue before work starts** (`cpn-triage` skill). Assign every
+   available metadata the repo exposes — labels (conventional-prefix → type
+   label), assignee (active `gh` identity), milestone (bug → current patch,
+   feature → next release), project board if one is obvious, and reviewers for
+   the eventual PR. Apply only fields that are empty and determinable from the
+   item's own content; never invent a label the repo does not have. A triaged
+   issue is the gates ledger in its final shape before code is written.
+5. From `console`, install and build:
    - `pnpm install`
    - `pnpm build`
    - `pnpm --filter @cpn-console/server-nestjs run db:generate`
-5. Choose one local launch mode:
+6. Choose one local launch mode:
+   - local apps + remote services: `pnpm run dev`, then
+     `pnpm --filter @cpn-console/server-nestjs run dev` and
+     `pnpm --filter @cpn-console/client run dev`
+   - full containerized local: `pnpm run docker:dev`
+   - integration environment: `pnpm run docker:integ` or local apps with
+     `pnpm run integ`
 
-- local apps + remote services: `pnpm run dev`, then
-  `pnpm --filter    @cpn-console/server-nestjs run dev` and
-  `pnpm --filter @cpn-console/client    run dev`
-  - full containerized local: `pnpm run docker:dev`
-- integration environment: `pnpm run docker:integ` or local apps with
-  `pnpm run    integ`
-
-6. Run quality checks before submitting:
+7. Run quality checks before submitting:
    - `pnpm lint`
    - `pnpm test`
    - `pnpm playwright:test` if a user journey is affected
-7. Start each work item in a fresh jj workspace:
-   `jj workspace add -m <name> .   ../<name>` (or
+8. Start each work item in a fresh jj workspace:
+   `jj workspace add -m <name> . ../<name>` (or
    `jj workspace add --revision <base> <path>` to root it at a chosen commit) so
    parallel streams don't share a working copy. Build a **stack of small child
    commits** (one per logical unit, each independently reviewable). Branch a
-   commit out when it doesn't need a given parent: `jj new   <other-parent>`
+   commit out when it doesn't need a given parent: `jj new <other-parent>`
    instead of chaining linearly. When one parent fans into several independent
    children, let jj hold the **diamond** (shared parent → multiple children) —
    jj natively tracks merges of this shape, which parallelizes merge/PR landing
@@ -142,30 +141,35 @@ When parallel streams are **fully independent** (e.g. five unrelated module
 migrations, no module depends on another's new exports), keep each as its own
 `jj workspace add ../<name> --name <name>` rooted at `@` and its own
 **standalone** PR — the general method is the `sk-async` skill (core splitting
-component: depth-tree fan-out over jj workspaces, joins via
-`jj     new <a> <b>`, landing via `gh stack` / standalone PRs). Do NOT chain
-them into a stack unless a later module genuinely imports an earlier one's new
-code — independence is the default for sibling resource migrations. 8. Write
-conventional commits in English, one per logical unit. **The console repo is
-jj-backed** — never `jj commit` (git is jj's exported view and is dropped on the
-next jj export); commit with `jj describe -m "msg"` / `jj new   -m "msg"`.
-Before opening a new change, check for an existing commit to fold into:
-`jj log -r '::@'` — if a change already covers the same logical unit,
-`jj squash` the new work into it (`jj squash -m "msg" -f @ -t <existing>`)
-instead of adding another commit. Detect jj backing via `jj status` or a `.jj/`
-dir; a `git reflog` showing `export from jj` means the tree is jj-owned. 9.
-After commits land, before opening the PR: (a) verify child commits for
-conflicts — `jj log -r '::@'`, then rebase each child onto its parent
-(`jj   rebase -d <parent> -r <child>`); a 2-sided `<<<<<<<` content conflict
-resolves in the working copy (`jj status` clears it). A `<name> (conflicted)`
-bookmark is a _remote tracking_ conflict, not yours to force — surface it per
-Pitfalls; don't `jj bookmark set` it. (b) Re-evaluate each commit description:
-`jj log   -r '@-|@'`; if a squash merged two concerns or scope shifted,
-`jj describe -r   <rev> -m "msg"` so each message matches its final content. 10.
-Open the PR as a **DRAFT** using `.github/PULL_REQUEST_TEMPLATE.md`: linked
-issues, current behavior, new behavior, breaking change notice, and extra info.
-Console contribution PRs are draft by default so they are not merged before
-review:
+component: depth-tree fan-out over jj workspaces, joins via `jj new <a> <b>`,
+landing via `gh stack` / standalone PRs). Do NOT chain them into a stack unless
+a later module genuinely imports an earlier one's new code — independence is the
+default for sibling resource migrations.
+
+9. Write conventional commits in English, one per logical unit. **The console
+   repo is jj-backed** — never `git commit` (git is jj's exported view and is
+   dropped on the next jj export); commit with `jj describe -m "msg"` /
+   `jj new -m "msg"`. Before opening a new change, check for an existing commit
+   to fold into: `jj log -r '::@'` — if a change already covers the same logical
+   unit, `jj squash` the new work into it
+   (`jj squash -m "msg" -f @ -t <existing>`) instead of adding another commit.
+   Detect jj backing via `jj status` or a `.jj/` dir; a `git reflog` showing
+   `export from jj` means the tree is jj-owned.
+
+10. After commits land, before opening the PR: (a) verify child commits for
+    conflicts — `jj log -r '::@'`, then rebase each child onto its parent
+    (`jj rebase -d <parent> -r <child>`); a 2-sided `<<<<<<<` content conflict
+    resolves in the working copy (`jj status` clears it). A
+    `<name> (conflicted)` bookmark is a _remote tracking_ conflict, not yours to
+    force — surface it per Pitfalls; don't `jj bookmark set` it. (b) Re-evaluate
+    each commit description: `jj log -r '@-|@'`; if a squash merged two concerns
+    or scope shifted, `jj describe -r <rev> -m "msg"` so each message matches
+    its final content.
+
+11. Open the PR as a **DRAFT** using `.github/PULL_REQUEST_TEMPLATE.md`: linked
+    issues, current behavior, new behavior, breaking change notice, and extra
+    info. Console contribution PRs are draft by default so they are not merged
+    before review:
 
 ```bash
 gh pr create --draft --fill --body "Refs #N"
@@ -175,12 +179,12 @@ Do not mark ready / do not merge until review passes. If a module is still WIP
 at handoff, leave it draft and say so. (User preference: migration PRs are draft
 unless explicitly told otherwise.)
 
-10b. **Run code review before requesting merge** (`cpn-code-review` skill).
-     Adversarial review over the diff: architecture fit, conventional-commit +
-     French artifact rules, security at trust boundaries, and root-cause vs
-     symptom. Treat the review as the gate that decides whether the PR is
-     ready — do not mark it ready until the findings are resolved or
-     explicitly waived by the user.
+12. **Run code review before requesting merge** (`cpn-code-review` skill).
+    Adversarial review over the diff: architecture fit, conventional-commit +
+    French artifact rules, security at trust boundaries, and root-cause vs
+    symptom. Treat the review as the gate that decides whether the PR is ready —
+    do not mark it ready until the findings are resolved or explicitly waived by
+    the user.
 
 ## Validate assumptions before work — report unmet requirements
 
@@ -191,7 +195,7 @@ unmet requirement is a reported blocker, never a silent scope change:
   `gh api repos/cloud-pi-native/console --jq .viewerPermission` — need
   `write`/`admin` to push upstream.
 - Toolchain: `node --version` (≥26), `pnpm --version`; jj present (console is
-  jj-backed — never `jj commit`; use `jj describe`/`jj new`).
+  jj-backed — never `git commit`; use `jj describe`/`jj new`).
 - `gh stack` extension: `gh extension list`.
 - The issue exists (issue-first; create via `cpn-issue` if not).
 
@@ -250,7 +254,7 @@ skills:
 - **Upstream-only, no fork.** Push the branch to the canonical
   `cloud-pi-native/*` remote and open the PR with
   `--head cloud-pi-native:<branch>`. The `shikanime/cloud-pi-native-*` fork is
-  fetch-only. (Pre-2026-08 `--head   shikanime:<branch>` guidance is retired.)
+  fetch-only. (Pre-2026-08 `--head shikanime:<branch>` guidance is retired.)
 - **`gh stack` is the preferred landing path** for single- or multi-branch work.
   It reads each branch's commit subject/body to seed the PR title/description,
   which enforces PR↔commit parity by construction:
@@ -279,7 +283,7 @@ still applies.
   The PR title must equal the commit subject and the PR body must restate the
   commit message — do not add new rationale the commit doesn't state (see
   `cpn-commit` / `cpn-pr`). Author the commit to carry the full rationale
-  (subject + blank line + body) so `gh   stack` seeds the PR without inventing
+  (subject + blank line + body) so `gh stack` seeds the PR without inventing
   claims.
 
 ## Implementation consistency (module design)
@@ -466,7 +470,7 @@ blocked.
   clean `main` and verifies its file set before publishing:
 
 1. Save the user's FULL in-flight WIP so nothing is lost:
-   `git diff main >  /tmp/wip.patch` (capture any untracked files separately).
+   `git diff main > /tmp/wip.patch` (capture any untracked files separately).
 2. Reset the working copy to a clean `main` (disk now matches `main`, all WIP
    off disk): `jj restore --from main --to @`.
 3. Create an empty child of `main` for the fix: `jj new main -m "fix(...)"`.
@@ -479,17 +483,17 @@ blocked.
    be 0. If extra files leaked in, the split failed; do not push. This check
    would have caught the 7-file leak that reached PR #2526 in one session.
 6. Re-point the bookmark to the clean commit:
-   `jj bookmark set fix/<topic> -r  <commit>` (if the target is an ANCESTOR of
+   `jj bookmark set fix/<topic> -r <commit>` (if the target is an ANCESTOR of
    the bookmark's current position, jj refuses as "backwards" — add
    `--allow-backwards`; the working copy and WIP are untouched).
 7. Push only to upstream:
-   `jj git push --bookmark fix/<topic> --remote  upstream`.
+   `jj git push --bookmark fix/<topic> --remote upstream`.
 8. Restore the user's WIP to the working tree: `git apply /tmp/wip.patch`. If
    the fix and WIP touched the SAME file(s), the full patch won't apply (it was
    diffed against the pre-fix baseline) — split it to exclude the fix's files:
    drop the `diff --git` blocks whose path matches the fix's files with a small
    `python3` regex and apply the rest. Never bundle unrelated work into one PR.
-   After any raw `git` write (`git  apply`/`git checkout`/`git restore`), jj's
+   After any raw `git` write (`git apply`/`git checkout`/`git restore`), jj's
    snapshot lags until you `touch` the file — `jj squash` then reports "Nothing
    changed" and `jj diff` shows nothing. Full recovery:
    `references/jj-snapshot-pitfalls.md`.
@@ -513,7 +517,7 @@ blocked.
   **tracking conflict on a different branch** — do NOT `jj bookmark set` it.
   That silently chooses a remote target and implies a publish/force-push
   decision when `@origin` is behind. Always confirm the conflicted bookmark's
-  commit is in `@` ancestry (`jj log -r "::@" | grep   <bookmark>`) before
+  commit is in `@` ancestry (`jj log -r "::@" | grep <bookmark>`) before
   touching it; if it isn't, surface the conflict and ask the user how to clear
   it (rebase onto origin, or force).
 - **`jj git push --deleted` sweeps ALL locally-deleted bookmarks to remote.** A
@@ -546,7 +550,7 @@ and `pnpm playwright:test` as pre-submission checks.
 
 ## See also
 
-- `cpn-commit` — the commit shape (French conventional subject, author identity,
-  SSH signing) this workflow lands.
+- `cpn-commit` — the commit shape (conventional subject, author identity, SSH
+  signing) this workflow lands.
 - `cpn-pr` — upstream-only PR opening from these commits.
 - `sk-dev-workflow` — shikanime twin (fork-first landing).
