@@ -9,15 +9,7 @@ author: Hermes Agent
 license: Apache-2.0
 metadata:
   hermes:
-    tags:
-      [
-        GitHub,
-        Issues,
-        research,
-        problem-framing,
-        shikanime-labs,
-        shikanime-studio,
-      ]
+    tags: [GitHub, Issues, research, problem-framing, workflow, shikanime-labs, shikanime-studio]
 ---
 
 # Shikanime Issue Refinement

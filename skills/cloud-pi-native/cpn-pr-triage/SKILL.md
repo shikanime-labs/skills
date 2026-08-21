@@ -8,7 +8,7 @@ author: Hermes Agent
 license: Apache-2.0
 metadata:
   hermes:
-    tags: [GitHub, Triage, Pull Requests, cloud-pi-native, French]
+    tags: [GitHub, Triage, Pull-Requests, cloud-pi-native, French]
 ---
 
 # CPN PR Triage
