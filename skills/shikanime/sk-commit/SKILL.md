@@ -6,7 +6,7 @@ author: Hermes Agent
 license: Apache-2.0
 metadata:
   hermes:
-    tags: [git, commit, shikanime-labs, shikanime-studio]
+    tags: [jj, commit, shikanime-labs, shikanime-studio]
 ---
 
 # Shikanime Org Commit
@@ -81,19 +81,13 @@ grep -rl "Signed-off-by" .github/ 2>/dev/null
 2. Commit with the repo-appropriate shape (see above). The commit message is the
    **source of truth** — the PR title/body are derived from it later (see
    `sk-pr`), so state what/why cleanly here; do not leave details for the PR
-   only. jj form — two `-m` blocks = subject paragraph + trailer paragraph:
+   only. Two `-m` blocks = subject paragraph + trailer paragraph:
 
    ```bash
    jj describe -m "<subject>" -m "Co-authored-by: Automata <automata@shikanime.studio>"
    ```
 
-git form:
-
-```bash
-git commit -m "<subject>" -m "Co-authored-by: Automata <automata@shikanime.studio>"
-```
-
-Confirm the hook accepted it (`git log -1` / `jj log -1`).
+Confirm the hook accepted it (`jj log -1`).
 
 ## Push / landing
 
@@ -122,7 +116,7 @@ Confirm the hook accepted it (`git log -1` / `jj log -1`).
 ## Verification
 
 ```bash
-git log -1 --pretty=%B && git status --short
+jj log -1 --no-graph -T 'description' && jj status
 ```
 
 Confirm the message matches the repo's enforced shape and the tree reflects only

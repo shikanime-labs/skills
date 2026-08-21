@@ -6,7 +6,7 @@ author: Hermes Agent
 license: Apache-2.0
 metadata:
   hermes:
-    tags: [conventional-commits, git, commit]
+    tags: [conventional-commits, jj, commit]
 ---
 
 # CPN Org Commit

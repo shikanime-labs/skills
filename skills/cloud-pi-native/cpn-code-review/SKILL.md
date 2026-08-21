@@ -16,7 +16,7 @@ through the four-phase process, with console architecture checkpoints and French
 artifact conventions. Distills the four-phase / severity-label methodology
 (progressive disclosure, security-first, collaborative tone, automation
 awareness) and overlays the console monorepo structure and cpn contribution
-rules. Does NOT commit or merge. `git` + `gh` only.
+rules. Does NOT commit or merge. `jj` + `gh` only.
 
 ## When to Use
 
@@ -39,8 +39,8 @@ rules. Does NOT commit or merge. `git` + `gh` only.
 
 ## How to Run
 
-Use `terminal` for `git`/`gh`/`pnpm`; `read_file`/`search_files` for context.
-For PRs, `gh pr checkout <N>` then review locally. Load
+Use `terminal` for `jj`/`gh`/`pnpm`; `read_file`/`search_files` for context. For
+PRs, `gh pr checkout <N>` then review locally. Load
 `references/console-architecture.md` for the architecture checkpoint,
 `references/review-output.md` for the French templates, and
 `references/review-doctrine.md` (in `sk-code-review`) for the shared review
@@ -49,11 +49,11 @@ standard.
 ## Quick Reference
 
 ```bash
-git diff main...HEAD --stat                 # scope
+jj diff --from main --to @ --stat          # scope
 pnpm test                                  # vitest unit (all packages)
 pnpm playwright:test                       # E2E (needs docker infra)
 npx eslint .                               # ESLint 9 flat (antfu base)
-git -C apps/server exec prisma generate    # prisma generate
+pnpm --filter @cpn-console/server-nestjs exec prisma generate  # prisma generate
 gh pr view <N> && gh pr diff <N> --name-only
 gh pr review <N> --request-changes --body "..."   # post verdict
 ```

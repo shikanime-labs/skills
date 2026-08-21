@@ -58,8 +58,8 @@ missing, fix the config, not the PR.
 
 ## Reviewer discipline
 
-- Read-only review: never mutate the working tree, index, or HEAD to review; use
-  `git show`/`git diff`/`git log`, or a separate worktree.
+- Read-only review: never mutate the working tree or commits to review; use
+  `jj diff`/`jj log`/`jj show`, or a separate workspace.
 - One review seat: the reviewer does not dispatch further reviewers; if the diff
   is large, review in passes and say so.
 - Plan alignment first: implementation vs stated intent; flag deviations

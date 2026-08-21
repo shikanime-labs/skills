@@ -3,23 +3,34 @@
 When an issue requires explaining _why_ the code behaves a certain way (root
 cause for a bug report), trace the change rather than guessing. Console commits
 frequently ship behavior changes with only a `Signed-off-by` + `Change-Id` and
-no prose "why", so the git history + PR/issue chain is the only source of truth.
+no prose "why", so the jj history + PR/issue chain is the only source of truth.
 
 ## Recipe
 
 1. **Pickaxe** the suspicious value/symbol across history:
-   `git log --oneline -S "<string>" -- <path>` (e.g.
 
 ```bash
-git log --oneline -S "<string>" -- <path>   # e.g.
-#   -S "project.owner.email" \
-#     -- apps/server-nestjs/src/modules/sonarqube/sonarqube.service.ts
+jj log -r 'all()' --no-graph \
+  -T 'commit_id.short() ++ " " ++ description.first_line() ++ "\n"' \
+  | head -50   # orient first
+jj log -r 'files("<path>") & present' --no-graph \
+  -T 'commit_id.short() ++ " " ++ description.first_line() ++ "\n"' \
+  -- apps/server-nestjs/src/modules/sonarqube/sonarqube.service.ts
 ```
 
-2. **Blame** the exact line: `git blame -L <line>,<line> <file>` → commit hash +
-   author + date.
-3. **Show** the commit: `git show <hash>` for the diff + message. Note that the
-   message often omits the rationale.
+For a content-level search (like `git log -S "<string>"`), grep each revision:
+
+```bash
+jj log -r 'files(<path>) & present' --no-graph -T 'commit_id.short() ++ "\n"' \
+| while read c; do
+    jj file show -r "$c" <path> 2>/dev/null | grep -q "<string>" && echo "$c"
+  done
+```
+
+2. **Annotate** the exact line: `jj file annotate <file>` → commit + author +
+   date per line (`jj file annotate -L <line>,<line> <file>` for one line).
+3. **Show** the commit: `jj show <commit>` (or `jj show <commit> --stat`) for
+   the diff + message. Note that the message often omits the rationale.
 4. **Find the PR**:
    `gh pr list --repo cloud-pi-native/console --search "<hash>"   --state all`
    (or `gh search prs --repo cloud-pi-native/console "<title fragment>"`).
@@ -36,13 +47,13 @@ git log --oneline -S "<string>" -- <path>   # e.g.
   method".
 
 ```bash
-git log -S "project.owner.email" -- \
-  apps/server-nestjs/src/modules/sonarqube/sonarqube.service.ts
+jj log -r 'files(apps/server-nestjs/src/modules/sonarqube) & present' \
+  --no-graph -T 'commit_id.short() ++ "\n"'
 ```
 
 → `44d6d2700a`.
 
-- `git blame` line 209 → same commit (W. Phetsinorath, 2026-08-04).
+- `jj file annotate` line 209 → same commit (W. Phetsinorath, 2026-08-04).
 - The change replaced the legacy fake email `${slug}@${slug}` with
   `project.owner.email` on a `local: true` robot account → the owner's real
   email became bound to a `local` SonarQube identity, colliding with their SSO

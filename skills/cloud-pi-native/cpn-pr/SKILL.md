@@ -101,8 +101,8 @@ Then apply only what the repo actually has:
 
 ### 2. Open the PR with French body + issue linkage
 
-Rebase the branch onto `origin/main` before pushing/opening — a PR must never be
-submitted from a stale base: `git fetch origin && git rebase origin/main`.
+Rebase the branch onto `main` before pushing/opening — a PR must never be
+submitted from a stale base: `jj rebase -d main`.
 
 PR **title must be conventional**. Use the repo template verbatim if present;
 otherwise the canonical org body:
@@ -150,7 +150,7 @@ project, milestone (by conventional type), and reviewers. The rules live in
   collaborator's approving review). When checks are green but `mergeStateStatus`
   is `BLOCKED`, trigger the merge queue:
   `gh workflow run 243523481 --repo cloud-pi-native/console -f PR_NUMBER=<N>`.
-  Husky `pre-push` runs `vitest`, so unit tests must pass before `git push`.
+  Husky `pre-push` runs `vitest`, so unit tests must pass before `jj git push`.
 - **other repos**: follow their branch protection / review rules; no fork unless
   detected.
 
@@ -175,7 +175,8 @@ If the commits are non-adjacent or `jj squash` reports a conflict (both touch
 the same files), recreate the squashed commit instead of fighting the merge:
 
 ```bash
-BASE=$(git -C "$(jj root)" rev-parse <squashed>~1)   # parent of the 2-commit chain
+jj log -r '<squashed>' --no-graph \
+  -T 'parents.first().commit_id'   # parent of the 2-commit chain
 jj new "$BASE"              # empty wc on the base
 jj restore --from <squashed>   # pull the full combined diff into the wc
 jj describe -m "<conventional subject>"   # set message, no editor
@@ -198,26 +199,28 @@ jj bookmark set hotfix/<branch> -r @- --allow-backwards
   account. Treat the `gpgsig -----BEGIN SSH SIGNATURE-----` header as "signed" —
   do not try to re-sign to clear a local `U`.
 
-### C. Verify the squashed content with git, not jj
+### C. Verify the squashed content
 
 **`jj cat` is unreliable in this repo** — it intermittently returns truncated or
 empty output (e.g. a 463-line file comes back as 5 lines; a 22-test spec reports
-0 `it(` calls). Always verify committed content through the underlying git
-object store instead:
+0 `it(` calls). Verify committed content through `jj file show` against the
+commit revision, and cross-check critical counts with a second method:
 
 ```bash
 ROOT=$(jj root)
-git -C "$ROOT" cat-file -p <commit>:<path> | grep -c "it('should"      # test count
+jj file show -r <commit> <path> | grep -c "it('should"      # test count
 # AI-marker sweep
-git -C "$ROOT" grep -l "ponytail" <commit> -- '*.ts'
+jj file show -r <commit> <path> | grep -l "ponytail"        # per-file
 # signature present
-git -C "$ROOT" cat-file commit <commit> | grep -i "^gpgsig"
+jj log -r <commit> --no-graph -T 'if(signature, "signed", "UNSIGNED")'
 # author check
-git -C "$ROOT" log -1 --format='author=%an <%ae>' <commit>
+jj log -r <commit> --no-graph -T 'author.name() ++ " <" ++ author.email() ++ ">\n"'
 ```
 
-`git cat-file` is the source of truth here. Trust `jj log`/`jj diff` for graph
-and working-copy state, but use git for file-content assertions.
+If `jj file show` returns suspiciously short output, re-run it — the truncation
+is intermittent, not deterministic. Trust `jj log`/`jj diff` for graph and
+working-copy state; re-verify any file-content assertion whose output looks
+truncated.
 
 ### D. Git-based squash / split / force-push (doc repos are plain git, not jj)
 
@@ -290,10 +293,10 @@ Get `<known-remote-sha>` from `git ls-remote origin refs/heads/<branch>`.
   `Issues liées` can point at an unrelated issue (e.g. PR #2403 "use project
   owner email for sonarqube user creation" was linked to #2400, a Vault secret
   bug). When the linked issue's body describes a different subsystem, the PR's
-  real rationale is missing — search the code (`git log -S`, `git blame`) and
-  the commit for the actual intent, and link the _correct_ issue (or create
-  one). A wrong issue link also hides why a regression was made, making future
-  root-cause work much harder.
+  real rationale is missing — search the code (`jj file annotate`,
+  `jj show <commit>`) and the commit for the actual intent, and link the
+  _correct_ issue (or create one). A wrong issue link also hides why a
+  regression was made, making future root-cause work much harder.
 - **Doc repos REQUIRE a `doc:` commit prefix** — the Repo-Class Detection
   table's old "documentation prefers plain-English no prefix" note was wrong.
   `documentation` and `documentation-interne-socle` both require `doc:`-prefixed

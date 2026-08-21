@@ -160,11 +160,12 @@ resolution toward a solution. Proof of the solution itself belongs in the PR
 
 When the issue needs a root cause (not just a symptom report), trace the code
 change instead of guessing. The recipe and a worked example live in
-[references/regression-trace.md](references/regression-trace.md): `git log -S`
-pickaxe → `git blame` → `git show` → `gh pr list --search <hash>` → follow the
-PR's linked issue. Always **verify the linked issue actually describes the
-change** — in this repo PRs are often linked to an unrelated issue, so the real
-rationale may be unrecorded (state that explicitly rather than assuming).
+[references/regression-trace.md](references/regression-trace.md): `jj log`
+revset pickaxe → `jj file annotate` → `jj show` → `gh pr list --search <hash>` →
+follow the PR's linked issue. Always **verify the linked issue actually
+describes the change** — in this repo PRs are often linked to an unrelated
+issue, so the real rationale may be unrecorded (state that explicitly rather
+than assuming).
 
 ## Pitfalls
 
