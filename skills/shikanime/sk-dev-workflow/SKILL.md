@@ -30,7 +30,7 @@ owner skill; gate phases are the mechanical walls a change must clear.
 | --- | ------------------------------------------------------ | ---------------------------------- | ----------------- |
 | 0   | Discussion (RFC) — only if the problem isn't converged | `sk-discussion`                    | entry             |
 | 1   | Issue — problem statement + `- [ ]` gate ledger        | `sk-issue`                         | ledger set        |
-| 2   | Triage — labels/assignee/milestone/project/reviewers   | `sk-triage-issue` / `sk-triage-pr` | ledger settled    |
+| 2   | Triage — labels/assignee/milestone/project/reviewers   | `sk-issue-triage` / `sk-pr-triage` | ledger settled    |
 | 3   | Branch + implement                                     | this skill                         | —                 |
 | 4   | Commit (plain-English, Automata trailer)               | `sk-commit`                        | commit shape      |
 | 5   | Code review (adversarial pre-merge)                    | `sk-code-review`                   | review gate       |
@@ -124,7 +124,7 @@ Work-item lifecycle: **discussion → issue → issue comments → PR.**
   `gh issue close <n> -c "<landing commit hash>"` after landing, or leave it to
   the owner. Where a repo's AGENTS.md requires `Related: <issue URL>`, that
   convention wins.
-- **Triage the issue before work starts** (`sk-triage-issue` skill). Assign
+- **Triage the issue before work starts** (`sk-issue-triage` skill). Assign
   every available metadata — labels (conventional-prefix → type label), assignee
   (active `gh` identity), milestone (bug → current patch, feature → next
   release), project board if one is obvious, and reviewers for the eventual PR.
@@ -239,6 +239,6 @@ staged.
 - `sk-commit` — the commit shape (subject, Automata co-author trailer) the
   landing steps assume.
 - `sk-pr` / `sk-async` — single fork PR vs stacked fan-out landing.
-- `sk-triage-issue` / `sk-triage-pr` — assign issue/PR metadata, then
+- `sk-issue-triage` / `sk-pr-triage` — assign issue/PR metadata, then
   adversarial pre-merge review (both gate the work before and after code).
 - `cpn-dev-workflow` — cloud-pi-native twin (upstream-only, no fork).

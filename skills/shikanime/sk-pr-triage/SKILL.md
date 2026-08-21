@@ -1,5 +1,5 @@
 ---
-name: sk-triage-pr
+name: sk-pr-triage
 description:
   "Triage an existing shikanime org PR: labels, assignee, milestone, reviewers,
   issue linkage."
@@ -96,5 +96,4 @@ gh pr view "$N" --repo "$R" --json number,title,labels,assignees,milestone,revie
 
 ## See also
 
-- `sk-triage` — router.
 - `sk-pr` — PR creation + linking conventions (English).

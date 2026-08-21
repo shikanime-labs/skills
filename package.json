@@ -40,16 +40,16 @@
         "path": "skills/shikanime/sk-issue"
       },
       {
-        "name": "sk-triage-issue",
-        "path": "skills/shikanime/sk-triage-issue"
+        "name": "sk-issue-triage",
+        "path": "skills/shikanime/sk-issue-triage"
       },
       {
-        "name": "sk-triage-pr",
-        "path": "skills/shikanime/sk-triage-pr"
+        "name": "sk-pr-triage",
+        "path": "skills/shikanime/sk-pr-triage"
       },
       {
-        "name": "sk-triage-discussion",
-        "path": "skills/shikanime/sk-triage-discussion"
+        "name": "sk-discussion-triage",
+        "path": "skills/shikanime/sk-discussion-triage"
       },
       {
         "name": "sk-pr",
@@ -84,16 +84,16 @@
         "path": "skills/cloud-pi-native/cpn-pr"
       },
       {
-        "name": "cpn-triage-issue",
-        "path": "skills/cloud-pi-native/cpn-triage-issue"
+        "name": "cpn-issue-triage",
+        "path": "skills/cloud-pi-native/cpn-issue-triage"
       },
       {
-        "name": "cpn-triage-pr",
-        "path": "skills/cloud-pi-native/cpn-triage-pr"
+        "name": "cpn-pr-triage",
+        "path": "skills/cloud-pi-native/cpn-pr-triage"
       },
       {
-        "name": "cpn-triage-discussion",
-        "path": "skills/cloud-pi-native/cpn-triage-discussion"
+        "name": "cpn-discussion-triage",
+        "path": "skills/cloud-pi-native/cpn-discussion-triage"
       },
       {
         "name": "cpn-code-review",

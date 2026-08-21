@@ -162,6 +162,6 @@ structure.
 ## See also
 
 - `cpn-issue` — derive the issue once the discussion converges.
-- `cpn-triage-discussion` — discussion triage (category, lifecycle routing,
+- `cpn-discussion-triage` — discussion triage (category, lifecycle routing,
   closure).
 - `sk-discussion` — shikanime twin (English, pre-issue RFC stage).

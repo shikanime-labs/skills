@@ -1,5 +1,5 @@
 ---
-name: sk-triage-issue
+name: sk-issue-triage
 description:
   "Triage an existing shikanime org issue: assign labels, assignee, milestone,
   project; close with rationale if not workable."
@@ -119,5 +119,4 @@ why, then close.
 
 ## See also
 
-- `sk-triage` — router.
 - `sk-issue` — creation conventions (English).
