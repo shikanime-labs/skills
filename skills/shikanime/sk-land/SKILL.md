@@ -8,7 +8,7 @@ author: Hermes Agent
 license: Apache-2.0
 metadata:
   hermes:
-    tags: [GitHub, Pull-Requests, Merge, shikanime-labs, shikanime-studio]
+    tags: [github, pull-requests, merge, shikanime-labs, shikanime-studio]
     related_skills: [sk-pr, sk-issue, sk-code-review, sk-async]
 ---
 
