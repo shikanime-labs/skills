@@ -26,17 +26,17 @@ Pairs with `sk-commit` and `sk-pr`.
 The work-item lifecycle as an ordered, navigable sequence. Each phase names its
 owner skill; gate phases are the mechanical walls a change must clear.
 
-| #   | Phase                                                  | Owner                   | Gate              |
-| --- | ------------------------------------------------------ | ----------------------- | ----------------- |
-| 0   | Discussion (RFC) — only if the problem isn't converged | `sk-discussion`         | entry             |
-| 1   | Issue — problem statement + `- [ ]` gate ledger        | `sk-issue`              | ledger set        |
-| 2   | Triage — labels/assignee/milestone/project/reviewers   | `sk-triage`             | ledger settled    |
-| 3   | Branch + implement                                     | this skill              | —                 |
-| 4   | Commit (plain-English, Automata trailer)               | `sk-commit`             | commit shape      |
-| 5   | Code review (adversarial pre-merge)                    | `sk-code-review`        | review gate       |
-| 6   | PR (open from fork, link `Related:`)                   | `sk-pr`                 | —                 |
-| 7   | Land (merge / `gh stack`)                              | `sk-async` / this skill | branch protection |
-| 8   | Close issue deliberately (verify N of N)               | `sk-issue`              | ledger discharged |
+| #   | Phase                                                  | Owner                              | Gate              |
+| --- | ------------------------------------------------------ | ---------------------------------- | ----------------- |
+| 0   | Discussion (RFC) — only if the problem isn't converged | `sk-discussion`                    | entry             |
+| 1   | Issue — problem statement + `- [ ]` gate ledger        | `sk-issue`                         | ledger set        |
+| 2   | Triage — labels/assignee/milestone/project/reviewers   | `sk-triage-issue` / `sk-triage-pr` | ledger settled    |
+| 3   | Branch + implement                                     | this skill                         | —                 |
+| 4   | Commit (plain-English, Automata trailer)               | `sk-commit`                        | commit shape      |
+| 5   | Code review (adversarial pre-merge)                    | `sk-code-review`                   | review gate       |
+| 6   | PR (open from fork, link `Related:`)                   | `sk-pr`                            | —                 |
+| 7   | Land (merge / `gh stack`)                              | `sk-async` / this skill            | branch protection |
+| 8   | Close issue deliberately (verify N of N)               | `sk-issue`                         | ledger discharged |
 
 Phases 2 and 5 are the before-code and before-merge gates: never skip triage
 (the ledger is unsettled) or review (the PR isn't ready).
@@ -124,8 +124,8 @@ Work-item lifecycle: **discussion → issue → issue comments → PR.**
   `gh issue close <n> -c "<landing commit hash>"` after landing, or leave it to
   the owner. Where a repo's AGENTS.md requires `Related: <issue URL>`, that
   convention wins.
-- **Triage the issue before work starts** (`sk-triage` skill). Assign every
-  available metadata — labels (conventional-prefix → type label), assignee
+- **Triage the issue before work starts** (`sk-triage-issue` skill). Assign
+  every available metadata — labels (conventional-prefix → type label), assignee
   (active `gh` identity), milestone (bug → current patch, feature → next
   release), project board if one is obvious, and reviewers for the eventual PR.
   Apply only fields that are empty and determinable from the item's own content;
@@ -201,7 +201,7 @@ protection where present are the mechanical gate.** GitHub is the durable ledger
 | `AGENTS.md` with commit-body `Related:` URL     | Follow it (e.g. `manifests`) — overrides plain-English default                                  |
 | `doc:` prefix convention                        | Doc repo — use `doc:` titles                                                                    |
 | branch protection on `main`                     | PR mandatory; no direct push                                                                    |
-| jj repo (`.jj/`)                                | `jj bookmark track <branch> --remote=origin` before push                                         |
+| jj repo (`.jj/`)                                | `jj bookmark track <branch> --remote=origin` before push                                        |
 | NixOS/infra repo (`machines`, `nix-containers`) | build-verify (`nix eval` / `nix build`) before switch; control-plane changes need quorum checks |
 
 ## Keep AGENTS.md current
@@ -239,6 +239,6 @@ staged.
 - `sk-commit` — the commit shape (subject, Automata co-author trailer) the
   landing steps assume.
 - `sk-pr` / `sk-async` — single fork PR vs stacked fan-out landing.
-- `sk-triage` / `sk-code-review` — assign issue/PR metadata, then adversarial
-  pre-merge review (both gate the work before and after code).
+- `sk-triage-issue` / `sk-triage-pr` — assign issue/PR metadata, then
+  adversarial pre-merge review (both gate the work before and after code).
 - `cpn-dev-workflow` — cloud-pi-native twin (upstream-only, no fork).

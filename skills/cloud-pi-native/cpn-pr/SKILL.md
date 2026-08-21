@@ -138,10 +138,10 @@ EOF
 
 ### 2b. Apply triage metadata
 
-After the PR is created, delegate to `cpn-triage` (#N): it enumerates the repo's
-available metadata and sets each empty, determinable field — labels, assignee,
-project, milestone (by conventional type), and reviewers. The rules live in
-`cpn-triage`; do not re-derive them here. This is always against the upstream
+After the PR is created, delegate to `cpn-triage-pr` (#N): it enumerates the
+repo's available metadata and sets each empty, determinable field — labels,
+assignee, project, milestone (by type), and reviewers. The rules live in
+`cpn-triage-pr`; do not re-derive them here. This is always against the upstream
 `cloud-pi-native/<repo>` (see Internal policy: no fork).
 
 ### 3. Repo-specific post-steps
@@ -341,5 +341,5 @@ the canonical French sections still apply.
 - `cpn-dev-workflow` — branch discipline and pre-push checks upstream of this
   PR.
 - `sk-pr` — shikanime twin (fork-first, plain-English titles).
-- `cpn-triage` — assigns PR/issue metadata (labels, assignee, milestone,
-  project, reviewers); run it after creation.
+- `cpn-triage-pr` — assigns PR metadata (labels, assignee, milestone, project,
+  reviewers); run it after creation.

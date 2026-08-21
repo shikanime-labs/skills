@@ -64,10 +64,10 @@ issue.
 
 ### 3. Apply triage metadata
 
-Delegate to `sk-triage` (#N): it enumerates the repo's available metadata and
-sets each empty, determinable field — labels, assignee, milestone, project. The
-rules (label inference by prefix, additive `--add-label`, milestone-by-type)
-live in `sk-triage`; do not re-derive them here.
+Delegate to `sk-triage-issue` (#N): it enumerates the repo's available metadata
+and sets each empty, determinable field — labels, assignee, milestone, project.
+The rules (natural-language label inference, additive `--add-label`,
+milestone-by-type) live in `sk-triage-issue`; do not re-derive them here.
 
 ## Pitfalls
 
@@ -90,5 +90,5 @@ Confirm title + label are set and the issue lives in the upstream org repo.
 - `sk-discussion` — the pre-issue stage when the problem is not yet converged.
 - `sk-pr` — the solver; links back via `Related:` without auto-close.
 - `cpn-issue` — French twin with cloud-pi-native issue templates.
-- `sk-triage` — assigns issue/PR metadata (labels, assignee, milestone,
+- `sk-triage-issue` — assigns issue metadata (labels, assignee, milestone,
   project); run it after creation.

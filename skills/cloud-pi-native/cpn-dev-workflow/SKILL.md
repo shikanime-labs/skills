@@ -39,17 +39,17 @@ The work-item lifecycle as an ordered, navigable sequence for the console repo.
 Each phase names its owner skill; gate phases are the mechanical walls a change
 must clear.
 
-| #   | Phase                                                          | Owner             | Gate              |
-| --- | -------------------------------------------------------------- | ----------------- | ----------------- |
-| 0   | Discussion (RFC) — only if the problem isn't converged         | `cpn-discussion`  | entry             |
-| 1   | Issue — French problem statement + `Définition du fini` ledger | `cpn-issue`       | ledger set        |
-| 2   | Triage — labels/assignee/milestone/project/reviewers           | `cpn-triage`      | ledger settled    |
-| 3   | Branch + implement (jj workspace, conventional commits)        | this skill        | —                 |
-| 4   | Commit (conventional, SSH-signed)                              | `cpn-commit`      | commit shape      |
-| 5   | Code review (adversarial pre-merge)                            | `cpn-code-review` | review gate       |
-| 6   | PR (upstream-only draft, link `Issues liées`)                  | `cpn-pr`          | —                 |
-| 7   | Land (merge / `gh stack` + merge queue)                        | this skill        | branch protection |
-| 8   | Close deliberately (verify N of N)                             | `cpn-issue`       | ledger discharged |
+| #   | Phase                                                          | Owner                                | Gate              |
+| --- | -------------------------------------------------------------- | ------------------------------------ | ----------------- |
+| 0   | Discussion (RFC) — only if the problem isn't converged         | `cpn-discussion`                     | entry             |
+| 1   | Issue — French problem statement + `Définition du fini` ledger | `cpn-issue`                          | ledger set        |
+| 2   | Triage — labels/assignee/milestone/project/reviewers           | `cpn-triage-issue` / `cpn-triage-pr` | ledger settled    |
+| 3   | Branch + implement (jj workspace, conventional commits)        | this skill                           | —                 |
+| 4   | Commit (conventional, SSH-signed)                              | `cpn-commit`                         | commit shape      |
+| 5   | Code review (adversarial pre-merge)                            | `cpn-code-review`                    | review gate       |
+| 6   | PR (upstream-only draft, link `Issues liées`)                  | `cpn-pr`                             | —                 |
+| 7   | Land (merge / `gh stack` + merge queue)                        | this skill                           | branch protection |
+| 8   | Close deliberately (verify N of N)                             | `cpn-issue`                          | ledger discharged |
 
 Phases 2 and 5 are the before-code and before-merge gates. The console
 `Procedure` (steps 1–12) is the implementation of phases 3–7 in this repo.
@@ -103,9 +103,9 @@ through `terminal` (parent re-verification; see "Gates" below).
    skill); link the PR with `Refs #N` — never an auto-close keyword unless
    explicitly one-to-one (see stacked-PR rule). Do not implement from a bare
    request, and never open a PR without an issue behind it.
-4. **Triage the issue before work starts** (`cpn-triage` skill). Assign every
-   available metadata the repo exposes — labels (conventional-prefix → type
-   label), assignee (active `gh` identity), milestone (bug → current patch,
+4. **Triage the issue before work starts** (`cpn-triage-issue` skill). Assign
+   every available metadata the repo exposes — labels (conventional-prefix →
+   type label), assignee (active `gh` identity), milestone (bug → current patch,
    feature → next release), project board if one is obvious, and reviewers for
    the eventual PR. Apply only fields that are empty and determinable from the
    item's own content; never invent a label the repo does not have. A triaged
@@ -307,10 +307,8 @@ the closest thing and mirror its shape:
 - `@cpn-console/hooks` helpers: flag strings are `'enabled'`/`'disabled'`, NOT
   `'true'`/`'false'` — use `specificallyEnabled`/`specificallyDisabled`.
 
-For deeper module conventions load the sub-skills: `cpn-server-nestjs`
-(service + vitest spec rules), `cpn-plugins`, `cpn-nestjs-client` (module
-client + pagination), `cpn-monorepo-nav` (layout), `cpn-tsc-resolution`,
-`cpn-triage` (assign issue/PR metadata), `cpn-code-review` (pre-merge
+For deeper module conventions load the sub-skills: `cpn-triage-issue` /
+`cpn-triage-pr` (assign issue/PR metadata), `cpn-code-review` (pre-merge
 adversarial review).
 
 ## Testing practice (vitest specs — inline rules)

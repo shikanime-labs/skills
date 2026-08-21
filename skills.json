@@ -30,9 +30,19 @@
       "path": "skills/shikanime/sk-issue"
     },
     {
-      "name": "sk-triage",
-      "description": "Assign every available metadata (labels, assignee, milestone, project, reviewers) to an existing shikanime-labs or shikanime-studio issue or PR, never inventing values. May also close issues (not planned / duplicate / completed) with a required rationale comment.",
-      "path": "skills/shikanime/sk-triage"
+      "name": "sk-triage-issue",
+      "description": "Triage an existing shikanime org issue: labels, assignee, milestone, project; close with rationale if not workable.",
+      "path": "skills/shikanime/sk-triage-issue"
+    },
+    {
+      "name": "sk-triage-pr",
+      "description": "Triage an existing shikanime org PR: labels, assignee, milestone, reviewers, issue linkage.",
+      "path": "skills/shikanime/sk-triage-pr"
+    },
+    {
+      "name": "sk-triage-discussion",
+      "description": "Triage an existing shikanime org discussion: category, body shape, Q\u0026A answer marking, lifecycle close (GraphQL).",
+      "path": "skills/shikanime/sk-triage-discussion"
     },
     {
       "name": "sk-pr",
@@ -80,9 +90,19 @@
       "path": "skills/cloud-pi-native/cpn-code-review"
     },
     {
-      "name": "cpn-triage",
-      "description": "Assign every available metadata (labels, assignee, milestone, project, reviewers) to an existing cloud-pi-native console issue or PR, French conventions, never inventing values. May also close issues (sans suite / doublon / terminé) with a required rationale comment.",
-      "path": "skills/cloud-pi-native/cpn-triage"
+      "name": "cpn-triage-issue",
+      "description": "Triage une issue existante du dépôt cloud-pi-native/console : labels, assignee, jalon, projet ; fermeture motivée si non traitable.",
+      "path": "skills/cloud-pi-native/cpn-triage-issue"
+    },
+    {
+      "name": "cpn-triage-pr",
+      "description": "Triage une PR existante du dépôt cloud-pi-native/console : labels, assignee, jalon, reviewers, lien issue.",
+      "path": "skills/cloud-pi-native/cpn-triage-pr"
+    },
+    {
+      "name": "cpn-triage-discussion",
+      "description": "Triage une discussion existante du dépôt cloud-pi-native/console : catégorie, forme du corps, réponse Q\u0026A, clôture de cycle (GraphQL).",
+      "path": "skills/cloud-pi-native/cpn-triage-discussion"
     }
   ]
 }
