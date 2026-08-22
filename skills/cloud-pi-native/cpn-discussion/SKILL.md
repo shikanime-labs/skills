@@ -29,8 +29,8 @@ discussion" / "reword discussion #N" requests on this repo.
 ## Prerequisites
 
 - `gh` authenticated with repo write (any identity that is a collaborator).
-- Discussions live on `cloud-pi-native/console`. Target that repo directly
-  (its Issues are disabled, but Discussions are active there).
+- Discussions live on `cloud-pi-native/console`. Target that repo directly (its
+  Issues are disabled, but Discussions are active there).
 
 ## Repo house structure (French)
 

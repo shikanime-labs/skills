@@ -63,8 +63,7 @@ npx agents export --target claude
 ```
 
 The `agents` field in `package.json` and the `skills.json` manifest at the repo
-root enable discovery by npm-based skill managers. Both list the 11 skills
-below.
+root enable discovery by npm-based skill managers. Both list the skills below.
 
 ## The Two Workflows
 
@@ -73,9 +72,8 @@ issue comments → PR** — with org-specific conventions:
 
 - **shikanime (`sk-*`)**: plain English commits with the Automata co-author
   trailer, `gh stack` landing, direct push on explicit instruction.
-- **cloud-pi-native (`cpn-*`)**: French artifacts, conventional commits,
-  PRs pushed to origin from `cloud-pi-native/*`, Release Please
-  versioning.
+- **cloud-pi-native (`cpn-*`)**: French artifacts, conventional commits, PRs
+  pushed to origin from `cloud-pi-native/*`, Release Please versioning.
 
 Shared doctrine across both families:
 
@@ -99,7 +97,7 @@ All skills follow the [Agent Skills](https://agentskills.io/specification)
 specification, compatible with the
 [Hermes format](https://hermes-agent.nousresearch.com/docs).
 
-### shikanime family (`skills/shikanime/`)
+### shikanime family
 
 | Skill                  | Description                                                               |
 | ---------------------- | ------------------------------------------------------------------------- |

@@ -14,16 +14,15 @@ metadata:
 Open pull requests against `shikanime-labs/*` and `shikanime-studio/*` following
 org conventions: push to `origin` (the cloned org repo), open PRs with
 `--head <org>:<branch>`, base `main`, plain-English (or `doc:`) title, and issue
-linkage. Repo-specific enforcement (branch protection, CI, hooks) is detected per
-repo, not assumed.
+linkage. Repo-specific enforcement (branch protection, CI, hooks) is detected
+per repo, not assumed.
 
 ## Internal policy: push to the org repo
 
 **All PRs open directly from `origin` — the cloned org repo.** Push the working
-branch to `origin` and open the PR with
-`--head <org>:<branch>`. The local checkout path may read `shikanime-labs`
-while the gh remote is `shikanime-studio` (e.g. nix-containers) — trust the gh
-remote as canonical.
+branch to `origin` and open the PR with `--head <org>:<branch>`. The local
+checkout path may read `shikanime-labs` while the gh remote is
+`shikanime-studio` (e.g. nix-containers) — trust the gh remote as canonical.
 
 ## When to Use
 
@@ -164,8 +163,8 @@ reviewers. The rules live in `sk-pr-triage`; do not re-derive them here.
 
 ## Pitfalls
 
-- Pushing to a non-org remote instead of `origin` — internal policy is push-to-org;
-  `origin` is the single push target.
+- Pushing to a non-org remote instead of `origin` — internal policy is
+  push-to-org; `origin` is the single push target.
 - Conventional PR title — shikanime uses plain English / `doc:`, not
   `feat:`/`fix:`.
 - **PR diverging from the commit** — the commit message drives the PR title and

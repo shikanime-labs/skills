@@ -23,9 +23,9 @@ win over the defaults below — detect them per repo, don't assume.
 ## Prerequisites
 
 - Working tree in the target repo.
-- `gh` authenticated. Branches push to `origin` (the cloned org repo)
-  directly. Local path may say `shikanime-labs` while the gh remote is
-  `shikanime-studio` (nix-containers) — trust the gh remote.
+- `gh` authenticated. Branches push to `origin` (the cloned org repo) directly.
+  Local path may say `shikanime-labs` while the gh remote is `shikanime-studio`
+  (nix-containers) — trust the gh remote.
 - jj repos: ensure the branch is tracked on `origin`
   (`jj bookmark track <branch> --remote=origin`) before any push.
 

@@ -37,8 +37,8 @@ actually matches the branch's change (`jj show <commit>`) before linking.
 ### 2. Open the org-repo PR
 
 Load `sk-pr` and follow it. Push to `origin` (the org repo), open
-`--head <org>:<branch>`, base `main`; derive title/body from the commit and
-link with `Related: <full issue URL>` (no auto-close keyword unless explicitly
+`--head <org>:<branch>`, base `main`; derive title/body from the commit and link
+with `Related: <full issue URL>` (no auto-close keyword unless explicitly
 one-to-one).
 
 On completion you have PR `#N` against the org repo.

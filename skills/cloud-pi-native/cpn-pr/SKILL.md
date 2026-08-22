@@ -82,7 +82,7 @@ Then apply only what the repo actually has:
 | `release-please`                                          | PR-title type drives the version bump — get the type right.                                                                                                                                                                                    |
 | branch protection                                         | Use a feature/`hotfix/*` branch; a separate approving review is mandatory; may need a merge queue.                                                                                                                                             |
 | no commitlint/release-please                              | Follow the repo's own commit convention (e.g. the `documentation` repo prefers plain-English imperative commits, no prefix) — a conventional PR title is still expected.                                                                       |
-| need to publish a branch                                  | Push to `origin` (`cloud-pi-native/<repo>`) and open with `--head cloud-pi-native:<branch>`.                                                                                                              |
+| need to publish a branch                                  | Push to `origin` (`cloud-pi-native/<repo>`) and open with `--head cloud-pi-native:<branch>`.                                                                                                                                                   |
 | doc repo (`documentation`, `documentation-interne-socle`) | Commit subject MUST be `doc:`-prefixed (e.g. `doc: aligner ADR-014/019 sur le RBAC effectif`). The earlier "plain-English, no prefix" guidance was WRONG — these repos enforce `doc:`. A conventional PR _title_ is still expected everywhere. |
 
 ## Procedure
@@ -150,11 +150,11 @@ assignee, project, milestone (by type), and reviewers. The rules live in
 
 ### 3. Repo-specific post-steps
 
-- **console class** (`cloud-pi-native/console`): push the branch to `origin`
-  and open with `--head cloud-pi-native:<branch>` (see Internal
-  policy above). Do NOT self-merge (branch protection requires another
-  collaborator's approving review). When checks are green but `mergeStateStatus`
-  is `BLOCKED`, trigger the merge queue:
+- **console class** (`cloud-pi-native/console`): push the branch to `origin` and
+  open with `--head cloud-pi-native:<branch>` (see Internal policy above). Do
+  NOT self-merge (branch protection requires another collaborator's approving
+  review). When checks are green but `mergeStateStatus` is `BLOCKED`, trigger
+  the merge queue:
   `gh workflow run 243523481 --repo cloud-pi-native/console -f PR_NUMBER=<N>`.
   Husky `pre-push` runs `vitest`, so unit tests must pass before `jj git push`.
 - **other repos**: follow their branch protection / review rules.
@@ -237,9 +237,9 @@ These git patterns bit us and were recovered — encode them:
   `<base>` = `origin/main` is ONLY correct if the branch was cut from the
   CURRENT main.
 - **`origin/main` may have advanced** since the branch was cut.
-  `git reset --soft origin/main` then stages spurious REVERTS of unrelated
-  main commits (it rebases the branch onto the new main tip). Always find the
-  TRUE base first:
+  `git reset --soft origin/main` then stages spurious REVERTS of unrelated main
+  commits (it rebases the branch onto the new main tip). Always find the TRUE
+  base first:
 
 ```bash
 git merge-base --is-ancestor \
@@ -304,9 +304,9 @@ Get `<known-remote-sha>` from `git ls-remote origin refs/heads/<branch>`.
   table's old "documentation prefers plain-English no prefix" note was wrong.
   `documentation` and `documentation-interne-socle` both require `doc:`-prefixed
   subjects; only the PR _title_ is conventional everywhere.
-- **`reset --soft origin/main` after main advanced** stages spurious reverts
-  of unrelated main commits (it rebases onto the new main tip). Find the true
-  base — parent of the oldest PR commit — and use
+- **`reset --soft origin/main` after main advanced** stages spurious reverts of
+  unrelated main commits (it rebases onto the new main tip). Find the true base
+  — parent of the oldest PR commit — and use
   `git rebase --onto origin/main <true-base> <branch>` instead.
 - **`--force-with-lease` "stale info"** → the local tracking ref is stale.
   `git fetch origin <branch>` then pin:
@@ -339,8 +339,7 @@ the canonical French sections still apply.
 ## See also
 
 - `cpn-commit` — the commit this PR must restate (parity rule).
-- `cpn-dev-workflow` — branch discipline and pre-push checks for this
-  PR.
+- `cpn-dev-workflow` — branch discipline and pre-push checks for this PR.
 - `sk-pr` — shikanime twin (plain-English titles).
 - `cpn-pr-triage` — assigns PR metadata (labels, assignee, milestone, project,
   reviewers); run it after creation.

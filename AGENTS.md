@@ -40,7 +40,7 @@ Example: Wire release management, milestone metadata, trunk-based jj stacking
 Encode four principles into the workflow substrate and skills.
 
 Design: README.md, AGENTS.md
-Related: skills/shikanime/, skills/cloud-pi-native/
+Related: skills/shikanime, skills/cloud-pi-native
 Signed-off-by: Shikanime Deva <william.phetsinorath@shikanime.studio>
 ```
 
