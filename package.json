@@ -40,28 +40,16 @@
         "path": "skills/shikanime/sk-issue"
       },
       {
+        "name": "sk-issue-refine",
+        "path": "skills/shikanime/sk-issue-refine"
+      },
+      {
         "name": "sk-issue-triage",
         "path": "skills/shikanime/sk-issue-triage"
       },
       {
         "name": "sk-pr-triage",
         "path": "skills/shikanime/sk-pr-triage"
-      },
-      {
-        "name": "sk-discussion-triage",
-        "path": "skills/shikanime/sk-discussion-triage"
-      },
-      {
-        "name": "sk-pr",
-        "path": "skills/shikanime/sk-pr"
-      },
-      {
-        "name": "sk-land",
-        "path": "skills/shikanime/sk-land"
-      },
-      {
-        "name": "sk-pr-resolve",
-        "path": "skills/shikanime/sk-pr-resolve"
       },
       {
         "name": "sk-issue-workflow",
@@ -72,8 +60,24 @@
         "path": "skills/shikanime/sk-pr-workflow"
       },
       {
-        "name": "«redacted:sk-…»",
-        "path": "skills/shikanime/«redacted:sk-…»"
+        "name": "sk-pr",
+        "path": "skills/shikanime/sk-pr"
+      },
+      {
+        "name": "sk-land",
+        "path": "skills/shikanime/sk-land"
+      },
+      {
+        "name": "sk-discussion-triage",
+        "path": "skills/shikanime/sk-discussion-triage"
+      },
+      {
+        "name": "sk-pr-resolve",
+        "path": "skills/shikanime/sk-pr-resolve"
+      },
+      {
+        "name": "sk-code-review",
+        "path": "skills/shikanime/sk-code-review"
       },
       {
         "name": "cpn-dev-workflow",
