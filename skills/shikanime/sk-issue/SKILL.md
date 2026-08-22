@@ -53,10 +53,10 @@ Keep the body a clean problem statement (Description, reproduction steps,
 affected version, impact). Post root-cause / investigation findings as a
 **comment** (`gh issue comment <N> --repo <org>/<repo> --body-file <file>`), not
 in the body — the body must stay stable for triage. An issue is a clean
-conversation for any reader — human or another agent — not the agent's
-notebook: post only concluded findings and the questions that need an answer,
-never raw reasoning or status chatter. Interim comments may be deleted once the
-thread converges.
+conversation for any reader — human or another agent — not the agent's notebook:
+post only concluded findings and the questions that need an answer, never raw
+reasoning or status chatter. Interim comments may be deleted once the thread
+converges.
 
 Include acceptance criteria as a `- [ ]` tasklist, each item phrased so a
 command can decide it — this is the work item's gate ledger (unlazy method):

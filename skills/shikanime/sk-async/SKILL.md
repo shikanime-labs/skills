@@ -6,7 +6,18 @@ author: Hermes Agent
 license: Apache-2.0
 metadata:
   hermes:
-    tags: [jj, workspaces, parallel, stacked-prs, gh-stack, delegation, github, shikanime-labs, shikanime-studio]
+    tags:
+      [
+        jj,
+        workspaces,
+        parallel,
+        stacked-prs,
+        gh-stack,
+        delegation,
+        github,
+        shikanime-labs,
+        shikanime-studio,
+      ]
 ---
 
 # Shikanime Org Parallel Streams
@@ -45,11 +56,11 @@ splitting component of `sk-dev-workflow` (and `cpn-dev-workflow`).
 1. **Tree before work** — decompose against the issue ledger; write the tree
    (trunk, units, edges) into the plan/`todo` with gates fixed per leaf BEFORE
    any fan-out (contracts before delegation).
-2. **Fan out** — ALWAYS start work in a NEW jj workspace; never work directly
-   in an existing one (the default workspace is reserved for trunk
-   observation). One workspace per parallel unit, rooted at the trunk; name
-   workspaces `<repo-name>.<unit>` (workspace names are repo-global, dot-
-   qualification prevents collisions across repos):
+2. **Fan out** — ALWAYS start work in a NEW jj workspace; never work directly in
+   an existing one (the default workspace is reserved for trunk observation).
+   One workspace per parallel unit, rooted at the trunk; name workspaces
+   `<repo-name>.<unit>` (workspace names are repo-global, dot- qualification
+   prevents collisions across repos):
 
    ```bash
    jj workspace add ../<repo-name>.<unit> --name <repo-name>.<unit>
