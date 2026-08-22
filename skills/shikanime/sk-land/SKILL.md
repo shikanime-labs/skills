@@ -2,7 +2,7 @@
 name: sk-land
 description:
   "Merge a PR in shikanime-labs and shikanime-studio after verifying the
-  definition of done and review approval."
+  definition of done, all review conversations reconciled, and review approval."
 version: 0.1.0
 author: Hermes Agent
 license: Apache-2.0
@@ -64,7 +64,57 @@ gh pr view <M> --repo <org>/<repo> --json reviews,headRefOid \
 - Agent review is pre-flight; **a human approving review is the gate** before
   landing. If only the agent reviewed and branch protection demands a human,
   request one and stop.
+- Where branch protection blocks self-approval (e.g. `shikanime-labs/skills`,
+  `nix-containers`), a verbal `lgtm` from the user satisfies Gate 2 — land via
+  `gh pr merge --squash --admin` (see Merge procedure). `--admin` is what
+  bypasses the protection; no separate human review is then required.
 - CI checks green: `gh pr checks <M> --repo <org>/<repo>`.
+
+### Gate 3 — Conversations reconciled
+
+Every review conversation (inline thread) on the PR must be reconciled before
+merge — an open thread is unfinished review, not decoration. Enumerate them:
+
+```bash
+gh api graphql -f query='
+  query($owner:String!,$repo:String!,$num:Int!) {
+    repository(owner:$owner,name:$repo){
+      pullRequest(number:$num){
+        reviewThreads(first:100){
+          nodes{
+            id
+            isResolved
+            isOutdated
+            comments(first:1){
+              nodes{ body author{login} path line diffHunk }
+            }
+          }
+        }
+      }
+    }
+  }' -f owner=<org> -f repo=<repo> -F num=<M>
+```
+
+For each **unresolved** thread, judge the suggestion and act:
+
+- **Pertinent + already in the ledger** — verify the diff/CI addresses it; if so
+  resolve the thread, if not it blocks merge (same as an open criterion).
+- **Pertinent + not yet in the ledger** — add the item to the linked issue's
+  acceptance-criteria tasklist (Gate 1), address it in the diff, then resolve.
+- **Not pertinent** — discard: post one comment stating the rationale (out of
+  scope / handled elsewhere / not applicable), then resolve. Never resolve
+  silently; a discarded suggestion still owes a one-line why.
+
+Outdated threads (`isOutdated`) that are otherwise uncontested may be resolved
+without a code change; note the supersession in the resolution comment.
+
+```bash
+# Resolve a reconciled thread:
+gh api graphql -f query='
+  mutation($id:ID!){
+    resolveReviewThread(input:{threadId:$id}){ thread{isResolved} }
+  }' -f id=<threadId>
+```
 
 ## Merge procedure
 
@@ -80,10 +130,13 @@ gh stack merge <PR_NUMBER> --yes --squash
 gh pr merge <M> --repo <org>/<repo> --squash --rebase   # squash+rebase only
 ```
 
-- Repo-specific overrides win: e.g. `nix-containers` requires
-  `gh pr merge --squash --admin`.
-- Branch protection requires linear history + signed commits; squash+rebase
-  merge only.
+- Direct admin merge (lone branch): repos that block self-approval land with
+  `gh pr merge <M> --repo <org>/<repo> --squash --admin`. `--admin` is required
+  (protection rejects a non-admin merge); drop `--rebase` (squash is the
+  strategy). Used after a verbal `lgtm` satisfies Gate 2.
+- Standard lone branch (protection allows self-merge):
+  `gh pr merge <M> --repo <org>/<repo> --squash --rebase`.
+- Branch protection requires linear history + signed commits; squash merge only.
 
 ## Post-merge
 
@@ -104,13 +157,18 @@ gh pr merge <M> --repo <org>/<repo> --squash --rebase   # squash+rebase only
   commit.
 - Auto-closing via `Closes #N` at merge time — close the issue deliberately
   after verifying the ledger.
+- Open review threads at merge — every conversation must be reconciled
+  (pertinent → addressed or added to ledger, non-pertinent → discarded with
+  rationale), not left unresolved.
 
 ## Verification Checklist
 
 - [ ] Linked issue tasklist: every criterion checked with evidence.
 - [ ] `sk-code-review` approval on the current head commit; human review where
       protection requires it.
+- [ ] Every review conversation reconciled: pertinent addressed/added to
+      ledger, non-pertinent discarded with rationale, all threads resolved.
 - [ ] CI checks green.
-- [ ] Merged via `gh stack merge` (stacked) or `gh pr merge --squash` (lone),
-      per repo override.
+- [ ] Merged via `gh stack merge` (stacked) or `gh pr merge --squash
+      [--admin if protection blocks self-approval]` (lone), per repo override.
 - [ ] Issue closed deliberately with a rationale comment.
