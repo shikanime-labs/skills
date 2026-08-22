@@ -14,16 +14,15 @@ metadata:
 Open pull requests against `shikanime-labs/*` and `shikanime-studio/*` following
 org conventions: push to `origin` (the cloned org repo), open PRs with
 `--head <org>:<branch>`, base `main`, plain-English (or `doc:`) title, and issue
-linkage. Repo-specific enforcement (branch protection, CI, hooks) is detected per
-repo, not assumed.
+linkage. Repo-specific enforcement (branch protection, CI, hooks) is detected
+per repo, not assumed.
 
 ## Internal policy: push to the org repo
 
 **All PRs open directly from `origin` — the cloned org repo.** Push the working
-branch to `origin` and open the PR with
-`--head <org>:<branch>`. The local checkout path may read `shikanime-labs`
-while the gh remote is `shikanime-studio` (e.g. nix-containers) — trust the gh
-remote as canonical.
+branch to `origin` and open the PR with `--head <org>:<branch>`. The local
+checkout path may read `shikanime-labs` while the gh remote is
+`shikanime-studio` (e.g. nix-containers) — trust the gh remote as canonical.
 
 ## When to Use
 
@@ -116,7 +115,22 @@ gh stack sync                          # later: rebase+pull+sync stack state
   `main`.
 - Commits per `sk-commit` (plain English / `doc:`; repo hook policy wins).
 
-### 2. Push to origin + open PR
+### 2. Rebase onto `main` + resolve conflicts (MANDATORY before any push)
+
+```bash
+jj rebase -d main
+```
+
+- If this reports a conflict or leaves `<<<<<<<` markers: STOP. Resolve the
+  conflict (keep `main`'s additions AND the fix — do not pick one side), then
+  `jj squash` / `jj resolve`. A branch carrying conflict markers must never be
+  pushed.
+- `jj rebase` rewrites commits and drops signatures (jj auto-sign does not
+  fire) — re-sign with `jj sign -r @` and re-point the bookmark
+  (`jj bookmark set <branch> -r @`) before pushing (see `sk-dev-workflow`
+  signing notes).
+
+### 2b. Push to origin + open PR
 
 ```bash
 ORG=<org>
@@ -146,6 +160,32 @@ EOF
 
 Use `--draft` when checks aren't green yet.
 
+### 2c. Verify mergeable after submit (new or revised PR)
+
+Confirm GitHub agrees there are no conflicts:
+
+```bash
+gh pr view <N> --repo "<org>/<repo>" --json mergeable,mergeStateStatus
+# expect mergeable="MERGEABLE"; "CONFLICTING" means the rebase didn't take,
+# "BEHIND" means main advanced (rebase again)
+```
+
+GitHub's `mergeable` is computed lazily and can read stale `CONFLICTING` even
+when a local rebase was clean — a fresh `jj rebase -d main` + re-push onto the
+latest `main` forces recompute. Do not declare done on a stale `CONFLICTING`.
+
+### 2d. On revision (PR already open): reconcile review threads
+
+When this is an update to an existing PR (re-push of a feature branch whose PR
+is already open), new commits void prior review. Before declaring done:
+
+1. Load `sk-pr-resolve` and drive every review conversation to a resolved
+   state — pertinent suggestions addressed in the diff and the thread resolved,
+   non-pertinent discarded with a one-line comment. Never resolve silently.
+2. Re-run `sk-code-review` if the new commits changed logic since the last
+   review.
+3. Verify the linked issue's DoD ledger is still N-of-N against the new head.
+
 ### 3. Apply triage metadata
 
 Delegate to `sk-pr-triage` (#N): it enumerates the repo's available metadata and
@@ -164,13 +204,20 @@ reviewers. The rules live in `sk-pr-triage`; do not re-derive them here.
 
 ## Pitfalls
 
-- Pushing to a non-org remote instead of `origin` — internal policy is push-to-org;
-  `origin` is the single push target.
+- Pushing to a non-org remote instead of `origin` — internal policy is
+  push-to-org; `origin` is the single push target.
 - Conventional PR title — shikanime uses plain English / `doc:`, not
   `feat:`/`fix:`.
 - **PR diverging from the commit** — the commit message drives the PR title and
   body; restate it, don't add new claims the commit doesn't support.
 - Pushing to `main` — branch protection rejects; use a feature branch.
+- **Submitting without `jj rebase -d main`** — the branch drifts behind `main`
+  and the PR shows conflicts; rebase is mandatory (step 2), not optional.
+- **Declaring done on a stale `CONFLICTING`** — GitHub's `mergeable` lags; a
+  fresh rebase + re-push onto latest `main` forces recompute (step 2c).
+- **Revising a PR without reconciling review threads** — new commits void prior
+  review; load `sk-pr-resolve` and resolve/comment every thread before done
+  (step 2d). Never leave an open thread or resolve one silently.
 - Wrong/missing issue link — verify the linked issue matches the code change.
 - `shikanime-studio/actions` main protected — must PR, direct push fails.
 - Trusting the local path for the remote — nix-containers path says
@@ -182,8 +229,8 @@ reviewers. The rules live in `sk-pr-triage`; do not re-derive them here.
 gh pr view <N> --repo <org>/<repo> --json title,baseRefName,body
 ```
 
-Confirm base is `main` (or repo default), title is plain-English/`doc:`, and the
-body links the correct issue.
+Confirm base is `main` (or repo default), title is plain-English/`doc:`, the
+body links the correct issue, and `mergeable="MERGEABLE"` (step 2c).
 
 ## See also
 
