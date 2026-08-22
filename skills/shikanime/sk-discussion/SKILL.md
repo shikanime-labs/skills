@@ -66,9 +66,9 @@ fails with `invalid value`):
 
 Body shape: short — context, the open question(s), affected repos. No acceptance
 criteria, no tasklist (that is issue scaffolding). A discussion is a clean
-conversation for any reader — human or another agent — not the agent's
-notebook: post the open question and the context it needs, never raw reasoning
-or status chatter. Interim comments may be deleted once the thread converges.
+conversation for any reader — human or another agent — not the agent's notebook:
+post the open question and the context it needs, never raw reasoning or status
+chatter. Interim comments may be deleted once the thread converges.
 
 ## Pitfalls
 

@@ -72,8 +72,8 @@ reported all threads reconciled.
 ## Merge procedure
 
 Stacked branches land via `gh stack` (never `gh pr merge` on a stacked PR —
-poisoned commits); lone branches may use `gh pr merge`. Never force-push
-stacked branches.
+poisoned commits); lone branches may use `gh pr merge`. Never force-push stacked
+branches.
 
 ```bash
 # Stacked (see sk-async / sk-pr):
@@ -117,6 +117,7 @@ gh pr merge <M> --repo <org>/<repo> --squash --rebase   # squash+rebase only
       protection requires it.
 - [ ] Every review conversation reconciled (via `sk-pr-resolve`).
 - [ ] CI checks green.
-- [ ] Merged via `gh stack merge` (stacked) or `gh pr merge --squash
-      [--admin if protection blocks self-approval]` (lone), per repo override.
+- [ ] Merged via `gh stack merge` (stacked) or
+      `gh pr merge --squash     [--admin if protection blocks self-approval]`
+      (lone), per repo override.
 - [ ] Issue closed deliberately with a rationale comment.

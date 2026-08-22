@@ -56,7 +56,7 @@
     },
     {
       "name": "sk-discussion-triage",
-      "description": "Triage an existing shikanime org discussion: category, body shape, Q&A answer marking, lifecycle close (GraphQL).",
+      "description": "Triage an existing shikanime org discussion: category, body shape, Q\u0026A answer marking, lifecycle close (GraphQL).",
       "path": "skills/shikanime/sk-discussion-triage"
     },
     {
@@ -121,7 +121,7 @@
     },
     {
       "name": "cpn-discussion-triage",
-      "description": "Triage une discussion existante du dépôt cloud-pi-native/console : catégorie, forme du corps, réponse Q&A, clôture de cycle (GraphQL).",
+      "description": "Triage une discussion existante du dépôt cloud-pi-native/console : catégorie, forme du corps, réponse Q\u0026A, clôture de cycle (GraphQL).",
       "path": "skills/cloud-pi-native/cpn-discussion-triage"
     }
   ]

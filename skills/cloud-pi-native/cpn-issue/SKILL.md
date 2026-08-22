@@ -43,10 +43,10 @@ All mutations go through the `terminal` tool with `gh`.
 
 **Temp body files are NOT hard-wrapped.** Author the `--body` heredoc /
 `--body-file` in semantic line breaks (one sentence per line, no 80-col wrap).
-GitHub joins consecutive non-blank lines into one flowing paragraph, so it
-reads naturally — and a one-sentence edit only churns that one line in the
-diff instead of reflowing the whole block. Never run `nix fmt` / `mdformat`
-over a temp body file.
+GitHub joins consecutive non-blank lines into one flowing paragraph, so it reads
+naturally — and a one-sentence edit only churns that one line in the diff
+instead of reflowing the whole block. Never run `nix fmt` / `mdformat` over a
+temp body file.
 
 ### 1. Bug issue
 

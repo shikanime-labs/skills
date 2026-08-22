@@ -116,7 +116,7 @@ specification, compatible with the
 | `sk-discussion-triage` | Discussion triage: category + lifecycle (GraphQL)                         |
 | `sk-pr`                | Fork-first PRs derived from the commit                                    |
 | `sk-land`              | Merge PRs after DoD + review gates pass                                   |
-| `sk-pr-resolve`        | Reconcile PR review threads + ledger, report readiness without merging     |
+| `sk-pr-resolve`        | Reconcile PR review threads + ledger, report readiness without merging    |
 | `sk-code-review`       | Code review: YAGNI, root-cause, conventions                               |
 
 ### cloud-pi-native family

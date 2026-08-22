@@ -1,6 +1,8 @@
 ---
 name: sk-issue-workflow
-description: "Single entry point for the shikanime issue side: create the issue, refine the problem to convergence within it, then triage immediately."
+description:
+  "Single entry point for the shikanime issue side: create the issue, refine the
+  problem to convergence within it, then triage immediately."
 version: 0.1.0
 author: Hermes Agent
 license: Apache-2.0
@@ -33,10 +35,11 @@ On completion you have issue `#N` in the upstream org repo.
 
 ### 2. Refine the problem within the issue
 
-Load `sk-issue-refine` and iterate the problem *inside the issue* until the
+Load `sk-issue-refine` and iterate the problem _inside the issue_ until the
 acceptance criteria converge: research as comments, propose candidate solutions
-as comments, update the body's tasklist only when the criteria themselves change.
-Skip this step only when the problem is already converged at creation (rare).
+as comments, update the body's tasklist only when the criteria themselves
+change. Skip this step only when the problem is already converged at creation
+(rare).
 
 ### 3. Triage immediately after creation
 

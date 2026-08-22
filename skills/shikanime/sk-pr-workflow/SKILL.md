@@ -1,6 +1,8 @@
 ---
 name: sk-pr-workflow
-description: "Single entry point for the shikanime PR side: ensure the issue exists, open the fork-first PR derived from the commit, then triage immediately."
+description:
+  "Single entry point for the shikanime PR side: ensure the issue exists, open
+  the fork-first PR derived from the commit, then triage immediately."
 version: 0.1.0
 author: Hermes Agent
 license: Apache-2.0
@@ -13,8 +15,8 @@ metadata:
 
 One command for the full PR lifecycle: ensure the linked issue exists → open the
 fork-first PR derived from the commit → triage immediately. This is a thin
-orchestrator over `sk-issue`, `sk-pr`, and `sk-pr-triage`; it holds no PR-creation
-logic of its own.
+orchestrator over `sk-issue`, `sk-pr`, and `sk-pr-triage`; it holds no
+PR-creation logic of its own.
 
 ## When to Use
 

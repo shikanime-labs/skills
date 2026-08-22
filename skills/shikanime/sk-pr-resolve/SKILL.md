@@ -9,7 +9,15 @@ author: Hermes Agent
 license: Apache-2.0
 metadata:
   hermes:
-    tags: [github, pull-requests, review-threads, reconcile, shikanime-labs, shikanime-studio]
+    tags:
+      [
+        github,
+        pull-requests,
+        review-threads,
+        reconcile,
+        shikanime-labs,
+        shikanime-studio,
+      ]
     related_skills: [sk-land, sk-pr, sk-issue, sk-code-review, sk-async]
 ---
 
@@ -64,14 +72,14 @@ gh pr view <M> --repo <org>/<repo> --json reviews,headRefOid \
 ```
 
 - Where branch protection blocks self-approval (e.g. `shikanime-labs/skills`,
-  `nix-containers`), a verbal `lgtm` from the user satisfies this gate — but
-  the merge itself stays in `sk-land` (`gh pr merge --squash --admin`).
+  `nix-containers`), a verbal `lgtm` from the user satisfies this gate — but the
+  merge itself stays in `sk-land` (`gh pr merge --squash --admin`).
 - CI checks: `gh pr checks <M> --repo <org>/<repo>`.
 
 ### Gate 3 — Conversations reconciled (the core of this skill)
 
-Every review conversation (inline thread) on the PR must be reconciled — an
-open thread is unfinished review. Enumerate them:
+Every review conversation (inline thread) on the PR must be reconciled — an open
+thread is unfinished review. Enumerate them:
 
 ```bash
 gh api graphql -f query='
@@ -96,7 +104,8 @@ gh api graphql -f query='
 For each **unresolved** thread, judge the suggestion and act:
 
 - **Pertinent + already in the ledger** — verify the diff/CI addresses it; if so
-  resolve the thread, if not flag it (open criterion, blocks merge in `sk-land`).
+  resolve the thread, if not flag it (open criterion, blocks merge in
+  `sk-land`).
 - **Pertinent + not yet in the ledger** — add the item to the linked issue's
   acceptance-criteria tasklist (Gate 1), note it must be addressed in the diff,
   then resolve the thread if the diff already covers it.
@@ -145,7 +154,7 @@ Then stop. Merging is `sk-land`'s job.
 - [ ] Linked issue tasklist checked: every criterion verified against diff/CI.
 - [ ] `sk-code-review` approval on the current head commit; human review where
       protection requires it (or verbal `lgtm` recorded for `sk-land`).
-- [ ] Every review conversation reconciled: pertinent addressed/added to
-      ledger, non-pertinent discarded with rationale, all threads resolved.
+- [ ] Every review conversation reconciled: pertinent addressed/added to ledger,
+      non-pertinent discarded with rationale, all threads resolved.
 - [ ] CI checks reported.
 - [ ] PR NOT merged — landing deferred to `sk-land`.
