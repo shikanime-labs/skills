@@ -60,6 +60,10 @@
         "path": "skills/shikanime/sk-land"
       },
       {
+        "name": "sk-pr-resolve",
+        "path": "skills/shikanime/sk-pr-resolve"
+      },
+      {
         "name": "sk-issue-workflow",
         "path": "skills/shikanime/sk-issue-workflow"
       },

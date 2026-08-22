@@ -70,6 +70,11 @@
       "path": "skills/shikanime/sk-land"
     },
     {
+      "name": "sk-pr-resolve",
+      "description": "Reconcile a shikanime org PR's review conversations, check the DoD ledger, and report approval/CI state without merging — pre-landing resolution extracted from sk-land.",
+      "path": "skills/shikanime/sk-pr-resolve"
+    },
+    {
       "name": "sk-code-review",
       "description": "Code review discipline for shikanime repos: YAGNI, root-cause, repo conventions, security scan, severity-tagged findings.",
       "path": "skills/shikanime/sk-code-review"
