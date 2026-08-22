@@ -20,8 +20,8 @@ have. PRs are never closed by triage.
 
 ## Prerequisites
 
-- `gh` authenticated against the canonical org remote. Personal forks may have
-  PRs disabled — target the upstream org repo.
+- `gh` authenticated against the canonical org repo. Target the org repo
+  directly.
 
 ## Inputs
 
@@ -92,7 +92,7 @@ gh pr view "$N" --repo "$R" --json number,title,labels,assignees,milestone,revie
 - Closing a PR — triage never closes PRs; strays go through `sk-pr` or back to
   their author.
 - PR↔issue auto-close — avoid unless explicitly one-to-one.
-- Targeting a personal fork where PRs are disabled — use the upstream org repo.
+- Targeting the wrong repo for PRs — always use the org repo.
 
 ## See also
 

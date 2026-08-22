@@ -11,9 +11,9 @@ metadata:
 
 # Shikanime Org Dev Workflow (sk-dev-workflow)
 
-End-to-end local dev loop for shikanime-owned repos: branching, the upstream-only
-push flow, jj bookmark tracking, and how to land changes (PR vs direct push).
-Pairs with `sk-commit` and `sk-pr`.
+End-to-end local dev loop for shikanime-owned repos: branching, pushing to the
+org repo (origin), jj bookmark tracking, and how to land changes (PR vs direct
+push). Pairs with `sk-commit` and `sk-pr`.
 
 ## When to Use
 
@@ -35,18 +35,18 @@ owner skill; gate phases are the mechanical walls a change must clear.
 | 3   | Branch + implement                                                                                                                          | this skill                         | —                 |
 | 4   | Commit (plain-English, Automata trailer)                                                                                                    | `sk-commit`                        | commit shape      |
 | 5   | Code review (adversarial pre-merge)                                                                                                         | `sk-code-review`                   | review gate       |
-| 6   | PR (open from upstream, link `Related:`)                                                                                                        | `sk-pr`                            | —                 |
+| 6   | PR (open from origin, link `Related:`)                                                                                                      | `sk-pr`                            | —                 |
 | 7   | Land (merge / `gh stack`)                                                                                                                   | `sk-async` / this skill            | branch protection |
 | 8   | Close issue deliberately (verify N of N)                                                                                                    | `sk-issue`                         | ledger discharged |
 
 Phases 2 and 5 are the before-code and before-merge gates: never skip triage
 (the ledger is unsettled) or review (the PR isn't ready).
 
-## Core rule: upstream-only landing
+## Core rule: push to the org repo
 
-Push working branches to the canonical org remote (`upstream` =
-`shikanime-labs` / `shikanime-studio`) — never to a personal fork. The org
-remote receives feature branches and `main`. The gh remote stays canonical even
+Push working branches to `origin` — the cloned org repo
+(`shikanime-labs` / `shikanime-studio`). `origin` receives feature branches
+and `main`. The gh remote stays canonical even
 when the local path says otherwise (nix-containers: path `shikanime-labs`,
 remote `shikanime-studio`).
 
@@ -56,7 +56,7 @@ remote `shikanime-studio`).
   `~/Source/Repos/<hostname>/<orga>/<repo>` (e.g.
   `~/Source/Repos/github.com/shikanime-labs/manifests`). No scattered checkouts.
 - **Agent mode (Hermes acting for the agent gh identity):** the agent gh account
-  holds org membership and pushes to the org remote; PRs open
+  holds org membership and pushes to `origin`; PRs open
   `--head <org>:<branch>`. Agent commits carry the
   `Co-authored-by: Automata <automata@shikanime.studio>` trailer (`sk-commit`).
 
@@ -132,22 +132,21 @@ Work-item lifecycle: **discussion → issue → issue comments → PR.**
 ## Push flow
 
 ```bash
-jj git remote add upstream "git@github.com:<org>/<repo>.git" 2>/dev/null || true
-jj bookmark track <branch> --remote=upstream
-jj git push --remote upstream
+jj git remote add origin "git@github.com:<org>/<repo>.git" 2>/dev/null || true
+jj bookmark track <branch> --remote=origin
+jj git push --remote origin
 ```
 
-jj does not auto-track bookmarks. Without `track`, the push to the upstream
-remote is rejected.
+jj does not auto-track bookmarks. Without `track`, the push to `origin` is
+rejected.
 
 ## Landing
 
-- **Upstream PR (default)**: push to the org remote (`upstream`), then open the
-  PR on the org repo:
+- **PR (default)**: push to `origin`, then open the PR on the org repo:
   `gh pr create --repo <org>/<repo> --head <org>:<branch>`. Required when
   `main` is protected or the user didn't authorize direct push.
 - **PR via `gh stack` (preferred for stacked work)**: `gh stack` submits from
-  the org remote (`--repo <org>/<repo>`, head refs `org:branch`) — adopt the branch
+  `origin` (`--repo <org>/<repo>`, head refs `org:branch`) — adopt the branch
   into a stack and submit; this pushes and creates/updates PR(s) from the commit
   subject/body, keeping PR and commit in parity. Stacked PRs are a **GitHub
   public-preview** feature; fine for internal shikanime use.
@@ -158,7 +157,7 @@ remote is rejected.
   ```
 
 - **Direct push**: only when the user explicitly says "push to main" / "land it"
-  — then push directly to `main` on the org remote, skip the PR.
+  — then push directly to `main` on `origin`, skip the PR.
 - **Run code review before requesting merge** (`sk-code-review` skill).
   Adversarial review over the diff: architecture fit, plain-English commit
   convention, YAGNI, root-cause vs symptom, and security at trust boundaries.
@@ -197,7 +196,7 @@ protection where present are the mechanical gate.** GitHub is the durable ledger
 | `AGENTS.md` with commit-body `Related:` URL     | Follow it (e.g. `manifests`) — overrides plain-English default                                                  |
 | `doc:` prefix convention                        | Doc repo — use `doc:` titles                                                                    |
 | branch protection on `main`                     | PR mandatory; no direct push                                                                    |
-| jj repo (`.jj/`)                                | `jj bookmark track <branch> --remote=upstream` before push                                      |
+| jj repo (`.jj/`)                                | `jj bookmark track <branch> --remote=origin` before push                                        |
 | NixOS/infra repo (`machines`, `nix-containers`) | build-verify (`nix eval` / `nix build`) before switch; control-plane changes need quorum checks |
 
 ## Keep AGENTS.md current
@@ -205,7 +204,7 @@ protection where present are the mechanical gate.** GitHub is the durable ledger
 When a change, convention, or discovery would change how a future agent should
 act in this repo, append a **short** note to `AGENTS.md` — one or two lines, no
 prose. Record only steering-grade info: repo-enforced hooks (gitlint/commitlint/
-DCO), branch protection, no-fork policy, or a mid-task quirk (e.g. broken `#N` /
+DCO), branch protection, push-to-origin policy, or a mid-task quirk (e.g. broken `#N` /
 `owner/repo#N` link shorthand → use full `https://…` URL). Skip per-task detail
 and anything a `jj log` already shows.
 
@@ -213,7 +212,7 @@ and anything a `jj log` already shows.
 
 - Forgetting to record a steering-changing discovery in AGENTS.md — next agent
   repeats the mistake.
-- jj push without `jj bookmark track <branch> --remote=upstream` — rejected by
+- jj push without `jj bookmark track <branch> --remote=origin` — rejected by
   remote.
 - Direct-pushing `main` on protected repos — rejected; use PR.
 - Assuming conventional commits — shikanime code repos use plain English.
@@ -225,14 +224,13 @@ and anything a `jj log` already shows.
 jj status && jj log -r @ -T 'bookmarks ++ " "'
 ```
 
-Confirm the branch tracks the upstream remote and only the intended change is
-staged.
+Confirm the branch tracks `origin` and only the intended change is staged.
 
 ## See also
 
 - `sk-commit` — the commit shape (subject, Automata co-author trailer) the
   landing steps assume.
-- `sk-pr` / `sk-async` — single upstream PR vs stacked fan-out landing.
+- `sk-pr` / `sk-async` — single org-repo PR vs stacked fan-out landing.
 - `sk-issue-triage` / `sk-pr-triage` — assign issue/PR metadata, then
   adversarial pre-merge review (both gate the work before and after code).
-- `cpn-dev-workflow` — cloud-pi-native twin (upstream-only, no fork).
+- `cpn-dev-workflow` — cloud-pi-native twin (pushes to origin).

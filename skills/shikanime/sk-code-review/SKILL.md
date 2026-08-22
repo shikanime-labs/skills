@@ -125,9 +125,9 @@ boundaries.
   (`a = { b = 1; c = 2; }`); never mix on one line.
 - **Go (xqbit/shikanime-labs)** — `jj` + ghstack flow; `gofmt` clean; PRs opened
   as drafts.
-- **PR routing** — `shikanime/sk-*` : fork-first (push to fork, open
-  `--head <login>:<branch>`). `cloud-pi-native/*` : upstream-only (push to
-  `upstream`, open `--head cloud-pi-native:<branch>`). Never mix.
+- **PR routing** — `shikanime/sk-*` : push to `origin` (the org repo), open
+  `--head <org>:<branch>`. `cloud-pi-native/*` : push to `origin`, open
+  `--head cloud-pi-native:<branch>`. Never mix.
 - **Secrets** — never read/print/commit `.env` or credential files.
 - **Agent identity** — commits co-authored by
   `Automata <automata@shikanime.studio>`; gh agent id `yorha-automata`. Do not

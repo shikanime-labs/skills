@@ -20,14 +20,11 @@ Repo-Class Detection. The console repo (`cloud-pi-native/console`) is the
 strictest example; other repos (e.g. `documentation`) may enforce none of those
 gates.
 
-## Internal policy: no fork
+## Internal policy: origin-only
 
-**All PRs are opened directly from the upstream `cloud-pi-native/*` repo — never
-from a personal fork.** Push the working branch to the upstream remote
-(`upstream`) and open the PR with `--head cloud-pi-native:<branch>`. The fork
-(`shikanime/cloud-pi-native-*`) is only used as a local remote for fetching; do
-NOT create PRs from it. This is an org-internal rule that overrides the
-historical fork-based GitHub flow. (Pre-2026-08 guidance referenced
+**All PRs are opened directly from the org repo `cloud-pi-native/*`** — clone it
+so `origin` is the org repo, push the working branch to `origin`, and open the
+PR with `--head cloud-pi-native:<branch>`. (Pre-2026-08 guidance referenced
 `--head shikanime:<branch>` — that is now retired.)
 
 ## When to Use
@@ -41,7 +38,7 @@ historical fork-based GitHub flow. (Pre-2026-08 guidance referenced
   collaborator. Do NOT run `gh auth switch` — edit the scoped config instead.
 - The linked issue should already exist (see `cpn-issue`). For deep merge/CI
   work load `github-pr-workflow`.
-- Push the branch to the upstream remote before opening the PR.
+- Push the branch to `origin` before opening the PR.
 
 ## Org-Wide PR Conventions (apply to every repo)
 
@@ -85,7 +82,7 @@ Then apply only what the repo actually has:
 | `release-please`                                          | PR-title type drives the version bump — get the type right.                                                                                                                                                                                    |
 | branch protection                                         | Use a feature/`hotfix/*` branch; a separate approving review is mandatory; may need a merge queue.                                                                                                                                             |
 | no commitlint/release-please                              | Follow the repo's own commit convention (e.g. the `documentation` repo prefers plain-English imperative commits, no prefix) — a conventional PR title is still expected.                                                                       |
-| need to publish a branch                                  | Push to the **upstream** `cloud-pi-native/<repo>` remote (never a personal fork) and open with `--head cloud-pi-native:<branch>`.                                                                                                              |
+| need to publish a branch                                  | Push to `origin` (`cloud-pi-native/<repo>`) and open with `--head cloud-pi-native:<branch>`.                                                                                                              |
 | doc repo (`documentation`, `documentation-interne-socle`) | Commit subject MUST be `doc:`-prefixed (e.g. `doc: aligner ADR-014/019 sur le RBAC effectif`). The earlier "plain-English, no prefix" guidance was WRONG — these repos enforce `doc:`. A conventional PR _title_ is still expected everywhere. |
 
 ## Procedure
@@ -148,20 +145,19 @@ EOF
 After the PR is created, delegate to `cpn-pr-triage` (#N): it enumerates the
 repo's available metadata and sets each empty, determinable field — labels,
 assignee, project, milestone (by type), and reviewers. The rules live in
-`cpn-pr-triage`; do not re-derive them here. This is always against the upstream
-`cloud-pi-native/<repo>` (see Internal policy: no fork).
+`cpn-pr-triage`; do not re-derive them here. This is always against
+`cloud-pi-native/<repo>` (see Internal policy: origin-only).
 
 ### 3. Repo-specific post-steps
 
-- **console class** (`cloud-pi-native/console`): push the branch to the upstream
-  remote and open with `--head cloud-pi-native:<branch>` (no fork — see Internal
+- **console class** (`cloud-pi-native/console`): push the branch to `origin`
+  and open with `--head cloud-pi-native:<branch>` (see Internal
   policy above). Do NOT self-merge (branch protection requires another
   collaborator's approving review). When checks are green but `mergeStateStatus`
   is `BLOCKED`, trigger the merge queue:
   `gh workflow run 243523481 --repo cloud-pi-native/console -f PR_NUMBER=<N>`.
   Husky `pre-push` runs `vitest`, so unit tests must pass before `jj git push`.
-- **other repos**: follow their branch protection / review rules; no fork unless
-  detected.
+- **other repos**: follow their branch protection / review rules.
 
 ## Squash + author/sign a finalized PR commit
 
@@ -238,40 +234,40 @@ These git patterns bit us and were recovered — encode them:
 
 - **Squash to one commit**:
   `git reset --soft <base> && git add -A && git commit -m "doc: <subject>"`.
-  `<base>` = `upstream/main` is ONLY correct if the branch was cut from the
+  `<base>` = `origin/main` is ONLY correct if the branch was cut from the
   CURRENT main.
-- **`upstream/main` may have advanced** since the branch was cut.
-  `git reset --soft upstream/main` then stages spurious REVERTS of unrelated
+- **`origin/main` may have advanced** since the branch was cut.
+  `git reset --soft origin/main` then stages spurious REVERTS of unrelated
   main commits (it rebases the branch onto the new main tip). Always find the
   TRUE base first:
 
 ```bash
 git merge-base --is-ancestor \
-  $(git rev-parse <oldest-pr-commit>^) upstream/main
+  $(git rev-parse <oldest-pr-commit>^) origin/main
 ```
 
 → if NO, the branch predates current main; use
-`git rebase --onto upstream/main <true-base> <branch>` instead of reset-soft.
+`git rebase --onto origin/main <true-base> <branch>` instead of reset-soft.
 
 - **Recover before pushing**: if you staged wrong state (e.g. the reset-soft
   mistake), `git reset --hard <last-good-sha>` immediately — before any push.
   Nothing was published, so no harm done.
 - **Force-push with lease**: `--force-with-lease` alone rejects with "stale
   info" when the local tracking ref is stale. Pin it:
-  `git fetch upstream <branch>` then
+  `git fetch origin <branch>` then
 
 ```bash
 git push --force-with-lease=refs/heads/<branch>:<known-remote-sha> \
-  upstream <branch>
+  origin <branch>
 ```
 
-Get `<known-remote-sha>` from `git ls-remote upstream refs/heads/<branch>`.
+Get `<known-remote-sha>` from `git ls-remote origin refs/heads/<branch>`.
 
 - **Verify after force-push**: `gh pr view ... --json commits` lags (eventual
   consistency). Confirm the branch tip with
-  `git ls-remote upstream refs/heads/<branch>` — it must equal your local HEAD.
+  `git ls-remote origin refs/heads/<branch>` — it must equal your local HEAD.
 - **Split a stacked branch into 2 PRs**: cut each slice with
-  `git rebase --onto upstream/main <slice-base> <temp-branch>`, then resolve
+  `git rebase --onto origin/main <slice-base> <temp-branch>`, then resolve
   cross-file overlaps by `git rm` the file already covered by the earlier PR (it
   already sits on main-side). Amend the later PR's message to drop the
   now-absent file from its description.
@@ -284,8 +280,7 @@ Get `<known-remote-sha>` from `git ls-remote upstream refs/heads/<branch>`.
 - **Non-conventional PR title → Release Please bumps the wrong version** (where
   configured).
 - Assuming console rules apply everywhere → false enforcement (e.g. forcing
-  conventional commits on a repo with no commitlint, or a fork that doesn't
-  exist).
+  conventional commits on a repo with no commitlint).
 - Non-conventional commit on a commitlint repo → `commit-msg` hook rejects
   locally.
 - Pushing to `main` → branch protection rejects; use a feature/`hotfix/*`
@@ -294,9 +289,8 @@ Get `<known-remote-sha>` from `git ls-remote upstream refs/heads/<branch>`.
   GitHub.
 - Self-merge may be blocked; a separate review is mandatory where protection is
   set.
-- **Do NOT open PRs from a personal fork.** Internal policy: push to the
-  upstream `cloud-pi-native/*` remote and open with
-  `--head cloud-pi-native:<branch>`. The fork is fetch-only.
+- **Always open PRs against `cloud-pi-native/*` directly.** Push to `origin` and
+  open with `--head cloud-pi-native:<branch>`.
 - PR with no linked issue violates the issue-first norm.
 - **Verify the linked issue actually matches the PR's code change.** A PR's
   `Issues liées` can point at an unrelated issue (e.g. PR #2403 "use project
@@ -310,22 +304,22 @@ Get `<known-remote-sha>` from `git ls-remote upstream refs/heads/<branch>`.
   table's old "documentation prefers plain-English no prefix" note was wrong.
   `documentation` and `documentation-interne-socle` both require `doc:`-prefixed
   subjects; only the PR _title_ is conventional everywhere.
-- **`reset --soft upstream/main` after main advanced** stages spurious reverts
+- **`reset --soft origin/main` after main advanced** stages spurious reverts
   of unrelated main commits (it rebases onto the new main tip). Find the true
   base — parent of the oldest PR commit — and use
-  `git rebase --onto upstream/main <true-base> <branch>` instead.
+  `git rebase --onto origin/main <true-base> <branch>` instead.
 - **`--force-with-lease` "stale info"** → the local tracking ref is stale.
-  `git fetch upstream <branch>` then pin:
+  `git fetch origin <branch>` then pin:
 
 ```bash
 git push --force-with-lease=refs/heads/<branch>:<known-remote-sha> \
-  upstream <branch>
+  origin <branch>
 ```
 
 (sha from `git ls-remote`).
 
 - **`gh pr view --json commits` lags after force-push** (eventual consistency).
-  Verify the branch tip with `git ls-remote upstream refs/heads/<branch>` — it
+  Verify the branch tip with `git ls-remote origin refs/heads/<branch>` — it
   must equal your local HEAD.
 - **Duplicate issues**: when a PR links a newer issue that duplicates an older
   one, relink the PR to the OLDER canonical issue (`gh pr edit ... --body-file`)
@@ -345,8 +339,8 @@ the canonical French sections still apply.
 ## See also
 
 - `cpn-commit` — the commit this PR must restate (parity rule).
-- `cpn-dev-workflow` — branch discipline and pre-push checks upstream of this
+- `cpn-dev-workflow` — branch discipline and pre-push checks for this
   PR.
-- `sk-pr` — shikanime twin (fork-first, plain-English titles).
+- `sk-pr` — shikanime twin (plain-English titles).
 - `cpn-pr-triage` — assigns PR metadata (labels, assignee, milestone, project,
   reviewers); run it after creation.

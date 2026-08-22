@@ -28,11 +28,11 @@ rules. Does NOT commit or merge. `jj` + `gh` only.
 
 ## Prerequisites
 
-- `gh` authenticated; working inside a `cloud-pi-native/*` repo (upstream remote
-  present)
+- `gh` authenticated; working inside a `cloud-pi-native/*` repo (`origin` is
+  the org repo)
 - Node >= 26, pnpm v11.8 (for local `pnpm test` / lint)
-- **Upstream-only PR rule** — push to `upstream`, open
-  `--head cloud-pi-native:<branch>`. Forking is wrong here.
+- **Origin-only PR rule** — push to `origin`, open
+  `--head cloud-pi-native:<branch>`.
 - Commit author must be
   `William Phetsinorath <william.phetsinorath-open@interieur.gouv.fr>`
   (SSH-signed). Out-of-scope changes → follow-up issue; keep PR minimal.
@@ -61,7 +61,7 @@ gh pr review <N> --request-changes --body "..."   # post verdict
 ## Procedure
 
 **Phase 1 — Context.** Read PR title/body, linked issue, branch. Confirm it
-branched from `upstream` (not a fork) and the commit author email is the cpn
+branched from `origin` and the commit author email is the cpn
 identity. Understand intent before reading code.
 
 **Phase 2 — High-level.** Run the console architecture checklist
@@ -98,9 +98,9 @@ else `--approve`.
 
 ## cpn Contribution Rules (enforced)
 
-- **Upstream-only PRs** — never fork cpn repos; push to `upstream` remote, open
+- **Origin-only PRs** — push to `origin` (the org repo), open
   `--head cloud-pi-native:<branch>`. With `jj`, track the bookmark:
-  `jj bookmark track <branch> --remote=upstream`.
+  `jj bookmark track <branch> --remote=origin`.
 - **Author identity** —
   `William Phetsinorath <william.phetsinorath-open@interieur.gouv.fr>`,
   SSH-signed.

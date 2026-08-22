@@ -57,7 +57,7 @@ wayfinder's research/grilling/fog-of-war cycle onto the issue's comment thread.
 
   | Kind        | Mode   | Use when                                                                                 | Resolved by                                                                   |
   | ----------- | ------ | ---------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
-  | `research`  | AFK    | A fact _outside_ the working dir blocks a decision (docs, API behavior, upstream state). | A `delegate_task` research agent; findings posted as a comment.               |
+  | `research`  | AFK    | A fact _outside_ the working dir blocks a decision (docs, API behavior, external state). | A `delegate_task` research agent; findings posted as a comment.               |
   | `prototype` | HITL   | "How should this look/behave" — talking cannot settle it.                                | A cheap artifact (linked from a comment); **selection stays with the human**. |
   | `grilling`  | HITL   | The default — settleable by talking it through.                                          | Precise one-at-a-time questions, _why_ attached.                              |
   | `task`      | Either | No decision, but manual work (access, data shape) blocks one.                            | A precise checklist — never product code.                                     |

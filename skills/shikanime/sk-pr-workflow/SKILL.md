@@ -2,7 +2,7 @@
 name: sk-pr-workflow
 description:
   "Single entry point for the shikanime PR side: ensure the issue exists, open
-  the fork-first PR derived from the commit, then triage immediately."
+  the org-repo PR derived from the commit, then triage immediately."
 version: 0.1.0
 author: Hermes Agent
 license: Apache-2.0
@@ -14,7 +14,7 @@ metadata:
 # Shikanime Org PR Workflow
 
 One command for the full PR lifecycle: ensure the linked issue exists → open the
-fork-first PR derived from the commit → triage immediately. This is a thin
+org-repo PR derived from the commit → triage immediately. This is a thin
 orchestrator over `sk-issue`, `sk-pr`, and `sk-pr-triage`; it holds no
 PR-creation logic of its own.
 
@@ -34,10 +34,10 @@ If a linked issue `#N` is not already provided and converged, load `sk-issue`
 first. A PR always solves an issue — never opened alone. Verify the issue
 actually matches the branch's change (`jj show <commit>`) before linking.
 
-### 2. Open the fork-first PR
+### 2. Open the org-repo PR
 
-Load `sk-pr` and follow it. Push to the personal fork (`origin`), open
-`--head <login>:<branch>`, base `main`; derive title/body from the commit and
+Load `sk-pr` and follow it. Push to `origin` (the org repo), open
+`--head <org>:<branch>`, base `main`; derive title/body from the commit and
 link with `Related: <full issue URL>` (no auto-close keyword unless explicitly
 one-to-one).
 
@@ -51,7 +51,7 @@ the repo lacks.
 
 ## Gate
 
-The PR is complete only when: it opens from the fork, links the correct issue,
+The PR is complete only when: it opens from `origin`, links the correct issue,
 and triage metadata is set. Verify:
 
 ```bash

@@ -21,7 +21,7 @@ valeur que le dépôt ne possède pas.
 ## Prérequis
 
 - `gh` authentifié comme collaborateur du dépôt. Ne PAS `gh auth switch`.
-- Le fork a Issues désactivées — cibler `cloud-pi-native/console`.
+- Les Issues sont gérées sur `cloud-pi-native/console` — cibler ce dépôt.
 
 ## Entrées
 

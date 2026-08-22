@@ -74,7 +74,7 @@ issue comments → PR** — with org-specific conventions:
 - **shikanime (`sk-*`)**: plain English commits with the Automata co-author
   trailer, `gh stack` landing, direct push on explicit instruction.
 - **cloud-pi-native (`cpn-*`)**: French artifacts, conventional commits,
-  upstream-only PRs from `cloud-pi-native/*` (never a fork), Release Please
+  PRs pushed to origin from `cloud-pi-native/*`, Release Please
   versioning.
 
 Shared doctrine across both families:
@@ -114,7 +114,7 @@ specification, compatible with the
 | `sk-issue-workflow`    | Issue side end-to-end: create → refine → triage                           |
 | `sk-pr-workflow`       | PR side end-to-end: issue-exists → open → triage                          |
 | `sk-discussion-triage` | Discussion triage: category + lifecycle (GraphQL)                         |
-| `sk-pr`                | Fork-first PRs derived from the commit                                    |
+| `sk-pr`                | PRs derived from the commit, pushed to origin                             |
 | `sk-land`              | Merge PRs after DoD + review gates pass                                   |
 | `sk-pr-resolve`        | Reconcile PR review threads + ledger, report readiness without merging    |
 | `sk-code-review`       | Code review: YAGNI, root-cause, conventions                               |
@@ -127,7 +127,7 @@ specification, compatible with the
 | `cpn-commit`            | Conventional commits for console                   |
 | `cpn-discussion`        | French Discussions via GraphQL                     |
 | `cpn-issue`             | French issue templates + gate ledger               |
-| `cpn-pr`                | French PRs, upstream-only, conventional            |
+| `cpn-pr`                | French PRs, pushed to origin, conventional         |
 | `cpn-code-review`       | Review console PRs: arch, French artifacts         |
 | `cpn-issue-triage`      | Triage d'issue : métadonnées + fermetures motivées |
 | `cpn-pr-triage`         | Triage de PR : métadonnées, reviewers, lien issue  |

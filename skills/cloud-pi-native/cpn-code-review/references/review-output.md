@@ -76,7 +76,7 @@ jamais.
 
 ### Vérifications effectuées
 
-- [ ] Branche depuis `upstream` (pas de fork)
+- [ ] Branche depuis `origin`
 - [ ] Auteur : William Phetsinorath
       <william.phetsinorath-open@interieur.gouv.fr>
 - [ ] `pnpm test` (vitest) vert

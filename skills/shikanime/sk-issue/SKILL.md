@@ -22,9 +22,8 @@ the PR, then link the PR to it (see `sk-pr`).
 
 ## Prerequisites
 
-- `gh` authenticated against the canonical org remote (shikanime-labs or
-  shikanime-studio). Personal forks may have Issues disabled — always target the
-  upstream org repo.
+- `gh` authenticated against the canonical org repo (`shikanime-labs` or
+  `shikanime-studio`). Target the org repo directly — issues live there.
 - `gh auth status` clean.
 
 ## Procedure
@@ -64,7 +63,7 @@ command can decide it — this is the work item's gate ledger (unlazy method):
 done only once its check ran, never from memory; a genuinely impossible
 criterion is struck with a comment, never silently dropped. Candidate solutions
 do NOT go in the tasklist or body — they are comments. The body carries a
-**References** section: official material (upstream documentation, linked
+**References** section: official material (official documentation, linked
 issues/PRs, commits, changelogs, specs) attesting a potential solution or adding
 context about the problem statement. The agent may post additional material as
 comments (`gh issue comment`) to help steer resolution toward a solution. Proof
@@ -82,8 +81,7 @@ milestone-by-type) live in `sk-issue-triage`; do not re-derive them here.
 
 ## Pitfalls
 
-- Targeting a personal fork where Issues are disabled — use the upstream org
-  repo.
+- Targeting the wrong repo for issues — always use the org repo.
 - Rewriting the body with findings — findings belong in a comment.
 - Inventing labels the repo doesn't have — verify with `gh label list` first.
 - English only; don't carry over cpn's French templates.
@@ -94,7 +92,7 @@ milestone-by-type) live in `sk-issue-triage`; do not re-derive them here.
 gh issue view <N> --repo <org>/<repo> --json number,title,labels
 ```
 
-Confirm title + label are set and the issue lives in the upstream org repo.
+Confirm title + label are set and the issue lives in the org repo.
 
 ## See also
 
