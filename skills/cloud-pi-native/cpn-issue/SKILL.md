@@ -198,7 +198,7 @@ Confirm: title carries `🐛 [BUG]` or `💡 [REQUEST]`, and label is
   (auto-close avoided unless explicitly one-to-one); the PR title is
   conventional and its body restates the linked commit (commit is the source of
   truth, see `cpn-dev-workflow`).
-- `cpn-dev-workflow` — branch discipline, direct push to origin, and the full local
-  dev loop this issue feeds into.
+- `cpn-dev-workflow` — branch discipline, direct push to origin, and the full
+  local dev loop this issue feeds into.
 - `cpn-issue-triage` — assigns issue metadata (labels, assignee, milestone,
   project); run it after creation.

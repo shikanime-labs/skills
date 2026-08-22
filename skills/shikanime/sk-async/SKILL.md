@@ -77,8 +77,8 @@ splitting component of `sk-dev-workflow` (and `cpn-dev-workflow`).
    ```
 
    commit; jj merges automatically).
-4. **Land** (branches push to `origin`, PRs open with
-   `--head <org>:<branch>`; see `sk-dev-workflow`):
+4. **Land** (branches push to `origin`, PRs open with `--head <org>:<branch>`;
+   see `sk-dev-workflow`):
    - Independent unit → own bookmark + standalone PR (or single-member stack).
    - Dependent chain → one bookmark per link, then:
 

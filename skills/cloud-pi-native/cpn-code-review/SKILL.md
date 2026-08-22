@@ -28,8 +28,8 @@ rules. Does NOT commit or merge. `jj` + `gh` only.
 
 ## Prerequisites
 
-- `gh` authenticated; working inside a `cloud-pi-native/*` repo (`origin` is
-  the org repo)
+- `gh` authenticated; working inside a `cloud-pi-native/*` repo (`origin` is the
+  org repo)
 - Node >= 26, pnpm v11.8 (for local `pnpm test` / lint)
 - **Origin-only PR rule** — push to `origin`, open
   `--head cloud-pi-native:<branch>`.
@@ -61,8 +61,8 @@ gh pr review <N> --request-changes --body "..."   # post verdict
 ## Procedure
 
 **Phase 1 — Context.** Read PR title/body, linked issue, branch. Confirm it
-branched from `origin` and the commit author email is the cpn
-identity. Understand intent before reading code.
+branched from `origin` and the commit author email is the cpn identity.
+Understand intent before reading code.
 
 **Phase 2 — High-level.** Run the console architecture checklist
 (`references/console-architecture.md`): resource 3-file pattern, hook lifecycle,

@@ -43,7 +43,7 @@ must clear.
 | 3   | Branch + implement (jj workspace, conventional commits)        | this skill                           | —                 |
 | 4   | Commit (conventional, SSH-signed)                              | `cpn-commit`                         | commit shape      |
 | 5   | Code review (adversarial pre-merge)                            | `cpn-code-review`                    | review gate       |
-| 6   | PR (origin-only draft, link `Issues liées`)                  | `cpn-pr`                             | —                 |
+| 6   | PR (origin-only draft, link `Issues liées`)                    | `cpn-pr`                             | —                 |
 | 7   | Land (merge / `gh stack` + merge queue)                        | this skill                           | branch protection |
 | 8   | Close deliberately (verify N of N)                             | `cpn-issue`                          | ledger discharged |
 
@@ -480,8 +480,7 @@ blocked.
    `jj bookmark set fix/<topic> -r <commit>` (if the target is an ANCESTOR of
    the bookmark's current position, jj refuses as "backwards" — add
    `--allow-backwards`; the working copy and WIP are untouched).
-7. Push only to origin:
-   `jj git push --bookmark fix/<topic> --remote origin`.
+7. Push only to origin: `jj git push --bookmark fix/<topic> --remote origin`.
 8. Restore the user's WIP to the working tree:
    `jj restore --from <saved-wip> --to @` (or apply `/tmp/wip.patch` by hand
    with `patch`/`write_file`). If the fix and WIP touched the SAME file(s), the

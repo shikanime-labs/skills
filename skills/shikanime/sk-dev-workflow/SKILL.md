@@ -44,11 +44,10 @@ Phases 2 and 5 are the before-code and before-merge gates: never skip triage
 
 ## Core rule: push to the org repo
 
-Push working branches to `origin` — the cloned org repo
-(`shikanime-labs` / `shikanime-studio`). `origin` receives feature branches
-and `main`. The gh remote stays canonical even
-when the local path says otherwise (nix-containers: path `shikanime-labs`,
-remote `shikanime-studio`).
+Push working branches to `origin` — the cloned org repo (`shikanime-labs` /
+`shikanime-studio`). `origin` receives feature branches and `main`. The gh
+remote stays canonical even when the local path says otherwise (nix-containers:
+path `shikanime-labs`, remote `shikanime-studio`).
 
 ## Local path & remote convention
 
@@ -56,9 +55,9 @@ remote `shikanime-studio`).
   `~/Source/Repos/<hostname>/<orga>/<repo>` (e.g.
   `~/Source/Repos/github.com/shikanime-labs/manifests`). No scattered checkouts.
 - **Agent mode (Hermes acting for the agent gh identity):** the agent gh account
-  holds org membership and pushes to `origin`; PRs open
-  `--head <org>:<branch>`. Agent commits carry the
-  `Co-authored-by: Automata <automata@shikanime.studio>` trailer (`sk-commit`).
+  holds org membership and pushes to `origin`; PRs open `--head <org>:<branch>`.
+  Agent commits carry the `Co-authored-by: Automata <automata@shikanime.studio>`
+  trailer (`sk-commit`).
 
 ## Validate assumptions before work — report unmet requirements
 
@@ -143,8 +142,8 @@ rejected.
 ## Landing
 
 - **PR (default)**: push to `origin`, then open the PR on the org repo:
-  `gh pr create --repo <org>/<repo> --head <org>:<branch>`. Required when
-  `main` is protected or the user didn't authorize direct push.
+  `gh pr create --repo <org>/<repo> --head <org>:<branch>`. Required when `main`
+  is protected or the user didn't authorize direct push.
 - **PR via `gh stack` (preferred for stacked work)**: `gh stack` submits from
   `origin` (`--repo <org>/<repo>`, head refs `org:branch`) — adopt the branch
   into a stack and submit; this pushes and creates/updates PR(s) from the commit
@@ -193,7 +192,7 @@ protection where present are the mechanical gate.** GitHub is the durable ledger
 
 | Signal                                          | Implication                                                                                     |
 | ----------------------------------------------- | ----------------------------------------------------------------------------------------------- |
-| `AGENTS.md` with commit-body `Related:` URL     | Follow it (e.g. `manifests`) — overrides plain-English default                                                  |
+| `AGENTS.md` with commit-body `Related:` URL     | Follow it (e.g. `manifests`) — overrides plain-English default                                  |
 | `doc:` prefix convention                        | Doc repo — use `doc:` titles                                                                    |
 | branch protection on `main`                     | PR mandatory; no direct push                                                                    |
 | jj repo (`.jj/`)                                | `jj bookmark track <branch> --remote=origin` before push                                        |
@@ -204,9 +203,9 @@ protection where present are the mechanical gate.** GitHub is the durable ledger
 When a change, convention, or discovery would change how a future agent should
 act in this repo, append a **short** note to `AGENTS.md` — one or two lines, no
 prose. Record only steering-grade info: repo-enforced hooks (gitlint/commitlint/
-DCO), branch protection, push-to-origin policy, or a mid-task quirk (e.g. broken `#N` /
-`owner/repo#N` link shorthand → use full `https://…` URL). Skip per-task detail
-and anything a `jj log` already shows.
+DCO), branch protection, push-to-origin policy, or a mid-task quirk (e.g. broken
+`#N` / `owner/repo#N` link shorthand → use full `https://…` URL). Skip per-task
+detail and anything a `jj log` already shows.
 
 ## Pitfalls
 
