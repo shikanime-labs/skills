@@ -22,7 +22,7 @@ tangled jj/git state.
   when the move is sideways (sibling commits).
 - `jj git push --bookmark <name>` refuses:
   `Refusing to create new remote bookmark <name>@origin` — the name already
-  exists on the fork (`origin`).
+  exists on the remote (`origin`).
 
 ## Recovery sequence (proven)
 
@@ -38,9 +38,10 @@ tangled jj/git state.
    squash stdout message.
 5. Bookmark + push:
    - sideways move: `jj bookmark set <name> -r @ --allow-backwards`
-   - push to canonical remote: `jj git push --bookmark <name> --remote upstream`
-     (the fork `origin` already holds the name; `--remote upstream` avoids the
-     `@origin` collision).
+   - push to the org remote (`origin`):
+     `jj git push --bookmark <name> --remote origin`. If `<name>@origin` already
+     exists, re-point it first (`jj bookmark move <name> -t @`) so the push
+     updates the existing remote bookmark instead of conflicting.
 
 ## Splitting two fixes out of one working tree
 
@@ -54,7 +55,7 @@ PR/bookmark.
    `touch <files>` → `jj squash --into @ --config ui.editor=cat` → verify
    `jj diff -r @`.
 4. `jj bookmark set fix/<topic> -r @` per commit.
-5. `jj git push --bookmark fix/<topic> --remote upstream` for each.
+5. `jj git push --bookmark fix/<topic> --remote origin` for each.
 6. Restore user's unrelated edits: `git apply /tmp/unrelated.patch`.
 
 ## Verification idiom

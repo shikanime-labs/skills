@@ -23,11 +23,10 @@ win over the defaults below — detect them per repo, don't assume.
 ## Prerequisites
 
 - Working tree in the target repo.
-- `gh` authenticated. Branches push to the fork remote; the org remote
-  (`shikanime-labs` / `shikanime-studio`) receives `main` only. Local path may
-  say `shikanime-labs` while the gh remote is `shikanime-studio`
-  (nix-containers) — trust the gh remote.
-- jj repos: ensure the branch is tracked on the fork remote
+- `gh` authenticated. Branches push to `origin` (the cloned org repo)
+  directly. Local path may say `shikanime-labs` while the gh remote is
+  `shikanime-studio` (nix-containers) — trust the gh remote.
+- jj repos: ensure the branch is tracked on `origin`
   (`jj bookmark track <branch> --remote=origin`) before any push.
 
 ## Org default commit style (when no hook enforces otherwise)
@@ -91,10 +90,10 @@ Confirm the hook accepted it (`jj log -1`).
 
 ## Push / landing
 
-- Fork-first: push branches to the fork remote (`origin`); open PRs from
-  `--head <login>:<branch>` (`sk-pr`).
+- Push branches to `origin` (the org repo); open PRs from
+  `--head <org>:<branch>` (`sk-pr`).
 - **Do NOT push to `main`** unless the user explicitly authorizes ("push to
-  main" / "land it") — then push directly to the org remote, no PR needed.
+  main" / "land it") — then push directly to `origin`, no PR needed.
 - Protected `main` (e.g. `shikanime-studio/actions`) -> open a PR instead;
   direct push is rejected.
 - Otherwise open a PR (see `sk-pr`) from a feature branch.
@@ -104,10 +103,10 @@ Confirm the hook accepted it (`jj log -1`).
 - Assuming cpn/console conventional style — shikanime code repos use plain
   English.
 - Ignoring a repo hook (gitlint/DCO) -> local commit rejected; detect first.
-- Pushing a working branch to the org remote — policy is fork-first; the org
-  remote receives `main` only.
-- Forgetting `jj bookmark track <branch> --remote=origin` on jj repos -> push to
-  the fork fails.
+- Pushing a working branch to the wrong remote — `origin` is the single push
+  target; never push to `main` unless authorized.
+- Forgetting `jj bookmark track <branch> --remote=origin` on jj repos -> push
+  fails.
 - Trailing period or lowercase start in subject — keep imperative, capitalized.
 - `manifests` gitlint: the `Signed-off-by` trailer rule still applies — keep
   BOTH `Signed-off-by` and `Co-authored-by: Automata`; gitlint accepts extra

@@ -12,21 +12,18 @@ metadata:
 # Shikanime Org PR Creation
 
 Open pull requests against `shikanime-labs/*` and `shikanime-studio/*` following
-org conventions: fork-first (PRs open from `<login>:<branch>` on a personal
-fork, never a branch on the org remote), base `main`, plain-English (or `doc:`)
-title, and issue linkage. Repo-specific enforcement (branch protection, CI,
-hooks) is detected per repo, not assumed.
+org conventions: push to `origin` (the cloned org repo), open PRs with
+`--head <org>:<branch>`, base `main`, plain-English (or `doc:`) title, and issue
+linkage. Repo-specific enforcement (branch protection, CI, hooks) is detected per
+repo, not assumed.
 
-## Internal policy: fork-first
+## Internal policy: push to the org repo
 
-**All PRs open from a personal fork of the target repo — never from a branch
-pushed to the org repo.** Create the fork once
-(`gh repo fork <org>/<repo> --clone=false`), add it as remote `origin`, push
-there, and open with `--head <login>:<branch>`. Remote naming convention (both
-families): **`upstream` = org repo, `origin` = personal fork.**
-(`OWNER=$(gh api user --jq .login)`). The local checkout path may read
-`shikanime-labs` while the gh remote is `shikanime-studio` (e.g. nix-containers)
-— trust the gh remote as canonical.
+**All PRs open directly from `origin` — the cloned org repo.** Push the working
+branch to `origin` and open the PR with
+`--head <org>:<branch>`. The local checkout path may read `shikanime-labs`
+while the gh remote is `shikanime-studio` (e.g. nix-containers) — trust the gh
+remote as canonical.
 
 ## When to Use
 
@@ -35,12 +32,11 @@ families): **`upstream` = org repo, `origin` = personal fork.**
 
 ## Prerequisites
 
-- `gh` authenticated; active identity is a collaborator. Do NOT
-  `gh auth switch`. The fork carries the branch — collaborator status is not
-  required to open a fork-based PR.
+- `gh` authenticated; active identity is a collaborator with push right to the
+  org repo. Do NOT `gh auth switch`. The branch is pushed to `origin` directly.
 - Linked issue should already exist (see `sk-issue`); verify it actually matches
   the PR's change (`jj file annotate` / `jj show <commit>` if unsure).
-- Branch pushed to the fork remote (`origin`) before opening.
+- Branch pushed to `origin` before opening.
 
 ## Org PR conventions
 
@@ -75,8 +71,7 @@ families): **`upstream` = org repo, `origin` = personal fork.**
      after the final merge (verify tasklist N of N, then `gh issue close`).
      Direct pushes never auto-close (commits have no body) — same deliberate
      close (see `sk-dev-workflow`).
-4. **Fork head** — `--head <login>:<branch>`; push to the fork remote (`origin`)
-   only.
+4. **Head** — `--head <org>:<branch>`; push to `origin` only.
 5. **Parity with the commit** — the PR title MUST equal the commit subject and
    the PR body MUST restate the commit message. The commit is the source of
    truth; the PR must not add new rationale the commit doesn't state (see
@@ -109,8 +104,8 @@ gh stack sync                          # later: rebase+pull+sync stack state
   local case — resolve conflicts there before continuing.
 - Existing single-PR branches (e.g. `fix/rwx-nfs-v4.0`) are adopted by
   `gh stack init` and `submit` simply updates the in-place PR into the stack.
-- For a lone branch use the plain fork PR (step 2 of Procedure); the parity rule
-  still applies — derive the body from the commit, don't invent.
+- For a lone branch use the plain org-repo PR (step 2 of Procedure); the parity
+  rule still applies — derive the body from the commit, don't invent.
 
 ## Procedure
 
@@ -121,15 +116,14 @@ gh stack sync                          # later: rebase+pull+sync stack state
   `main`.
 - Commits per `sk-commit` (plain English / `doc:`; repo hook policy wins).
 
-### 2. Push to fork + open PR
+### 2. Push to origin + open PR
 
 ```bash
-OWNER=$(gh api user --jq .login)
-gh repo fork <org>/<repo> --clone=false 2>/dev/null || true
-jj git remote add origin "git@github.com:$OWNER/<repo>.git" 2>/dev/null || true
+ORG=<org>
+jj git remote add origin "git@github.com:$ORG/<repo>.git" 2>/dev/null || true
 jj bookmark track <branch> --remote=origin
 jj git push --remote origin
-gh pr create --repo <org>/<repo> --base main --head "$OWNER:<branch>" \
+gh pr create --repo "$ORG/<repo>" --base main --head "$ORG:<branch>" \
   --title "<title>" --body "$(cat <<'EOF'
 ## What
 ...
@@ -139,7 +133,7 @@ gh pr create --repo <org>/<repo> --base main --head "$OWNER:<branch>" \
 
 ## References
 
-<official material proving the solution: upstream docs, linked issues/PRs,
+<official material proving the solution: linked issues/PRs,
 commits, changelogs, specs — the issue gathers evidence, this PR proves the
 solution>
 
@@ -170,8 +164,8 @@ reviewers. The rules live in `sk-pr-triage`; do not re-derive them here.
 
 ## Pitfalls
 
-- Pushing a working branch to the org remote — internal policy is fork-first;
-  the org remote receives `main` only.
+- Pushing to a non-org remote instead of `origin` — internal policy is push-to-org;
+  `origin` is the single push target.
 - Conventional PR title — shikanime uses plain English / `doc:`, not
   `feat:`/`fix:`.
 - **PR diverging from the commit** — the commit message drives the PR title and
@@ -196,7 +190,7 @@ body links the correct issue.
 - `sk-commit` — the commit this PR must restate (parity rule).
 - `sk-issue-refine` — the loop that iterates the problem _within its issue_ via
   comments; ensures the linked issue is a converged problem statement, not fog.
-- `sk-async` — landing multi-branch work as stacked fork PRs (`gh stack`).
-- `cpn-pr` — cloud-pi-native twin: French, conventional, upstream-only.
+- `sk-async` — landing multi-branch work as stacked PRs (`gh stack`).
+- `cpn-pr` — cloud-pi-native twin: French, conventional, pushes to origin.
 - `sk-pr-triage` — assigns PR metadata (labels, assignee, milestone, project,
   reviewers); run it after creation.

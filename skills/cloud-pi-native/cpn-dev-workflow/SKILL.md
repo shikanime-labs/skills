@@ -43,7 +43,7 @@ must clear.
 | 3   | Branch + implement (jj workspace, conventional commits)        | this skill                           | —                 |
 | 4   | Commit (conventional, SSH-signed)                              | `cpn-commit`                         | commit shape      |
 | 5   | Code review (adversarial pre-merge)                            | `cpn-code-review`                    | review gate       |
-| 6   | PR (upstream-only draft, link `Issues liées`)                  | `cpn-pr`                             | —                 |
+| 6   | PR (origin-only draft, link `Issues liées`)                  | `cpn-pr`                             | —                 |
 | 7   | Land (merge / `gh stack` + merge queue)                        | this skill                           | branch protection |
 | 8   | Close deliberately (verify N of N)                             | `cpn-issue`                          | ledger discharged |
 
@@ -189,7 +189,7 @@ unmet requirement is a reported blocker, never a silent scope change:
 
 - gh identity + write: `gh api user --jq .login` and
   `gh api repos/cloud-pi-native/console --jq .viewerPermission` — need
-  `write`/`admin` to push upstream.
+  `write`/`admin` to push to origin.
 - Toolchain: `node --version` (≥26), `pnpm --version`; jj present (console is
   jj-backed — never `git commit`; use `jj describe`/`jj new`).
 - `gh stack` extension: `gh extension list`.
@@ -244,13 +244,13 @@ runnable CHECK/EXPECT, and required checks + draft-by-default are the wall.**
 
 ## Landing and PR↔commit parity
 
-Landing a change follows the same upstream-only discipline as the other cpn
+Landing a change follows the same origin-only discipline as the other cpn
 skills:
 
-- **Upstream-only, no fork.** Push the branch to the canonical
-  `cloud-pi-native/*` remote and open the PR with
-  `--head cloud-pi-native:<branch>`. The `shikanime/cloud-pi-native-*` fork is
-  fetch-only. (Pre-2026-08 `--head shikanime:<branch>` guidance is retired.)
+- **Origin-only.** Clone the org repo so `origin` is `cloud-pi-native/*`, push
+  the branch to `origin`, and open the PR with
+  `--head cloud-pi-native:<branch>`. (Pre-2026-08 `--head shikanime:<branch>`
+  guidance is retired.)
 - **`gh stack` is the preferred landing path** for single- or multi-branch work.
   It reads each branch's commit subject/body to seed the PR title/description,
   which enforces PR↔commit parity by construction:
@@ -417,7 +417,7 @@ blocked.
   but jj's snapshot lags; `jj squash` then lies ("Nothing changed") and
   `jj diff` shows nothing until you `touch` the file. Verify every jj edit with
   `jj diff -r <rev>` (grep a known token), never the squash message, and push
-  with `jj git push --bookmark <name> --remote upstream`. Full symptom list +
+  with `jj git push --bookmark <name> --remote origin`. Full symptom list +
   recovery sequence: `references/jj-snapshot-pitfalls.md`.
 - `apps/server` is frozen: contributions touching it are rejected, including bug
   fixes.
@@ -480,8 +480,8 @@ blocked.
    `jj bookmark set fix/<topic> -r <commit>` (if the target is an ANCESTOR of
    the bookmark's current position, jj refuses as "backwards" — add
    `--allow-backwards`; the working copy and WIP are untouched).
-7. Push only to upstream:
-   `jj git push --bookmark fix/<topic> --remote upstream`.
+7. Push only to origin:
+   `jj git push --bookmark fix/<topic> --remote origin`.
 8. Restore the user's WIP to the working tree:
    `jj restore --from <saved-wip> --to @` (or apply `/tmp/wip.patch` by hand
    with `patch`/`write_file`). If the fix and WIP touched the SAME file(s), the
@@ -500,7 +500,7 @@ blocked.
 - **Push 403 as the wrong gh account**: git's HTTPS credential helper resolves
   the ACTIVE gh account, NOT `GH_ACCOUNT` (that env var only affects the gh CLI,
   not git's credential lookup). If `jj git push` is denied as e.g.
-  `yorha-automata` but the fork is owned by `shikanime`, run
+  `yorha-automata` but the repo is owned by `shikanime`, run
   `gh auth switch --user shikanime` first, then push.
   `GH_ACCOUNT=shikanime jj git push` will STILL use the active account's token —
   don't waste a round-trip on it.
@@ -522,7 +522,7 @@ blocked.
   `feat/observability-adr014-rbac`, `wphetsinorath/push-onkyzmozpsmy`) that had
   been locally deleted in a prior session. If you only mean to drop ONE remote
   bookmark, delete just that local bookmark and push it specifically
-  (`jj git push --bookmark <name> --remote upstream` after
+  (`jj git push --bookmark <name> --remote origin` after
   `jj bookmark delete <name>`) rather than the blanket `--deleted` flag, unless
   matching remote to local is the explicit intent.
 - **GitLab 409 "Username has already been taken" is NORMAL — do not build a
@@ -547,5 +547,5 @@ and `pnpm playwright:test` as pre-submission checks.
 
 - `cpn-commit` — the commit shape (conventional subject, author identity, SSH
   signing) this workflow lands.
-- `cpn-pr` — upstream-only PR opening from these commits.
-- `sk-dev-workflow` — shikanime twin (fork-first landing).
+- `cpn-pr` — origin-only PR opening from these commits.
+- `sk-dev-workflow` — shikanime twin (branch-based landing).

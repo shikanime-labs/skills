@@ -31,7 +31,7 @@ holds no issue-creation logic of its own.
 Load `sk-issue` and follow it. Body = problem statement + `- [ ]` gate ledger
 (command-decidable acceptance criteria); findings go in comments, not the body.
 
-On completion you have issue `#N` in the upstream org repo.
+On completion you have issue `#N` in the org repo.
 
 ### 2. Refine the problem within the issue
 

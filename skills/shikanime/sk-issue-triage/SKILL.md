@@ -20,8 +20,8 @@ does not have.
 
 ## Prerequisites
 
-- `gh` authenticated against the canonical org remote. Personal forks may have
-  Issues disabled — target the upstream org repo.
+- `gh` authenticated against the canonical org repo. Target the org repo
+  directly.
 
 ## Inputs
 
@@ -114,8 +114,7 @@ why, then close.
 - Overwriting — use `--add-label` / `--add-assignee` (additive), never
   `--label`.
 - Wrong milestone line — bugs get the current patch, features the next release.
-- Targeting a personal fork where Issues are disabled — use the upstream org
-  repo.
+- Targeting the wrong repo for issues — always use the org repo.
 
 ## See also
 

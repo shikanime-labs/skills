@@ -6,7 +6,7 @@
   "skills": [
     {
       "name": "sk-dev-workflow",
-      "description": "Branch and push discipline for shikanime repos: fork-first landing, jj bookmark tracking, assumption validation, issue-first lifecycle, and landing via gh stack or direct push.",
+      "description": "Branch and push discipline for shikanime repos: push to origin (the org repo), jj bookmark tracking, assumption validation, issue-first lifecycle, and landing via gh stack or direct push.",
       "path": "skills/shikanime/sk-dev-workflow"
     },
     {
@@ -51,7 +51,7 @@
     },
     {
       "name": "sk-pr-workflow",
-      "description": "Single entry point for the shikanime PR side: ensure the issue exists, open the fork-first PR derived from the commit, then triage immediately.",
+      "description": "Single entry point for the shikanime PR side: ensure the issue exists, open the org-repo PR derived from the commit, then triage immediately.",
       "path": "skills/shikanime/sk-pr-workflow"
     },
     {
@@ -61,7 +61,7 @@
     },
     {
       "name": "sk-pr",
-      "description": "Open PRs in shikanime orgs fork-first: PR derived from the commit message, many-to-many issue linkage via Related, no auto-close keywords.",
+      "description": "Open PRs in shikanime orgs: push to origin, PR derived from the commit message, many-to-many issue linkage via Related, no auto-close keywords.",
       "path": "skills/shikanime/sk-pr"
     },
     {

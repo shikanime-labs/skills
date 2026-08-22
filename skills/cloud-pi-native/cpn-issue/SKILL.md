@@ -24,8 +24,8 @@ before any PR, then link the PR to it (see `cpn-pr`).
 
 - `gh` authenticated (`gh auth status`); the active identity must be a repo
   collaborator. Do NOT run `gh auth switch` — edit the scoped config instead.
-- The `shikanime/cloud-pi-native-console` fork has **Issues disabled**: query
-  and link issues against upstream `cloud-pi-native/console`.
+- `cloud-pi-native/console` is the issue tracker: query and link issues against
+  `cloud-pi-native/console` directly.
 
 ## How to Run
 
@@ -123,8 +123,8 @@ After the issue body is set, delegate to `cpn-issue-triage` (#N): it enumerates
 the repo's available metadata and sets each empty, determinable field — labels
 (already seeded by the template), assignee, project, and milestone (bug →
 current patch, enhancement → next release). The rules live in
-`cpn-issue-triage`; do not re-derive them here. This is always against upstream
-`cloud-pi-native/console` (the fork has Issues disabled).
+`cpn-issue-triage`; do not re-derive them here. This is always against
+`cloud-pi-native/console`.
 
 ## Comment vs Body convention
 
@@ -156,7 +156,7 @@ gh issue comment <N> --repo cloud-pi-native/console --body-file /tmp/finding.md
 
 ## References and evidence
 
-The issue body carries a **References** section: official material (upstream
+The issue body carries a **References** section: official material (project
 documentation, linked issues/PRs, commits, changelogs, specs) attesting a
 potential solution or adding context about the problem statement. The agent may
 post additional material as comments (`gh issue comment`) to help steer
@@ -176,8 +176,8 @@ than assuming).
 
 ## Pitfalls
 
-- Pushing to the wrong repo: on the `shikanime` fork, Issues are disabled —
-  create/link against `cloud-pi-native/console` upstream.
+- Pushing to the wrong repo: create/link issues against
+  `cloud-pi-native/console` directly.
 - Missing `bug`/`enhancement` label — both templates set it; keep it.
 - English bodies break repo convention; the templates are French.
 - Do NOT rewrite the body with investigation results — those belong in a comment
@@ -198,7 +198,7 @@ Confirm: title carries `🐛 [BUG]` or `💡 [REQUEST]`, and label is
   (auto-close avoided unless explicitly one-to-one); the PR title is
   conventional and its body restates the linked commit (commit is the source of
   truth, see `cpn-dev-workflow`).
-- `cpn-dev-workflow` — branch discipline, upstream-only push, and the full local
+- `cpn-dev-workflow` — branch discipline, direct push to origin, and the full local
   dev loop this issue feeds into.
 - `cpn-issue-triage` — assigns issue metadata (labels, assignee, milestone,
   project); run it after creation.

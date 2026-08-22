@@ -21,7 +21,7 @@ pas. Les PR ne sont jamais fermées par la triage.
 ## Prérequis
 
 - `gh` authentifié comme collaborateur du dépôt. Ne PAS `gh auth switch`.
-- Le fork a PRs désactivées — cibler `cloud-pi-native/console`.
+- Les PR sont gérées sur `cloud-pi-native/console` — cibler ce dépôt.
 
 ## Entrées
 

@@ -2,7 +2,7 @@
 
 Condensed from aihero.dev/skills-wayfinder (Matt Pocock). This skill is the
 problem-iteration half of that flow, re-skinned onto shikanime's issue-first
-chain. Kept here so future edits don't have to re-read upstream.
+chain. Kept here so future edits don't have to re-read the source repo.
 
 ## Core rule: plan, don't do
 

@@ -8,7 +8,8 @@ author: Hermes Agent
 license: Apache-2.0
 metadata:
   hermes:
-    tags: [github, triage, discussions, graphql, shikanime-labs, shikanime-studio]
+    tags:
+      [github, triage, discussions, graphql, shikanime-labs, shikanime-studio]
 ---
 
 # Shikanime Discussion Triage
