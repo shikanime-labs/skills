@@ -227,6 +227,24 @@ is intermittent, not deterministic. Trust `jj log`/`jj diff` for graph and
 working-copy state; re-verify any file-content assertion whose output looks
 truncated.
 
+### C2. Squash-message hygiene (avoid jj-artifact leakage)
+
+Squashing multiple commits into one carries the same risk as `sk-commit`'s
+final-message hygiene: GitHub (and a naive `jj squash --message`) can
+auto-concatenate the branch's commit descriptions, leaking jj's internal
+markers and duplicate/self trailers into the merged commit.
+
+- Strip jj internals before finalizing: no `*` bullet lines (jj's per-commit
+  description separator), no `---------` separators (jj description-join
+  markers), no stray `Change-Id:` lines from unrelated prior commits.
+- One subject + one coherent body + exactly the trailers the repo wants:
+  `Co-authored-by: Automata <automata@shikanime.studio>` (always, per
+  operator), plus any `Signed-off-by` / `Change-Id` that already legitimately
+  sit on the commit history — never duplicate, never self-co-author.
+- When landing via `gh pr merge --squash`, ALWAYS pass the final message
+  explicitly with `-m` (subject) and `-m` (body + trailers). Never rely on
+  GitHub auto-concatenation of branch commit messages.
+
 ### D. Git-based squash / split / force-push (doc repos are plain git, not jj)
 
 The doc repos (`documentation`, `documentation-interne-socle`) are git, not jj.
