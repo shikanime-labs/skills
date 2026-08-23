@@ -46,6 +46,18 @@ Frame execution through the `terminal` tool; read context with `read_file` /
 with ONLY the diff (no shared context — no agent verifies its own work). Load
 `references/review-doctrine.md` for the shared review standard.
 
+Dispatch form (reviewer sees only the diff; fail-closed on non-JSON per the
+Gate):
+
+```python
+delegate_task(goal="Review PR <N> diff (provided inline). Apply "
+                 "references/review-doctrine.md. Return JSON verdict "
+                 "{verdict: PASS|FAIL, findings: [...]}. No shared context — "
+                 "do not verify your own work.",
+             context="<diff pasted here>",
+             toolsets=["file"])
+```
+
 ## Quick Reference
 
 ```bash

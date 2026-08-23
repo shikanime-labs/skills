@@ -63,7 +63,23 @@ d'acceptation convergent et soient prêts à être résolus.
 4. **Résous le travail AFK en parallèle** — pour les items `research`, fan-out
    via `delegate_task` (un enfant par fait indépendant ; isole sur une branche
    `research/<name>` par `cpn-async` si ça touche le dépôt). Research ne lit et
-   rapporte que ; n'édite jamais le code produit. Pour `grilling`/`prototype`,
+   rapporte que ; n'édite jamais le code produit. Chaque fait `research` est
+   dispatché en `delegate_task(goal=...)` (un enfant par fait indépendant ; le
+   `goal` énonce la question et le contrat de rapport en commentaire) — sépare
+   chaque fait en task distinct, n'empaquette pas plusieurs questions dans un
+   seul `goal` :
+   ```python
+   delegate_task(tasks=[
+       {"goal": "Rechercher <fait> : source autoritative pour <question>. "
+                "Read-only ; rapporter trouvaille + Références officielles ; "
+                "n'éditer aucun code.",
+        "context": "Issue <N> dans <org>/<repo> ; isole sur branche "
+                   "research/<name> (cpn-async) si dépôt touché.",
+        "toolsets": ["web", "terminal"]},
+   ])
+   ```
+
+   Pour `grilling`/`prototype`,
    engage l'humain en série.
 5. **Poste les trouvailles en commentaires** — chaque résolution va dans un
    `gh issue comment` : la trouvaille, la/les solution(s) candidate(s), et les
