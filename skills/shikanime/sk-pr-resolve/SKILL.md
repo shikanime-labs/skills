@@ -18,7 +18,7 @@ metadata:
         shikanime-labs,
         shikanime-studio,
       ]
-    related_skills: [sk-land, sk-pr, sk-issue, sk-code-review, sk-async]
+    related_skills: [sk-land, sk-pr, sk-issue, sk-code-review, sk-async, sk-wiki]
 ---
 
 # Shikanime Org PR Resolution (no merge)
@@ -137,6 +137,8 @@ A readiness verdict covering:
 - Conversations: every thread resolved with one-line rationale, or a list of
   threads still requiring the author's decision.
 - CI: green / pending / failing.
+- Wiki: flag any ops/architecture change surfaced during reconciliation for a
+  post-land `sk-wiki` update (runbook / troubleshooting / architecture page).
 
 Then stop. Merging is `sk-land`'s job.
 

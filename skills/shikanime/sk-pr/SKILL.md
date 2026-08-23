@@ -201,6 +201,9 @@ reviewers. The rules live in `sk-pr-triage`; do not re-derive them here.
   per the repo's allowed strategy once checks pass and review is satisfied.
 - **Direct landing**: the user authorizing "push to main" / "land it" overrides
   the PR path — push directly, don't open a PR.
+- **Wiki follow-up**: if this PR changes user-facing behavior or adds a feature,
+  plan a `sk-wiki` update (user-guide / tutorial / reference page) once the
+  merge lands — the issue/PR prove the change, the wiki documents how to use it.
 
 ## Pitfalls
 

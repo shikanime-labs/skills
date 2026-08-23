@@ -80,6 +80,10 @@
         "path": "skills/shikanime/sk-code-review"
       },
       {
+        "name": "sk-wiki",
+        "path": "skills/shikanime/sk-wiki"
+      },
+      {
         "name": "cpn-dev-workflow",
         "path": "skills/cloud-pi-native/cpn-dev-workflow"
       },
