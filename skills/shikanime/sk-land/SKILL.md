@@ -75,20 +75,28 @@ Stacked branches land via `gh stack` (never `gh pr merge` on a stacked PR —
 poisoned commits); lone branches may use `gh pr merge`. Never force-push stacked
 branches.
 
-```bash
-# Stacked (see sk-async / sk-pr):
-gh stack merge <PR_NUMBER> --yes --squash
+Land via a background watcher — the whole skill is fire-and-forget; never
+block inline on CI. The gates (1 to 3) must already be satisfied: land only a
+PR whose ledger, review approval, and threads are closed. Launch a background
+watcher that waits for CI then merges.
 
-# Lone branch:
-gh pr merge <M> --repo <org>/<repo> --squash --rebase   # squash+rebase only
+```bash
+gh run watch --repo <org>/<repo> \
+  $(gh run list --repo <org>/<repo> --branch <branch> --limit 1 \
+    --json databaseId -q '.[0].databaseId') \
+  && gh pr merge <M> --repo <org>/<repo> --squash --rebase
 ```
 
-- Direct admin merge (lone branch): repos that block self-approval land with
-  `gh pr merge <M> --repo <org>/<repo> --squash --admin`. `--admin` is required
-  (protection rejects a non-admin merge); drop `--rebase` (squash is the
-  strategy). Used after a verbal `lgtm` satisfies Gate 2.
-- Standard lone branch (protection allows self-merge):
-  `gh pr merge <M> --repo <org>/<repo> --squash --rebase`.
+Run it as a background terminal with notify_on_complete so you are alerted on
+land. Re-run the command after a fresh push to pick up the new run id. A
+failing run exits non-zero and skips the merge (red never lands).
+
+- Lone branch, self-approval blocked (after a verbal lgtm): swap --rebase for
+  --admin (protection rejects a non-admin merge):
+  `gh run watch --repo <org>/<repo> $(gh run list --repo <org>/<repo> --branch <branch> --limit 1 --json databaseId -q '.[0].databaseId') && gh pr merge <M> --repo <org>/<repo> --squash --admin`
+- Stacked (see sk-async / sk-pr): run `gh stack merge <PR_NUMBER> --yes --squash`
+  in a background terminal with notify_on_complete; it blocks until the stack
+  merges.
 - Branch protection requires linear history + signed commits; squash merge only.
 
 ## Post-merge
