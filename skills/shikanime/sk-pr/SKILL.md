@@ -159,8 +159,8 @@ re-derive here.
   allowed strategy once green + reviewed.
 - **Direct landing**: user authorizing "push to main" / "land it" overrides the
   PR path — push directly, don't open a PR.
-- **Wiki follow-up**: if this PR changes user-facing behavior or adds a feature,
-  plan a `sk-wiki` update after merge.
+- **Docs follow-up**: if this PR changes user-facing behavior or adds a feature,
+  plan a `sk-doc` update under `docs/` after merge.
 
 ## Verification
 
