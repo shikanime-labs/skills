@@ -137,6 +137,10 @@ jj log -1 --pretty=%B
   jj workflow). The "no DCO unless asked" rule means _don't add new_ trailers to
   a bodyless commit the operator just wrote; it does NOT mean delete trailers
   that are already part of the commit history being squashed/extended.
+- **Squash hygiene**: when folding multiple commits (see `cpn-pr`'s
+  Squash-message hygiene), never let jj `*` / `---------` artifacts or duplicate
+  trailers leak into the final message — one subject + the trailers the repo
+  wants, nothing auto-concatenated.
 
 ## Verification
 
