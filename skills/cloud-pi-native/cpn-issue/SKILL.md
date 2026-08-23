@@ -1,7 +1,7 @@
 ---
 name: cpn-issue
 description: "Open CPN console issues with French templates."
-version: 0.1.1
+version: 0.1.2
 author: Hermes Agent
 license: Apache-2.0
 metadata:
@@ -11,25 +11,19 @@ metadata:
 
 # CPN Org Issue Creation
 
-Create GitHub issues for `cloud-pi-native/console` using the repo's French issue
-templates and label conventions. Issue-first is the repo norm: create the issue
-before any PR, then link the PR to it (see `cpn-pr`).
+Open `cloud-pi-native/console` issues with its French templates. Issue-first
+repo norm: open the issue before any PR, then link it (see `cpn-pr`).
 
 ## When to Use
 
 - "Open an issue on console" / "create a bug/feature ticket for console".
-- Any creation task in `cloud-pi-native/console` requiring a French issue body.
 
 ## Prerequisites
 
-- `gh` authenticated (`gh auth status`); the active identity must be a repo
+- `gh` authenticated (`gh auth status`); active identity must be a repo
   collaborator. Do NOT run `gh auth switch` — edit the scoped config instead.
-- `cloud-pi-native/console` is the issue tracker: query and link issues against
-  `cloud-pi-native/console` directly.
-
-## How to Run
-
-All mutations go through the `terminal` tool with `gh`.
+- `cloud-pi-native/console` is the issue tracker: query/link issues against it
+  directly.
 
 ## Quick Reference
 
@@ -41,16 +35,12 @@ All mutations go through the `terminal` tool with `gh`.
 
 ## Procedure
 
-**Temp body files are NOT hard-wrapped.** Author the `--body` heredoc /
-`--body-file` in semantic line breaks (one sentence per line, no 80-col wrap).
-GitHub joins consecutive non-blank lines into one flowing paragraph, so it reads
-naturally — and a one-sentence edit only churns that one line in the diff
-instead of reflowing the whole block. Never run `nix fmt` / `mdformat` over a
-temp body file.
+**Temp body files are NOT hard-wrapped** — semantic line breaks (one sentence
+per line, no 80-col wrap); GitHub joins non-blank lines into one paragraph.
+Never run `nix fmt` / `mdformat` over a temp body file.
 
-### 1. Bug issue
-
-Title `🐛 [BUG] - <short summary>`, label `bug`:
+Full French templates →
+[references/issue-templates.md](references/issue-templates.md). Bug example:
 
 ```bash
 gh issue create \
@@ -58,130 +48,50 @@ gh issue create \
   --title "🐛 [BUG] - <short summary>" \
   --label "bug" \
   --body "$(cat <<'EOF'
-## Description
-
-<explicit description of the incident>
-
-## Etapes de reproduction
-
-1. Aller à '...'
-2. Cliquer sur '....'
-3. Voir l'erreur
-
-## Captures d'écran
-
-## Logs
-
-## Navigateurs
-
-## OS
-
-## Version de la console impactée
-
-## Définition du fini
-
-- [ ] Le correctif est terminé
-- [ ] Les tests liés à ce correctif ont été ajoutés
-EOF
-)"
-```
-
-### 2. Feature issue
-
-Title `💡 [REQUEST] - <short summary>`, label `enhancement`:
-
-```bash
-gh issue create \
-  --repo cloud-pi-native/console \
-  --title "💡 [REQUEST] - <short summary>" \
-  --label "enhancement" \
-  --body "$(cat <<'EOF'
-## Description
-
-<brief feature explanation>
-
-## PRs liées
-
-## Issues liées
-
-## Exemples simples
-
-## Spécifications techniques
-
-## Définition du fini
-
-- [ ] La fonctionnalité est terminée
-- [ ] Les tests liés à cette fonctionnalité ont été ajoutés
-- [ ] La documentation liée a été ajoutée
+# Full template in references/issue-templates.md
 EOF
 )"
 ```
 
 ## Triage metadata
 
-After the issue body is set, delegate to `cpn-issue-triage` (#N): it enumerates
-the repo's available metadata and sets each empty, determinable field — labels
-(already seeded by the template), assignee, project, and milestone (bug →
-current patch, enhancement → next release). The rules live in
-`cpn-issue-triage`; do not re-derive them here. This is always against
-`cloud-pi-native/console`.
+After the body is set, delegate to `cpn-issue-triage` (#N): it sets labels
+(seeded by template), assignee, project, milestone (bug → current patch,
+enhancement → next release). Always against `cloud-pi-native/console`.
 
-## Comment vs Body convention
+## Comment vs Body
 
-- **Body** = the problem statement only. Edit it solely to clarify or correct
-  the reported incident (Description, reproduction steps, affected version,
-  _Définition du fini_). Never embed investigation results there.
-- **Findings go in comments.** Any root-cause analysis, code references,
-  regression commits, or proposed fixes are posted with
+- **Body** = problem statement only; edit solely to clarify the incident
+  (Description, reproduction steps, affected version, _Définition du fini_).
+  Must stay a stable, clean statement for triage.
+- **Findings → comments:**
   `gh issue comment <N> --repo cloud-pi-native/console --body-file <file>`.
-- Rationale: the body must stay a stable, clean problem statement for triage;
-  findings evolve and should not rewrite it.
-
-### Définition du fini = the gate ledger
-
-The body's `Définition du fini` tasklist is the work item's ledger (unlazy
-method): each `- [ ]` item phrased so a command can decide it, mirrored as
-`todo` items in-session (todo is the working copy, the issue is the record). An
-item is done only once its check ran — not from memory. The PR (cpn-pr) proves
-the ledger: N of N, numbers re-measured at writing time. A genuinely impossible
-criterion is struck with a comment, never silently dropped. Several PRs may
-jointly solve one issue — linkage stays `Issues liées` / `Refs` (auto-close
-avoided; see cpn-pr); the ledger stays one per issue, and closure is deliberate:
-verified N of N after the final merge, then
-`gh issue close <N> -c "<evidence>"`.
+- `Définition du fini` is the work ledger (rules →
+  [references/ledger.md](references/ledger.md)); closure is deliberate —
+  verified N of N, then `gh issue close <N> -c "<evidence>"`:
 
 ```bash
 gh issue comment <N> --repo cloud-pi-native/console --body-file /tmp/finding.md
 ```
 
-## References and evidence
+## References & investigation
 
-The issue body carries a **References** section: official material (project
-documentation, linked issues/PRs, commits, changelogs, specs) attesting a
-potential solution or adding context about the problem statement. The agent may
-post additional material as comments (`gh issue comment`) to help steer
-resolution toward a solution. Proof of the solution itself belongs in the PR
-(see `cpn-pr`), not the issue.
-
-## Investigation — tracing a change's rationale
-
-When the issue needs a root cause (not just a symptom report), trace the code
-change instead of guessing. The recipe and a worked example live in
-[references/regression-trace.md](references/regression-trace.md): `jj log`
-revset pickaxe → `jj file annotate` → `jj show` → `gh pr list --search <hash>` →
-follow the PR's linked issue. Always **verify the linked issue actually
-describes the change** — in this repo PRs are often linked to an unrelated
-issue, so the real rationale may be unrecorded (state that explicitly rather
-than assuming).
+- Body may carry a **References** section (docs, linked issues/PRs, commits,
+  specs); post extra material as comments (`gh issue comment`). Proof of the
+  solution belongs in the PR (see `cpn-pr`).
+- Root-cause recipe →
+  [references/regression-trace.md](references/regression-trace.md): `jj log`
+  pickaxe → `jj file annotate` → `jj show` → `gh pr list --search <hash>` →
+  follow the PR's linked issue. Verify the linked issue actually describes the
+  change — PRs are often mis-linked here; state if unrecorded.
 
 ## Pitfalls
 
-- Pushing to the wrong repo: create/link issues against
-  `cloud-pi-native/console` directly.
+- Wrong repo: use `cloud-pi-native/console` directly.
 - Missing `bug`/`enhancement` label — both templates set it; keep it.
-- English bodies break repo convention; the templates are French.
-- Do NOT rewrite the body with investigation results — those belong in a comment
-  (see above).
+- English bodies break repo convention; templates are French.
+- Do NOT rewrite the body with investigation results — those belong in a
+  comment.
 
 ## Verification
 
@@ -189,16 +99,12 @@ than assuming).
 gh issue view <N> --repo cloud-pi-native/console --json number,title,labels
 ```
 
-Confirm: title carries `🐛 [BUG]` or `💡 [REQUEST]`, and label is
+Confirm title carries `🐛 [BUG]` or `💡 [REQUEST]`, label is
 `bug`/`enhancement`.
 
 ## See also
 
-- `cpn-pr` — the PR that solves this issue must link it via `Issues liées: #N`
-  (auto-close avoided unless explicitly one-to-one); the PR title is
-  conventional and its body restates the linked commit (commit is the source of
-  truth, see `cpn-dev-workflow`).
-- `cpn-dev-workflow` — branch discipline, direct push to origin, and the full
-  local dev loop this issue feeds into.
-- `cpn-issue-triage` — assigns issue metadata (labels, assignee, milestone,
-  project); run it after creation.
+- `cpn-pr` — link via `Issues liées: #N` (auto-close avoided unless one-to-one);
+  PR body restates the linked commit (source of truth, see `cpn-dev-workflow`).
+- `cpn-dev-workflow` — branch discipline, direct push, local dev loop.
+- `cpn-issue-triage` — assigns metadata; run after creation.

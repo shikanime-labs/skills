@@ -5,7 +5,7 @@ description:
   ops + optional user-facing docs), edit pages through a reviewable in-repo
   source, and sync to the <repo>.wiki.git remote. Mirrors Longhorn internal-ops
   / PyTorch mirror / Kubernetes ownership patterns."
-version: 0.2.0
+version: 0.2.1
 author: Hermes Agent
 license: Apache-2.0
 metadata:
@@ -16,57 +16,36 @@ metadata:
 
 # Shikanime Org Wiki
 
-Maintain a GitHub wiki as the project's knowledge base. It hosts two zones:
+GitHub wiki = knowledge base, two zones:
 
-- **Internal ops** (always) — development runbooks, architecture intent,
-  operational procedures, release/QA state, decisions, tribal knowledge.
-- **User-facing docs** (when the repo has no dedicated docs site) — user guide,
-  tutorials, FAQ, reference. Avoid duplicating a docs site that already exists.
-
-Modeled on how large projects run their wikis:
-
-- **Longhorn** — wiki carries internal operations (dev, QA, release, project
-  management); user documentation lives on a dedicated site. We copy the split:
-  keep user docs out of the wiki _only if_ a docs site already owns them.
-- **PyTorch** — the wiki git remote is a _mirror_. Source content is edited in a
-  reviewable repo (PR + CI), then synced to `<repo>.wiki.git`. We copy this so
-  wiki content gets review instead of ad-hoc web edits.
-- **Kubernetes** — contributor-facing docs follow a style guide, assign an
-  owner, and go through review. We copy this for disciplined, owned pages.
+- **Internal ops** (always): runbooks, architecture, ops, release/QA, decisions.
+- **User-facing docs** (only if no docs site exists): guide, tutorials, FAQ,
+  reference.
 
 ## When to Use
 
 - "Set up the wiki for <repo>."
 - "Add a runbook / architecture / ops page to the <repo> wiki."
-- "Add a user guide / tutorial / FAQ to the <repo> wiki."
-- "Document how to use / run / develop <repo> on its wiki."
+- "Add a user guide / tutorial / FAQ / how-to-use to the <repo> wiki."
 - "Sync the in-repo wiki source to the live wiki."
-
-Don't use for: user-facing documentation when the repo _already_ has a docs site
-or `docs/` pipeline that is the canonical source — link to it from the wiki
-instead of duplicating.
 
 ## Doctrine
 
-1. **Two zones, one source.** Internal ops are always in the wiki. User-facing
-   docs join the wiki only when no docs site owns them; otherwise the wiki links
-   out. Both zones are edited in-repo and synced.
-2. **Edit in-repo, sync to wiki.** Maintain wiki source under `wiki/` in the
-   project repo (or a `wiki` branch). Pages are Markdown reviewed via PR. A sync
-   step pushes them to `<repo>.wiki.git`. Never edit the live wiki by hand when
-   an in-repo source exists.
-3. **Every page has one owner + a purpose.** Name the owning team/person and the
-   problem the page solves. Unowned pages rot.
-4. **Sidebar is the index.** `_Sidebar.md` is the navigation; update it whenever
-   a page is added or moved. `Home.md` is the landing page and states which zone
-   each section belongs to.
+1. **Two zones, one source.** Internal ops always in the wiki; user docs only
+   when no site owns them. Both edited in-repo and synced.
+2. **Edit in-repo, sync to wiki.** Source under `wiki/` (or `wiki` branch),
+   reviewed via PR, then pushed to `<repo>.wiki.git`. Never edit the live wiki
+   by hand when an in-repo source exists.
+3. **Every page has one owner + a purpose.** Unowned pages rot.
+4. **Sidebar is the index.** `_Sidebar.md` is nav; update on every add/move.
+   `Home.md` is the landing page naming each section's zone.
 
 ## Procedure
 
-### 1. Locate or seed the wiki source
+### 1. Locate or seed
 
-Target repo `R` (`OWNER/REPO`), validated under `shikanime-labs/` or
-`shikanime-studio/`. Confirm the in-repo source location:
+Repo `R` (`OWNER/REPO`) in `shikanime-labs/` or `shikanime-studio/`. Confirm
+in-repo source:
 
 ```bash
 # Preferred: a `wiki/` directory at repo root, or a `wiki` branch.
@@ -74,51 +53,35 @@ jj file list wiki/ 2>/dev/null
 gh api repos/"$R"/branches --jq '.[].name' | grep -x wiki || true
 ```
 
-If neither exists, propose seeding: create `wiki/Home.md` + `wiki/_Sidebar.md`
-in the project repo (via issue → PR, per `sk-issue` / `sk-pr`). Do not push to
-the `.wiki.git` remote until the source is review-approved.
+Neither exists? Seed via issue → PR (`sk-issue` / `sk-pr`): create
+`wiki/Home.md` + `wiki/_Sidebar.md`. Don't push to `.wiki.git` until
+review-approved.
 
-### 2. Seed the structure (first time only)
+### 2. Seed structure (first time only)
 
-```text
-wiki/
-  Home.md                # landing: project + zone map + sidebar mirror
-  _Sidebar.md            # nav index (auto-rendered by GitHub)
-  # Internal ops zone
-  Architecture.md        # intent, components, data flow, boundaries
-  Development.md         # local setup, build, test loop, common workflows
-  Runbook.md             # operate/deploy/observe; on-call first responder steps
-  Troubleshooting.md     # known failure modes + fixes
-  Releases.md            # release state, schedule, known issues (internal)
-  Decisions.md           # ADRs / trade-off records
-  # User-facing zone (add only if no docs site owns these)
-  User-Guide.md          # how to install, configure, and use the project
-  Tutorials.md           # end-to-end walkthroughs
-  FAQ.md                 # recurring questions
-  Reference.md           # config keys, CLI flags, API surface
-```
+Create `wiki/` with `Home.md`, `_Sidebar.md`, plus:
 
-Head each page with an owner line:
+- **Internal:** Architecture, Development, Runbook, Troubleshooting, Releases,
+  Decisions
+- **User (only if no docs site owns them):** User-Guide, Tutorials, FAQ,
+  Reference
 
-```markdown
-<!-- owner: <team-or-person> | zone: internal|user | purpose: <one line> -->
-```
+Head each page:
+`<!-- owner: <team-or-person> | zone: internal|user | purpose: <one line> -->`
 
 ### 3. Add or edit a page
 
-Edit the Markdown file in `wiki/`. One page = one concern. English, plain prose,
-80-col where reasonable. Link related pages with relative wiki links
-(`[[Other-Page]]` renders in the wiki).
+Edit the Markdown in `wiki/`. One page = one concern. Link related pages with
+`[[Other-Page]]`.
 
-- Internal page → add under the internal section of `_Sidebar.md`.
-- User page → add under the user section; if a docs site already owns that
-  content, link to it from `Home.md` instead of authoring a duplicate.
+- Internal → add under the internal section of `_Sidebar.md`.
+- User → add under the user section; if the content lives on a docs site, link
+  from `Home.md` instead of duplicating.
 
 ### 4. Sync to the live wiki
 
-The wiki is a separate git remote: `<repo>.wiki.git`. Mirror the `wiki/`
-directory's contents into it (page names become wiki page titles; `_Sidebar.md`
-and `_Footer.md` are special filenames GitHub renders).
+Wiki is a separate remote `<repo>.wiki.git`. Mirror `wiki/` into it
+(`_Sidebar.md`/`_Footer.md` are special).
 
 ```bash
 # After the in-repo change is merged/reviewed:
@@ -135,14 +98,9 @@ jj git push --remote origin --allow-new
 cd /; rm -rf "$TMP"
 ```
 
-The `.wiki.git` remote is a distinct repo, so it gets its own jj workspace
-(clone → edit → `jj describe` → `jj git push`) rather than being pushed from the
-code repo. `jj git clone` covers the case where the wiki repo is jj-backed; the
-`git clone` fallback handles a plain-git wiki remote.
-
-Automate this in CI (a job that runs on changes to `wiki/`) so the wiki never
-drifts from the source. The `actions/github-wiki-action` marketplace action
-mirrors a `wiki/` folder to the wiki remote if you prefer no custom script.
+Clone `.wiki.git` as its own jj workspace (clone → edit → `jj describe` →
+`jj git push`); `git clone` is the plain-git fallback. Automate in CI on `wiki/`
+changes; `actions/github-wiki-action` mirrors `wiki/`.
 
 ### 5. Verify
 
@@ -153,19 +111,15 @@ gh api repos/"$R"/wiki --jq '.[].title'   # list live pages
 
 ## Pitfalls
 
-- **Editing the live wiki by hand** — it bypasses review and diverges from the
-  source. Always edit `wiki/` in-repo and sync.
-- **Duplicating an existing docs site** — if `docs/` or a site already owns user
-  docs, link from the wiki; don't fork the content.
-- **Stale sidebar** — a page added but missing from `_Sidebar.md` is
-  unreachable. Update the sidebar on every add/move.
+- **Editing the live wiki by hand** — bypasses review, diverges from source.
+- **Duplicating a docs site** — link from the wiki; don't fork content.
+- **Stale sidebar** — a page missing from `_Sidebar.md` is unreachable; update
+  on every add/move.
 - **Unowned pages** — add the owner/zone/purpose comment or the page rots.
-- **Wiki size limit** — soft cap 5,000 files; for larger docs use GitHub Pages.
-- **Wrong remote** — the wiki is `<repo>.wiki.git`, a different repo from the
-  code. Pushing code branches there does nothing useful. Clone it as its own jj
-  workspace and push from there, not from the code repo.
+- **Wiki size limit** — soft cap 5,000 files; larger docs use GitHub Pages.
+- **Wrong remote** — `<repo>.wiki.git` is a separate repo, not the code repo.
 
 ## See also
 
-- `sk-issue` / `sk-pr` — the in-repo wiki source still goes through issue → PR.
+- `sk-issue` / `sk-pr` — in-repo wiki source still goes through issue → PR.
 - `sk-land` — land the wiki-source PR before syncing.

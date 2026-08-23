@@ -3,7 +3,7 @@ name: sk-issue-triage
 description:
   "Triage an existing shikanime org issue: assign labels, assignee, milestone,
   project; close with rationale if not workable."
-version: 0.1.0
+version: 0.1.1
 author: Hermes Agent
 license: Apache-2.0
 metadata:
@@ -13,21 +13,20 @@ metadata:
 
 # Shikanime Issue Triage
 
-Triage an existing issue in a `shikanime-labs/*` or `shikanime-studio/*` repo:
-set every metadata field that is **empty on the issue** and **determinable from
-the issue's own content**. English conventions. Never invent a value the repo
-does not have.
+Triage an issue in `shikanime-labs/*`/`shikanime-studio/*`: fill fields **empty
+on the issue** and **derivable from its content**. English; never invent a
+repo-lacking value.
 
 ## Prerequisites
 
-- `gh` authenticated against the canonical org repo. Target the org repo
+- `gh` authenticated against the canonical org repo. Always target the org repo
   directly.
 
 ## Inputs
 
 - `N` : issue number.
-- `R` : `OWNER/REPO`. Defaults to the `origin` remote of the cwd, validated to
-  sit under `shikanime-labs/` or `shikanime-studio/`; else ask.
+- `R` : `OWNER/REPO`. Defaults to cwd `origin` remote, validated under
+  `shikanime-labs/` or `shikanime-studio/`; else ask.
 
 ## Procedure
 
@@ -37,27 +36,25 @@ does not have.
 gh issue view "$N" --repo "$R" --json number,title,body,labels,assignees,milestone,projectCards
 ```
 
-### 2. Discover available metadata (the source of truth)
+### 2. Discover available metadata (source of truth)
 
 ```bash
 gh label list --repo "$R" --limit 200 --json name,description
 gh api repos/"$R"/milestones?state=open --jq '.[] | "\(.number)\t\(.title)"'
-gh project list --owner "${R%/*}"                    # Projects v2, optional
-gh api repos/"$R"/assignees --jq '.[].login'         # who can be assigned
+gh project list --owner "${R%/*}"
+gh api repos/"$R"/assignees --jq '.[].login'
 ```
 
 ### 3. Decide each field (apply only if empty + value exists in repo)
 
-- **labels** — analyze title and body in plain natural language and pick the
-  best-matching labels from the step-2 list by meaning (e.g. a defect report →
-  `bug`, a new capability → `enhancement`, doc changes → `documentation`). Add
-  an area label from touched paths only if a matching label exists. Drop any
-  label not in the step-2 list — never invent.
+- **labels** — best match by meaning (defect→`bug`, new
+  capability→`enhancement`, doc→`documentation`); add an area label only if it
+  exists. Drop any not in the step-2 list — never invent.
 - **assignee** — if none: `ASSIGNEE=$(gh api user --jq .login)`.
 - **milestone** — if none and milestones exist: bug→highest open **patch** on
-  the current minor line (max `Z`); enhancement→next minor/major.
-- **project** — if repo boards items and this one is unboarded:
-  `--add-project <number>`. Skip if ambiguous (no single obvious project).
+  current minor (max `Z`); enhancement→next minor/major.
+- **project** — if repo boards items and this is unboarded:
+  `--add-project <number>`. Skip if ambiguous.
 
 ### 4. Apply
 
@@ -77,44 +74,9 @@ gh issue view "$N" --repo "$R" --json number,title,labels,assignees,milestone
 
 ### 6. Close issues that will not be worked
 
-Triage may resolve an issue by closing it rather than assigning metadata. Always
-close with a rationale; never silently close.
-
-Ask the user for the free-text closure rationale. Never guess or reuse a generic
-string. Use it as `REASON`. Every close must first post a comment explaining
-why, then close.
-
-- **Not planned** — no milestone fit, out of scope, or explicitly decided
-  against:
-
-  ```bash
-  gh issue comment "$N" --repo "$R" -b "Closing as not planned — $REASON"
-  gh issue close "$N" --repo "$R" -c "Not planned: $REASON" --reason "not planned"
-  ```
-
-- **Duplicate** — same intent as an existing issue `#M`. Point to the canonical
-  issue, then close:
-
-  ```bash
-  gh issue comment "$N" --repo "$R" -b "Duplicate of #M — $REASON"
-  gh issue close "$N" --repo "$R" --reason "not planned"
-  ```
-
-- **Completed** — resolved by another change, or no longer needed because the
-  work is done:
-
-  ```bash
-  gh issue comment "$N" --repo "$R" -b "Closing as completed — $REASON"
-  gh issue close "$N" --repo "$R" -c "Completed: $REASON" --reason "completed"
-  ```
-
-## Pitfalls
-
-- Inventing labels — always filter against `gh label list`.
-- Overwriting — use `--add-label` / `--add-assignee` (additive), never
-  `--label`.
-- Wrong milestone line — bugs get the current patch, features the next release.
-- Targeting the wrong repo for issues — always use the org repo.
+See `references/close.md` for the per-reason close commands. Always close with a
+rationale; never silently close. Ask the user for free-text `REASON` — never
+guess or reuse a generic string. Post a comment first, then close.
 
 ## See also
 
