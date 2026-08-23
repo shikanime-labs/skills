@@ -81,7 +81,7 @@ PR whose ledger, review approval, and threads are closed. Launch a background
 watcher that waits for CI then merges.
 
 ```bash
-gh run watch --repo <org>/<repo> \
+gh run watch --exit-status --repo <org>/<repo> \
   $(gh run list --repo <org>/<repo> --branch <branch> --limit 1 \
     --json databaseId -q '.[0].databaseId') \
   && gh pr merge <M> --repo <org>/<repo> --squash --rebase
@@ -93,7 +93,7 @@ failing run exits non-zero and skips the merge (red never lands).
 
 - Lone branch, self-approval blocked (after a verbal lgtm): swap --rebase for
   --admin (protection rejects a non-admin merge):
-  `gh run watch --repo <org>/<repo> $(gh run list --repo <org>/<repo> --branch <branch> --limit 1 --json databaseId -q '.[0].databaseId') && gh pr merge <M> --repo <org>/<repo> --squash --admin`
+  `gh run watch --exit-status --repo <org>/<repo> $(gh run list --repo <org>/<repo> --branch <branch> --limit 1 --json databaseId -q '.[0].databaseId') && gh pr merge <M> --repo <org>/<repo> --squash --admin`
 - Stacked (see sk-async / sk-pr): run `gh stack merge <PR_NUMBER> --yes --squash`
   in a background terminal with notify_on_complete; it blocks until the stack
   merges.
