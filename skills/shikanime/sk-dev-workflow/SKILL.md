@@ -146,9 +146,10 @@ rejected.
   Treat the review as the gate that decides whether the PR is ready — do not
   mark it ready until the findings are resolved or explicitly waived by the
   user.
-- **Merge PRs**: `nix-containers` requires `gh pr merge --squash --admin` when
-  the user says "merge the PRs". Other repos: merge per allowed strategy
-  post-review.
+- **Merge PRs**: `nix-containers` requires `gh pr merge --squash --admin -b "<clean
+  body>"` when the user says "merge the PRs" (no `-m` on current `gh` — PR title
+  is the subject, pass body via `-b`; see `sk-land` Squash message hygiene).
+  Other repos: merge per allowed strategy post-review.
 
 ## Done is proven, not asserted
 

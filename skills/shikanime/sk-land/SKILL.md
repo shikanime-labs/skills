@@ -85,7 +85,15 @@ that waits for CI then merges.
 gh run watch --exit-status --repo <org>/<repo> \
   $(gh run list --repo <org>/<repo> --branch <branch> --limit 1 \
     --json databaseId -q '.[0].databaseId') \
-  && gh pr merge <M> --repo <org>/<repo> --squash --rebase
+  && gh pr merge <M> --repo <org>/<repo> --squash --rebase \
+       -b "$(cat <<'EOF'
+<body: one coherent change, no jj * bullets / --------- separators; trailers
+only: Related: <url>, Signed-off-by: <user>, Co-authored-by: Automata
+<automata@shikanime.studio>
+
+Co-authored-by: Automata <automata@shikanime.studio>
+EOF
+)"
 ```
 
 Run it as a background terminal with notify_on_complete so you are alerted on
@@ -97,11 +105,14 @@ run exits non-zero and skips the merge (red never lands).
 > takes a `<run-id>` (no `--branch` flag); resolve the run id with `gh run list`
 > (the command above shows the pattern).
 
-- **Squash message hygiene**: ALWAYS pass the final message with explicit `-m`
-  (see `sk-commit`'s Squash / multi-commit final-message hygiene). Never let
-  GitHub auto-concatenate the branch's commit messages — that is exactly how
-  jj's `*` / `---------` artifacts and duplicate/self trailers leak into the
-  merged commit. One subject + the correct trailers only.
+- **Squash message hygiene**: ALWAYS pass the final body with explicit `-b`
+  (see `sk-commit`'s Squash / multi-commit final-message hygiene). `gh pr merge
+  --squash` has **no `-m` flag** on current `gh` — the PR title becomes the
+  subject automatically; pass the body (one coherent change + the correct
+  trailers) via `-b`. Never let GitHub auto-concatenate the branch's commit
+  messages — that is exactly how jj's `*` / `---------` artifacts and
+  duplicate/self trailers leak into the merged commit. One subject (the PR
+  title) + the correct trailers only.
 - Lone branch, self-approval blocked (after a verbal lgtm): swap `--rebase` for
   `--admin` (protection rejects a non-admin merge). Reuse the watcher above with
   `--squash --admin` instead of `--squash --rebase`.

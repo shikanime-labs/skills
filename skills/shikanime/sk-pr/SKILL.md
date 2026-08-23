@@ -197,8 +197,10 @@ reviewers. The rules live in `sk-pr-triage`; do not re-derive them here.
 - **Protected `main`** (e.g. `shikanime-studio/actions`): a separate approving
   review may be mandatory; don't self-merge if protection blocks it.
 - **Merging**: when the user says "merge the PRs" on `nix-containers`, use
-  `gh pr merge --squash --admin` (admin flag required). For other repos, merge
-  per the repo's allowed strategy once checks pass and review is satisfied.
+  `gh pr merge --squash --admin -b "<clean body>"` (admin flag required; no `-m`
+  on current `gh` — PR title is the subject, pass body via `-b`, see `sk-land`
+  Squash message hygiene). For other repos, merge per allowed strategy once
+  checks pass and review is satisfied.
 - **Direct landing**: the user authorizing "push to main" / "land it" overrides
   the PR path — push directly, don't open a PR.
 - **Wiki follow-up**: if this PR changes user-facing behavior or adds a feature,
