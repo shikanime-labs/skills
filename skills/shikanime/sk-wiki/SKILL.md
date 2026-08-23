@@ -70,7 +70,7 @@ Target repo `R` (`OWNER/REPO`), validated under `shikanime-labs/` or
 
 ```bash
 # Preferred: a `wiki/` directory at repo root, or a `wiki` branch.
-git -C "$(pwd)" ls-files wiki/ 2>/dev/null | head
+jj file list wiki/ 2>/dev/null
 gh api repos/"$R"/branches --jq '.[].name' | grep -x wiki || true
 ```
 
@@ -124,15 +124,21 @@ and `_Footer.md` are special filenames GitHub renders).
 # After the in-repo change is merged/reviewed:
 WIKI="https://github.com/$R.wiki.git"
 TMP="$(mktemp -d)"
-git clone "$WIKI" "$TMP"
+# The wiki is a separate repo — clone it as its own jj workspace.
+jj git clone "$WIKI" "$TMP" 2>/dev/null || git clone "$WIKI" "$TMP"
 # Copy pages (flatten wiki/ -> wiki root; keep _Sidebar.md / _Footer.md names)
-rsync -a --exclude='.git' wiki/ "$TMP/"
+rsync -a --exclude='.jj' --exclude='.git' wiki/ "$TMP/"
 cd "$TMP"
-git add -A
-git commit -m "wiki: sync from repo source"
-git push
+jj file list  # confirm the pages landed
+jj describe -m "wiki: sync from repo source"
+jj git push --remote origin --allow-new
 cd /; rm -rf "$TMP"
 ```
+
+The `.wiki.git` remote is a distinct repo, so it gets its own jj workspace
+(clone → edit → `jj describe` → `jj git push`) rather than being pushed from
+the code repo. `jj git clone` covers the case where the wiki repo is
+jj-backed; the `git clone` fallback handles a plain-git wiki remote.
 
 Automate this in CI (a job that runs on changes to `wiki/`) so the wiki never
 drifts from the source. The `actions/github-wiki-action` marketplace action
@@ -156,7 +162,8 @@ gh api repos/"$R"/wiki --jq '.[].title'   # list live pages
 - **Unowned pages** — add the owner/zone/purpose comment or the page rots.
 - **Wiki size limit** — soft cap 5,000 files; for larger docs use GitHub Pages.
 - **Wrong remote** — the wiki is `<repo>.wiki.git`, a different repo from the
-  code. Pushing code branches there does nothing useful.
+  code. Pushing code branches there does nothing useful. Clone it as its own jj
+  workspace and push from there, not from the code repo.
 
 ## See also
 
