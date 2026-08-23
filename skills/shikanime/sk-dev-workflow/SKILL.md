@@ -1,7 +1,7 @@
 ---
 name: sk-dev-workflow
 description: "Branch and push discipline for shikanime repos."
-version: 0.3.0
+version: 0.4.0
 author: Hermes Agent
 license: Apache-2.0
 metadata:
@@ -13,12 +13,14 @@ metadata:
 
 End-to-end local dev loop for shikanime-owned repos: branching, pushing to the
 org repo (origin), jj bookmark tracking, and how to land changes (PR vs direct
-push). Pairs with `sk-commit` and `sk-pr`.
+push). The issue and PR sides are owned by `sk-issue-workflow` and
+`sk-pr-workflow`; this skill holds the local-branch, landing, and verification
+discipline they don't.
 
 ## When to Use
 
 - "Set up a branch", "push this", "land it", "open a PR".
-- Starting a work item: issue first (`sk-issue`), then branch, then PR.
+- Starting a work item: issue first (`sk-issue-workflow`), then branch, then PR.
 - Any multi-step change in a shikanime repo needing branch + remote discipline.
 
 ## Phases
@@ -26,21 +28,19 @@ push). Pairs with `sk-commit` and `sk-pr`.
 The work-item lifecycle as an ordered, navigable sequence. Each phase names its
 owner skill; gate phases are the mechanical walls a change must clear.
 
-| #   | Phase                                                                                                                                       | Owner                              | Gate              |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------- | ----------------- |
-| 0   | Discussion (RFC) — only if the problem isn't converged                                                                                      | `sk-discussion`                    | entry             |
-| 1   | Issue — problem statement + `- [ ]` gate ledger                                                                                             | `sk-issue`                         | ledger set        |
-| 1.5 | Issue refinement — iterate the problem _within the issue_ via research + candidate-solution comments until the acceptance criteria converge | `sk-issue-refine`                  | problem converged |
-| 2   | Triage — labels/assignee/milestone/project/reviewers                                                                                        | `sk-issue-triage` / `sk-pr-triage` | ledger settled    |
-| 3   | Branch + implement                                                                                                                          | this skill                         | —                 |
-| 4   | Commit (plain-English, Automata trailer)                                                                                                    | `sk-commit`                        | commit shape      |
-| 5   | Code review (adversarial pre-merge)                                                                                                         | `sk-code-review`                   | review gate       |
-| 6   | PR (open from origin, link `Related:`)                                                                                                      | `sk-pr`                            | —                 |
-| 7   | Land (merge / `gh stack`)                                                                                                                   | `sk-async` / this skill            | branch protection |
-| 8   | Close issue deliberately (verify N of N)                                                                                                    | `sk-issue`                         | ledger discharged |
+| #    | Phase                                          | Owner                          | Gate              |
+| ---- | ---------------------------------------------- | ------------------------------ | ----------------- |
+| 0    | Discussion (RFC) — only if problem unconverged | `sk-discussion`                | entry             |
+| 1–2  | Issue side: create → refine → triage           | `sk-issue-workflow`            | ledger set+settled|
+| 3    | Branch + implement                             | this skill                     | —                 |
+| 4    | Commit (plain-English, Automata trailer)       | `sk-commit`                    | commit shape      |
+| 5    | Code review (adversarial pre-merge)            | `sk-code-review`               | review gate       |
+| 6    | PR side: ensure issue → open → triage          | `sk-pr-workflow`               | —                 |
+| 7    | Land (merge / `gh stack`)                      | `sk-async` / this skill        | branch protection |
+| 8    | Close issue deliberately (verify N of N)       | `sk-issue`                     | ledger discharged |
 
-Phases 2 and 5 are the before-code and before-merge gates: never skip triage
-(the ledger is unsettled) or review (the PR isn't ready).
+Phases 1–2 (triage) and 5 are the gates: never skip triage (the ledger is
+unsettled) or review (the PR isn't ready).
 
 ## Core rule: push to the org repo
 
@@ -67,10 +67,11 @@ unmet requirement is a reported blocker, never a silent scope change:
 - gh identity: `gh api user --jq .login` — the right account for the org.
 - Push right: `gh api repos/<org>/<repo> --jq .viewerPermission` — need
   `write`/`admin` on the ORG repo to push branches and open a PR.
-- jj repo: `.jj/` / `jj status` → `jj bookmark track` before push. All repos are
-  operated through jj (colocated or jj-native).
+- jj repo: `.jj/` / `jj status` → `jj bookmark track` before push. All repos
+  are operated through jj (colocated or jj-native).
 - `gh stack` extension present: `gh extension list` (landing path).
-- The issue exists (issue-first lifecycle) — else create it (`sk-issue`).
+- The issue exists (issue-first lifecycle) — else create it
+  (`sk-issue-workflow`).
 - NixOS repos: `nix` available (build-verify gate).
 
 Report shape: `BLOCKED: <requirement> — <evidence> — <recovery path>` in the
@@ -93,40 +94,22 @@ chains — linkage per `sk-pr` (`Related:`, no auto-close).
 - Detect protection: `gh api repos/<org>/<repo>/branches/main/protection
   > /dev/null 2>&1`.
 
-## Issue-first: the goal and its gates
+## Issue & PR sides — delegate to the workflow skills
 
-Work-item lifecycle: **discussion → issue → issue comments → PR.**
+The issue and PR lifecycle policy (problem statement + `- [ ]` ledger, findings
+in comments, many-to-many `Related:` linkage, avoid auto-close keywords, close
+deliberately after the final merge) lives in the leaf skills. Drive it through
+the two workflow entry points rather than re-deriving it here:
 
-- When no explicit issue can be stated yet, open a Discussion (RFC) first —
-  express the idea, converge on the problem, then commit to an issue.
-- The issue (`sk-issue`) is the durable ledger that survives session loss. Its
-  body is the **problem statement** — need, scope, acceptance criteria as a
-  `- [ ]` tasklist, each item phrased so a command can decide it. The solution
-  never goes in the body: candidate approaches, analysis, and wayfinding are
-  **issue comments**, appended as thinking progresses. `todo` mirrors the
-  tasklist in-session; the issue is the record.
-- The branch (`fix/…`, `feat/…`) and the PR (`sk-pr` / `gh stack`) are the
-  **solution** proving that ledger: the PR body restates the criteria, N of N,
-  numbers re-measured at writing time. A PR always solves an issue — never open
-  one alone. Linkage is **many-to-many**: several PRs may together solve one
-  issue; one PR may serve several. **Avoid auto-close keywords** — they fire at
-  merge and assert a completed ledger a merge cannot prove. Link every PR with
-  `Related: <issue URL>`; use a closing keyword ONLY when explicitly one-to-one
-  (single issue, single PR, full discharge). Otherwise close deliberately after
-  the final merge: verify the tasklist N of N, then
-  `gh issue close <N> -c "<landing commit>"`.
-- Commit style is short imperative with no body, so commits carry no closing
-  keyword — direct pushes do not auto-close the issue; close it via
-  `gh issue close <n> -c "<landing commit hash>"` after landing, or leave it to
-  the owner. Where a repo's AGENTS.md requires `Related: <issue URL>`, that
-  convention wins.
-- **Triage the issue before work starts** (`sk-issue-triage` skill). Assign
-  every available metadata — labels (conventional-prefix → type label), assignee
-  (active `gh` identity), milestone (bug → current patch, feature → next
-  release), project board if one is obvious, and reviewers for the eventual PR.
-  Apply only fields that are empty and determinable from the item's own content;
-  never invent a label the repo does not have. Triage settles the gates ledger
-  before any code is written.
+- **Issue side (phases 1–2):** load `sk-issue-workflow`. It creates the issue,
+  iterates the problem to convergence inside it (`sk-issue-refine`), then triages
+  metadata (`sk-issue-triage`). The issue is the durable ledger that survives
+  session loss.
+- **PR side (phase 6):** load `sk-pr-workflow`. It ensures the linked issue
+  exists and matches the branch, opens the org-repo PR (`--head <org>:<branch>`,
+  base `main`, title/body derived from the commit, `Related:` linkage), then
+  triages (`sk-pr-triage`). The commit message is the source of truth — the PR
+  must restate it, not invent new rationale.
 
 ## Push flow
 
@@ -141,9 +124,9 @@ rejected.
 
 ## Landing
 
-- **PR (default)**: push to `origin`, then open the PR on the org repo:
-  `gh pr create --repo <org>/<repo> --head <org>:<branch>`. Required when `main`
-  is protected or the user didn't authorize direct push.
+- **PR (default)**: open via `sk-pr-workflow` (which runs `sk-pr`): push to
+  `origin`, then create the PR `--head <org>:<branch>`, base `main`. Required
+  when `main` is protected or the user didn't authorize direct push.
 - **PR via `gh stack` (preferred for stacked work)**: `gh stack` submits from
   `origin` (`--repo <org>/<repo>`, head refs `org:branch`) — adopt the branch
   into a stack and submit; this pushes and creates/updates PR(s) from the commit
@@ -227,9 +210,10 @@ Confirm the branch tracks `origin` and only the intended change is staged.
 
 ## See also
 
+- `sk-issue-workflow` / `sk-pr-workflow` — the issue and PR side entry points
+  this skill delegates those phases to.
 - `sk-commit` — the commit shape (subject, Automata co-author trailer) the
   landing steps assume.
-- `sk-pr` / `sk-async` — single org-repo PR vs stacked fan-out landing.
-- `sk-issue-triage` / `sk-pr-triage` — assign issue/PR metadata, then
-  adversarial pre-merge review (both gate the work before and after code).
+- `sk-async` — landing multi-branch work as stacked PRs (`gh stack`).
+- `sk-code-review` — adversarial pre-merge gate (phase 5).
 - `cpn-dev-workflow` — cloud-pi-native twin (pushes to origin).
