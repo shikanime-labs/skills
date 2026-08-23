@@ -97,6 +97,11 @@ run exits non-zero and skips the merge (red never lands).
 > takes a `<run-id>` (no `--branch` flag); resolve the run id with `gh run list`
 > (the command above shows the pattern).
 
+- **Squash message hygiene**: ALWAYS pass the final message with explicit `-m`
+  (see `sk-commit`'s Squash / multi-commit final-message hygiene). Never let
+  GitHub auto-concatenate the branch's commit messages — that is exactly how
+  jj's `*` / `---------` artifacts and duplicate/self trailers leak into the
+  merged commit. One subject + the correct trailers only.
 - Lone branch, self-approval blocked (after a verbal lgtm): swap `--rebase` for
   `--admin` (protection rejects a non-admin merge). Reuse the watcher above with
   `--squash --admin` instead of `--squash --rebase`.
