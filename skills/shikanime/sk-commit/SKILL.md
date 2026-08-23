@@ -43,6 +43,46 @@ win over the defaults below — detect them per repo, don't assume.
   - `doc: clarify RBAC fiche reconciliation`
 - No `(...)` in headings/titles/row labels for doc repos.
 
+## Squash / multi-commit final-message hygiene
+
+When several jj commits fold into one (via `jj squash` before push, or GitHub
+`gh pr merge --squash`), the final message MUST be rewritten to a single clean
+commit — never committed with jj's internal join artifacts.
+
+jj emits two markers when squashing descriptions:
+
+- `*` bullet lines separating each former commit's description.
+- `---------` separators where former descriptions overlapped.
+
+Both are INTERNAL. Strip them before any commit is created or merged. A merged
+PR must yield exactly one plain-English subject (no `*` prefix), one coherent
+body (semantic bullets are fine; jj's `*` syntax is not), and the correct
+trailers.
+
+Trailer rules (hard):
+
+- Exactly ONE `Co-authored-by: Automata <automata@shikanime.studio>` when the
+  change was agent-assisted. The human is the author/committer — never a
+  `Co-authored-by` of themselves.
+- `Signed-off-by: <user>` only where a repo hook/ruleset requires DCO; never
+  duplicate it.
+- Never leave a self `Co-authored-by: <user>` or a repeated `Signed-off-by`.
+
+Squash-merge must NOT rely on GitHub's auto-concatenation of branch commit
+messages — that is precisely how the artifacts and duplicate trailers leak. Pass
+the clean message explicitly:
+
+```bash
+gh pr merge <M> --repo <org>/<repo> --squash \
+  -m "<plain-English subject>" \
+  -m "$(cat <<'EOF'
+<coherent body, one logical change; no * bullets, no --------->
+
+Co-authored-by: Automata <automata@shikanime.studio>
+EOF
+)"
+```
+
 ## Repo-enforced overrides (detect, then obey)
 
 ```bash
@@ -111,6 +151,10 @@ Confirm the hook accepted it (`jj log -1`).
 - `manifests` gitlint: the `Signed-off-by` trailer rule still applies — keep
   BOTH `Signed-off-by` and `Co-authored-by: Automata`; gitlint accepts extra
   trailers.
+- Committing `jj squash` artifacts (`*` bullet subjects / `---------`
+  separators) or a self `Co-authored-by: <user>` — the final message must be
+  hand-cleaned to one subject + the correct trailers before commit/merge. See
+  the Squash / multi-commit final-message hygiene section.
 
 ## Verification
 
