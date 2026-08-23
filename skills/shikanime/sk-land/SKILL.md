@@ -91,6 +91,12 @@ Run it as a background terminal with notify_on_complete so you are alerted on
 land. Re-run the command after a fresh push to pick up the new run id. A
 failing run exits non-zero and skips the merge (red never lands).
 
+> Gotcha (caught in PR #96/#98): `gh run watch <run-id>` returns exit 0 even
+> when the watched run FAILS — always pass `--exit-status` or the PR merges on
+> red. Also, `gh run watch` takes a `<run-id>`, there is no `--branch` flag;
+> resolve it via `gh run list --repo <org>/<repo> --branch <branch> --limit 1
+> --json databaseId -q '.[0].databaseId'`.
+
 - Lone branch, self-approval blocked (after a verbal lgtm): swap --rebase for
   --admin (protection rejects a non-admin merge):
   `gh run watch --exit-status --repo <org>/<repo> $(gh run list --repo <org>/<repo> --branch <branch> --limit 1 --json databaseId -q '.[0].databaseId') && gh pr merge <M> --repo <org>/<repo> --squash --admin`
