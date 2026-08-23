@@ -100,5 +100,4 @@ gh pr view "$N" --repo "$R" --json number,title,labels,assignees,milestone,revie
 
 ## Voir aussi
 
-- `cpn-triage` — routeur.
 - `cpn-pr` — conventions de création + liaison (français).
