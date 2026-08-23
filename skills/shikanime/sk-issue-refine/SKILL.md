@@ -75,7 +75,21 @@ wayfinder's research/grilling/fog-of-war cycle onto the issue's comment thread.
 4. **Resolve AFK work in parallel** — for `research` items, fan out via
    `delegate_task` (one child per independent fact; isolate on a
    `research/<name>` branch per `sk-async` if it touches the repo). Research
-   ONLY reads and reports; it never edits product code. For `grilling`/
+   ONLY reads and reports; it never edits product code. Dispatch each fact as a
+   `delegate_task(goal=...)` — one child per independent fact, the `goal`
+   stating the question and the report-as-comment contract. Split each fact into
+   its own task; do not pack several questions into one `goal`:
+   ```python
+   delegate_task(tasks=[
+       {"goal": "Research <fact>: find authoritative source for <question>. "
+                "Read-only; report finding + official References; do NOT edit code.",
+        "context": "Issue <N> in <org>/<repo>; isolate on research/<name> "
+                   "branch per sk-async if touching repo.",
+        "toolsets": ["web", "terminal"]},
+   ])
+   ```
+
+   For `grilling`/
    `prototype`, engage the human serially — one question, wait, then next.
 5. **Post findings as comments** — each resolution goes in a `gh issue comment`:
    the finding, the candidate solution(s), and any official References (docs,

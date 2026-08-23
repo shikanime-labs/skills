@@ -71,6 +71,21 @@ contract first — interfaces, exported types, file ownership — before spawnin
 merging its work, the dispatcher re-runs each leaf's check commands itself
 through `terminal` (parent re-verification; see "Gates" below).
 
+Dispatch form (one task per leaf; the `goal` carries the module contract plus
+its required self-check). Split non-overlapping modules into separate tasks —
+one `goal` per unit, never a combined task:
+
+```python
+delegate_task(tasks=[
+    {"goal": "Implement <module> in <org>/<repo>: <contract>. Run <lint/test> "
+             "and confirm green before reporting done. Keep dependent "
+             "typecheck/test in the same task.",
+     "context": "cpn console repo; one workspace per unit per cpn-async; "
+                "contracts fixed before fan-out.",
+     "toolsets": ["terminal", "file"]},
+])
+```
+
 ## Quick Reference
 
 - `console/README.md` — app overview, architecture, ports, local run modes

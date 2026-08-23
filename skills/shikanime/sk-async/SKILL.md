@@ -99,6 +99,22 @@ Give each child agent: its workspace path, its unit's gates, the commit shape
 (plain English + Automata co-author trailer). The parent re-verifies every gate
 via `terminal` inside each workspace before reporting done.
 
+Dispatch with `delegate_task(tasks=[...])`; one task per leaf, the `goal`
+carrying the unit's contract (workspace path, gates, commit shape). Split
+independent units into separate tasks — never bundle two leaves into one
+`goal`, that defeats isolation:
+
+```python
+delegate_task(tasks=[
+    {"goal": "Implement <repo>.<unit>: <contract>. Workspace: "
+             "../<repo>.<unit>. Gates: <N>. Commit plain-English + "
+             "'Co-authored-by: Automata <automata@shikanime.studio>' trailer.",
+     "context": "shikanime repo <org>/<repo>; rooted at trunk; one workspace "
+                "per unit per sk-async.",
+     "toolsets": ["terminal", "file"]},
+])
+```
+
 ## Pitfalls
 
 - **Pseudo-independent units** (overlapping file sets) → merge conflicts at

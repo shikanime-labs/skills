@@ -94,6 +94,21 @@ Donne à chaque enfant : le chemin de son workspace, les gates de son unit, la
 forme du commit (conventionnel + trailer Automata). Le parent re-vérifie chaque
 gate via `terminal` dans chaque workspace avant de déclarer terminé.
 
+Exemple de dispatch avec `delegate_task(tasks=[...])` (un task par feuille, le
+`goal` porte le contrat de l'unité) — sépare les unités indépendantes en tasks
+distincts, ne jamais fusionner deux feuilles dans un seul `goal` :
+
+```python
+delegate_task(tasks=[
+    {"goal": "Implémenter <repo>.<unit>: <contrat>. Workspace: "
+             "../<repo>.<unit>. Gates: <N>. Commit conventionnel + "
+             "trailer Automata.",
+     "context": "dépôt shikanime <org>/<repo> ; racine trunk ; un workspace "
+                "par unité (cpn-async).",
+     "toolsets": ["terminal", "file"]},
+])
+```
+
 ## Pièges
 
 - **Units pseudo-indépendants** (ensembles de fichiers qui se chevauchent) →
