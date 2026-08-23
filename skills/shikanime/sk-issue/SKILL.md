@@ -77,4 +77,4 @@ Confirm title + label set; issue in org repo.
 
 `sk-discussion`, `sk-pr` (links back via `Related:` without auto-close),
 `sk-issue-refine`, `cpn-issue`, `sk-issue-triage` (run after creation),
-`sk-wiki`.
+`sk-doc`.

@@ -10,7 +10,7 @@ metadata:
   hermes:
     tags: [github, pull-requests, merge, shikanime-labs, shikanime-studio]
     related_skills:
-      [sk-pr-resolve, sk-pr, sk-issue, sk-code-review, sk-async, sk-wiki]
+      [sk-pr-resolve, sk-pr, sk-issue, sk-code-review, sk-async, sk-doc]
 ---
 
 # Shikanime Org PR Landing
@@ -91,8 +91,8 @@ push. A failing run exits non-zero and skips merge (red never lands).
    tasklist N/N, then
    `gh issue close <N> --repo <org>/<repo> -c "Discharged by <PR URL>"`.
 3. Rebase downstream: `gh stack rebase` if any sit on top.
-4. **Sync wiki** if ops/arch/runbooks changed — edit `wiki/`, sync
-   `<repo>.wiki.git` per `sk-wiki`; skip if purely internal.
+4. **Sync docs** if ops/arch/runbooks changed — edit `docs/` per `sk-doc`;
+   skip if purely internal.
 
 ## Pitfalls
 

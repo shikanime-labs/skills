@@ -80,9 +80,9 @@
       "path": "skills/shikanime/sk-code-review"
     },
     {
-      "name": "sk-wiki",
-      "description": "Document a shikanime project on its GitHub wiki: seed internal-ops and optional user-facing zones, edit pages via a reviewable in-repo source, and sync to the <repo>.wiki.git remote (Longhorn internal-ops / PyTorch mirror / Kubernetes ownership patterns).",
-      "path": "skills/shikanime/sk-wiki"
+      "name": "sk-doc",
+      "description": "Document a shikanime project in the repo's docs/ directory: seed internal-ops and optional user-facing zones, edited as reviewable in-repo Markdown (Longhorn internal-ops / Kubernetes contributor docs / PyTorch PR-review patterns).",
+      "path": "skills/shikanime/sk-doc"
     },
     {
       "name": "cpn-dev-workflow",
