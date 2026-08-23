@@ -9,7 +9,7 @@ license: Apache-2.0
 metadata:
   hermes:
     tags: [github, pull-requests, merge, shikanime-labs, shikanime-studio]
-    related_skills: [sk-pr-resolve, sk-pr, sk-issue, sk-code-review, sk-async]
+    related_skills: [sk-pr-resolve, sk-pr, sk-issue, sk-code-review, sk-async, sk-wiki]
 ---
 
 # Shikanime Org PR Landing
@@ -98,6 +98,11 @@ gh pr merge <M> --repo <org>/<repo> --squash --rebase   # squash+rebase only
    per `sk-pr`): confirm tasklist N of N, then
    `gh issue close <N> --repo <org>/<repo> -c "Discharged by <PR URL>"`.
 3. Rebase downstream stacked branches (`gh stack rebase`) if any sit on top.
+4. **Sync the wiki if the change alters ops/architecture/runbooks** — a merged
+   change makes the live `Home`/`Architecture`/`Runbook`/`Troubleshooting` pages
+   stale the moment it ships. Edit the in-repo `wiki/` source and sync to
+   `<repo>.wiki.git` per `sk-wiki`. Skip when the change is purely internal and
+   already covered by the closed issue.
 
 ## Pitfalls
 

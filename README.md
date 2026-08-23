@@ -116,6 +116,7 @@ specification, compatible with the
 | `sk-land`              | Merge PRs after DoD + review gates pass                                   |
 | `sk-pr-resolve`        | Reconcile PR review threads + ledger, report readiness without merging    |
 | `sk-code-review`       | Code review: YAGNI, root-cause, conventions                               |
+| `sk-wiki`              | GitHub wiki knowledge base (internal ops + optional user docs); reviewable in-repo source synced to `<repo>.wiki.git` |
 
 ### cloud-pi-native family
 

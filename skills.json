@@ -80,6 +80,11 @@
       "path": "skills/shikanime/sk-code-review"
     },
     {
+      "name": "sk-wiki",
+      "description": "Document a shikanime project on its GitHub wiki: seed internal-ops and optional user-facing zones, edit pages via a reviewable in-repo source, and sync to the <repo>.wiki.git remote (Longhorn internal-ops / PyTorch mirror / Kubernetes ownership patterns).",
+      "path": "skills/shikanime/sk-wiki"
+    },
+    {
       "name": "cpn-dev-workflow",
       "description": "Work inside the local cloud-pi-native console repo: contribution rules, dev cycle, gates, and PR workflow.",
       "path": "skills/cloud-pi-native/cpn-dev-workflow"

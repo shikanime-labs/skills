@@ -104,3 +104,6 @@ Confirm title + label are set and the issue lives in the org repo.
 - `cpn-issue` — French twin with cloud-pi-native issue templates.
 - `sk-issue-triage` — assigns issue metadata (labels, assignee, milestone,
   project); run it after creation.
+- `sk-wiki` — when a resolved issue yields a durable decision or architecture
+  finding, mirror it to the wiki's `Decisions`/`Architecture` page so the
+  knowledge outlives the closed ticket.
