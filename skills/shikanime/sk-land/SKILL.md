@@ -9,7 +9,8 @@ license: Apache-2.0
 metadata:
   hermes:
     tags: [github, pull-requests, merge, shikanime-labs, shikanime-studio]
-    related_skills: [sk-pr-resolve, sk-pr, sk-issue, sk-code-review, sk-async, sk-wiki]
+    related_skills:
+      [sk-pr-resolve, sk-pr, sk-issue, sk-code-review, sk-async, sk-wiki]
 ---
 
 # Shikanime Org PR Landing
@@ -75,10 +76,10 @@ Stacked branches land via `gh stack` (never `gh pr merge` on a stacked PR —
 poisoned commits); lone branches may use `gh pr merge`. Never force-push stacked
 branches.
 
-Land via a background watcher — the whole skill is fire-and-forget; never
-block inline on CI. The gates (1 to 3) must already be satisfied: land only a
-PR whose ledger, review approval, and threads are closed. Launch a background
-watcher that waits for CI then merges.
+Land via a background watcher — the whole skill is fire-and-forget; never block
+inline on CI. The gates (1 to 3) must already be satisfied: land only a PR whose
+ledger, review approval, and threads are closed. Launch a background watcher
+that waits for CI then merges.
 
 ```bash
 gh run watch --exit-status --repo <org>/<repo> \
@@ -88,21 +89,20 @@ gh run watch --exit-status --repo <org>/<repo> \
 ```
 
 Run it as a background terminal with notify_on_complete so you are alerted on
-land. Re-run the command after a fresh push to pick up the new run id. A
-failing run exits non-zero and skips the merge (red never lands).
+land. Re-run the command after a fresh push to pick up the new run id. A failing
+run exits non-zero and skips the merge (red never lands).
 
-> Gotcha: `gh run watch <run-id>` returns exit 0 even
-> when the watched run FAILS — always pass `--exit-status` or the PR merges on
-> red. Also, `gh run watch` takes a `<run-id>`, there is no `--branch` flag;
-> resolve it via `gh run list --repo <org>/<repo> --branch <branch> --limit 1
-> --json databaseId -q '.[0].databaseId'`.
+> Gotcha: `gh run watch <run-id>` returns exit 0 even when the watched run FAILS
+> — always pass `--exit-status` or the PR merges on red. Also, `gh run watch`
+> takes a `<run-id>` (no `--branch` flag); resolve the run id with `gh run list`
+> (the command above shows the pattern).
 
-- Lone branch, self-approval blocked (after a verbal lgtm): swap --rebase for
-  --admin (protection rejects a non-admin merge):
-  `gh run watch --exit-status --repo <org>/<repo> $(gh run list --repo <org>/<repo> --branch <branch> --limit 1 --json databaseId -q '.[0].databaseId') && gh pr merge <M> --repo <org>/<repo> --squash --admin`
-- Stacked (see sk-async / sk-pr): run `gh stack merge <PR_NUMBER> --yes --squash`
-  in a background terminal with notify_on_complete; it blocks until the stack
-  merges.
+- Lone branch, self-approval blocked (after a verbal lgtm): swap `--rebase` for
+  `--admin` (protection rejects a non-admin merge). Reuse the watcher above with
+  `--squash --admin` instead of `--squash --rebase`.
+- Stacked (see sk-async / sk-pr): run
+  `gh stack merge <PR_NUMBER> --yes --squash` in a background terminal with
+  notify_on_complete; it blocks until the stack merges.
 - Branch protection requires linear history + signed commits; squash merge only.
 
 ## Post-merge
