@@ -76,5 +76,4 @@ query {
 
 ## Voir aussi
 
-- `cpn-triage` — routeur.
 - `cpn-discussion` — conventions de création + corps (français).

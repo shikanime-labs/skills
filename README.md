@@ -119,17 +119,22 @@ specification, compatible with the
 
 ### cloud-pi-native family
 
-| Skill                   | Description                                        |
-| ----------------------- | -------------------------------------------------- |
-| `cpn-dev-workflow`      | Console repo dev loop, gates, PR workflow          |
-| `cpn-commit`            | Conventional commits for console                   |
-| `cpn-discussion`        | French Discussions via GraphQL                     |
-| `cpn-issue`             | French issue templates + gate ledger               |
-| `cpn-pr`                | French PRs, pushed to origin, conventional         |
-| `cpn-code-review`       | Review console PRs: arch, French artifacts         |
-| `cpn-issue-triage`      | Triage d'issue : métadonnées + fermetures motivées |
-| `cpn-pr-triage`         | Triage de PR : métadonnées, reviewers, lien issue  |
-| `cpn-discussion-triage` | Triage de discussion : catégorie + cycle (GraphQL) |
+| Skill                   | Description                                            |
+| ----------------------- | ------------------------------------------------------ |
+| `cpn-dev-workflow`      | Console repo dev loop, gates, PR workflow              |
+| `cpn-commit`            | Conventional commits for console                       |
+| `cpn-discussion`        | French Discussions via GraphQL                         |
+| `cpn-issue`             | French issue templates + gate ledger                   |
+| `cpn-pr`                | French PRs, pushed to origin, conventional             |
+| `cpn-code-review`       | Review console PRs: arch, French artifacts             |
+| `cpn-issue-triage`      | Triage d'issue : métadonnées + fermetures motivées     |
+| `cpn-pr-triage`         | Triage de PR : métadonnées, reviewers, lien issue      |
+| `cpn-discussion-triage` | Triage de discussion : catégorie + cycle (GraphQL)     |
+| `cpn-async`             | Fan-out parallèle sur workspaces jj + PR en stack      |
+| `cpn-issue-refine`      | Raffine un problème vers la convergence dans l'issue   |
+| `cpn-issue-workflow`    | Workflow issue : créer → raffiner → trier              |
+| `cpn-pr-workflow`       | Workflow PR : issue liée → PR draft → trier            |
+| `cpn-pr-resolve`        | Réconcilie les threads de review, rapporte sans merger |
 
 ## Development
 

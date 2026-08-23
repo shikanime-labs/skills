@@ -123,6 +123,31 @@
       "name": "cpn-discussion-triage",
       "description": "Triage une discussion existante du dépôt cloud-pi-native/console : catégorie, forme du corps, réponse Q\u0026A, clôture de cycle (GraphQL).",
       "path": "skills/cloud-pi-native/cpn-discussion-triage"
+    },
+    {
+      "name": "cpn-async",
+      "description": "Fan-out parallèle sur workspaces jj + PR en stack pour console cloud-pi-native.",
+      "path": "skills/cloud-pi-native/cpn-async"
+    },
+    {
+      "name": "cpn-issue-refine",
+      "description": "Itère un problème vers la convergence dans son issue via recherche + commentaires (console).",
+      "path": "skills/cloud-pi-native/cpn-issue-refine"
+    },
+    {
+      "name": "cpn-issue-workflow",
+      "description": "Point d'entrée unique côté issue cloud-pi-native : créer, raffiner, trier immédiatement.",
+      "path": "skills/cloud-pi-native/cpn-issue-workflow"
+    },
+    {
+      "name": "cpn-pr-workflow",
+      "description": "Point d'entrée unique côté PR cloud-pi-native : issue liée, PR draft dérivée, trier immédiatement.",
+      "path": "skills/cloud-pi-native/cpn-pr-workflow"
+    },
+    {
+      "name": "cpn-pr-resolve",
+      "description": "Réconcilie les threads de review d'une PR, vérifie le ledger DoD, rapporte sans merger.",
+      "path": "skills/cloud-pi-native/cpn-pr-resolve"
     }
   ]
 }

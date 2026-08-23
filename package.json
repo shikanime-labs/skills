@@ -114,6 +114,26 @@
       {
         "name": "cpn-code-review",
         "path": "skills/cloud-pi-native/cpn-code-review"
+      },
+      {
+        "name": "cpn-async",
+        "path": "skills/cloud-pi-native/cpn-async"
+      },
+      {
+        "name": "cpn-issue-refine",
+        "path": "skills/cloud-pi-native/cpn-issue-refine"
+      },
+      {
+        "name": "cpn-issue-workflow",
+        "path": "skills/cloud-pi-native/cpn-issue-workflow"
+      },
+      {
+        "name": "cpn-pr-workflow",
+        "path": "skills/cloud-pi-native/cpn-pr-workflow"
+      },
+      {
+        "name": "cpn-pr-resolve",
+        "path": "skills/cloud-pi-native/cpn-pr-resolve"
       }
     ]
   }
