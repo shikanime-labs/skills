@@ -4,7 +4,7 @@ description:
   "Iterate a problem to convergence inside its GitHub issue via research +
   comments. Extracted from sk-issue's comment-iteration convention and
   wayfinder's research/fog loop."
-version: 0.1.0
+version: 0.1.1
 author: Hermes Agent
 license: Apache-2.0
 metadata:
@@ -24,107 +24,71 @@ metadata:
 # Shikanime Issue Refinement
 
 The issue IS the problem statement. `sk-issue` opens it (body = problem
-statement + `- [ ]` gate ledger + References) and states that findings belong in
-comments. This skill is the **iteration loop extracted from that convention** —
-working _inside_ an existing issue to resolve its open questions through
-research and candidate solutions posted as comments, until the problem statement
-and acceptance criteria converge and are ready to be solved. Distills
-wayfinder's research/grilling/fog-of-war cycle onto the issue's comment thread.
+statement + `- [ ]` gate ledger + References); findings belong in comments. This
+skill is the **iteration loop**: resolve an existing issue's open questions via
+research + candidate solutions until the problem statement and acceptance
+criteria converge (wayfinder's fog cycle on the thread).
 
 ## When to Use
 
-- An issue already exists (`sk-issue`) but its problem is still foggy: open
-  questions, missing evidence, several candidate approaches untested.
-- "Research this before we build", "what are our options for <X>", "iterate on
-  issue #N".
-- NOT for opening the issue — that is `sk-issue`. NOT for RFC / open questions /
-  edge exploration — that is `sk-discussion`; once a discussion converges into a
-  statable problem, open the issue (`sk-issue`) and iterate within it here.
-- NOT for implementation — that is `sk-pr` / the branch phase. Refine writes
-  comments, never product code.
+- Issue exists (`sk-issue`) but the problem is still foggy.
+- NOT for opening/RFC/edge — `sk-issue`/`sk-discussion`; open once it converges
+  into a statable problem.
+- NOT for implementation (`sk-pr`/branch phase). Refine writes comments, never
+  product code.
 
 ## Model: the issue comment thread is the iteration space
 
-- **Destination** — the converged problem statement the issue body should hold.
-  Named when the issue is opened; refine measures every question against it.
-- **Fog of war** — open questions about the problem you can _state_ but not yet
-  _answer_. The test: can you phrase the question precisely now? Then resolve
-  it. If you only feel uncertainty, research it until it sharpens.
-- **Frontier** — the open, resolvable questions. Resolve one at a time; each
-  resolution clears fog ahead and graduates whatever is now specifiable.
+- **Destination** — the converged problem statement the body should hold.
+- **Fog of war** — questions you can state but not answer; research until
+  precise, then resolve.
+- **Frontier** — open resolvable questions; clear one at a time.
 - **Four question kinds** (only `research` fans out; `grilling` is strictly
   serial with the human):
 
-  | Kind        | Mode   | Use when                                                                                 | Resolved by                                                                   |
-  | ----------- | ------ | ---------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
-  | `research`  | AFK    | A fact _outside_ the working dir blocks a decision (docs, API behavior, external state). | A `delegate_task` research agent; findings posted as a comment.               |
-  | `prototype` | HITL   | "How should this look/behave" — talking cannot settle it.                                | A cheap artifact (linked from a comment); **selection stays with the human**. |
-  | `grilling`  | HITL   | The default — settleable by talking it through.                                          | Precise one-at-a-time questions, _why_ attached.                              |
-  | `task`      | Either | No decision, but manual work (access, data shape) blocks one.                            | A precise checklist — never product code.                                     |
+  | Kind        | Mode   | Use when                                                      | Resolved by                                                    |
+  | ----------- | ------ | ------------------------------------------------------------- | -------------------------------------------------------------- |
+  | `research`  | AFK    | A fact outside the working dir blocks a decision.             | A `delegate_task` agent; findings posted as a comment.         |
+  | `prototype` | HITL   | "How should this look/behave" — talk can't settle it.         | A cheap artifact (linked); **selection stays with the human**. |
+  | `grilling`  | HITL   | The default — settleable by talking it through.               | Precise one-at-a-time questions, _why_ attached.               |
+  | `task`      | Either | No decision, but manual work (access, data shape) blocks one. | A precise checklist — never product code.                      |
 
 ## Procedure
 
-1. **Load the issue** — `gh issue view <N>`; read the body (problem statement +
-   ledger) and existing comments. If the problem cannot yet be stated, stop and
-   route to `sk-discussion` instead.
-2. **Enumerate the fog** — list every open question as a one-line item in your
-   in-agent working set (todo/notes). Each must read as a _question_, never
-   "build the X". Do not post this raw enumeration to the issue; it is the
-   scratchpad, not the thread.
+1. **Load** — `gh issue view <N>`; read body + comments. If the problem can't
+   yet be stated, route to `sk-discussion`.
+2. **Enumerate the fog** — one line per open question in your in-agent
+   scratchpad (never post raw).
 3. **Classify** each question into one of the four kinds.
-4. **Resolve AFK work in parallel** — for `research` items, fan out via
-   `delegate_task` (one child per independent fact; isolate on a
-   `research/<name>` branch per `sk-async` if it touches the repo). Research
-   ONLY reads and reports; it never edits product code. Dispatch each fact as a
-   `delegate_task(goal=...)` — one child per independent fact, the `goal`
-   stating the question and the report-as-comment contract. Split each fact into
-   its own task; do not pack several questions into one `goal`:
-   ```python
-   delegate_task(tasks=[
-       {"goal": "Research <fact>: find authoritative source for <question>. "
-                "Read-only; report finding + official References; do NOT edit code.",
-        "context": "Issue <N> in <org>/<repo>; isolate on research/<name> "
-                   "branch per sk-async if touching repo.",
-        "toolsets": ["web", "terminal"]},
-   ])
-   ```
-
-   For `grilling`/
-   `prototype`, engage the human serially — one question, wait, then next.
-5. **Post findings as comments** — each resolution goes in a `gh issue comment`:
-   the finding, the candidate solution(s), and any official References (docs,
-   linked issues/PRs, commits, specs). Candidate solutions and references NEVER
-   go in the body (body stays a stable problem statement per `sk-issue`); if a
-   reference is durable, add it to the body's **References** section via
-   `gh issue edit`.
-6. **Convergence test** — stop iterating when:
-   - No open item reads "build the X" (those belong downstream of the issue).
-   - The fog clears: remaining items are all answerable.
-   - The body is a clean problem statement + decidable `- [ ]` ledger.
-7. **Hand off to the solver** — the issue is now ready to be solved: route to
-   `sk-pr` / the branch-implement phase (`sk-dev-workflow` phase 3+). Never
-   carry implementation into this loop.
+4. **Resolve AFK in parallel** — `research` fans out via `delegate_task` (one
+   child per independent fact; isolate on `research/<name>` per `sk-async` if it
+   touches the repo; read-only, never edits product code — see
+   `references/delegate-research.md`). `grilling`/`prototype` engage the human
+   serially — one question, wait, next.
+5. **Post findings as comments** — each resolution is a `gh issue comment`:
+   finding + candidate solution(s) + official References. These NEVER go in the
+   body (body stays the stable problem statement); durable References move into
+   the body via `gh issue edit`.
+6. **Convergence test** — stop when: no item reads "build the X"; fog clears;
+   body is a clean problem statement + decidable `- [ ]` ledger.
+7. **Hand off** — route to `sk-pr`/branch phase (`sk-dev-workflow` phase 3+).
+   Never carry implementation into this loop.
 
 ## Pitfalls
 
-- **Writing product code in the issue** — the most-reported failure. `task`
-  earns its place only by _unblocking_ a decision, never by delivering a slice
-  of the destination. Builds stay in their own sessions.
-- **Fog disguised as a ticket** — "we should investigate X" with no precise
-  question is not a question; research it first, then phrase the real one.
-- **Parallel grilling** — two grilling threads get asked the same question in
-  different words (no shared context). Grilling is serial; only `research` fans
-  out.
-- **Prototype self-selection** — an agent building three UI variants and picking
-  one has broken the ticket. The human chooses; the agent links artifacts.
-- **Editing the body with findings** — findings belong in comments; the body is
-  the stable problem statement. Only the durable References section may move
-  into the body.
-- **Leaking the thinking process** — fog drafts, classification rationale, and
-  status chatter stay in-agent. The issue thread is a clean conversation for any
-  reader — human or another agent; it receives only the resolved follow-up
-  comment (finding + candidate solution + Reference). Post the conclusion, never
-  the scratchpad. Interim comments may be deleted once the thread converges.
+- **Writing product code** — `task` only unblocks a decision, never delivers a
+  slice of the destination.
+- **Fog as a ticket** — "investigate X" with no precise question isn't a
+  question; research it, then phrase the real one.
+- **Parallel grilling** — serial only; two threads ask the same thing in
+  different words. Only `research` fans out.
+- **Prototype self-selection** — agent builds variants and picks one → broken
+  ticket; the human chooses, the agent links artifacts.
+- **Editing the body with findings** — findings stay in comments; only durable
+  References may move into the body.
+- **Leaking the thinking** — fog drafts, classification, status chatter stay
+  in-agent; the thread gets only the resolved comment. Interim comments
+  deletable once converged.
 - **English only** — no French; do not carry cpn templates in.
 
 ## Verification
@@ -133,23 +97,20 @@ wayfinder's research/grilling/fog-of-war cycle onto the issue's comment thread.
 gh issue view <N> --repo <org>/<repo> --json number,title,comments
 ```
 
-Every open question has a resolution comment; the body carries a problem
-statement + References only (no candidate solutions inline); the convergence
-test passes before handoff to `sk-pr`.
+Every open question has a resolution comment; body holds a problem statement +
+References only; convergence passes before `sk-pr` handoff.
 
 ## References
 
-- `references/wayfinder-distillation.md` — condensed wayfinder source (four
-  question kinds, plan-don't-build discipline, documented failure modes) this
-  skill is distilled from.
+- `references/wayfinder-distillation.md` — wayfinder distillation (four kinds,
+  plan-don't-build, failure modes).
+- `references/delegate-research.md` — `delegate_task` fan-out snippet +
+  read-only/report contract.
 
 ## See also
 
-- `sk-issue` — opens the issue this skill iterates within (problem statement +
-  gate ledger + References; findings as comments).
-- `sk-discussion` — RFC / open-question / edge-exploration surface; use it
-  before the problem can be stated, then open the issue this skill iterates.
-- `sk-pr` — the solver; links back via `Related:` without auto-close.
-- `sk-async` — isolation model for parallel `research` fan-out.
-- `sk-issue-triage` — assign metadata (labels, assignee, milestone, project)
-  once converged.
+- `sk-issue` — opens the iterated issue.
+- `sk-discussion` — RFC/edge; use before problem is statable.
+- `sk-pr` — solver; links back via `Related:` without auto-close.
+- `sk-async` — isolation for parallel `research` fan-out.
+- `sk-issue-triage` — assign metadata once converged.

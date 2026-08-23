@@ -1,9 +1,9 @@
 ---
 name: cpn-discussion-triage
 description:
-  "Triage une discussion existante du dépôt cloud-pi-native/console : catégorie,
-  forme du corps, réponse Q&A, clôture de cycle (GraphQL)."
-version: 0.1.0
+  "Triage une discussion cloud-pi-native/console : catégorie, corps, Q&A,
+  clôture (GraphQL)."
+version: 0.1.1
 author: Hermes Agent
 license: Apache-2.0
 metadata:
@@ -13,27 +13,22 @@ metadata:
 
 # CPN Discussion Triage
 
-Trier une discussion existante de `cloud-pi-native/console`. Les discussions
-n'ont ni labels, ni assignees, ni jalons. Les seules métadonnées de triage sont
-la **catégorie** et le routage du cycle de vie. Conventions françaises. GraphQL
-uniquement.
+Discussion `cloud-pi-native/console` : pas de labels/assignees, triage =
+**catégorie** + routage du cycle. **GraphQL uniquement**.
 
 ## Entrées
 
-- `N` : numéro de discussion.
-- `R=cloud-pi-native/console` (défaut).
+- `N` numéro, `R=cloud-pi-native/console` (défaut).
 
-## Procédure
+## 1. Sonder + récupérer
 
-### 1. Sonder + récupérer
-
-Sonder d'abord — les discussions peuvent être désactivées :
+Sonder d'abord (peut être désactivé) :
 
 ```bash
 gh api repos/"$R" --jq .has_discussions
 ```
 
-Récupérer la discussion (le `id` de nœud est requis pour les mutations) :
+Récupérer (le `id` de nœud sert aux mutations) :
 
 ```bash
 gh api graphql -f query='
@@ -48,32 +43,25 @@ query {
 }'
 ```
 
-### 2. Décider + appliquer (via l'enveloppe `--input`, jamais `-F variables=@file`)
+## 2. Décider + appliquer
 
-- **catégorie** — si elle ne correspond pas à l'intention : ouverture RFC/design
-  → `Ideas` ; fil de décision/discussion → `General` ; question → `Q&A`.
-  Recatégoriser avec
+Mutations via `--input`, **jamais** `-F variables=@file` (échoue). Pas de
+`gh issue edit` ni REST.
+
+- **catégorie** hors intention : RFC/design → `Ideas` ; décision/discussion →
+  `General` ; question → `Q&A`. Recatégoriser :
   `updateDiscussion(input:{discussionId:$id, categoryId:$c})`.
-- **forme du corps** — doit rester contexte + questions ouvertes (voir
-  `cpn-discussion`). Si du squelette de solution s'est glissé dedans, l'élaguer
-  via une édition de corps `updateDiscussion`.
-- **convergée → dériver l'issue** — si les questions ouvertes sont résolues,
-  l'indiquer dans un commentaire et router vers `cpn-issue`. Ne pas continuer à
-  résoudre dans la discussion.
-- **marquer répondue** (Q&A uniquement) — si une réponse clôt la question :
+- **corps** : contexte + questions ouvertes (`cpn-discussion`) ; élaguer le
+  squelette de solution via `updateDiscussion`.
+- **convergée** : questions résolues → commenter + router `cpn-issue`, ne pas
+  résoudre ici.
+- **répondue** (Q&A) :
   `markDiscussionCommentAsAnswer(input:{id:<commentNodeId>})`.
-- **clôturer comme résolue/doublon** — GraphQL uniquement :
-  `closeDiscussion(input:{discussionId:$id, reason:RESOLVED|DUPLICATE|OUTDATED})`.
-  Poster d'abord un commentaire de motif ; jamais silencieusement.
-
-## Pièges
-
-- Discussions GraphQL uniquement — pas de `gh issue edit`, pas de REST. Utiliser
-  l'enveloppe `--input` pour les mutations ; `-F variables=@file` échoue.
-- Recatégoriser sans avoir sondé `.has_discussions` — création/mutation 404
-  quand désactivé.
-- Clôture silencieuse — toujours poster le commentaire de motif d'abord.
+- **clôturer** :
+  `closeDiscussion(input:{discussionId:$id, reason:RESOLVED|DUPLICATE|OUTDATED})`,
+  commentaire de motif d'abord, jamais silencieusement.
+- 404 si `.has_discussions` non sondé (désactivé).
 
 ## Voir aussi
 
-- `cpn-discussion` — conventions de création + corps (français).
+`cpn-discussion` (création + corps), `cpn-issue` (dérivation).
