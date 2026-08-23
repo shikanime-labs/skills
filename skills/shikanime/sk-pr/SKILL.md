@@ -125,8 +125,8 @@ jj rebase -d main
   conflict (keep `main`'s additions AND the fix — do not pick one side), then
   `jj squash` / `jj resolve`. A branch carrying conflict markers must never be
   pushed.
-- `jj rebase` rewrites commits and drops signatures (jj auto-sign does not
-  fire) — re-sign with `jj sign -r @` and re-point the bookmark
+- `jj rebase` rewrites commits and drops signatures (jj auto-sign does not fire)
+  — re-sign with `jj sign -r @` and re-point the bookmark
   (`jj bookmark set <branch> -r @`) before pushing (see `sk-dev-workflow`
   signing notes).
 
@@ -179,8 +179,8 @@ latest `main` forces recompute. Do not declare done on a stale `CONFLICTING`.
 When this is an update to an existing PR (re-push of a feature branch whose PR
 is already open), new commits void prior review. Before declaring done:
 
-1. Load `sk-pr-resolve` and drive every review conversation to a resolved
-   state — pertinent suggestions addressed in the diff and the thread resolved,
+1. Load `sk-pr-resolve` and drive every review conversation to a resolved state
+   — pertinent suggestions addressed in the diff and the thread resolved,
    non-pertinent discarded with a one-line comment. Never resolve silently.
 2. Re-run `sk-code-review` if the new commits changed logic since the last
    review.

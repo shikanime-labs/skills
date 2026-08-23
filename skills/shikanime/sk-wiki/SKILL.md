@@ -82,7 +82,7 @@ the `.wiki.git` remote until the source is review-approved.
 
 ```text
 wiki/
-  Home.md                # landing: project + zone map (internal vs user) + sidebar mirror
+  Home.md                # landing: project + zone map + sidebar mirror
   _Sidebar.md            # nav index (auto-rendered by GitHub)
   # Internal ops zone
   Architecture.md        # intent, components, data flow, boundaries
@@ -136,9 +136,9 @@ cd /; rm -rf "$TMP"
 ```
 
 The `.wiki.git` remote is a distinct repo, so it gets its own jj workspace
-(clone → edit → `jj describe` → `jj git push`) rather than being pushed from
-the code repo. `jj git clone` covers the case where the wiki repo is
-jj-backed; the `git clone` fallback handles a plain-git wiki remote.
+(clone → edit → `jj describe` → `jj git push`) rather than being pushed from the
+code repo. `jj git clone` covers the case where the wiki repo is jj-backed; the
+`git clone` fallback handles a plain-git wiki remote.
 
 Automate this in CI (a job that runs on changes to `wiki/`) so the wiki never
 drifts from the source. The `actions/github-wiki-action` marketplace action
