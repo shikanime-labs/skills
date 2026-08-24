@@ -1,0 +1,89 @@
+{
+  "skill_name": "sks-pr",
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "The skill opens a PR in shikanime-labs or shikanime-studio, pushing to origin with --head org:branch and linking the issue.",
+      "files": [],
+      "prompt": "Open a PR in shikanime-labs/skills for my fix/rwx-nfs-v4.0 branch.",
+      "assertions": [
+        "Frontmatter parses as YAML with a top-level 'name' key",
+        "Frontmatter 'name' equals the directory basename 'sks-pr'",
+        "Description starts with 'Use when' and is <= 200 characters",
+        "license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body opens a PR in shikanime-labs or shikanime-studio",
+        "Body pushes to origin and opens with --head <org>:<branch>"
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "The skill enforces PR title/body parity with the commit and links the issue without auto-close.",
+      "files": [],
+      "prompt": "Push my branch to origin and open a PR against main with the issue linked.",
+      "assertions": [
+        "Frontmatter parses as YAML with a top-level 'name' key",
+        "Frontmatter 'name' equals the directory basename 'sks-pr'",
+        "Description starts with 'Use when' and is <= 200 characters",
+        "license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body enforces PR title/body parity with the commit"
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "The skill delegates triage metadata to sks-pr-triage and reconciles review threads on revision.",
+      "files": [],
+      "prompt": "Create a pull request in shikanime-studio/actions with a plain-English title.",
+      "assertions": [
+        "Frontmatter parses as YAML with a top-level 'name' key",
+        "Frontmatter 'name' equals the directory basename 'sks-pr'",
+        "Description starts with 'Use when' and is <= 200 characters",
+        "license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body delegates triage metadata to sks-pr-triage",
+        "Body reconciles review threads on revision via sks-pr-resolve"
+      ]
+    },
+    {
+      "id": 4,
+      "expected_output": "The skill stays loadable and self-identifies as sks-pr; writing a poem for a blog is out of scope.",
+      "files": [],
+      "prompt": "Write a sonnet about merge conflicts and post it to my personal blog.",
+      "assertions": [
+        "Frontmatter parses as YAML with a top-level 'name' key",
+        "Frontmatter 'name' equals the directory basename 'sks-pr'"
+      ]
+    },
+    {
+      "id": 5,
+      "expected_output": "The skill does not claim to be the cloud-pi-native cpn-pr twin; it stays scoped to shikanime PR creation.",
+      "files": [],
+      "prompt": "Open my cloud-pi-native console PR the cpn-pr French way in cloud-pi-native/console.",
+      "assertions": [
+        "Description does not contain substring cpn-",
+        "Frontmatter 'name' equals the directory basename 'sks-pr'"
+      ]
+    },
+    {
+      "id": 6,
+      "expected_output": "The skill stays loadable and self-identifies as sks-pr; the incoherent malformed request is out of scope.",
+      "files": [],
+      "prompt": "qwerty!!%%% push the branch thingy and open the pull request stuff pls now gibberish",
+      "assertions": [
+        "Frontmatter parses as YAML with a top-level 'name' key",
+        "Frontmatter 'name' equals the directory basename 'sks-pr'"
+      ]
+    },
+    {
+      "id": 7,
+      "expected_output": "The skill does not claim to be the cpn-pr twin or absorb sks-land; it stays scoped to opening shikanime PRs (push to origin, --head org:branch, issue linkage).",
+      "files": [],
+      "prompt": "Land my cloud-pi-native console PR the cpn-pr French way after reconciliation, the sks-land path.",
+      "assertions": [
+        "Description does not contain substring cpn-",
+        "Frontmatter 'name' equals the directory basename 'sks-pr'"
+      ]
+    }
+  ]
+}

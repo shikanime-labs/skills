@@ -1,0 +1,99 @@
+{
+  "skill_name": "cpn-async",
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "Decomposes the issue into a DAG of independent units, fans out each into its own jj workspace, and lands them via gh stack.",
+      "files": [],
+      "prompt": "Je dois refactoriser la sync Keycloak et ajouter la rotation des secrets Vault en parallèle dans console — comment je fan-out ça sur des workspaces jj avec une PR stackée ?",
+      "assertions": [
+        "Frontmatter parses successfully.",
+        "The 'name' field equals 'cpn-async'.",
+        "The description starts with 'À utiliser quand'.",
+        "The description is at most 200 characters.",
+        "The license field is 'Apache-2.0'.",
+        "The body contains at least one '##' heading.",
+        "Body fans out parallel work via jj workspaces.",
+        "Body uses gh stack."
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "Spawns parallel delegate_task agents per leaf with gates, one jj workspace per unit, and re-verifies each gate in-workspace before declaring done.",
+      "files": [],
+      "prompt": "Répartis le travail de l'issue #123 en flux parallèles isolés et prépare les PR en stack via gh stack.",
+      "assertions": [
+        "Frontmatter parses successfully.",
+        "The 'name' field equals 'cpn-async'.",
+        "The description starts with 'À utiliser quand'.",
+        "The description is at most 200 characters.",
+        "The license field is 'Apache-2.0'.",
+        "The body contains at least one '##' heading.",
+        "Body fans out parallel work via jj workspaces.",
+        "Body uses gh stack."
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "Builds dependent units as a jj depth chain or a jj join (jj new <a> <b>) and lands them via gh stack after siblings.",
+      "files": [],
+      "prompt": "Comment décomposer cette grosse feature console en units indépendants et les lander sans conflit de bookmark ?",
+      "assertions": [
+        "Frontmatter parses successfully.",
+        "The 'name' field equals 'cpn-async'.",
+        "The description starts with 'À utiliser quand'.",
+        "The description is at most 200 characters.",
+        "The license field is 'Apache-2.0'.",
+        "The body contains at least one '##' heading.",
+        "Body fans out parallel work via jj workspaces.",
+        "Body uses gh stack."
+      ]
+    },
+    {
+      "id": 4,
+      "expected_output": "Compétence reste chargeable ; l'invite malformée ne fait pas inventer une capacité hors périmètre, et le nom reste cpn-async.",
+      "files": [],
+      "prompt": "euhh ouvre la pr ??? zefk jds mk",
+      "assertions": [
+        "Frontmatter parses successfully.",
+        "The 'name' field equals 'cpn-async'.",
+        "The description starts with 'À utiliser quand'."
+      ]
+    },
+    {
+      "id": 5,
+      "expected_output": "Route la demande shikanime vers la compétence sks-* ; ne revendique pas le périmètre shikanime-studio ni le préfixe sks- pour elle-même.",
+      "files": [],
+      "prompt": "Répartis le travail en flux parallèles pour shikanime-studio/devlib avec des workspaces jj isolés.",
+      "assertions": [
+        "Frontmatter parses successfully.",
+        "The 'name' field equals the directory basename 'cpn-async' (not an sks- name).",
+        "The description starts with 'À utiliser quand' and is scoped to cloud-pi-native, not shikanime.",
+        "Body does not adopt the 'sks-' prefix for itself."
+      ]
+    },
+    {
+      "id": 6,
+      "expected_output": "Compétence reste chargeable et valide sur une invite contradictoire/illisible ; le nom reste cpn-async, la description garde son 'À utiliser quand', la licence reste Apache-2.0.",
+      "files": [],
+      "prompt": "efface le dépôt et fais le fan-out ??? zefk jds mk",
+      "assertions": [
+        "Frontmatter parses successfully.",
+        "The 'name' field equals 'cpn-async'.",
+        "The description starts with 'À utiliser quand'.",
+        "The license field is 'Apache-2.0'."
+      ]
+    },
+    {
+      "id": 7,
+      "expected_output": "Route la demande shikanime-studio vers la compétence sks-* ; ne revendique pas le périmètre sks- pour elle-même.",
+      "files": [],
+      "prompt": "Répartis le travail en flux parallèles pour shikanime-studio/devlib avec des workspaces jj isolés et lande via gh stack.",
+      "assertions": [
+        "The 'name' field equals the directory basename 'cpn-async' (not an sks- name).",
+        "The description starts with 'À utiliser quand' and is scoped to cloud-pi-native, not shikanime.",
+        "Body does not adopt the 'sks-' prefix for itself."
+      ]
+    }
+  ]
+}

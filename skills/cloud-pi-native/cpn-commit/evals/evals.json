@@ -1,0 +1,100 @@
+{
+  "skill_name": "cpn-commit",
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "Creates a conventional, SSH-signed jj commit with a French message and the Automata co-author trailer, without pushing.",
+      "files": [],
+      "prompt": "Commit mon changement dans cloud-pi-native/console avec un message conventionnel en français via jj.",
+      "assertions": [
+        "Frontmatter parses successfully.",
+        "The 'name' field equals 'cpn-commit'.",
+        "The description starts with 'À utiliser quand'.",
+        "The description is at most 200 characters.",
+        "The license field is 'Apache-2.0'.",
+        "The body contains at least one '##' heading.",
+        "Body specifies conventional commit format.",
+        "Body is in French."
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "Stages with jj add, commits with jj commit -m honoring the commitlint body-leading-blank rule, then confirms with jj log --pretty=%B.",
+      "files": [],
+      "prompt": "Fais un commit conventionnel signé SSH de la correction du lookup de groupe null dans la sync Keycloak.",
+      "assertions": [
+        "Frontmatter parses successfully.",
+        "The 'name' field equals 'cpn-commit'.",
+        "The description starts with 'À utiliser quand'.",
+        "The description is at most 200 characters.",
+        "The license field is 'Apache-2.0'.",
+        "The body contains at least one '##' heading.",
+        "Body specifies conventional commit format.",
+        "Body is in French."
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "Uses the conventional commit shape (type(scope): subject, no trailing period) and appends the Co-authored-by Automata footer.",
+      "files": [],
+      "prompt": "Comment committer en conventionnel dans console en respectant le commitlint (body-leading-blank) ?",
+      "assertions": [
+        "Frontmatter parses successfully.",
+        "The 'name' field equals 'cpn-commit'.",
+        "The description starts with 'À utiliser quand'.",
+        "The description is at most 200 characters.",
+        "The license field is 'Apache-2.0'.",
+        "The body contains at least one '##' heading.",
+        "Body specifies conventional commit format.",
+        "Body is in French."
+      ]
+    },
+    {
+      "id": 4,
+      "expected_output": "Compétence reste chargeable ; l'invite malformée ne fait pas inventer une capacité, et le nom reste cpn-commit.",
+      "files": [],
+      "prompt": "commite ??? euhh pas compris mkk",
+      "assertions": [
+        "Frontmatter parses successfully.",
+        "The 'name' field equals 'cpn-commit'.",
+        "The description starts with 'À utiliser quand'.",
+        "The body is in French."
+      ]
+    },
+    {
+      "id": 5,
+      "expected_output": "Route la demande shikanime-studio vers la compétence sks-* ; ne revendique pas le périmètre sks- pour elle-même.",
+      "files": [],
+      "prompt": "Commit mon changement dans shikanime-studio/devlib avec un message conventionnel en anglais via jj.",
+      "assertions": [
+        "Frontmatter parses successfully.",
+        "The 'name' field equals 'cpn-commit' (not an sks- name).",
+        "The description starts with 'À utiliser quand' and is scoped to cloud-pi-native/console.",
+        "The body is in French (does not adopt an sks- plain-English scope)."
+      ]
+    },
+    {
+      "id": 6,
+      "expected_output": "Compétence reste chargeable et valide sur une invite illisible ; le nom reste cpn-commit, la description garde son 'À utiliser quand', la licence reste Apache-2.0.",
+      "files": [],
+      "prompt": "commit direct sur origin ??? mkjds euhh",
+      "assertions": [
+        "Frontmatter parses successfully.",
+        "The 'name' field equals 'cpn-commit'.",
+        "The description starts with 'À utiliser quand'.",
+        "The license field is 'Apache-2.0'."
+      ]
+    },
+    {
+      "id": 7,
+      "expected_output": "Route la demande shikanime-studio vers la compétence sks-* ; ne revendique pas le périmètre sks- pour elle-même.",
+      "files": [],
+      "prompt": "Commit mon changement dans shikanime-studio/devlib avec un message conventionnel en anglais via jj.",
+      "assertions": [
+        "The 'name' field equals 'cpn-commit' (not an sks- name).",
+        "The description starts with 'À utiliser quand' and is scoped to cloud-pi-native/console.",
+        "The body is in French (does not adopt an sks- plain-English scope)."
+      ]
+    }
+  ]
+}

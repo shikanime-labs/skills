@@ -1,0 +1,75 @@
+{
+  "skill_name": "sks-issue",
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "An issue opened with a problem-statement body, a command-decidable acceptance-criteria tasklist, and a References section.",
+      "files": [],
+      "prompt": "Open an issue in shikanime-studio/sk-async for the flaky retry loop, with clear acceptance criteria and no root-cause dumping in the body.",
+      "assertions": [
+        "Frontmatter parses as valid YAML.",
+        "The 'name' field equals 'sks-issue'.",
+        "The description starts with 'Use when' and is at most 200 characters.",
+        "The license field is 'Apache-2.0'.",
+        "The body contains at least one '##' heading.",
+        "Body enforces issue-first workflow with acceptance criteria tasklist.",
+        "Body keeps the issue body a clean problem statement and posts findings as comments, not in the body."
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "An issue whose body stays stable for triage while research findings go to comments, then handed to sks-issue-triage.",
+      "files": [],
+      "prompt": "File a bug in shikanime-labs/devlib with reproduction steps and a References section, and make sure I don't leak investigation notes into the issue body.",
+      "assertions": [
+        "Frontmatter parses as valid YAML.",
+        "The 'name' field equals 'sks-issue'.",
+        "The description starts with 'Use when' and is at most 200 characters.",
+        "The license field is 'Apache-2.0'.",
+        "The body contains at least one '##' heading.",
+        "Body includes a References section holding official material for the issue.",
+        "Body delegates triage metadata to sks-issue-triage after creation."
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "The skill stays loadable and self-identifies as sks-issue; ordering food through the tracker is out of scope.",
+      "files": [],
+      "prompt": "Order me a large pizza with extra cheese using the issue tracker.",
+      "assertions": [
+        "Frontmatter parses as YAML with a top-level 'name' key",
+        "Frontmatter 'name' equals the directory basename 'sks-issue'"
+      ]
+    },
+    {
+      "id": 4,
+      "expected_output": "The skill does not claim to be the cloud-pi-native cpn-issue twin; it stays scoped to shikanime issue creation in English.",
+      "files": [],
+      "prompt": "File my cloud-pi-native console bug the cpn-issue French way in cloud-pi-native/console.",
+      "assertions": [
+        "Description does not contain substring cpn-",
+        "Frontmatter 'name' equals the directory basename 'sks-issue'"
+      ]
+    },
+    {
+      "id": 5,
+      "expected_output": "The skill stays loadable and self-identifies as sks-issue; the incoherent malformed request is out of scope.",
+      "files": [],
+      "prompt": "zzz!!@@ random gibberish open the issue thing for the bug stuff pls kthxbye",
+      "assertions": [
+        "Frontmatter parses as YAML with a top-level 'name' key",
+        "Frontmatter 'name' equals the directory basename 'sks-issue'"
+      ]
+    },
+    {
+      "id": 6,
+      "expected_output": "The skill does not claim to be the cpn-issue twin or absorb sks-pr; it stays scoped to shikanime issue creation in English with a problem-statement body.",
+      "files": [],
+      "prompt": "Open my cloud-pi-native console bug the cpn-issue French way, then create a PR linking it the sks-pr way.",
+      "assertions": [
+        "Description does not contain substring cpn-",
+        "Frontmatter 'name' equals the directory basename 'sks-issue'"
+      ]
+    }
+  ]
+}

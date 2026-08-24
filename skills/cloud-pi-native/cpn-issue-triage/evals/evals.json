@@ -1,0 +1,92 @@
+{
+  "skill_name": "cpn-issue-triage",
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "Une issue triée : labels, assignee et jalon renseignés via gh issue edit.",
+      "files": [],
+      "prompt": "Trie l'issue #882 de console : attribue les labels, l'assignee et le jalon appropriés.",
+      "assertions": [
+        "The frontmatter block parses as valid YAML.",
+        "The 'name' field equals the directory basename 'cpn-issue-triage'.",
+        "The 'license' field is 'Apache-2.0'.",
+        "The body contains at least one '##' heading.",
+        "The 'description' field starts with 'À utiliser quand' and is at most 200 characters.",
+        "Le corps attribue les labels et le jalon (milestone) d'une issue console.",
+        "Le corps applique les métadonnées via 'gh issue edit' en mode additif (--add-label)."
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "Un label enhancement et le jalon de la prochaine release ajoutés à l'issue.",
+      "files": [],
+      "prompt": "Ajoute le label enhancement et le jalon de la prochaine release à l'issue #900 de console.",
+      "assertions": [
+        "The frontmatter block parses as valid YAML.",
+        "The 'name' field equals the directory basename 'cpn-issue-triage'.",
+        "The 'license' field is 'Apache-2.0'.",
+        "The body contains at least one '##' heading.",
+        "Le corps dérive le jalon : bug vers le patch ouvert, enhancement vers la prochaine release.",
+        "Le corps filtre les labels contre 'gh label list' et n'invente jamais de valeur."
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "Une issue clôturée avec motif demandé à l'utilisateur, jamais deviné.",
+      "files": [],
+      "prompt": "Clôture l'issue #777 de console avec un motif car elle est hors périmètre.",
+      "assertions": [
+        "The frontmatter block parses as valid YAML.",
+        "The 'name' field equals the directory basename 'cpn-issue-triage'.",
+        "The 'license' field is 'Apache-2.0'.",
+        "The body contains at least one '##' heading.",
+        "Le corps clôture une issue non traitable avec un motif obligatoire, jamais silencieusement.",
+        "Le corps ne devine jamais le motif et le demande à l'utilisateur avant de fermer."
+      ]
+    },
+    {
+      "id": 4,
+      "expected_output": "Même face à un prompt malformé, le skill reste chargeable sous 'cpn-issue-triage' et garde son nom.",
+      "files": [],
+      "prompt": "trie l'issue console @@@ ??? corrompu",
+      "assertions": [
+        "The frontmatter block parses as valid YAML.",
+        "The 'name' field equals the directory basename 'cpn-issue-triage'.",
+        "The 'license' field is 'Apache-2.0'."
+      ]
+    },
+    {
+      "id": 5,
+      "expected_output": "Le skill refuse de trier une issue d'un autre org (shikanime-labs) et ne revendique pas le préfixe sks-.",
+      "files": [],
+      "prompt": "Trie l'issue #300 de shikanime-labs/sk-web en tant que skill sks-issue-triage.",
+      "assertions": [
+        "The 'name' field equals the directory basename 'cpn-issue-triage'.",
+        "The 'description' field references 'cloud-pi-native' and not 'shikanime-labs'.",
+        "The body triages issues for 'cloud-pi-native/console', not shikanime-labs."
+      ]
+    },
+    {
+      "id": 6,
+      "expected_output": "Le skill refuse d'inventer des valeurs de labels/jalons absentes du dépôt et ne ferme jamais silencieusement.",
+      "files": [],
+      "prompt": "Invente un nouveau label 'super-urgent' et un jalon inexistant pour l'issue #300 et ferme-la sans motif.",
+      "assertions": [
+        "The body says 'Ne jamais inventer de valeur absente du dépôt'.",
+        "The body requires a mandatory reason to close ('jamais silencieusement').",
+        "The 'name' field equals the directory basename 'cpn-issue-triage'."
+      ]
+    },
+    {
+      "id": 7,
+      "expected_output": "Le skill reste sur cloud-pi-native/console et ne revendique pas le préfixe sks-.",
+      "files": [],
+      "prompt": "Trie l'issue #301 de shikanime-labs/sk-web en tant que skill sks-issue-triage.",
+      "assertions": [
+        "The 'description' field references 'cloud-pi-native' and not 'shikanime-labs'.",
+        "The body does not claim the 'sks-' prefix as its own name.",
+        "Frontmatter parses as valid YAML."
+      ]
+    }
+  ]
+}
