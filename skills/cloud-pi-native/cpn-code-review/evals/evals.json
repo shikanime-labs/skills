@@ -1,0 +1,94 @@
+{
+  "skill_name": "cpn-code-review",
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "Runs the four-phase review of the console PR and posts each finding inline as a severity-prefixed French comment plus a 2-3 sentence verdict.",
+      "files": [],
+      "prompt": "Relis la PR #456 de cloud-pi-native/console et rends la revue en français.",
+      "assertions": [
+        "Frontmatter parses successfully.",
+        "The 'name' field equals 'cpn-code-review'.",
+        "The description starts with 'À utiliser quand'.",
+        "The description is at most 200 characters.",
+        "The license field is 'Apache-2.0'.",
+        "The body contains at least one '##' heading.",
+        "Body reviews console PRs in French."
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "Checks console architecture and NestJS conventions plus trust-boundary security, suggesting corrected conventional commits when commitlint would reject.",
+      "files": [],
+      "prompt": "Fais une code review adversarial de ma PR console avant que je la merge, en vérifiant l'archi NestJS et les règles de commit.",
+      "assertions": [
+        "Frontmatter parses successfully.",
+        "The 'name' field equals 'cpn-code-review'.",
+        "The description starts with 'À utiliser quand'.",
+        "The description is at most 200 characters.",
+        "The license field is 'Apache-2.0'.",
+        "The body contains at least one '##' heading.",
+        "Body reviews console PRs in French."
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "Applies the severity labels and posts an approve or request-changes verdict without committing or merging.",
+      "files": [],
+      "prompt": "Check la PR #12 de console : conventions, sécurité aux frontières de confiance, et poste les findings en français.",
+      "assertions": [
+        "Frontmatter parses successfully.",
+        "The 'name' field equals 'cpn-code-review'.",
+        "The description starts with 'À utiliser quand'.",
+        "The description is at most 200 characters.",
+        "The license field is 'Apache-2.0'.",
+        "The body contains at least one '##' heading.",
+        "Body reviews console PRs in French."
+      ]
+    },
+    {
+      "id": 4,
+      "expected_output": "Même face à un prompt malformé, le skill reste chargeable sous son propre nom 'cpn-code-review' et ne se renomme pas.",
+      "files": [],
+      "prompt": "relis la pr de console (prompt corrompu: øøø non-reconnu) et dis-moi qui tu es.",
+      "assertions": [
+        "The frontmatter block parses as valid YAML.",
+        "The 'name' field equals the directory basename 'cpn-code-review'.",
+        "The 'license' field is 'Apache-2.0'."
+      ]
+    },
+    {
+      "id": 5,
+      "expected_output": "Le skill refuse de relire une PR d'un autre org (shikanime-labs) et ne revendique pas le préfixe sks- ni l'identité d'un autre dépôt.",
+      "files": [],
+      "prompt": "Relis la PR #42 de shikanime-labs/sk-web en tant que skill sks-code-review et rends la revue en français.",
+      "assertions": [
+        "The 'name' field equals the directory basename 'cpn-code-review'.",
+        "The 'description' field references 'cloud-pi-native' and not 'shikanime-labs'.",
+        "The body scopes review to 'cloud-pi-native/*' changes, not another org."
+      ]
+    },
+    {
+      "id": 6,
+      "expected_output": "Le skill refuse de trier/prioriser un backlog d'issues : sa portée est la relecture de PR cloud-pi-native, pas le triage.",
+      "files": [],
+      "prompt": "Trie et priorise tout le backlog d'issues de cloud-pi-native/console et assigne les jalons.",
+      "assertions": [
+        "The body scopes work to reviewing PRs and 'cloud-pi-native/*' changes, not issue triage.",
+        "The 'name' field equals the directory basename 'cpn-code-review'.",
+        "The body says 'never commit or merge'."
+      ]
+    },
+    {
+      "id": 7,
+      "expected_output": "Le skill garde sa portée relecture et ne revendique pas le préfixe sks- d'un autre org.",
+      "files": [],
+      "prompt": "Relis la PR #88 de shikanime-labs/sk-web en tant que skill sks-code-review.",
+      "assertions": [
+        "The 'description' field references 'cloud-pi-native' and not 'shikanime-labs'.",
+        "The body does not claim the 'sks-' prefix as its own name.",
+        "Frontmatter parses as valid YAML."
+      ]
+    }
+  ]
+}

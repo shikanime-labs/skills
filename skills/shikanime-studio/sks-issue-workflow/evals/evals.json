@@ -1,0 +1,96 @@
+{
+  "skill_name": "sks-issue-workflow",
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "The skill is the single entry point for the shikanime issue side, orchestrating sks-issue then sks-issue-refine then sks-issue-triage.",
+      "files": [],
+      "prompt": "Open and set up an issue on shikanime-studio/actions for the rwx nfs v4.0 bug before any PR.",
+      "assertions": [
+        "Frontmatter parses as YAML with a top-level 'name' key",
+        "Frontmatter 'name' equals the directory basename 'sks-issue-workflow'",
+        "Description starts with 'Use when' and is <= 200 characters",
+        "license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body is the single entry point for the issue side",
+        "Body orchestrates sks-issue, sks-issue-refine, and sks-issue-triage"
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "The skill carries a problem through creating, refining, and triaging an issue before any PR is opened.",
+      "files": [],
+      "prompt": "Take this problem through to a fully triaged issue before I open a PR.",
+      "assertions": [
+        "Frontmatter parses as YAML with a top-level 'name' key",
+        "Frontmatter 'name' equals the directory basename 'sks-issue-workflow'",
+        "Description starts with 'Use when' and is <= 200 characters",
+        "license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body covers creating, refining, and triaging the issue before any PR"
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "The skill exposes a '## Procedure' section routing through the three issue sub-skills.",
+      "files": [],
+      "prompt": "What's the entry point for handling an issue on the shikanime side?",
+      "assertions": [
+        "Frontmatter parses as YAML with a top-level 'name' key",
+        "Frontmatter 'name' equals the directory basename 'sks-issue-workflow'",
+        "Description starts with 'Use when' and is <= 200 characters",
+        "license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body exposes a '## Procedure' section"
+      ]
+    },
+    {
+      "id": 4,
+      "expected_output": "Skill remains loadable and scoped to the issue orchestration; it does not overreach into merging PRs.",
+      "files": [],
+      "prompt": "Open an issue on shikanime-studio/actions and also merge the resulting PR for me once it's ready.",
+      "assertions": [
+        "Frontmatter parses as YAML with a top-level 'name' key",
+        "Frontmatter 'name' equals the directory basename 'sks-issue-workflow'",
+        "Body contains at least one '##' heading",
+        "The body is a thin orchestrator over sks-issue, sks-issue-refine, sks-issue-triage only."
+      ]
+    },
+    {
+      "id": 5,
+      "expected_output": "Skill stays scoped to sks-issue-workflow and does not impersonate the cloud-pi-native cpn-issue-workflow skill.",
+      "files": [],
+      "prompt": "Use cpn-issue-workflow to open and triage an issue in cloud-pi-native/console.",
+      "assertions": [
+        "Frontmatter parses as YAML with a top-level 'name' key",
+        "Frontmatter 'name' equals the directory basename 'sks-issue-workflow'",
+        "Description does not contain substring cpn-.",
+        "The body does not claim the cpn-issue-workflow name or prefix."
+      ]
+    },
+    {
+      "id": 6,
+      "expected_output": "Skill declines the malformed request (no repo and no problem statement), remains a thin orchestrator over the issue-side skills, and must not run any script.",
+      "files": [],
+      "prompt": "set up the issue for me",
+      "assertions": [
+        "Frontmatter parses as YAML with a top-level 'name' key.",
+        "Frontmatter 'name' equals the directory basename 'sks-issue-workflow'.",
+        "Body contains no 'scripts/' path reference.",
+        "Body is a thin orchestrator over sks-issue, sks-issue-refine, sks-issue-triage only."
+      ]
+    },
+    {
+      "id": 7,
+      "expected_output": "Skill must not claim the cpn-issue name or the cpn- prefix; it is the shikanime sks-issue-workflow skill.",
+      "files": [],
+      "prompt": "Use cpn-issue to open and triage an issue in cloud-pi-native/console before any PR.",
+      "assertions": [
+        "Frontmatter parses as YAML with a top-level 'name' key.",
+        "Frontmatter 'name' equals the directory basename 'sks-issue-workflow'.",
+        "Body covers issue creation/refine/triage only and does not claim to implement or open PRs.",
+        "Description does not contain substring cpn-."
+      ]
+    }
+  ]
+}

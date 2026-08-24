@@ -1,0 +1,83 @@
+{
+  "skill_name": "sks-issue-refine",
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "An issue iteratively resolved to convergence via research/comments, leaving a clean problem statement and decidable tasklist.",
+      "files": [],
+      "prompt": "Refine issue #88 in shikanime-studio/sk-async — the problem is still foggy, research the open questions and resolve them in comments before we write the PR.",
+      "assertions": [
+        "Frontmatter parses as valid YAML.",
+        "The 'name' field equals 'sks-issue-refine'.",
+        "The description starts with 'Use when' and is at most 200 characters.",
+        "The license field is 'Apache-2.0'.",
+        "The body contains at least one '##' heading.",
+        "Body iterates a problem toward convergence inside the issue via comments.",
+        "Body classifies open questions into four kinds: research, prototype, grilling, task."
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "A converged issue where findings were posted as comments and durable references moved into the body, then handed to sks-pr.",
+      "files": [],
+      "prompt": "The problem behind devlib issue #31 is statable now but needs candidate solutions explored and posted before we derive the PR.",
+      "assertions": [
+        "Frontmatter parses as valid YAML.",
+        "The 'name' field equals 'sks-issue-refine'.",
+        "The description starts with 'Use when' and is at most 200 characters.",
+        "The license field is 'Apache-2.0'.",
+        "The body contains at least one '##' heading.",
+        "Body posts findings as comments and never writes product code in this loop.",
+        "Body runs a convergence test before handing off to sks-pr."
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "Skill remains loadable and scoped to in-issue refinement; it does not overreach into writing product code or opening PRs.",
+      "files": [],
+      "prompt": "ref1ne issue #88 and then just implement the fix directly in the codebase and open the PR for me.",
+      "assertions": [
+        "Frontmatter parses as valid YAML.",
+        "The 'name' field equals 'sks-issue-refine'.",
+        "The body contains at least one '##' heading.",
+        "The body states this skill writes comments, never product code."
+      ]
+    },
+    {
+      "id": 4,
+      "expected_output": "Skill stays scoped to sks-issue-refine and does not impersonate the cloud-pi-native cpn-issue-workflow skill.",
+      "files": [],
+      "prompt": "Use cpn-issue-workflow to open and triage an issue in cloud-pi-native/console before any PR.",
+      "assertions": [
+        "Frontmatter parses as valid YAML.",
+        "The 'name' field equals 'sks-issue-refine'.",
+        "The description does not contain substring cpn-.",
+        "The body does not claim to be the cpn-issue-workflow skill."
+      ]
+    },
+    {
+      "id": 5,
+      "expected_output": "Skill declines the malformed request (no issue number), iterates via comments only, never writes product code, and must not run any script.",
+      "files": [],
+      "prompt": "refine the bug and write the patch",
+      "assertions": [
+        "Frontmatter parses as valid YAML.",
+        "The 'name' field equals 'sks-issue-refine'.",
+        "Body contains no 'scripts/' path reference.",
+        "Body states this skill writes comments, never product code."
+      ]
+    },
+    {
+      "id": 6,
+      "expected_output": "Skill must not claim the cpn-issue-refine name or the cpn- prefix; it is the shikanime sks-issue-refine skill.",
+      "files": [],
+      "prompt": "Use cpn-issue-refine to iterate issue #31 in cloud-pi-native/console to convergence.",
+      "assertions": [
+        "Frontmatter parses as valid YAML.",
+        "The 'name' field equals 'sks-issue-refine'.",
+        "Description does not contain substring cpn-.",
+        "The body does not claim the cpn-issue-refine name."
+      ]
+    }
+  ]
+}

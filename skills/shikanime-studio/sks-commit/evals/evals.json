@@ -1,0 +1,90 @@
+{
+  "skill_name": "sks-commit",
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "Writes a plain-English capitalized imperative title with the Automata co-author trailer.",
+      "files": [],
+      "prompt": "Commit my StorageClass fix in shikanime-studio/manifests with the right message style.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-commit'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body specifies a 'Co-authored-by: Automata <automata@shikanime.studio>' trailer",
+        "Body requires a plain-English capitalized imperative title with no conventional prefix",
+        "Body shows a 'jj describe' command with two -m blocks"
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "Strips squash artifacts so the final message is one subject plus correct trailers.",
+      "files": [],
+      "prompt": "I squashed three commits and the message is full of bullet points and dashes — fix it before I merge.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-commit'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body says to strip '*' bullet lines and '---------' separators from squashed messages",
+        "Body allows exactly one Automata Co-authored-by trailer",
+        "Body limits Signed-off-by to repos whose hook requires DCO"
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "Detects repo-enforced hooks such as gitlint or commitlint and obeys them over the defaults.",
+      "files": [],
+      "prompt": "gitlint rejected my commit in the manifests repo — what does that repo actually require?",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-commit'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body states repo-enforced hooks always win over the default style",
+        "Body requires full issue URLs in 'Related:' instead of bare #N",
+        "Body mentions detecting .gitlint or commitlint config"
+      ]
+    },
+    {
+      "id": 4,
+      "expected_output": "The skill stays loadable and self-identifies as sks-commit; a request to translate docs or email the team is out of scope.",
+      "files": [],
+      "prompt": "Translate my README into Klingon and email it to the whole team.",
+      "assertions": [
+        "Frontmatter parses as YAML with a top-level 'name' key",
+        "Frontmatter 'name' equals the directory basename 'sks-commit'"
+      ]
+    },
+    {
+      "id": 5,
+      "expected_output": "The skill does not claim to be the cloud-pi-native cpn-commit twin; it stays scoped to shikanime commit style.",
+      "files": [],
+      "prompt": "Use sks-commit to open and commit a PR in the cloud-pi-native console repo the cpn-commit way.",
+      "assertions": [
+        "Description does not contain substring cpn-",
+        "Frontmatter 'name' equals the directory basename 'sks-commit'"
+      ]
+    },
+    {
+      "id": 6,
+      "expected_output": "The skill stays loadable and self-identifies as sks-commit; the incoherent malformed request is out of scope.",
+      "files": [],
+      "prompt": "asdfgh !!#$% write me the commit that does the stuff for the repo thingy pls now",
+      "assertions": [
+        "Frontmatter parses as YAML with a top-level 'name' key",
+        "Frontmatter 'name' equals the directory basename 'sks-commit'"
+      ]
+    },
+    {
+      "id": 7,
+      "expected_output": "The skill does not claim to be the cpn-commit twin or absorb sks-pr; it stays scoped to shikanime commit style (plain-English title, no conventional prefix).",
+      "files": [],
+      "prompt": "Open and commit a PR in the cloud-pi-native console repo the cpn-commit French way with a conventional commit prefix.",
+      "assertions": [
+        "Description does not contain substring cpn-",
+        "Frontmatter 'name' equals the directory basename 'sks-commit'"
+      ]
+    }
+  ]
+}

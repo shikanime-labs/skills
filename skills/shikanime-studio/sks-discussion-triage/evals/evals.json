@@ -1,0 +1,83 @@
+{
+  "skill_name": "sks-discussion-triage",
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "A recategorized and triaged discussion with correct lifecycle metadata applied via GraphQL.",
+      "files": [],
+      "prompt": "Triage discussion #42 in shikanime-studio/sk-async: it's a design question that got posted under General but reads like an RFC, and someone already answered the Q&A part.",
+      "assertions": [
+        "Frontmatter parses as valid YAML.",
+        "The 'name' field equals 'sks-discussion-triage'.",
+        "The description starts with 'Use when' and is at most 200 characters.",
+        "The license field is 'Apache-2.0'.",
+        "The body contains at least one '##' heading.",
+        "Body categorizes and triages a discussion via updateDiscussion and closeDiscussion GraphQL mutations.",
+        "Body marks a Q&A answer with markDiscussionCommentAsAnswer and never closes silently."
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "A discussion converted to an issue once its open questions are resolved, routed to sks-issue.",
+      "files": [],
+      "prompt": "Discussion #17 in shikanime-labs/devlib has converged and its open questions are resolved — move it to an issue instead of keep solving it in the thread.",
+      "assertions": [
+        "Frontmatter parses as valid YAML.",
+        "The 'name' field equals 'sks-discussion-triage'.",
+        "The description starts with 'Use when' and is at most 200 characters.",
+        "The license field is 'Apache-2.0'.",
+        "The body contains at least one '##' heading.",
+        "Body routes a converged discussion to sks-issue rather than continuing to solve in the discussion.",
+        "Body probes .has_discussions before GraphQL mutations to avoid 404s."
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "Skill remains loadable and scoped to discussion triage; it does not invent unrelated capabilities like deploying code or merging pull requests.",
+      "files": [],
+      "prompt": "tr1age discuss1on #42 in shikanime-studio/sk-async ??? also go ahead and deploy the fix to production and merge the PR while you're at it!!",
+      "assertions": [
+        "Frontmatter parses as valid YAML.",
+        "The 'name' field equals 'sks-discussion-triage'.",
+        "The body contains at least one '##' heading.",
+        "The body does not claim to deploy code or merge pull requests."
+      ]
+    },
+    {
+      "id": 4,
+      "expected_output": "Skill stays scoped to the shikanime discussion-triage domain and does not impersonate the cloud-pi-native cpn-discussion-triage skill.",
+      "files": [],
+      "prompt": "Triage discussion #7 in cloud-pi-native/console using the cpn-discussion-triage workflow and apply its labels.",
+      "assertions": [
+        "Frontmatter parses as valid YAML.",
+        "The 'name' field equals 'sks-discussion-triage'.",
+        "The description does not contain substring cpn-.",
+        "The body does not reference the cpn-discussion-triage name."
+      ]
+    },
+    {
+      "id": 5,
+      "expected_output": "Skill declines the malformed request (no discussion number and no OWNER/REPO), stays GraphQL-only, and must not run any script or claim a REST path.",
+      "files": [],
+      "prompt": "tr1age the discusssion about the new api endpoint and ship it",
+      "assertions": [
+        "Frontmatter parses as valid YAML.",
+        "The 'name' field equals 'sks-discussion-triage'.",
+        "Body contains no 'scripts/' path reference.",
+        "Body stays GraphQL-only and does not instruct 'gh issue edit' (REST)."
+      ]
+    },
+    {
+      "id": 6,
+      "expected_output": "Skill triages EXISTING discussions only; opening a new discussion is sks-discussion's job, and it must not claim the cpn-discussion name or prefix.",
+      "files": [],
+      "prompt": "Open a new discussion in shikanime-studio/sk-async for this RFC idea and then triage it.",
+      "assertions": [
+        "Frontmatter parses as valid YAML.",
+        "The 'name' field equals 'sks-discussion-triage'.",
+        "Body does not claim to open new discussions (that is sks-discussion).",
+        "Description does not contain substring cpn-."
+      ]
+    }
+  ]
+}

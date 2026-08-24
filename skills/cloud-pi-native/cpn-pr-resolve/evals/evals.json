@@ -1,0 +1,80 @@
+{
+  "skill_name": "cpn-pr-resolve",
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "Threads de review réconciliés et état rapporté sans merge.",
+      "files": [],
+      "prompt": "Résous les threads de review de la PR #87 sur cloud-pi-native/console sans la merger.",
+      "assertions": [
+        "Frontmatter parses as valid YAML.",
+        "Frontmatter 'name' field equals 'cpn-pr-resolve'.",
+        "Frontmatter 'license' field equals 'Apache-2.0'.",
+        "SKILL.md body contains at least one Markdown '##' heading.",
+        "Le corps réconcilie les review-threads d'une PR cloud-pi-native sans jamais merger (landing différé à cpn-dev-workflow).",
+        "Le corps traite les threads inline non résolus via isOutdated et isResolved."
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "Verdict ledger DoD, approbation et CI rapporté.",
+      "files": [],
+      "prompt": "La PR #87 est-elle prête à land ? Réconcilie et rapporte.",
+      "assertions": [
+        "Frontmatter 'description' starts with 'À utiliser quand' or 'Use when' and is <= 200 characters.",
+        "Le corps vérifie le ledger DoD contre le diff et la CI avant résolution.",
+        "Le corps rapporte l'approbation cpn-code-review et l'état CI sans merger."
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "Critères cochés avec preuve et threads non pertinents rejetés avec rationale.",
+      "files": [],
+      "prompt": "Vide les conversations de la PR #87 et coche le ledger du fini.",
+      "assertions": [
+        "Le corps interdit de cocher un critère sans preuve dans le diff/CI.",
+        "Le corps rejette avec rationale obligatoire les threads non pertinents."
+      ]
+    },
+    {
+      "id": 4,
+      "expected_output": "La skill reste chargeable malgré un prompt tronqué et réconcilie une PR console sans merger.",
+      "files": [],
+      "prompt": "Résous les threads de review de la PR console (prompt sans numéro 🔥 漢字) sans merger.",
+      "assertions": [
+        "Frontmatter parses as valid YAML.",
+        "The 'name' field equals the directory basename 'cpn-pr-resolve'."
+      ]
+    },
+    {
+      "id": 5,
+      "expected_output": "La skill refuse de traiter le dépôt shikanime et n'emprunte aucun préfixe sks-.",
+      "files": [],
+      "prompt": "Résous les review-threads de la PR #12 sur shikanime-labs/skills et land-la via la skill sks-dev-workflow.",
+      "assertions": [
+        "La description et le corps ne revendiquent pas le préfixe 'sks-'.",
+        "Le corps réconcilie uniquement les PR cloud-pi-native et ne lande jamais."
+      ]
+    },
+    {
+      "expected_output": "La skill reste chargeable malgré un prompt malformé et réconcilie sans merger.",
+      "files": [],
+      "prompt": "Résous les threads de la PR console 🔥 (prompt tronqué ??? &&& 漢字)",
+      "assertions": [
+        "Frontmatter parses as valid YAML.",
+        "The 'name' field equals the directory basename 'cpn-pr-resolve'."
+      ],
+      "id": 6
+    },
+    {
+      "expected_output": "La skill refuse le dépôt shikanime, n'emprunte aucun préfixe sks- et ne merge jamais.",
+      "files": [],
+      "prompt": "Résous et merge la PR #12 de shikanime-labs/skills via la skill sks-dev-workflow.",
+      "assertions": [
+        "La description et le corps ne revendiquent pas le préfixe 'sks-'.",
+        "Le corps réconcilie uniquement les PR cloud-pi-native et ne lande jamais (merge = cpn-dev-workflow)."
+      ],
+      "id": 7
+    }
+  ]
+}
