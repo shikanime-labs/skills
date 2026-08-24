@@ -76,8 +76,8 @@
         "path": "skills/shikanime-studio/sks-pr-resolve"
       },
       {
-        "name": "sks-code-review",
-        "path": "skills/shikanime-studio/sks-code-review"
+        "name": "sks-pr-review",
+        "path": "skills/shikanime-studio/sks-pr-review"
       },
       {
         "name": "sks-doc",
@@ -116,8 +116,8 @@
         "path": "skills/cloud-pi-native/cpn-discussion-triage"
       },
       {
-        "name": "cpn-code-review",
-        "path": "skills/cloud-pi-native/cpn-code-review"
+        "name": "cpn-pr-review",
+        "path": "skills/cloud-pi-native/cpn-pr-review"
       },
       {
         "name": "cpn-async",

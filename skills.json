@@ -75,9 +75,9 @@
       "path": "skills/shikanime-studio/sks-pr-resolve"
     },
     {
-      "name": "sks-code-review",
+      "name": "sks-pr-review",
       "description": "Use when reviewing shikanime code: enforce YAGNI, root-cause fixes, and project conventions before approval.",
-      "path": "skills/shikanime-studio/sks-code-review"
+      "path": "skills/shikanime-studio/sks-pr-review"
     },
     {
       "name": "sks-doc",
@@ -110,9 +110,9 @@
       "path": "skills/cloud-pi-native/cpn-pr"
     },
     {
-      "name": "cpn-code-review",
+      "name": "cpn-pr-review",
       "description": "Review cloud-pi-native console PRs: arch, French.",
-      "path": "skills/cloud-pi-native/cpn-code-review"
+      "path": "skills/cloud-pi-native/cpn-pr-review"
     },
     {
       "name": "cpn-issue-triage",

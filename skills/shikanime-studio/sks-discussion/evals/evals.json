@@ -60,13 +60,13 @@
     },
     {
       "id": 5,
-      "expected_output": "Skill stays scoped to opening RFC Discussions and does not claim to perform code review (sks-code-review's job).",
+      "expected_output": "Skill stays scoped to opening RFC Discussions and does not claim to perform code review (sks-pr-review's job).",
       "files": [],
       "prompt": "Review PR #42 in shikanime-labs/skills and tell me if it's ready to merge.",
       "assertions": [
         "YAML frontmatter parses and 'name' equals 'sks-discussion'",
-        "Frontmatter description does not contain substring 'sks-code-review'",
-        "Body does not contain substring 'sks-code-review'",
+        "Frontmatter description does not contain substring 'sks-pr-review'",
+        "Body does not contain substring 'sks-pr-review'",
         "Frontmatter description does not contain substring 'review'"
       ]
     },

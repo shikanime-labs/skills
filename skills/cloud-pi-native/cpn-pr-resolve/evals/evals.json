@@ -23,7 +23,7 @@
       "assertions": [
         "Frontmatter 'description' starts with 'À utiliser quand' or 'Use when' and is <= 200 characters.",
         "Le corps vérifie le ledger DoD contre le diff et la CI avant résolution.",
-        "Le corps rapporte l'approbation cpn-code-review et l'état CI sans merger."
+        "Le corps rapporte l'approbation cpn-pr-review et l'état CI sans merger."
       ]
     },
     {

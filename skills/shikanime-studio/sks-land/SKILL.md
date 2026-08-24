@@ -18,7 +18,7 @@ metadata:
       - sks-pr-resolve
       - sks-pr
       - sks-issue
-      - sks-code-review
+      - sks-pr-review
       - sks-doc
 platforms:
   - linux
@@ -29,7 +29,7 @@ platforms:
 
 Land a `shikanime-labs/*` / `shikanime-studio/*` PR only after `sks-pr-resolve`
 **reconciled** it and a human approving review is in place — protect `main`. Not
-for opening (`sks-pr`), review (`sks-code-review`), reconciling
+for opening (`sks-pr`), review (`sks-pr-review`), reconciling
 (`sks-pr-resolve`), or direct "push to main". This skill only lands.
 
 ## Pre-landing gates (must already hold)
@@ -41,7 +41,7 @@ re-read the ledger (unchecked box blocks merge):
 gh issue view <N> --repo <org>/<repo> --json body --jq .body
 ```
 
-**Gate 2 — `sks-code-review` approval.** Approved on current head; re-review if
+**Gate 2 — `sks-pr-review` approval.** Approved on current head; re-review if
 new commits landed. CI green: `gh pr checks <M> --repo <org>/<repo>`.
 
 ```bash
@@ -113,7 +113,7 @@ Optional edge cases and gotchas — load `references/pitfalls.md` on demand.
 ## Verification Checklist
 
 - [ ] Issue tasklist N/N checked with evidence.
-- [ ] `sks-code-review` approval on head; human review where protection
+- [ ] `sks-pr-review` approval on head; human review where protection
       requires.
 - [ ] All conversations reconciled (`sks-pr-resolve`).
 - [ ] CI green.

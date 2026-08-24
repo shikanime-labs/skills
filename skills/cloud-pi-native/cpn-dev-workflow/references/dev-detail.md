@@ -61,7 +61,7 @@ code, read the closest sibling and mirror its shape:
   `'true'`/`'false'` — use `specificallyEnabled`/`specificallyDisabled`.
 
 For deeper module conventions load the sub-skills: `cpn-issue-triage` /
-`cpn-pr-triage` (issue/PR metadata), `cpn-code-review` (pre-merge review).
+`cpn-pr-triage` (issue/PR metadata), `cpn-pr-review` (pre-merge review).
 
 ## Testing practice (vitest specs — inline rules)
 

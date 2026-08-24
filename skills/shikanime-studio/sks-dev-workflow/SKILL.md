@@ -28,7 +28,7 @@ platforms:
 
 End-to-end local dev loop for shikanime repos: branching, pushing to `origin`,
 jj bookmark tracking, landing (PR vs direct push). Issue/PR policy lives in
-`sks-issue-workflow` / `sks-pr-workflow`; code review in `sks-code-review`;
+`sks-issue-workflow` / `sks-pr-workflow`; code review in `sks-pr-review`;
 parallel split in `sks-async` (multi-parent joins via `jj new <a> <b>`).
 
 ## Lifecycle (ordered phases; gates in **bold**)
@@ -39,7 +39,7 @@ parallel split in `sks-async` (multi-parent joins via `jj new <a> <b>`).
 | 1–2 | Issue: create → refine → triage           | `sks-issue-workflow` | **ledger settled**    |
 | 3   | Branch + implement                        | this                 | —                     |
 | 4   | Commit (plain-English + Automata trailer) | `sks-commit`         | **commit shape**      |
-| 5   | Adversarial code review                   | `sks-code-review`    | **review gate**       |
+| 5   | Adversarial code review                   | `sks-pr-review`    | **review gate**       |
 | 6   | PR: ensure issue → open → triage          | `sks-pr-workflow`    | —                     |
 | 7   | Land (merge / `gh stack`)                 | `sks-async` / this   | **branch protection** |
 | 8   | Close issue deliberately (N of N)         | `sks-issue`          | **ledger discharged** |
@@ -123,7 +123,7 @@ jj does not auto-track bookmarks — without `track`, push is rejected.
 
 - **Direct push:** ONLY when the user explicitly says "push to main" / "land
   it".
-- **Run `sks-code-review` before requesting merge** — treat it as the gate.
+- **Run `sks-pr-review` before requesting merge** — treat it as the gate.
 - **Merge:** `nix-containers` requires `gh pr merge --squash --admin` when the
   user says "merge the PRs". Other repos: merge per allowed strategy
   post-review. A red required check / branch-protection rejection is a gate
@@ -170,4 +170,4 @@ jj status && jj log -r @ -T 'bookmarks ++ " "'
 ## See also
 
 `sks-issue-workflow` / `sks-pr-workflow` (issue & PR sides), `sks-commit`,
-`sks-async` (stacked PRs), `sks-code-review` (phase 5), `cpn-dev-workflow`.
+`sk-async` (stacked PRs), `sks-pr-review` (phase 5), `cpn-dev-workflow`.
