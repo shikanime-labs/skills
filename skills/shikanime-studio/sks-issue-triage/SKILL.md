@@ -55,6 +55,18 @@ gh api repos/"$R"/assignees --jq '.[].login'
   current minor (max `Z`); enhancement→next minor/major.
 - **project** — if repo boards items and this is unboarded:
   `--add-project <number>`. Skip if ambiguous.
+- **transfer** — if the issue clearly belongs in another `shikanime-labs/*`
+  /`shikanime-studio/*` repo (wrong repo, not merely a wrong label), move it
+  rather than triaging in place. Transfer preserves comments, labels, and the
+  cross-link:
+
+  ```bash
+  gh issue transfer "$N" "$DEST_REPO"        # DEST_REPO = OWNER/REPO
+  ```
+
+  Confirm the destination exists and that the transfer is accepted before
+  proceeding. Do **not** also edit or close the source issue — transfer empties
+  it.
 
 ### 4. Apply
 
