@@ -84,6 +84,10 @@
         "path": "skills/shikanime-studio/sks-doc"
       },
       {
+        "name": "sks-gc",
+        "path": "skills/shikanime-studio/sks-gc"
+      },
+      {
         "name": "cpn-dev-workflow",
         "path": "skills/cloud-pi-native/cpn-dev-workflow"
       },

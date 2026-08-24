@@ -85,6 +85,11 @@
       "path": "skills/shikanime-studio/sks-doc"
     },
     {
+      "name": "sks-gc",
+      "description": "Use when reclaiming resources leaked by shikanime jj workflows: dangling bookmarks, skill-created jj workspaces, and leftover working-copy dirs from sks-async/sks-dev-workflow.",
+      "path": "skills/shikanime-studio/sks-gc"
+    },
+    {
       "name": "cpn-dev-workflow",
       "description": "À utiliser quand vous travaillez dans le dépôt console cloud-pi-native/console : règles de contribution, cycle de dev et workflow PR.",
       "path": "skills/cloud-pi-native/cpn-dev-workflow"
