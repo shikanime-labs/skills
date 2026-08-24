@@ -1,0 +1,94 @@
+{
+  "skill_name": "cpn-dev-workflow",
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "Explains the local console repo structure, contribution rules, and the issue-first PR, commit, and review workflow inside cloud-pi-native/console.",
+      "files": [],
+      "prompt": "Comment je contribue au dépôt console cloud-pi-native/console en local : règles de contribution, cycle de dev et workflow PR ?",
+      "assertions": [
+        "Frontmatter parses successfully.",
+        "The 'name' field equals 'cpn-dev-workflow'.",
+        "The description starts with 'À utiliser quand'.",
+        "The description is at most 200 characters.",
+        "The license field is 'Apache-2.0'.",
+        "The body contains at least one '##' heading.",
+        "Body works inside the local console repo."
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "Guides implementing a server-nestjs module issue-first with a fresh jj workspace, conventional commits, and pre-submit lint and test gates.",
+      "files": [],
+      "prompt": "Je veux implémenter un module dans apps/server-nestjs (issue-first) et écrire son spec vitest — guide-moi.",
+      "assertions": [
+        "Frontmatter parses successfully.",
+        "The 'name' field equals 'cpn-dev-workflow'.",
+        "The description starts with 'À utiliser quand'.",
+        "The description is at most 200 characters.",
+        "The license field is 'Apache-2.0'.",
+        "The body contains at least one '##' heading.",
+        "Body works inside the local console repo."
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "Describes the origin-only PR discipline and gh stack landing path with PR to commit parity for cloud-pi-native/console.",
+      "files": [],
+      "prompt": "Quelles sont les commandes de lint, test et local dev pour console et le workflow PR origin-only ?",
+      "assertions": [
+        "Frontmatter parses successfully.",
+        "The 'name' field equals 'cpn-dev-workflow'.",
+        "The description starts with 'À utiliser quand'.",
+        "The description is at most 200 characters.",
+        "The license field is 'Apache-2.0'.",
+        "The body contains at least one '##' heading.",
+        "Body works inside the local console repo."
+      ]
+    },
+    {
+      "id": 4,
+      "expected_output": "Même face à un prompt malformé, le skill reste chargeable sous 'cpn-dev-workflow' et ne s'invente pas une autre identité.",
+      "files": [],
+      "prompt": "aide-moi à contributor au console (prompt illisible: ñññ) dis ton nom.",
+      "assertions": [
+        "The frontmatter block parses as valid YAML.",
+        "The 'name' field equals the directory basename 'cpn-dev-workflow'.",
+        "The 'license' field is 'Apache-2.0'."
+      ]
+    },
+    {
+      "id": 5,
+      "expected_output": "Le skill décline de documenter le workflow d'un autre org (shikanime-labs) et ne revendique pas le préfixe sks-.",
+      "files": [],
+      "prompt": "Explique-moi le workflow de dev de shikanime-labs/sk-web en tant que skill sks-dev-workflow.",
+      "assertions": [
+        "The 'name' field equals the directory basename 'cpn-dev-workflow'.",
+        "The 'description' field references 'cloud-pi-native' and not 'shikanime-labs'.",
+        "The body works inside the local 'cloud-pi-native/console' repo, not shikanime-labs."
+      ]
+    },
+    {
+      "id": 6,
+      "expected_output": "Le skill refuse de provisionner des clusters ou d'opérer des environnements distants : hors périmètre du workflow de dev console.",
+      "files": [],
+      "prompt": "Provisionne un cluster Kubernetes de production pour cloud-pi-native et déploie les environnements distants.",
+      "assertions": [
+        "The body states it 'does not provision clusters or operate remote environments unless asked'.",
+        "The 'name' field equals the directory basename 'cpn-dev-workflow'.",
+        "The body scopes work to the local 'cloud-pi-native/console' repo."
+      ]
+    },
+    {
+      "id": 7,
+      "expected_output": "Le skill reste centré sur cloud-pi-native/console et ne revendique pas l'identité sks- d'un autre org.",
+      "files": [],
+      "prompt": "Décris le cycle de dev de shikanime-labs/sk-web en tant que skill sks-dev-workflow.",
+      "assertions": [
+        "The 'description' field references 'cloud-pi-native' and not 'shikanime-labs'.",
+        "The body does not claim the 'sks-' prefix as its own name.",
+        "Frontmatter parses as valid YAML."
+      ]
+    }
+  ]
+}

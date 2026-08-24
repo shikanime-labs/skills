@@ -1,0 +1,89 @@
+{
+  "skill_name": "sks-land",
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "The skill lands a shikanime PR only after sks-pr-resolve reconciled it and review approval gates pass, then closes the linked issue deliberately.",
+      "files": [],
+      "prompt": "Land PR #42 on shikanime-labs/skills now that reviews and CI are green.",
+      "assertions": [
+        "Frontmatter parses as YAML with a top-level 'name' key",
+        "Frontmatter 'name' equals the directory basename 'sks-land'",
+        "Description starts with 'Use when' and is <= 200 characters",
+        "license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body lands a PR only after sks-pr-resolve reconciled it",
+        "Body closes the linked issue deliberately (sks-pr avoids auto-close)"
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "The skill gates on pre-landing checks and lands stacked PRs via gh stack merge or lone PRs via gh pr merge --squash.",
+      "files": [],
+      "prompt": "Merge my PR after reconciliation and close the linked issue deliberately.",
+      "assertions": [
+        "Frontmatter parses as YAML with a top-level 'name' key",
+        "Frontmatter 'name' equals the directory basename 'sks-land'",
+        "Description starts with 'Use when' and is <= 200 characters",
+        "license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body exposes '## Pre-landing gates (must already hold)'",
+        "Body lands via gh stack merge for stacked PRs or gh pr merge --squash for lone PRs"
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "The skill never opens or reviews a PR; it only lands one already reconciled.",
+      "files": [],
+      "prompt": "The conversations are all reconciled on PR #7 in nix-containers — land it.",
+      "assertions": [
+        "Frontmatter parses as YAML with a top-level 'name' key",
+        "Frontmatter 'name' equals the directory basename 'sks-land'",
+        "Description starts with 'Use when' and is <= 200 characters",
+        "license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body states this skill only lands and is not for opening or reviewing"
+      ]
+    },
+    {
+      "id": 4,
+      "expected_output": "The skill stays loadable and self-identifies as sks-land; baking a cake is out of scope.",
+      "files": [],
+      "prompt": "Bake a birthday cake for the release party.",
+      "assertions": [
+        "Frontmatter parses as YAML with a top-level 'name' key",
+        "Frontmatter 'name' equals the directory basename 'sks-land'"
+      ]
+    },
+    {
+      "id": 5,
+      "expected_output": "The skill does not claim to be the cloud-pi-native cpn-land twin; it stays scoped to landing shikanime PRs.",
+      "files": [],
+      "prompt": "Land my cloud-pi-native console PR the cpn-land way in cloud-pi-native/console.",
+      "assertions": [
+        "Description does not contain substring cpn-",
+        "Frontmatter 'name' equals the directory basename 'sks-land'"
+      ]
+    },
+    {
+      "id": 6,
+      "expected_output": "The skill stays loadable and self-identifies as sks-land; the incoherent malformed request is out of scope.",
+      "files": [],
+      "prompt": "!!@@# mergey gibberish land the pull request thing for the repo pls kthx",
+      "assertions": [
+        "Frontmatter parses as YAML with a top-level 'name' key",
+        "Frontmatter 'name' equals the directory basename 'sks-land'"
+      ]
+    },
+    {
+      "id": 7,
+      "expected_output": "The skill does not claim to be the sks-async fan-out/landing sibling or absorb sks-pr; it stays scoped to landing already-reconciled shikanime PRs.",
+      "files": [],
+      "prompt": "Fan out my landing into parallel workspaces and land each the sks-async way, committing the merge the sks-commit way.",
+      "assertions": [
+        "Description does not contain substring sks-async",
+        "Frontmatter 'name' equals the directory basename 'sks-land'"
+      ]
+    }
+  ]
+}

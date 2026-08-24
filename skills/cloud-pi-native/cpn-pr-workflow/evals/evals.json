@@ -1,0 +1,80 @@
+{
+  "skill_name": "cpn-pr-workflow",
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "PR draft ouverte dérivée du commit et triée, issue liée garantie.",
+      "files": [],
+      "prompt": "Prépare le workflow complet d'une PR sur cloud-pi-native/console : issue, PR draft et tri.",
+      "assertions": [
+        "Frontmatter parses as valid YAML.",
+        "Frontmatter 'name' field equals 'cpn-pr-workflow'.",
+        "Frontmatter 'license' field equals 'Apache-2.0'.",
+        "SKILL.md body contains at least one Markdown '##' heading.",
+        "Le corps est le point d'entrée unique du côté PR en enchaînant cpn-issue, cpn-pr et cpn-pr-triage.",
+        "Le corps ouvre une PR draft dérivée du commit et liée à l'issue via `Refs: <#N>`."
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "Workflow PR lancé avec issue convergée et push origin.",
+      "files": [],
+      "prompt": "Lance le workflow PR pour ma branche fix/cache en garantissant l'issue liée.",
+      "assertions": [
+        "Frontmatter 'description' starts with 'À utiliser quand' or 'Use when' and is <= 200 characters.",
+        "Le corps charge cpn-issue-workflow si aucune issue convergée n'est fournie.",
+        "Le corps pousse vers origin et ouvre avec `--head cloud-pi-native:<branch>`."
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "Tri immédiat délégué et gate de complétion posée.",
+      "files": [],
+      "prompt": "Fais le tri immédiat après l'ouverture de la PR draft.",
+      "assertions": [
+        "Le corps délègue le tri immédiat à cpn-pr-triage (labels, assignee, milestone, project, reviewers).",
+        "Le corps pose une gate de complétion vérifiant que la PR lie la bonne issue et ses métadonnées."
+      ]
+    },
+    {
+      "id": 4,
+      "expected_output": "La skill reste chargeable malgré un prompt corrompu et ouvre une PR draft console liée à l'issue.",
+      "files": [],
+      "prompt": "Prépare le workflow PR console (prompt corrompu 🔥 sans branche 漢字) : issue, PR draft et tri.",
+      "assertions": [
+        "Frontmatter parses as valid YAML.",
+        "The 'name' field equals the directory basename 'cpn-pr-workflow'."
+      ]
+    },
+    {
+      "id": 5,
+      "expected_output": "La skill refuse de traiter le dépôt shikanime et n'emprunte aucun préfixe sks-.",
+      "files": [],
+      "prompt": "Lance le workflow PR pour shikanime-labs/skills via la skill sks-pr-workflow.",
+      "assertions": [
+        "La description et le corps ne revendiquent pas le préfixe 'sks-'.",
+        "Le corps enchaîne uniquement cpn-issue, cpn-pr et cpn-pr-triage."
+      ]
+    },
+    {
+      "expected_output": "La skill reste chargeable malgré un prompt malformé et ouvre une PR draft console liée.",
+      "files": [],
+      "prompt": "Prépare le workflow PR console 🔥 (prompt corrompu ??? &&& 漢字)",
+      "assertions": [
+        "Frontmatter parses as valid YAML.",
+        "The 'name' field equals the directory basename 'cpn-pr-workflow'."
+      ],
+      "id": 6
+    },
+    {
+      "expected_output": "La skill refuse le dépôt shikanime, n'emprunte aucun préfixe sks- et ne merge jamais.",
+      "files": [],
+      "prompt": "Lance le workflow PR pour shikanime-labs/skills et merge-la via sks-dev-workflow.",
+      "assertions": [
+        "La description et le corps ne revendiquent pas le préfixe 'sks-'.",
+        "Le corps enchaîne uniquement cpn-issue, cpn-pr et cpn-pr-triage (aucun merge/land)."
+      ],
+      "id": 7
+    }
+  ]
+}
