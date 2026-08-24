@@ -1,0 +1,96 @@
+{
+  "skill_name": "sks-pr-workflow",
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "Loads sks-pr-workflow and orchestrates the issue to PR to triage flow via sks-issue, sks-pr, and sks-pr-triage.",
+      "files": [],
+      "prompt": "I have a converged issue #42 in shikanime-studio/devlib. Open the PR for my branch and triage it.",
+      "assertions": [
+        "Frontmatter parses successfully.",
+        "The 'name' field equals 'sks-pr-workflow'.",
+        "The description starts with 'Use when'.",
+        "The description is at most 200 characters.",
+        "The license field is 'Apache-2.0'.",
+        "The body contains at least one '##' heading.",
+        "Body is the single entry point for the PR side."
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "Ensures the linked issue exists, opens the org-repo draft PR linked to the issue, then applies triage metadata immediately.",
+      "files": [],
+      "prompt": "Set up the full PR workflow for shikanime-labs/hakurei: make sure the issue exists, open the draft PR, and apply triage.",
+      "assertions": [
+        "Frontmatter parses successfully.",
+        "The 'name' field equals 'sks-pr-workflow'.",
+        "The description starts with 'Use when'.",
+        "The description is at most 200 characters.",
+        "The license field is 'Apache-2.0'.",
+        "The body contains at least one '##' heading.",
+        "Body is the single entry point for the PR side."
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "Creates the issue first when absent, then opens and triages the PR following the shikanime PR workflow gate.",
+      "files": [],
+      "prompt": "No issue exists yet for my change in shikanime-studio/skills — get me from issue to landed PR.",
+      "assertions": [
+        "Frontmatter parses successfully.",
+        "The 'name' field equals 'sks-pr-workflow'.",
+        "The description starts with 'Use when'.",
+        "The description is at most 200 characters.",
+        "The license field is 'Apache-2.0'.",
+        "The body contains at least one '##' heading.",
+        "Body is the single entry point for the PR side."
+      ]
+    },
+    {
+      "id": 4,
+      "expected_output": "Skill stays loadable; the malformed request does not cause it to invent an unrelated capability, and name remains sks-pr-workflow.",
+      "files": [],
+      "prompt": "uhhh open the pr thing for my branch?? skjfds mkj ???",
+      "assertions": [
+        "Frontmatter parses successfully.",
+        "The 'name' field equals 'sks-pr-workflow'.",
+        "The body does not invent an unrelated capability outside the shikanime PR workflow."
+      ]
+    },
+    {
+      "id": 5,
+      "expected_output": "Routes the cloud-pi-native request to the cpn-* skill; does not claim cloud-pi-native scope or the cpn- prefix itself.",
+      "files": [],
+      "prompt": "Set up the parallel fan-out PR workflow for cloud-pi-native/console using gh stack and jj workspaces.",
+      "assertions": [
+        "Frontmatter parses successfully.",
+        "The 'name' field equals 'sks-pr-workflow' (not a cpn- name).",
+        "The description starts with 'Use when' (shikanime scope, not cloud-pi-native).",
+        "Body does not claim the 'cpn-' prefix."
+      ]
+    },
+    {
+      "id": 6,
+      "expected_output": "Skill stays loadable and structurally valid on a contradictory/garbled request; name stays sks-pr-workflow, description keeps its 'Use when' shikanime scope, license stays Apache-2.0, body keeps its procedure headings.",
+      "files": [],
+      "prompt": "purge every branch and set up the pr workflow thing for my change ??? mkjsdf ???",
+      "assertions": [
+        "Frontmatter parses successfully.",
+        "The 'name' field equals 'sks-pr-workflow'.",
+        "The description starts with 'Use when'.",
+        "The license field is 'Apache-2.0'."
+      ]
+    },
+    {
+      "id": 7,
+      "expected_output": "Routes the cloud-pi-native request to the cpn-* skill; does not claim cloud-pi-native scope or the cpn- prefix for itself.",
+      "files": [],
+      "prompt": "Run the cloud-pi-native PR commit-and-triage workflow for console and land the parallel units via gh stack.",
+      "assertions": [
+        "The 'name' field equals 'sks-pr-workflow' (not a cpn- name).",
+        "The description starts with 'Use when' (shikanime scope, not cloud-pi-native).",
+        "Body does not claim the 'cpn-' prefix."
+      ]
+    }
+  ]
+}

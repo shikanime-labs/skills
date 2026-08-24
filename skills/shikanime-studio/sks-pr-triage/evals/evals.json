@@ -1,0 +1,95 @@
+{
+  "skill_name": "sks-pr-triage",
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "The skill assigns labels, assignee, and milestone to an existing shikanime org PR using only repo-existing values.",
+      "files": [],
+      "prompt": "Triage PR #21 in shikanime-studio/actions: add labels, assignee, milestone.",
+      "assertions": [
+        "Frontmatter parses as YAML with a top-level 'name' key",
+        "Frontmatter 'name' equals the directory basename 'sks-pr-triage'",
+        "Description starts with 'Use when' and is <= 200 characters",
+        "license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body assigns labels, assignee, and milestone to a PR"
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "The skill applies metadata additively and never invents a label the repo lacks.",
+      "files": [],
+      "prompt": "Apply triage metadata to my existing PR #5 in shikanime-labs/skills.",
+      "assertions": [
+        "Frontmatter parses as YAML with a top-level 'name' key",
+        "Frontmatter 'name' equals the directory basename 'sks-pr-triage'",
+        "Description starts with 'Use when' and is <= 200 characters",
+        "license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body uses additive --add-label/--add-assignee and never invents a missing label"
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "The skill triages a PR's metadata but never closes the PR.",
+      "files": [],
+      "prompt": "Set the right labels, assignee, and milestone on PR #12.",
+      "assertions": [
+        "Frontmatter parses as YAML with a top-level 'name' key",
+        "Frontmatter 'name' equals the directory basename 'sks-pr-triage'",
+        "Description starts with 'Use when' and is <= 200 characters",
+        "license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body never closes PRs"
+      ]
+    },
+    {
+      "id": 4,
+      "expected_output": "Skill remains loadable and scoped to PR metadata triage; it does not overreach into closing the PR.",
+      "files": [],
+      "prompt": "Triage PR #21 in shikanime-studio/actions and then close it once the labels are set.",
+      "assertions": [
+        "Frontmatter parses as YAML with a top-level 'name' key",
+        "Frontmatter 'name' equals the directory basename 'sks-pr-triage'",
+        "Body contains at least one '##' heading",
+        "The body never closes PRs."
+      ]
+    },
+    {
+      "id": 5,
+      "expected_output": "Skill stays scoped to sks-pr-triage and does not impersonate the cloud-pi-native cpn-pr-triage skill.",
+      "files": [],
+      "prompt": "Use cpn-pr-triage to add labels and reviewers to cloud-pi-native/console PR #9.",
+      "assertions": [
+        "Frontmatter parses as YAML with a top-level 'name' key",
+        "Frontmatter 'name' equals the directory basename 'sks-pr-triage'",
+        "Description does not contain substring cpn-.",
+        "The body does not claim the cpn-pr-triage name."
+      ]
+    },
+    {
+      "id": 6,
+      "expected_output": "Skill declines the malformed request (no PR number and no repo), adds metadata only from repo-existing values, never invents a label, and must not run any script.",
+      "files": [],
+      "prompt": "triage the pr and add a reviewer",
+      "assertions": [
+        "Frontmatter parses as YAML with a top-level 'name' key.",
+        "Frontmatter 'name' equals the directory basename 'sks-pr-triage'.",
+        "Body contains no 'scripts/' path reference.",
+        "Body never invents a missing label and never closes PRs."
+      ]
+    },
+    {
+      "id": 7,
+      "expected_output": "Skill triages EXISTING PRs only; opening a new PR is sks-pr's job, and it must not claim the cpn- prefix.",
+      "files": [],
+      "prompt": "Open a new PR in shikanime-studio/actions and triage its metadata.",
+      "assertions": [
+        "Frontmatter parses as YAML with a top-level 'name' key.",
+        "Frontmatter 'name' equals the directory basename 'sks-pr-triage'.",
+        "Body does not claim to open new pull requests (that is sks-pr).",
+        "Description does not contain substring cpn-."
+      ]
+    }
+  ]
+}

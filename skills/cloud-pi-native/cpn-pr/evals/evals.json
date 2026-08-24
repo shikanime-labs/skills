@@ -1,0 +1,85 @@
+{
+  "skill_name": "cpn-pr",
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "PR ouverte avec titre conventionnel et corps de PR en français lié à l'issue.",
+      "files": [],
+      "prompt": "Ouvre une PR sur cloud-pi-native/console pour corriger le crash du formulaire, liée à l'issue #142.",
+      "assertions": [
+        "Frontmatter parses as valid YAML.",
+        "Frontmatter 'name' field equals 'cpn-pr'.",
+        "Frontmatter 'license' field equals 'Apache-2.0'.",
+        "SKILL.md body contains at least one Markdown '##' heading.",
+        "Le corps ouvre une PR avec un titre conventionnel (feat:/fix:/docs:/chore:/refactor:/revert:/build:).",
+        "Le corps utilise un corps de PR en français et lie l'issue via `Issues liées: #XXXX`."
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "PR draft ouverte depuis origin sans auto-close de l'issue.",
+      "files": [],
+      "prompt": "Crée une PR draft sur cloud-pi-native/console depuis la branche fix/telemetry, sans auto-fermer l'issue.",
+      "assertions": [
+        "Frontmatter 'description' starts with 'À utiliser quand' or 'Use when' and is <= 200 characters.",
+        "Le corps ouvre la PR avec `--head cloud-pi-native:<branch>` (origin-only policy).",
+        "Le corps déconseille les mots-clés d'auto-close sauf cas un-à-un explicite."
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "Conventions adaptées à la classe du dépôt détectée.",
+      "files": [],
+      "prompt": "Quelles conventions PR appliquer pour cloud-pi-native/documentation ?",
+      "assertions": [
+        "Le corps détecte la classe du dépôt (Repo-Class Detection) plutôt que d'assumer les règles.",
+        "Le corps impose un préfixe `doc:` pour les commits du dépôt documentation."
+      ]
+    },
+    {
+      "id": 4,
+      "expected_output": "Compétence reste chargeable ; l'invite malformée ne fait pas inventer une capacité, et le nom reste cpn-pr.",
+      "files": [],
+      "prompt": "ouvre la pr ??? euhh zkfjds",
+      "assertions": [
+        "Frontmatter parses as valid YAML.",
+        "Frontmatter 'name' field equals 'cpn-pr'.",
+        "Frontmatter 'license' field equals 'Apache-2.0'."
+      ]
+    },
+    {
+      "id": 5,
+      "expected_output": "Route la demande shikanime-studio vers la compétence sks-* ; ne revendique pas le périmètre shikanime-studio.",
+      "files": [],
+      "prompt": "Ouvre une PR sur shikanime-studio/devlib avec un titre en anglais et lien vers l'issue.",
+      "assertions": [
+        "Frontmatter 'name' field equals 'cpn-pr' (not an sks- name).",
+        "The description starts with 'À utiliser quand'.",
+        "Body opens PRs against cloud-pi-native/* repos, not shikanime-studio."
+      ]
+    },
+    {
+      "id": 6,
+      "expected_output": "Compétence reste chargeable et valide sur une invite illisible ; le nom reste cpn-pr, la description garde son 'À utiliser quand', la licence reste Apache-2.0.",
+      "files": [],
+      "prompt": "ouvre pr ??? zefk euhh mkj",
+      "assertions": [
+        "Frontmatter parses successfully.",
+        "The 'name' field equals 'cpn-pr'.",
+        "The description starts with 'À utiliser quand'.",
+        "The license field is 'Apache-2.0'."
+      ]
+    },
+    {
+      "id": 7,
+      "expected_output": "Route la demande shikanime-studio vers la compétence sks-* ; ne revendique pas le périmètre shikanime-studio.",
+      "files": [],
+      "prompt": "Crée une PR draft sur shikanime-studio/devlib depuis la branche fix/telemetry, sans auto-fermer l'issue.",
+      "assertions": [
+        "The 'name' field equals 'cpn-pr' (not an sks- name).",
+        "The description starts with 'À utiliser quand'.",
+        "The body opens PRs against cloud-pi-native/* repos, not shikanime-studio."
+      ]
+    }
+  ]
+}

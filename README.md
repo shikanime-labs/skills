@@ -149,6 +149,17 @@ Format Nix files before committing:
 nix fmt
 ```
 
+### Evals
+
+Every skill carries `evals/evals.json` — realistic prompts plus assertions, in the
+agentskills.io test-case format. Each entry has a positive case (the skill should
+fire) and a negative case (a near-miss that should not). Assertions check:
+frontmatter parses, `name` matches the directory, the description is an imperative
+`Use when …` / `À utiliser quand …` under 200 characters, no cross-family prefix
+leak, body depth, and — against a baseline — description token recall and
+body-size ratio. Commit `evals/evals.json` alongside any skill change; a failing
+assertion blocks the merge.
+
 ## License
 
 Apache 2.0 — See [LICENSE](./LICENSE) for details.

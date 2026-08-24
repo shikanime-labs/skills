@@ -1,0 +1,93 @@
+{
+  "skill_name": "cpn-issue",
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "Une issue bug ouverte sur cloud-pi-native/console avec gabarit français.",
+      "files": [],
+      "prompt": "Ouvre une issue bug sur cloud-pi-native/console : le cache se vide au redémarrage du pod.",
+      "assertions": [
+        "The frontmatter block parses as valid YAML.",
+        "The 'name' field equals the directory basename 'cpn-issue'.",
+        "The 'license' field is 'Apache-2.0'.",
+        "The body contains at least one '##' heading.",
+        "The 'description' field starts with 'À utiliser quand' and is at most 200 characters.",
+        "Le corps ouvre une issue du dépôt cloud-pi-native/console avec les gabarits français.",
+        "Le corps utilise 'gh issue create' avec le label bug ou enhancement."
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "Une issue de demande (feature) ouverte avec le label enhancement.",
+      "files": [],
+      "prompt": "Crée une issue de demande sur console pour ajouter le mode sombre à l'interface.",
+      "assertions": [
+        "The frontmatter block parses as valid YAML.",
+        "The 'name' field equals the directory basename 'cpn-issue'.",
+        "The 'license' field is 'Apache-2.0'.",
+        "The body contains at least one '##' heading.",
+        "Le corps structure le titre avec '🐛 [BUG]' ou '💡 [REQUEST]'.",
+        "Le corps délègue ensuite le triage à cpn-issue-triage."
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "Une issue de régression ouverte avec énoncé et Définition du fini.",
+      "files": [],
+      "prompt": "Ouvre une issue sur console décrivant la régression du routage TLS entre les services.",
+      "assertions": [
+        "The frontmatter block parses as valid YAML.",
+        "The 'name' field equals the directory basename 'cpn-issue'.",
+        "The 'license' field is 'Apache-2.0'.",
+        "The body contains at least one '##' heading.",
+        "Le corps sépare l'énoncé du problème (corps) des trouvailles (commentaires).",
+        "Le corps cite la section 'Définition du fini' et 'Références' du gabarit."
+      ]
+    },
+    {
+      "id": 4,
+      "expected_output": "Compétence reste chargeable ; l'invite malformée ne fait pas inventer une capacité, et le nom reste cpn-issue.",
+      "files": [],
+      "prompt": "ouvre une issue ??? euhh mkjds",
+      "assertions": [
+        "The frontmatter block parses as valid YAML.",
+        "The 'name' field equals the directory basename 'cpn-issue'.",
+        "The 'license' field is 'Apache-2.0'."
+      ]
+    },
+    {
+      "id": 5,
+      "expected_output": "Route la demande shikanime-studio vers la compétence sks-* ; ne revendique pas le périmètre shikanime-studio.",
+      "files": [],
+      "prompt": "Ouvre une issue sur shikanime-studio/skills avec un gabarit en anglais.",
+      "assertions": [
+        "The 'name' field equals the directory basename 'cpn-issue' (not an sks- name).",
+        "The description starts with 'À utiliser quand'.",
+        "The body opens issues against cloud-pi-native/console, not shikanime-studio."
+      ]
+    },
+    {
+      "id": 6,
+      "expected_output": "Compétence reste chargeable et valide sur une invite illisible ; le nom reste cpn-issue, la description garde son 'À utiliser quand', la licence reste Apache-2.0.",
+      "files": [],
+      "prompt": "ouvre issue ??? zefk euhh mkj",
+      "assertions": [
+        "Frontmatter parses successfully.",
+        "The 'name' field equals 'cpn-issue'.",
+        "The description starts with 'À utiliser quand'.",
+        "The license field is 'Apache-2.0'."
+      ]
+    },
+    {
+      "id": 7,
+      "expected_output": "Route la demande shikanime-studio vers la compétence sks-* ; ne revendique pas le périmètre shikanime-studio.",
+      "files": [],
+      "prompt": "Ouvre une issue sur shikanime-studio/skills avec un gabarit en anglais.",
+      "assertions": [
+        "The 'name' field equals the directory basename 'cpn-issue' (not an sks- name).",
+        "The description starts with 'À utiliser quand'.",
+        "The body opens issues against cloud-pi-native/console, not shikanime-studio."
+      ]
+    }
+  ]
+}
