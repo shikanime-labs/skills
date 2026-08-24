@@ -1,6 +1,6 @@
 # Discussion fetch query
 
-Run from `sk-discussion-triage`. The discussion node `id` is required for every
+Run from `sks-discussion-triage`. The discussion node `id` is required for every
 mutation; `discussionCategories` supplies the `categoryId` targets.
 
 ```bash

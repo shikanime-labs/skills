@@ -1,5 +1,5 @@
 ---
-name: sk-discussion
+name: sks-discussion
 description:
   "Use when opening an RFC Discussion in a shikanime org as the pre-issue stage:
   converge on the problem, then derive the issue."
@@ -26,9 +26,9 @@ platforms:
 # Shikanime Org Discussion
 
 Pre-issue RFC (lifecycle **discussion → issue → issue comments → PR**, see
-`sk-dev-workflow`): converge on the problem, then derive the issue (`sk-issue`)
-and link back — do NOT keep solving here. English bodies only (no French).
-Parity with `cpn-discussion`.
+`sks-dev-workflow`): converge on the problem, then derive the issue
+(`sks-issue`) and link back — do NOT keep solving here. English bodies only (no
+French). Parity with `cpn-discussion`.
 
 ## When to Use
 
@@ -84,6 +84,6 @@ Confirm title/body/category + body stays context + open questions.
 
 ## See also
 
-- `sk-issue` — derive the issue once converged.
-- `sk-discussion-triage` — triage, lifecycle routing, closure.
+- `sks-issue` — derive the issue once converged.
+- `sks-discussion-triage` — triage, lifecycle routing, closure.
 - `cpn-discussion` — French twin for cloud-pi-native console.

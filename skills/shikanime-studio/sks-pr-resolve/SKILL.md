@@ -1,5 +1,5 @@
 ---
-name: sk-pr-resolve
+name: sks-pr-resolve
 description:
   Use when resolving a shikanime PR's review conversations, checking the DoD
   ledger, and reconciling before merge (no merge itself).
@@ -30,21 +30,21 @@ platforms:
 
 Reconcile a PR in `shikanime-labs/*`/`shikanime-studio/*`: enumerate review
 conversations, check the linked issue DoD ledger, report approval/CI. **Never
-lands the PR** — that is `sk-land`.
+lands the PR** — that is `sks-land`.
 
 ## When to Use
 
 - "Resolve the suggestions on PR #M", "clear the review threads on #M".
 - "Is PR #M ready to land?" — reconcile and report, no merge.
-- Pre-landing cleanup before handing off to `sk-land`.
+- Pre-landing cleanup before handing off to `sks-land`.
 
-Not for opening (`sk-pr`), reviewing (`sk-code-review`), merging (`sk-land`).
+Not for opening (`sks-pr`), reviewing (`sks-code-review`), merging (`sks-land`).
 
 ## Gates
 
 ### Gate 1 — DoD ledger
 
-Criteria = the `- [ ]` tasklist in the linked issue body (see `sk-issue`);
+Criteria = the `- [ ]` tasklist in the linked issue body (see `sks-issue`);
 verify each against diff/CI.
 
 ```bash
@@ -55,19 +55,19 @@ gh pr view <M> --repo <org>/<repo> --json body,state --jq .body
 - Unchecked box ≠ done — report it, never silently mark done.
 - If met, check the box (`gh issue edit` or API) with evidence in a comment
   first.
-- No linked issue → stop: link one (`sk-issue`) or get explicit ledger-free
+- No linked issue → stop: link one (`sks-issue`) or get explicit ledger-free
   confirmation.
-- **No merge here** — this gate only reports; `sk-land` acts.
+- **No merge here** — this gate only reports; `sks-land` acts.
 
 ### Gate 2 — Approval + CI (report only)
 
-`sk-code-review` must have run on the final head commit and approved. Re-review
+`sks-code-review` must have run on the final head commit and approved. Re-review
 if new commits landed after the last review. Check approval via the query in
 `references/resolve.md`.
 
 - Where branch protection blocks self-approval (e.g. `shikanime-labs/skills`,
   `nix-containers`), a verbal `lgtm` from the user satisfies this gate — merge
-  stays in `sk-land` (`gh pr merge --squash --admin`).
+  stays in `sks-land` (`gh pr merge --squash --admin`).
 - CI: `gh pr checks <M> --repo <org>/<repo>`.
 
 ### Gate 3 — Conversations reconciled (core)
@@ -78,7 +78,7 @@ them with the GraphQL in `references/resolve.md`.
 For each **unresolved** thread:
 
 - **Pertinent + in ledger** — verify diff/CI addresses it; resolve, else flag
-  (blocks `sk-land`).
+  (blocks `sks-land`).
 - **Pertinent + not in ledger** — add to issue tasklist (Gate 1), resolve if
   diff already covers it.
 - **Not pertinent** — post one comment with the rationale, then resolve. Never
@@ -95,14 +95,14 @@ threads gate via `isResolved`.
 Readiness verdict:
 
 - Ledger: N of N satisfied, listing open items.
-- Approval: `sk-code-review` approval on current head (or verbal `lgtm` for
-  `sk-land`).
+- Approval: `sks-code-review` approval on current head (or verbal `lgtm` for
+  `sks-land`).
 - Conversations: every thread resolved with one-line rationale, or list needing
   author decision.
 - CI: green / pending / failing.
 - Docs: flag ops/architecture changes for post-land `sks-doc` update.
 
-Then stop — merging is `sk-land`'s job.
+Then stop — merging is `sks-land`'s job.
 
 ## Pitfalls
 

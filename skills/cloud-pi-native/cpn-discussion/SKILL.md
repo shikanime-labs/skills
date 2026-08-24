@@ -101,4 +101,4 @@ structure.
 - `cpn-issue` — derive the issue once the discussion converges.
 - `cpn-discussion-triage` — discussion triage (category, lifecycle routing,
   closure).
-- `sk-discussion` — shikanime twin (English, pre-issue RFC stage).
+- `sks-discussion` — shikanime twin (English, pre-issue RFC stage).

@@ -46,7 +46,7 @@ never commit or merge.
 `terminal` for `jj`/`gh`/`pnpm`; `read_file`/`search_files` for context. PRs:
 `gh pr checkout <N>`. Load `references/console-architecture.md` (arch),
 `references/review-output.md` (FR), `references/review-doctrine.md` (std,
-`sk-code-review`), `references/review-procedure.md` (phases),
+`sks-code-review`), `references/review-procedure.md` (phases),
 `references/pitfalls.md` (gotchas).
 
 ## Quick Reference
@@ -113,4 +113,4 @@ via one review; body carries 2-3 sentence verdict + praise; corrected
 conventional commit message suggested when commitlint would reject. Local-only
 review: present structured summary to the user.
 
-Related: `sk-code-review`, `github-code-review`.
+Related: `sks-code-review`, `github-code-review`.

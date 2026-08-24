@@ -1,5 +1,5 @@
 ---
-name: sk-pr-triage
+name: sks-pr-triage
 description:
   "Use when triaging an existing shikanime org PR: labels, assignee, milestone,
   and reviewers."
@@ -73,7 +73,7 @@ gh pr edit "$N" --repo "$R" --add-reviewer <login>
 ### 5. Link issue ↔ PR
 
 If title/body cites `#M` (open, unlinked issue), ensure body has `Related: #M`
-(prepend if absent). Avoid auto-close unless one-to-one (see `sk-pr`).
+(prepend if absent). Avoid auto-close unless one-to-one (see `sks-pr`).
 
 ### 6. Verify
 
@@ -83,5 +83,5 @@ gh pr view "$N" --repo "$R" --json number,title,labels,assignees,milestone,revie
 
 Constraints: never invent labels (filter `gh label list`); never overwrite
 (`--add-label`/`--add-assignee` only); milestone — bugs→current patch,
-features→next release; never close PRs (strays→`sk-pr` or author); avoid
+features→next release; never close PRs (strays→`sks-pr` or author); avoid
 PR↔issue auto-close unless one-to-one; always the org repo.

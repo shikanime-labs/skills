@@ -1,5 +1,5 @@
 ---
-name: sk-issue-refine
+name: sks-issue-refine
 description:
   Use when iterating a problem to convergence inside its GitHub issue via
   research and comments before deriving the PR.
@@ -27,7 +27,7 @@ platforms:
 
 # Shikanime Issue Refinement
 
-The issue IS the problem statement. `sk-issue` opens it (body = problem
+The issue IS the problem statement. `sks-issue` opens it (body = problem
 statement + `- [ ]` gate ledger + References); findings belong in comments. This
 skill is the **iteration loop**: resolve an existing issue's open questions via
 research + candidate solutions until the problem statement and acceptance
@@ -35,10 +35,10 @@ criteria converge (wayfinder's fog cycle on the thread).
 
 ## When to Use
 
-- Issue exists (`sk-issue`) but the problem is still foggy.
-- NOT for opening/RFC/edge — `sk-issue`/`sk-discussion`; open once it converges
-  into a statable problem.
-- NOT for implementation (`sk-pr`/branch phase). Refine writes comments, never
+- Issue exists (`sks-issue`) but the problem is still foggy.
+- NOT for opening/RFC/edge — `sks-issue`/`sks-discussion`; open once it
+  converges into a statable problem.
+- NOT for implementation (`sks-pr`/branch phase). Refine writes comments, never
   product code.
 
 ## Model: the issue comment thread is the iteration space
@@ -60,13 +60,13 @@ criteria converge (wayfinder's fog cycle on the thread).
 ## Procedure
 
 1. **Load** — `gh issue view <N>`; read body + comments. If the problem can't
-   yet be stated, route to `sk-discussion`.
+   yet be stated, route to `sks-discussion`.
 2. **Enumerate the fog** — one line per open question in your in-agent
    scratchpad (never post raw).
 3. **Classify** each question into one of the four kinds.
 4. **Resolve AFK in parallel** — `research` fans out via `delegate_task` (one
-   child per independent fact; isolate on `research/<name>` per `sk-async` if it
-   touches the repo; read-only, never edits product code — see
+   child per independent fact; isolate on `research/<name>` per `sks-async` if
+   it touches the repo; read-only, never edits product code — see
    `references/delegate-research.md`). `grilling`/`prototype` engage the human
    serially — one question, wait, next.
 5. **Post findings as comments** — each resolution is a `gh issue comment`:
@@ -75,7 +75,7 @@ criteria converge (wayfinder's fog cycle on the thread).
    the body via `gh issue edit`.
 6. **Convergence test** — stop when: no item reads "build the X"; fog clears;
    body is a clean problem statement + decidable `- [ ]` ledger.
-7. **Hand off** — route to `sk-pr`/branch phase (`sk-dev-workflow` phase 3+).
+7. **Hand off** — route to `sks-pr`/branch phase (`sks-dev-workflow` phase 3+).
    Never carry implementation into this loop.
 
 ## Pitfalls
@@ -89,7 +89,7 @@ gh issue view <N> --repo <org>/<repo> --json number,title,comments
 ```
 
 Every open question has a resolution comment; body holds a problem statement +
-References only; convergence passes before `sk-pr` handoff.
+References only; convergence passes before `sks-pr` handoff.
 
 ## References
 
@@ -100,8 +100,8 @@ References only; convergence passes before `sk-pr` handoff.
 
 ## See also
 
-- `sk-issue` — opens the iterated issue.
-- `sk-discussion` — RFC/edge; use before problem is statable.
-- `sk-pr` — solver; links back via `Related:` without auto-close.
-- `sk-async` — isolation for parallel `research` fan-out.
-- `sk-issue-triage` — assign metadata once converged.
+- `sks-issue` — opens the iterated issue.
+- `sks-discussion` — RFC/edge; use before problem is statable.
+- `sks-pr` — solver; links back via `Related:` without auto-close.
+- `sks-async` — isolation for parallel `research` fan-out.
+- `sks-issue-triage` — assign metadata once converged.

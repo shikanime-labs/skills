@@ -181,5 +181,5 @@ the canonical French sections still apply.
 
 - `cpn-commit` — the commit this PR must restate (parity rule).
 - `cpn-dev-workflow` — branch discipline and pre-push checks for this PR.
-- `sk-pr` — shikanime twin (plain-English titles).
+- `sks-pr` — shikanime twin (plain-English titles).
 - `cpn-pr-triage` — assigns PR metadata; run it after creation.

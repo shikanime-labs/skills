@@ -7,7 +7,7 @@ agents. Each skill lives in its own directory with a `SKILL.md`.
 
 ## Structure
 
-- `skills/shikanime-studio/` — the shikanime `sk-*` workflow family
+- `skills/shikanime-studio/` — the shikanime `sks-*` workflow family
 - `skills/cloud-pi-native/` — the cloud-pi-native `cpn-*` workflow family
 - `README.md` — Installation and usage documentation
 
@@ -71,7 +71,7 @@ Signed-off-by: Shikanime Deva <william.phetsinorath@shikanime.studio>
 
 ## Skill Categories
 
-- `shikanime` — the shikanime org workflow family (`sk-*`)
+- `shikanime` — the shikanime org workflow family (`sks-*`)
 - `cloud-pi-native` — the cloud-pi-native org workflow family (`cpn-*`): console
   dev loop, GitHub lifecycle, and commit conventions
 

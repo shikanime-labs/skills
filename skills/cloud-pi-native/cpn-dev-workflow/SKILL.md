@@ -133,8 +133,9 @@ delegate_task(tasks=[
    its parent. Multiple children of one parent → jj **diamond** (natively
    tracked, parallelizes landing). Fully independent streams → own
    `jj workspace add ../<name> --name <name>` at `@` and own **standalone** PR
-   (`sk-async`: fan-out, join `jj new <a> <b>`, land via `gh stack`/standalone).
-   Don't stack unless a later module imports an earlier one's new code.
+   (`sks-async`: fan-out, join `jj new <a> <b>`, land via
+   `gh stack`/standalone). Don't stack unless a later module imports an earlier
+   one's new code.
 9. Conventional English commits, one per unit. **jj-backed — never
    `git commit`**; use `jj describe -m "msg"` / `jj new -m "msg"`. Fold into
    existing: `jj log -r '::@'`; if covered,
@@ -173,7 +174,7 @@ blocker, never a silent scope change:
 - The issue exists (issue-first; create via `cpn-issue` if not).
 
 Report shape: `BLOCKED: <requirement> — <evidence> — <recovery path>`. Unblocked
-streams may fan out (`sk-async`); the blocked stream is surfaced.
+streams may fan out (`sks-async`); the blocked stream is surfaced.
 
 ## Landing and PR↔commit parity
 
@@ -251,4 +252,4 @@ and `pnpm playwright:test` as pre-submission checks.
 - `cpn-commit` — the commit shape (conventional subject, author identity, SSH
   signing) this workflow lands.
 - `cpn-pr` — origin-only PR opening from these commits.
-- `sk-dev-workflow` — shikanime twin (branch-based landing).
+- `sks-dev-workflow` — shikanime twin (branch-based landing).

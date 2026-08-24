@@ -4,7 +4,7 @@ A curated catalog of self-improved agent skills for
 [Hermes](https://hermes-agent.nousresearch.com/docs) and compatible agents.
 
 This catalog encodes **two parallel org workflows** distilled from practice —
-the shikanime `sk-*` family and the cloud-pi-native `cpn-*` family — covering
+the shikanime `sks-*` family and the cloud-pi-native `cpn-*` family — covering
 the full lifecycle: **discussion → issue → issue comments → PR**, with
 proven-done gates, assumption validation, jj-workspace parallel fan-out, and
 stacked PR landing.
@@ -70,7 +70,7 @@ root enable discovery by npm-based skill managers. Both list the skills below.
 Two orgs, one doctrine. The lifecycle is identical — **discussion → issue →
 issue comments → PR** — with org-specific conventions:
 
-- **shikanime (`sk-*`)**: plain English commits with the Automata co-author
+- **shikanime (`sks-*`)**: plain English commits with the Automata co-author
   trailer, `gh stack` landing, direct push on explicit instruction.
 - **cloud-pi-native (`cpn-*`)**: French artifacts, conventional commits, PRs
   pushed to origin from `cloud-pi-native/*`, Release Please versioning.
@@ -99,24 +99,24 @@ specification, compatible with the
 
 ### shikanime family
 
-| Skill                  | Description                                                               |
-| ---------------------- | ------------------------------------------------------------------------- |
-| `sks-dev-workflow`      | Branch/push discipline, gates, landing                                    |
-| `sks-async`             | jj workspace fan-out + stacked PRs for parallel work                      |
-| `sks-commit`            | shikanime commit style + Automata co-author trailer                       |
-| `sks-discussion`        | RFC Discussions (pre-issue stage)                                         |
-| `sks-issue`             | Issues with the gate-ledger tasklist                                      |
-| `sks-issue-refine`      | Iterate a problem to convergence within its issue via research + comments |
-| `sks-issue-triage`      | Issue triage: metadata + rationale closes                                 |
-| `sks-pr-triage`         | PR triage: metadata, reviewers, issue linkage                             |
-| `sks-issue-workflow`    | Issue side end-to-end: create → refine → triage                           |
-| `sks-pr-workflow`       | PR side end-to-end: issue-exists → open → triage                          |
-| `sks-discussion-triage` | Discussion triage: category + lifecycle (GraphQL)                         |
-| `sks-pr`                | PRs derived from the commit, pushed to origin                             |
-| `sks-land`              | Merge PRs after DoD + review gates pass                                   |
-| `sks-pr-resolve`        | Reconcile PR review threads + ledger, report readiness without merging    |
-| `sks-code-review`       | Code review: YAGNI, root-cause, conventions                               |
-| `sks-doc`              | Repo `docs/` knowledge base (internal ops + optional user docs) as reviewable in-repo Markdown |
+| Skill                   | Description                                                                                    |
+| ----------------------- | ---------------------------------------------------------------------------------------------- |
+| `sks-dev-workflow`      | Branch/push discipline, gates, landing                                                         |
+| `sks-async`             | jj workspace fan-out + stacked PRs for parallel work                                           |
+| `sks-commit`            | shikanime commit style + Automata co-author trailer                                            |
+| `sks-discussion`        | RFC Discussions (pre-issue stage)                                                              |
+| `sks-issue`             | Issues with the gate-ledger tasklist                                                           |
+| `sks-issue-refine`      | Iterate a problem to convergence within its issue via research + comments                      |
+| `sks-issue-triage`      | Issue triage: metadata + rationale closes                                                      |
+| `sks-pr-triage`         | PR triage: metadata, reviewers, issue linkage                                                  |
+| `sks-issue-workflow`    | Issue side end-to-end: create → refine → triage                                                |
+| `sks-pr-workflow`       | PR side end-to-end: issue-exists → open → triage                                               |
+| `sks-discussion-triage` | Discussion triage: category + lifecycle (GraphQL)                                              |
+| `sks-pr`                | PRs derived from the commit, pushed to origin                                                  |
+| `sks-land`              | Merge PRs after DoD + review gates pass                                                        |
+| `sks-pr-resolve`        | Reconcile PR review threads + ledger, report readiness without merging                         |
+| `sks-code-review`       | Code review: YAGNI, root-cause, conventions                                                    |
+| `sks-doc`               | Repo `docs/` knowledge base (internal ops + optional user docs) as reviewable in-repo Markdown |
 
 ### cloud-pi-native family
 

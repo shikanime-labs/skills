@@ -5,4 +5,4 @@
 - Reconciling after new commits without re-review — approval is bound to a head
   commit.
 - Treating issue/PR comments as gate threads — only inline review threads gate.
-- Merging from this skill — it only reconciles; defer to `sk-land`.
+- Merging from this skill — it only reconciles; defer to `sks-land`.
