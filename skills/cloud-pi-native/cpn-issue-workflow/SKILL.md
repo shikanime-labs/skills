@@ -29,6 +29,12 @@ Orchestrateur fin sur `cpn-issue`, `cpn-issue-refine`, `cpn-issue-triage` ; sans
 logique de création propre. Déclencheur : « prépare une issue sur <repo> » ou «
 mène ce problème jusqu'à une issue triée ».
 
+## When to Use
+
+- "Create and triage an issue in cloud-pi-native/console from scratch".
+- "Iterate on an existing issue to reach convergence, then apply triage metadata".
+- Entry point for any issue-related workflow: create, refine (comment-iteration), then triage.
+
 ## Procédure
 
 ### 1. `cpn-issue` — Crée

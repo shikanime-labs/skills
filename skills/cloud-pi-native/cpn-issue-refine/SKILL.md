@@ -33,7 +33,7 @@ L'issue EST l'énoncé du problème. `cpn-issue` l'ouvre (corps = énoncé + led
 `- [ ]` « Définition du fini » + Références) ; les trouvailles vont dans les
 commentaires. Cette skill itère dans l'issue jusqu'à convergence.
 
-## Quand utiliser
+## When to Use
 
 - Issue existante mais floue : questions ouvertes, preuves manquantes, approches
   non testées.

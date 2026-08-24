@@ -28,6 +28,12 @@ for body edits). A "discussion issue" request = a _discussion_, not a GitHub
 Issue — route here, not cpn-issue. Use the discussion as the **iteration
 space**; do not open an issue prematurely.
 
+## When to Use
+
+- "Open or update a Discussion on cloud-pi-native/console" / "Create a GraphQL-based discussion in the console repo".
+- Before opening an issue — use discussions for RFC/open questions/iteration.
+- The GitHub Discussions feature is active (Issues disabled) for `cloud-pi-native/console`.
+
 ## Prerequisites
 
 - `gh` authenticated with repo write; target `cloud-pi-native/console` (Issues

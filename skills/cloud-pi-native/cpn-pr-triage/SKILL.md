@@ -26,6 +26,12 @@ platforms:
 Renseigner les champs **vides** et **déterminables du contenu** (FR). Ne jamais
 inventer ; ne jamais fermer de PR.
 
+## When to Use
+
+- "Triage an existing PR in cloud-pi-native/console" / "Set labels, assignee, milestone, reviewers on a PR".
+- After a PR is opened (`cpn-pr`) — apply metadata before review/merge.
+- Never invent values; only fill fields that are empty and determinable from content.
+
 ## Prérequis
 
 - `gh` collaborateur du dépôt, ne PAS `gh auth switch`.

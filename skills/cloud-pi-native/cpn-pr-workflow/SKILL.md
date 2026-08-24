@@ -29,6 +29,12 @@ metadata:
 Fin-orchestrateur sur `cpn-issue`, `cpn-pr`, `cpn-pr-triage` (issue liée → PR
 draft → triage). Logique PR déléguée.
 
+## When to Use
+
+- "Open a PR draft for a cloud-pi-native issue from an existing commit".
+- "Complete the issue→PR→triage workflow: link issue, open draft, apply metadata".
+- Entry point for any PR creation: must have a linked issue, push to `origin`, draft PR.
+
 ## Étapes
 
 1. **Issue liée.** Sans `#N` fournie et convergée, charge `cpn-issue` (ou

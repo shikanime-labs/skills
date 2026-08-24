@@ -30,7 +30,7 @@ metadata:
 Fan-out parallèle sur workspaces jj isolés + PR stackées (`gh stack`). Base
 `cpn-dev-workflow`.
 
-## Quand utiliser
+## When to Use
 
 - Modif décomposable en units indépendants.
 - Agents parallèles (`delegate_task`) sans copie partagée.

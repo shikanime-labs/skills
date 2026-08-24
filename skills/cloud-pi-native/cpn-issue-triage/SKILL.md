@@ -27,6 +27,13 @@ Renseigner chaque champ **vide** et **déterminable depuis le contenu**
 (conventions : `cpn-issue`). Ne jamais inventer de valeur absente du dépôt.
 Commandes détaillées : `references/cpn-issue-triage.md`.
 
+## When to Use
+
+- "Triage an existing issue in cloud-pi-native/console" / "Set labels, assignee, milestone on an issue".
+- After an issue is created (`cpn-issue`) — before work begins, or when a stale
+  issue needs triage metadata applied.
+- Never invent values; only fill fields that are empty and determinable from content.
+
 ## Prérequis
 
 - `gh` authentifié comme collaborateur. Ne PAS `gh auth switch`.

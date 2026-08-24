@@ -29,6 +29,11 @@ commitlint config that drives release-please and the PR-title rule (`cpn-pr`).
 Does NOT push, open PRs, or run CI — those live in `cpn-pr` /
 `cpn-dev-workflow`.
 
+## When to Use
+
+- "Commit a change in cloud-pi-native/console" / "Write a conventional commit message for a jj change".
+- Any commit in `cloud-pi-native/console` that must comply with the enforced commitlint rules.
+
 ## Prerequisites
 
 - Working tree in `cloud-pi-native/console`.
