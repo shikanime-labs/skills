@@ -95,6 +95,10 @@ gh stack view && gh pr list --state open             # chains + PRs exist
 DAG matches planned tree; every leaf has a PR linked to its issue without
 auto-close; every gate has in-workspace evidence.
 
+## Pitfalls
+
+Optional edge cases and gotchas — load `references/pitfalls.md` on demand.
+
 ## See also
 
 - `sks-dev-workflow` — parent; run its assumption-validation gate BEFORE
