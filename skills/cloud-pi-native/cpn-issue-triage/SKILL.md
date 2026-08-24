@@ -8,7 +8,17 @@ author: Hermes Agent
 license: Apache-2.0
 metadata:
   hermes:
-    tags: [github, triage, issues, cloud-pi-native, french]
+    tags:
+      - github
+      - triage
+      - issues
+      - cloud-pi-native
+      - french
+    related_skills:
+      - cpn-issue
+platforms:
+  - linux
+  - macos
 ---
 
 # CPN Issue Triage
@@ -39,16 +49,16 @@ Commandes détaillées : `references/cpn-issue-triage.md`.
      de projet unique évident).
    - **transfert** — si l'issue appartient manifestement à un autre dépôt
      `cloud-pi-native/*` ou `shikanime-labs/*` (mauvais dépôt, pas seulement
-     mauvais label), la déplacer plutôt que trier sur place. Le transfert conserve
-     commentaires, labels et le lien croisé :
+     mauvais label), la déplacer plutôt que trier sur place. Le transfert
+     conserve commentaires, labels et le lien croisé :
 
      ```bash
      gh issue transfer "$N" "$DEST_REPO"        # DEST_REPO = OWNER/REPO
      ```
 
-     Confirmer que la destination existe et que le transfert est accepté avant de
-     continuer. Ne **pas** non plus éditer ou fermer l'issue source — le transfert
-     la vide.
+     Confirmer que la destination existe et que le transfert est accepté avant
+     de continuer. Ne **pas** non plus éditer ou fermer l'issue source — le
+     transfert la vide.
 4. **Appliquer** via `gh issue edit` (additif : `--add-label`/`--add-assignee`,
    **jamais `--label`**).
 5. **Vérifier** (`gh issue view`).

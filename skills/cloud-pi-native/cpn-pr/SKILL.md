@@ -1,13 +1,25 @@
 ---
 name: cpn-pr
 description:
-  "Open cloud-pi-native org PRs with French body and conventional title."
+  Open cloud-pi-native org PRs with French body and conventional title.
 version: 0.2.4
 author: Hermes Agent
 license: Apache-2.0
 metadata:
   hermes:
-    tags: [github, pull-requests, cloud-pi-native, conventional-commits]
+    tags:
+      - github
+      - pull-requests
+      - cloud-pi-native
+      - conventional-commits
+    related_skills:
+      - cpn-commit
+      - cpn-dev-workflow
+      - cpn-issue
+      - cpn-pr-triage
+platforms:
+  - linux
+  - macos
 ---
 
 # CPN Org PR Creation

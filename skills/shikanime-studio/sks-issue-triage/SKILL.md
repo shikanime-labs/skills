@@ -1,14 +1,25 @@
 ---
 name: sk-issue-triage
 description:
-  "Triage an existing shikanime org issue: assign labels, assignee, milestone,
-  project; close with rationale if not workable."
+  "Use when triaging an existing shikanime org issue: assign labels, assignee,
+  milestone, and project; close with rationale if not workable."
 version: 0.1.1
 author: Hermes Agent
 license: Apache-2.0
 metadata:
   hermes:
-    tags: [github, triage, issues, shikanime-labs, shikanime-studio]
+    tags:
+      - github
+      - triage
+      - issues
+      - shikanime-labs
+      - shikanime-studio
+    related_skills:
+      - sks-issue
+      - sks-issue-workflow
+platforms:
+  - linux
+  - macos
 ---
 
 # Shikanime Issue Triage

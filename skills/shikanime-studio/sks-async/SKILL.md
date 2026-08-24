@@ -1,23 +1,30 @@
 ---
 name: sk-async
-description: "jj workspace fan-out + stacked PRs for parallel work."
+description:
+  Use when splitting multi-unit work into parallel, isolated jj workspaces
+  (depth-tree fan-out) and landing as independent PRs or gh stack chains.
 version: 0.1.1
 author: Hermes Agent
 license: Apache-2.0
 metadata:
   hermes:
     tags:
-      [
-        jj,
-        workspaces,
-        parallel,
-        stacked-prs,
-        gh-stack,
-        delegation,
-        github,
-        shikanime-labs,
-        shikanime-studio,
-      ]
+      - jj
+      - workspaces
+      - parallel
+      - stacked-prs
+      - gh-stack
+      - delegation
+      - github
+      - shikanime-labs
+      - shikanime-studio
+    related_skills:
+      - cpn-async
+      - sks-dev-workflow
+      - sks-pr
+platforms:
+  - linux
+  - macos
 ---
 
 # Shikanime Org Parallel Streams

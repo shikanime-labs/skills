@@ -1,12 +1,26 @@
 ---
 name: sk-issue
-description: "Open issues in shikanime-labs and shikanime-studio."
+description:
+  "Use when opening an issue in shikanime-labs or shikanime-studio: body is the
+  problem statement, acceptance criteria as a command-decidable tasklist."
 version: 0.1.1
 author: Hermes Agent
 license: Apache-2.0
 metadata:
   hermes:
-    tags: [github, issues, shikanime-labs, shikanime-studio]
+    tags:
+      - github
+      - issues
+      - shikanime-labs
+      - shikanime-studio
+    related_skills:
+      - cpn-issue
+      - sks-doc
+      - sks-issue-refine
+      - sks-pr
+platforms:
+  - linux
+  - macos
 ---
 
 # Shikanime Org Issue Creation

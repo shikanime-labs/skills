@@ -6,12 +6,22 @@ description:
 version: 0.1.1
 author: Hermes Agent
 license: Apache-2.0
-platforms: [macos, linux]
+platforms:
+  - macos
+  - linux
 metadata:
   hermes:
-    tags: [github, pull-requests, review-threads, reconcile, cloud-pi-native]
+    tags:
+      - github
+      - pull-requests
+      - review-threads
+      - reconcile
+      - cloud-pi-native
     related_skills:
-      [cpn-dev-workflow, cpn-pr, cpn-issue, cpn-code-review, cpn-async]
+      - cpn-code-review
+      - cpn-dev-workflow
+      - cpn-issue
+      - cpn-pr
 ---
 
 # CPN Org — Résolution de PR (sans merge)

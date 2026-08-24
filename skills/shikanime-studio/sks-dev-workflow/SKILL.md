@@ -1,12 +1,27 @@
 ---
 name: sk-dev-workflow
-description: "Branch and push discipline for shikanime repos."
+description:
+  "Use when running the shikanime local dev loop: branching, push-to-origin, jj
+  bookmark tracking, and landing via gh stack or direct push."
 version: 0.4.0
 author: Hermes Agent
 license: Apache-2.0
 metadata:
   hermes:
-    tags: [jj, workflow, shikanime-labs, shikanime-studio]
+    tags:
+      - jj
+      - workflow
+      - shikanime-labs
+      - shikanime-studio
+    related_skills:
+      - cpn-dev-workflow
+      - sks-async
+      - sks-commit
+      - sks-pr
+      - sks-land
+platforms:
+  - linux
+  - macos
 ---
 
 # Shikanime Org Dev Workflow
@@ -144,13 +159,7 @@ use full URL). Skip per-task detail.
 
 ## Pitfalls
 
-- Not recording steering discoveries in AGENTS.md — next agent repeats them.
-- `jj` push without `jj bookmark track <branch> --remote=origin` — rejected.
-- Direct-pushing `main` on protected repos — rejected; use PR.
-- Assuming conventional commits — shikanime code repos use plain English.
-- Skipping build-verify on NixOS repos — invalid config ships.
-- `jj describe`/`commit` snapshots every dirty WC file, not just `jj add` —
-  isolate via `jj workspace add ../<repo>-fix -r main` (see above).
+Optional edge cases and gotchas — load `references/pitfalls.md` on demand.
 
 ## Verification
 
