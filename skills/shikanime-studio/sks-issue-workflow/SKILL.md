@@ -31,9 +31,6 @@ Thin orchestrator over `sks-issue` → `sks-issue-refine` → `sks-issue-triage`
 
 - "Open and set up an issue on <repo>".
 - "Take this problem through to a triaged issue".
-
-## When to Use
-
 - "Run the issue side: create an issue and triage it."
 - "Derive the PR" — after refinement converges on a statable problem.
 - "Set up the full issue workflow before implementation."
