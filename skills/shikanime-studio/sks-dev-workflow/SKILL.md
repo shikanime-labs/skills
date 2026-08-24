@@ -15,6 +15,8 @@ metadata:
       - shikanime-studio
     related_skills:
       - cpn-dev-workflow
+      - cpn-async
+      - sks-pr-review
       - sks-async
       - sks-commit
       - sks-pr
@@ -30,6 +32,13 @@ End-to-end local dev loop for shikanime repos: branching, pushing to `origin`,
 jj bookmark tracking, landing (PR vs direct push). Issue/PR policy lives in
 `sks-issue-workflow` / `sks-pr-workflow`; code review in `sks-pr-review`;
 parallel split in `sks-async` (multi-parent joins via `jj new <a> <b>`).
+
+## When to Use
+
+- "Start working on a shikanime repo" — end-to-end dev loop from discussion to landing.
+- "Push to origin and land this PR" — landing path (branch protection, stack).
+- "Fan out this work into parallel streams" — `sks-async` parallel split.
+- Assumption validation gate fails — probe and report blockers before work.
 
 ## Lifecycle (ordered phases; gates in **bold**)
 

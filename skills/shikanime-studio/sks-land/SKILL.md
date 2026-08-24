@@ -32,6 +32,12 @@ Land a `shikanime-labs/*` / `shikanime-studio/*` PR only after `sks-pr-resolve`
 for opening (`sks-pr`), review (`sks-pr-review`), reconciling
 (`sks-pr-resolve`), or direct "push to main". This skill only lands.
 
+## When to Use
+
+- "Land a shikanime PR after DoD gates pass."
+- "Close an issue deliberately after merge (verify N-of-N)."
+- "Run post-merge sync (docs, downstream rebases)."
+
 ## Pre-landing gates (must already hold)
 
 **Gate 1 — DoD discharged.** Issue criteria (`- [ ]`, `sks-issue`) all checked;

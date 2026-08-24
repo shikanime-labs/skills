@@ -22,6 +22,7 @@ metadata:
       - sks-land
       - sks-pr
       - requesting-code-review
+      - cpn-pr-review
 platforms:
   - linux
   - macos

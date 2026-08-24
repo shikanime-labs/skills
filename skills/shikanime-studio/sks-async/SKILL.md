@@ -20,6 +20,8 @@ metadata:
       - shikanime-studio
     related_skills:
       - cpn-async
+      - cpn-commit
+      - cpn-dev-workflow
       - sks-dev-workflow
       - sks-pr
 platforms:
