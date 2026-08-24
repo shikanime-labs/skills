@@ -18,7 +18,7 @@ metadata:
       - reconcile
       - cloud-pi-native
     related_skills:
-      - cpn-code-review
+      - cpn-pr-review
       - cpn-dev-workflow
       - cpn-issue
       - cpn-pr
@@ -36,7 +36,7 @@ approbation/CI. **Ne land JAMAIS** (merge = `cpn-dev-workflow`).
 - Pré-landing : chaque thread résolu + ledger N/N avant `cpn-dev-workflow`.
 
 Hors scope : ouvrir/reviewer/merger →
-`cpn-pr`/`cpn-code-review`/`cpn-dev-workflow`.
+`cpn-pr`/`cpn-pr-review`/`cpn-dev-workflow`.
 
 ## Gate 1 — Ledger DoD
 
@@ -55,7 +55,7 @@ gh pr view <M> --repo cloud-pi-native/<repo> --json body,state --jq .body
 
 ## Gate 2 — Approbation + CI (rapport seul)
 
-`cpn-code-review` sur le head (re-review si nouveaux commits).
+`cpn-pr-review` sur le head (re-review si nouveaux commits).
 
 ```bash
 gh pr view <M> --repo cloud-pi-native/<repo> --json reviews,headRefOid \
@@ -86,7 +86,7 @@ scope** — seuls les threads inline gatent via `isResolved`.
 
 ## Output
 
-Verdict : Ledger N/N (items ouverts) · Approbation `cpn-code-review` sur head
+Verdict : Ledger N/N (items ouverts) · Approbation `cpn-pr-review` sur head
 (ou `lgtm` verbal) · Conversations résolues/rationale ou threads en attente · CI
 green/pending/failing. Merge = `cpn-dev-workflow`.
 
@@ -115,7 +115,7 @@ green/pending/failing. Merge = `cpn-dev-workflow`.
 ## Checklist
 
 - [ ] Tasklist issue liée coché : chaque critère vérifié contre diff/CI.
-- [ ] Approbation `cpn-code-review` sur le head ; review humaine si protection
+- [ ] Approbation `cpn-pr-review` sur le head ; review humaine si protection
       (ou `lgtm` verbal pour `cpn-dev-workflow`).
 - [ ] Chaque thread réconcilié : pertinent adressé/ajouté, non pertinent rejeté
       avec rationale.

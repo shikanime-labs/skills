@@ -1,4 +1,4 @@
-# cpn-code-review — Procedure detail (Phases 2 & 3)
+# cpn-pr-review — Procedure detail (Phases 2 & 3)
 
 Loaded lazily from `SKILL.md` (Phase 2 High-level / Phase 3 Line-by-line).
 

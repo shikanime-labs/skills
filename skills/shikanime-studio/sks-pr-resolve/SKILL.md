@@ -16,7 +16,7 @@ metadata:
       - shikanime-labs
       - shikanime-studio
     related_skills:
-      - sks-code-review
+      - sks-pr-review
       - sks-pr
       - sks-land
       - sks-doc
@@ -38,7 +38,7 @@ lands the PR** — that is `sks-land`.
 - "Is PR #M ready to land?" — reconcile and report, no merge.
 - Pre-landing cleanup before handing off to `sks-land`.
 
-Not for opening (`sks-pr`), reviewing (`sks-code-review`), merging (`sks-land`).
+Not for opening (`sks-pr`), reviewing (`sks-pr-review`), merging (`sks-land`).
 
 ## Gates
 
@@ -61,7 +61,7 @@ gh pr view <M> --repo <org>/<repo> --json body,state --jq .body
 
 ### Gate 2 — Approval + CI (report only)
 
-`sks-code-review` must have run on the final head commit and approved. Re-review
+`sks-pr-review` must have run on the final head commit and approved. Re-review
 if new commits landed after the last review. Check approval via the query in
 `references/resolve.md`.
 
@@ -95,7 +95,7 @@ threads gate via `isResolved`.
 Readiness verdict:
 
 - Ledger: N of N satisfied, listing open items.
-- Approval: `sks-code-review` approval on current head (or verbal `lgtm` for
+- Approval: `sks-pr-review` approval on current head (or verbal `lgtm` for
   `sks-land`).
 - Conversations: every thread resolved with one-line rationale, or list needing
   author decision.

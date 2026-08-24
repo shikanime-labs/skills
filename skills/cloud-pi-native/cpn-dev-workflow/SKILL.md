@@ -21,7 +21,7 @@ metadata:
       - cloud-pi-native
     related_skills:
       - cpn-async
-      - cpn-code-review
+      - cpn-pr-review
       - cpn-commit
       - cpn-discussion
       - cpn-issue
@@ -55,7 +55,7 @@ Work-item lifecycle; gate phases are the mechanical walls a change must clear.
 | 2   | Triage — labels/assignee/milestone/project/reviewers           | `cpn-issue-triage` / `cpn-pr-triage` | ledger settled    |
 | 3   | Branch + implement (jj workspace, conventional commits)        | this skill                           | —                 |
 | 4   | Commit (conventional, SSH-signed)                              | `cpn-commit`                         | commit shape      |
-| 5   | Code review (adversarial pre-merge)                            | `cpn-code-review`                    | review gate       |
+| 5   | Code review (adversarial pre-merge)                            | `cpn-pr-review`                    | review gate       |
 | 6   | PR (origin-only draft, link `Issues liées`)                    | `cpn-pr`                             | —                 |
 | 7   | Land (merge / `gh stack` + merge queue)                        | this skill                           | branch protection |
 | 8   | Close deliberately (verify N of N)                             | `cpn-issue`                          | ledger discharged |
@@ -156,7 +156,7 @@ gh pr create --draft --fill --body "Refs #N"
 
 Don't mark ready until review passes; WIP at handoff → leave draft + say so
 (migration PRs draft unless told). 12. **Code review before merge**
-(`cpn-code-review`): adversarial over diff — architecture, conventional-commit +
+(`cpn-pr-review`): adversarial over diff — architecture, conventional-commit +
 French rules, trust-boundary security, root-cause vs symptom. The review is the
 gate; don't mark ready until findings resolved or explicitly waived.
 

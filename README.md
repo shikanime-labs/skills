@@ -115,7 +115,7 @@ specification, compatible with the
 | `sks-pr`                | PRs derived from the commit, pushed to origin                                                  |
 | `sks-land`              | Merge PRs after DoD + review gates pass                                                        |
 | `sks-pr-resolve`        | Reconcile PR review threads + ledger, report readiness without merging                         |
-| `sks-code-review`       | Code review: YAGNI, root-cause, conventions                                                    |
+| `sks-pr-review`         | Code review: YAGNI, root-cause, conventions                                                    |
 | `sks-doc`               | Repo `docs/` knowledge base (internal ops + optional user docs) as reviewable in-repo Markdown |
 
 ### cloud-pi-native family
@@ -127,7 +127,7 @@ specification, compatible with the
 | `cpn-discussion`        | French Discussions via GraphQL                         |
 | `cpn-issue`             | French issue templates + gate ledger                   |
 | `cpn-pr`                | French PRs, pushed to origin, conventional             |
-| `cpn-code-review`       | Review console PRs: arch, French artifacts             |
+| `cpn-pr-review`         | Review console PRs: arch, French artifacts             |
 | `cpn-issue-triage`      | Triage d'issue : métadonnées + fermetures motivées     |
 | `cpn-pr-triage`         | Triage de PR : métadonnées, reviewers, lien issue      |
 | `cpn-discussion-triage` | Triage de discussion : catégorie + cycle (GraphQL)     |

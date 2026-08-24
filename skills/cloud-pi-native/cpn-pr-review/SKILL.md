@@ -1,5 +1,5 @@
 ---
-name: cpn-code-review
+name: cpn-pr-review
 description:
   "À utiliser quand vous relisez une PR de cloud-pi-native/console :
   architecture, conventions NestJS et rendu de revue en français."
@@ -23,7 +23,7 @@ platforms:
   - macos
 ---
 
-# cloud-pi-native Code Review (cpn-code-review)
+# cloud-pi-native PR Review (cpn-pr-review)
 
 Review `cloud-pi-native/*` changes and GitHub PRs via the four-phase process
 with console architecture checkpoints and French artifacts. `jj`+`gh` only —
@@ -47,8 +47,8 @@ never commit or merge.
 
 `terminal` for `jj`/`gh`/`pnpm`; `read_file`/`search_files` for context. PRs:
 `gh pr checkout <N>`. Load `references/console-architecture.md` (arch),
-`references/review-output.md` (FR), `references/review-doctrine.md` (std,
-`sks-code-review`), `references/review-procedure.md` (phases),
+`references/review-output.md` (FR), `sks-pr-review/references/review-doctrine.md`
+(std), `references/review-procedure.md` (phases),
 `references/pitfalls.md` (gotchas).
 
 ## Quick Reference
@@ -112,7 +112,9 @@ Husky, stale bots, token-hash CodeQL, migration sync).
 
 Done when: every finding posted inline at its line (severity-prefixed, French)
 via one review; body carries 2-3 sentence verdict + praise; corrected
-conventional commit message suggested when commitlint would reject. Local-only
-review: present structured summary to the user.
+conventional commit message suggested when commitlint would reject. All findings
+are posted on the PR — inline at each line (`references/review-output.md`); use a
+top-level review comment (`gh pr review <N> --comment`) only when a point has no
+line anchor. No local-only summary.
 
-Related: `sks-code-review`, `github-code-review`.
+Related: `sks-pr-review`, `github-code-review`.

@@ -1,4 +1,4 @@
-# cpn-code-review — Pitfalls
+# cpn-pr-review — Pitfalls
 
 - **Playwright** E2E needs Docker infra (`pnpm docker:dev`/`integ`); don't block
   review on local E2E failure.

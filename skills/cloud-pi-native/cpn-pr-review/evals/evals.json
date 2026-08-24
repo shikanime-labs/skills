@@ -1,5 +1,5 @@
 {
-  "skill_name": "cpn-code-review",
+  "skill_name": "cpn-pr-review",
   "evals": [
     {
       "id": 1,
@@ -8,7 +8,7 @@
       "prompt": "Relis la PR #456 de cloud-pi-native/console et rends la revue en français.",
       "assertions": [
         "Frontmatter parses successfully.",
-        "The 'name' field equals 'cpn-code-review'.",
+        "The 'name' field equals 'cpn-pr-review'.",
         "The description starts with 'À utiliser quand'.",
         "The description is at most 200 characters.",
         "The license field is 'Apache-2.0'.",
@@ -23,7 +23,7 @@
       "prompt": "Fais une code review adversarial de ma PR console avant que je la merge, en vérifiant l'archi NestJS et les règles de commit.",
       "assertions": [
         "Frontmatter parses successfully.",
-        "The 'name' field equals 'cpn-code-review'.",
+        "The 'name' field equals 'cpn-pr-review'.",
         "The description starts with 'À utiliser quand'.",
         "The description is at most 200 characters.",
         "The license field is 'Apache-2.0'.",
@@ -38,7 +38,7 @@
       "prompt": "Check la PR #12 de console : conventions, sécurité aux frontières de confiance, et poste les findings en français.",
       "assertions": [
         "Frontmatter parses successfully.",
-        "The 'name' field equals 'cpn-code-review'.",
+        "The 'name' field equals 'cpn-pr-review'.",
         "The description starts with 'À utiliser quand'.",
         "The description is at most 200 characters.",
         "The license field is 'Apache-2.0'.",
@@ -48,12 +48,12 @@
     },
     {
       "id": 4,
-      "expected_output": "Même face à un prompt malformé, le skill reste chargeable sous son propre nom 'cpn-code-review' et ne se renomme pas.",
+      "expected_output": "Même face à un prompt malformé, le skill reste chargeable sous son propre nom 'cpn-pr-review' et ne se renomme pas.",
       "files": [],
       "prompt": "relis la pr de console (prompt corrompu: øøø non-reconnu) et dis-moi qui tu es.",
       "assertions": [
         "The frontmatter block parses as valid YAML.",
-        "The 'name' field equals the directory basename 'cpn-code-review'.",
+        "The 'name' field equals the directory basename 'cpn-pr-review'.",
         "The 'license' field is 'Apache-2.0'."
       ]
     },
@@ -61,9 +61,9 @@
       "id": 5,
       "expected_output": "Le skill refuse de relire une PR d'un autre org (shikanime-labs) et ne revendique pas le préfixe sks- ni l'identité d'un autre dépôt.",
       "files": [],
-      "prompt": "Relis la PR #42 de shikanime-labs/sk-web en tant que skill sks-code-review et rends la revue en français.",
+      "prompt": "Relis la PR #42 de shikanime-labs/sk-web en tant que skill sks-pr-review et rends la revue en français.",
       "assertions": [
-        "The 'name' field equals the directory basename 'cpn-code-review'.",
+        "The 'name' field equals the directory basename 'cpn-pr-review'.",
         "The 'description' field references 'cloud-pi-native' and not 'shikanime-labs'.",
         "The body scopes review to 'cloud-pi-native/*' changes, not another org."
       ]
@@ -75,7 +75,7 @@
       "prompt": "Trie et priorise tout le backlog d'issues de cloud-pi-native/console et assigne les jalons.",
       "assertions": [
         "The body scopes work to reviewing PRs and 'cloud-pi-native/*' changes, not issue triage.",
-        "The 'name' field equals the directory basename 'cpn-code-review'.",
+        "The 'name' field equals the directory basename 'cpn-pr-review'.",
         "The body says 'never commit or merge'."
       ]
     },
@@ -83,7 +83,7 @@
       "id": 7,
       "expected_output": "Le skill garde sa portée relecture et ne revendique pas le préfixe sks- d'un autre org.",
       "files": [],
-      "prompt": "Relis la PR #88 de shikanime-labs/sk-web en tant que skill sks-code-review.",
+      "prompt": "Relis la PR #88 de shikanime-labs/sk-web en tant que skill sks-pr-review.",
       "assertions": [
         "The 'description' field references 'cloud-pi-native' and not 'shikanime-labs'.",
         "The body does not claim the 'sks-' prefix as its own name.",
