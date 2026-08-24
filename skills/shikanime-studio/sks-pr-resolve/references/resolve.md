@@ -1,6 +1,6 @@
 # PR resolution commands (deep detail, lazy-loaded)
 
-Reference commands for sk-pr-resolve. Not needed at default skill load; read
+Reference commands for sks-pr-resolve. Not needed at default skill load; read
 when actually reconciling review threads.
 
 ## Check approval on current head

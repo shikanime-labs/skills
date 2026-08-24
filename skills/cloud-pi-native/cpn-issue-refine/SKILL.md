@@ -1,8 +1,8 @@
 ---
 name: cpn-issue-refine
 description:
-  Itérer un problème vers la convergence dans son issue GitHub via recherche +
-  commentaires (console cloud-pi-native).
+  "À utiliser quand vous itérez un problème vers la convergence dans son issue
+  GitHub console via recherche et commentaires."
 version: 0.1.1
 author: Hermes Agent
 license: Apache-2.0

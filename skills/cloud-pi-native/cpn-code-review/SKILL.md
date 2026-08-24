@@ -1,6 +1,8 @@
 ---
 name: cpn-code-review
-description: "Review cloud-pi-native console PRs: arch, French."
+description:
+  "À utiliser quand vous relisez une PR de cloud-pi-native/console :
+  architecture, conventions NestJS et rendu de revue en français."
 version: 0.1.1
 author: Hermes Agent
 license: Apache-2.0
@@ -46,7 +48,7 @@ never commit or merge.
 `terminal` for `jj`/`gh`/`pnpm`; `read_file`/`search_files` for context. PRs:
 `gh pr checkout <N>`. Load `references/console-architecture.md` (arch),
 `references/review-output.md` (FR), `references/review-doctrine.md` (std,
-`sk-code-review`), `references/review-procedure.md` (phases),
+`sks-code-review`), `references/review-procedure.md` (phases),
 `references/pitfalls.md` (gotchas).
 
 ## Quick Reference
@@ -113,4 +115,4 @@ via one review; body carries 2-3 sentence verdict + praise; corrected
 conventional commit message suggested when commitlint would reject. Local-only
 review: present structured summary to the user.
 
-Related: `sk-code-review`, `github-code-review`.
+Related: `sks-code-review`, `github-code-review`.

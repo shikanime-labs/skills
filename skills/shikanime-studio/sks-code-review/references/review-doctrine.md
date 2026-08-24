@@ -1,6 +1,6 @@
 # Review Doctrine
 
-Shared review doctrine for `sk-code-review` and `cpn-code-review`.
+Shared review doctrine for `sks-code-review` and `cpn-code-review`.
 
 ## The standard
 

@@ -1,5 +1,5 @@
 ---
-name: sk-code-review
+name: sks-code-review
 description:
   "Use when reviewing shikanime code: enforce YAGNI, root-cause fixes, and
   project conventions before approval."
@@ -26,7 +26,7 @@ platforms:
   - macos
 ---
 
-# Code Review (sk-code-review)
+# Code Review (sks-code-review)
 
 Review local diffs and GitHub PRs through the Ponytail/YAGNI lens, enforcing
 shikanime review practice and repo conventions. Reports only — never

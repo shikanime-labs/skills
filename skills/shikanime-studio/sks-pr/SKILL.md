@@ -1,5 +1,5 @@
 ---
-name: sk-pr
+name: sks-pr
 description:
   "Use when opening a PR in shikanime-labs or shikanime-studio: push to origin,
   --head org:branch, plain-English title, issue linkage, parity with commit."
@@ -43,7 +43,7 @@ remote as canonical.
 
 - `gh` authenticated; active identity is a collaborator with push right. Do NOT
   `gh auth switch`; push to `origin` directly.
-- Linked issue exists (see `sk-issue`); verify it matches the change
+- Linked issue exists (see `sks-issue`); verify it matches the change
   (`jj file annotate` / `jj show <commit>` if unsure).
 - Branch pushed to `origin` before opening.
 
@@ -69,16 +69,16 @@ remote as canonical.
      `Closes <full URL>` ONLY when explicitly one-to-one. Otherwise close
      deliberately after final merge (verify N-of-N, then `gh issue close`).
      Direct pushes never auto-close (no commit body) — same deliberate close
-     (see `sk-dev-workflow`).
+     (see `sks-dev-workflow`).
 4. **Head** — `--head <org>:<branch>`; push to `origin` only.
 5. **Parity** — PR title MUST equal commit subject; PR body MUST restate the
-   commit message; no added rationale (see `sk-commit`).
+   commit message; no added rationale (see `sks-commit`).
 
 ## Landing via `gh stack` (preferred)
 
 `gh stack` (first-party GitHub CLI extension,
 `gh extension install github/gh-stack`) is the landing path (see
-`sk-dev-workflow`); it seeds each PR's title/body from the branch's commit,
+`sks-dev-workflow`); it seeds each PR's title/body from the branch's commit,
 enforcing PR↔commit parity. Stacked PRs are a **GitHub public-preview** feature;
 the extension is released but subject to change — fine for internal use.
 
@@ -107,7 +107,7 @@ gh stack sync                          # later: rebase+pull+sync stack state
 - Feature branch off `main` (e.g. `fix/rwx-nfs-v4.0`). `main` is protected on
   some repos (e.g. `shikanime-studio/actions`) — never commit directly to
   `main`.
-- Commits per `sk-commit` (plain English / `doc:`; repo hook policy wins).
+- Commits per `sks-commit` (plain English / `doc:`; repo hook policy wins).
 
 ### 2. Rebase onto `main` + resolve conflicts (MANDATORY before any push)
 
@@ -119,7 +119,7 @@ jj rebase -d main
   fix), then `jj squash` / `jj resolve`. Never push conflict markers.
 - `jj rebase` rewrites commits and drops signatures (jj auto-sign does not fire)
   — re-sign with `jj sign -r @` and re-point the bookmark
-  (`jj bookmark set <branch> -r @`) before pushing (see `sk-dev-workflow`).
+  (`jj bookmark set <branch> -r @`) before pushing (see `sks-dev-workflow`).
 
 ### 2b. Push to origin + open PR
 
@@ -154,15 +154,15 @@ forces recompute. Don't declare done on stale `CONFLICTING`.
 
 ### 2d. On revision (PR already open): reconcile review threads
 
-New commits void prior review. Before done: (1) load `sk-pr-resolve`, drive
+New commits void prior review. Before done: (1) load `sks-pr-resolve`, drive
 every thread to resolved — address pertinent in diff, discard non-pertinent with
-a one-line comment, never silently; (2) re-run `sk-code-review` if logic
+a one-line comment, never silently; (2) re-run `sks-code-review` if logic
 changed; (3) verify the issue's DoD ledger is still N-of-N against the new head.
 
 ### 3. Apply triage metadata
 
-Delegate to `sk-pr-triage` (#N): sets empty determinable fields (labels,
-assignee, milestone, project, reviewers). Rules live in `sk-pr-triage`; don't
+Delegate to `sks-pr-triage` (#N): sets empty determinable fields (labels,
+assignee, milestone, project, reviewers). Rules live in `sks-pr-triage`; don't
 re-derive here.
 
 ## Post-steps
@@ -171,7 +171,7 @@ re-derive here.
   review may be mandatory; don't self-merge if blocked.
 - **Merging**: on `nix-containers` "merge the PRs", use
   `gh pr merge --squash --admin -b "<clean body>"` (admin required; no `-m` on
-  current `gh` — pass body via `-b`, see `sk-land`). Other repos: merge per
+  current `gh` — pass body via `-b`, see `sks-land`). Other repos: merge per
   allowed strategy once green + reviewed.
 - **Direct landing**: user authorizing "push to main" / "land it" overrides the
   PR path — push directly, don't open a PR.
@@ -189,5 +189,6 @@ links the correct issue, and `mergeable="MERGEABLE"` (step 2c).
 
 ## See also
 
-- `sk-commit` (parity rule) · `sk-issue-refine` (converged issue) · `sk-async`
-  (stacked PRs) · `cpn-pr` (French twin) · `sk-pr-triage` (metadata).
+- `sks-commit` (parity rule) · `sks-issue-refine` (converged issue) ·
+  `sks-async` (stacked PRs) · `cpn-pr` (French twin) · `sks-pr-triage`
+  (metadata).

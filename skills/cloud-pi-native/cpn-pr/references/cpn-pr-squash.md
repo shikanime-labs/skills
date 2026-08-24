@@ -67,7 +67,7 @@ file-content assertion that looks truncated.
 ### C2. Squash-message hygiene (avoid jj-artifact leakage)
 
 Squashing can auto-concatenate commit descriptions, leaking jj internals and
-duplicate/self trailers into the merged commit (same risk as `sk-commit`):
+duplicate/self trailers into the merged commit (same risk as `sks-commit`):
 
 - Strip jj internals before finalizing: no `*` bullet lines (jj's per-commit
   description separator), no `---------` separators (jj description-join

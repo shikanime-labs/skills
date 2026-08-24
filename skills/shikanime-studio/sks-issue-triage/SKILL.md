@@ -1,5 +1,5 @@
 ---
-name: sk-issue-triage
+name: sks-issue-triage
 description:
   "Use when triaging an existing shikanime org issue: assign labels, assignee,
   milestone, and project; close with rationale if not workable."
@@ -103,4 +103,4 @@ guess or reuse a generic string. Post a comment first, then close.
 
 ## See also
 
-- `sk-issue` — creation conventions (English).
+- `sks-issue` — creation conventions (English).

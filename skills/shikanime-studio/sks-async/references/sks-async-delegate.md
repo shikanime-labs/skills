@@ -1,4 +1,4 @@
-# sk-async companion reference
+# sks-async companion reference
 
 Lazy-loaded detail for `SKILL.md` (not loaded at default skill load). Documents
 the DAG model, pitfalls, and the exact `delegate_task` payload shape for
@@ -34,7 +34,7 @@ delegate_task(tasks=[
              "../<repo>.<unit>. Gates: <N>. Commit plain-English + "
              "'Co-authored-by: Automata <automata@shikanime.studio>' trailer.",
      "context": "shikanime repo <org>/<repo>; rooted at trunk; one workspace "
-                "per unit per sk-async.",
+                "per unit per sks-async.",
      "toolsets": ["terminal", "file"]},
 ])
 ```
@@ -48,6 +48,6 @@ delegate_task(tasks=[
 - **Fan-out before contracts** — spawning children without fixed gates
   reproduces the prose-enforcement failure the gates exist to prevent.
 - `gh stack` = GitHub public-preview; fine for internal shikanime use (see
-  `sk-dev-workflow`).
+  `sks-dev-workflow`).
 - Forgetting `jj workspace update-stale` on a workspace left idle while the
   trunk advanced — it does not auto-advance.

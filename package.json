@@ -1,7 +1,7 @@
 {
   "name": "@shikanime-labs/skills",
   "version": "2.0.0",
-  "description": "A curated catalog of self-improved agent skills for Hermes and compatible agents: two parallel org workflows (shikanime sk-*, cloud-pi-native cpn-*) covering the full discussion, issue, and PR lifecycle.",
+  "description": "A curated catalog of self-improved agent skills for Hermes and compatible agents: two parallel org workflows (shikanime sks-*, cloud-pi-native cpn-*) covering the full discussion, issue, and PR lifecycle.",
   "keywords": [
     "agent-skills",
     "ai-agents",

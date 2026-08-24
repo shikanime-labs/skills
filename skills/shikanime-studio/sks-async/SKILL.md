@@ -1,5 +1,5 @@
 ---
-name: sk-async
+name: sks-async
 description:
   Use when splitting multi-unit work into parallel, isolated jj workspaces
   (depth-tree fan-out) and landing as independent PRs or gh stack chains.
@@ -31,8 +31,8 @@ platforms:
 
 Decompose a multi-unit change into parallel, isolated streams; land each as an
 independent PR or stacked chain. Distills unlazy depth-tree delegation fan-out
-onto jj's commit DAG + `gh stack`. Core splitting component of `sk-dev-workflow`
-(and `cpn-dev-workflow`).
+onto jj's commit DAG + `gh stack`. Core splitting component of
+`sks-dev-workflow` (and `cpn-dev-workflow`).
 
 ## When to Use
 
@@ -54,7 +54,7 @@ onto jj's commit DAG + `gh stack`. Core splitting component of `sk-dev-workflow`
 
    New workspace's working copy is a child of `@`; for depth > 1 root with
    `jj new <parent>`.
-3. **Work each stream** in its dir; commit per `sk-commit` — every commit
+3. **Work each stream** in its dir; commit per `sks-commit` — every commit
    carries the trailer:
 
    ```bash
@@ -63,7 +63,7 @@ onto jj's commit DAG + `gh stack`. Core splitting component of `sk-dev-workflow`
    ```
 
 4. **Land** (push to `origin`, PRs with `--head <org>:<branch>`; see
-   `sk-dev-workflow`):
+   `sks-dev-workflow`):
    - Independent unit → own bookmark + standalone PR (or single-member stack).
    - Dependent chain → one bookmark per link, then:
 
@@ -71,7 +71,7 @@ onto jj's commit DAG + `gh stack`. Core splitting component of `sk-dev-workflow`
      gh stack init <base> && gh stack add <next> && gh stack submit --auto --open
      ```
 
-   - PR↔issue linkage per `sk-pr`: `Related: <issue URL>` by default — no
+   - PR↔issue linkage per `sks-pr`: `Related: <issue URL>` by default — no
      auto-close keywords.
 5. **Verify bottom-up** — each leaf's checks run IN its workspace; dispatcher
    re-runs them (subagent self-reports aren't evidence). Retire with
@@ -83,7 +83,7 @@ Each child: workspace path, unit gates, commit shape (plain English + Automata
 co-author trailer). Parent re-verifies every gate via `terminal` in each
 workspace before reporting done. Dispatch `delegate_task(tasks=[…])`: **one task
 per leaf**, `goal` carries the contract; never bundle two leaves (defeats
-isolation). Skeleton: `references/sk-async-delegate.md`.
+isolation). Skeleton: `references/sks-async-delegate.md`.
 
 ## Verification
 
@@ -97,7 +97,8 @@ auto-close; every gate has in-workspace evidence.
 
 ## See also
 
-- `sk-dev-workflow` — parent; run its assumption-validation gate BEFORE fan-out.
-- `sk-commit` / `sk-pr` — commit shape (co-author trailer) and PR linkage.
+- `sks-dev-workflow` — parent; run its assumption-validation gate BEFORE
+  fan-out.
+- `sks-commit` / `sks-pr` — commit shape (co-author trailer) and PR linkage.
 - `cpn-dev-workflow` — same fan-out for console module migrations.
-- Model, pitfalls, dispatch skeleton: `references/sk-async-delegate.md`.
+- Model, pitfalls, dispatch skeleton: `references/sks-async-delegate.md`.

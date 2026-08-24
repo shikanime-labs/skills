@@ -1,4 +1,4 @@
-# wayfinder → sk-issue-refine distillation
+# wayfinder → sks-issue-refine distillation
 
 Condensed from aihero.dev/skills-wayfinder (Matt Pocock). This skill is the
 problem-iteration half of that flow, re-skinned onto shikanime's issue-first
@@ -42,7 +42,7 @@ HITL types are serial with the human.
 - **Prototype self-selection**: an agent builds three UI variants, picks one,
   closes the ticket. The selection is the human's; the skill must say so loudly.
 - **Editing the body with findings**: the body is a stable problem statement;
-  findings belong in comments. (shikanime enforces this via `sk-issue`.)
+  findings belong in comments. (shikanime enforces this via `sks-issue`.)
 - **Fog disguised as a ticket**: "investigate X" with no precise question is not
   a question — research it first, then phrase the real one.
 

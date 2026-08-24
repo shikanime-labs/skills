@@ -113,4 +113,4 @@ gate a une preuve in-workspace.
 - `cpn-dev-workflow` — parent ; gate de validation d'hypothèses AVANT le
   fan-out.
 - `cpn-commit` / `cpn-pr` — forme du commit (trailer Automata) et liaison PR.
-- `sk-async` — jumeau shikanime (plain-English).
+- `sks-async` — jumeau shikanime (plain-English).

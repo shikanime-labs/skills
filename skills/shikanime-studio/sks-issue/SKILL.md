@@ -1,5 +1,5 @@
 ---
-name: sk-issue
+name: sks-issue
 description:
   "Use when opening an issue in shikanime-labs or shikanime-studio: body is the
   problem statement, acceptance criteria as a command-decidable tasklist."
@@ -26,7 +26,7 @@ platforms:
 # Shikanime Org Issue Creation
 
 Open issues in `shikanime-labs/*` / `shikanime-studio/*`; English (no French).
-Open the issue before the PR, link it via `sk-pr`.
+Open the issue before the PR, link it via `sks-pr`.
 
 Prereqs: `gh` authenticated to the canonical org repo; target it directly.
 `gh auth status` clean.
@@ -69,7 +69,7 @@ unless the PR is one-to-one with the issue.
 
 ### 3. Triage metadata
 
-Delegate to `sk-issue-triage`: sets each empty, determinable field (labels,
+Delegate to `sks-issue-triage`: sets each empty, determinable field (labels,
 assignee, milestone, project); rules live there.
 
 ## Pitfalls
@@ -89,6 +89,6 @@ Confirm title + label set; issue in org repo.
 
 ## See also
 
-`sk-discussion`, `sk-pr` (links back via `Related:` without auto-close),
-`sk-issue-refine`, `cpn-issue`, `sk-issue-triage` (run after creation),
+`sks-discussion`, `sks-pr` (links back via `Related:` without auto-close),
+`sks-issue-refine`, `cpn-issue`, `sks-issue-triage` (run after creation),
 `sks-doc`.
