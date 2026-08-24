@@ -63,6 +63,9 @@ remote as canonical.
    - Temp body files are NOT hard-wrapped: one sentence per line. GitHub joins
      consecutive non-blank lines; a one-line edit churns only that line. Never
      `nix fmt` / `mdformat` a temp body file.
+   - A bare `@name` in prose pings that user/team — wrap any literal `@` (NestJS
+     `@Inject(x)`, decorators, config keys) in a code span or fenced block; only
+     code disables mention parsing.
    - Use full URLs — never bare `#XXXX` / `owner/repo#XXXX` (broken):
      `Related: https://github.com/<org>/<repo>/issues/N` (same repo) or
      `Related: https://github.com/owner/repo/issues/N` (cross-repo). Multiple:
@@ -162,8 +165,8 @@ forces recompute. Don't declare done on stale `CONFLICTING`.
 
 New commits void prior review. Before done: (1) load `sks-pr-resolve`, drive
 every thread to resolved — address pertinent in diff, discard non-pertinent with
-a one-line comment, never silently; (2) re-run `sks-pr-review` if logic
-changed; (3) verify the issue's DoD ledger is still N-of-N against the new head.
+a one-line comment, never silently; (2) re-run `sks-pr-review` if logic changed;
+(3) verify the issue's DoD ledger is still N-of-N against the new head.
 
 ### 3. Apply triage metadata
 

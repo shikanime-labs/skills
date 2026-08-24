@@ -29,7 +29,8 @@ platforms:
 Pre-issue RFC (lifecycle **discussion → issue → issue comments → PR**, see
 `sks-dev-workflow`): converge on the problem, then derive the issue
 (`sks-issue`) and link back — do NOT keep solving here. English bodies only (no
-French). Parity with `cpn-discussion`.
+French). Parity with `cpn-discussion`. A literal `@` (config keys, `@Inject(x)`,
+decorators) must be wrapped in a code span to avoid a stray GitHub mention.
 
 ## When to Use
 

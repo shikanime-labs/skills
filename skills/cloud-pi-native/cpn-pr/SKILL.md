@@ -115,6 +115,11 @@ semantic line breaks (one sentence per line, no 80-col wrap); GitHub joins
 consecutive non-blank lines. Never run `nix fmt`/`mdformat` over a temp body
 file.
 
+- `@nom` en prose déclenche une mention d'utilisateur/équipe — pour écrire un
+  `@` littéral (decorators, clés de config, `@Inject(x)`), l'enfermer dans un
+  bloc de code (inline ou fenced) ; le code est le seul contexte où l'analyse
+  des mentions est désactivée.
+
 PR **title must be conventional**. Use the repo template verbatim if present;
 else the canonical org body:
 
