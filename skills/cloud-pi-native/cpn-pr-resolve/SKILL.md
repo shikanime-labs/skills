@@ -97,6 +97,20 @@ green/pending/failing. Merge = `cpn-dev-workflow`.
 - Réconcilier après nouveaux commits sans re-review (approbation liée au head).
 - Confondre commentaires issue/PR et threads gate (seuls les inline gatent).
 - Merger depuis cette skill — elle réconcilie seulement.
+- **Ne jamais affirmer un fix de code que tu n'as pas commité.** Si tu réponds à
+  un thread en disant « renommage appliqué » / « constante extraite », le diff
+  DOIT le montrer. Deux cas : (a) tu as le workspace et le commit → fais l'édit,
+  pousse, puis résous. (b) tu réalises après coup que le fichier est partagé /
+  en collision avec une autre PR (ex. `crypto.utils.ts`) → **ne pas éditer** ;
+  poste une réponse **corrective** (« Correction : la constante réside dans
+  `<fichier partagé>`, coordonné à la fusion avec #X/#Y »), puis résous. Une
+  réponse qui sur-vend un fix non livré détruit la confiance du reviewer et
+  cache un vrai gap. Pour les threads conversationnels (thought/praise/question
+  non-bloquantes) : reply + resolve sans code est correct.
+- **Resolve = mutation GraphQL, pas un commentaire.** Réponse seule ne ferme pas
+  le thread. Séquence : `addPullRequestReviewThreadReply` (si réponse utile)
+  puis `resolveReviewThread(input:{threadId:$id})`. Un thread `isOutdated` non
+  contesté : résous sans code, note la supersession dans la réponse.
 
 ## Checklist
 
