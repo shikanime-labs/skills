@@ -1,12 +1,16 @@
 ---
 name: sk-discussion
-description: "Open RFC Discussions in shikanime orgs (pre-issue stage)."
+description:
+  "Use when opening RFC Discussions in shikanime orgs as the pre-issue stage:
+  converge on the problem, then derive the issue."
 version: 0.1.1
 author: Hermes Agent
 license: Apache-2.0
+platforms: [linux, macos]
 metadata:
   hermes:
-    tags: [github, discussions, shikanime-labs, shikanime-studio, rfc]
+    tags: ["github", "discussions", "shikanime-labs", "shikanime-studio", "rfc"]
+    related_skills: ["sk-issue", "sk-issue-workflow", "sk-discussion-triage"]
 ---
 
 # Shikanime Org Discussion

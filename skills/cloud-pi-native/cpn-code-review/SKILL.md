@@ -1,12 +1,24 @@
 ---
 name: cpn-code-review
-description: "Review cloud-pi-native console PRs: arch, French."
+description:
+  "Review cloud-pi-native console PRs: four-phase process, architecture
+  checkpoints, French artifacts."
 version: 0.1.1
 author: Hermes Agent
 license: Apache-2.0
+platforms: [linux, macos]
 metadata:
   hermes:
-    tags: [code-review, cloud-pi-native, console, github, french, architecture]
+    tags:
+      [
+        "code-review",
+        "cloud-pi-native",
+        "console",
+        "github",
+        "french",
+        "architecture",
+      ]
+    related_skills: ["cpn-pr", "cpn-pr-resolve", "cpn-dev-workflow"]
 ---
 
 # cloud-pi-native Code Review (cpn-code-review)

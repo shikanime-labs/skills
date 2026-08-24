@@ -1,14 +1,24 @@
 ---
 name: cpn-discussion-triage
 description:
-  "Triage une discussion cloud-pi-native/console : catégorie, corps, Q&A,
-  clôture (GraphQL)."
+  "Triage une discussion existante du dépôt cloud-pi-native/console : catégorie,
+  forme du corps, réponse Q&A, clôture de cycle (GraphQL)."
 version: 0.1.1
 author: Hermes Agent
 license: Apache-2.0
+platforms: [linux, macos]
 metadata:
   hermes:
-    tags: [github, triage, discussions, graphql, cloud-pi-native, french]
+    tags:
+      [
+        "github",
+        "triage",
+        "discussions",
+        "graphql",
+        "cloud-pi-native",
+        "french",
+      ]
+    related_skills: ["cpn-discussion"]
 ---
 
 # CPN Discussion Triage

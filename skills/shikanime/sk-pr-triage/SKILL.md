@@ -1,14 +1,23 @@
 ---
 name: sk-pr-triage
 description:
-  "Triage an existing shikanime org PR: labels, assignee, milestone, reviewers,
-  issue linkage."
+  "Use when triaging an existing shikanime org PR: labels, assignee, milestone,
+  reviewers, issue linkage."
 version: 0.1.1
 author: Hermes Agent
 license: Apache-2.0
+platforms: [linux, macos]
 metadata:
   hermes:
-    tags: [github, triage, pull-requests, shikanime-labs, shikanime-studio]
+    tags:
+      [
+        "github",
+        "triage",
+        "pull-requests",
+        "shikanime-labs",
+        "shikanime-studio",
+      ]
+    related_skills: ["sk-pr", "sk-pr-workflow"]
 ---
 
 # Shikanime PR Triage

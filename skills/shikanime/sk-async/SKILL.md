@@ -1,9 +1,12 @@
 ---
 name: sk-async
-description: "jj workspace fan-out + stacked PRs for parallel work."
-version: 0.1.1
+description:
+  "Use when splitting multi-unit work into parallel, isolated jj workspaces
+  (depth-tree fan-out) and landing as independent PRs or gh stack chains."
+version: 0.1.2
 author: Hermes Agent
 license: Apache-2.0
+platforms: [linux, macos]
 metadata:
   hermes:
     tags:
@@ -18,19 +21,19 @@ metadata:
         shikanime-labs,
         shikanime-studio,
       ]
+    related_skills: [sk-dev-workflow, sk-commit, sk-pr, cpn-dev-workflow]
 ---
 
 # Shikanime Org Parallel Streams
 
 Decompose a multi-unit change into parallel, isolated streams; land each as an
-independent PR or stacked chain. Distills unlazy depth-tree delegation fan-out
-onto jj's commit DAG + `gh stack`. Core splitting component of `sk-dev-workflow`
-(and `cpn-dev-workflow`).
+independent PR or stacked chain. Splits depth-tree delegation fan-out onto jj's
+commit DAG + `gh stack`. Core splitting component of `sk-dev-workflow`.
 
 ## When to Use
 
 - Several units, some independent.
-- Parallel agents (delegate_task fan-out) must not share a working copy.
+- Parallel agents (`delegate_task` fan-out) must not share a working copy.
 - Shape: B needs A → depth (stack); C needs A AND B → join.
 
 ## Procedure
@@ -51,21 +54,12 @@ onto jj's commit DAG + `gh stack`. Core splitting component of `sk-dev-workflow`
    carries the trailer:
 
    ```bash
-   jj describe -m "<subject>" -m "Co-authored-by: Automata
-   <automata@shikanime.studio>"
+   jj describe -m "<subject>" -m "Co-authored-by: Automata <automata@shikanime.studio>"
    ```
 
-4. **Land** (push to `origin`, PRs with `--head <org>:<branch>`; see
-   `sk-dev-workflow`):
-   - Independent unit → own bookmark + standalone PR (or single-member stack).
-   - Dependent chain → one bookmark per link, then:
-
-     ```bash
-     gh stack init <base> && gh stack add <next> && gh stack submit --auto --open
-     ```
-
-   - PR↔issue linkage per `sk-pr`: `Related: <issue URL>` by default — no
-     auto-close keywords.
+4. **Land** per `sk-dev-workflow` (PR vs `gh stack`; one bookmark per
+   unit/link). PR↔issue linkage per `sk-pr`: `Related: <issue URL>` by default —
+   no auto-close keywords.
 5. **Verify bottom-up** — each leaf's checks run IN its workspace; dispatcher
    re-runs them (subagent self-reports aren't evidence). Retire with
    `jj workspace forget <name>`; refresh idle with `jj workspace update-stale`.
@@ -76,7 +70,7 @@ Each child: workspace path, unit gates, commit shape (plain English + Automata
 co-author trailer). Parent re-verifies every gate via `terminal` in each
 workspace before reporting done. Dispatch `delegate_task(tasks=[…])`: **one task
 per leaf**, `goal` carries the contract; never bundle two leaves (defeats
-isolation). Skeleton: `references/sk-async-delegate.md`.
+isolation). Detail: `references/sk-async-delegate.md`.
 
 ## Verification
 

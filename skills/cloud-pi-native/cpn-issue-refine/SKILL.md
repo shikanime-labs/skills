@@ -1,15 +1,24 @@
 ---
 name: cpn-issue-refine
 description:
-  "Itérer un problème vers la convergence dans son issue GitHub via recherche +
-  commentaires (console cloud-pi-native)."
+  "Itère un problème vers la convergence dans son issue via recherche +
+  commentaires (console)."
 version: 0.1.1
 author: Hermes Agent
 license: Apache-2.0
-platforms: [macos, linux]
+platforms: [linux, macos]
 metadata:
   hermes:
-    tags: [github, issues, research, problem-framing, workflow, cloud-pi-native]
+    tags:
+      [
+        "github",
+        "issues",
+        "research",
+        "problem-framing",
+        "workflow",
+        "cloud-pi-native",
+      ]
+    related_skills: ["cpn-issue", "cpn-issue-workflow"]
 ---
 
 # CPN Org — Raffinage d'issue

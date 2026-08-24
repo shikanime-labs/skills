@@ -4,9 +4,11 @@ description: "Create/edit console Discussions (French, GraphQL)."
 version: 0.1.0
 author: Hermes Agent
 license: Apache-2.0
+platforms: [linux, macos]
 metadata:
   hermes:
-    tags: [github, discussions, cloud-pi-native, french]
+    tags: ["github", "discussions", "cloud-pi-native", "french"]
+    related_skills: ["cpn-issue", "cpn-issue-workflow", "cpn-discussion-triage"]
 ---
 
 # CPN Org Discussion
@@ -71,12 +73,7 @@ then the `createDiscussion` mutation (see references).
 
 ## Pitfalls
 
-- **`gh api graphql -F variables=@file.json` FAILS**: `-F` sends the file as a
-  raw string, not a JSON map. Always use `--input file.json` with
-  `{ "query": "...", "variables": {...} }`.
-- **Discussions ≠ Issues.** No `gh discussion edit`; edits go through the
-  `updateDiscussion` GraphQL mutation. Do not use `gh issue edit`.
-- **French + #NNNN links** per house style.
+Optional edge cases and gotchas — load `references/pitfalls.md` on demand.
 
 ## Verification
 

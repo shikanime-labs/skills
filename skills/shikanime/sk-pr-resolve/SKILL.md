@@ -1,25 +1,26 @@
 ---
 name: sk-pr-resolve
 description:
-  "Resolve a shikanime PR's review conversations, check the DoD ledger, and
-  surface approval/CI state WITHOUT merging it — pre-flight reconciliation
+  "Use when reconciling a shikanime org PR's review conversations: check the DoD
+  ledger and report approval/CI state without merging — pre-landing resolution
   extracted from sk-land."
 version: 0.1.1
 author: Hermes Agent
 license: Apache-2.0
+platforms: [linux, macos]
 metadata:
   hermes:
     tags:
       [
-        github,
-        pull-requests,
-        review-threads,
-        reconcile,
-        shikanime-labs,
-        shikanime-studio,
+        "github",
+        "pull-requests",
+        "review-threads",
+        "reconcile",
+        "shikanime-labs",
+        "shikanime-studio",
       ]
     related_skills:
-      [sk-land, sk-pr, sk-issue, sk-code-review, sk-async, sk-doc]
+      ["sk-land", "sk-pr", "sk-issue", "sk-code-review", "sk-async", "sk-doc"]
 ---
 
 # Shikanime Org PR Resolution (no merge)
@@ -102,9 +103,4 @@ Then stop — merging is `sk-land`'s job.
 
 ## Pitfalls
 
-- Resolving silently — discarded suggestions owe a one-line why.
-- Trusting a checkbox without evidence — verify each criterion against the diff.
-- Reconciling after new commits without re-review — approval is bound to a head
-  commit.
-- Treating issue/PR comments as gate threads — only inline review threads gate.
-- Merging from this skill — it only reconciles; defer to `sk-land`.
+Optional edge cases and gotchas — load `references/pitfalls.md` on demand.

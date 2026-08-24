@@ -1,12 +1,17 @@
 ---
 name: sk-commit
-description: "Commit in shikanime-labs and shikanime-studio repos."
+description:
+  "Use when committing in shikanime-labs/shikanime-studio: plain English
+  imperative titles, Automata co-author trailer, repo-enforced hooks (gitlint,
+  DCO) win."
 version: 0.2.0
 author: Hermes Agent
 license: Apache-2.0
+platforms: [linux, macos]
 metadata:
   hermes:
-    tags: [jj, commit, shikanime-labs, shikanime-studio]
+    tags: ["jj", "commit", "shikanime-labs", "shikanime-studio"]
+    related_skills: ["sk-dev-workflow", "sk-async", "sk-pr"]
 ---
 
 # Shikanime Org Commit
@@ -98,13 +103,7 @@ jj describe -m "<subject>" -m "Co-authored-by: Automata <automata@shikanime.stud
 
 ## Pitfalls
 
-- Assuming cpn conventional style — shikanime code repos use plain English.
-- Ignoring a repo hook → local commit rejected; detect first.
-- Pushing a branch to the wrong remote — `origin` is the single push target.
-- Forgetting `jj bookmark track <branch> --remote=origin` → push fails.
-- Trailing period / lowercase start in subject — imperative, capitalized.
-- Leaving jj `*` / `---------` artifacts or a self `Co-authored-by:` in a
-  squashed message.
+Optional edge cases and gotchas — load `references/pitfalls.md` on demand.
 
 ## Verification
 

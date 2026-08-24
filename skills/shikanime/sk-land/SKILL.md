@@ -1,16 +1,26 @@
 ---
 name: sk-land
 description:
-  "Merge a shikanime org PR after reconciliation (sk-pr-resolve) and review
-  approval gates pass; close the linked issue deliberately."
+  "Use when merging a shikanime org PR: only after the linked issue's
+  definition-of-done tasklist is discharged and sk-code-review approval is in
+  place; squash+rebase or gh stack merge, then close the issue deliberately."
 version: 0.2.1
 author: Hermes Agent
 license: Apache-2.0
+platforms: [linux, macos]
 metadata:
   hermes:
-    tags: [github, pull-requests, merge, shikanime-labs, shikanime-studio]
+    tags:
+      ["github", "pull-requests", "merge", "shikanime-labs", "shikanime-studio"]
     related_skills:
-      [sk-pr-resolve, sk-pr, sk-issue, sk-code-review, sk-async, sk-doc]
+      [
+        "sk-pr-resolve",
+        "sk-pr",
+        "sk-issue",
+        "sk-code-review",
+        "sk-async",
+        "sk-doc",
+      ]
 ---
 
 # Shikanime Org PR Landing
@@ -91,17 +101,12 @@ push. A failing run exits non-zero and skips merge (red never lands).
    tasklist N/N, then
    `gh issue close <N> --repo <org>/<repo> -c "Discharged by <PR URL>"`.
 3. Rebase downstream: `gh stack rebase` if any sit on top.
-4. **Sync docs** if ops/arch/runbooks changed — edit `docs/` per `sk-doc`;
-   skip if purely internal.
+4. **Sync docs** if ops/arch/runbooks changed — edit `docs/` per `sk-doc`; skip
+   if purely internal.
 
 ## Pitfalls
 
-- Unchecked criterion — discharge or escalate, don't merge.
-- `gh pr merge` on a stacked PR — use `gh stack merge`.
-- Merge after new commits without re-review — approval binds to a head commit.
-- Auto-close via `Closes #N` at merge — close deliberately after verifying
-  ledger.
-- Open threads — reconcile first via `sk-pr-resolve`.
+Optional edge cases and gotchas — load `references/pitfalls.md` on demand.
 
 ## Verification Checklist
 

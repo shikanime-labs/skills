@@ -1,22 +1,34 @@
 ---
 name: sk-dev-workflow
-description: "Branch and push discipline for shikanime repos."
-version: 0.4.0
+description:
+  "Use when running the shikanime local dev loop: branching, push-to-origin, jj
+  bookmark tracking, and landing via gh stack or direct push."
+version: 0.4.1
 author: Hermes Agent
 license: Apache-2.0
+platforms: [linux, macos]
 metadata:
   hermes:
     tags: [jj, workflow, shikanime-labs, shikanime-studio]
+    related_skills:
+      [
+        sk-issue-workflow,
+        sk-pr-workflow,
+        sk-commit,
+        sk-async,
+        sk-code-review,
+        cpn-dev-workflow,
+      ]
 ---
 
 # Shikanime Org Dev Workflow
 
-End-to-end local dev loop for shikanime repos: branching, pushing to `origin`,
-jj bookmark tracking, landing (PR vs direct push). Issue/PR policy lives in
-`sk-issue-workflow` / `sk-pr-workflow`; code review in `sk-code-review`;
-parallel split in `sk-async` (multi-parent joins via `jj new <a> <b>`).
+End-to-end local dev loop for shikanime repos: branching, push to `origin`, jj
+bookmark tracking, landing (PR vs direct push). Issue/PR policy:
+`sk-issue-workflow` / `sk-pr-workflow`; review: `sk-code-review`; parallel
+split: `sk-async` (multi-parent joins via `jj new <a> <b>`).
 
-## Lifecycle (ordered phases; gates in **bold**)
+## Lifecycle (gates in **bold**)
 
 | #   | Phase                                     | Owner               | Gate                  |
 | --- | ----------------------------------------- | ------------------- | --------------------- |
@@ -31,7 +43,7 @@ parallel split in `sk-async` (multi-parent joins via `jj new <a> <b>`).
 
 Never skip triage (ledger unsettled) or review (PR not ready).
 
-## Core rule: push to the org repo
+## Core rule: push to origin
 
 Push working branches to `origin` — the cloned org repo (`shikanime-labs` /
 `shikanime-studio`). The gh remote is canonical even when the local path says
@@ -53,9 +65,10 @@ silent scope change:
 - jj repo: `.jj/` / `jj status` → `jj bookmark track` before push
 - `gh stack` present: `gh extension list`
 - issue exists (issue-first) — else `sk-issue-workflow`
-- NixOS repo: `nix` available (build-verify gate) Report
-  `BLOCKED: <req> — <evidence> — <recovery>`. Independent unblocked streams may
-  fan out (`sk-async`) while the blocker is surfaced.
+- NixOS repo: `nix` available (build-verify gate)
+
+Report `BLOCKED: <req> — <evidence> — <recovery>`. Independent unblocked streams
+may fan out (`sk-async`) while the blocker is surfaced.
 
 ## Branch discipline
 
@@ -144,13 +157,7 @@ use full URL). Skip per-task detail.
 
 ## Pitfalls
 
-- Not recording steering discoveries in AGENTS.md — next agent repeats them.
-- `jj` push without `jj bookmark track <branch> --remote=origin` — rejected.
-- Direct-pushing `main` on protected repos — rejected; use PR.
-- Assuming conventional commits — shikanime code repos use plain English.
-- Skipping build-verify on NixOS repos — invalid config ships.
-- `jj describe`/`commit` snapshots every dirty WC file, not just `jj add` —
-  isolate via `jj workspace add ../<repo>-fix -r main` (see above).
+Optional edge cases and gotchas — load `references/pitfalls.md` on demand.
 
 ## Verification
 

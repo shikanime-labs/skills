@@ -6,9 +6,11 @@ description:
 version: 0.1.1
 author: Hermes Agent
 license: Apache-2.0
+platforms: [linux, macos]
 metadata:
   hermes:
-    tags: [github, triage, issues, cloud-pi-native, french]
+    tags: ["github", "triage", "issues", "cloud-pi-native", "french"]
+    related_skills: ["cpn-issue", "cpn-issue-workflow"]
 ---
 
 # CPN Issue Triage

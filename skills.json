@@ -6,82 +6,82 @@
   "skills": [
     {
       "name": "sk-dev-workflow",
-      "description": "Branch and push discipline for shikanime repos: push to origin (the org repo), jj bookmark tracking, assumption validation, issue-first lifecycle, and landing via gh stack or direct push.",
+      "description": "Use when running the shikanime local dev loop: branching, push-to-origin, jj bookmark tracking, and landing via gh stack or direct push.",
       "path": "skills/shikanime/sk-dev-workflow"
     },
     {
       "name": "sk-async",
-      "description": "Split work into parallel isolated jj workspaces (depth-tree fan-out), join with multi-parent commits, and land as independent PRs or gh stack chains.",
+      "description": "Use when splitting multi-unit work into parallel, isolated jj workspaces (depth-tree fan-out) and landing as independent PRs or gh stack chains.",
       "path": "skills/shikanime/sk-async"
     },
     {
       "name": "sk-commit",
-      "description": "Commit in shikanime-labs and shikanime-studio repos: plain English imperative titles, Automata co-author trailer, repo-enforced hooks (gitlint, DCO) win.",
+      "description": "Use when committing in shikanime-labs/shikanime-studio: plain English imperative titles, Automata co-author trailer, repo-enforced hooks (gitlint, DCO) win.",
       "path": "skills/shikanime/sk-commit"
     },
     {
       "name": "sk-discussion",
-      "description": "Open RFC Discussions in shikanime orgs as the pre-issue stage: converge on the problem, then derive the issue.",
+      "description": "Use when opening RFC Discussions in shikanime orgs as the pre-issue stage: converge on the problem, then derive the issue.",
       "path": "skills/shikanime/sk-discussion"
     },
     {
       "name": "sk-issue",
-      "description": "Open issues in shikanime-labs and shikanime-studio: body is the problem statement, acceptance criteria as command-decidable tasklist (the gate ledger), findings as comments.",
+      "description": "Use when opening issues in shikanime-labs/shikanime-studio: body is the problem statement, acceptance criteria as a command-decidable tasklist (the gate ledger), findings as comments.",
       "path": "skills/shikanime/sk-issue"
     },
     {
       "name": "sk-issue-refine",
-      "description": "Iterate a problem to convergence inside its GitHub issue via research + comments: classify open questions (fog), resolve AFK research via delegate_task fan-out, post findings and candidate solutions as comments, then converge the body into a clean problem statement + decidable gate ledger.",
+      "description": "Use when iterating a problem to convergence inside its GitHub issue: classify open questions, resolve AFK research via delegate_task fan-out, then converge the body into a clean problem statement + decidable gate ledger.",
       "path": "skills/shikanime/sk-issue-refine"
     },
     {
       "name": "sk-issue-triage",
-      "description": "Triage an existing shikanime org issue: labels, assignee, milestone, project; close with rationale if not workable.",
+      "description": "Use when triaging an existing shikanime org issue: labels, assignee, milestone, project; close with rationale if not workable.",
       "path": "skills/shikanime/sk-issue-triage"
     },
     {
       "name": "sk-pr-triage",
-      "description": "Triage an existing shikanime org PR: labels, assignee, milestone, reviewers, issue linkage.",
+      "description": "Use when triaging an existing shikanime org PR: labels, assignee, milestone, reviewers, issue linkage.",
       "path": "skills/shikanime/sk-pr-triage"
     },
     {
       "name": "sk-issue-workflow",
-      "description": "Single entry point for the shikanime issue side: create the issue, refine the problem to convergence within it, then triage immediately.",
+      "description": "Use when orchestrating the shikanime issue side: create the issue, refine the problem to convergence within it, then triage immediately.",
       "path": "skills/shikanime/sk-issue-workflow"
     },
     {
       "name": "sk-pr-workflow",
-      "description": "Single entry point for the shikanime PR side: ensure the issue exists, open the org-repo PR derived from the commit, then triage immediately.",
+      "description": "Use when orchestrating the shikanime PR side: ensure the issue exists, open the org-repo PR derived from the commit, then triage immediately.",
       "path": "skills/shikanime/sk-pr-workflow"
     },
     {
       "name": "sk-discussion-triage",
-      "description": "Triage an existing shikanime org discussion: category, body shape, Q\u0026A answer marking, lifecycle close (GraphQL).",
+      "description": "Use when triaging an existing shikanime org discussion: category, body shape, Q\u0026A answer marking, lifecycle close (GraphQL).",
       "path": "skills/shikanime/sk-discussion-triage"
     },
     {
       "name": "sk-pr",
-      "description": "Open PRs in shikanime orgs: push to origin, PR derived from the commit message, many-to-many issue linkage via Related, no auto-close keywords.",
+      "description": "Use when opening PRs in shikanime orgs: push to origin, PR derived from the commit message, many-to-many issue linkage via Related, no auto-close keywords.",
       "path": "skills/shikanime/sk-pr"
     },
     {
       "name": "sk-land",
-      "description": "Merge a shikanime org PR only after the linked issue's definition-of-done tasklist is discharged and sk-code-review approval is in place; squash+rebase or gh stack merge, then close the issue deliberately.",
+      "description": "Use when merging a shikanime org PR: only after the linked issue's definition-of-done tasklist is discharged and sk-code-review approval is in place; squash+rebase or gh stack merge, then close the issue deliberately.",
       "path": "skills/shikanime/sk-land"
     },
     {
       "name": "sk-pr-resolve",
-      "description": "Reconcile a shikanime org PR's review conversations, check the DoD ledger, and report approval/CI state without merging — pre-landing resolution extracted from sk-land.",
+      "description": "Use when reconciling a shikanime org PR's review conversations: check the DoD ledger and report approval/CI state without merging — pre-landing resolution extracted from sk-land.",
       "path": "skills/shikanime/sk-pr-resolve"
     },
     {
       "name": "sk-code-review",
-      "description": "Code review discipline for shikanime repos: YAGNI, root-cause, repo conventions, security scan, severity-tagged findings.",
+      "description": "Use when reviewing shikanime repos: YAGNI, root-cause, repo conventions, security scan, severity-tagged findings.",
       "path": "skills/shikanime/sk-code-review"
     },
     {
       "name": "sk-doc",
-      "description": "Document a shikanime project in the repo's docs/ directory: seed internal-ops and optional user-facing zones, edited as reviewable in-repo Markdown (Longhorn internal-ops / Kubernetes contributor docs / PyTorch PR-review patterns).",
+      "description": "Use when documenting a shikanime project in the repo's docs/ directory: seed internal-ops and optional user-facing zones, edited as reviewable in-repo Markdown.",
       "path": "skills/shikanime/sk-doc"
     },
     {

@@ -1,14 +1,16 @@
 ---
 name: sk-issue-workflow
 description:
-  "Single entry point for the shikanime issue side: create the issue, refine the
+  "Use when orchestrating the shikanime issue side: create the issue, refine the
   problem to convergence within it, then triage immediately."
 version: 0.1.1
 author: Hermes Agent
 license: Apache-2.0
+platforms: [linux, macos]
 metadata:
   hermes:
-    tags: [github, issues, shikanime-labs, shikanime-studio, workflow]
+    tags: ["github", "issues", "shikanime-labs", "shikanime-studio", "workflow"]
+    related_skills: ["sk-issue", "sk-issue-refine", "sk-issue-triage"]
 ---
 
 # Shikanime Org Issue Workflow

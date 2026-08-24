@@ -1,14 +1,23 @@
 ---
 name: sk-pr-workflow
 description:
-  "Single entry point for the shikanime PR side: ensure the issue exists, open
+  "Use when orchestrating the shikanime PR side: ensure the issue exists, open
   the org-repo PR derived from the commit, then triage immediately."
 version: 0.1.1
 author: Hermes Agent
 license: Apache-2.0
+platforms: [linux, macos]
 metadata:
   hermes:
-    tags: [github, pull-requests, shikanime-labs, shikanime-studio, workflow]
+    tags:
+      [
+        "github",
+        "pull-requests",
+        "shikanime-labs",
+        "shikanime-studio",
+        "workflow",
+      ]
+    related_skills: ["sk-issue-workflow", "sk-pr", "sk-pr-triage"]
 ---
 
 # Shikanime Org PR Workflow

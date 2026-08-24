@@ -5,9 +5,18 @@ description:
 version: 0.2.4
 author: Hermes Agent
 license: Apache-2.0
+platforms: [linux, macos]
 metadata:
   hermes:
-    tags: [github, pull-requests, cloud-pi-native, conventional-commits]
+    tags: ["github", "pull-requests", "cloud-pi-native", "conventional-commits"]
+    related_skills:
+      [
+        "cpn-pr-workflow",
+        "cpn-pr-triage",
+        "cpn-pr-resolve",
+        "cpn-commit",
+        "cpn-dev-workflow",
+      ]
 ---
 
 # CPN Org PR Creation
