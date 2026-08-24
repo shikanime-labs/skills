@@ -40,7 +40,11 @@ envelope, and the `createDiscussion` mutation. Rules: language **French**; links
 use `#2411` shorthand, never raw URLs; a discussion is an **opening** (context +
 open questions), never with "Décision attendue" / "Définition du fini" (that's
 cpn-issue scope). Lifecycle: **discussion → issue → issue comments → PR.**
-Categories: `General` (default for openings), `Ideas`.
+
+- `@nom` en prose déclenche une mention — pour un `@` littéral (clés de config,
+  `@Inject(x)`), l'enfermer dans un bloc de code ; seul le code désactive
+  l'analyse des mentions.
+- Categories: `General` (default for openings), `Ideas`.
 
 ## How to Run
 

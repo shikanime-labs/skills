@@ -49,6 +49,10 @@ line, no 80-col wrap); GitHub joins consecutive non-blank lines, so a
 one-sentence edit churns only that line. Never `nix fmt` / `mdformat` a temp
 body file.
 
+- A bare `@name` in prose pings that user/team — wrap any literal `@` (NestJS
+  `@Inject(x)`, decorators, config keys) in a code span or fenced block; only
+  code disables mention parsing.
+
 Body = clean problem statement (Description, reproduction steps, affected
 version, impact). Post root-cause / investigation findings as a **comment**
 (`gh issue comment <N> --repo <org>/<repo> --body-file <file>`), never in the

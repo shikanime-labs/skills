@@ -52,6 +52,11 @@ repo norm: open the issue before any PR, then link it (see `cpn-pr`).
 per line, no 80-col wrap); GitHub joins non-blank lines into one paragraph.
 Never run `nix fmt` / `mdformat` over a temp body file.
 
+- `@nom` en prose déclenche une mention d'utilisateur/équipe — pour écrire un
+  `@` littéral (decorators, clés de config, `@Inject(x)`), l'enfermer dans un
+  bloc de code (inline ou fenced) ; le code est le seul contexte où l'analyse
+  des mentions est désactivée.
+
 Full French templates →
 [references/issue-templates.md](references/issue-templates.md). Bug example:
 
