@@ -1,0 +1,59 @@
+{
+  "skill_name": "sks-code-review",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Reviewing shikanime code: enforce YAGNI, root-cause fixes, and project conventions before approval..",
+      "expected_output": "The skill answers the 'sks-code-review' request: its body covers 'Prerequisites' and stays loadable/well-formed.",
+      "files": [],
+      "assertions": [
+        "Description still contains the token 'reviewing'",
+        "Body contains a '## Prerequisites' heading",
+        "Frontmatter parses as YAML with a top-level 'name' key",
+        "Frontmatter 'name' equals the directory basename 'sks-code-review'",
+        "Description starts with 'Use when' and is <= 200 characters",
+        "license field is 'Apache-2.0'",
+        "Body still contains at least one '##' heading",
+        "Description still contains the token 'reviewing'",
+        "No '---------' separator artifact appears outside a code fence"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Show the step-by-step procedure for sks-code-review.",
+      "expected_output": "SKILL.md exposes an actionable procedure (a '## Steps' or '## Procedure' section with substance).",
+      "files": [],
+      "assertions": [
+        "Body contains a '## Steps' heading OR a '## Procedure' heading",
+        "Description token recall vs baseline >= 50%",
+        "Body size vs baseline <= 1.30x",
+        "Frontmatter 'name' equals the directory basename 'sks-code-review'"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "idk how 2 sks-code-review ??? (pls fix my broken config file \ud83d\udd27)",
+      "expected_output": "Even on a malformed request, the skill stays loadable: frontmatter parses, name==dir, no separator artifact.",
+      "files": [],
+      "assertions": [
+        "Frontmatter parses as YAML with a top-level 'name' key",
+        "Frontmatter 'name' equals the directory basename 'sks-code-review'",
+        "Description starts with 'Use when' and is <= 200 characters",
+        "license field is 'Apache-2.0'",
+        "Body still contains at least one '##' heading",
+        "Description still contains the token 'reviewing'",
+        "No '---------' separator artifact appears outside a code fence"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "I'm in the cloud-pi-native org, help me with this.",
+      "expected_output": "The 'sks-code-review' description does NOT claim the other org's prefix 'cpn-'.",
+      "files": [],
+      "assertions": [
+        "Description does not contain the substring 'cpn-'",
+        "Frontmatter 'name' equals the directory basename 'sks-code-review'"
+      ]
+    }
+  ]
+}

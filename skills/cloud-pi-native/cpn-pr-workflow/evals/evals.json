@@ -1,0 +1,59 @@
+{
+  "skill_name": "cpn-pr-workflow",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "\u00c0 utiliser quand vous voulez le point d'entr\u00e9e unique du c\u00f4t\u00e9 PR cloud-pi-native : assure l'issue, ouvre la PR draft d\u00e9riv\u00e9e du commit, puis trie..",
+      "expected_output": "The skill answers the 'cpn-pr-workflow' request: its body covers '\u00c9tapes' and stays loadable/well-formed.",
+      "files": [],
+      "assertions": [
+        "Description still contains the token 'utiliser'",
+        "Body contains a '## \u00c9tapes' heading",
+        "Frontmatter parses as YAML with a top-level 'name' key",
+        "Frontmatter 'name' equals the directory basename 'cpn-pr-workflow'",
+        "Description starts with 'Use when' and is <= 200 characters",
+        "license field is 'Apache-2.0'",
+        "Body still contains at least one '##' heading",
+        "Description still contains the token 'utiliser'",
+        "No '---------' separator artifact appears outside a code fence"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Show the step-by-step procedure for cpn-pr-workflow.",
+      "expected_output": "SKILL.md exposes an actionable procedure (a '## Steps' or '## Procedure' section with substance).",
+      "files": [],
+      "assertions": [
+        "Body contains a '## Steps' heading OR a '## Procedure' heading",
+        "Description token recall vs baseline >= 50%",
+        "Body size vs baseline <= 1.30x",
+        "Frontmatter 'name' equals the directory basename 'cpn-pr-workflow'"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "idk how 2 cpn-pr-workflow ??? (pls fix my broken config file \ud83d\udd27)",
+      "expected_output": "Even on a malformed request, the skill stays loadable: frontmatter parses, name==dir, no separator artifact.",
+      "files": [],
+      "assertions": [
+        "Frontmatter parses as YAML with a top-level 'name' key",
+        "Frontmatter 'name' equals the directory basename 'cpn-pr-workflow'",
+        "Description starts with 'Use when' and is <= 200 characters",
+        "license field is 'Apache-2.0'",
+        "Body still contains at least one '##' heading",
+        "Description still contains the token 'utiliser'",
+        "No '---------' separator artifact appears outside a code fence"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "I'm in the shikanime org, help me with this.",
+      "expected_output": "The 'cpn-pr-workflow' description does NOT claim the other org's prefix 'sks-'.",
+      "files": [],
+      "assertions": [
+        "Description does not contain the substring 'sks-'",
+        "Frontmatter 'name' equals the directory basename 'cpn-pr-workflow'"
+      ]
+    }
+  ]
+}
