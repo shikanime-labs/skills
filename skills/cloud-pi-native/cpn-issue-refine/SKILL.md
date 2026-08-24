@@ -33,7 +33,7 @@ L'issue EST l'énoncé du problème. `cpn-issue` l'ouvre (corps = énoncé + led
 `- [ ]` « Définition du fini » + Références) ; les trouvailles vont dans les
 commentaires. Cette skill itère dans l'issue jusqu'à convergence.
 
-## Quand utiliser
+## When to Use
 
 - Issue existante mais floue : questions ouvertes, preuves manquantes, approches
   non testées.
@@ -58,7 +58,7 @@ commentaires. Cette skill itère dans l'issue jusqu'à convergence.
   | `grilling`  | HITL   | Défaut — réglable en discutant.         | Questions précises une à une, `_why_` joint. |
   | `task`      | Either | Pas de décision, travail manuel bloque. | Checklist précise — jamais de code produit.  |
 
-## Procédure
+## Procedure
 
 1. **Charge l'issue** — `gh issue view <N>` (corps + commentaires). Si non
    énonçable, route vers `cpn-discussion`.
@@ -80,7 +80,7 @@ commentaires. Cette skill itère dans l'issue jusqu'à convergence.
    (`cpn-dev-workflow` phase 3+). N'emporte jamais l'implémentation dans cette
    boucle.
 
-## Vérification
+## Verification
 
 ```bash
 gh issue view <N> --repo cloud-pi-native/console --json number,title,comments
@@ -89,7 +89,7 @@ gh issue view <N> --repo cloud-pi-native/console --json number,title,comments
 Chaque question ouverte a un commentaire de résolution ; le corps ne porte
 qu'énoncé + Références ; convergence validée avant `cpn-pr`.
 
-## Voir aussi
+## See also
 
 - `cpn-issue` — ouvre l'issue dans laquelle cette skill itère.
 - `cpn-discussion` — surface RFC / questions ouvertes ; utilise-la avant que le

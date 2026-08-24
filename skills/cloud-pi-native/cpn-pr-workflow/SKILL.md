@@ -49,6 +49,6 @@ Vérifie :
 gh pr view <N> --repo cloud-pi-native/<repo> --json title,baseRefName,body
 ```
 
-## Voir aussi
+## See also
 
 `cpn-issue` / `cpn-issue-workflow` · `cpn-pr` · `cpn-pr-triage`.

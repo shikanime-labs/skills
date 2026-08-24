@@ -26,7 +26,7 @@ platforms:
 Renseigner les champs **vides** et **déterminables du contenu** (FR). Ne jamais
 inventer ; ne jamais fermer de PR.
 
-## Prérequis
+## Prerequisites
 
 - `gh` collaborateur du dépôt, ne PAS `gh auth switch`.
 - Dépôt : `cloud-pi-native/console`. `N` = n° PR, `R` = ce dépôt (défaut).
@@ -100,7 +100,7 @@ pas recopier le corps existant avec des retouches : il dérive du code.
 
 Détail et exemple de trap : `references/pr-body-reconciliation.md`.
 
-## Pièges
+## Pitfalls
 
 - Inventer des labels — filtrer contre `gh label list`.
 - Écrasement — `--add-label` / `--add-assignee` (additif), jamais `--label`.
@@ -111,6 +111,6 @@ Détail et exemple de trap : `references/pr-body-reconciliation.md`.
   correctif réel minimisé en « typo/hygiene »). Toujours recomparer contre
   `gh pr diff` avant de rééditer un titre/corps. Voir étape 7.
 
-## Voir aussi
+## See also
 
 - `cpn-pr` — création + liaison (français).
