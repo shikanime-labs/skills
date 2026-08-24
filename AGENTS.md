@@ -7,7 +7,7 @@ agents. Each skill lives in its own directory with a `SKILL.md`.
 
 ## Structure
 
-- `skills/shikanime/` — the shikanime `sk-*` workflow family
+- `skills/shikanime-studio/` — the shikanime `sk-*` workflow family
 - `skills/cloud-pi-native/` — the cloud-pi-native `cpn-*` workflow family
 - `README.md` — Installation and usage documentation
 
@@ -18,8 +18,8 @@ Two orgs, one doctrine — the lifecycle is **discussion → issue → issue com
 acceptance criteria as a command-decidable tasklist (the gate ledger); the PR
 proves it. shikanime skills are written in English with plain-English commits +
 Automata co-author trailer; cloud-pi-native skills operate in French with
-conventional commits. Skills: `sk-dev-workflow`, `sk-async`, `sk-commit`,
-`sk-discussion`, `sk-issue`, `sk-pr`, `cpn-dev-workflow`, `cpn-commit`,
+conventional commits. Skills: `sks-dev-workflow`, `sks-async`, `sks-commit`,
+`sks-discussion`, `sks-issue`, `sks-pr`, `cpn-dev-workflow`, `cpn-commit`,
 `cpn-discussion`, `cpn-issue`, `cpn-pr`.
 
 ## Commit Style

@@ -20,68 +20,68 @@
   "agents": {
     "skills": [
       {
-        "name": "sk-dev-workflow",
-        "path": "skills/shikanime/sk-dev-workflow"
+        "name": "sks-dev-workflow",
+        "path": "skills/shikanime-studio/sks-dev-workflow"
       },
       {
-        "name": "sk-async",
-        "path": "skills/shikanime/sk-async"
+        "name": "sks-async",
+        "path": "skills/shikanime-studio/sks-async"
       },
       {
-        "name": "sk-commit",
-        "path": "skills/shikanime/sk-commit"
+        "name": "sks-commit",
+        "path": "skills/shikanime-studio/sks-commit"
       },
       {
-        "name": "sk-discussion",
-        "path": "skills/shikanime/sk-discussion"
+        "name": "sks-discussion",
+        "path": "skills/shikanime-studio/sks-discussion"
       },
       {
-        "name": "sk-issue",
-        "path": "skills/shikanime/sk-issue"
+        "name": "sks-issue",
+        "path": "skills/shikanime-studio/sks-issue"
       },
       {
-        "name": "sk-issue-refine",
-        "path": "skills/shikanime/sk-issue-refine"
+        "name": "sks-issue-refine",
+        "path": "skills/shikanime-studio/sks-issue-refine"
       },
       {
-        "name": "sk-issue-triage",
-        "path": "skills/shikanime/sk-issue-triage"
+        "name": "sks-issue-triage",
+        "path": "skills/shikanime-studio/sks-issue-triage"
       },
       {
-        "name": "sk-pr-triage",
-        "path": "skills/shikanime/sk-pr-triage"
+        "name": "sks-pr-triage",
+        "path": "skills/shikanime-studio/sks-pr-triage"
       },
       {
-        "name": "sk-issue-workflow",
-        "path": "skills/shikanime/sk-issue-workflow"
+        "name": "sks-issue-workflow",
+        "path": "skills/shikanime-studio/sks-issue-workflow"
       },
       {
-        "name": "sk-pr-workflow",
-        "path": "skills/shikanime/sk-pr-workflow"
+        "name": "sks-pr-workflow",
+        "path": "skills/shikanime-studio/sks-pr-workflow"
       },
       {
-        "name": "sk-pr",
-        "path": "skills/shikanime/sk-pr"
+        "name": "sks-pr",
+        "path": "skills/shikanime-studio/sks-pr"
       },
       {
-        "name": "sk-land",
-        "path": "skills/shikanime/sk-land"
+        "name": "sks-land",
+        "path": "skills/shikanime-studio/sks-land"
       },
       {
-        "name": "sk-discussion-triage",
-        "path": "skills/shikanime/sk-discussion-triage"
+        "name": "sks-discussion-triage",
+        "path": "skills/shikanime-studio/sks-discussion-triage"
       },
       {
-        "name": "sk-pr-resolve",
-        "path": "skills/shikanime/sk-pr-resolve"
+        "name": "sks-pr-resolve",
+        "path": "skills/shikanime-studio/sks-pr-resolve"
       },
       {
-        "name": "sk-code-review",
-        "path": "skills/shikanime/sk-code-review"
+        "name": "sks-code-review",
+        "path": "skills/shikanime-studio/sks-code-review"
       },
       {
         "name": "sk-doc",
-        "path": "skills/shikanime/sk-doc"
+        "path": "skills/shikanime-studio/sk-doc"
       },
       {
         "name": "cpn-dev-workflow",

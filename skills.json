@@ -5,84 +5,84 @@
   "license": "Apache-2.0",
   "skills": [
     {
-      "name": "sk-dev-workflow",
+      "name": "sks-dev-workflow",
       "description": "Branch and push discipline for shikanime repos: push to origin (the org repo), jj bookmark tracking, assumption validation, issue-first lifecycle, and landing via gh stack or direct push.",
-      "path": "skills/shikanime/sk-dev-workflow"
+      "path": "skills/shikanime-studio/sks-dev-workflow"
     },
     {
-      "name": "sk-async",
+      "name": "sks-async",
       "description": "Split work into parallel isolated jj workspaces (depth-tree fan-out), join with multi-parent commits, and land as independent PRs or gh stack chains.",
-      "path": "skills/shikanime/sk-async"
+      "path": "skills/shikanime-studio/sks-async"
     },
     {
-      "name": "sk-commit",
+      "name": "sks-commit",
       "description": "Commit in shikanime-labs and shikanime-studio repos: plain English imperative titles, Automata co-author trailer, repo-enforced hooks (gitlint, DCO) win.",
-      "path": "skills/shikanime/sk-commit"
+      "path": "skills/shikanime-studio/sks-commit"
     },
     {
-      "name": "sk-discussion",
+      "name": "sks-discussion",
       "description": "Open RFC Discussions in shikanime orgs as the pre-issue stage: converge on the problem, then derive the issue.",
-      "path": "skills/shikanime/sk-discussion"
+      "path": "skills/shikanime-studio/sks-discussion"
     },
     {
-      "name": "sk-issue",
+      "name": "sks-issue",
       "description": "Open issues in shikanime-labs and shikanime-studio: body is the problem statement, acceptance criteria as command-decidable tasklist (the gate ledger), findings as comments.",
-      "path": "skills/shikanime/sk-issue"
+      "path": "skills/shikanime-studio/sks-issue"
     },
     {
-      "name": "sk-issue-refine",
+      "name": "sks-issue-refine",
       "description": "Iterate a problem to convergence inside its GitHub issue via research + comments: classify open questions (fog), resolve AFK research via delegate_task fan-out, post findings and candidate solutions as comments, then converge the body into a clean problem statement + decidable gate ledger.",
-      "path": "skills/shikanime/sk-issue-refine"
+      "path": "skills/shikanime-studio/sks-issue-refine"
     },
     {
-      "name": "sk-issue-triage",
+      "name": "sks-issue-triage",
       "description": "Triage an existing shikanime org issue: labels, assignee, milestone, project; close with rationale if not workable.",
-      "path": "skills/shikanime/sk-issue-triage"
+      "path": "skills/shikanime-studio/sks-issue-triage"
     },
     {
-      "name": "sk-pr-triage",
+      "name": "sks-pr-triage",
       "description": "Triage an existing shikanime org PR: labels, assignee, milestone, reviewers, issue linkage.",
-      "path": "skills/shikanime/sk-pr-triage"
+      "path": "skills/shikanime-studio/sks-pr-triage"
     },
     {
-      "name": "sk-issue-workflow",
+      "name": "sks-issue-workflow",
       "description": "Single entry point for the shikanime issue side: create the issue, refine the problem to convergence within it, then triage immediately.",
-      "path": "skills/shikanime/sk-issue-workflow"
+      "path": "skills/shikanime-studio/sks-issue-workflow"
     },
     {
-      "name": "sk-pr-workflow",
+      "name": "sks-pr-workflow",
       "description": "Single entry point for the shikanime PR side: ensure the issue exists, open the org-repo PR derived from the commit, then triage immediately.",
-      "path": "skills/shikanime/sk-pr-workflow"
+      "path": "skills/shikanime-studio/sks-pr-workflow"
     },
     {
-      "name": "sk-discussion-triage",
+      "name": "sks-discussion-triage",
       "description": "Triage an existing shikanime org discussion: category, body shape, Q\u0026A answer marking, lifecycle close (GraphQL).",
-      "path": "skills/shikanime/sk-discussion-triage"
+      "path": "skills/shikanime-studio/sks-discussion-triage"
     },
     {
-      "name": "sk-pr",
+      "name": "sks-pr",
       "description": "Open PRs in shikanime orgs: push to origin, PR derived from the commit message, many-to-many issue linkage via Related, no auto-close keywords.",
-      "path": "skills/shikanime/sk-pr"
+      "path": "skills/shikanime-studio/sks-pr"
     },
     {
-      "name": "sk-land",
-      "description": "Merge a shikanime org PR only after the linked issue's definition-of-done tasklist is discharged and sk-code-review approval is in place; squash+rebase or gh stack merge, then close the issue deliberately.",
-      "path": "skills/shikanime/sk-land"
+      "name": "sks-land",
+      "description": "Merge a shikanime org PR only after the linked issue's definition-of-done tasklist is discharged and sks-code-review approval is in place; squash+rebase or gh stack merge, then close the issue deliberately.",
+      "path": "skills/shikanime-studio/sks-land"
     },
     {
-      "name": "sk-pr-resolve",
-      "description": "Reconcile a shikanime org PR's review conversations, check the DoD ledger, and report approval/CI state without merging — pre-landing resolution extracted from sk-land.",
-      "path": "skills/shikanime/sk-pr-resolve"
+      "name": "sks-pr-resolve",
+      "description": "Reconcile a shikanime org PR's review conversations, check the DoD ledger, and report approval/CI state without merging — pre-landing resolution extracted from sks-land.",
+      "path": "skills/shikanime-studio/sks-pr-resolve"
     },
     {
-      "name": "sk-code-review",
+      "name": "sks-code-review",
       "description": "Code review discipline for shikanime repos: YAGNI, root-cause, repo conventions, security scan, severity-tagged findings.",
-      "path": "skills/shikanime/sk-code-review"
+      "path": "skills/shikanime-studio/sks-code-review"
     },
     {
       "name": "sk-doc",
       "description": "Document a shikanime project in the repo's docs/ directory: seed internal-ops and optional user-facing zones, edited as reviewable in-repo Markdown (Longhorn internal-ops / Kubernetes contributor docs / PyTorch PR-review patterns).",
-      "path": "skills/shikanime/sk-doc"
+      "path": "skills/shikanime-studio/sk-doc"
     },
     {
       "name": "cpn-dev-workflow",
