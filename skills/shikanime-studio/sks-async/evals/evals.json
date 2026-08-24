@@ -1,0 +1,48 @@
+{
+  "skill_name": "sks-async",
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "Splits the work into one jj workspace per unit and lands each as its own PR or gh stack chain.",
+      "files": [],
+      "prompt": "I have four independent refactors to do in shikanime-studio/machines and want to run them in parallel without them stepping on each other. How should I set this up?",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-async'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body mentions 'jj workspace add' for fan-out",
+        "Body references 'gh stack' for landing dependent chains"
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "Records the dependency tree first, then dispatches one delegate_task per leaf with fixed gates.",
+      "files": [],
+      "prompt": "Task B depends on task A and task C needs both \u2014 how do I fan this out to parallel agents in our jj repo and land it?",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-async'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body says to record the tree before fan-out",
+        "Body states one delegate_task per leaf and never bundles leaves",
+        "Body mentions 'jj workspace forget' to retire workspaces"
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "Every leaf's checks are re-run by the dispatcher inside its own workspace before reporting done.",
+      "files": [],
+      "prompt": "My subagents all say their streams are done \u2014 how do I verify the parallel workspaces before opening PRs?",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-async'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body requires the dispatcher to re-run checks in each workspace",
+        "Body mentions 'jj workspace list' or 'jj log' for verification"
+      ]
+    }
+  ]
+}

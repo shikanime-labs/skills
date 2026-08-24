@@ -1,0 +1,40 @@
+{
+  "skill_name": "cpn-issue-workflow",
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "Issue créée, raffinée puis triée via les sous-compétences.",
+      "files": [],
+      "prompt": "Prépare une issue sur cloud-pi-native/console pour le bug de l'écran de connexion, puis mène-la jusqu'à une issue triée.",
+      "assertions": [
+        "Frontmatter parses as valid YAML.",
+        "Frontmatter 'name' field equals 'cpn-issue-workflow'.",
+        "Frontmatter 'license' field equals 'Apache-2.0'.",
+        "SKILL.md body contains at least one Markdown '##' heading.",
+        "Le corps est le point d'entrée unique du côté issue en orchestrant cpn-issue, cpn-issue-refine et cpn-issue-triage.",
+        "Le corps orchestre les sous-compétences sans logique de création propre."
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "Issue convergée avec ledger et métadonnées de tri posées.",
+      "files": [],
+      "prompt": "Mène ce problème jusqu'à une issue convergée et triée sur le dépôt console.",
+      "assertions": [
+        "Frontmatter 'description' starts with 'À utiliser quand' or 'Use when' and is <= 200 characters.",
+        "Le corps applique labels, assignee, milestone et project lors du tri.",
+        "Le corps définit une gate de complétion basée sur un ledger `- [ ]` convergé."
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "Enchaînement création, raffinage et tri de l'issue documenté.",
+      "files": [],
+      "prompt": "Quel est le point d'entrée pour ouvrir et trier une issue cloud-pi-native ?",
+      "assertions": [
+        "Le corps enchaîne cpn-issue, cpn-issue-refine puis cpn-issue-triage.",
+        "Le corps ne trie que les champs vides et déterminables et n'invente jamais un label absent."
+      ]
+    }
+  ]
+}

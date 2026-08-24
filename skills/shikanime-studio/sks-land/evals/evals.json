@@ -1,0 +1,49 @@
+{
+  "skill_name": "sks-land",
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "The skill lands a shikanime PR only after sks-pr-resolve reconciled it and review approval gates pass, then closes the linked issue deliberately.",
+      "files": [],
+      "prompt": "Land PR #42 on shikanime-labs/skills now that reviews and CI are green.",
+      "assertions": [
+        "Frontmatter parses as YAML with a top-level 'name' key",
+        "Frontmatter 'name' equals the directory basename 'sks-land'",
+        "Description starts with 'Use when' and is <= 200 characters",
+        "license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body lands a PR only after sks-pr-resolve reconciled it",
+        "Body closes the linked issue deliberately (sks-pr avoids auto-close)"
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "The skill gates on pre-landing checks and lands stacked PRs via gh stack merge or lone PRs via gh pr merge --squash.",
+      "files": [],
+      "prompt": "Merge my PR after reconciliation and close the linked issue deliberately.",
+      "assertions": [
+        "Frontmatter parses as YAML with a top-level 'name' key",
+        "Frontmatter 'name' equals the directory basename 'sks-land'",
+        "Description starts with 'Use when' and is <= 200 characters",
+        "license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body exposes '## Pre-landing gates (must already hold)'",
+        "Body lands via gh stack merge for stacked PRs or gh pr merge --squash for lone PRs"
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "The skill never opens or reviews a PR; it only lands one already reconciled.",
+      "files": [],
+      "prompt": "The conversations are all reconciled on PR #7 in nix-containers — land it.",
+      "assertions": [
+        "Frontmatter parses as YAML with a top-level 'name' key",
+        "Frontmatter 'name' equals the directory basename 'sks-land'",
+        "Description starts with 'Use when' and is <= 200 characters",
+        "license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body states this skill only lands and is not for opening or reviewing"
+      ]
+    }
+  ]
+}

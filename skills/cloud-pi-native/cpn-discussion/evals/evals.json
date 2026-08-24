@@ -1,0 +1,48 @@
+{
+  "skill_name": "cpn-discussion",
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "Une discussion console créée en français via GraphQL (createDiscussion).",
+      "files": [],
+      "prompt": "Ouvre une nouvelle discussion sur cloud-pi-native/console pour cadrer l'idée de refactoring du cache mémoire avant de créer une issue.",
+      "assertions": [
+        "The frontmatter block parses as valid YAML.",
+        "The 'name' field equals the directory basename 'cpn-discussion'.",
+        "The 'license' field is 'Apache-2.0'.",
+        "The body contains at least one '##' heading.",
+        "The 'description' field starts with 'À utiliser quand' and is at most 200 characters.",
+        "Le corps crée une Discussion console cloud-pi-native en français via GraphQL.",
+        "Le corps documente la mutation createDiscussion pour ouvrir une discussion."
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "Le corps d'une discussion existante mis à jour en français via GraphQL.",
+      "files": [],
+      "prompt": "Mets à jour le corps de la discussion #2474 de console pour ajouter les questions ouvertes restantes sur le routage réseau.",
+      "assertions": [
+        "The frontmatter block parses as valid YAML.",
+        "The 'name' field equals the directory basename 'cpn-discussion'.",
+        "The 'license' field is 'Apache-2.0'.",
+        "The body contains at least one '##' heading.",
+        "Le corps précise que les Discussions console sont en GraphQL uniquement, sans REST.",
+        "Le corps utilise la mutation updateDiscussion pour modifier le corps d'une discussion."
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "Une discussion RFC ouverte en français, catégorie General ou Ideas, sans décider d'issue.",
+      "files": [],
+      "prompt": "Crée une discussion RFC en français sur console pour recueillir l'avis de l'équipe sur le nouveau design de l'onboarding.",
+      "assertions": [
+        "The frontmatter block parses as valid YAML.",
+        "The 'name' field equals the directory basename 'cpn-discussion'.",
+        "The 'license' field is 'Apache-2.0'.",
+        "The body contains at least one '##' heading.",
+        "Le corps indique que la discussion est une ouverture (contexte + questions ouvertes), jamais une issue.",
+        "Le corps cite les catégories General et Ideas pour router la discussion."
+      ]
+    }
+  ]
+}

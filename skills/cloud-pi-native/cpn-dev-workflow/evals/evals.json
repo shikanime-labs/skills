@@ -1,0 +1,50 @@
+{
+  "skill_name": "cpn-dev-workflow",
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "Explains the local console repo structure, contribution rules, and the issue-first PR, commit, and review workflow inside cloud-pi-native/console.",
+      "files": [],
+      "prompt": "Comment je contribue au dépôt console cloud-pi-native/console en local : règles de contribution, cycle de dev et workflow PR ?",
+      "assertions": [
+        "Frontmatter parses successfully.",
+        "The 'name' field equals 'cpn-dev-workflow'.",
+        "The description starts with 'À utiliser quand'.",
+        "The description is at most 200 characters.",
+        "The license field is 'Apache-2.0'.",
+        "The body contains at least one '##' heading.",
+        "Body works inside the local console repo."
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "Guides implementing a server-nestjs module issue-first with a fresh jj workspace, conventional commits, and pre-submit lint and test gates.",
+      "files": [],
+      "prompt": "Je veux implémenter un module dans apps/server-nestjs (issue-first) et écrire son spec vitest — guide-moi.",
+      "assertions": [
+        "Frontmatter parses successfully.",
+        "The 'name' field equals 'cpn-dev-workflow'.",
+        "The description starts with 'À utiliser quand'.",
+        "The description is at most 200 characters.",
+        "The license field is 'Apache-2.0'.",
+        "The body contains at least one '##' heading.",
+        "Body works inside the local console repo."
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "Describes the origin-only PR discipline and gh stack landing path with PR to commit parity for cloud-pi-native/console.",
+      "files": [],
+      "prompt": "Quelles sont les commandes de lint, test et local dev pour console et le workflow PR origin-only ?",
+      "assertions": [
+        "Frontmatter parses successfully.",
+        "The 'name' field equals 'cpn-dev-workflow'.",
+        "The description starts with 'À utiliser quand'.",
+        "The description is at most 200 characters.",
+        "The license field is 'Apache-2.0'.",
+        "The body contains at least one '##' heading.",
+        "Body works inside the local console repo."
+      ]
+    }
+  ]
+}

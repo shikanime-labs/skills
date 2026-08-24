@@ -1,0 +1,49 @@
+{
+  "skill_name": "sks-pr",
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "The skill opens a PR in shikanime-labs or shikanime-studio, pushing to origin with --head org:branch and linking the issue.",
+      "files": [],
+      "prompt": "Open a PR in shikanime-labs/skills for my fix/rwx-nfs-v4.0 branch.",
+      "assertions": [
+        "Frontmatter parses as YAML with a top-level 'name' key",
+        "Frontmatter 'name' equals the directory basename 'sks-pr'",
+        "Description starts with 'Use when' and is <= 200 characters",
+        "license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body opens a PR in shikanime-labs or shikanime-studio",
+        "Body pushes to origin and opens with --head <org>:<branch>"
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "The skill enforces PR title/body parity with the commit and links the issue without auto-close.",
+      "files": [],
+      "prompt": "Push my branch to origin and open a PR against main with the issue linked.",
+      "assertions": [
+        "Frontmatter parses as YAML with a top-level 'name' key",
+        "Frontmatter 'name' equals the directory basename 'sks-pr'",
+        "Description starts with 'Use when' and is <= 200 characters",
+        "license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body enforces PR title/body parity with the commit"
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "The skill delegates triage metadata to sks-pr-triage and reconciles review threads on revision.",
+      "files": [],
+      "prompt": "Create a pull request in shikanime-studio/actions with a plain-English title.",
+      "assertions": [
+        "Frontmatter parses as YAML with a top-level 'name' key",
+        "Frontmatter 'name' equals the directory basename 'sks-pr'",
+        "Description starts with 'Use when' and is <= 200 characters",
+        "license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body delegates triage metadata to sks-pr-triage",
+        "Body reconciles review threads on revision via sks-pr-resolve"
+      ]
+    }
+  ]
+}

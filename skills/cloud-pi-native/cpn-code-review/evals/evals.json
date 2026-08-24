@@ -1,0 +1,50 @@
+{
+  "skill_name": "cpn-code-review",
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "Runs the four-phase review of the console PR and posts each finding inline as a severity-prefixed French comment plus a 2-3 sentence verdict.",
+      "files": [],
+      "prompt": "Relis la PR #456 de cloud-pi-native/console et rends la revue en français.",
+      "assertions": [
+        "Frontmatter parses successfully.",
+        "The 'name' field equals 'cpn-code-review'.",
+        "The description starts with 'À utiliser quand'.",
+        "The description is at most 200 characters.",
+        "The license field is 'Apache-2.0'.",
+        "The body contains at least one '##' heading.",
+        "Body reviews console PRs in French."
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "Checks console architecture and NestJS conventions plus trust-boundary security, suggesting corrected conventional commits when commitlint would reject.",
+      "files": [],
+      "prompt": "Fais une code review adversarial de ma PR console avant que je la merge, en vérifiant l'archi NestJS et les règles de commit.",
+      "assertions": [
+        "Frontmatter parses successfully.",
+        "The 'name' field equals 'cpn-code-review'.",
+        "The description starts with 'À utiliser quand'.",
+        "The description is at most 200 characters.",
+        "The license field is 'Apache-2.0'.",
+        "The body contains at least one '##' heading.",
+        "Body reviews console PRs in French."
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "Applies the severity labels and posts an approve or request-changes verdict without committing or merging.",
+      "files": [],
+      "prompt": "Check la PR #12 de console : conventions, sécurité aux frontières de confiance, et poste les findings en français.",
+      "assertions": [
+        "Frontmatter parses successfully.",
+        "The 'name' field equals 'cpn-code-review'.",
+        "The description starts with 'À utiliser quand'.",
+        "The description is at most 200 characters.",
+        "The license field is 'Apache-2.0'.",
+        "The body contains at least one '##' heading.",
+        "Body reviews console PRs in French."
+      ]
+    }
+  ]
+}

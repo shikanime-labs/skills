@@ -1,0 +1,35 @@
+{
+  "skill_name": "sks-doc",
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "A docs/ page added for the repo with an owner comment and an entry in docs/README.md index.",
+      "files": [],
+      "prompt": "Add an architecture and runbook page to the docs/ of shikanime-studio/sk-async after the behavior-changing refactor PR merged.",
+      "assertions": [
+        "Frontmatter parses as valid YAML.",
+        "The 'name' field equals 'sks-doc'.",
+        "The description starts with 'Use when' and is at most 200 characters.",
+        "The license field is 'Apache-2.0'.",
+        "The body contains at least one '##' heading.",
+        "Body documents a project in docs/.",
+        "Body defines two zones (internal ops and user-facing) for docs/ pages."
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "A plan to seed docs/README.md and the docs source in-repo, reviewed via PR, with no separate wiki remote.",
+      "files": [],
+      "prompt": "Set up the docs structure for shikanime-labs/devlib from scratch so contributor pages get reviewed like any other change.",
+      "assertions": [
+        "Frontmatter parses as valid YAML.",
+        "The 'name' field equals 'sks-doc'.",
+        "The description starts with 'Use when' and is at most 200 characters.",
+        "The license field is 'Apache-2.0'.",
+        "The body contains at least one '##' heading.",
+        "Body seeds docs/README.md as the landing and index that is updated when pages move.",
+        "Body edits docs in-repo and reviews them via PR with no separate sync step."
+      ]
+    }
+  ]
+}

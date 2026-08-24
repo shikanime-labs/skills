@@ -1,0 +1,65 @@
+{
+  "skill_name": "sks-dev-workflow",
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "Runs the ordered lifecycle from issue through commit, review, PR, and landing without skipping gates.",
+      "files": [],
+      "prompt": "Walk me through taking this bug in shikanime-studio/machines from nothing to a merged fix.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-dev-workflow'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body enforces issue-first discipline before branching",
+        "Body lists ordered lifecycle phases with gates",
+        "Body forbids skipping triage or code review"
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "Tracks the jj bookmark and pushes the branch to origin, the org repo.",
+      "files": [],
+      "prompt": "My jj push to our org repo keeps getting rejected \u2014 how should I be pushing feature branches?",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-dev-workflow'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body requires 'jj bookmark track <branch> --remote=origin' before push",
+        "Body says to push working branches to 'origin' the org repo",
+        "Body notes jj does not auto-track bookmarks"
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "Lands via PR by default, using gh stack for stacked work and direct push only when authorized.",
+      "files": [],
+      "prompt": "The stack is ready \u2014 how do I land these branches in shikanime-studio without bypassing protections?",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-dev-workflow'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body makes PR the default landing path",
+        "Body mentions 'gh stack submit' for stacked work",
+        "Body restricts direct push to main to explicit user authorization"
+      ]
+    },
+    {
+      "id": 4,
+      "expected_output": "Validates gh identity, push rights, and tooling first and reports unmet requirements as blockers.",
+      "files": [],
+      "prompt": "Before I start this change, what should I check about my gh account and the repo?",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-dev-workflow'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body probes gh identity and repo viewerPermission before work",
+        "Body reports unmet requirements as 'BLOCKED' with evidence and recovery",
+        "Body treats 'pushed' or 'merged' as unproven until verified"
+      ]
+    }
+  ]
+}

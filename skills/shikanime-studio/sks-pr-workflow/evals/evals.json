@@ -1,0 +1,50 @@
+{
+  "skill_name": "sks-pr-workflow",
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "Loads sks-pr-workflow and orchestrates the issue to PR to triage flow via sks-issue, sks-pr, and sks-pr-triage.",
+      "files": [],
+      "prompt": "I have a converged issue #42 in shikanime-studio/devlib. Open the PR for my branch and triage it.",
+      "assertions": [
+        "Frontmatter parses successfully.",
+        "The 'name' field equals 'sks-pr-workflow'.",
+        "The description starts with 'Use when'.",
+        "The description is at most 200 characters.",
+        "The license field is 'Apache-2.0'.",
+        "The body contains at least one '##' heading.",
+        "Body is the single entry point for the PR side."
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "Ensures the linked issue exists, opens the org-repo draft PR linked to the issue, then applies triage metadata immediately.",
+      "files": [],
+      "prompt": "Set up the full PR workflow for shikanime-labs/hakurei: make sure the issue exists, open the draft PR, and apply triage.",
+      "assertions": [
+        "Frontmatter parses successfully.",
+        "The 'name' field equals 'sks-pr-workflow'.",
+        "The description starts with 'Use when'.",
+        "The description is at most 200 characters.",
+        "The license field is 'Apache-2.0'.",
+        "The body contains at least one '##' heading.",
+        "Body is the single entry point for the PR side."
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "Creates the issue first when absent, then opens and triages the PR following the shikanime PR workflow gate.",
+      "files": [],
+      "prompt": "No issue exists yet for my change in shikanime-studio/skills — get me from issue to landed PR.",
+      "assertions": [
+        "Frontmatter parses successfully.",
+        "The 'name' field equals 'sks-pr-workflow'.",
+        "The description starts with 'Use when'.",
+        "The description is at most 200 characters.",
+        "The license field is 'Apache-2.0'.",
+        "The body contains at least one '##' heading.",
+        "Body is the single entry point for the PR side."
+      ]
+    }
+  ]
+}

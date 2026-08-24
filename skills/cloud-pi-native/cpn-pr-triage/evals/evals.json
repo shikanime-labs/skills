@@ -1,0 +1,40 @@
+{
+  "skill_name": "cpn-pr-triage",
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "PR triée avec labels, assignee, jalon et reviewers posés.",
+      "files": [],
+      "prompt": "Trie la PR #54 sur cloud-pi-native/console : mets les labels, l'assignee et le jalon.",
+      "assertions": [
+        "Frontmatter parses as valid YAML.",
+        "Frontmatter 'name' field equals 'cpn-pr-triage'.",
+        "Frontmatter 'license' field equals 'Apache-2.0'.",
+        "SKILL.md body contains at least one Markdown '##' heading.",
+        "Le corps assigne labels, assignee, jalon (milestone) et reviewers aux PR à champs vides.",
+        "Le corps n'invente jamais de labels absents de `gh label list`."
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "Métadonnées ajoutées de façon additive sans écraser l'existant.",
+      "files": [],
+      "prompt": "Ajoute le label bug et l'assignee à la PR #54 sans écraser les existants.",
+      "assertions": [
+        "Frontmatter 'description' starts with 'À utiliser quand' or 'Use when' and is <= 200 characters.",
+        "Le corps utilise `--add-label` et `--add-assignee` (additif), jamais `--label`.",
+        "Le corps lie l'issue via `Issues liées: #M` et évite l'auto-close sauf un-à-un."
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "Jalon patch choisi pour un bug et PR non fermée.",
+      "files": [],
+      "prompt": "Quel jalon choisir pour un bug en triage de PR console ?",
+      "assertions": [
+        "Le corps attribue le jalon patch le plus haut de la ligne mineure courante pour un bug.",
+        "Le corps interdit de fermer une PR pendant le triage."
+      ]
+    }
+  ]
+}

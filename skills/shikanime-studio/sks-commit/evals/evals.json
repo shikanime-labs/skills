@@ -1,0 +1,50 @@
+{
+  "skill_name": "sks-commit",
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "Writes a plain-English capitalized imperative title with the Automata co-author trailer.",
+      "files": [],
+      "prompt": "Commit my StorageClass fix in shikanime-studio/manifests with the right message style.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-commit'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body specifies a 'Co-authored-by: Automata <automata@shikanime.studio>' trailer",
+        "Body requires a plain-English capitalized imperative title with no conventional prefix",
+        "Body shows a 'jj describe' command with two -m blocks"
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "Strips squash artifacts so the final message is one subject plus correct trailers.",
+      "files": [],
+      "prompt": "I squashed three commits and the message is full of bullet points and dashes \u2014 fix it before I merge.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-commit'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body says to strip '*' bullet lines and '---------' separators from squashed messages",
+        "Body allows exactly one Automata Co-authored-by trailer",
+        "Body limits Signed-off-by to repos whose hook requires DCO"
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "Detects repo-enforced hooks such as gitlint or commitlint and obeys them over the defaults.",
+      "files": [],
+      "prompt": "gitlint rejected my commit in the manifests repo \u2014 what does that repo actually require?",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-commit'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body states repo-enforced hooks always win over the default style",
+        "Body requires full issue URLs in 'Related:' instead of bare #N",
+        "Body mentions detecting .gitlint or commitlint config"
+      ]
+    }
+  ]
+}

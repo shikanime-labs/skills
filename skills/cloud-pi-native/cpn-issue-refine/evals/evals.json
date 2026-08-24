@@ -1,0 +1,48 @@
+{
+  "skill_name": "cpn-issue-refine",
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "Une issue itérée vers la convergence, trouvailles postées en commentaires.",
+      "files": [],
+      "prompt": "Raffine l'issue #512 de console : elle est floue, énumère les questions ouvertes et poste les trouvailles en commentaires.",
+      "assertions": [
+        "The frontmatter block parses as valid YAML.",
+        "The 'name' field equals the directory basename 'cpn-issue-refine'.",
+        "The 'license' field is 'Apache-2.0'.",
+        "The body contains at least one '##' heading.",
+        "The 'description' field starts with 'À utiliser quand' and is at most 200 characters.",
+        "Le corps itère une issue console vers la convergence via des commentaires.",
+        "Le corps poste les trouvailles avec 'gh issue comment' sans écrire de code produit."
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "Des recherches AFK fan-out postées en commentaires, brouillard levé.",
+      "files": [],
+      "prompt": "L'issue #333 de console manque de preuves, fais des recherches et itère vers la convergence.",
+      "assertions": [
+        "The frontmatter block parses as valid YAML.",
+        "The 'name' field equals the directory basename 'cpn-issue-refine'.",
+        "The 'license' field is 'Apache-2.0'.",
+        "The body contains at least one '##' heading.",
+        "Le corps distingue les 4 types (research, prototype, grilling, task) pour résoudre le brouillard.",
+        "Le corps n'emporte jamais l'implémentation dans la boucle de raffinage."
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "Un énoncé propre prêt à passer au solveur (cpn-pr) après test de convergence.",
+      "files": [],
+      "prompt": "Aiguise l'énoncé de l'issue #201 de console avant de passer au solveur (PR).",
+      "assertions": [
+        "The frontmatter block parses as valid YAML.",
+        "The 'name' field equals the directory basename 'cpn-issue-refine'.",
+        "The 'license' field is 'Apache-2.0'.",
+        "The body contains at least one '##' heading.",
+        "Le corps décrit un test de convergence avant de router vers cpn-pr.",
+        "Le corps ajoute les références durables à la section Références via gh issue edit."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "skill_name": "sks-discussion-triage",
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "A recategorized and triaged discussion with correct lifecycle metadata applied via GraphQL.",
+      "files": [],
+      "prompt": "Triage discussion #42 in shikanime-studio/sk-async: it's a design question that got posted under General but reads like an RFC, and someone already answered the Q&A part.",
+      "assertions": [
+        "Frontmatter parses as valid YAML.",
+        "The 'name' field equals 'sks-discussion-triage'.",
+        "The description starts with 'Use when' and is at most 200 characters.",
+        "The license field is 'Apache-2.0'.",
+        "The body contains at least one '##' heading.",
+        "Body categorizes and triages a discussion via updateDiscussion and closeDiscussion GraphQL mutations.",
+        "Body marks a Q&A answer with markDiscussionCommentAsAnswer and never closes silently."
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "A discussion converted to an issue once its open questions are resolved, routed to sks-issue.",
+      "files": [],
+      "prompt": "Discussion #17 in shikanime-labs/devlib has converged and its open questions are resolved — move it to an issue instead of keep solving it in the thread.",
+      "assertions": [
+        "Frontmatter parses as valid YAML.",
+        "The 'name' field equals 'sks-discussion-triage'.",
+        "The description starts with 'Use when' and is at most 200 characters.",
+        "The license field is 'Apache-2.0'.",
+        "The body contains at least one '##' heading.",
+        "Body routes a converged discussion to sks-issue rather than continuing to solve in the discussion.",
+        "Body probes .has_discussions before GraphQL mutations to avoid 404s."
+      ]
+    }
+  ]
+}
