@@ -1,8 +1,5 @@
 # cpn-code-review — Pitfalls
 
-Deep-dive gotchas when reviewing `cloud-pi-native/*` PRs. Loaded lazily from
-`SKILL.md`.
-
 - **Playwright** E2E needs Docker infra (`pnpm docker:dev`/`integ`); don't block
   review on local E2E failure.
 - **Env override chain** — `.env` < `.env.docker` < `.env.integ` < explicit;

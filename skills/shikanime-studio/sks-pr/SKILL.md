@@ -1,12 +1,28 @@
 ---
 name: sk-pr
-description: "Open PRs in shikanime-labs and shikanime-studio repos."
+description:
+  "Use when opening a PR in shikanime-labs or shikanime-studio: push to origin,
+  --head org:branch, plain-English title, issue linkage, parity with commit."
 version: 0.1.1
 author: Hermes Agent
 license: Apache-2.0
 metadata:
   hermes:
-    tags: [github, pull-requests, shikanime-labs, shikanime-studio]
+    tags:
+      - github
+      - pull-requests
+      - shikanime-labs
+      - shikanime-studio
+    related_skills:
+      - cpn-pr
+      - sks-commit
+      - sks-pr-resolve
+      - sks-land
+      - sks-pr-workflow
+      - sks-doc
+platforms:
+  - linux
+  - macos
 ---
 
 # Shikanime Org PR Creation

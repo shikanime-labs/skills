@@ -6,7 +6,19 @@ author: Hermes Agent
 license: Apache-2.0
 metadata:
   hermes:
-    tags: [code-review, cloud-pi-native, console, github, french, architecture]
+    tags:
+      - code-review
+      - cloud-pi-native
+      - console
+      - github
+      - french
+      - architecture
+    related_skills:
+      - cpn-pr-resolve
+      - cpn-dev-workflow
+platforms:
+  - linux
+  - macos
 ---
 
 # cloud-pi-native Code Review (cpn-code-review)

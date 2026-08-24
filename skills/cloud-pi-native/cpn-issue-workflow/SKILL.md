@@ -1,15 +1,26 @@
 ---
 name: cpn-issue-workflow
 description:
-  "Point d'entrée unique pour le côté issue cloud-pi-native : créer l'issue,
-  raffiner le problème vers la convergence, puis trier immédiatement."
+  "À utiliser quand vous voulez le point d'entrée unique du côté issue
+  cloud-pi-native : créer l'issue, la raffiner vers la convergence, puis la
+  trier."
 version: 0.1.1
 author: Hermes Agent
 license: Apache-2.0
-platforms: [macos, linux]
+platforms:
+  - macos
+  - linux
 metadata:
   hermes:
-    tags: [github, issues, cloud-pi-native, workflow]
+    tags:
+      - github
+      - issues
+      - cloud-pi-native
+      - workflow
+    related_skills:
+      - cpn-issue
+      - cpn-issue-refine
+      - cpn-issue-triage
 ---
 
 # CPN Org — Workflow Issue

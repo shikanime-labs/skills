@@ -1,23 +1,32 @@
 ---
 name: sk-doc
 description:
-  "Document a shikanime project in the repo's docs/ directory: seed the
-  structure (internal ops + optional user-facing docs) and edit pages through a
-  reviewable in-repo source. Replaces the GitHub wiki with plain Markdown under
-  docs/."
+  Use when documenting a shikanime project in the repo's docs/ directory after a
+  behavior-changing PR.
 version: 0.3.0
 author: Hermes Agent
 license: Apache-2.0
 metadata:
   hermes:
-    tags: [github, documentation, docs, shikanime-labs, shikanime-studio]
-    related_skills: [sk-pr, sk-issue, sk-land]
+    tags:
+      - github
+      - documentation
+      - docs
+      - shikanime-labs
+      - shikanime-studio
+    related_skills:
+      - sks-pr
+      - sks-land
+      - sks-issue
+platforms:
+  - linux
+  - macos
 ---
 
 # Shikanime Org Docs
 
-Maintain a project's knowledge base as plain Markdown under `docs/` in the
-repo — reviewed via PR, no separate wiki remote to sync. Two zones:
+Maintain a project's knowledge base as plain Markdown under `docs/` in the repo
+— reviewed via PR, no separate wiki remote to sync. Two zones:
 
 - **Internal ops** (always) — development runbooks, architecture intent,
   operational procedures, release/QA state, decisions, tribal knowledge.
@@ -118,15 +127,7 @@ jj file list docs/   # confirm the page landed and README lists it
 
 ## Pitfalls
 
-- **Editing a published docs site by hand** — it bypasses review and diverges
-  from the source. Always edit `docs/` in-repo and review via PR.
-- **Duplicating an existing docs site** — if `docs/` or a site already owns user
-  docs, link from `docs/`; don't fork the content.
-- **Stale index** — a page added but missing from `docs/README.md` is
-  unreachable. Update the index on every add/move.
-- **Unowned pages** — add the owner/zone/purpose comment or the page rots.
-- **Wiki-size reflex** — a separate `.wiki.git` remote is no longer used; docs
-  live in the repo and follow the repo's size norms.
+Optional edge cases and gotchas — load `references/pitfalls.md` on demand.
 
 ## See also
 

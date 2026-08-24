@@ -1,12 +1,23 @@
 ---
 name: cpn-issue
-description: "Open CPN console issues with French templates."
+description: Open CPN console issues with French templates.
 version: 0.1.2
 author: Hermes Agent
 license: Apache-2.0
 metadata:
   hermes:
-    tags: [github, issues, cloud-pi-native, french]
+    tags:
+      - github
+      - issues
+      - cloud-pi-native
+      - french
+    related_skills:
+      - cpn-dev-workflow
+      - cpn-issue-triage
+      - cpn-pr
+platforms:
+  - linux
+  - macos
 ---
 
 # CPN Org Issue Creation
@@ -87,11 +98,7 @@ gh issue comment <N> --repo cloud-pi-native/console --body-file /tmp/finding.md
 
 ## Pitfalls
 
-- Wrong repo: use `cloud-pi-native/console` directly.
-- Missing `bug`/`enhancement` label — both templates set it; keep it.
-- English bodies break repo convention; templates are French.
-- Do NOT rewrite the body with investigation results — those belong in a
-  comment.
+Optional edge cases and gotchas — load `references/pitfalls.md` on demand.
 
 ## Verification
 

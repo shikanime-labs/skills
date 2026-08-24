@@ -1,15 +1,27 @@
 ---
 name: cpn-pr-workflow
 description:
-  "Point d'entrée unique pour le côté PR cloud-pi-native : assure l'existence de
-  l'issue, ouvre la PR draft dérivée du commit, puis trie immédiatement."
+  "À utiliser quand vous voulez le point d'entrée unique du côté PR
+  cloud-pi-native : assure l'issue, ouvre la PR draft dérivée du commit, puis
+  trie."
 version: 0.1.1
 author: Hermes Agent
 license: Apache-2.0
-platforms: [macos, linux]
+platforms:
+  - macos
+  - linux
 metadata:
   hermes:
-    tags: [github, pull-requests, cloud-pi-native, workflow]
+    tags:
+      - github
+      - pull-requests
+      - cloud-pi-native
+      - workflow
+    related_skills:
+      - cpn-issue
+      - cpn-issue-workflow
+      - cpn-pr
+      - cpn-pr-triage
 ---
 
 # CPN Org — Workflow PR

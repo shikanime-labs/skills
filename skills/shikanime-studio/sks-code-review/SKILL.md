@@ -1,22 +1,29 @@
 ---
 name: sk-code-review
-description: "Code review discipline: YAGNI, root-cause, conventions."
+description:
+  "Use when reviewing shikanime code: enforce YAGNI, root-cause fixes, and
+  project conventions before approval."
 version: 0.1.1
 author: Hermes Agent
 license: Apache-2.0
 metadata:
   hermes:
     tags:
-      [
-        code-review,
-        yagni,
-        conventions,
-        security,
-        github,
-        pull-requests,
-        shikanime-labs,
-        shikanime-studio,
-      ]
+      - code-review
+      - yagni
+      - conventions
+      - security
+      - github
+      - pull-requests
+      - shikanime-labs
+      - shikanime-studio
+    related_skills:
+      - sks-pr-resolve
+      - sks-land
+      - sks-pr
+platforms:
+  - linux
+  - macos
 ---
 
 # Code Review (sk-code-review)
@@ -85,11 +92,7 @@ commit/license/Nix/Go style, PR routing with `--head`, secrets, agent identity).
 
 ## Pitfalls
 
-- Empty diff → check `jj status`, tell user nothing to verify.
-- Large diff (>15k chars) → split by file, review each.
-- `delegate_task` non-JSON → treat as FAIL (fail-closed).
-- False positives → note intentional patterns, don't block.
-- Lint/test tools absent → skip that check silently; verdict still runs.
+Optional edge cases and gotchas — load `references/pitfalls.md` on demand.
 
 ## Verification
 

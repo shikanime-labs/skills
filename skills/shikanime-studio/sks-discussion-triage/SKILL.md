@@ -1,15 +1,26 @@
 ---
 name: sk-discussion-triage
 description:
-  "Triage an existing shikanime org discussion: category, body shape, Q&A answer
-  marking, lifecycle close (GraphQL)."
+  "Use when triaging an existing shikanime org discussion: category, body shape,
+  Q&A answer, and conversion to an issue."
 version: 0.1.1
 author: Hermes Agent
 license: Apache-2.0
 metadata:
   hermes:
     tags:
-      [github, triage, discussions, graphql, shikanime-labs, shikanime-studio]
+      - github
+      - triage
+      - discussions
+      - graphql
+      - shikanime-labs
+      - shikanime-studio
+    related_skills:
+      - sks-discussion
+      - sks-issue
+platforms:
+  - linux
+  - macos
 ---
 
 # Shikanime Discussion Triage

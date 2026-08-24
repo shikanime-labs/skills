@@ -1,24 +1,28 @@
 ---
 name: cpn-async
 description:
-  "Fan-out de travail parallèle sur workspaces jj + PR en stack pour console
-  cloud-pi-native."
+  À utiliser quand vous répartissez un travail multi-unités en parallèle sur
+  workspaces jj isolés et PR en stack pour console cloud-pi-native.
 version: 0.1.1
 author: Hermes Agent
 license: Apache-2.0
-platforms: [macos, linux]
+platforms:
+  - macos
+  - linux
 metadata:
   hermes:
     tags:
-      [
-        jj,
-        workspaces,
-        parallel,
-        stacked-prs,
-        gh-stack,
-        delegation,
-        cloud-pi-native,
-      ]
+      - jj
+      - workspaces
+      - parallel
+      - stacked-prs
+      - gh-stack
+      - delegation
+      - cloud-pi-native
+    related_skills:
+      - cpn-commit
+      - cpn-dev-workflow
+      - cpn-pr
 ---
 
 # CPN Org — Flux parallèles
