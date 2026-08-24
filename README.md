@@ -117,6 +117,7 @@ specification, compatible with the
 | `sks-pr-resolve`        | Reconcile PR review threads + ledger, report readiness without merging                         |
 | `sks-pr-review`         | Code review: YAGNI, root-cause, conventions                                                    |
 | `sks-doc`               | Repo `docs/` knowledge base (internal ops + optional user docs) as reviewable in-repo Markdown |
+| `sks-gc`                | Reclaim dangling bookmarks, skill-created jj workspaces, and leftover working-copy dirs from sks-async/sks-dev-workflow |
 
 ### cloud-pi-native family
 
@@ -151,14 +152,14 @@ nix fmt
 
 ### Evals
 
-Every skill carries `evals/evals.json` — realistic prompts plus assertions, in the
-agentskills.io test-case format. Each entry has a positive case (the skill should
-fire) and a negative case (a near-miss that should not). Assertions check:
-frontmatter parses, `name` matches the directory, the description is an imperative
-`Use when …` / `À utiliser quand …` under 200 characters, no cross-family prefix
-leak, body depth, and — against a baseline — description token recall and
-body-size ratio. Commit `evals/evals.json` alongside any skill change; a failing
-assertion blocks the merge.
+Every skill carries `evals/evals.json` — realistic prompts plus assertions, in
+the agentskills.io test-case format. Each entry has a positive case (the skill
+should fire) and a negative case (a near-miss that should not). Assertions
+check: frontmatter parses, `name` matches the directory, the description is an
+imperative `Use when …` / `À utiliser quand …` under 200 characters, no
+cross-family prefix leak, body depth, and — against a baseline — description
+token recall and body-size ratio. Commit `evals/evals.json` alongside any skill
+change; a failing assertion blocks the merge.
 
 ## License
 
