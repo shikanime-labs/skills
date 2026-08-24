@@ -63,3 +63,35 @@
   propagation unchanged. If the user says "X is normal, ignore it," drop the
   handling commit entirely (close PR, abandon commit, delete remote bookmark)
   rather than ship a no-op guard.
+- **Force-push a specific commit to an EXISTING PR branch (`jj git push`
+  lies).** `jj git push --bookmark` reports "already matches" / "move sideways"
+  when `@origin` tracking is stale, even though the local commit differs.
+  Reliable path — run from the `console` workspace (shares the jj object store,
+  so the commit is a loose git object):
+  `git push --force https://github.com/cloud-pi-native/console <SHA>:refs/heads/<branch>`.
+  Plain `git push` fails on a stale lease; `--force-with-lease` is rejected as
+  stale; `--force` works. Retry once on a send-pack disconnect (network blip).
+  Other workspaces may lack the commit as a loose object → "not a valid commit
+  name"; always push from `console`.
+- **`jj log -T 'commit_id'` returns graph glyphs, not a bare SHA.** Output
+  includes `○ │ ~` decorations. Strip before using in a refspec:
+  `SHA=$(jj log -r <rev> -T commit_id | tr -d '○│~ ' | head -1)`. Never pass `@`
+  (resolves to the empty WC) — resolve the real commit id first.
+- **No `as` TypeScript cast in NEW nestjs code (hard user constraint).**
+  `as never` / `as any` / `as X` are prohibited in code you write. Prefer proper
+  typing or `mockResolvedValueOnce` sequencing (e.g. in a spec that would
+  otherwise cast a mock). Function-parameter type annotations such as
+  `(cb: (tx: unknown) => unknown)` are NOT casts — they are fine. A CodeQL /
+  review finding that you "fixed" with an `as` cast means re-do the typing.
+- **Shared-file collision across a migration WAVE — defer, don't edit blindly.**
+  When several migration PRs touch the same file (`crypto.utils.ts`,
+  `packages/shared/src/schemas/index.ts`, etc.), do NOT edit that file from a
+  throwaway workspace you intend to push — it will conflict with the sibling PRs
+  at merge. Flag the file in the PR body ("shared with #X/#Y — coordinate at
+  merge") and leave the constant/assertion where it lives. Only fix files unique
+  to the PR you're finishing.
+- **Trust jj/gh ground truth, not subagent self-reports.** A subagent's "done"
+  is self-certification; before reporting a PR finished, verify with
+  `jj bookmark list` / `gh pr view <N> --json headRefOid` / `jj diff -r <rev>`
+  (grep a known token). "Zero commits" readings from a stale view are wrong more
+  often than not — re-check before concluding code is missing.

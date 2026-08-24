@@ -80,6 +80,26 @@ explicite (voir `cpn-pr`).
 gh pr view "$N" --repo "$R" --json number,title,labels,assignees,milestone,reviewRequests
 ```
 
+## 7. Reword / reconciliation corps↔diff
+
+Quand on demande de **reformuler** le titre ou le corps d'une PR (après
+force-push, changement de périmètre, ou « reword it based on new changes »), ne
+pas recopier le corps existant avec des retouches : il dérive du code.
+
+1. `gh pr diff "$N" --repo "$R"` — le diff réel (source de vérité du
+   comportement).
+2. `gh api repos/"$R"/pulls/"$N"/files --jq '.[] | "\(.filename)\tadd=\(.additions)\tdel=\(.deletions)"'`
+   — comptes par fichier.
+3. Recomparer chaque affirmation du corps contre le diff :
+   - **Claim absent** du diff → supprimer (ex. « j'ai ajouté `max-parallel: 2` »
+     alors que `strategy`/`matrix` n'a pas changé).
+   - **Correctif réel minimisé** (ex. « simple typo d'hygiène » alors que le
+     diff change aussi le port `8080`→`9000`, le vrai fix d'une issue) → élever
+     et lier l'issue concernée (#M).
+4. `gh pr edit "$N" --repo "$R" --title "..." --body-file /tmp/pr_body.md`.
+
+Détail et exemple de trap : `references/pr-body-reconciliation.md`.
+
 ## Pièges
 
 - Inventer des labels — filtrer contre `gh label list`.
@@ -87,6 +107,9 @@ gh pr view "$N" --repo "$R" --json number,title,labels,assignees,milestone,revie
 - Jalon — bug→patch courant, feature→release suivante.
 - Fermer une PR — interdit ; PR parasite → `cpn-pr` ou retour auteur.
 - Auto-close issue↔PR — éviter sauf un-à-un explicite.
+- Corps hors-diff — un corps de PR dérive du code (claim absent du diff, ou
+  correctif réel minimisé en « typo/hygiene »). Toujours recomparer contre
+  `gh pr diff` avant de rééditer un titre/corps. Voir étape 7.
 
 ## Voir aussi
 
