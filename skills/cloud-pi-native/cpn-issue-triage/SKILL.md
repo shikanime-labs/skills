@@ -37,6 +37,18 @@ Commandes détaillées : `references/cpn-issue-triage.md`.
      enhancement→mineure/majeure suivante.
    - **projet** : `--add-project <number>` si non boardé ; sauter si ambigu (pas
      de projet unique évident).
+   - **transfert** — si l'issue appartient manifestement à un autre dépôt
+     `cloud-pi-native/*` ou `shikanime-labs/*` (mauvais dépôt, pas seulement
+     mauvais label), la déplacer plutôt que trier sur place. Le transfert conserve
+     commentaires, labels et le lien croisé :
+
+     ```bash
+     gh issue transfer "$N" "$DEST_REPO"        # DEST_REPO = OWNER/REPO
+     ```
+
+     Confirmer que la destination existe et que le transfert est accepté avant de
+     continuer. Ne **pas** non plus éditer ou fermer l'issue source — le transfert
+     la vide.
 4. **Appliquer** via `gh issue edit` (additif : `--add-label`/`--add-assignee`,
    **jamais `--label`**).
 5. **Vérifier** (`gh issue view`).
