@@ -1,5 +1,5 @@
 ---
-name: sk-issue-workflow
+name: sks-issue-workflow
 description:
   "Use when you need the single entry point for the shikanime issue side:
   create, refine, and triage the issue before any PR."
@@ -25,7 +25,7 @@ platforms:
 
 # Shikanime Org Issue Workflow
 
-Thin orchestrator over `sk-issue` → `sk-issue-refine` → `sk-issue-triage`.
+Thin orchestrator over `sks-issue` → `sks-issue-refine` → `sks-issue-triage`.
 
 ## When to Use
 
@@ -34,13 +34,13 @@ Thin orchestrator over `sk-issue` → `sk-issue-refine` → `sk-issue-triage`.
 
 ## Procedure
 
-1. **Create** — Load `sk-issue`. Body = problem statement + `- [ ]` gate ledger
+1. **Create** — Load `sks-issue`. Body = problem statement + `- [ ]` gate ledger
    (command-decidable acceptance criteria); findings go in comments, not the
    body. Result: issue `#N`.
-2. **Refine** — Load `sk-issue-refine`; iterate the problem _inside the issue_
+2. **Refine** — Load `sks-issue-refine`; iterate the problem _inside the issue_
    until acceptance criteria converge. Update the body's tasklist only when
    criteria change. Skip only if already converged at creation (rare).
-3. **Triage** — Load `sk-issue-triage`; apply labels, assignee, milestone,
+3. **Triage** — Load `sks-issue-triage`; apply labels, assignee, milestone,
    project now. Only empty/determinable fields — **never invent a label the repo
    lacks**.
 
@@ -55,6 +55,6 @@ gh issue view <N> --repo <org>/<repo> --json number,title,labels
 
 ## See also
 
-- `sk-issue` — create step.
-- `sk-issue-refine` — in-issue convergence loop.
-- `sk-issue-triage` — metadata step run immediately after creation.
+- `sks-issue` — create step.
+- `sks-issue-refine` — in-issue convergence loop.
+- `sks-issue-triage` — metadata step run immediately after creation.

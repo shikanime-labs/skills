@@ -1,5 +1,5 @@
 ---
-name: sk-doc
+name: sks-doc
 description:
   Use when documenting a shikanime project in the repo's docs/ directory after a
   behavior-changing PR.
@@ -79,7 +79,7 @@ Target repo `R` (`OWNER/REPO`), validated under `shikanime-labs/` or
 jj file list docs/ 2>/dev/null
 ```
 
-If absent, propose seeding via issue → PR (`sk-issue` / `sk-pr`): create
+If absent, propose seeding via issue → PR (`sks-issue` / `sks-pr`): create
 `docs/README.md` listing the zones. Do not publish a separate docs site until
 the in-repo source is review-approved.
 
@@ -131,5 +131,5 @@ Optional edge cases and gotchas — load `references/pitfalls.md` on demand.
 
 ## See also
 
-- `sk-issue` / `sk-pr` — docs changes go through issue → PR like any other.
-- `sk-land` — land the docs PR; no separate wiki sync step remains.
+- `sks-issue` / `sks-pr` — docs changes go through issue → PR like any other.
+- `sks-land` — land the docs PR; no separate wiki sync step remains.

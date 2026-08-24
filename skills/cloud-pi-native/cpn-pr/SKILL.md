@@ -1,7 +1,8 @@
 ---
 name: cpn-pr
 description:
-  Open cloud-pi-native org PRs with French body and conventional title.
+  "À utiliser quand vous ouvrez une PR cloud-pi-native : titre conventionnel,
+  corps en français, lien vers l'issue."
 version: 0.2.4
 author: Hermes Agent
 license: Apache-2.0
@@ -181,5 +182,5 @@ the canonical French sections still apply.
 
 - `cpn-commit` — the commit this PR must restate (parity rule).
 - `cpn-dev-workflow` — branch discipline and pre-push checks for this PR.
-- `sk-pr` — shikanime twin (plain-English titles).
+- `sks-pr` — shikanime twin (plain-English titles).
 - `cpn-pr-triage` — assigns PR metadata; run it after creation.

@@ -30,4 +30,4 @@ Pour `grilling`/`prototype`, engage l'humain en série (pas de fan-out).
 - **Éditer le corps avec les trouvailles** — le corps est l'énoncé stable.
 - **Fuites du processus de pensée** — brouillards restent in-agent ; l'issue
   reçoit seulement le commentaire résolu.
-- **Français uniquement** — pas d'anglais ; n'importe pas les templates sk-.
+- **Français uniquement** — pas d'anglais ; n'importe pas les templates sks-.

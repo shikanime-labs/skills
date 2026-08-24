@@ -1,5 +1,5 @@
 ---
-name: sk-commit
+name: sks-commit
 description:
   "Use when committing in shikanime-labs or shikanime-studio repos:
   plain-English imperative titles and repo-enforced hooks (gitlint, DCO) win."
@@ -103,7 +103,7 @@ jj describe -m "<subject>" -m "Co-authored-by: Automata <automata@shikanime.stud
 
 ## Push / landing
 
-- Push to `origin`; open PRs from `--head <org>:<branch>` (`sk-pr`).
+- Push to `origin`; open PRs from `--head <org>:<branch>` (`sks-pr`).
 - NEVER push to `main` unless the user explicitly authorizes ("push to main" /
   "land it") — then push directly, no PR.
 - Protected `main` (e.g. `shikanime-studio/actions`) → PR; direct push rejected.
@@ -120,5 +120,5 @@ jj log -1 --no-graph -T 'description' && jj status
 
 ## See also
 
-- `sk-pr` — PR title/body derived from this commit (source of truth).
-- `sk-dev-workflow` — branch discipline this feeds into.
+- `sks-pr` — PR title/body derived from this commit (source of truth).
+- `sks-dev-workflow` — branch discipline this feeds into.

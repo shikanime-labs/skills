@@ -1,5 +1,5 @@
 ---
-name: sk-discussion-triage
+name: sks-discussion-triage
 description:
   "Use when triaging an existing shikanime org discussion: category, body shape,
   Q&A answer, and conversion to an issue."
@@ -42,10 +42,10 @@ Fetch: `references/fetch-query.md` (GraphQL).
 - **Recategorize** (mismatch): RFC/design → `Ideas`; threads/decision →
   `General`; questions → `Q&A`:
   `updateDiscussion(input:{discussionId:$id, categoryId:$c})`
-- **Body shape**: keep context + open questions (see `sk-discussion`); trim
+- **Body shape**: keep context + open questions (see `sks-discussion`); trim
   solution scaffolding via `updateDiscussion` body edit.
 - **Converged → issue**: if open questions resolved, comment so and route to
-  `sk-issue`; don't keep solving in the discussion.
+  `sks-issue`; don't keep solving in the discussion.
 - **Mark answered** (Q&A only):
   `markDiscussionCommentAsAnswer(input:{id:<commentNodeId>})`.
 - **Close** (post rationale comment first, never silently):

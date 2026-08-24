@@ -1,6 +1,8 @@
 ---
 name: cpn-issue
-description: Open CPN console issues with French templates.
+description:
+  "À utiliser quand vous ouvrez une issue console cloud-pi-native : énoncé du
+  problème en français et critères d'acceptation décidables."
 version: 0.1.2
 author: Hermes Agent
 license: Apache-2.0

@@ -1,5 +1,5 @@
 ---
-name: sk-dev-workflow
+name: sks-dev-workflow
 description:
   "Use when running the shikanime local dev loop: branching, push-to-origin, jj
   bookmark tracking, and landing via gh stack or direct push."
@@ -28,21 +28,21 @@ platforms:
 
 End-to-end local dev loop for shikanime repos: branching, pushing to `origin`,
 jj bookmark tracking, landing (PR vs direct push). Issue/PR policy lives in
-`sk-issue-workflow` / `sk-pr-workflow`; code review in `sk-code-review`;
-parallel split in `sk-async` (multi-parent joins via `jj new <a> <b>`).
+`sks-issue-workflow` / `sks-pr-workflow`; code review in `sks-code-review`;
+parallel split in `sks-async` (multi-parent joins via `jj new <a> <b>`).
 
 ## Lifecycle (ordered phases; gates in **bold**)
 
-| #   | Phase                                     | Owner               | Gate                  |
-| --- | ----------------------------------------- | ------------------- | --------------------- |
-| 0   | Discussion (RFC) if unconverged           | `sk-discussion`     | entry                 |
-| 1–2 | Issue: create → refine → triage           | `sk-issue-workflow` | **ledger settled**    |
-| 3   | Branch + implement                        | this                | —                     |
-| 4   | Commit (plain-English + Automata trailer) | `sk-commit`         | **commit shape**      |
-| 5   | Adversarial code review                   | `sk-code-review`    | **review gate**       |
-| 6   | PR: ensure issue → open → triage          | `sk-pr-workflow`    | —                     |
-| 7   | Land (merge / `gh stack`)                 | `sk-async` / this   | **branch protection** |
-| 8   | Close issue deliberately (N of N)         | `sk-issue`          | **ledger discharged** |
+| #   | Phase                                     | Owner                | Gate                  |
+| --- | ----------------------------------------- | -------------------- | --------------------- |
+| 0   | Discussion (RFC) if unconverged           | `sks-discussion`     | entry                 |
+| 1–2 | Issue: create → refine → triage           | `sks-issue-workflow` | **ledger settled**    |
+| 3   | Branch + implement                        | this                 | —                     |
+| 4   | Commit (plain-English + Automata trailer) | `sks-commit`         | **commit shape**      |
+| 5   | Adversarial code review                   | `sks-code-review`    | **review gate**       |
+| 6   | PR: ensure issue → open → triage          | `sks-pr-workflow`    | —                     |
+| 7   | Land (merge / `gh stack`)                 | `sks-async` / this   | **branch protection** |
+| 8   | Close issue deliberately (N of N)         | `sks-issue`          | **ledger discharged** |
 
 Never skip triage (ledger unsettled) or review (PR not ready).
 
@@ -55,7 +55,7 @@ Operate at `~/Source/Repos/<host>/<orga>/<repo>`.
 
 **Agent mode:** agent gh account holds org membership, pushes to `origin`, opens
 PRs `--head <org>:<branch>`, commits carry
-`Co-authored-by: Automata <automata@shikanime.studio>` (`sk-commit`).
+`Co-authored-by: Automata <automata@shikanime.studio>` (`sks-commit`).
 
 ## Validate assumptions before work — report unmet as blockers
 
@@ -67,10 +67,10 @@ silent scope change:
   `write`/`admin`)
 - jj repo: `.jj/` / `jj status` → `jj bookmark track` before push
 - `gh stack` present: `gh extension list`
-- issue exists (issue-first) — else `sk-issue-workflow`
+- issue exists (issue-first) — else `sks-issue-workflow`
 - NixOS repo: `nix` available (build-verify gate) Report
   `BLOCKED: <req> — <evidence> — <recovery>`. Independent unblocked streams may
-  fan out (`sk-async`) while the blocker is surfaced.
+  fan out (`sks-async`) while the blocker is surfaced.
 
 ## Branch discipline
 
@@ -111,7 +111,7 @@ jj does not auto-track bookmarks — without `track`, push is rejected.
 
 ## Landing
 
-- **PR (default):** `sk-pr-workflow` → push `origin`, create PR
+- **PR (default):** `sks-pr-workflow` → push `origin`, create PR
   `--head <org>:<branch>`, base `main`.
 - **PR via `gh stack` (stacked work):** submits from `origin`, keeping PR↔commit
   parity. Stacked PRs are a GitHub **public-preview** feature — fine internally.
@@ -123,7 +123,7 @@ jj does not auto-track bookmarks — without `track`, push is rejected.
 
 - **Direct push:** ONLY when the user explicitly says "push to main" / "land
   it".
-- **Run `sk-code-review` before requesting merge** — treat it as the gate.
+- **Run `sks-code-review` before requesting merge** — treat it as the gate.
 - **Merge:** `nix-containers` requires `gh pr merge --squash --admin` when the
   user says "merge the PRs". Other repos: merge per allowed strategy
   post-review. A red required check / branch-protection rejection is a gate
@@ -169,5 +169,5 @@ jj status && jj log -r @ -T 'bookmarks ++ " "'
 
 ## See also
 
-`sk-issue-workflow` / `sk-pr-workflow` (issue & PR sides), `sk-commit`,
-`sk-async` (stacked PRs), `sk-code-review` (phase 5), `cpn-dev-workflow`.
+`sks-issue-workflow` / `sks-pr-workflow` (issue & PR sides), `sks-commit`,
+`sks-async` (stacked PRs), `sks-code-review` (phase 5), `cpn-dev-workflow`.

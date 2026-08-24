@@ -1,5 +1,5 @@
 ---
-name: sk-land
+name: sks-land
 description:
   Use when landing a shikanime org PR after reconciliation (sks-pr-resolve) and
   review approval gates pass; closes the linked issue deliberately.
@@ -27,21 +27,21 @@ platforms:
 
 # Shikanime Org PR Landing
 
-Land a `shikanime-labs/*` / `shikanime-studio/*` PR only after `sk-pr-resolve`
+Land a `shikanime-labs/*` / `shikanime-studio/*` PR only after `sks-pr-resolve`
 **reconciled** it and a human approving review is in place — protect `main`. Not
-for opening (`sk-pr`), review (`sk-code-review`), reconciling (`sk-pr-resolve`),
-or direct "push to main". This skill only lands.
+for opening (`sks-pr`), review (`sks-code-review`), reconciling
+(`sks-pr-resolve`), or direct "push to main". This skill only lands.
 
 ## Pre-landing gates (must already hold)
 
-**Gate 1 — DoD discharged.** Issue criteria (`- [ ]`, `sk-issue`) all checked;
+**Gate 1 — DoD discharged.** Issue criteria (`- [ ]`, `sks-issue`) all checked;
 re-read the ledger (unchecked box blocks merge):
 
 ```bash
 gh issue view <N> --repo <org>/<repo> --json body --jq .body
 ```
 
-**Gate 2 — `sk-code-review` approval.** Approved on current head; re-review if
+**Gate 2 — `sks-code-review` approval.** Approved on current head; re-review if
 new commits landed. CI green: `gh pr checks <M> --repo <org>/<repo>`.
 
 ```bash
@@ -56,7 +56,7 @@ branch protection blocks self-approval (e.g. `shikanime-labs/skills`,
 the protection; no separate human review is then required.
 
 **Gate 3 — Conversations reconciled.** Every inline thread resolved
-(`sk-pr-resolve`'s output). If not run, do so now; if it already reported all
+(`sks-pr-resolve`'s output). If not run, do so now; if it already reported all
 reconciled, skip.
 
 ## Merge procedure
@@ -87,19 +87,19 @@ push. A failing run exits non-zero and skips merge (red never lands).
 > `--exit-status`. It takes a `<run-id>` (no `--branch`); resolve via
 > `gh run list`.
 
-- **Squash hygiene**: pass `-b` (see `sk-commit`); `gh pr merge --squash` has
+- **Squash hygiene**: pass `-b` (see `sks-commit`); `gh pr merge --squash` has
   **no `-m`** — the PR title is the subject. Never auto-concatenate branch
   commits (leaks jj's `*` / `---------` artifacts). One subject + correct
   trailers.
 - Lone, self-approval blocked (after verbal lgtm): use `--squash --admin`.
-- Stacked (`sk-async`/`sk-pr`): `gh stack merge <PR_NUMBER> --yes --squash`
+- Stacked (`sks-async`/`sks-pr`): `gh stack merge <PR_NUMBER> --yes --squash`
   (background, notify_on_complete).
 - Branch protection needs linear history + signed commits; squash only.
 
 ## Post-merge
 
 1. Verify: `gh pr view <M> --repo <org>/<repo> --json state`.
-2. Close the issue **deliberately** (`sk-pr` avoids auto-close): confirm
+2. Close the issue **deliberately** (`sks-pr` avoids auto-close): confirm
    tasklist N/N, then
    `gh issue close <N> --repo <org>/<repo> -c "Discharged by <PR URL>"`.
 3. Rebase downstream: `gh stack rebase` if any sit on top.
@@ -113,8 +113,9 @@ Optional edge cases and gotchas — load `references/pitfalls.md` on demand.
 ## Verification Checklist
 
 - [ ] Issue tasklist N/N checked with evidence.
-- [ ] `sk-code-review` approval on head; human review where protection requires.
-- [ ] All conversations reconciled (`sk-pr-resolve`).
+- [ ] `sks-code-review` approval on head; human review where protection
+      requires.
+- [ ] All conversations reconciled (`sks-pr-resolve`).
 - [ ] CI green.
 - [ ] Merged via `gh stack merge` (stacked) or
       `gh pr merge --squash [--admin if protection blocks self-approval]`
