@@ -29,7 +29,7 @@ Orchestrateur fin sur `cpn-issue`, `cpn-issue-refine`, `cpn-issue-triage` ; sans
 logique de création propre. Déclencheur : « prépare une issue sur <repo> » ou «
 mène ce problème jusqu'à une issue triée ».
 
-## Procédure
+## Procedure
 
 ### 1. `cpn-issue` — Crée
 
@@ -56,6 +56,6 @@ métadonnées de tri posées. Vérifie :
 gh issue view <N> --repo cloud-pi-native/console --json number,title,labels
 ```
 
-## Voir aussi
+## See also
 
 `cpn-issue`, `cpn-issue-refine`, `cpn-issue-triage`.

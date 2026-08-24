@@ -74,6 +74,6 @@ Mutations via `--input`, **jamais** `-F variables=@file` (échoue). Pas de
   commentaire de motif d'abord, jamais silencieusement.
 - 404 si `.has_discussions` non sondé (désactivé).
 
-## Voir aussi
+## See also
 
 `cpn-discussion` (création + corps), `cpn-issue` (dérivation).

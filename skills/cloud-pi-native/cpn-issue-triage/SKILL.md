@@ -27,12 +27,12 @@ Renseigner chaque champ **vide** et **déterminable depuis le contenu**
 (conventions : `cpn-issue`). Ne jamais inventer de valeur absente du dépôt.
 Commandes détaillées : `references/cpn-issue-triage.md`.
 
-## Prérequis
+## Prerequisites
 
 - `gh` authentifié comme collaborateur. Ne PAS `gh auth switch`.
 - `R=cloud-pi-native/console`, `N` = numéro d'issue.
 
-## Procédure
+## Procedure
 
 1. **Récupérer** l'issue (`gh issue view`).
 2. **Lister** labels / milestones / projets / assignees dispo — source de
@@ -68,6 +68,6 @@ Commandes détaillées : `references/cpn-issue-triage.md`.
    / non traitable), _Doublon_ (même sujet qu'une issue `#M` → renvoyer à
    l'issue canonique), _Terminé_ (résolu par un autre changement ou sans objet).
 
-## Voir aussi
+## See also
 
 - `cpn-issue` — conventions de création (français).

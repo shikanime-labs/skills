@@ -29,7 +29,7 @@ metadata:
 Réconcilie une PR `cloud-pi-native/*` : threads de review, ledger DoD,
 approbation/CI. **Ne land JAMAIS** (merge = `cpn-dev-workflow`).
 
-## Quand utiliser
+## When to Use
 
 - « Résous / vide les threads de review sur #M ».
 - « #M est-elle prête à land ? » — réconcilie et rapporte, sans merger.
@@ -90,7 +90,7 @@ Verdict : Ledger N/N (items ouverts) · Approbation `cpn-pr-review` sur head
 (ou `lgtm` verbal) · Conversations résolues/rationale ou threads en attente · CI
 green/pending/failing. Merge = `cpn-dev-workflow`.
 
-## Pièges
+## Pitfalls
 
 - Résoudre silencieusement (rejets → rationale obligatoire).
 - Cocher sans preuve — vérifie chaque critère contre le diff.

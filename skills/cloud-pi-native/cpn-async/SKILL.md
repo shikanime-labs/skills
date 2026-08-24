@@ -30,7 +30,7 @@ metadata:
 Fan-out parallèle sur workspaces jj isolés + PR stackées (`gh stack`). Base
 `cpn-dev-workflow`.
 
-## Quand utiliser
+## When to Use
 
 - Modif décomposable en units indépendants.
 - Agents parallèles (`delegate_task`) sans copie partagée.
@@ -48,7 +48,7 @@ Fan-out parallèle sur workspaces jj isolés + PR stackées (`gh stack`). Base
 - **Test d'indépendance** : indépendant ssi fichiers disjoints des siblings ET
   n'importe aucun de leur NOUVEAU code ; sinon depth ou join (merge).
 
-## Procédure
+## Procedure
 
 1. **Arbre avant le travail** : décompose contre le ledger de l'issue ; écris
    l'arbre (trunk, units, arêtes) dans plan/`todo` avec les gates par feuille
@@ -87,7 +87,7 @@ Chaque enfant reçoit : chemin du workspace, gates de l'unit, forme du commit
 ; le `goal` porte le contrat. **NE VER fusionner deux feuilles dans un seul
 `goal`.** Exemple : `references/delegate_task.md`.
 
-## Pièges
+## Pitfalls
 
 - **Units pseudo-indépendants** (fichiers qui se chevauchent) → conflits au join
   ; corrige la décomposition, pas le conflit.
@@ -98,7 +98,7 @@ Chaque enfant reçoit : chemin du workspace, gates de l'unit, forme du commit
 - `gh stack` = preview publique GitHub ; OK pour l'usage interne
   cloud-pi-native.
 
-## Vérification
+## Verification
 
 ```bash
 jj workspace list && jj log -r 'all()' --limit 20
@@ -108,7 +108,7 @@ gh stack view && gh pr list --state open
 DAG = arbre planifié ; chaque feuille a une PR liée sans auto-close ; chaque
 gate a une preuve in-workspace.
 
-## Voir aussi
+## See also
 
 - `cpn-dev-workflow` — parent ; gate de validation d'hypothèses AVANT le
   fan-out.
