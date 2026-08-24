@@ -80,8 +80,8 @@
         "path": "skills/shikanime-studio/sks-code-review"
       },
       {
-        "name": "sk-doc",
-        "path": "skills/shikanime-studio/sk-doc"
+        "name": "sks-doc",
+        "path": "skills/shikanime-studio/sks-doc"
       },
       {
         "name": "cpn-dev-workflow",

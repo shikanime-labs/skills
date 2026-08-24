@@ -80,9 +80,9 @@
       "path": "skills/shikanime-studio/sks-code-review"
     },
     {
-      "name": "sk-doc",
+      "name": "sks-doc",
       "description": "Document a shikanime project in the repo's docs/ directory: seed internal-ops and optional user-facing zones, edited as reviewable in-repo Markdown (Longhorn internal-ops / Kubernetes contributor docs / PyTorch PR-review patterns).",
-      "path": "skills/shikanime-studio/sk-doc"
+      "path": "skills/shikanime-studio/sks-doc"
     },
     {
       "name": "cpn-dev-workflow",
