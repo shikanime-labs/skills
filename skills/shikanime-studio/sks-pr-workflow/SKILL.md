@@ -29,6 +29,11 @@ platforms:
 
 Orchestrator over `sks-issue`/`sks-pr`/`sks-pr-triage`: issue → PR → triage.
 
+## When to Use
+
+- "Run the full PR side: issue → PR → triage."
+- "Ensure a PR is properly linked and triaged before work starts."
+
 ## Procedure
 
 ### 1. Ensure linked issue exists

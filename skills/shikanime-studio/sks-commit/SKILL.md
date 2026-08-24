@@ -14,6 +14,7 @@ metadata:
       - shikanime-labs
       - shikanime-studio
     related_skills:
+      - sks-pr-review
       - sks-dev-workflow
       - sks-pr
 platforms:

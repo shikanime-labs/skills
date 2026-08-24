@@ -29,6 +29,12 @@ GraphQL-only triage for `shikanime-labs/*`/`shikanime-studio/*`. Triage metadata
 = **category** + lifecycle only (English). Inputs `N` (number), `R`
 (`OWNER/REPO`).
 
+## When to Use
+
+- "Triage an existing shikanime org discussion."
+- "Recategorize a discussion to the correct lifecycle state."
+- "Close a resolved discussion with a rationale comment."
+
 ## 1. Probe + fetch
 
 ```bash

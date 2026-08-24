@@ -31,6 +31,12 @@ Open the issue before the PR, link it via `sks-pr`.
 Prereqs: `gh` authenticated to the canonical org repo; target it directly.
 `gh auth status` clean.
 
+## When to Use
+
+- "Create a new shikanime issue."
+- "Track and manage a shikanime GitHub issue."
+- "Verify issue exists before opening a PR (issue-first policy)."
+
 ## Procedure
 
 ### 1. Repo + type

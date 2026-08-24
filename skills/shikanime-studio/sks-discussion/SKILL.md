@@ -16,6 +16,7 @@ metadata:
       - rfc
     related_skills:
       - cpn-discussion
+      - sks-discussion-triage
       - sks-issue
       - sks-issue-workflow
 platforms:

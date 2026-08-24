@@ -40,6 +40,12 @@ lands the PR** — that is `sks-land`.
 
 Not for opening (`sks-pr`), reviewing (`sks-pr-review`), merging (`sks-land`).
 
+## When to Use
+
+- "Resolve review threads on a shikanime PR."
+- "Check if a PR is ready to land (reconcile + report)."
+- "Pre-landing cleanup before handing off to `sks-land`."
+
 ## Gates
 
 ### Gate 1 — DoD ledger

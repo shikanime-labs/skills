@@ -32,6 +32,12 @@ open with `--head <org>:<branch>`, base `main`, plain-English (or `doc:`) title,
 issue linkage. Repo enforcement (branch protection, CI, hooks) is detected per
 repo.
 
+## When to Use
+
+- "Open a PR in a shikanime org repo."
+- "Ensure issue linkage before creating a PR."
+- "Push to origin and land via `gh stack` (stacked PRs)."
+
 ## Internal policy: push to origin
 
 All PRs open from `origin` (the cloned org repo). Push the branch to `origin`

@@ -28,6 +28,12 @@ Triage an issue in `shikanime-labs/*`/`shikanime-studio/*`: fill fields **empty
 on the issue** and **derivable from its content**. English; never invent a
 repo-lacking value.
 
+## When to Use
+
+- "Triage an existing shikanime org issue."
+- "Assign metadata (labels, assignee, milestone, project)."
+- "Close an issue with a rationale if it will not be worked."
+
 ## Prerequisites
 
 - `gh` authenticated against the canonical org repo. Always target the org repo

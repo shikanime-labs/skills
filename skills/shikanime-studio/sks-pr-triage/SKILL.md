@@ -28,6 +28,12 @@ Triage a PR in `shikanime-labs/*`/`shikanime-studio/*`: fill every metadata
 field **empty on the PR** and **derivable from its own content**. English; never
 invent a missing repo value; triage never closes PRs.
 
+## When to Use
+
+- "Triage an existing shikanime org PR."
+- "Assign metadata (labels, assignee, milestone, project, reviewers)."
+- "Link issue ↔ PR; avoid auto-close unless one-to-one."
+
 Prereqs: `gh` authed vs the canonical org repo; target it directly.
 
 Inputs: `N` PR number; `R`=`OWNER/REPO`, default cwd `origin`, must be under
