@@ -3,7 +3,7 @@ name: sks-land
 description:
   Use when landing a shikanime org PR after reconciliation (sks-pr-resolve) and
   review approval gates pass; closes the linked issue deliberately.
-version: 0.2.1
+version: 0.2.3
 author: Hermes Agent
 license: Apache-2.0
 metadata:
@@ -105,6 +105,28 @@ push. A failing run exits non-zero and skips merge (red never lands).
 3. Rebase downstream: `gh stack rebase` if any sit on top.
 4. **Sync docs** if ops/arch/runbooks changed — edit `docs/` per `sks-doc`; skip
    if purely internal.
+5. **Teardown the landing bookmark.** GitHub drops the remote branch on merge,
+   but the local `jj` bookmark and its `origin` tracking ref linger and clutter
+   the workspace. Remove both:
+
+   ```bash
+   jj bookmark delete <branch>
+   jj git push --remote origin
+   ```
+
+   `delete` propagates to tracked remotes on the next push (no `--remote`
+   flag). If `push` reports nothing changed, GitHub already removed it.
+6. **Drop the isolated workspace** if you used one. Landing is a remote
+   `gh pr merge`; the local checkout that held the change is then dead weight.
+   sks-land never auto-deletes a workspace — remove it deliberately:
+
+   ```bash
+   jj workspace forget <name>
+   rm -rf <path>
+   ```
+
+   `forget` takes the workspace *name* (from `jj workspace list`), not the
+   path.
 
 ## Pitfalls
 
@@ -113,11 +135,11 @@ Optional edge cases and gotchas — load `references/pitfalls.md` on demand.
 ## Verification Checklist
 
 - [ ] Issue tasklist N/N checked with evidence.
-- [ ] `sks-pr-review` approval on head; human review where protection
-      requires.
+- [ ] `sks-pr-review` approval on head; human review where protection requires.
 - [ ] All conversations reconciled (`sks-pr-resolve`).
 - [ ] CI green.
 - [ ] Merged via `gh stack merge` (stacked) or
       `gh pr merge --squash [--admin if protection blocks self-approval]`
       (lone).
 - [ ] Issue closed deliberately with rationale.
+- [ ] Landing bookmark removed locally and reconciled on origin.
