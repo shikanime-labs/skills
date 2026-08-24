@@ -13,7 +13,7 @@
         "license field is 'Apache-2.0'",
         "Body contains at least one '##' heading",
         "Body lands a PR only after sks-pr-resolve reconciled it",
-        "Body closes the linked issue deliberately (sks-pr avoids auto-close)"
+        "Body closes the linked issue deliberately"
       ]
     },
     {

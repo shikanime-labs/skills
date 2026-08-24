@@ -18,7 +18,7 @@
     },
     {
       "id": 2,
-      "expected_output": "The skill enforces PR title/body parity with the commit and links the issue without auto-close.",
+      "expected_output": "The skill enforces PR title/body parity with the commit and links the issue.",
       "files": [],
       "prompt": "Push my branch to origin and open a PR against main with the issue linked.",
       "assertions": [

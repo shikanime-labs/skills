@@ -36,7 +36,7 @@ draft → triage). Logique PR déléguée.
    résout toujours une issue — jamais seule. Vérifie via `jj show <commit>`.
 2. **PR draft org.** Charge `cpn-pr`. Push `origin` (dépôt org), ouvre
    `--head cloud-pi-native:<branch>` base `main` ; dérive titre/body du commit,
-   lie via `Refs: <#N>` (pas d'auto-close sauf 1-à-1 explicite).
+   lie via `Refs: <#N>`.
 3. **Tri immédiat.** Charge `cpn-pr-triage` : labels, assignee, milestone,
    project, reviewers. Champs vides et déterminables seulement ; n'invente rien.
 

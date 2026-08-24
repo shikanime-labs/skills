@@ -10,7 +10,8 @@ the record.
   writing time (not copied from an earlier estimate).
 - A genuinely impossible criterion is struck with a comment, **never silently
   dropped**.
-- Several PRs may jointly solve one issue. Linkage stays `Issues liées` / `Refs`
-  (auto-close avoided; see `cpn-pr`). The ledger stays one per issue; closure is
-  deliberate — verified N of N after the final merge, then
+- Plusieurs PR peuvent résoudre une issue ensemble. La liaison reste `Issues liées` /
+  `Refs` (fermeture délibérée, voir `cpn-dev-workflow/references/pitfalls.md`). Le
+  ledger reste un par issue ; la fermeture est délibérée — vérifiée N sur N après
+  la fusion finale, puis
   `gh issue close <N> -c "<evidence>"`.

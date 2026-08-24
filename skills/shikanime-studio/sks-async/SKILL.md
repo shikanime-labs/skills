@@ -73,8 +73,7 @@ onto jj's commit DAG + `gh stack`. Core splitting component of
      gh stack init <base> && gh stack add <next> && gh stack submit --auto --open
      ```
 
-   - PR↔issue linkage per `sks-pr`: `Related: <issue URL>` by default — no
-     auto-close keywords.
+   - PR↔issue linkage per `sks-pr`: `Related: <issue URL>` by default.
 5. **Verify bottom-up** — each leaf's checks run IN its workspace; dispatcher
    re-runs them (subagent self-reports aren't evidence). Retire with
    `jj workspace forget <name>`; refresh idle with `jj workspace update-stale`.
@@ -94,8 +93,8 @@ jj workspace list && jj log -r 'all()' --limit 20   # tree shape on screen
 gh stack view && gh pr list --state open             # chains + PRs exist
 ```
 
-DAG matches planned tree; every leaf has a PR linked to its issue without
-auto-close; every gate has in-workspace evidence.
+DAG matches planned tree; every leaf has a PR linked to its issue; every gate
+has in-workspace evidence.
 
 ## See also
 

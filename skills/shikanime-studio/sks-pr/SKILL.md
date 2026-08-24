@@ -59,7 +59,13 @@ remote as canonical.
    (`gh repo view <org>/<repo> --json defaultBranchRef`).
 2. **Title** — commit subject (plain English / `doc:`), NO conventional prefix;
    parity with commit.
-3. **Body** — from the commit body; do NOT diverge (commit is source of truth).
+3. **Body** — restates the commit body as three fixed sections (commit is the
+   source of truth; restate, do NOT invent new rationale):
+   - `## What` — one-line summary + bullet scope (what this PR delivers).
+   - `## Why` — why now: the drift/risk/pain this closes (one short paragraph).
+   - `## References` — `Related: <full issue URL>` (mandatory) plus any
+     commits/specs/changelogs proving the solution.
+   - See `references/example-pr-body.md` for a filled example.
    - Temp body files are NOT hard-wrapped: one sentence per line. GitHub joins
      consecutive non-blank lines; a one-line edit churns only that line. Never
      `nix fmt` / `mdformat` a temp body file.
@@ -73,12 +79,9 @@ remote as canonical.
      gitlint enforces 80-col). Repo-enforced shape (e.g. `manifests` AGENTS.md:
      `Related:` + 80-col + `Signed-off-by`) overrides — follow the repo.
    - Linkage is **many-to-many** (discussion → issue → comments → PR): a PR
-     always solves an issue. **Avoid auto-close keywords** (fire at merge,
-     asserting a ledger a merge can't prove). Default `Related: <issue URL>`;
-     `Closes <full URL>` ONLY when explicitly one-to-one. Otherwise close
+     always solves an issue. Default `Related: <issue URL>`; otherwise close
      deliberately after final merge (verify N-of-N, then `gh issue close`).
-     Direct pushes never auto-close (no commit body) — same deliberate close
-     (see `sks-dev-workflow`).
+     Same deliberate close (see `sks-dev-workflow`).
 4. **Head** — `--head <org>:<branch>`; push to `origin` only.
 5. **Parity** — PR title MUST equal commit subject; PR body MUST restate the
    commit message; no added rationale (see `sks-commit`).

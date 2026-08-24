@@ -138,6 +138,26 @@ jj does not auto-track bookmarks — without `track`, push is rejected.
   post-review. A red required check / branch-protection rejection is a gate
   doing its job — surface it, never `--admin` past it unasked.
 
+## Drafting GitHub messages (family invariants)
+
+English across the shikanime family; full URLs over `#N` shorthand; commit↔PR
+parity. Each message type's exact shape lives in its owning skill:
+
+- **Commit** → `sks-commit` — AGENTS.md repos (`skills`, `manifests`): labeled
+  body `Design:`/`Related:` + auto `Signed-off-by`/`Change-Id`.
+- **Issue** → `sks-issue` — body = stable problem statement + `- [ ]` ledger;
+  `## Problem`/`## Acceptance` variant also accepted (see `sks-issue`
+  `references/example-issue-body.md`).
+- **Discussion** → `sks-discussion` — RFC: context + open question + affected
+  repos; no acceptance criteria (that is issue scope).
+- **Comment** → findings/proofs in comments, body stays stable; cite concrete
+  evidence (diff lines, command output), not prose.
+- **PR** → `sks-pr` — title = commit subject; body `## What`/`## Why`/
+  `## References` restating the commit; `Related: <full URL>`.
+
+Cross-cutting: a `- [ ]` ledger item is command-decidable and done only once
+its check ran; close the linked issue deliberately after N-of-N verified.
+
 ## Done is proven, not asserted
 
 "`pushed` / `landed` / `merged`" are claims until verified against real output.

@@ -112,7 +112,7 @@ delegate_task(tasks=[
    body = **problem statement** (need, scope, API/data/security impact, `- [ ]`
    acceptance tasklist — see Gates), never the solution; analysis goes in
    comments. One issue per item. Create via `cpn-issue` if absent; link PR with
-   `Refs #N` — never an auto-close keyword unless explicitly one-to-one. No
+   `Refs #N` (fermer délibérément après N-sur-N, voir `references/pitfalls.md`). No
    bare-request implementation; no PR without an issue behind it.
 4. **Triage before work** (`cpn-issue-triage`): assign every exposed metadata —
    labels (conventional-prefix → type), assignee (active `gh` identity),
@@ -198,14 +198,10 @@ subject to change) — fine for internal `cloud-pi-native` use. A lone branch ca
 still use `gh pr create --draft --fill --body "Refs #N"` (step 11); the parity
 rule below still applies.
 
-- **A PR always solves an issue; never open one alone.** Linkage is
-  **many-to-many**: several PRs may solve one issue; one PR may serve several.
-  **Avoid auto-close keywords** — `Fixes`/`Closes` fires at merge and asserts
-  the whole ledger is discharged, which a merge can't prove; in a many-to-many
-  shape it closes issues prematurely. Default `Refs #N` on every PR. Use a
-  closing keyword ONLY when explicitly one-to-one (single issue, single PR, PR
-  fully discharges the ledger). Any other shape: after the final PR merges,
-  verify the tasklist N of N and close deliberately
+- **Une PR résout toujours une issue ; ne jamais l'ouvrir seule.** La liaison est
+  **many-to-many** : plusieurs PR peuvent résoudre une issue ; une PR peut en
+  servir plusieurs. Par défaut `Refs #N` sur chaque PR. Tout autre cas : après
+  la fusion de la PR finale, vérifier la tâche N sur N et fermer délibérément
   (`gh issue close <N> -c "<evidence>"`).
 - **Parity principle: the commit is the source of truth; the PR restates it.**
   The PR title must equal the commit subject and the PR body must restate the

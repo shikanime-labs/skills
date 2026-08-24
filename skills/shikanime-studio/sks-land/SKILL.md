@@ -105,7 +105,7 @@ push. A failing run exits non-zero and skips merge (red never lands).
 ## Post-merge
 
 1. Verify: `gh pr view <M> --repo <org>/<repo> --json state`.
-2. Close the issue **deliberately** (`sks-pr` avoids auto-close): confirm
+2. Close the issue **deliberately**: confirm
    tasklist N/N, then
    `gh issue close <N> --repo <org>/<repo> -c "Discharged by <PR URL>"`.
 3. Rebase downstream: `gh stack rebase` if any sit on top.

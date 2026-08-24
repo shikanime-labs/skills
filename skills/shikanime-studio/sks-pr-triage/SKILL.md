@@ -32,7 +32,7 @@ invent a missing repo value; triage never closes PRs.
 
 - "Triage an existing shikanime org PR."
 - "Assign metadata (labels, assignee, milestone, project, reviewers)."
-- "Link issue ↔ PR; avoid auto-close unless one-to-one."
+- "Link issue ↔ PR."
 
 Prereqs: `gh` authed vs the canonical org repo; target it directly.
 
@@ -79,7 +79,7 @@ gh pr edit "$N" --repo "$R" --add-reviewer <login>
 ### 5. Link issue ↔ PR
 
 If title/body cites `#M` (open, unlinked issue), ensure body has `Related: #M`
-(prepend if absent). Avoid auto-close unless one-to-one (see `sks-pr`).
+(prepend if absent).
 
 ### 6. Verify
 
@@ -89,5 +89,5 @@ gh pr view "$N" --repo "$R" --json number,title,labels,assignees,milestone,revie
 
 Constraints: never invent labels (filter `gh label list`); never overwrite
 (`--add-label`/`--add-assignee` only); milestone — bugs→current patch,
-features→next release; never close PRs (strays→`sks-pr` or author); avoid
-PR↔issue auto-close unless one-to-one; always the org repo.
+features→next release; never close PRs (strays→`sks-pr` or author); always the
+org repo.

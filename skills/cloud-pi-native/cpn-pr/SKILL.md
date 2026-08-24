@@ -62,12 +62,7 @@ retired.)
    configured.
 2. **French PR body** — use the repo's `PULL_REQUEST_TEMPLATE.md` sections
    verbatim when present; else the canonical French template (Procedure §2).
-3. **Issue linkage** — `Issues liées: #XXXX` by default (track WITHOUT closing).
-   **Avoid auto-close keywords** (`Closes`/`Fixes` fires at merge and asserts
-   the whole `Définition du fini` is discharged — a merge can't prove that, and
-   in a many-to-many shape it closes issues prematurely). Use a closing keyword
-   ONLY in the explicit one-to-one case; else link with `Issues liées: #XXXX` /
-   `Refs #N`, then close deliberately (`gh issue close <N> -c "<evidence>"`).
+3. **Liaison issue** — `Issues liées: #XXXX` par défaut (suivre sans fermer).
 4. **Base branch** — `main` unless the repo's default differs.
 
 ## Repo-Class Detection (adapt, don't assume)
@@ -133,7 +128,7 @@ gh pr create \
   --body "$(cat <<'EOF'
 ## Issues liées
 
-#XXXX   (auto-close only in the explicit one-to-one case; see section 3)
+#XXXX   (fermer délibérément après la fusion, voir section 3)
 
 ---------
 

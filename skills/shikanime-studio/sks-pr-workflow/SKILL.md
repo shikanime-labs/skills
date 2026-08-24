@@ -45,8 +45,7 @@ create first. A PR never opens without an issue. Verify match via
 ### 2. Open the org-repo PR
 
 Load `sks-pr`. Push to `origin` (org repo), open `--head <org>:<branch>`, base
-`main`; link `Related: <full issue URL>` (no auto-close keyword unless
-explicitly one-to-one).
+`main`; link `Related: <full issue URL>`.
 
 ### 3. Triage immediately
 

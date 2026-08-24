@@ -71,8 +71,7 @@ gh pr edit "$N" --repo "$R" --add-reviewer <login>
 ## 5. Lier issue ↔ PR
 
 Si `#M` (issue ouverte, pas liée) est référencée, garantir `Issues liées: #M`
-dans le corps (éditer, préfixer si absent). Éviter l'auto-close sauf un-à-un
-explicite (voir `cpn-pr`).
+dans le corps (éditer, préfixer si absent).
 
 ## 6. Vérifier
 
@@ -106,7 +105,7 @@ Détail et exemple de trap : `references/pr-body-reconciliation.md`.
 - Écrasement — `--add-label` / `--add-assignee` (additif), jamais `--label`.
 - Jalon — bug→patch courant, feature→release suivante.
 - Fermer une PR — interdit ; PR parasite → `cpn-pr` ou retour auteur.
-- Auto-close issue↔PR — éviter sauf un-à-un explicite.
+- Auto-close issue↔PR — interdit ; fermer délibérément après N-sur-N.
 - Corps hors-diff — un corps de PR dérive du code (claim absent du diff, ou
   correctif réel minimisé en « typo/hygiene »). Toujours recomparer contre
   `gh pr diff` avant de rééditer un titre/corps. Voir étape 7.

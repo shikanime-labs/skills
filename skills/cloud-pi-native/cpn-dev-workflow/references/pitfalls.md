@@ -20,7 +20,8 @@
 - **GitHub bot comments stale vs HEAD**: CodeQL / `github-code-quality[bot]`
   anchor to the commit they ran on. Re-read the file at HEAD before acting; the
   flagged import/function may already be gone.
-- Dependency changes need explicit Socle approval, even for bug fixes.
+- **Fermeture auto via `Closes #N`/`Fixes #N` à la fusion** — se déclenche avant
+  que le `Définition du fini` soit vérifié ; fermer délibérément après N-sur-N.
 - Console commits in English; doc-only changes still follow scope/review rules.
 - ArgoCD redeploy needs an image tag change; manifest-only changes may not
   rollout.

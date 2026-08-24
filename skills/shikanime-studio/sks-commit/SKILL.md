@@ -85,7 +85,8 @@ grep -rl "Signed-off-by" .github/ 2>/dev/null
   `Signed-off-by` (CC1). A commit with both + no `Related:` passes. Use full
   issue URLs — never bare `#N` / `owner/repo#N` (broken on GitHub):
   `Related: https://github.com/<org>/<repo>/issues/N`. 80-col wrap. Capitalized
-  plain title, no prefix.
+  plain title, no prefix. See `references/example-commit.md` for a filled
+  example.
 - `gh stack` reads the commit subject/body to seed PR title/description
   (PR↔commit parity); author the commit to carry full rationale. Stacked PRs are
   a GitHub public-preview feature — fine for internal shikanime use.
