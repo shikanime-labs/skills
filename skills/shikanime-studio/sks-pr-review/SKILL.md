@@ -57,6 +57,7 @@ approves.
 Command cheat-sheet: `references/commands.md`.
 
 **2 — High-level (Ponytail).** Per change:
+
 - (1) needed? speculative need → flag deletion, not review polish;
 - (2) already in codebase? reuse before reviewing a re-implementation;
 - (3) root cause not symptom — fix where all callers route through, not in the
