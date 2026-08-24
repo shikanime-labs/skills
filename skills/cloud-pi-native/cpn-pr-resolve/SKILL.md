@@ -1,8 +1,8 @@
 ---
 name: cpn-pr-resolve
 description:
-  "Réconcilie review-threads d'une PR cloud-pi-native : ledger DoD +
-  approbation/CI, SANS merger (extrait cpn-dev-workflow)."
+  "À utiliser quand vous réconciliez les review-threads d'une PR cloud-pi-native
+  : ledger DoD, approbation et CI, sans merger."
 version: 0.1.1
 author: Hermes Agent
 license: Apache-2.0

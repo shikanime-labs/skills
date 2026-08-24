@@ -1,0 +1,59 @@
+{
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "The skill answers the 'cpn-code-review' request: its body covers 'Prerequisites' and stays loadable/well-formed.",
+      "files": [],
+      "prompt": "À utiliser quand vous relisez une PR de cloud-pi-native/console : architecture, conventions NestJS et rendu de revue en français..",
+      "assertions": [
+        "Description still contains the token 'utiliser'",
+        "Body contains a '## Prerequisites' heading",
+        "Frontmatter parses as YAML with a top-level 'name' key",
+        "Frontmatter 'name' equals the directory basename 'cpn-code-review'",
+        "Description starts with 'Use when' and is \u003c= 200 characters",
+        "license field is 'Apache-2.0'",
+        "Body still contains at least one '##' heading",
+        "Description still contains the token 'utiliser'",
+        "No '---------' separator artifact appears outside a code fence"
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "SKILL.md exposes an actionable procedure: enough sections and substance to follow step by step.",
+      "files": [],
+      "prompt": "Show the step-by-step procedure for cpn-code-review.",
+      "assertions": [
+        "Body has at least 1 '##' section and 800+ characters of body",
+        "Description token recall vs baseline \u003e= 50%",
+        "Body size vs baseline \u003c= 1.30x",
+        "Frontmatter 'name' equals the directory basename 'cpn-code-review'"
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "Even on a malformed request, the skill stays loadable: frontmatter parses, name==dir, no separator artifact.",
+      "files": [],
+      "prompt": "idk how 2 cpn-code-review ??? (pls fix my broken config file 🔧)",
+      "assertions": [
+        "Frontmatter parses as YAML with a top-level 'name' key",
+        "Frontmatter 'name' equals the directory basename 'cpn-code-review'",
+        "Description starts with 'Use when' and is \u003c= 200 characters",
+        "license field is 'Apache-2.0'",
+        "Body still contains at least one '##' heading",
+        "Description still contains the token 'utiliser'",
+        "No '---------' separator artifact appears outside a code fence"
+      ]
+    },
+    {
+      "id": 4,
+      "expected_output": "The 'cpn-code-review' description does NOT claim the other org's prefix 'sks-'.",
+      "files": [],
+      "prompt": "I'm in the shikanime org, help me with this.",
+      "assertions": [
+        "Description does not contain the substring 'sks-'",
+        "Frontmatter 'name' equals the directory basename 'cpn-code-review'"
+      ]
+    }
+  ],
+  "skill_name": "cpn-code-review"
+}

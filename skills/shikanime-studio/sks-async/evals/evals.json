@@ -1,0 +1,59 @@
+{
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "The skill answers the 'sks-async' request: its body covers 'Procedure' and stays loadable/well-formed.",
+      "files": [],
+      "prompt": "Splitting multi-unit work into parallel, isolated jj workspaces (depth-tree fan-out) and landing as independent PRs or gh stack chains..",
+      "assertions": [
+        "Description still contains the token 'splitting'",
+        "Body contains a '## Procedure' heading",
+        "Frontmatter parses as YAML with a top-level 'name' key",
+        "Frontmatter 'name' equals the directory basename 'sks-async'",
+        "Description starts with 'Use when' and is \u003c= 200 characters",
+        "license field is 'Apache-2.0'",
+        "Body still contains at least one '##' heading",
+        "Description still contains the token 'splitting'",
+        "No '---------' separator artifact appears outside a code fence"
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "SKILL.md exposes an actionable procedure: enough sections and substance to follow step by step.",
+      "files": [],
+      "prompt": "Show the step-by-step procedure for sks-async.",
+      "assertions": [
+        "Body has at least 1 '##' section and 800+ characters of body",
+        "Description token recall vs baseline \u003e= 50%",
+        "Body size vs baseline \u003c= 1.30x",
+        "Frontmatter 'name' equals the directory basename 'sks-async'"
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "Even on a malformed request, the skill stays loadable: frontmatter parses, name==dir, no separator artifact.",
+      "files": [],
+      "prompt": "idk how 2 sks-async ??? (pls fix my broken config file 🔧)",
+      "assertions": [
+        "Frontmatter parses as YAML with a top-level 'name' key",
+        "Frontmatter 'name' equals the directory basename 'sks-async'",
+        "Description starts with 'Use when' and is \u003c= 200 characters",
+        "license field is 'Apache-2.0'",
+        "Body still contains at least one '##' heading",
+        "Description still contains the token 'splitting'",
+        "No '---------' separator artifact appears outside a code fence"
+      ]
+    },
+    {
+      "id": 4,
+      "expected_output": "The 'sks-async' description does NOT claim the other org's prefix 'cpn-'.",
+      "files": [],
+      "prompt": "I'm in the cloud-pi-native org, help me with this.",
+      "assertions": [
+        "Description does not contain the substring 'cpn-'",
+        "Frontmatter 'name' equals the directory basename 'sks-async'"
+      ]
+    }
+  ],
+  "skill_name": "sks-async"
+}

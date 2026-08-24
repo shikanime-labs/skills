@@ -1,6 +1,8 @@
 ---
 name: cpn-discussion
-description: Create/edit console Discussions (French, GraphQL).
+description:
+  "À utiliser quand vous ouvrez ou modifiez une Discussion console
+  cloud-pi-native comme étape pré-issue (français, GraphQL)."
 version: 0.1.0
 author: Hermes Agent
 license: Apache-2.0

@@ -1,8 +1,8 @@
 ---
 name: cpn-issue-triage
 description:
-  "Triage une issue existante du dépôt cloud-pi-native/console : labels,
-  assignee, jalon, projet ; fermeture motivée si non traitable."
+  "À utiliser quand vous triez une issue existante de cloud-pi-native/console :
+  labels, assignee, jalon, projet ; clôture motivée."
 version: 0.1.1
 author: Hermes Agent
 license: Apache-2.0

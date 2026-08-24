@@ -149,6 +149,25 @@ Format Nix files before committing:
 nix fmt
 ```
 
+### Evals
+
+Every skill carries `evals/evals.json` — realistic prompts plus assertions, in
+the [agentskills.io](https://agentskills.io/skill-creation/evaluating-skills)
+test-case format. The harness grades assertions programmatically (frontmatter
+parses, `name` matches the directory, description is an imperative `Use when …`
+/ `À utiliser quand …` under 200 characters, no cross-family prefix leak, body
+depth, and — against a baseline — description token recall and body-size ratio),
+then writes the workspace artifacts the skill-creator viewer reads:
+
+```bash
+python3 scripts/gen_skill_evals.py                          # (re)emit all evals
+python3 scripts/run_skill_eval.py --skill skills/<family>/<name>
+python3 scripts/run_skill_eval.py --skill <dir> --baseline <old-dir>
+python3 scripts/eval-viewer/generate_review.py <dir>-workspace/iteration-1
+```
+
+Run the gate for every skill you touch; a failing assertion blocks the commit.
+
 ## License
 
 Apache 2.0 — See [LICENSE](./LICENSE) for details.

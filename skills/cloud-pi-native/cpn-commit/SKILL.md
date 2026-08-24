@@ -1,6 +1,8 @@
 ---
 name: cpn-commit
-description: Commit to cloud-pi-native/console with conventional format.
+description:
+  "À utiliser quand vous committez dans cloud-pi-native/console : commits
+  conventionnels en français via jj."
 version: 0.1.0
 author: Hermes Agent
 license: Apache-2.0

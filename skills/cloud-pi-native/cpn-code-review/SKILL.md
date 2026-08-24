@@ -1,6 +1,8 @@
 ---
 name: cpn-code-review
-description: "Review cloud-pi-native console PRs: arch, French."
+description:
+  "À utiliser quand vous relisez une PR de cloud-pi-native/console :
+  architecture, conventions NestJS et rendu de revue en français."
 version: 0.1.1
 author: Hermes Agent
 license: Apache-2.0

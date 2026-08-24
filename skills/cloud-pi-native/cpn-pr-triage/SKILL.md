@@ -1,8 +1,8 @@
 ---
 name: cpn-pr-triage
 description:
-  "Triage une PR existante du dépôt cloud-pi-native/console : labels, assignee,
-  jalon, reviewers, lien issue."
+  "À utiliser quand vous triez une PR existante de cloud-pi-native/console :
+  labels, assignee, jalon, reviewers, lien issue."
 version: 0.1.1
 author: Hermes Agent
 license: Apache-2.0
