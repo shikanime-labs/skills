@@ -23,7 +23,7 @@
       "assertions": [
         "Frontmatter 'description' starts with 'À utiliser quand' or 'Use when' and is <= 200 characters.",
         "Le corps utilise `--add-label` et `--add-assignee` (additif), jamais `--label`.",
-        "Le corps lie l'issue via `Issues liées: #M` et évite l'auto-close sauf un-à-un."
+        "Le corps lie l'issue via `Issues liées: #M`."
       ]
     },
     {

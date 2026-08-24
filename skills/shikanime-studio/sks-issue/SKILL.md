@@ -71,11 +71,17 @@ decide it. An item is done only once its check ran, never from memory; an
 impossible criterion is struck with a comment, never dropped. Candidate
 solutions belong in comments, not tasklist/body.
 
+Observed variant (see `references/example-issue-body.md`): `## Problem` /
+`## Acceptance` with no separate References block — same content, fewer
+headings; either shape is acceptable.
+Keep the body stable; post findings/root-cause as `gh issue comment` and cite
+concrete evidence (the exact `- old` → `+ new` diff lines, or command output),
+not prose summaries. Interim comments may be deleted after convergence.
+
 Body has a **References** section: official material (docs, linked issues/PRs,
 commits, changelogs, specs); more may be posted as comments to steer resolution,
 but proof of the solution belongs in the PR. Close deliberately — ledger
-verified N of N after final merge — never via a merge-time auto-close keyword
-unless the PR is one-to-one with the issue.
+verified N of N after final merge.
 
 ### 3. Triage metadata
 
@@ -99,6 +105,6 @@ Confirm title + label set; issue in org repo.
 
 ## See also
 
-`sks-discussion`, `sks-pr` (links back via `Related:` without auto-close),
+`sks-discussion`, `sks-pr` (links back via `Related:`),
 `sks-issue-refine`, `cpn-issue`, `sks-issue-triage` (run after creation),
 `sks-doc`.

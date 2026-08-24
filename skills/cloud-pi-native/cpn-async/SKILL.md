@@ -72,8 +72,7 @@ Fan-out parallèle sur workspaces jj isolés + PR stackées (`gh stack`). Base
      gh stack init <base> && gh stack add <next> && gh stack submit --auto --open
      ```
 
-   - Liaison PR↔issue via `cpn-pr` : `Refs #N` par défaut — pas de mot-clé
-     auto-close.
+   - Liaison PR↔issue via `cpn-pr` : `Refs #N` par défaut.
 5. **Vérifie bottom-up** : chaque feuille lance ses checks DANS son workspace ;
    le dispatcher re-vérifie via `terminal` (un sous-agent qui dit « done » n'est
    pas une preuve). Fin : `jj workspace forget <name>` ; à la traîne :
@@ -105,7 +104,7 @@ jj workspace list && jj log -r 'all()' --limit 20
 gh stack view && gh pr list --state open
 ```
 
-DAG = arbre planifié ; chaque feuille a une PR liée sans auto-close ; chaque
+DAG = arbre planifié ; chaque feuille a une PR liée ; chaque
 gate a une preuve in-workspace.
 
 ## See also

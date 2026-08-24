@@ -47,7 +47,7 @@ Does NOT push, open PRs, or run CI — those live in `cpn-pr` /
 | Breaking | `type!:` / `type(scope)!:` (MAJOR bump)                                                   |
 | Subject  | imperative, lowercase start, **no trailing period**                                       |
 | Body     | optional, separated from subject by exactly one blank line                                |
-| Footer   | optional `Closes #N`, `BREAKING CHANGE:`                                                  |
+| Footer   | optional `BREAKING CHANGE:` (no `Closes #N` — close deliberately)        |
 
 ## Procedure
 

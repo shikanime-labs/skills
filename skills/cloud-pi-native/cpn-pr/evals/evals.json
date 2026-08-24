@@ -17,13 +17,13 @@
     },
     {
       "id": 2,
-      "expected_output": "PR draft ouverte depuis origin sans auto-close de l'issue.",
+      "expected_output": "PR draft ouverte depuis origin sans fermeture de l'issue.",
       "files": [],
-      "prompt": "Crée une PR draft sur cloud-pi-native/console depuis la branche fix/telemetry, sans auto-fermer l'issue.",
+      "prompt": "Crée une PR draft sur cloud-pi-native/console depuis la branche fix/telemetry, sans fermer l'issue.",
       "assertions": [
         "Frontmatter 'description' starts with 'À utiliser quand' or 'Use when' and is <= 200 characters.",
         "Le corps ouvre la PR avec `--head cloud-pi-native:<branch>` (origin-only policy).",
-        "Le corps déconseille les mots-clés d'auto-close sauf cas un-à-un explicite."
+        "Le corps lie l'issue via `Issues liées:` et ferme délibérément."
       ]
     },
     {

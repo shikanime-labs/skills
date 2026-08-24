@@ -94,6 +94,6 @@ qu'énoncé + Références ; convergence validée avant `cpn-pr`.
 - `cpn-issue` — ouvre l'issue dans laquelle cette skill itère.
 - `cpn-discussion` — surface RFC / questions ouvertes ; utilise-la avant que le
   problème soit énonçable.
-- `cpn-pr` — le solveur ; lie en retour via `Refs:` sans auto-close.
+- `cpn-pr` — le solveur ; lie en retour via `Refs:`.
 - `cpn-async` — isolation pour le fan-out `research` parallèle.
 - `cpn-issue-triage` — assigne les métadonnées une fois convergé.
