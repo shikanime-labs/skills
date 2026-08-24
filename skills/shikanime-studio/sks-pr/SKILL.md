@@ -160,7 +160,7 @@ re-derive here.
 - **Direct landing**: user authorizing "push to main" / "land it" overrides the
   PR path — push directly, don't open a PR.
 - **Docs follow-up**: if this PR changes user-facing behavior or adds a feature,
-  plan a `sk-doc` update under `docs/` after merge.
+  plan a `sks-doc` update under `docs/` after merge.
 
 ## Verification
 
