@@ -2,14 +2,16 @@
 
 Pour les items `research`, résous le travail AFK en parallèle via
 `delegate_task` : un enfant par fait indépendant. Si le dépôt est touché, isole
-chaque enfant sur une branche `research/<name>` via `cpn-async`. Research **lit
-et rapporte uniquement** : n'édite jamais le code produit. Sépare chaque fait en
+chaque enfant sur une branche `research/<name>` via `cpn-async`. Research
+**lit et ne poste que la conclusion en commentaire** :
+n'édite jamais le code produit. Sépare chaque fait en
 `task` distinct — n'empaquette pas plusieurs questions dans un seul `goal`.
 
 ```python
 delegate_task(tasks=[
     {"goal": "Rechercher <fait> : source autoritative pour <question>. "
-             "Read-only ; rapporter trouvaille + Références officielles ; "
+             "Read-only ; poster la conclusion en commentaire (pas de "
+             "trouvaille ni de liste de Références) ; "
              "n'éditer aucun code.",
      "context": "Issue <N> dans <org>/<repo> ; isole sur branche "
                 "research/<name> (cpn-async) si dépôt touché.",

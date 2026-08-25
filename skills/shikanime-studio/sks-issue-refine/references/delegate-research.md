@@ -2,7 +2,8 @@
 
 Offloaded from SKILL.md step 4. The `research` question kind fans out AFK: one
 `delegate_task` child per independent fact. Each child is read-only and never
-edits product code; it reports the finding + official References as a comment.
+edits product code; it posts only the conclusion as an issue comment — no
+finding dumps or reference lists. Durable References move to the body.
 
 Contract for every child:
 
@@ -15,7 +16,8 @@ Contract for every child:
 ```python
 delegate_task(tasks=[
     {"goal": "Research <fact>: find authoritative source for <question>. "
-             "Read-only; report finding + official References; do NOT edit code.",
+             "Read-only; post only the conclusion as a comment (no finding "
+             "dumps, no reference lists); do NOT edit code.",
      "context": "Issue <N> in <org>/<repo>; isolate on research/<name> "
                 "branch per sks-async if touching repo.",
      "toolsets": ["web", "terminal"]},
