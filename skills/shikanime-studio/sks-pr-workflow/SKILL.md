@@ -37,6 +37,26 @@ Orchestrator over `sks-issue`/`sks-pr`/`sks-pr-triage`: issue → PR → triage.
 
 ## Procedure
 
+### 0. Pre-submit isolation & conflict gate (mandatory)
+
+Every PR carries ONLY its own change set. Before opening (step 2), verify:
+
+1. Isolation — change set is exactly the intended files, no foreign/dangling files
+   from parallel agents or interrupted sessions.
+   - jj: `jj diff -r @ --stat` and `jj file list -r @`; anything outside scope stays
+     in `@` / a separate commit, never in this PR.
+   - git: `git status --porcelain --untracked-files=all` and
+     `git diff --stat origin/main..HEAD`.
+2. Conflict-free base — the branch descends from the PR base with no conflict markers.
+   - `BASE=$(gh pr view <N> --json baseRefOid -q .baseRefOid)` (new PR: `origin/main`).
+   - `git fetch origin ${BASE:-main} && git merge-base --is-ancestor` \
+     `"${BASE:-origin/main}" HEAD && echo clean || echo CONFLICT`.
+   - Rebase onto base (`jj rebase -r @ -d main` / `git rebase origin/main`);
+     clean rebase = gate pass.
+   - `CONFLICTING`/`DIRTY` = real conflict; `BLOCKED` = pending CI, not conflict.
+
+Do NOT open the PR until both checks pass.
+
 ### 1. Ensure linked issue exists
 
 If `#N` not provided/converged, load `sks-issue` (or `sks-issue-workflow`) and
@@ -55,10 +75,17 @@ never invent a value the repo lacks.
 
 ## Gate
 
-Done when opened from `origin`, links issue, triage set. Verify:
+Done when opened from `origin`, links issue, triage set, and the isolation
+gate passed. Verify:
 
 ```bash
 gh pr view <N> --repo <org>/<repo> --json title,baseRefName,body
+```
+
+```bash
+# isolation: diff vs base is exactly the intended files, no conflict markers
+gh pr diff <N> --repo <org>/<repo> --name-only
+git diff --stat "$(gh pr view <N> --repo <org>/<repo> --json baseRefOid -q .baseRefOid)"..HEAD
 ```
 
 ## See also

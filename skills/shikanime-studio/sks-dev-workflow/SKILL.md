@@ -123,7 +123,9 @@ jj does not auto-track bookmarks — without `track`, push is rejected.
 ## Landing
 
 - **PR (default):** `sks-pr-workflow` → push `origin`, create PR
-  `--head <org>:<branch>`, base `main`.
+  `--head <org>:<branch>`, base `main`. `sks-pr-workflow` enforces the
+  pre-submit isolation + conflict-free-base gate (PR carries only its own
+  change set; verify before opening).
 - **PR via `gh stack` (stacked work):** submits from `origin`, keeping PR↔commit
   parity. Stacked PRs are a GitHub **public-preview** feature — fine internally.
 
