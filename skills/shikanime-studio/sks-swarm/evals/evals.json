@@ -1,0 +1,85 @@
+{
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "Distributes the task across the agent cluster over A2A, routing each unit by capability, machine, and runner pressure.",
+      "files": [],
+      "prompt": "Distribute this big refactor across my agent cluster so each unit runs on the machine that fits its needs and the loaded runner isn't crushed.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-swarm'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body mentions 'A2A'",
+        "Body routes by capability, machine, and runner pressure",
+        "Body probes live load before assigning"
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "Wraps an uncertain swarm in sks-adversarial and keeps the promote-or-discard gate instead of merging blindly.",
+      "files": [],
+      "prompt": "This swarm result is uncertain — spike it across the cluster but don't promote anything un-reviewed.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-swarm'",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body references 'sks-adversarial'",
+        "Body states the sandbox is a trial, not an approved change"
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "Does not spin a swarm for a single unit; falls back to sks-isolate and avoids over-building.",
+      "files": [],
+      "prompt": "Just run this one fix on one machine, no cluster needed.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-swarm'",
+        "Body references 'sks-isolate' for a single unit",
+        "Body states spinning a swarm for one unit is wrong"
+      ]
+    },
+    {
+      "id": 4,
+      "expected_output": "Re-verifies each child's gate in the parent rather than trusting self-reports.",
+      "files": [],
+      "prompt": "Dispatch the swarm and trust the agents' done messages as proof.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-swarm'",
+        "Body re-verifies child gates in the parent",
+        "Body frames child self-reports as not proof"
+      ]
+    },
+    {
+      "id": 5,
+      "expected_output": "The skill stays loadable and self-identifies as sks-swarm; an unrelated request is out of scope.",
+      "files": [],
+      "prompt": "Write me a haiku about my Kubernetes cluster and then deploy it to production.",
+      "assertions": [
+        "Frontmatter parses as YAML with a top-level 'name' key",
+        "Frontmatter 'name' equals the directory basename 'sks-swarm'"
+      ]
+    },
+    {
+      "id": 6,
+      "expected_output": "The skill stays scoped to the shikanime family and does not absorb the cloud-pi-native twin.",
+      "files": [],
+      "prompt": "Use sks-swarm the cpn way to fan out my console module migration across agents.",
+      "assertions": [
+        "Description does not contain substring cpn-",
+        "Frontmatter 'name' equals the directory basename 'sks-swarm'"
+      ]
+    },
+    {
+      "id": 7,
+      "expected_output": "The skill routes by resource pressure and refuses to co-locate heavy units on a hot runner.",
+      "files": [],
+      "prompt": "Put both heavy training units on the already-loaded GPU box, capability matches.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-swarm'",
+        "Body probes live pressure before placement",
+        "Body forbids co-locating heavy units on a pressured runner"
+      ]
+    }
+  ],
+  "skill_name": "sks-swarm"
+}

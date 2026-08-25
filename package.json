@@ -96,6 +96,10 @@
         "path": "skills/shikanime-studio/sks-adversarial"
       },
       {
+        "name": "sks-swarm",
+        "path": "skills/shikanime-studio/sks-swarm"
+      },
+      {
         "name": "sks-investigate",
         "path": "skills/shikanime-studio/sks-investigate"
       },
