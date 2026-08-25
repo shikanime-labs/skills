@@ -33,7 +33,7 @@
     },
     {
       "id": 3,
-      "expected_output": "Describes the origin-only PR discipline and gh stack landing path with PR to commit parity for cloud-pi-native/console.",
+      "expected_output": "Describes the origin-only PR discipline and plain gh pr landing path with PR to commit parity for cloud-pi-native/console.",
       "files": [],
       "prompt": "Quelles sont les commandes de lint, test et local dev pour console et le workflow PR origin-only ?",
       "assertions": [

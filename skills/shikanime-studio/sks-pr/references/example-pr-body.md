@@ -2,12 +2,12 @@
 
 ```markdown
 ## What
-- Document the exact `gh stack submit` seed mapping in sks-pr
-- Align the sks-pr body template with what `gh stack` emits
+- Document the exact PR seed mapping in sks-pr
+- Align the sks-pr body template with what GitHub renders
 
 ## Why
-The body three-section rule drifted from what `gh stack submit` actually seeds
-from the commit, so stacked PRs carried divergent prose. Closing that gap keeps
+The body three-section rule drifted from what actually gets seeded from the
+commit, so stacked PRs carried divergent prose. Closing that gap keeps
 PR↔commit parity without hand-editing every stacked PR.
 
 ## References

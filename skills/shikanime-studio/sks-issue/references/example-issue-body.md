@@ -7,7 +7,7 @@ move to comments, never into the tasklist.
 
 ```markdown
 ## Problem
-`gh stack submit` seeds the PR title/body from the top commit, but the skill's
+`gh pr create` seeds the PR title/body from the top commit, but the skill's
 documented `## What`/`## Why`/`## References` sections are not produced by the
 command, so agents write divergent prose.
 
@@ -16,19 +16,19 @@ command, so agents write divergent prose.
 - sks-pr: body three-section rule
 
 ## Acceptance
-- [ ] sks-pr documents the exact `gh stack submit` seed mapping
-- [ ] sks-pr body template matches what `gh stack` emits
+- [ ] sks-pr documents the exact PR seed mapping
+- [ ] sks-pr body template matches what the PR renders
 ```
 
 ## Variant (`## Problem` / `## Acceptance`, no separate References)
 
 ```markdown
 ## Problem
-Same drift as above: the sks-pr body rule is not what `gh stack` seeds.
+Same drift as above: the sks-pr body rule is not what the PR seeds.
 
 ## Acceptance
-- [ ] sks-pr documents the exact `gh stack submit` seed mapping
-- [ ] sks-pr body template matches what `gh stack` emits
+- [ ] sks-pr documents the exact PR seed mapping
+- [ ] sks-pr body template matches what the PR renders
 ```
 
 Either shape is acceptable — pick one per issue. An acceptance item is done

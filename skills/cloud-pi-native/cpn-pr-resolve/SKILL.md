@@ -69,7 +69,7 @@ gh pr view <M> --repo cloud-pi-native/<repo> --json reviews,headRefOid \
 ```
 
 - Branche protégée bloquant l'auto-approb (ex. `cloud-pi-native/console`) →
-  `lgtm` verbal suffit (merge reste dans `cpn-dev-workflow`, `gh stack`/queue).
+  `lgtm` verbal suffit (merge reste dans `cpn-dev-workflow`, `gh pr merge`/queue).
 - CI : `gh pr checks <M> --repo cloud-pi-native/<repo>`.
 
 ## Pre-check — Merge queue manuelle (PR à fort impact)

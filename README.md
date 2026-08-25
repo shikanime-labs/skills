@@ -71,7 +71,7 @@ Two orgs, one doctrine. The lifecycle is identical — **discussion → issue �
 issue comments → PR** — with org-specific conventions:
 
 - **shikanime (`sks-*`)**: plain English commits with the Automata co-author
-  trailer, `gh stack` landing, direct push on explicit instruction.
+  trailer, plain `gh pr` landing, direct push on explicit instruction.
 - **cloud-pi-native (`cpn-*`)**: French artifacts, conventional commits, PRs
   pushed to origin from `cloud-pi-native/*`, Release Please versioning.
 

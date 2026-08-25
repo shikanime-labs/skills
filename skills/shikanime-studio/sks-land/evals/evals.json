@@ -18,7 +18,7 @@
     },
     {
       "id": 2,
-      "expected_output": "The skill gates on pre-landing checks and lands stacked PRs via gh stack merge or lone PRs via gh pr merge --squash.",
+      "expected_output": "The skill gates on pre-landing checks and lands all PRs (lone or stacked, base-first) via gh pr merge --squash.",
       "files": [],
       "prompt": "Merge my PR after reconciliation and close the linked issue deliberately.",
       "assertions": [
@@ -28,7 +28,7 @@
         "license field is 'Apache-2.0'",
         "Body contains at least one '##' heading",
         "Body exposes '## Pre-landing gates (must already hold)'",
-        "Body lands via gh stack merge for stacked PRs or gh pr merge --squash for lone PRs"
+        "Body lands every PR via gh pr merge --squash (stacked ones base-first)"
       ]
     },
     {

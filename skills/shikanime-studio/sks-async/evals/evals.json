@@ -2,7 +2,7 @@
   "evals": [
     {
       "id": 1,
-      "expected_output": "Splits the work into one jj workspace per unit and lands each as its own PR or gh stack chain.",
+      "expected_output": "Splits the work into one jj workspace per unit and lands each as its own PR.",
       "files": [],
       "prompt": "I have four independent refactors to do in shikanime-studio/machines and want to run them in parallel without them stepping on each other. How should I set this up?",
       "assertions": [
@@ -11,7 +11,7 @@
         "Frontmatter license field is 'Apache-2.0'",
         "Body contains at least one '##' heading",
         "Body mentions 'jj workspace add' for fan-out",
-        "Body references 'gh stack' for landing dependent chains"
+        "Body references dependency-order landing for dependent chains"
       ]
     },
     {
@@ -75,7 +75,7 @@
     },
     {
       "id": 7,
-      "expected_output": "The skill does not claim to be the cloud-pi-native cpn-async twin or absorb sks-commit/sks-pr/sks-land; it stays scoped to shikanime jj parallel fan-out and landing as independent PRs or gh stack chains.",
+      "expected_output": "The skill does not claim to be the cloud-pi-native cpn-async twin or absorb sks-commit/sks-pr/sks-land; it stays scoped to shikanime jj parallel fan-out and landing as independent PRs.",
       "files": [],
       "prompt": "Reconcile review threads and land my cloud-pi-native console PR the cpn-async way, then commit it with a conventional fix: prefix.",
       "assertions": [

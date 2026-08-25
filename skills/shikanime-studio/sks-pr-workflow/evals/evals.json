@@ -61,7 +61,7 @@
       "id": 5,
       "expected_output": "Routes the cloud-pi-native request to the cpn-* skill; does not claim cloud-pi-native scope or the cpn- prefix itself.",
       "files": [],
-      "prompt": "Set up the parallel fan-out PR workflow for cloud-pi-native/console using gh stack and jj workspaces.",
+      "prompt": "Set up the parallel fan-out PR workflow for cloud-pi-native/console using gh pr and jj workspaces.",
       "assertions": [
         "Frontmatter parses successfully.",
         "The 'name' field equals 'sks-pr-workflow' (not a cpn- name).",
@@ -85,7 +85,7 @@
       "id": 7,
       "expected_output": "Routes the cloud-pi-native request to the cpn-* skill; does not claim cloud-pi-native scope or the cpn- prefix for itself.",
       "files": [],
-      "prompt": "Run the cloud-pi-native PR commit-and-triage workflow for console and land the parallel units via gh stack.",
+      "prompt": "Run the cloud-pi-native PR commit-and-triage workflow for console and land the parallel units via gh pr merge.",
       "assertions": [
         "The 'name' field equals 'sks-pr-workflow' (not a cpn- name).",
         "The description starts with 'Use when' (shikanime scope, not cloud-pi-native).",

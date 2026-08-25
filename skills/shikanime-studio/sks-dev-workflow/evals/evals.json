@@ -32,7 +32,7 @@
     },
     {
       "id": 3,
-      "expected_output": "Lands via PR by default, using gh stack for stacked work and direct push only when authorized.",
+      "expected_output": "Lands via PR by default, using dependency-order squash merges for stacked work and direct push only when authorized.",
       "files": [],
       "prompt": "The stack is ready — how do I land these branches in shikanime-studio without bypassing protections?",
       "assertions": [
@@ -41,7 +41,7 @@
         "Frontmatter license field is 'Apache-2.0'",
         "Body contains at least one '##' heading",
         "Body makes PR the default landing path",
-        "Body mentions 'gh stack submit' for stacked work",
+        "Body mentions dependency-order gh pr merge --squash for stacked work",
         "Body restricts direct push to main to explicit user authorization"
       ]
     },

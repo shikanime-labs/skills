@@ -88,9 +88,8 @@ grep -rl "Signed-off-by" .github/ 2>/dev/null
   `Related: https://github.com/<org>/<repo>/issues/N`. 80-col wrap. Capitalized
   plain title, no prefix. See `references/example-commit.md` for a filled
   example.
-- `gh stack` reads the commit subject/body to seed PR title/description
-  (PR↔commit parity); author the commit to carry full rationale. Stacked PRs are
-  a GitHub public-preview feature — fine for internal shikanime use.
+- PR↔commit parity: the PR title equals the commit subject and the PR body
+  restates the commit message; author the commit to carry full rationale.
 - Any repo with `commitlint`: follow its config.
 
 ## Procedure

@@ -2,7 +2,7 @@
 name: sks-async
 description:
   Use when splitting multi-unit work into parallel, isolated jj workspaces
-  (depth-tree fan-out) and landing as independent PRs or gh stack chains.
+  (depth-tree fan-out) and landing as independent plain `gh pr` merges.
 version: 0.1.1
 author: Hermes Agent
 license: Apache-2.0
@@ -19,9 +19,11 @@ metadata:
       - shikanime-labs
       - shikanime-studio
     related_skills:
+      - cpn-async
+      - cpn-commit
+      - cpn-dev-workflow
       - sks-dev-workflow
       - sks-pr
-      - sks-isolate
 platforms:
   - linux
   - macos
@@ -32,7 +34,7 @@ platforms:
 
 Decompose a multi-unit change into parallel, isolated streams; land each as an
 independent PR or stacked chain. Distills unlazy depth-tree delegation fan-out
-onto jj's commit DAG + `gh stack`. Core splitting component of
+onto jj's commit DAG as plain `gh pr` merges. Core splitting component of
 `sks-dev-workflow`.
 
 ## When to Use
@@ -54,8 +56,7 @@ onto jj's commit DAG + `gh stack`. Core splitting component of
    ```
 
    New workspace's working copy is a child of `@`; for depth > 1 root with
-   `jj new <parent>`. See `sks-isolate` for the canonical single-workspace
-   isolation recipe (WIP snapshot, commit, bookmark + push).
+   `jj new <parent>`.
 3. **Work each stream** in its dir; commit per `sks-commit` — every commit
    carries the trailer:
 
@@ -70,10 +71,24 @@ onto jj's commit DAG + `gh stack`. Core splitting component of
    - Dependent chain → one bookmark per link, then:
 
      ```bash
-     gh stack init <base> && gh stack add <next> && gh stack submit --auto --open
+     # dependent chain: one bookmark per link, each as its own plain gh pr
+     jj bookmark set <next> -r <next>
+     gh pr create --repo <org>/<repo> --base main --head "<org>:<next>" \
+       --title "<subject>" --body "$(cat <<'EOF'
+
+## What
+
+## Why
+
+## References
+
+Related: <issue URL>
+EOF
+)"
      ```
 
-   - PR↔issue linkage per `sks-pr`: `Related: <issue URL>` by default.
+- PR↔issue linkage per `sks-pr`: `Related: <issue URL>` by default.
+
 5. **Verify bottom-up** — each leaf's checks run IN its workspace; dispatcher
    re-runs them (subagent self-reports aren't evidence). Retire with
    `jj workspace forget <name>`; refresh idle with `jj workspace update-stale`.
@@ -90,7 +105,7 @@ isolation). Skeleton: `references/sks-async-delegate.md`.
 
 ```bash
 jj workspace list && jj log -r 'all()' --limit 20   # tree shape on screen
-gh stack view && gh pr list --state open             # chains + PRs exist
+gh pr list --repo <org>/<repo> --state open          # PRs exist per leaf
 ```
 
 DAG matches planned tree; every leaf has a PR linked to its issue; every gate
@@ -101,5 +116,5 @@ has in-workspace evidence.
 - `sks-dev-workflow` — parent; run its assumption-validation gate BEFORE
   fan-out.
 - `sks-commit` / `sks-pr` — commit shape (co-author trailer) and PR linkage.
-- `sks-dev-workflow` — the parent workflow this skill fans out for.
+- `cpn-dev-workflow` — same fan-out for console module migrations.
 - Model, pitfalls, dispatch skeleton: `references/sks-async-delegate.md`.

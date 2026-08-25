@@ -8,7 +8,7 @@ parallel fan-out.
 
 - **Fan-out** — N children of one trunk commit = parallel independent units.
 - **Depth** — child of a child = dependent unit; each root-to-leaf chain is a
-  STACK (`gh stack`), each link its own PR.
+  DEPENDENT CHAIN, each link its own PR (land base-first).
 - **Join** — `jj new <a> <b>` (multiple parents) = depends on several units;
   lands after them.
 - **Isolation** — each stream in its OWN jj workspace (separate working copy +
@@ -47,7 +47,5 @@ delegate_task(tasks=[
   bookmark per unit, never two streams on one bookmark.
 - **Fan-out before contracts** — spawning children without fixed gates
   reproduces the prose-enforcement failure the gates exist to prevent.
-- `gh stack` = GitHub public-preview; fine for internal shikanime use (see
-  `sks-dev-workflow`).
 - Forgetting `jj workspace update-stale` on a workspace left idle while the
   trunk advanced — it does not auto-advance.
