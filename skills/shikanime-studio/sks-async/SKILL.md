@@ -24,6 +24,7 @@ metadata:
       - cpn-dev-workflow
       - sks-dev-workflow
       - sks-pr
+      - sks-isolate
 platforms:
   - linux
   - macos
@@ -56,7 +57,8 @@ onto jj's commit DAG + `gh stack`. Core splitting component of
    ```
 
    New workspace's working copy is a child of `@`; for depth > 1 root with
-   `jj new <parent>`.
+   `jj new <parent>`. See `sks-isolate` for the canonical single-workspace
+   isolation recipe (WIP snapshot, commit, bookmark + push).
 3. **Work each stream** in its dir; commit per `sks-commit` — every commit
    carries the trailer:
 
