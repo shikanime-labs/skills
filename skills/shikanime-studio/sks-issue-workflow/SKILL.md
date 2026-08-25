@@ -21,6 +21,7 @@ metadata:
 platforms:
   - linux
   - macos
+  - windows
 ---
 
 # Shikanime Org Issue Workflow

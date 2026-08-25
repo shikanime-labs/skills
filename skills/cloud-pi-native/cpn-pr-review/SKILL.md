@@ -21,6 +21,7 @@ metadata:
 platforms:
   - linux
   - macos
+  - windows
 ---
 
 # cloud-pi-native PR Review (cpn-pr-review)

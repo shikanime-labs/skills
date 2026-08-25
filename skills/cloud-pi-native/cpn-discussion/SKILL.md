@@ -19,6 +19,7 @@ metadata:
 platforms:
   - linux
   - macos
+  - windows
 ---
 
 # CPN Org Discussion
