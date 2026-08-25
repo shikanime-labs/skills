@@ -98,8 +98,8 @@ verified N of N after final merge.
 
 ### 3. Triage metadata
 
-Delegate to `sks-issue-triage`: sets each empty, determinable field (labels,
-assignee, milestone, project); rules live there.
+Delegate to `sks-issue-triage`: sets each empty, determinable field (type,
+labels, assignee, milestone, project); rules live there.
 
 ## Pitfalls
 
