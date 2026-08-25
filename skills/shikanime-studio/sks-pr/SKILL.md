@@ -60,11 +60,19 @@ remote as canonical.
 2. **Title** — commit subject (plain English / `doc:`), NO conventional prefix;
    parity with commit.
 3. **Body** — restates the commit body as three fixed sections (commit is the
-   source of truth; restate, do NOT invent new rationale):
+   source of truth; restate, do NOT invent new rationale).
+
+   **PR body is NOT the issue body.** The issue uses `## Problem` /
+   `## Acceptance` (see `sks-issue`); the PR must not. Copying the issue body
+   into the PR is the recurring failure mode — rewrite it into the three
+   sections below, do not paste.
+
    - `## What` — one-line summary + bullet scope (what this PR delivers).
    - `## Why` — why now: the drift/risk/pain this closes (one short paragraph).
    - `## References` — `Related: <full issue URL>` (mandatory) plus any
      commits/specs/changelogs proving the solution.
+   - Never use `## Problem`, `## Acceptance`, or invented fields like
+     `Stacks on:` in a PR body — those are issue/stacker shapes; prune them.
    - See `references/example-pr-body.md` for a filled example.
    - Temp body files are NOT hard-wrapped: one sentence per line. GitHub joins
      consecutive non-blank lines; a one-line edit churns only that line. Never
@@ -76,21 +84,22 @@ remote as canonical.
      `Related: https://github.com/<org>/<repo>/issues/N` (same repo) or
      `Related: https://github.com/owner/repo/issues/N` (cross-repo). Multiple:
      comma-separate if ≤80 cols, else one `Related:` per URL (`manifests`
-     gitlint enforces 80-col). Repo-enforced shape (e.g. `manifests` `AGENTS` file:
-     `Related:` + 80-col + `Signed-off-by`) overrides — follow the repo.
+     gitlint enforces 80-col). Repo-enforced shape (e.g. `manifests` `AGENTS`
+     file: `Related:` + 80-col + `Signed-off-by`) overrides — follow the repo.
    - Linkage is **many-to-many** (discussion → issue → comments → PR): a PR
      always solves an issue. Default `Related: <issue URL>`; otherwise close
-     deliberately after final merge (verify N-of-N, then `gh issue close`).
-     Same deliberate close (see `sks-dev-workflow`).
+     deliberately after final merge (verify N-of-N, then `gh issue close`). Same
+     deliberate close (see `sks-dev-workflow`).
+
 4. **Head** — `--head <org>:<branch>`; push to `origin` only.
 5. **Parity** — PR title MUST equal commit subject; PR body MUST restate the
    commit message; no added rationale (see `sks-commit`).
 
 ## Landing via plain `gh pr`
 
-The org removed the `gh stack` extension — land with plain `gh pr merge`
-(see `sks-land`). Squash-merge keeps a linear history and preserves
-PR↔commit parity (title = commit subject, body = commit message).
+The org removed the `gh stack` extension — land with plain `gh pr merge` (see
+`sks-land`). Squash-merge keeps a linear history and preserves PR↔commit parity
+(title = commit subject, body = commit message).
 
 ```bash
 jj rebase -d main                      # ALWAYS rebase onto trunk before landing
@@ -152,6 +161,14 @@ EOF
 )"
 ```
 
+**Body self-check (run before opening):** the body must not reuse the issue
+shape. Abort the open if any match:
+
+```bash
+grep -nE '^## (Problem|Acceptance)|Related: #|Stacks? on:' body.md \
+  && echo "PR body reuses issue/stacker shape — rewrite" || echo clean
+```
+
 Use `--draft` when checks aren't green yet.
 
 ### 2c. Verify mergeable after submit
@@ -203,5 +220,4 @@ links the correct issue, and `mergeable="MERGEABLE"` (step 2c).
 ## See also
 
 - `sks-commit` (parity rule) · `sks-issue-refine` (converged issue) ·
-  `sks-async` (stacked PRs) · `sks-pr-triage` (metadata)
-  (metadata).
+  `sks-async` (stacked PRs) · `sks-pr-triage` (metadata) (metadata).
