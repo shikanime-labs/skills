@@ -77,7 +77,7 @@ remote as canonical.
      `Related: https://github.com/<org>/<repo>/issues/N` (same repo) or
      `Related: https://github.com/owner/repo/issues/N` (cross-repo). Multiple:
      comma-separate if ≤80 cols, else one `Related:` per URL (`manifests`
-     gitlint enforces 80-col). Repo-enforced shape (e.g. `manifests` AGENTS.md:
+     gitlint enforces 80-col). Repo-enforced shape (e.g. `manifests` `AGENTS` file:
      `Related:` + 80-col + `Signed-off-by`) overrides — follow the repo.
    - Linkage is **many-to-many** (discussion → issue → comments → PR): a PR
      always solves an issue. Default `Related: <issue URL>`; otherwise close
