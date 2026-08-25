@@ -116,6 +116,10 @@ delegate_task(tasks=[
    `Refs #N` (fermer délibérément après N-sur-N, voir
    `references/pitfalls.md`). No bare-request implementation; no PR
    without an issue behind it.
+
+   Reference-safety: `#N` in a PR/commit body resolves to console issue/PR **N**
+   and `Closes` / `Fixes` / `Resolves` auto-close it on merge. Bare `#N` is only
+   safe for a console ticket; cross-repo refs use a full URL or `owner/repo#N`.
 4. **Triage before work** (`cpn-issue-triage`): assign every exposed metadata —
    labels (conventional-prefix → type), assignee (active `gh` identity),
    milestone (bug → current patch, feature → next release), project if obvious,
