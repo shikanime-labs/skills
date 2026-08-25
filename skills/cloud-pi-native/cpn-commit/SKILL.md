@@ -50,6 +50,10 @@ Does NOT push, open PRs, or run CI — those live in `cpn-pr` /
 | Body     | optional, separated from subject by exactly one blank line                                |
 | Footer   | optional `BREAKING CHANGE:` (no `Closes #N` — close deliberately)        |
 
+> Reference safety: `#N` in a commit body resolves to a console issue/PR and
+> `Closes` / `Fixes` / `Resolves` auto-close it on merge. Bare `#N` is only safe
+> for a console ticket; cross-repo refs use a full URL or `owner/repo#N`.
+
 ## Procedure
 
 1. Stage: `jj add <files>`.
