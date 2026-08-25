@@ -10,8 +10,9 @@ the record.
   writing time (not copied from an earlier estimate).
 - A genuinely impossible criterion is struck with a comment, **never silently
   dropped**.
-- Plusieurs PR peuvent résoudre une issue ensemble. La liaison reste `Issues liées` /
-  `Refs` (fermeture délibérée, voir `cpn-dev-workflow/references/pitfalls.md`). Le
+- Plusieurs PR peuvent résoudre une issue ensemble. La liaison
+  reste `Issues liées` / `Refs` (fermeture délibérée, voir
+  `cpn-dev-workflow/references/pitfalls.md`). Le
   ledger reste un par issue ; la fermeture est délibérée — vérifiée N sur N après
   la fusion finale, puis
   `gh issue close <N> -c "<evidence>"`.

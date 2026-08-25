@@ -17,6 +17,7 @@ metadata:
     related_skills:
       - sks-pr
       - sks-pr-workflow
+      - sks-investigate
 platforms:
   - linux
   - macos
@@ -34,6 +35,8 @@ invent a missing repo value; triage never closes PRs.
 - "Triage an existing shikanime org PR."
 - "Assign metadata (labels, assignee, milestone, project, reviewers)."
 - "Link issue ↔ PR."
+- A bug-labelled PR's fix cites no root cause → flag for `sks-investigate`
+  before approving.
 
 Prereqs: `gh` authed vs the canonical org repo; target it directly.
 
@@ -88,7 +91,13 @@ If title/body cites `#M` (open, unlinked issue), ensure body has `Related: #M`
 gh pr view "$N" --repo "$R" --json number,title,labels,assignees,milestone,reviewRequests
 ```
 
-Constraints: never invent labels (filter `gh label list`); never overwrite
-(`--add-label`/`--add-assignee` only); milestone — bugs→current patch,
-features→next release; never close PRs (strays→`sks-pr` or author); always the
-org repo.
+## Verification
+
+```bash
+gh pr view "$N" --repo "$R" --json number,title,labels,assignees,milestone,reviewRequests
+# title/body cites an open issue via Related: #M if applicable
+```
+
+## See also
+
+- `sks-investigate` — root-cause research before any fix.

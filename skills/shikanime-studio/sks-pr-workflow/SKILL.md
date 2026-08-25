@@ -88,6 +88,14 @@ gh pr diff <N> --repo <org>/<repo> --name-only
 git diff --stat "$(gh pr view <N> --repo <org>/<repo> --json baseRefOid -q .baseRefOid)"..HEAD
 ```
 
+## Verification
+
+```bash
+gh pr view <N> --repo <org>/<repo> --json title,baseRefName,body
+gh pr diff <N> --repo <org>/<repo> --name-only \
+  # isolation: exactly the intended files
+```
+
 ## See also
 
 - `sks-issue`/`sks-issue-workflow` — issue to solve.

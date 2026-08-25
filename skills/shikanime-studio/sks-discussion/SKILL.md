@@ -15,7 +15,6 @@ metadata:
       - shikanime-studio
       - rfc
     related_skills:
-      - cpn-discussion
       - sks-discussion-triage
       - sks-issue
       - sks-issue-workflow
@@ -30,7 +29,7 @@ platforms:
 Pre-issue RFC (lifecycle **discussion → issue → issue comments → PR**, see
 `sks-dev-workflow`): converge on the problem, then derive the issue
 (`sks-issue`) and link back — do NOT keep solving here. English bodies only (no
-French). Parity with `cpn-discussion`. A literal `@` (config keys, `@Inject(x)`,
+French). A literal `@` (config keys, `@Inject(x)`,
 decorators) must be wrapped in a code span to avoid a stray GitHub mention.
 
 Body = short context + the open question(s) + affected repos. No acceptance
@@ -63,7 +62,7 @@ gh api repos/<org>/<repo> --jq .has_discussions
 
 ## How to Run (GraphQL — no REST)
 
-English, same as `cpn-discussion`. Get ids:
+English. Get ids:
 
 ```bash
 gh api graphql -f query='
@@ -95,4 +94,5 @@ Confirm title/body/category + body stays context + open questions.
 
 - `sks-issue` — derive the issue once converged.
 - `sks-discussion-triage` — triage, lifecycle routing, closure.
-- `cpn-discussion` — French twin for cloud-pi-native console.
+- `sks-discussion` — the English discussion skill; the French console twin is
+  out of family scope.

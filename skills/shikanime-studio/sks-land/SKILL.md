@@ -137,7 +137,12 @@ push. A failing run exits non-zero and skips merge (red never lands).
 
 ## Pitfalls
 
-Optional edge cases and gotchas — load `references/pitfalls.md` on demand.
+- Unchecked criterion — discharge or escalate, don't merge.
+- `gh pr merge` on a stacked PR — use `gh stack merge`.
+- Merge after new commits without re-review — approval binds to a head commit.
+- Auto-close via `Closes #N`/`Fixes #N` at merge — fires before the ledger is
+  verified; close deliberately after N-of-N.
+- Open threads — reconcile first via `sks-pr-resolve`.
 
 ## Verification Checklist
 
@@ -150,3 +155,14 @@ Optional edge cases and gotchas — load `references/pitfalls.md` on demand.
       (lone).
 - [ ] Issue closed deliberately with rationale.
 - [ ] Landing bookmark removed locally and reconciled on origin.
+
+## Verification
+
+```bash
+gh pr view "$N" --repo "$R" --json state,mergeCommit,baseRefName
+gh pr checks "$N" --repo "$R"   # all green before merge; bookmark absent after
+```
+
+## See also
+
+- `sks-investigate` — root-cause research before any fix.

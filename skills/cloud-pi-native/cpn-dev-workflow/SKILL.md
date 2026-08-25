@@ -113,8 +113,9 @@ delegate_task(tasks=[
    body = **problem statement** (need, scope, API/data/security impact, `- [ ]`
    acceptance tasklist — see Gates), never the solution; analysis goes in
    comments. One issue per item. Create via `cpn-issue` if absent; link PR with
-   `Refs #N` (fermer délibérément après N-sur-N, voir `references/pitfalls.md`). No
-   bare-request implementation; no PR without an issue behind it.
+   `Refs #N` (fermer délibérément après N-sur-N, voir
+   `references/pitfalls.md`). No bare-request implementation; no PR
+   without an issue behind it.
 4. **Triage before work** (`cpn-issue-triage`): assign every exposed metadata —
    labels (conventional-prefix → type), assignee (active `gh` identity),
    milestone (bug → current patch, feature → next release), project if obvious,

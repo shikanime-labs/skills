@@ -19,9 +19,6 @@ metadata:
       - shikanime-labs
       - shikanime-studio
     related_skills:
-      - cpn-async
-      - cpn-commit
-      - cpn-dev-workflow
       - sks-dev-workflow
       - sks-pr
       - sks-isolate
@@ -36,7 +33,7 @@ platforms:
 Decompose a multi-unit change into parallel, isolated streams; land each as an
 independent PR or stacked chain. Distills unlazy depth-tree delegation fan-out
 onto jj's commit DAG + `gh stack`. Core splitting component of
-`sks-dev-workflow` (and `cpn-dev-workflow`).
+`sks-dev-workflow`.
 
 ## When to Use
 
@@ -104,5 +101,5 @@ has in-workspace evidence.
 - `sks-dev-workflow` — parent; run its assumption-validation gate BEFORE
   fan-out.
 - `sks-commit` / `sks-pr` — commit shape (co-author trailer) and PR linkage.
-- `cpn-dev-workflow` — same fan-out for console module migrations.
+- `sks-dev-workflow` — the parent workflow this skill fans out for.
 - Model, pitfalls, dispatch skeleton: `references/sks-async-delegate.md`.

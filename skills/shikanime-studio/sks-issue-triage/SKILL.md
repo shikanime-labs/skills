@@ -18,6 +18,7 @@ metadata:
     related_skills:
       - sks-issue
       - sks-issue-workflow
+      - sks-investigate
 platforms:
   - linux
   - macos
@@ -35,6 +36,8 @@ repo-lacking value.
 - "Triage an existing shikanime org issue."
 - "Assign metadata (type, labels, assignee, milestone, project, relationships, fields)."
 - "Close an issue with a rationale if it will not be worked."
+- A triaged defect needs root-cause diagnosis → hand off to `sks-investigate`
+  (research-only); do not diagnose inline during triage.
 
 ## Prerequisites
 
@@ -53,7 +56,9 @@ repo-lacking value.
 
 ```bash
 gh issue view "$N" --repo "$R" --json number,title,body,labels,assignees,milestone,projectCards,blockedBy,blocking
-gh api repos/"$R"/issues/"$N" --jq '{type: (.type // ""), parent: (.parent_issue.number // null)}'   # type/parent (not exposed by `gh issue view`)
+gh api repos/"$R"/issues/"$N" \
+  --jq '{type: (.type // ""), parent: (.parent_issue.number // null)}' \
+  # type/parent (not exposed by `gh issue view`)
 ```
 
 ### 2. Discover available metadata (source of truth)
@@ -61,9 +66,11 @@ gh api repos/"$R"/issues/"$N" --jq '{type: (.type // ""), parent: (.parent_issue
 ```bash
 gh label list --repo "$R" --limit 200 --json name,description
 gh api repos/"$R"/milestones?state=open --jq '.[] | "\(.number)\t\(.title)"'
-gh project list --owner "${R%/*}"                 # Org/User Projects V2 (needs `project` scope)
+gh project list --owner "${R%/*}" \
+  # Org/User Projects V2 (needs `project` scope)
 gh api repos/"$R"/assignees --jq '.[].login'
-gh api repos/"$R"/issue-types --jq '.[] | select(.is_enabled).name'   # enabled issue types
+gh api repos/"$R"/issue-types --jq '.[] | select(.is_enabled).name' \
+  # enabled issue types
 # Custom repo fields: none on most repos — verify before relying on them:
 gh api repos/"$R"/fields --jq '.[].name' 2>/dev/null || echo "no repo-level fields"
 ```
@@ -123,7 +130,9 @@ gh issue edit "$N" --repo "$R" --add-blocked-by <n> --add-sub-issue <n>,<n>
 
 ```bash
 gh issue view "$N" --repo "$R" --json number,title,labels,assignees,milestone,projectCards,blockedBy,blocking
-gh api repos/"$R"/issues/"$N" --jq '{type: (.type // ""), parent: (.parent_issue.number // null)}'   # confirm type + parent landed
+gh api repos/"$R"/issues/"$N" \
+  --jq '{type: (.type // ""), parent: (.parent_issue.number // null)}' \
+  # confirm type + parent landed
 ```
 
 ### 6. Close issues that will not be worked
@@ -131,6 +140,14 @@ gh api repos/"$R"/issues/"$N" --jq '{type: (.type // ""), parent: (.parent_issue
 See `references/close.md` for the per-reason close commands. Always close with a
 rationale; never silently close. Ask the user for free-text `REASON` — never
 guess or reuse a generic string. Post a comment first, then close.
+
+## Verification
+
+```bash
+gh issue view "$N" --repo "$R" --json number,title,labels,assignees,milestone,projectCards,blockedBy,blocking
+gh api repos/"$R"/issues/"$N" \
+  --jq '{type: (.type // ""), parent: (.parent_issue.number // null)}'
+```
 
 ## See also
 

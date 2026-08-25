@@ -1,0 +1,95 @@
+{
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "Reproduces and reads the full error first, then traces it in code before any fix is proposed.",
+      "files": [],
+      "prompt": "My vitest suite fails on test_x with a cryptic type error. How should I start investigating this in our shikanime repo?",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-investigate'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body contains the Iron Law substring 'NO FIXES WITHOUT ROOT CAUSE'",
+        "Body says to read the full error and reproduce before fixing"
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "Uses bisect to pin the introducing change and isolates the smallest failing unit before hypothesizing.",
+      "files": [],
+      "prompt": "This regression appeared sometime in the last twenty commits — how do I find which change caused it without guessing?",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-investigate'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body mentions 'jj bisect' or 'git bisect'",
+        "Body references tracing the change via 'jj log -p -S' or 'jj diff'"
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "Builds a minimal TypeScript Playground repro and uses satisfies / as const / expectTypeOf to surface the type error.",
+      "files": [],
+      "prompt": "I have a TypeScript type that won't narrow correctly in a huge file. What's the Matt Pocock way to debug this?",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-investigate'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body mentions a minimal repro in the TypeScript Playground",
+        "Body mentions 'satisfies' and 'as const'",
+        "Body mentions 'expectTypeOf' or '// ^?'"
+      ]
+    },
+    {
+      "id": 4,
+      "expected_output": "Treats exit code 137 as an OOM resource ceiling (raise NODE_OPTIONS) rather than a code bug to patch.",
+      "files": [],
+      "prompt": "Our pnpm install in CI dies with exit code 137 and a build error. What's the root cause and fix?",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-investigate'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body mentions 'NODE_OPTIONS' or 'max-old-space-size' for the OOM pitfall",
+        "Body frames exit 137 as a resource ceiling, not a code change"
+      ]
+    },
+    {
+      "id": 5,
+      "expected_output": "The skill stays loadable and self-identifies as sks-investigate; an unrelated request like writing a poem is out of scope.",
+      "files": [],
+      "prompt": "Write me a haiku about my Kubernetes cluster and then deploy it to production.",
+      "assertions": [
+        "Frontmatter parses as YAML with a top-level 'name' key",
+        "Frontmatter 'name' equals the directory basename 'sks-investigate'"
+      ]
+    },
+    {
+      "id": 6,
+      "expected_output": "The skill does not claim to be the cloud-pi-native cpn twin; it stays scoped to shikanime investigation.",
+      "files": [],
+      "prompt": "Use sks-investigate to debug my cloud-pi-native console module regression the cpn way across the console repo.",
+      "assertions": [
+        "Description does not contain substring cpn-",
+        "Frontmatter 'name' equals the directory basename 'sks-investigate'"
+      ]
+    },
+    {
+      "id": 7,
+      "expected_output": "Applies the known verify-after-write discipline and the split-layers-first cycle rather than re-deriving from zero.",
+      "files": [],
+      "prompt": "My patched config file still shows the old value and a k8s add-on keeps failing to pull artifacts in CI. What do I do?",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-investigate'",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body tells you to read back and verify the file write landed",
+        "Body says to split host reachability from workload/pod reachability for the add-on failure"
+      ]
+    }
+  ],
+  "skill_name": "sks-investigate"
+}

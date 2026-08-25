@@ -54,6 +54,7 @@ leave on disk. Destructive — always dry-run first.
 ## Procedure
 
 1. **Baseline.**
+
    ```bash
    cd ~/Source/Repos/github.com/<orga>/<repo>
    jj workspace list                          # name | path | revision
@@ -63,32 +64,39 @@ leave on disk. Destructive — always dry-run first.
 
 2. **Identify dangling bookmarks** — reachable from nowhere on trunk and with no
    open PR:
+
    ```bash
    # candidates: bookmarks NOT ancestors of main
    jj bookmark list -r 'bookmarks() & ~::main'
    ```
+
    Drop any name in the `gh pr list` set and any trunk name. Remaining =
    dangling.
 
 3. **Identify skill workspaces** — those the skills created, named
    `<repo>.<unit>` (dot-qualified) or `<repo>-fix`:
+
    ```bash
    jj workspace list --color never \
      | awk -F'\t' '$1 ~ /\./ || $1 ~ /-fix/ {print $1, $2}'
    ```
+
    Exclude the bare repo-name workspace. Guard each candidate against dirty WIP:
+
    ```bash
    jj -R <path> status --color never | grep -q 'has no changes' \
      || echo "SKIP $name (dirty working copy)"
    ```
 
 4. **Prune remote-tracking bookmarks no longer on origin** (safe, built-in):
+
    ```bash
    jj git fetch --prune --remote origin
    ```
 
 5. **Apply** (only after review) — forget dangling bookmarks and clean
    workspaces:
+
    ```bash
    jj bookmark forget <dangling...>
    jj workspace forget <name...>       # already confirmed clean
@@ -96,6 +104,7 @@ leave on disk. Destructive — always dry-run first.
    ```
 
 6. **Verify.**
+
    ```bash
    jj workspace list && jj bookmark list
    gh pr list --state open
@@ -121,6 +130,13 @@ leave on disk. Destructive — always dry-run first.
   `bookmark forget`, to clear.
 - The canonical workspace (bare repo name, no dot/`-fix`) is never a candidate;
   don't fold the trunk working copy into GC.
+
+## Verification
+
+```bash
+jj workspace list && jj bookmark list
+gh pr list --state open   # confirm no protected bm forgotten, canonical wc untouched
+```
 
 ## See also
 

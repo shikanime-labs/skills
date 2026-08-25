@@ -14,7 +14,6 @@ metadata:
       - shikanime-labs
       - shikanime-studio
     related_skills:
-      - cpn-pr
       - sks-commit
       - sks-pr-resolve
       - sks-land
@@ -203,5 +202,5 @@ links the correct issue, and `mergeable="MERGEABLE"` (step 2c).
 ## See also
 
 - `sks-commit` (parity rule) · `sks-issue-refine` (converged issue) ·
-  `sks-async` (stacked PRs) · `cpn-pr` (French twin) · `sks-pr-triage`
+  `sks-async` (stacked PRs) · `sks-pr-triage` (metadata)
   (metadata).

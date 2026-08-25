@@ -21,6 +21,7 @@ metadata:
       - sks-land
       - sks-doc
       - sks-issue
+      - sks-investigate
 platforms:
   - linux
   - macos
@@ -86,6 +87,8 @@ For each **unresolved** thread:
   diff already covers it.
 - **Not pertinent** — post one comment with the rationale, then resolve. Never
   resolve silently.
+- **No root cause** — a bug fix reconciles but states no cause (symptom patch);
+  flag and route to `sks-investigate`; do not resolve as done.
 
 When closing a thread with a fix, cite the concrete evidence in the comment —
 the exact `- old` → `+ new` diff lines or the command/CI output proving it,
@@ -114,4 +117,21 @@ Then stop — merging is `sks-land`'s job.
 
 ## Pitfalls
 
-Optional edge cases and gotchas — load `references/pitfalls.md` on demand.
+- Resolving silently — discarded suggestions owe a one-line why.
+- Trusting a checkbox without evidence — verify each criterion against the diff.
+- Reconciling after new commits without re-review — approval is bound to a
+  head commit.
+- Treating issue/PR comments as gate threads — only inline review threads gate.
+- Merging from this skill — it only reconciles; defer to `sks-land`.
+
+## Verification
+
+```bash
+# readiness verdict re-checked: ledger N/N, approval present, every thread resolved
+gh pr view "$N" --repo "$R" --json reviewDecision,state
+gh api repos/"$R"/pulls/"$N"/comments --jq '.[].isResolved' 2>/dev/null || true
+```
+
+## See also
+
+- `sks-investigate` — root-cause research before any fix.

@@ -14,7 +14,6 @@ metadata:
       - shikanime-labs
       - shikanime-studio
     related_skills:
-      - cpn-issue
       - sks-doc
       - sks-issue-refine
       - sks-pr
@@ -119,5 +118,5 @@ Confirm title + label set; issue in org repo.
 ## See also
 
 `sks-discussion`, `sks-pr` (links back via `Related:`),
-`sks-issue-refine`, `cpn-issue`, `sks-issue-triage` (run after creation),
+`sks-issue-refine`, `sks-issue-triage` (run after creation),
 `sks-doc`.
