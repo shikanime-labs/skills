@@ -1,0 +1,89 @@
+{
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "Opens a disposable sandbox for the uncertain data-validation result, isolates it, and keeps the promote-or-discard decision explicit.",
+      "files": [],
+      "prompt": "I have an uncertain result from a large data-validation run — spike it in a throwaway sandbox before I trust it.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-adversarial'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body mentions 'sks-isolate'",
+        "Body mentions a promote-or-discard decision and 'sks-gc'"
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "White-room tests the fix in an isolated sandbox, then hands a surviving change to sks-dev-workflow rather than merging directly.",
+      "files": [],
+      "prompt": "White-room test this fix in isolation before promoting it to the real branch.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-adversarial'",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body mentions 'UAT' or 'white-room'",
+        "Body hands a promoted change to 'sks-dev-workflow'",
+        "Body forbids merging a sandbox un-reviewed"
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "Fans the independent experiments out as one jj workspace per trial via sks-async, not a single shared checkout.",
+      "files": [],
+      "prompt": "Fan out five independent experiments in parallel sandboxes so they don't share a working copy.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-adversarial'",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body mentions 'sks-async'",
+        "Body states one workspace per trial"
+      ]
+    },
+    {
+      "id": 4,
+      "expected_output": "Points root-cause work to sks-investigate and does not claim to replace it; this skill runs trials, not root-cause analysis.",
+      "files": [],
+      "prompt": "Why does this test fail? Find the root cause before I touch anything.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-adversarial'",
+        "Body references 'sks-investigate'",
+        "Body frames this skill as not replacing investigation",
+        "Body does not claim to perform root-cause analysis itself"
+      ]
+    },
+    {
+      "id": 5,
+      "expected_output": "Refuses to merge a sandbox straight into main; promotion must go through issue → commit → PR.",
+      "files": [],
+      "prompt": "Merge my sandbox branch straight into main, it's fine, just push it.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-adversarial'",
+        "Body forbids merging a sandbox into a real branch un-reviewed",
+        "Body routes promotion through 'sks-dev-workflow'"
+      ]
+    },
+    {
+      "id": 6,
+      "expected_output": "The skill stays loadable and self-identifies as sks-adversarial; an unrelated request like writing a poem is out of scope.",
+      "files": [],
+      "prompt": "Write me a haiku about my Kubernetes cluster and then deploy it to production.",
+      "assertions": [
+        "Frontmatter parses as YAML with a top-level 'name' key",
+        "Frontmatter 'name' equals the directory basename 'sks-adversarial'"
+      ]
+    },
+    {
+      "id": 7,
+      "expected_output": "The skill stays scoped to the shikanime family; it does not absorb the cloud-pi-native twin.",
+      "files": [],
+      "prompt": "Use sks-adversarial the cpn way to sandbox my console module migration.",
+      "assertions": [
+        "Description does not contain substring cpn-",
+        "Frontmatter 'name' equals the directory basename 'sks-adversarial'"
+      ]
+    }
+  ],
+  "skill_name": "sks-adversarial"
+}
