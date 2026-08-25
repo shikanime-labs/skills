@@ -100,6 +100,11 @@
       "path": "skills/shikanime-studio/sks-adversarial"
     },
     {
+      "name": "sks-swarm",
+      "description": "Use when distributing one task across a cluster of agents over A2A — route by capability need, machine resource, and runner pressure, optionally inside a disposable sandbox.",
+      "path": "skills/shikanime-studio/sks-swarm"
+    },
+    {
       "name": "sks-investigate",
       "description": "Use when investigating a bug, test failure, build break, or unexpected behavior in a shikanime repo: find root cause before any fix, minimal repro, and proven verification.",
       "path": "skills/shikanime-studio/sks-investigate"
