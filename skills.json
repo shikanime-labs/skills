@@ -56,7 +56,7 @@
     },
     {
       "name": "sks-discussion-triage",
-      "description": "Use when triaging an existing shikanime org discussion: category, body shape, Q&A answer, and conversion to an issue.",
+      "description": "Use when triaging an existing shikanime org discussion: category, body shape, Q\u0026A answer, and conversion to an issue.",
       "path": "skills/shikanime-studio/sks-discussion-triage"
     },
     {
@@ -93,6 +93,11 @@
       "name": "sks-isolate",
       "description": "Use when isolating one unit of shikanime work in a fresh jj workspace so concurrent editors / WIP never get folded in — bookmarks and pushes are scoped to that single workspace.",
       "path": "skills/shikanime-studio/sks-isolate"
+    },
+    {
+      "name": "sks-adversarial",
+      "description": "Use when probing uncertain results in a disposable sandbox — large investigation, development, debugging, testing, UAT, white-room, or data validation before promoting a change.",
+      "path": "skills/shikanime-studio/sks-adversarial"
     },
     {
       "name": "sks-investigate",
@@ -141,7 +146,7 @@
     },
     {
       "name": "cpn-discussion-triage",
-      "description": "Triage une discussion cloud-pi-native/console : catégorie, corps, Q&A, clôture (GraphQL).",
+      "description": "Triage une discussion cloud-pi-native/console : catégorie, corps, Q\u0026A, clôture (GraphQL).",
       "path": "skills/cloud-pi-native/cpn-discussion-triage"
     },
     {

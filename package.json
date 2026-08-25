@@ -92,6 +92,10 @@
         "path": "skills/shikanime-studio/sks-isolate"
       },
       {
+        "name": "sks-adversarial",
+        "path": "skills/shikanime-studio/sks-adversarial"
+      },
+      {
         "name": "sks-investigate",
         "path": "skills/shikanime-studio/sks-investigate"
       },
