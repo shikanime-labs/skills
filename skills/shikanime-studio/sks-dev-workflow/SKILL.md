@@ -21,6 +21,7 @@ metadata:
       - sks-commit
       - sks-pr
       - sks-land
+      - sks-isolate
 platforms:
   - linux
   - macos
@@ -94,15 +95,14 @@ silent scope change:
 
 When the working folder has concurrent editors / pre-existing uncommitted WIP
 you must not fold in, open an isolated workspace at a clean revset instead of
-peeling subsets with `jj restore`/`jj split` (which can lose WIP):
+peeling subsets with `jj restore`/`jj split` (which can lose WIP). The full
+recipe — snapshot WIP, `jj workspace add -r main`, commit per `sks-commit`,
+bookmark + push — lives in `sks-isolate`; load it for the step-by-step. Gist:
 
 ```bash
 cd ~/Source/Repos/github.com/<orga>/<repo>
-mkdir -p /tmp/wip6
-for f in <WIP files>; do cp "$f" "/tmp/wip6/$(echo "$f" | tr '/' '__')"; done
 jj workspace add ../<repo>-fix -r main && cd ../<repo>-fix
-# copy in ONLY your fix files, then:
-jj add <fix files>; jj describe -m "$(cat /tmp/fixmsg.txt)"
+# copy in ONLY your fix files, commit per sks-commit, then:
 jj bookmark create fix/<desc> -r @; jj bookmark track fix/<desc> --remote=origin
 jj git push --remote origin -b fix/<desc>
 ```
