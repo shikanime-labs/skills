@@ -31,7 +31,7 @@ metadata:
 # CPN Org — Raffinage d'issue
 
 L'issue EST l'énoncé du problème. `cpn-issue` l'ouvre (corps = énoncé + ledger
-`- [ ]` « Définition du fini » + Références) ; les trouvailles vont dans les
+`- [ ]` « Définition du fini » + Références) ; les conclusions vont dans les
 commentaires. Cette skill itère dans l'issue jusqu'à convergence.
 
 ## When to Use
@@ -71,10 +71,11 @@ commentaires. Cette skill itère dans l'issue jusqu'à convergence.
    si dépôt touché ; read-only, n'édite jamais le code produit). Voir
    `references/cpn-issue-refine.md` pour le modèle d'appel. Pour
    `grilling`/`prototype` : humain en série.
-5. **Poste les trouvailles en commentaires** — résolution → `gh issue comment` :
-   trouvaille + solution(s) candidate(s) + Références. Solutions candidates et
-   références NE vont JAMAIS dans le corps ; référence durable → ajoute à la
-   section **Références** du corps via `gh issue edit`.
+5. **Ne poste que la conclusion en commentaire** — résolution → `gh issue
+   comment` : une ligne la décision prise, rien de plus. Pas de trouvaille ni de
+   liste de solutions candidates ; le corps reste l'énoncé stable. Référence
+   durable → ajoute à la section **Références** du corps via `gh issue edit`.
+   Toute réponse à l'humain reste courte et ciblée.
 6. **Test de convergence** — arrête si : aucun item ≠ « construit X »,
    brouillard levé, corps = énoncé propre + ledger `- [ ]` décidable.
 7. **Passe au solveur** — issue prête → `cpn-pr` / phase implémentation

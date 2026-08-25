@@ -30,7 +30,8 @@ platforms:
 # Shikanime Issue Refinement
 
 The issue IS the problem statement. `sks-issue` opens it (body = problem
-statement + `- [ ]` gate ledger + References); findings belong in comments. This
+statement + `- [ ]` gate ledger + References); conclusions are posted as
+issue comments. This
 skill is the **iteration loop**: resolve an existing issue's open questions via
 research + candidate solutions until the problem statement and acceptance
 criteria converge (wayfinder's fog cycle on the thread).
@@ -71,10 +72,11 @@ criteria converge (wayfinder's fog cycle on the thread).
    it touches the repo; read-only, never edits product code — see
    `references/delegate-research.md`). `grilling`/`prototype` engage the human
    serially — one question, wait, next.
-5. **Post findings as comments** — each resolution is a `gh issue comment`:
-   finding + candidate solution(s) + official References. These NEVER go in the
-   body (body stays the stable problem statement); durable References move into
-   the body via `gh issue edit`.
+5. **Post only the conclusion as a comment** — each resolution is a single
+   `gh issue comment` stating the decision reached, nothing more. No finding
+   dumps, candidate lists, or reference trails; body stays the stable problem
+   statement. Durable References move into the body via `gh issue edit`. Keep
+   any reply to the human short and on-point.
 6. **Convergence test** — stop when: no item reads "build the X"; fog clears;
    body is a clean problem statement + decidable `- [ ]` ledger.
 7. **Hand off** — route to `sks-pr`/branch phase (`sks-dev-workflow` phase 3+).
