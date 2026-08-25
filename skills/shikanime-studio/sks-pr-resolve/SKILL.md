@@ -21,6 +21,7 @@ metadata:
       - sks-land
       - sks-doc
       - sks-issue
+      - sks-investigate
 platforms:
   - linux
   - macos
@@ -86,6 +87,8 @@ For each **unresolved** thread:
   diff already covers it.
 - **Not pertinent** — post one comment with the rationale, then resolve. Never
   resolve silently.
+- **No root cause** — a bug fix reconciles but states no cause (symptom patch);
+  flag and route to `sks-investigate`; do not resolve as done.
 
 When closing a thread with a fix, cite the concrete evidence in the comment —
 the exact `- old` → `+ new` diff lines or the command/CI output proving it,

@@ -20,6 +20,7 @@ metadata:
       - sks-issue
       - sks-issue-workflow
       - sks-issue-triage
+      - sks-investigate
 platforms:
   - linux
   - macos
@@ -106,3 +107,5 @@ References only; convergence passes before `sks-pr` handoff.
 - `sks-pr` — solver; links back via `Related:`.
 - `sks-async` — isolation for parallel `research` fan-out.
 - `sks-issue-triage` — assign metadata once converged.
+- `sks-investigate` — defect root-cause research; use it when the issue is a
+  diagnosed bug needing its cause, not a foggy problem needing framing.

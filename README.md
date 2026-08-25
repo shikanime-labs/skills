@@ -116,6 +116,7 @@ specification, compatible with the
 | `sks-land`              | Merge PRs after DoD + review gates pass                                                        |
 | `sks-pr-resolve`        | Reconcile PR review threads + ledger, report readiness without merging                         |
 | `sks-pr-review`         | Code review: YAGNI, root-cause, conventions                                                    |
+| `sks-investigate`       | Root-cause a bug/test/build failure before any fix; minimal repro + proven verification |
 | `sks-doc`               | Repo `docs/` knowledge base (internal ops + optional user docs) as reviewable in-repo Markdown |
 | `sks-gc`                | Reclaim dangling bookmarks, skill-created jj workspaces, and leftover working-copy dirs from sks-async/sks-dev-workflow |
 

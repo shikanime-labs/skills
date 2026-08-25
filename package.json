@@ -92,6 +92,10 @@
         "path": "skills/shikanime-studio/sks-isolate"
       },
       {
+        "name": "sks-investigate",
+        "path": "skills/shikanime-studio/sks-investigate"
+      },
+      {
         "name": "cpn-dev-workflow",
         "path": "skills/cloud-pi-native/cpn-dev-workflow"
       },

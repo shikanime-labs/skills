@@ -18,6 +18,7 @@ metadata:
     related_skills:
       - sks-issue
       - sks-issue-workflow
+      - sks-investigate
 platforms:
   - linux
   - macos
@@ -35,6 +36,8 @@ repo-lacking value.
 - "Triage an existing shikanime org issue."
 - "Assign metadata (type, labels, assignee, milestone, project, relationships, fields)."
 - "Close an issue with a rationale if it will not be worked."
+- A triaged defect needs root-cause diagnosis → hand off to `sks-investigate`
+  (research-only); do not diagnose inline during triage.
 
 ## Prerequisites
 

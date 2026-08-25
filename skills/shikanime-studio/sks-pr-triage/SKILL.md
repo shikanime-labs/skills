@@ -17,6 +17,7 @@ metadata:
     related_skills:
       - sks-pr
       - sks-pr-workflow
+      - sks-investigate
 platforms:
   - linux
   - macos
@@ -34,6 +35,8 @@ invent a missing repo value; triage never closes PRs.
 - "Triage an existing shikanime org PR."
 - "Assign metadata (labels, assignee, milestone, project, reviewers)."
 - "Link issue ↔ PR."
+- A bug-labelled PR's fix cites no root cause → flag for `sks-investigate`
+  before approving.
 
 Prereqs: `gh` authed vs the canonical org repo; target it directly.
 
