@@ -20,6 +20,7 @@ metadata:
 platforms:
   - linux
   - macos
+  - windows
 ---
 
 # Shikanime PR Triage

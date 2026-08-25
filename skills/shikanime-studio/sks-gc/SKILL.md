@@ -24,6 +24,7 @@ metadata:
 platforms:
   - linux
   - macos
+  - windows
 ---
 
 # Shikanime Org Workspace Garbage Collection

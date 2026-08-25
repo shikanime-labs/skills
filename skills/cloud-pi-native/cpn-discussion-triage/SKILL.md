@@ -21,6 +21,7 @@ metadata:
 platforms:
   - linux
   - macos
+  - windows
 ---
 
 # CPN Discussion Triage

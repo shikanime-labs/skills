@@ -26,6 +26,7 @@ metadata:
 platforms:
   - linux
   - macos
+  - windows
 ---
 
 # PR Review (sks-pr-review)
