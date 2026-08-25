@@ -112,13 +112,13 @@ leave on disk. Destructive — always dry-run first.
 
 ## What "resources from other skills" covers
 
-- `sks-async` → one `jj workspace add ../<repo>.<unit>` per stream, a bookmark
-  per link, and `gh stack` branches on `origin`.
+- `sks-async` → one `jj workspace add ../<repo>.<unit>` per stream and a
+  bookmark + PR branch per link on `origin`.
 - `sks-dev-workflow` → `jj workspace add ../<repo>-fix` isolation dirs and
   `/tmp/wip*` scratch copies (the latter are manual — list, but never auto-`rm`
   without asking).
-- `gh stack` chains → branch bookmarks on `origin`; cleared by forgetting the
-  bookmark plus `jj git fetch --prune` (step 4).
+- Parallel-stream chains → branch bookmarks on `origin`; cleared by forgetting
+  the bookmark plus `jj git fetch --prune` (step 4).
 
 ## Pitfalls
 

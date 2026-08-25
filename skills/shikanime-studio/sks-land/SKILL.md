@@ -68,9 +68,10 @@ reconciled, skip.
 
 ## Merge procedure
 
-Stacked via `gh stack` (never `gh pr merge` on a stacked PR — poisoned commits);
-lone may use `gh pr merge`. Never force-push stacked. Background watcher waits
-for CI then merges:
+Land with plain `gh pr merge` (the org removed `gh stack`). For a lone PR use
+`gh pr merge --squash [--admin]`; never `gh pr merge` on a stacked PR — but
+stacked PRs are landed the same way now (one squash-merge per PR, base
+`main`). Never force-push. Background watcher waits for CI then merges:
 
 ```bash
 gh run watch --exit-status --repo <org>/<repo> \
@@ -99,8 +100,8 @@ push. A failing run exits non-zero and skips merge (red never lands).
   commits (leaks jj's `*` / `---------` artifacts). One subject + correct
   trailers.
 - Lone, self-approval blocked (after verbal lgtm): use `--squash --admin`.
-- Stacked (`sks-async`/`sks-pr`): `gh stack merge <PR_NUMBER> --yes --squash`
-  (background, notify_on_complete).
+- Stacked (multiple PRs off `main`): land each with `gh pr merge <PR_NUMBER>
+  --squash --admin` in dependency order (base first).
 - Branch protection needs linear history + signed commits; squash only.
 
 ## Post-merge
@@ -109,7 +110,8 @@ push. A failing run exits non-zero and skips merge (red never lands).
 2. Close the issue **deliberately**: confirm
    tasklist N/N, then
    `gh issue close <N> --repo <org>/<repo> -c "Discharged by <PR URL>"`.
-3. Rebase downstream: `gh stack rebase` if any sit on top.
+3. Rebase downstream: if other PRs sit on top of the merged branch, rebase them
+   onto the new `main` (`jj rebase -d main`).
 4. **Sync docs** if ops/arch/runbooks changed — edit `docs/` per `sks-doc`; skip
    if purely internal.
 5. **Teardown the landing bookmark.** GitHub drops the remote branch on merge,
@@ -138,7 +140,8 @@ push. A failing run exits non-zero and skips merge (red never lands).
 ## Pitfalls
 
 - Unchecked criterion — discharge or escalate, don't merge.
-- `gh pr merge` on a stacked PR — use `gh stack merge`.
+- Merging a dependent stacked PR before its base lands — go in dependency
+  order, base first.
 - Merge after new commits without re-review — approval binds to a head commit.
 - Auto-close via `Closes #N`/`Fixes #N` at merge — fires before the ledger is
   verified; close deliberately after N-of-N.
@@ -150,9 +153,9 @@ push. A failing run exits non-zero and skips merge (red never lands).
 - [ ] `sks-pr-review` approval on head; human review where protection requires.
 - [ ] All conversations reconciled (`sks-pr-resolve`).
 - [ ] CI green.
-- [ ] Merged via `gh stack merge` (stacked) or
-      `gh pr merge --squash [--admin if protection blocks self-approval]`
-      (lone).
+- [ ] Merged via `gh pr merge --squash [--admin if protection blocks
+      self-approval]` (lone or stacked — one squash-merge per PR, base
+      `main`).
 - [ ] Issue closed deliberately with rationale.
 - [ ] Landing bookmark removed locally and reconciled on origin.
 

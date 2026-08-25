@@ -28,7 +28,7 @@ metadata:
 
 # CPN Org — Flux parallèles
 
-Fan-out parallèle sur workspaces jj isolés + PR stackées (`gh stack`). Base
+Fan-out parallèle sur workspaces jj isolés + PR indépendantes (`gh pr`). Base
 `cpn-dev-workflow`.
 
 ## When to Use
@@ -41,7 +41,7 @@ Fan-out parallèle sur workspaces jj isolés + PR stackées (`gh stack`). Base
 
 - **Fan-out** : enfants d'un commit trunk = units indépendants.
 - **Depth** : enfant d'un enfant = unit dépendante ; chaîne racine→feuille =
-  STACK (`gh stack`), 1 PR par lien.
+  CHAÎNE, 1 PR par lien (land en ordre de dépendance).
 - **Join** : enfant de plusieurs parents (`jj new <a> <b>`) = dépend de
   plusieurs flux ; land après.
 - **Isolation** : chaque flux dans son PROPRE workspace jj (copie + commit
@@ -70,7 +70,9 @@ Fan-out parallèle sur workspaces jj isolés + PR stackées (`gh stack`). Base
    - Chaîne dépendante → un bookmark par lien, puis :
 
      ```bash
-     gh stack init <base> && gh stack add <next> && gh stack submit --auto --open
+     jj bookmark set <next> -r <next>
+     gh pr create --repo cloud-pi-native/console --base main \
+       --head "cloud-pi-native:<next>"
      ```
 
    - Liaison PR↔issue via `cpn-pr` : `Refs #N` par défaut.
@@ -95,14 +97,12 @@ Chaque enfant reçoit : chemin du workspace, gates de l'unit, forme du commit
   unit, jamais 2 flux sur 1 bookmark.
 - **Fan-out avant les contrats** — enfants sans gates reproduit la défaillance
   d'enforcement que les gates empêchent.
-- `gh stack` = preview publique GitHub ; OK pour l'usage interne
-  cloud-pi-native.
 
 ## Verification
 
 ```bash
 jj workspace list && jj log -r 'all()' --limit 20
-gh stack view && gh pr list --state open
+gh pr list --state open          # une PR par feuille
 ```
 
 DAG = arbre planifié ; chaque feuille a une PR liée ; chaque

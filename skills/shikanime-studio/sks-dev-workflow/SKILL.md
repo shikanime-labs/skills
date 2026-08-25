@@ -2,7 +2,7 @@
 name: sks-dev-workflow
 description:
   "Use when running the shikanime local dev loop: branching, push-to-origin, jj
-  bookmark tracking, and landing via gh stack or direct push."
+  bookmark tracking, and landing via plain gh pr merge or direct push."
 version: 0.4.0
 author: Hermes Agent
 license: Apache-2.0
@@ -14,12 +14,13 @@ metadata:
       - shikanime-labs
       - shikanime-studio
     related_skills:
+      - cpn-dev-workflow
+      - cpn-async
       - sks-pr-review
       - sks-async
       - sks-commit
       - sks-pr
       - sks-land
-      - sks-isolate
 platforms:
   - linux
   - macos
@@ -35,8 +36,7 @@ parallel split in `sks-async` (multi-parent joins via `jj new <a> <b>`).
 
 ## When to Use
 
-- "Start working on a shikanime repo" — end-to-end dev loop from discussion to
-  landing.
+- "Start working on a shikanime repo" — end-to-end dev loop from discussion to landing.
 - "Push to origin and land this PR" — landing path (branch protection, stack).
 - "Fan out this work into parallel streams" — `sks-async` parallel split.
 - Assumption validation gate fails — probe and report blockers before work.
@@ -49,9 +49,9 @@ parallel split in `sks-async` (multi-parent joins via `jj new <a> <b>`).
 | 1–2 | Issue: create → refine → triage           | `sks-issue-workflow` | **ledger settled**    |
 | 3   | Branch + implement                        | this                 | —                     |
 | 4   | Commit (plain-English + Automata trailer) | `sks-commit`         | **commit shape**      |
-| 5   | Adversarial code review                   | `sks-pr-review`      | **review gate**       |
+| 5   | Adversarial code review                   | `sks-pr-review`    | **review gate**       |
 | 6   | PR: ensure issue → open → triage          | `sks-pr-workflow`    | —                     |
-| 7   | Land (merge / `gh stack`)                 | `sks-async` / this   | **branch protection** |
+| 7   | Land (`gh pr merge --squash`)             | `sks-async` / this   | **branch protection** |
 | 8   | Close issue deliberately (N of N)         | `sks-issue`          | **ledger discharged** |
 
 Never skip triage (ledger unsettled) or review (PR not ready).
@@ -76,7 +76,6 @@ silent scope change:
 - push right: `gh api repos/<org>/<repo> --jq .viewerPermission` (need
   `write`/`admin`)
 - jj repo: `.jj/` / `jj status` → `jj bookmark track` before push
-- `gh stack` present: `gh extension list`
 - issue exists (issue-first) — else `sks-issue-workflow`
 - NixOS repo: `nix` available (build-verify gate) Report
   `BLOCKED: <req> — <evidence> — <recovery>`. Independent unblocked streams may
@@ -93,14 +92,15 @@ silent scope change:
 
 When the working folder has concurrent editors / pre-existing uncommitted WIP
 you must not fold in, open an isolated workspace at a clean revset instead of
-peeling subsets with `jj restore`/`jj split` (which can lose WIP). The full
-recipe — snapshot WIP, `jj workspace add -r main`, commit per `sks-commit`,
-bookmark + push — lives in `sks-isolate`; load it for the step-by-step. Gist:
+peeling subsets with `jj restore`/`jj split` (which can lose WIP):
 
 ```bash
 cd ~/Source/Repos/github.com/<orga>/<repo>
+mkdir -p /tmp/wip6
+for f in <WIP files>; do cp "$f" "/tmp/wip6/$(echo "$f" | tr '/' '__')"; done
 jj workspace add ../<repo>-fix -r main && cd ../<repo>-fix
-# copy in ONLY your fix files, commit per sks-commit, then:
+# copy in ONLY your fix files, then:
+jj add <fix files>; jj describe -m "$(cat /tmp/fixmsg.txt)"
 jj bookmark create fix/<desc> -r @; jj bookmark track fix/<desc> --remote=origin
 jj git push --remote origin -b fix/<desc>
 ```
@@ -124,14 +124,9 @@ jj does not auto-track bookmarks — without `track`, push is rejected.
   `--head <org>:<branch>`, base `main`. `sks-pr-workflow` enforces the
   pre-submit isolation + conflict-free-base gate (PR carries only its own
   change set; verify before opening).
-- **PR via `gh stack` (stacked work):** submits from `origin`, keeping PR↔commit
-  parity. Stacked PRs are a GitHub **public-preview** feature — fine internally.
-
-  ```bash
-  gh stack init <branch>            # trunk defaults to main
-  gh stack submit --auto --open
-  ```
-
+- **Stacked work:** one PR per link off `main`, each opened with
+  `gh pr create --head <org>:<branch>`; land base-first with
+  `gh pr merge --squash --admin` (see `sks-land`). Parity rule unchanged.
 - **Direct push:** ONLY when the user explicitly says "push to main" / "land
   it".
 - **Run `sks-pr-review` before requesting merge** — treat it as the gate.
@@ -145,8 +140,7 @@ jj does not auto-track bookmarks — without `track`, push is rejected.
 English across the shikanime family; full URLs over `#N` shorthand; commit↔PR
 parity. Each message type's exact shape lives in its owning skill:
 
-- **Commit** → `sks-commit` — repos with an `AGENTS` governance file
-  (`skills`, `manifests`): labeled
+- **Commit** → `sks-commit` — AGENTS.md repos (`skills`, `manifests`): labeled
   body `Design:`/`Related:` + auto `Signed-off-by`/`Change-Id`.
 - **Issue** → `sks-issue` — body = stable problem statement + `- [ ]` ledger;
   `## Problem`/`## Acceptance` variant also accepted (see `sks-issue`
@@ -158,8 +152,8 @@ parity. Each message type's exact shape lives in its owning skill:
 - **PR** → `sks-pr` — title = commit subject; body `## What`/`## Why`/
   `## References` restating the commit; `Related: <full URL>`.
 
-Cross-cutting: a `- [ ]` ledger item is command-decidable and done only once its
-check ran; close the linked issue deliberately after N-of-N verified.
+Cross-cutting: a `- [ ]` ledger item is command-decidable and done only once
+its check ran; close the linked issue deliberately after N-of-N verified.
 
 ## Done is proven, not asserted
 
@@ -176,13 +170,13 @@ check ran; close the linked issue deliberately after N-of-N verified.
 
 | Signal                                     | Implication                                                      |
 | ------------------------------------------ | ---------------------------------------------------------------- |
-| repo `AGENTS` file with `Related:` URL      | follow it (e.g. `manifests`)                                     |
+| `AGENTS.md` with `Related:` URL            | follow it (e.g. `manifests`)                                     |
 | `doc:` prefix convention                   | doc repo → `doc:` titles                                         |
 | branch protection on `main`                | PR mandatory                                                     |
 | jj repo (`.jj/`)                           | `jj bookmark track <branch> --remote=origin` before push         |
 | NixOS/infra (`machines`, `nix-containers`) | `nix eval`/`nix build` before switch; control-plane needs quorum |
 
-## Keep the repo `AGENTS` file current
+## Keep AGENTS.md current
 
 Append a SHORT note (1–2 lines) when a change/convention/quirk would alter
 future agent behavior: enforced hooks (gitlint/commitlint/DCO), branch
@@ -191,17 +185,7 @@ use full URL). Skip per-task detail.
 
 ## Pitfalls
 
-- Not recording steering discoveries in the repo `AGENTS` file — next agent
-  repeats them.
-- `jj` push without `jj bookmark track <branch> --remote=origin` — rejected.
-- Direct-pushing `main` on protected repos — rejected; use PR.
-- Assuming conventional commits — shikanime code repos use plain English.
-- Skipping build-verify on NixOS repos — invalid config ships.
-- `jj describe`/`commit` snapshots every dirty WC file, not just `jj add` —
-  isolate via `jj workspace add ../<repo>-fix -r main`.
-- GitHub pings any `@name` in prose as a user/team mention; wrap literal `@`
-  (NestJS `@Inject(x)`, decorators, config keys) in a code span or fenced
-  block.
+Optional edge cases and gotchas — load `references/pitfalls.md` on demand.
 
 ## Verification
 
@@ -212,4 +196,4 @@ jj status && jj log -r @ -T 'bookmarks ++ " "'
 ## See also
 
 `sks-issue-workflow` / `sks-pr-workflow` (issue & PR sides), `sks-commit`,
-`sk-async` (stacked PRs), `sks-pr-review` (phase 5).
+`sk-async` (stacked PRs), `sks-pr-review` (phase 5), `cpn-dev-workflow`.

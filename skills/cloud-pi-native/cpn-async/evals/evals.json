@@ -3,7 +3,7 @@
   "evals": [
     {
       "id": 1,
-      "expected_output": "Decomposes the issue into a DAG of independent units, fans out each into its own jj workspace, and lands them via gh stack.",
+      "expected_output": "Decomposes the issue into a DAG of independent units, fans out each into its own jj workspace, and lands them as independent PRs.",
       "files": [],
       "prompt": "Je dois refactoriser la sync Keycloak et ajouter la rotation des secrets Vault en parallèle dans console — comment je fan-out ça sur des workspaces jj avec une PR stackée ?",
       "assertions": [
@@ -14,14 +14,14 @@
         "The license field is 'Apache-2.0'.",
         "The body contains at least one '##' heading.",
         "Body fans out parallel work via jj workspaces.",
-        "Body uses gh stack."
+        "Body uses gh pr create."
       ]
     },
     {
       "id": 2,
       "expected_output": "Spawns parallel delegate_task agents per leaf with gates, one jj workspace per unit, and re-verifies each gate in-workspace before declaring done.",
       "files": [],
-      "prompt": "Répartis le travail de l'issue #123 en flux parallèles isolés et prépare les PR en stack via gh stack.",
+      "prompt": "Répartis le travail de l'issue #123 en flux parallèles isolés et prépare les PR indépendantes via gh pr.",
       "assertions": [
         "Frontmatter parses successfully.",
         "The 'name' field equals 'cpn-async'.",
@@ -30,12 +30,12 @@
         "The license field is 'Apache-2.0'.",
         "The body contains at least one '##' heading.",
         "Body fans out parallel work via jj workspaces.",
-        "Body uses gh stack."
+        "Body uses gh pr create."
       ]
     },
     {
       "id": 3,
-      "expected_output": "Builds dependent units as a jj depth chain or a jj join (jj new <a> <b>) and lands them via gh stack after siblings.",
+      "expected_output": "Builds dependent units as a jj depth chain or a jj join (jj new <a> <b>) and lands them in dependency order after siblings.",
       "files": [],
       "prompt": "Comment décomposer cette grosse feature console en units indépendants et les lander sans conflit de bookmark ?",
       "assertions": [
@@ -46,7 +46,7 @@
         "The license field is 'Apache-2.0'.",
         "The body contains at least one '##' heading.",
         "Body fans out parallel work via jj workspaces.",
-        "Body uses gh stack."
+        "Body uses gh pr create."
       ]
     },
     {
@@ -88,7 +88,7 @@
       "id": 7,
       "expected_output": "Route la demande shikanime-studio vers la compétence sks-* ; ne revendique pas le périmètre sks- pour elle-même.",
       "files": [],
-      "prompt": "Répartis le travail en flux parallèles pour shikanime-studio/devlib avec des workspaces jj isolés et lande via gh stack.",
+      "prompt": "Répartis le travail en flux parallèles pour shikanime-studio/devlib avec des workspaces jj isolés et lande via gh pr merge.",
       "assertions": [
         "The 'name' field equals the directory basename 'cpn-async' (not an sks- name).",
         "The description starts with 'À utiliser quand' and is scoped to cloud-pi-native, not shikanime.",

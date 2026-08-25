@@ -36,7 +36,7 @@ repo.
 
 - "Open a PR in a shikanime org repo."
 - "Ensure issue linkage before creating a PR."
-- "Push to origin and land via `gh stack` (stacked PRs)."
+- "Push to origin and land via plain `gh pr` (the org removed `gh stack`)."
 
 ## Internal policy: push to origin
 
@@ -86,31 +86,32 @@ remote as canonical.
 5. **Parity** — PR title MUST equal commit subject; PR body MUST restate the
    commit message; no added rationale (see `sks-commit`).
 
-## Landing via `gh stack` (preferred)
+## Landing via plain `gh pr`
 
-`gh stack` (first-party GitHub CLI extension,
-`gh extension install github/gh-stack`) is the landing path (see
-`sks-dev-workflow`); it seeds each PR's title/body from the branch's commit,
-enforcing PR↔commit parity. Stacked PRs are a **GitHub public-preview** feature;
-the extension is released but subject to change — fine for internal use.
+The org removed the `gh stack` extension — land with plain `gh pr merge`
+(see `sks-land`). Squash-merge keeps a linear history and preserves
+PR↔commit parity (title = commit subject, body = commit message).
 
 ```bash
-jj rebase -d main                      # ALWAYS rebase onto trunk before submit
-gh stack init <branch>                 # adopt current branch into a stack (trunk=main)
-gh stack add -Am "Next layer"          # optional: stack another branch on top
-gh stack submit --auto --open          # push branches, create/update PR(s) + stack
-gh stack sync                          # later: rebase+pull+sync stack state
+jj rebase -d main                      # ALWAYS rebase onto trunk before landing
+gh pr merge <M> --repo <org>/<repo> --squash --admin \
+  -b "$(cat <<'EOF'
+<body: one coherent change, no jj * bullets / --------- separators;
+trailers only: Related: [url], Signed-off-by: [user]>
+
+Co-authored-by: Automata <automata@shikanime.studio>
+EOF
+)"                                     # --admin bypasses self-approval protection
 ```
 
-- `--auto` uses the commit subject/body as PR title/description — no divergent
-  text.
-- **Conflict check** before submit:
+- Branch protection blocks self-approval on some repos (e.g.
+  `shikanime-labs/skills`); a verbal `lgtm` satisfies the gate — land with
+  `--squash --admin`.
+- **Conflict check** before merge:
   `gh pr view <N> --json mergeable,mergeStateStatus` (existing PR) or
   `jj rebase -d main` locally (conflict markers = author rebases; never push a
   conflict).
-- Existing single-PR branches (e.g. `fix/rwx-nfs-v4.0`) are adopted by
-  `gh stack init`; `submit` updates the in-place PR. For a lone branch use step
-  2b; parity still applies.
+- For a lone branch use step 2b (`gh pr create`); landing still applies.
 
 ## Procedure
 

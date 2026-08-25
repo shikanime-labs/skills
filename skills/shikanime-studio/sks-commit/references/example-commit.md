@@ -1,9 +1,9 @@
 # Example commit (repo: shikanime-labs/skills)
 
 ```text
-Document the gh-stack PR seed mapping in sks-pr
+Document the PR seed mapping in sks-pr
 
-Encode what `gh stack submit` copies from the commit into the PR title/body
+Encode what the PR copies from the commit into its title/body
 so the sks-pr body rule stays in parity.
 
 Design: skills/shikanime-studio/sks-pr/SKILL.md

@@ -17,9 +17,9 @@
     },
     {
       "id": 2,
-      "expected_output": "Prunes remote-tracking bookmarks left by gh stack chains and never drops bookmarks tied to an open PR.",
+      "expected_output": "Prunes remote-tracking bookmarks left by parallel-stream chains and never drops bookmarks tied to an open PR.",
       "files": [],
-      "prompt": "My gh stack chains from a parallel migration are still sitting on origin. Reclaim them and the dangling bookmarks.",
+      "prompt": "My parallel-stream branches from a migration are still sitting on origin. Reclaim them and the dangling bookmarks.",
       "assertions": [
         "YAML frontmatter parses and 'name' equals 'sks-gc'",
         "Frontmatter description starts with 'Use when' and is at most 200 characters",

@@ -58,7 +58,7 @@ Work-item lifecycle; gate phases are the mechanical walls a change must clear.
 | 4   | Commit (conventional, SSH-signed)                              | `cpn-commit`                         | commit shape      |
 | 5   | Code review (adversarial pre-merge)                            | `cpn-pr-review`                    | review gate       |
 | 6   | PR (origin-only draft, link `Issues liées`)                    | `cpn-pr`                             | —                 |
-| 7   | Land (merge / `gh stack` + merge queue)                        | this skill                           | branch protection |
+| 7   | Land (`gh pr merge --squash` + merge queue)                    | this skill                           | branch protection |
 | 8   | Close deliberately (verify N of N)                             | `cpn-issue`                          | ledger discharged |
 
 Phases 2 and 5 are the before-code / before-merge gates. The console `Procedure`
@@ -135,9 +135,8 @@ delegate_task(tasks=[
    its parent. Multiple children of one parent → jj **diamond** (natively
    tracked, parallelizes landing). Fully independent streams → own
    `jj workspace add ../<name> --name <name>` at `@` and own **standalone** PR
-   (`cpn-async`: fan-out, join `jj new <a> <b>`, land via
-   `gh stack`/standalone). Don't stack unless a later module imports an earlier
-   one's new code.
+   (`cpn-async`: fan-out, join `jj new <a> <b>`, land via standalone
+   `gh pr`). Don't stack unless a later module imports an earlier one's new code.
 9. Conventional English commits, one per unit. **jj-backed — never
    `git commit`**; use `jj describe -m "msg"` / `jj new -m "msg"`. Fold into
    existing: `jj log -r '::@'`; if covered,
@@ -172,7 +171,6 @@ blocker, never a silent scope change:
   `write`/`admin` to push to origin.
 - Toolchain: `node --version` (≥24), `pnpm --version`; jj present (console is
   jj-backed — never `git commit`; use `jj describe`/`jj new`).
-- `gh stack` extension: `gh extension list`.
 - The issue exists (issue-first; create via `cpn-issue` if not).
 
 Report shape: `BLOCKED: <requirement> — <evidence> — <recovery path>`. Unblocked
@@ -186,20 +184,9 @@ Landing follows the same origin-only discipline as the other cpn skills:
   the branch to `origin`, and open the PR with
   `--head cloud-pi-native:<branch>`. (Pre-2026-08 `--head shikanime:<branch>`
   guidance is retired.)
-- **`gh stack` is the preferred landing path** for single- or multi-branch work.
-  It reads each branch's commit subject/body to seed the PR title/description,
-  which enforces PR↔commit parity by construction:
-
-```bash
-gh stack init <branch>            # trunk defaults to main
-gh stack submit --auto --open     # push branches, create/update PR(s) + stack
-```
-
-Stacked PRs are a GitHub public-preview feature (extension released, feature
-subject to change) — fine for internal `cloud-pi-native` use. A lone branch can
-still use `gh pr create --draft --fill --body "Refs #N"` (step 11); the parity
-rule below still applies.
-
+- **Plain `gh pr` is the landing path** (the org removed the `gh stack`
+  extension). Open each branch with `gh pr create --draft --fill --body "Refs #N"`
+  and land with `gh pr merge --squash`; parity is enforced by review, not tooling.
 - **Une PR résout toujours une issue ; ne jamais l'ouvrir seule.** La liaison est
   **many-to-many** : plusieurs PR peuvent résoudre une issue ; une PR peut en
   servir plusieurs. Par défaut `Refs #N` sur chaque PR. Tout autre cas : après
@@ -209,8 +196,7 @@ rule below still applies.
   The PR title must equal the commit subject and the PR body must restate the
   commit message — don't add new rationale the commit doesn't state (see
   `cpn-commit` / `cpn-pr`). Author the commit to carry the full rationale
-  (subject + blank line + body) so `gh stack` seeds the PR without inventing
-  claims.
+  (subject + blank line + body) so the PR restates it without inventing claims.
 
 ## Deep detail (gates, module design, vitest/e2e/Playwright rules)
 
