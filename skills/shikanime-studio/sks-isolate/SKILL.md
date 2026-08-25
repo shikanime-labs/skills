@@ -20,6 +20,7 @@ metadata:
       - sks-async
       - sks-commit
       - sks-pr-workflow
+      - sks-gc
 platforms:
   - linux
   - macos
@@ -48,7 +49,9 @@ fan-out and the isolation lane of `sks-dev-workflow`.
    ```bash
    cd ~/Source/Repos/github.com/<orga>/<repo>
    mkdir -p /tmp/wip-isolate
-   for f in <WIP files>; do cp "$f" "/tmp/wip-isolate/$(echo "$f" | tr '/' '__')"; done
+   for f in <WIP files>; do
+     cp "$f" "/tmp/wip-isolate/$(echo "$f" | tr '/' '__')"
+   done
    jj workspace add ../<repo>-<unit> -r main && cd ../<repo>-<unit>
    ```
 
@@ -97,4 +100,4 @@ gh pr view <N> --repo <org>/<repo> --json state,headRefName   # after PR step
 - `sks-dev-workflow` — full loop; this skill is its isolation lane.
 - `sks-async` — fan-out; each stream uses this same workspace recipe.
 - `sks-pr-workflow` — open the PR from the pushed bookmark.
-- `sks-gc` — once landed, that skill reclaims the workspace/bookmark.
+- `sks-gc` — reclaim the workspace/bookmark once landed.
