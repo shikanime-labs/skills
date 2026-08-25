@@ -91,11 +91,6 @@ If title/body cites `#M` (open, unlinked issue), ensure body has `Related: #M`
 gh pr view "$N" --repo "$R" --json number,title,labels,assignees,milestone,reviewRequests
 ```
 
-Constraints: never invent labels (filter `gh label list`); never overwrite
-(`--add-label`/`--add-assignee` only); milestone — bugs→current patch,
-features→next release; never close PRs (strays→`sks-pr` or author); always the
-org repo.
-
 ## Verification
 
 ```bash

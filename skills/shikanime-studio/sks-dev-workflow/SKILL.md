@@ -14,8 +14,6 @@ metadata:
       - shikanime-labs
       - shikanime-studio
     related_skills:
-      - cpn-dev-workflow
-      - cpn-async
       - sks-pr-review
       - sks-async
       - sks-commit
@@ -203,4 +201,4 @@ jj status && jj log -r @ -T 'bookmarks ++ " "'
 ## See also
 
 `sks-issue-workflow` / `sks-pr-workflow` (issue & PR sides), `sks-commit`,
-`sk-async` (stacked PRs), `sks-pr-review` (phase 5), `cpn-dev-workflow`.
+`sk-async` (stacked PRs), `sks-pr-review` (phase 5).

@@ -22,7 +22,6 @@ metadata:
       - sks-land
       - sks-pr
       - requesting-code-review
-      - cpn-pr-review
 platforms:
   - linux
   - macos
@@ -44,7 +43,7 @@ approves.
 
 - "review this diff", "check before pushing", "review PR #N", "look at this PR"
 - After a task touching 2+ files
-- Before opening/merging a PR in shikanime/* or cloud-pi-native/*
+- Before opening/merging a PR in shikanime/*
 
 ## Prerequisites
 
@@ -98,7 +97,14 @@ plain-English message in the body (author amends — reviewer never pushes).
 
 ## Pitfalls
 
-Optional edge cases and gotchas — load `references/pitfalls.md` on demand.
+Pitfalls:
+
+- Empty diff → check `jj status`, tell user nothing to verify.
+- Large diff (>15k chars) → split by file, review each.
+- `delegate_task` non-JSON → treat as FAIL (fail-closed).
+- False positives → note intentional patterns, don't block.
+- Lint/test tools absent → skip that check silently; verdict still runs.
+
 
 ## Verification
 
@@ -107,7 +113,7 @@ verdict + praise (2-3 sentences), corrected commit message suggested. Mapping:
 any `blocking` → `REQUEST_CHANGES`; else `APPROVE` if confident, `COMMENT`
 otherwise (`gh pr review <N> --request-changes|--approve|--comment`).
 
-Related: `requesting-code-review`, `github-code-review`, `cpn-pr-review`.
+Related: `requesting-code-review`, `github-code-review`.
 
 ## See also
 
