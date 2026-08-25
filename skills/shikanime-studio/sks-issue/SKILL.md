@@ -40,6 +40,18 @@ Prereqs: `gh` authenticated to the canonical org repo; target it directly.
 
 ## Procedure
 
+### 0. Check for existing issues
+
+Search before creating to avoid duplicates:
+
+```bash
+gh issue list --repo <org>/<repo> --state all --search "<keywords>" --limit 10
+```
+
+If an open (or recently closed) issue matches, surface the `#N` and confirm
+with the user whether to reuse it instead of opening a new one. Only create
+when no matching issue exists (or the user explicitly wants a fresh ticket).
+
 ### 1. Repo + type
 
 ```bash

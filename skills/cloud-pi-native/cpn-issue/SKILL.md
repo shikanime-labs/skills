@@ -49,6 +49,20 @@ repo norm: open the issue before any PR, then link it (see `cpn-pr`).
 
 ## Procedure
 
+### 0. Vérifier les issues existantes
+
+Recherche avant création pour éviter les doublons :
+
+```bash
+gh issue list --repo cloud-pi-native/console --state all \
+  --search "<mots-clés>" --limit 10
+```
+
+Si une issue ouverte (ou récemment fermée) correspond, signale le `#N` et
+demande à l'utilisateur s'il faut la réutiliser plutôt qu'en ouvrir une
+nouvelle. Ne crée une nouvelle issue que s'il n'en existe aucune correspondante
+(ou si l'utilisateur préfère un ticket neuf).
+
 **Temp body files are NOT hard-wrapped** — semantic line breaks (one sentence
 per line, no 80-col wrap); GitHub joins non-blank lines into one paragraph.
 Never run `nix fmt` / `mdformat` over a temp body file.
