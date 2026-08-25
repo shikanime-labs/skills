@@ -92,7 +92,8 @@ git diff --stat "$(gh pr view <N> --repo <org>/<repo> --json baseRefOid -q .base
 
 ```bash
 gh pr view <N> --repo <org>/<repo> --json title,baseRefName,body
-gh pr diff <N> --repo <org>/<repo> --name-only   # isolation: exactly the intended files
+gh pr diff <N> --repo <org>/<repo> --name-only \
+  # isolation: exactly the intended files
 ```
 
 ## See also

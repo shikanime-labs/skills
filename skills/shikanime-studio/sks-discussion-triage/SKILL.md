@@ -66,7 +66,9 @@ Fetch: `references/fetch-query.md` (GraphQL).
 ## Verification
 
 ```bash
-gh api graphql -f query='query($n:Int!){repository(owner:"<OWNER>",name:"<REPO>"){discussion(number:$n){category{name} isAnswered url}}}' -F n=<N>
+gh api graphql -f query='query($n:Int!){repository(owner:"<OWNER>",'\
+'name:"<REPO>"){discussion(number:$n){category{name} isAnswered url}}}' \
+  -F n=<N>
 ```
 
 ## See also

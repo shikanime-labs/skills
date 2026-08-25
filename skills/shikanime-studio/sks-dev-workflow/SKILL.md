@@ -145,7 +145,8 @@ jj does not auto-track bookmarks — without `track`, push is rejected.
 English across the shikanime family; full URLs over `#N` shorthand; commit↔PR
 parity. Each message type's exact shape lives in its owning skill:
 
-- **Commit** → `sks-commit` — repos with an `AGENTS` governance file (`skills`, `manifests`): labeled
+- **Commit** → `sks-commit` — repos with an `AGENTS` governance file
+  (`skills`, `manifests`): labeled
   body `Design:`/`Related:` + auto `Signed-off-by`/`Change-Id`.
 - **Issue** → `sks-issue` — body = stable problem statement + `- [ ]` ledger;
   `## Problem`/`## Acceptance` variant also accepted (see `sks-issue`
@@ -190,7 +191,17 @@ use full URL). Skip per-task detail.
 
 ## Pitfalls
 
-Optional edge cases and gotchas — load `references/pitfalls.md` on demand.
+- Not recording steering discoveries in the repo `AGENTS` file — next agent
+  repeats them.
+- `jj` push without `jj bookmark track <branch> --remote=origin` — rejected.
+- Direct-pushing `main` on protected repos — rejected; use PR.
+- Assuming conventional commits — shikanime code repos use plain English.
+- Skipping build-verify on NixOS repos — invalid config ships.
+- `jj describe`/`commit` snapshots every dirty WC file, not just `jj add` —
+  isolate via `jj workspace add ../<repo>-fix -r main`.
+- GitHub pings any `@name` in prose as a user/team mention; wrap literal `@`
+  (NestJS `@Inject(x)`, decorators, config keys) in a code span or fenced
+  block.
 
 ## Verification
 

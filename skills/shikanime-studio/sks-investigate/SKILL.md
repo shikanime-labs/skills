@@ -47,7 +47,7 @@ critical method, and flags where each step is commonly misapplied.
 
 ## Iron Law
 
-```
+```text
 THIS SKILL RESEARCHES AND PROPOSES. IT NEVER APPLIES A FIX.
 ```
 
@@ -184,7 +184,8 @@ propose the known resolution; do not re-debug from zero:
 ## Verification
 
 ```bash
-echo "investigation complete: root cause + hypothesis + proposed fix recorded in the linked issue"
+echo "investigation complete: root cause + hypothesis + proposed fix" \
+  "recorded in the linked issue"
 # proof = the exact repro command that demonstrates the failure on demand
 ```
 

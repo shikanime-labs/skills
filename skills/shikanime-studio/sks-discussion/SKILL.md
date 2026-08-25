@@ -94,4 +94,5 @@ Confirm title/body/category + body stays context + open questions.
 
 - `sks-issue` — derive the issue once converged.
 - `sks-discussion-triage` — triage, lifecycle routing, closure.
-- `sks-discussion` — the English discussion skill; the French console twin is out of family scope.
+- `sks-discussion` — the English discussion skill; the French console twin is
+  out of family scope.

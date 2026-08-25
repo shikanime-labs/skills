@@ -60,7 +60,8 @@ gh issue view <N> --repo <org>/<repo> --json number,title,labels
 ## Verification
 
 ```bash
-gh issue view <N> --repo <org>/<repo> --json number,title,labels   # body + ledger + triage set
+gh issue view <N> --repo <org>/<repo> --json number,title,labels \
+  # body + ledger + triage set
 ```
 
 ## See also
