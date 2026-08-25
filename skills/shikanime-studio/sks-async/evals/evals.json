@@ -1,5 +1,4 @@
 {
-  "skill_name": "sks-async",
   "evals": [
     {
       "id": 1,
@@ -84,5 +83,6 @@
         "Frontmatter 'name' equals the directory basename 'sks-async'"
       ]
     }
-  ]
+  ],
+  "skill_name": "sks-async"
 }
