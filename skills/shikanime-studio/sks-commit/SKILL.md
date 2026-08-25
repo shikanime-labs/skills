@@ -77,7 +77,7 @@ EOF
 ## Repo-enforced overrides (detect, then obey)
 
 ```bash
-ls AGENTS.md .gitlint .commitlintrc* commitlint.config.* 2>/dev/null
+ls .gitlint .commitlintrc* commitlint.config.* 2>/dev/null
 grep -rl "Signed-off-by" .github/ 2>/dev/null
 ```
 

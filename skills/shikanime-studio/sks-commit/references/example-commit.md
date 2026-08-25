@@ -1,4 +1,4 @@
-# Example commit (AGENTS.md repo: shikanime-labs/skills)
+# Example commit (repo: shikanime-labs/skills)
 
 ```text
 Document the gh-stack PR seed mapping in sks-pr

@@ -1,6 +1,6 @@
 # sks-dev-workflow — Pitfalls
 
-- Not recording steering discoveries in AGENTS.md — next agent repeats them.
+- Not recording steering discoveries in the repo `AGENTS` file — next agent repeats them.
 - `jj` push without `jj bookmark track <branch> --remote=origin` — rejected.
 - Direct-pushing `main` on protected repos — rejected; use PR.
 - Assuming conventional commits — shikanime code repos use plain English.

@@ -37,8 +37,8 @@ HITL types are serial with the human.
   epic, not the whole product; prototype aggressively to flush uncertainty
   before implementation depends on it.
 - **Parallel grilling collision**: two grilling threads get asked the same
-  question in different words because they share no context. One-at-a-time is
-  the safer default.
+  question in different words because each runs without the other's thread.
+  One-at-a-time is the safer default.
 - **Prototype self-selection**: an agent builds three UI variants, picks one,
   closes the ticket. The selection is the human's; the skill must say so loudly.
 - **Editing the body with findings**: the body is a stable problem statement;

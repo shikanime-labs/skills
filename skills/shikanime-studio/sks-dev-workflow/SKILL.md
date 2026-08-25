@@ -143,7 +143,7 @@ jj does not auto-track bookmarks — without `track`, push is rejected.
 English across the shikanime family; full URLs over `#N` shorthand; commit↔PR
 parity. Each message type's exact shape lives in its owning skill:
 
-- **Commit** → `sks-commit` — AGENTS.md repos (`skills`, `manifests`): labeled
+- **Commit** → `sks-commit` — repos with an `AGENTS` governance file (`skills`, `manifests`): labeled
   body `Design:`/`Related:` + auto `Signed-off-by`/`Change-Id`.
 - **Issue** → `sks-issue` — body = stable problem statement + `- [ ]` ledger;
   `## Problem`/`## Acceptance` variant also accepted (see `sks-issue`
@@ -173,13 +173,13 @@ its check ran; close the linked issue deliberately after N-of-N verified.
 
 | Signal                                     | Implication                                                      |
 | ------------------------------------------ | ---------------------------------------------------------------- |
-| `AGENTS.md` with `Related:` URL            | follow it (e.g. `manifests`)                                     |
+| repo `AGENTS` file with `Related:` URL      | follow it (e.g. `manifests`)                                     |
 | `doc:` prefix convention                   | doc repo → `doc:` titles                                         |
 | branch protection on `main`                | PR mandatory                                                     |
 | jj repo (`.jj/`)                           | `jj bookmark track <branch> --remote=origin` before push         |
 | NixOS/infra (`machines`, `nix-containers`) | `nix eval`/`nix build` before switch; control-plane needs quorum |
 
-## Keep AGENTS.md current
+## Keep the repo `AGENTS` file current
 
 Append a SHORT note (1–2 lines) when a change/convention/quirk would alter
 future agent behavior: enforced hooks (gitlint/commitlint/DCO), branch
