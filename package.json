@@ -112,8 +112,8 @@
         "path": "skills/shikanime-studio/sks-investigate"
       },
       {
-        "name": "sks-isolate",
-        "path": "skills/shikanime-studio/sks-isolate"
+        "name": "sks-stack",
+        "path": "skills/shikanime-studio/sks-stack"
       },
       {
         "name": "sks-issue",

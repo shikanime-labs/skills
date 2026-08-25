@@ -120,9 +120,9 @@
       "path": "skills/shikanime-studio/sks-investigate"
     },
     {
-      "name": "sks-isolate",
+      "name": "sks-stack",
       "description": "Use when isolating one unit of shikanime work in a fresh jj workspace so concurrent editors / WIP never get folded in — bookmarks and pushes are scoped to that single workspace.",
-      "path": "skills/shikanime-studio/sks-isolate"
+      "path": "skills/shikanime-studio/sks-stack"
     },
     {
       "name": "sks-issue",

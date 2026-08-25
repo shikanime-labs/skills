@@ -1,10 +1,10 @@
 ---
-name: sks-isolate
+name: sks-stack
 description:
   Use when isolating one unit of shikanime work in a fresh jj workspace so
   concurrent editors / WIP never get folded in — bookmarks and pushes are scoped
   to that single workspace.
-version: 0.1.0
+version: 0.2.0
 author: Hermes Agent
 license: Apache-2.0
 metadata:
@@ -27,7 +27,7 @@ platforms:
   - windows
 ---
 
-# Shikanime Org Work Isolation
+# Shikanime Org Stack Isolation
 
 Open a fresh `jj` workspace for ONE unit of work so an in-flight working folder
 (full of other editors' WIP you must not touch) never folds your change into the
@@ -82,9 +82,8 @@ fan-out and the isolation lane of `sks-dev-workflow`.
 ## Pitfalls
 
 - `jj workspace add` without `-r` parents the new workspace on the current `@`
-  (possibly dirty) — always pin `-r 'main@origin'`. Only override with an
-  explicit `-r '<other-base>@origin'` when stacking on a non-trunk base; never
-  inherit the local `main` (it can be stale).
+  (possibly dirty) — always pin `-r 'main@origin'` so
+  the workspace forks from the remote tip, never stale local main.
 - Forgetting `jj bookmark track` makes `jj git push` reject the bookmark.
 - The new dir (`../<repo>-<unit>`) is a SIBLING of the repo root, not inside it;
   `sks-gc` reclaims it after landing.
@@ -101,7 +100,9 @@ gh pr view <N> --repo <org>/<repo> --json state,headRefName   # after PR step
 
 ## See also
 
-- `sks-dev-workflow` — full loop; this skill is its isolation lane.
+- `sks-dev-workflow` — full loop; this skill is its stack isolation lane.
 - `sks-async` — fan-out; each stream uses this same workspace recipe.
+- `sks-adversarial` — disposable sandbox; composes this skill + `sks-async`.
+- `sks-investigate` — root-cause discipline; use before isolating a fix.
 - `sks-pr-workflow` — open the PR from the pushed bookmark.
 - `sks-gc` — reclaim the workspace/bookmark once landed.

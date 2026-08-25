@@ -120,7 +120,8 @@ specification, compatible with the
 | `sks-pr-resolve`        | Reconcile PR review threads + ledger, report readiness without merging                                                       |
 | `sks-pr-review`         | Code review: YAGNI, root-cause, conventions                                                                                  |
 | `sks-pr-triage`         | PR triage: metadata, reviewers, issue linkage                                                                                |
-| `sks-pr-workflow`       | PR side end-to-end: issue-exists → open → triage                                                                             |
+| `sks-stack`             | Single-unit jj workspace isolation primitive: fork a clean workspace from `main@origin`, push, hand off to PR workflow         |
+|| `sks-pr-workflow`       | PR side end-to-end: issue-exists → open → triage                                                                             |
 | `sks-swarm`             | Distribute a task across an agent cluster over A2A: route by capability, machine, and runner pressure (optionally sandboxed) |
 
 ### cloud-pi-native family
