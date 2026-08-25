@@ -118,3 +118,15 @@ Then stop — merging is `sks-land`'s job.
 ## Pitfalls
 
 Optional edge cases and gotchas — load `references/pitfalls.md` on demand.
+
+## Verification
+
+```bash
+# readiness verdict re-checked: ledger N/N, approval present, every thread resolved
+gh pr view "$N" --repo "$R" --json reviewDecision,state
+gh api repos/"$R"/pulls/"$N"/comments --jq '.[].isResolved' 2>/dev/null || true
+```
+
+## See also
+
+- `sks-investigate` — root-cause research before any fix.

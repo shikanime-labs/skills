@@ -135,6 +135,13 @@ See `references/close.md` for the per-reason close commands. Always close with a
 rationale; never silently close. Ask the user for free-text `REASON` — never
 guess or reuse a generic string. Post a comment first, then close.
 
+## Verification
+
+```bash
+gh issue view "$N" --repo "$R" --json number,title,labels,assignees,milestone,projectCards,blockedBy,blocking
+gh api repos/"$R"/issues/"$N" --jq '{type: (.type // ""), parent: (.parent_issue.number // null)}'
+```
+
 ## See also
 
 - `sks-issue` — creation conventions (English).

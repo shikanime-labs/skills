@@ -62,3 +62,13 @@ Fetch: `references/fetch-query.md` (GraphQL).
 
 - GraphQL-only: no `gh issue edit`/REST; probe `.has_discussions` first
   (mutations 404 when disabled); never close silently.
+
+## Verification
+
+```bash
+gh api graphql -f query='query($n:Int!){repository(owner:"<OWNER>",name:"<REPO>"){discussion(number:$n){category{name} isAnswered url}}}' -F n=<N>
+```
+
+## See also
+
+- `sks-investigate` — root-cause research before any fix.

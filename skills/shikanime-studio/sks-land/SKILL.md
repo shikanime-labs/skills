@@ -150,3 +150,14 @@ Optional edge cases and gotchas — load `references/pitfalls.md` on demand.
       (lone).
 - [ ] Issue closed deliberately with rationale.
 - [ ] Landing bookmark removed locally and reconciled on origin.
+
+## Verification
+
+```bash
+gh pr view "$N" --repo "$R" --json state,mergeCommit,baseRefName
+gh pr checks "$N" --repo "$R"   # all green before merge; bookmark absent after
+```
+
+## See also
+
+- `sks-investigate` — root-cause research before any fix.

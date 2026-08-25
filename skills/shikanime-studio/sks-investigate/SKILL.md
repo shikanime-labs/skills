@@ -181,6 +181,13 @@ propose the known resolution; do not re-debug from zero:
 - Applying the fix inside an investigation breaks the issue-first handoff and
   leaves no reviewable proposal.
 
+## Verification
+
+```bash
+echo "investigation complete: root cause + hypothesis + proposed fix recorded in the linked issue"
+# proof = the exact repro command that demonstrates the failure on demand
+```
+
 ## See also
 
 - `sks-pr-review` — the review gate enforces the same root-cause discipline on

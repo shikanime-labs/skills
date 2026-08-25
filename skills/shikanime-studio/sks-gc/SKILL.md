@@ -122,6 +122,13 @@ leave on disk. Destructive — always dry-run first.
 - The canonical workspace (bare repo name, no dot/`-fix`) is never a candidate;
   don't fold the trunk working copy into GC.
 
+## Verification
+
+```bash
+jj workspace list && jj bookmark list
+gh pr list --state open   # confirm no protected bm forgotten, canonical wc untouched
+```
+
 ## See also
 
 - `sks-async` — the fan-out that creates the workspaces/bookmarks this skill

@@ -95,3 +95,14 @@ Constraints: never invent labels (filter `gh label list`); never overwrite
 (`--add-label`/`--add-assignee` only); milestone — bugs→current patch,
 features→next release; never close PRs (strays→`sks-pr` or author); always the
 org repo.
+
+## Verification
+
+```bash
+gh pr view "$N" --repo "$R" --json number,title,labels,assignees,milestone,reviewRequests
+# title/body cites an open issue via Related: #M if applicable
+```
+
+## See also
+
+- `sks-investigate` — root-cause research before any fix.

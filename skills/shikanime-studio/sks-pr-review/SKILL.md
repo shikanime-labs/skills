@@ -108,3 +108,7 @@ any `blocking` → `REQUEST_CHANGES`; else `APPROVE` if confident, `COMMENT`
 otherwise (`gh pr review <N> --request-changes|--approve|--comment`).
 
 Related: `requesting-code-review`, `github-code-review`, `cpn-pr-review`.
+
+## See also
+
+- `sks-investigate` — root-cause research before any fix.

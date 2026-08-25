@@ -130,6 +130,13 @@ jj file list docs/   # confirm the page landed and README lists it
 
 Optional edge cases and gotchas — load `references/pitfalls.md` on demand.
 
+## Verification
+
+```bash
+jj file list docs/   # page landed and README lists it
+# run the repo's docs build if one exists; open the rendered page
+```
+
 ## See also
 
 - `sks-issue` / `sks-pr` — docs changes go through issue → PR like any other.

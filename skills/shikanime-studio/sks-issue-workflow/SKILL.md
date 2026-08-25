@@ -57,6 +57,12 @@ and triage metadata is set. Verify:
 gh issue view <N> --repo <org>/<repo> --json number,title,labels
 ```
 
+## Verification
+
+```bash
+gh issue view <N> --repo <org>/<repo> --json number,title,labels   # body + ledger + triage set
+```
+
 ## See also
 
 - `sks-issue` — create step.
