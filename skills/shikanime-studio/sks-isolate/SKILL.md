@@ -75,7 +75,9 @@ fan-out and the isolation lane of `sks-dev-workflow`.
    ```
 
 4. **Hand off to `sks-pr-workflow`** to open the PR (`--head <org>:<branch>`,
-   base `main`, `Related:` full issue URL). Do NOT merge here.
+   base `main`, `Related:` full issue URL; run its step 2b duplicate/stack check
+   first — skip the PR if one already exists, stack if yours must sit on top).
+   Do NOT merge here.
 
 ## Pitfalls
 

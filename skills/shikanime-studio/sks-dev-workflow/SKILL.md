@@ -36,7 +36,8 @@ parallel split in `sks-async` (multi-parent joins via `jj new <a> <b>`).
 
 ## When to Use
 
-- "Start working on a shikanime repo" — end-to-end dev loop from discussion to landing.
+- "Start working on a shikanime repo" — end-to-end dev loop from discussion to
+  landing.
 - "Push to origin and land this PR" — landing path (branch protection, stack).
 - "Fan out this work into parallel streams" — `sks-async` parallel split.
 - Assumption validation gate fails — probe and report blockers before work.
@@ -49,7 +50,7 @@ parallel split in `sks-async` (multi-parent joins via `jj new <a> <b>`).
 | 1–2 | Issue: create → refine → triage           | `sks-issue-workflow` | **ledger settled**    |
 | 3   | Branch + implement                        | this                 | —                     |
 | 4   | Commit (plain-English + Automata trailer) | `sks-commit`         | **commit shape**      |
-| 5   | Adversarial code review                   | `sks-pr-review`    | **review gate**       |
+| 5   | Adversarial code review                   | `sks-pr-review`      | **review gate**       |
 | 6   | PR: ensure issue → open → triage          | `sks-pr-workflow`    | —                     |
 | 7   | Land (`gh pr merge --squash`)             | `sks-async` / this   | **branch protection** |
 | 8   | Close issue deliberately (N of N)         | `sks-issue`          | **ledger discharged** |
@@ -122,8 +123,10 @@ jj does not auto-track bookmarks — without `track`, push is rejected.
 
 - **PR (default):** `sks-pr-workflow` → push `origin`, create PR
   `--head <org>:<branch>`, base `main`. `sks-pr-workflow` enforces the
-  pre-submit isolation + conflict-free-base gate (PR carries only its own
-  change set; verify before opening).
+  pre-submit isolation + conflict-free-base gate (PR carries only its own change
+  set; verify before opening). Run the `sks-pr` duplicate/stack check (step 2b)
+  first: no new PR if an open one already delivers the change; stack on the
+  existing PR's branch when your change depends on it.
 - **Stacked work:** one PR per link off `main`, each opened with
   `gh pr create --head <org>:<branch>`; land base-first with
   `gh pr merge --squash --admin` (see `sks-land`). Parity rule unchanged.
@@ -152,8 +155,8 @@ parity. Each message type's exact shape lives in its owning skill:
 - **PR** → `sks-pr` — title = commit subject; body `## What`/`## Why`/
   `## References` restating the commit; `Related: <full URL>`.
 
-Cross-cutting: a `- [ ]` ledger item is command-decidable and done only once
-its check ran; close the linked issue deliberately after N-of-N verified.
+Cross-cutting: a `- [ ]` ledger item is command-decidable and done only once its
+check ran; close the linked issue deliberately after N-of-N verified.
 
 ## Done is proven, not asserted
 

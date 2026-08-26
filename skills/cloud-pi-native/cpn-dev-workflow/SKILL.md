@@ -56,7 +56,7 @@ Work-item lifecycle; gate phases are the mechanical walls a change must clear.
 | 2   | Triage — labels/assignee/milestone/project/reviewers           | `cpn-issue-triage` / `cpn-pr-triage` | ledger settled    |
 | 3   | Branch + implement (jj workspace, conventional commits)        | this skill                           | —                 |
 | 4   | Commit (conventional, SSH-signed)                              | `cpn-commit`                         | commit shape      |
-| 5   | Code review (adversarial pre-merge)                            | `cpn-pr-review`                    | review gate       |
+| 5   | Code review (adversarial pre-merge)                            | `cpn-pr-review`                      | review gate       |
 | 6   | PR (origin-only draft, link `Issues liées`)                    | `cpn-pr`                             | —                 |
 | 7   | Land (`gh pr merge --squash` + merge queue)                    | this skill                           | branch protection |
 | 8   | Close deliberately (verify N of N)                             | `cpn-issue`                          | ledger discharged |
@@ -113,9 +113,8 @@ delegate_task(tasks=[
    body = **problem statement** (need, scope, API/data/security impact, `- [ ]`
    acceptance tasklist — see Gates), never the solution; analysis goes in
    comments. One issue per item. Create via `cpn-issue` if absent; link PR with
-   `Refs #N` (fermer délibérément après N-sur-N, voir
-   `references/pitfalls.md`). No bare-request implementation; no PR
-   without an issue behind it.
+   `Refs #N` (fermer délibérément après N-sur-N, voir `references/pitfalls.md`).
+   No bare-request implementation; no PR without an issue behind it.
 
    Reference-safety: `#N` in a PR/commit body resolves to console issue/PR **N**
    and `Closes` / `Fixes` / `Resolves` auto-close it on merge. Bare `#N` is only
@@ -139,8 +138,8 @@ delegate_task(tasks=[
    its parent. Multiple children of one parent → jj **diamond** (natively
    tracked, parallelizes landing). Fully independent streams → own
    `jj workspace add ../<name> --name <name>` at `@` and own **standalone** PR
-   (`cpn-async`: fan-out, join `jj new <a> <b>`, land via standalone
-   `gh pr`). Don't stack unless a later module imports an earlier one's new code.
+   (`cpn-async`: fan-out, join `jj new <a> <b>`, land via standalone `gh pr`).
+   Don't stack unless a later module imports an earlier one's new code.
 9. Conventional English commits, one per unit. **jj-backed — never
    `git commit`**; use `jj describe -m "msg"` / `jj new -m "msg"`. Fold into
    existing: `jj log -r '::@'`; if covered,
@@ -189,13 +188,16 @@ Landing follows the same origin-only discipline as the other cpn skills:
   `--head cloud-pi-native:<branch>`. (Pre-2026-08 `--head shikanime:<branch>`
   guidance is retired.)
 - **Plain `gh pr` is the landing path** (the org removed the `gh stack`
-  extension). Open each branch with `gh pr create --draft --fill --body "Refs #N"`
-  and land with `gh pr merge --squash`; parity is enforced by review, not tooling.
-- **Une PR résout toujours une issue ; ne jamais l'ouvrir seule.** La liaison est
-  **many-to-many** : plusieurs PR peuvent résoudre une issue ; une PR peut en
-  servir plusieurs. Par défaut `Refs #N` sur chaque PR. Tout autre cas : après
-  la fusion de la PR finale, vérifier la tâche N sur N et fermer délibérément
-  (`gh issue close <N> -c "<evidence>"`).
+  extension). Before opening each PR run the `cpn-pr` duplicate/stack check
+  (step 1b): no new PR if an open one already delivers the change; stack on the
+  existing PR's branch when your change depends on it. Open each branch with
+  `gh pr create --draft --fill --body "Refs #N"` and land with
+  `gh pr merge --squash`; parity is enforced by review, not tooling.
+- **Une PR résout toujours une issue ; ne jamais l'ouvrir seule.** La liaison
+  est **many-to-many** : plusieurs PR peuvent résoudre une issue ; une PR peut
+  en servir plusieurs. Par défaut `Refs #N` sur chaque PR. Tout autre cas :
+  après la fusion de la PR finale, vérifier la tâche N sur N et fermer
+  délibérément (`gh issue close <N> -c "<evidence>"`).
 - **Parity principle: the commit is the source of truth; the PR restates it.**
   The PR title must equal the commit subject and the PR body must restate the
   commit message — don't add new rationale the commit doesn't state (see

@@ -76,21 +76,21 @@ remote as canonical.
      `Related: https://github.com/<org>/<repo>/issues/N` (same repo) or
      `Related: https://github.com/owner/repo/issues/N` (cross-repo). Multiple:
      comma-separate if ≤80 cols, else one `Related:` per URL (`manifests`
-     gitlint enforces 80-col). Repo-enforced shape (e.g. `manifests` `AGENTS` file:
-     `Related:` + 80-col + `Signed-off-by`) overrides — follow the repo.
+     gitlint enforces 80-col). Repo-enforced shape (e.g. `manifests` `AGENTS`
+     file: `Related:` + 80-col + `Signed-off-by`) overrides — follow the repo.
    - Linkage is **many-to-many** (discussion → issue → comments → PR): a PR
      always solves an issue. Default `Related: <issue URL>`; otherwise close
-     deliberately after final merge (verify N-of-N, then `gh issue close`).
-     Same deliberate close (see `sks-dev-workflow`).
+     deliberately after final merge (verify N-of-N, then `gh issue close`). Same
+     deliberate close (see `sks-dev-workflow`).
 4. **Head** — `--head <org>:<branch>`; push to `origin` only.
 5. **Parity** — PR title MUST equal commit subject; PR body MUST restate the
    commit message; no added rationale (see `sks-commit`).
 
 ## Landing via plain `gh pr`
 
-The org removed the `gh stack` extension — land with plain `gh pr merge`
-(see `sks-land`). Squash-merge keeps a linear history and preserves
-PR↔commit parity (title = commit subject, body = commit message).
+The org removed the `gh stack` extension — land with plain `gh pr merge` (see
+`sks-land`). Squash-merge keeps a linear history and preserves PR↔commit parity
+(title = commit subject, body = commit message).
 
 ```bash
 jj rebase -d main                      # ALWAYS rebase onto trunk before landing
@@ -134,7 +134,25 @@ jj rebase -d main
   — re-sign with `jj sign -r @` and re-point the bookmark
   (`jj bookmark set <branch> -r @`) before pushing (see `sks-dev-workflow`).
 
-### 2b. Push to origin + open PR
+### 2b. Duplicate / stack check (MANDATORY before `gh pr create`)
+
+Before opening ANY new PR, enumerate what already exists:
+
+```bash
+gh pr list --repo "$ORG/<repo>" --state open --json number,title,headRefName \
+  --jq '.[] | "\(.number)\t\(.title)\t\(.headRefName)"'
+```
+
+- **Duplicate** — an open PR already delivers this change (same files/intent):
+  do NOT open another. Push your revision onto that PR's branch or comment
+  instead.
+- **Stack required** — an open PR touches the same area and your change depends
+  on it (or conflicts without it): base your branch ON that PR's head branch,
+  not `main`. Open yours `--base <their-branch>` (re-base to `main` after theirs
+  lands). Record both PR URLs in `Related:`.
+- **Neither** — proceed with `--base main`.
+
+### 2c. Push to origin + open PR
 
 ```bash
 ORG=<org>
@@ -154,7 +172,7 @@ EOF
 
 Use `--draft` when checks aren't green yet.
 
-### 2c. Verify mergeable after submit
+### 2d. Verify mergeable after submit
 
 ```bash
 gh pr view <N> --repo "<org>/<repo>" --json mergeable,mergeStateStatus
@@ -165,7 +183,7 @@ gh pr view <N> --repo "<org>/<repo>" --json mergeable,mergeStateStatus
 GitHub's `mergeable` is computed lazily — a fresh `jj rebase -d main` + re-push
 forces recompute. Don't declare done on stale `CONFLICTING`.
 
-### 2d. On revision (PR already open): reconcile review threads
+### 2e. On revision (PR already open): reconcile review threads
 
 New commits void prior review. Before done: (1) load `sks-pr-resolve`, drive
 every thread to resolved — address pertinent in diff, discard non-pertinent with
@@ -198,10 +216,9 @@ gh pr view <N> --repo <org>/<repo> --json title,baseRefName,body
 ```
 
 Confirm base is `main` (or repo default), title is plain-English/`doc:`, body
-links the correct issue, and `mergeable="MERGEABLE"` (step 2c).
+links the correct issue, and `mergeable="MERGEABLE"` (step 2d).
 
 ## See also
 
 - `sks-commit` (parity rule) · `sks-issue-refine` (converged issue) ·
-  `sks-async` (stacked PRs) · `sks-pr-triage` (metadata)
-  (metadata).
+  `sks-async` (stacked PRs) · `sks-pr-triage` (metadata) (metadata).
