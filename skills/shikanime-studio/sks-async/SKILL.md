@@ -75,6 +75,7 @@ onto jj's commit DAG as plain `gh pr` merges. Core splitting component of
      jj bookmark set <next> -r <next>
      gh pr create --repo <org>/<repo> --base main --head "<org>:<next>" \
        --title "<subject>" --body "$(cat <<'EOF'
+     ```
 
 ## What
 
@@ -82,12 +83,12 @@ onto jj's commit DAG as plain `gh pr` merges. Core splitting component of
 
 ## References
 
-Related: <issue URL>
-EOF
-)"
-     ```
+Related: <issue URL> EOF )" ```
 
 - PR↔issue linkage per `sks-pr`: `Related: <issue URL>` by default.
+- Before opening each PR, run the `sks-pr` step 2b duplicate/stack check — an
+  existing open PR covering the unit means push to it or stack on it, never a
+  second PR for the same change.
 
 5. **Verify bottom-up** — each leaf's checks run IN its workspace; dispatcher
    re-runs them (subagent self-reports aren't evidence). Retire with

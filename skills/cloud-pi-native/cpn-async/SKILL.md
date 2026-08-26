@@ -65,7 +65,9 @@ Fan-out parallèle sur workspaces jj isolés + PR indépendantes (`gh pr`). Base
    (conventionnel, signé SSH). Trailer
    `Co-authored-by: Automata <automata@shikanime.studio>` si applicable.
 4. **Land** — push `origin`, PRs draft avec `--head cloud-pi-native:<branch>` ;
-   voir `cpn-dev-workflow` / `cpn-pr`) :
+   voir `cpn-dev-workflow` / `cpn-pr`) : exécuter d'abord la vérification
+   doublon / pile de `cpn-pr` (étape 1b) — PR existante couvrant l'unité =
+   pousser dessus ou empiler, jamais une seconde PR pour le même changement.
    - Unit indépendant → bookmark propre + PR standalone (ou stack mono-membre).
    - Chaîne dépendante → un bookmark par lien, puis :
 
@@ -105,8 +107,8 @@ jj workspace list && jj log -r 'all()' --limit 20
 gh pr list --state open          # une PR par feuille
 ```
 
-DAG = arbre planifié ; chaque feuille a une PR liée ; chaque
-gate a une preuve in-workspace.
+DAG = arbre planifié ; chaque feuille a une PR liée ; chaque gate a une preuve
+in-workspace.
 
 ## See also
 

@@ -99,6 +99,24 @@ grep -rilE "commitlint|release-please|@commitlint" . \
 - Commits are conventional **only if the repo enforces it** (commitlint/Husky).
   Else follow the repo's established commit style.
 
+### 1b. Vérification doublon / pile (obligatoire avant `gh pr create`)
+
+Avant d'ouvrir TOUTE nouvelle PR, lister ce qui existe déjà :
+
+```bash
+gh pr list --repo cloud-pi-native/<repo> --state open \
+  --json number,title,headRefName --jq '.[] | "\(.number)\t\(.title)\t\(.headRefName)"'
+```
+
+- **Doublon** — une PR ouverte livre déjà ce changement (mêmes fichiers /
+  intention) : ne PAS en ouvrir une seconde. Pousser la révision sur la branche
+  de cette PR ou commenter.
+- **Pile requise** — une PR ouverte touche la même zone et votre changement en
+  dépend (ou entre en conflit sans elle) : baser la branche sur celle de la PR
+  existante (`--base <leur-branche>`), re-baser sur `main` après sa fusion.
+  Référencer les deux URLs dans « Issues liées ».
+- **Ni l'un ni l'autre** — procéder avec `--base main`.
+
 ### 2. Open the PR with French body + issue linkage
 
 Rebase onto `main` before pushing/opening (never from a stale base):
