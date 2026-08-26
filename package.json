@@ -24,6 +24,10 @@
         "path": "skills/shikanime-studio/sks-dev-workflow"
       },
       {
+        "name": "issue",
+        "path": "skills/issue"
+      },
+      {
         "name": "sks-async",
         "path": "skills/shikanime-studio/sks-async"
       },

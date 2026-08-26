@@ -9,6 +9,7 @@ agents. Each skill lives in its own directory with a `SKILL.md`.
 
 - `skills/shikanime-studio/` — the shikanime `sks-*` workflow family
 - `skills/cloud-pi-native/` — the cloud-pi-native `cpn-*` workflow family
+- `skills/<capability>/` — shared composable base skills (org behaviour via `references/`, see issue #185)
 - `README.md` — Installation and usage documentation
 
 ## Workflow

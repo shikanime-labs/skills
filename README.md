@@ -141,6 +141,16 @@ specification, compatible with the
 | `cpn-pr-workflow`       | Workflow PR : issue liée → PR draft → trier            |
 | `cpn-pr-resolve`        | Réconcilie les threads de review, rapporte sans merger |
 
+### shared (composable) skills
+
+Org-agnostic base skills (see issue #185). One implementation per lifecycle
+capability; org behavior (language, repo, commit convention, title prefix) lives
+in each skill's `references/<org>.md`, not copied per org.
+
+| Skill    | Description                                                                                 |
+| -------- | ------------------------------------------------------------------------------------------- |
+| `issue`  | Open an issue in any shikanime-family repo; org behaviour in `references/`                   |
+
 ## Development
 
 ```bash

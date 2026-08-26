@@ -1,0 +1,20 @@
+{
+  "skill": "issue",
+  "cases": [
+    {
+      "type": "positive",
+      "prompt": "Open an issue on cloud-pi-native/console about a login regression",
+      "should_fire": true
+    },
+    {
+      "type": "positive",
+      "prompt": "Create a bug ticket for shikanime-labs/machines describing a flake rebuild failure",
+      "should_fire": true
+    },
+    {
+      "type": "negative",
+      "prompt": "Write a unit test for the auth token parser",
+      "should_fire": false
+    }
+  ]
+}

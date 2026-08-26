@@ -10,6 +10,11 @@
       "path": "skills/shikanime-studio/sks-dev-workflow"
     },
     {
+      "name": "issue",
+      "description": "Use when opening a GitHub issue in shikanime-labs or cloud-pi-native: org-aware language/repo/convention via references/<org>.md, body as a stable problem statement with a command-decidable acceptance ledger.",
+      "path": "skills/issue"
+    },
+    {
       "name": "sks-async",
       "description": "Use when splitting multi-unit work into parallel, isolated jj workspaces (depth-tree fan-out) and landing as independent plain gh pr merges.",
       "path": "skills/shikanime-studio/sks-async"
