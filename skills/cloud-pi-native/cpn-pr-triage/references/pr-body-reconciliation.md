@@ -1,9 +1,9 @@
 # cpn-pr-triage — Reconciliation du corps↔diff
 
 Quand on demande de **reformuler** le titre ou le corps d'une PR (après
-force-push, changement de périmètre, ou « reword it based on new changes »),
-ne pas recopier le corps existant avec des retouches : le corps dérive du
-code. Recomparer chaque affirmation contre le diff réel.
+force-push, changement de périmètre, ou « reword it based on new changes »), ne
+pas recopier le corps existant avec des retouches : le corps dérive du code.
+Recomparer chaque affirmation contre le diff réel.
 
 ## Procédure
 
@@ -22,7 +22,6 @@ code. Recomparer chaque affirmation contre le diff réel.
 ## Piège typique
 
 Une PR étiquetée « typo / hygiene » dont le diff modifie en fait un port, une
-variable d'env, ou une branche de logique. Le titre et le corps doivent
-refléter le changement comportemental, pas la catégorie la plus discrète.
-Toujours lier l'issue résolue ; ne jamais laisser un claim sans correspondance
-dans le diff.
+variable d'env, ou une branche de logique. Le titre et le corps doivent refléter
+le changement comportemental, pas la catégorie la plus discrète. Toujours lier
+l'issue résolue ; ne jamais laisser un claim sans correspondance dans le diff.

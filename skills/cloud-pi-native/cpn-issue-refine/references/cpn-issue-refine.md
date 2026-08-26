@@ -2,10 +2,10 @@
 
 Pour les items `research`, résous le travail AFK en parallèle via
 `delegate_task` : un enfant par fait indépendant. Si le dépôt est touché, isole
-chaque enfant sur une branche `research/<name>` via `cpn-async`. Research
-**lit et ne poste que la conclusion en commentaire** :
-n'édite jamais le code produit. Sépare chaque fait en
-`task` distinct — n'empaquette pas plusieurs questions dans un seul `goal`.
+chaque enfant sur une branche `research/<name>` via `cpn-async`. Research **lit
+et ne poste que la conclusion en commentaire** : n'édite jamais le code produit.
+Sépare chaque fait en `task` distinct — n'empaquette pas plusieurs questions
+dans un seul `goal`.
 
 ```python
 delegate_task(tasks=[

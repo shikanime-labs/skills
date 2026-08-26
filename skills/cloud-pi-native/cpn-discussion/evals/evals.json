@@ -1,5 +1,4 @@
 {
-  "skill_name": "cpn-discussion",
   "evals": [
     {
       "id": 1,
@@ -88,5 +87,6 @@
         "Frontmatter parses as valid YAML."
       ]
     }
-  ]
+  ],
+  "skill_name": "cpn-discussion"
 }

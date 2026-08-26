@@ -1,5 +1,4 @@
 {
-  "skill_name": "cpn-pr-review",
   "evals": [
     {
       "id": 1,
@@ -90,5 +89,6 @@
         "Frontmatter parses as valid YAML."
       ]
     }
-  ]
+  ],
+  "skill_name": "cpn-pr-review"
 }

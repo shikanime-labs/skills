@@ -1,5 +1,4 @@
 {
-  "skill_name": "sks-commit",
   "evals": [
     {
       "id": 1,
@@ -11,7 +10,7 @@
         "Frontmatter description starts with 'Use when' and is at most 200 characters",
         "Frontmatter license field is 'Apache-2.0'",
         "Body contains at least one '##' heading",
-        "Body specifies a 'Co-authored-by: Automata <automata@shikanime.studio>' trailer",
+        "Body specifies a 'Co-authored-by: Automata \u003cautomata@shikanime.studio\u003e' trailer",
         "Body requires a plain-English capitalized imperative title with no conventional prefix",
         "Body shows a 'jj describe' command with two -m blocks"
       ]
@@ -86,5 +85,6 @@
         "Frontmatter 'name' equals the directory basename 'sks-commit'"
       ]
     }
-  ]
+  ],
+  "skill_name": "sks-commit"
 }

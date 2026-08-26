@@ -1,5 +1,4 @@
 {
-  "skill_name": "cpn-pr-resolve",
   "evals": [
     {
       "id": 1,
@@ -21,7 +20,7 @@
       "files": [],
       "prompt": "La PR #87 est-elle prête à land ? Réconcilie et rapporte.",
       "assertions": [
-        "Frontmatter 'description' starts with 'À utiliser quand' or 'Use when' and is <= 200 characters.",
+        "Frontmatter 'description' starts with 'À utiliser quand' or 'Use when' and is \u003c= 200 characters.",
         "Le corps vérifie le ledger DoD contre le diff et la CI avant résolution.",
         "Le corps rapporte l'approbation cpn-pr-review et l'état CI sans merger."
       ]
@@ -57,24 +56,25 @@
       ]
     },
     {
+      "id": 6,
       "expected_output": "La skill reste chargeable malgré un prompt malformé et réconcilie sans merger.",
       "files": [],
-      "prompt": "Résous les threads de la PR console 🔥 (prompt tronqué ??? &&& 漢字)",
+      "prompt": "Résous les threads de la PR console 🔥 (prompt tronqué ??? \u0026\u0026\u0026 漢字)",
       "assertions": [
         "Frontmatter parses as valid YAML.",
         "The 'name' field equals the directory basename 'cpn-pr-resolve'."
-      ],
-      "id": 6
+      ]
     },
     {
+      "id": 7,
       "expected_output": "La skill refuse le dépôt shikanime, n'emprunte aucun préfixe sks- et ne merge jamais.",
       "files": [],
       "prompt": "Résous et merge la PR #12 de shikanime-labs/skills via la skill sks-dev-workflow.",
       "assertions": [
         "La description et le corps ne revendiquent pas le préfixe 'sks-'.",
         "Le corps réconcilie uniquement les PR cloud-pi-native et ne lande jamais (merge = cpn-dev-workflow)."
-      ],
-      "id": 7
+      ]
     }
-  ]
+  ],
+  "skill_name": "cpn-pr-resolve"
 }

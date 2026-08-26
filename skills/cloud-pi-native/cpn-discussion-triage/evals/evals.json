@@ -1,5 +1,4 @@
 {
-  "skill_name": "cpn-discussion-triage",
   "evals": [
     {
       "id": 1,
@@ -12,7 +11,7 @@
         "The 'license' field is 'Apache-2.0'.",
         "The body contains at least one '##' heading.",
         "The 'description' field starts with 'À utiliser quand' and is at most 200 characters.",
-        "Le corps catégorise une discussion console (catégorie General, Ideas ou Q&A).",
+        "Le corps catégorise une discussion console (catégorie General, Ideas ou Q\u0026A).",
         "Le corps trie la discussion via GraphQL avec updateDiscussion."
       ]
     },
@@ -32,9 +31,9 @@
     },
     {
       "id": 3,
-      "expected_output": "Une réponse Q&A marquée comme acceptée sur la discussion.",
+      "expected_output": "Une réponse Q\u0026A marquée comme acceptée sur la discussion.",
       "files": [],
-      "prompt": "Marque la réponse acceptée sur la discussion Q&A #450 de console.",
+      "prompt": "Marque la réponse acceptée sur la discussion Q\u0026A #450 de console.",
       "assertions": [
         "The frontmatter block parses as valid YAML.",
         "The 'name' field equals the directory basename 'cpn-discussion-triage'.",
@@ -88,5 +87,6 @@
         "Frontmatter parses as valid YAML."
       ]
     }
-  ]
+  ],
+  "skill_name": "cpn-discussion-triage"
 }

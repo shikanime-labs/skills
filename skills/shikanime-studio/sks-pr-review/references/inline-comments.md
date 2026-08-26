@@ -6,14 +6,14 @@ anchoring that `gh pr comment` lacks.
 
 ## Severity labels
 
-| Label         | Action                              |
-| ------------- | ----------------------------------- |
-| `blocking`    | Must fix before merge               |
-| `important`   | Should fix; may block on context    |
-| `nit`         | Style/preference                    |
-| `suggestion`  | Optional improvement                |
-| `learning`    | Educational note                    |
-| `praise`      | Highlight good work                 |
+| Label        | Action                           |
+| ------------ | -------------------------------- |
+| `blocking`   | Must fix before merge            |
+| `important`  | Should fix; may block on context |
+| `nit`        | Style/preference                 |
+| `suggestion` | Optional improvement             |
+| `learning`   | Educational note                 |
+| `praise`     | Highlight good work              |
 
 ## Post a single review with inline threads
 

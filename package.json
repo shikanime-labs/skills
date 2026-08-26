@@ -20,8 +20,64 @@
   "agents": {
     "skills": [
       {
-        "name": "sks-dev-workflow",
-        "path": "skills/shikanime-studio/sks-dev-workflow"
+        "name": "cpn-async",
+        "path": "skills/cloud-pi-native/cpn-async"
+      },
+      {
+        "name": "cpn-commit",
+        "path": "skills/cloud-pi-native/cpn-commit"
+      },
+      {
+        "name": "cpn-dev-workflow",
+        "path": "skills/cloud-pi-native/cpn-dev-workflow"
+      },
+      {
+        "name": "cpn-discussion",
+        "path": "skills/cloud-pi-native/cpn-discussion"
+      },
+      {
+        "name": "cpn-discussion-triage",
+        "path": "skills/cloud-pi-native/cpn-discussion-triage"
+      },
+      {
+        "name": "cpn-issue",
+        "path": "skills/cloud-pi-native/cpn-issue"
+      },
+      {
+        "name": "cpn-issue-refine",
+        "path": "skills/cloud-pi-native/cpn-issue-refine"
+      },
+      {
+        "name": "cpn-issue-triage",
+        "path": "skills/cloud-pi-native/cpn-issue-triage"
+      },
+      {
+        "name": "cpn-issue-workflow",
+        "path": "skills/cloud-pi-native/cpn-issue-workflow"
+      },
+      {
+        "name": "cpn-pr",
+        "path": "skills/cloud-pi-native/cpn-pr"
+      },
+      {
+        "name": "cpn-pr-resolve",
+        "path": "skills/cloud-pi-native/cpn-pr-resolve"
+      },
+      {
+        "name": "cpn-pr-review",
+        "path": "skills/cloud-pi-native/cpn-pr-review"
+      },
+      {
+        "name": "cpn-pr-triage",
+        "path": "skills/cloud-pi-native/cpn-pr-triage"
+      },
+      {
+        "name": "cpn-pr-workflow",
+        "path": "skills/cloud-pi-native/cpn-pr-workflow"
+      },
+      {
+        "name": "sks-adversarial",
+        "path": "skills/shikanime-studio/sks-adversarial"
       },
       {
         "name": "sks-async",
@@ -32,8 +88,32 @@
         "path": "skills/shikanime-studio/sks-commit"
       },
       {
+        "name": "sks-dev-workflow",
+        "path": "skills/shikanime-studio/sks-dev-workflow"
+      },
+      {
         "name": "sks-discussion",
         "path": "skills/shikanime-studio/sks-discussion"
+      },
+      {
+        "name": "sks-discussion-triage",
+        "path": "skills/shikanime-studio/sks-discussion-triage"
+      },
+      {
+        "name": "sks-doc",
+        "path": "skills/shikanime-studio/sks-doc"
+      },
+      {
+        "name": "sks-gc",
+        "path": "skills/shikanime-studio/sks-gc"
+      },
+      {
+        "name": "sks-investigate",
+        "path": "skills/shikanime-studio/sks-investigate"
+      },
+      {
+        "name": "sks-isolate",
+        "path": "skills/shikanime-studio/sks-isolate"
       },
       {
         "name": "sks-issue",
@@ -48,28 +128,16 @@
         "path": "skills/shikanime-studio/sks-issue-triage"
       },
       {
-        "name": "sks-pr-triage",
-        "path": "skills/shikanime-studio/sks-pr-triage"
-      },
-      {
         "name": "sks-issue-workflow",
         "path": "skills/shikanime-studio/sks-issue-workflow"
-      },
-      {
-        "name": "sks-pr-workflow",
-        "path": "skills/shikanime-studio/sks-pr-workflow"
-      },
-      {
-        "name": "sks-pr",
-        "path": "skills/shikanime-studio/sks-pr"
       },
       {
         "name": "sks-land",
         "path": "skills/shikanime-studio/sks-land"
       },
       {
-        "name": "sks-discussion-triage",
-        "path": "skills/shikanime-studio/sks-discussion-triage"
+        "name": "sks-pr",
+        "path": "skills/shikanime-studio/sks-pr"
       },
       {
         "name": "sks-pr-resolve",
@@ -80,84 +148,16 @@
         "path": "skills/shikanime-studio/sks-pr-review"
       },
       {
-        "name": "sks-doc",
-        "path": "skills/shikanime-studio/sks-doc"
+        "name": "sks-pr-triage",
+        "path": "skills/shikanime-studio/sks-pr-triage"
       },
       {
-        "name": "sks-gc",
-        "path": "skills/shikanime-studio/sks-gc"
-      },
-      {
-        "name": "sks-isolate",
-        "path": "skills/shikanime-studio/sks-isolate"
-      },
-      {
-        "name": "sks-adversarial",
-        "path": "skills/shikanime-studio/sks-adversarial"
+        "name": "sks-pr-workflow",
+        "path": "skills/shikanime-studio/sks-pr-workflow"
       },
       {
         "name": "sks-swarm",
         "path": "skills/shikanime-studio/sks-swarm"
-      },
-      {
-        "name": "sks-investigate",
-        "path": "skills/shikanime-studio/sks-investigate"
-      },
-      {
-        "name": "cpn-dev-workflow",
-        "path": "skills/cloud-pi-native/cpn-dev-workflow"
-      },
-      {
-        "name": "cpn-commit",
-        "path": "skills/cloud-pi-native/cpn-commit"
-      },
-      {
-        "name": "cpn-discussion",
-        "path": "skills/cloud-pi-native/cpn-discussion"
-      },
-      {
-        "name": "cpn-issue",
-        "path": "skills/cloud-pi-native/cpn-issue"
-      },
-      {
-        "name": "cpn-pr",
-        "path": "skills/cloud-pi-native/cpn-pr"
-      },
-      {
-        "name": "cpn-issue-triage",
-        "path": "skills/cloud-pi-native/cpn-issue-triage"
-      },
-      {
-        "name": "cpn-pr-triage",
-        "path": "skills/cloud-pi-native/cpn-pr-triage"
-      },
-      {
-        "name": "cpn-discussion-triage",
-        "path": "skills/cloud-pi-native/cpn-discussion-triage"
-      },
-      {
-        "name": "cpn-pr-review",
-        "path": "skills/cloud-pi-native/cpn-pr-review"
-      },
-      {
-        "name": "cpn-async",
-        "path": "skills/cloud-pi-native/cpn-async"
-      },
-      {
-        "name": "cpn-issue-refine",
-        "path": "skills/cloud-pi-native/cpn-issue-refine"
-      },
-      {
-        "name": "cpn-issue-workflow",
-        "path": "skills/cloud-pi-native/cpn-issue-workflow"
-      },
-      {
-        "name": "cpn-pr-workflow",
-        "path": "skills/cloud-pi-native/cpn-pr-workflow"
-      },
-      {
-        "name": "cpn-pr-resolve",
-        "path": "skills/cloud-pi-native/cpn-pr-resolve"
       }
     ]
   }

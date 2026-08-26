@@ -1,11 +1,10 @@
 {
-  "skill_name": "sks-discussion-triage",
   "evals": [
     {
       "id": 1,
       "expected_output": "A recategorized and triaged discussion with correct lifecycle metadata applied via GraphQL.",
       "files": [],
-      "prompt": "Triage discussion #42 in shikanime-studio/sk-async: it's a design question that got posted under General but reads like an RFC, and someone already answered the Q&A part.",
+      "prompt": "Triage discussion #42 in shikanime-studio/sk-async: it's a design question that got posted under General but reads like an RFC, and someone already answered the Q\u0026A part.",
       "assertions": [
         "Frontmatter parses as valid YAML.",
         "The 'name' field equals 'sks-discussion-triage'.",
@@ -13,7 +12,7 @@
         "The license field is 'Apache-2.0'.",
         "The body contains at least one '##' heading.",
         "Body categorizes and triages a discussion via updateDiscussion and closeDiscussion GraphQL mutations.",
-        "Body marks a Q&A answer with markDiscussionCommentAsAnswer and never closes silently."
+        "Body marks a Q\u0026A answer with markDiscussionCommentAsAnswer and never closes silently."
       ]
     },
     {
@@ -79,5 +78,6 @@
         "Description does not contain substring cpn-."
       ]
     }
-  ]
+  ],
+  "skill_name": "sks-discussion-triage"
 }

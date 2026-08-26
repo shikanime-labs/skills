@@ -5,9 +5,79 @@
   "license": "Apache-2.0",
   "skills": [
     {
-      "name": "sks-dev-workflow",
-      "description": "Use when running the shikanime local dev loop: branching, push-to-origin, jj bookmark tracking, and landing via plain gh pr merge or direct push.",
-      "path": "skills/shikanime-studio/sks-dev-workflow"
+      "name": "cpn-async",
+      "description": "À utiliser quand vous répartissez un travail multi-unités en parallèle sur workspaces jj isolés et PR en stack pour console cloud-pi-native.",
+      "path": "skills/cloud-pi-native/cpn-async"
+    },
+    {
+      "name": "cpn-commit",
+      "description": "Commit to cloud-pi-native/console with conventional format.",
+      "path": "skills/cloud-pi-native/cpn-commit"
+    },
+    {
+      "name": "cpn-dev-workflow",
+      "description": "À utiliser quand vous travaillez dans le dépôt console cloud-pi-native/console : règles de contribution, cycle de dev et workflow PR.",
+      "path": "skills/cloud-pi-native/cpn-dev-workflow"
+    },
+    {
+      "name": "cpn-discussion",
+      "description": "Create/edit console Discussions (French, GraphQL).",
+      "path": "skills/cloud-pi-native/cpn-discussion"
+    },
+    {
+      "name": "cpn-discussion-triage",
+      "description": "Triage une discussion cloud-pi-native/console : catégorie, corps, Q\u0026A, clôture (GraphQL).",
+      "path": "skills/cloud-pi-native/cpn-discussion-triage"
+    },
+    {
+      "name": "cpn-issue",
+      "description": "Open CPN console issues with French templates.",
+      "path": "skills/cloud-pi-native/cpn-issue"
+    },
+    {
+      "name": "cpn-issue-refine",
+      "description": "Itérer un problème vers la convergence dans son issue GitHub via recherche + commentaires (console cloud-pi-native).",
+      "path": "skills/cloud-pi-native/cpn-issue-refine"
+    },
+    {
+      "name": "cpn-issue-triage",
+      "description": "Triage une issue existante du dépôt cloud-pi-native/console : labels, assignee, jalon, projet ; fermeture motivée si non traitable.",
+      "path": "skills/cloud-pi-native/cpn-issue-triage"
+    },
+    {
+      "name": "cpn-issue-workflow",
+      "description": "À utiliser quand vous voulez le point d'entrée unique du côté issue cloud-pi-native : créer l'issue, la raffiner vers la convergence, puis la trier.",
+      "path": "skills/cloud-pi-native/cpn-issue-workflow"
+    },
+    {
+      "name": "cpn-pr",
+      "description": "Open cloud-pi-native org PRs with French body and conventional title.",
+      "path": "skills/cloud-pi-native/cpn-pr"
+    },
+    {
+      "name": "cpn-pr-resolve",
+      "description": "Réconcilie review-threads d'une PR cloud-pi-native : ledger DoD + approbation/CI, SANS merger (extrait cpn-dev-workflow).",
+      "path": "skills/cloud-pi-native/cpn-pr-resolve"
+    },
+    {
+      "name": "cpn-pr-review",
+      "description": "Review cloud-pi-native console PRs: arch, French.",
+      "path": "skills/cloud-pi-native/cpn-pr-review"
+    },
+    {
+      "name": "cpn-pr-triage",
+      "description": "Triage une PR existante du dépôt cloud-pi-native/console : labels, assignee, jalon, reviewers, lien issue.",
+      "path": "skills/cloud-pi-native/cpn-pr-triage"
+    },
+    {
+      "name": "cpn-pr-workflow",
+      "description": "À utiliser quand vous voulez le point d'entrée unique du côté PR cloud-pi-native : assure l'issue, ouvre la PR draft dérivée du commit, puis trie.",
+      "path": "skills/cloud-pi-native/cpn-pr-workflow"
+    },
+    {
+      "name": "sks-adversarial",
+      "description": "Use when probing uncertain results in a disposable sandbox — large investigation, development, debugging, testing, UAT, white-room, or data validation before promoting a change.",
+      "path": "skills/shikanime-studio/sks-adversarial"
     },
     {
       "name": "sks-async",
@@ -20,9 +90,39 @@
       "path": "skills/shikanime-studio/sks-commit"
     },
     {
+      "name": "sks-dev-workflow",
+      "description": "Use when running the shikanime local dev loop: branching, push-to-origin, jj bookmark tracking, and landing via plain gh pr merge or direct push.",
+      "path": "skills/shikanime-studio/sks-dev-workflow"
+    },
+    {
       "name": "sks-discussion",
       "description": "Use when opening an RFC Discussion in a shikanime org as the pre-issue stage: converge on the problem, then derive the issue.",
       "path": "skills/shikanime-studio/sks-discussion"
+    },
+    {
+      "name": "sks-discussion-triage",
+      "description": "Use when triaging an existing shikanime org discussion: category, body shape, Q\u0026A answer, and conversion to an issue.",
+      "path": "skills/shikanime-studio/sks-discussion-triage"
+    },
+    {
+      "name": "sks-doc",
+      "description": "Use when documenting a shikanime project in the repo's docs/ directory after a behavior-changing PR.",
+      "path": "skills/shikanime-studio/sks-doc"
+    },
+    {
+      "name": "sks-gc",
+      "description": "Use when reclaiming resources leaked by shikanime jj workflows: dangling bookmarks, skill-created jj workspaces, and leftover working-copy dirs from sks-async/sks-dev-workflow.",
+      "path": "skills/shikanime-studio/sks-gc"
+    },
+    {
+      "name": "sks-investigate",
+      "description": "Use when investigating a bug, test failure, build break, or unexpected behavior in a shikanime repo: find root cause before any fix, minimal repro, and proven verification.",
+      "path": "skills/shikanime-studio/sks-investigate"
+    },
+    {
+      "name": "sks-isolate",
+      "description": "Use when isolating one unit of shikanime work in a fresh jj workspace so concurrent editors / WIP never get folded in — bookmarks and pushes are scoped to that single workspace.",
+      "path": "skills/shikanime-studio/sks-isolate"
     },
     {
       "name": "sks-issue",
@@ -40,34 +140,19 @@
       "path": "skills/shikanime-studio/sks-issue-triage"
     },
     {
-      "name": "sks-pr-triage",
-      "description": "Use when triaging an existing shikanime org PR: labels, assignee, milestone, and reviewers.",
-      "path": "skills/shikanime-studio/sks-pr-triage"
-    },
-    {
       "name": "sks-issue-workflow",
       "description": "Use when you need the single entry point for the shikanime issue side: create, refine, and triage the issue before any PR.",
       "path": "skills/shikanime-studio/sks-issue-workflow"
     },
     {
-      "name": "sks-pr-workflow",
-      "description": "Use when you need the single entry point for the shikanime PR side: ensure the issue exists, open, triage, and land the PR.",
-      "path": "skills/shikanime-studio/sks-pr-workflow"
-    },
-    {
-      "name": "sks-discussion-triage",
-      "description": "Use when triaging an existing shikanime org discussion: category, body shape, Q\u0026A answer, and conversion to an issue.",
-      "path": "skills/shikanime-studio/sks-discussion-triage"
+      "name": "sks-land",
+      "description": "Use when landing a shikanime org PR after reconciliation (sks-pr-resolve) and review approval gates pass; closes the linked issue deliberately.",
+      "path": "skills/shikanime-studio/sks-land"
     },
     {
       "name": "sks-pr",
       "description": "Use when opening a PR in shikanime-labs or shikanime-studio: push to origin, --head org:branch, plain-English title, issue linkage, parity with commit.",
       "path": "skills/shikanime-studio/sks-pr"
-    },
-    {
-      "name": "sks-land",
-      "description": "Use when landing a shikanime org PR after reconciliation (sks-pr-resolve) and review approval gates pass; closes the linked issue deliberately.",
-      "path": "skills/shikanime-studio/sks-land"
     },
     {
       "name": "sks-pr-resolve",
@@ -80,104 +165,19 @@
       "path": "skills/shikanime-studio/sks-pr-review"
     },
     {
-      "name": "sks-doc",
-      "description": "Use when documenting a shikanime project in the repo's docs/ directory after a behavior-changing PR.",
-      "path": "skills/shikanime-studio/sks-doc"
+      "name": "sks-pr-triage",
+      "description": "Use when triaging an existing shikanime org PR: labels, assignee, milestone, and reviewers.",
+      "path": "skills/shikanime-studio/sks-pr-triage"
     },
     {
-      "name": "sks-gc",
-      "description": "Use when reclaiming resources leaked by shikanime jj workflows: dangling bookmarks, skill-created jj workspaces, and leftover working-copy dirs from sks-async/sks-dev-workflow.",
-      "path": "skills/shikanime-studio/sks-gc"
-    },
-    {
-      "name": "sks-isolate",
-      "description": "Use when isolating one unit of shikanime work in a fresh jj workspace so concurrent editors / WIP never get folded in — bookmarks and pushes are scoped to that single workspace.",
-      "path": "skills/shikanime-studio/sks-isolate"
-    },
-    {
-      "name": "sks-adversarial",
-      "description": "Use when probing uncertain results in a disposable sandbox — large investigation, development, debugging, testing, UAT, white-room, or data validation before promoting a change.",
-      "path": "skills/shikanime-studio/sks-adversarial"
+      "name": "sks-pr-workflow",
+      "description": "Use when you need the single entry point for the shikanime PR side: ensure the issue exists, open, triage, and land the PR.",
+      "path": "skills/shikanime-studio/sks-pr-workflow"
     },
     {
       "name": "sks-swarm",
       "description": "Use when distributing one task across a cluster of agents over A2A — route by capability need, machine resource, and runner pressure, optionally inside a disposable sandbox.",
       "path": "skills/shikanime-studio/sks-swarm"
-    },
-    {
-      "name": "sks-investigate",
-      "description": "Use when investigating a bug, test failure, build break, or unexpected behavior in a shikanime repo: find root cause before any fix, minimal repro, and proven verification.",
-      "path": "skills/shikanime-studio/sks-investigate"
-    },
-    {
-      "name": "cpn-dev-workflow",
-      "description": "À utiliser quand vous travaillez dans le dépôt console cloud-pi-native/console : règles de contribution, cycle de dev et workflow PR.",
-      "path": "skills/cloud-pi-native/cpn-dev-workflow"
-    },
-    {
-      "name": "cpn-commit",
-      "description": "Commit to cloud-pi-native/console with conventional format.",
-      "path": "skills/cloud-pi-native/cpn-commit"
-    },
-    {
-      "name": "cpn-discussion",
-      "description": "Create/edit console Discussions (French, GraphQL).",
-      "path": "skills/cloud-pi-native/cpn-discussion"
-    },
-    {
-      "name": "cpn-issue",
-      "description": "Open CPN console issues with French templates.",
-      "path": "skills/cloud-pi-native/cpn-issue"
-    },
-    {
-      "name": "cpn-pr",
-      "description": "Open cloud-pi-native org PRs with French body and conventional title.",
-      "path": "skills/cloud-pi-native/cpn-pr"
-    },
-    {
-      "name": "cpn-pr-review",
-      "description": "Review cloud-pi-native console PRs: arch, French.",
-      "path": "skills/cloud-pi-native/cpn-pr-review"
-    },
-    {
-      "name": "cpn-issue-triage",
-      "description": "Triage une issue existante du dépôt cloud-pi-native/console : labels, assignee, jalon, projet ; fermeture motivée si non traitable.",
-      "path": "skills/cloud-pi-native/cpn-issue-triage"
-    },
-    {
-      "name": "cpn-pr-triage",
-      "description": "Triage une PR existante du dépôt cloud-pi-native/console : labels, assignee, jalon, reviewers, lien issue.",
-      "path": "skills/cloud-pi-native/cpn-pr-triage"
-    },
-    {
-      "name": "cpn-discussion-triage",
-      "description": "Triage une discussion cloud-pi-native/console : catégorie, corps, Q\u0026A, clôture (GraphQL).",
-      "path": "skills/cloud-pi-native/cpn-discussion-triage"
-    },
-    {
-      "name": "cpn-async",
-      "description": "À utiliser quand vous répartissez un travail multi-unités en parallèle sur workspaces jj isolés et PR en stack pour console cloud-pi-native.",
-      "path": "skills/cloud-pi-native/cpn-async"
-    },
-    {
-      "name": "cpn-issue-refine",
-      "description": "Itérer un problème vers la convergence dans son issue GitHub via recherche + commentaires (console cloud-pi-native).",
-      "path": "skills/cloud-pi-native/cpn-issue-refine"
-    },
-    {
-      "name": "cpn-issue-workflow",
-      "description": "À utiliser quand vous voulez le point d'entrée unique du côté issue cloud-pi-native : créer l'issue, la raffiner vers la convergence, puis la trier.",
-      "path": "skills/cloud-pi-native/cpn-issue-workflow"
-    },
-    {
-      "name": "cpn-pr-workflow",
-      "description": "À utiliser quand vous voulez le point d'entrée unique du côté PR cloud-pi-native : assure l'issue, ouvre la PR draft dérivée du commit, puis trie.",
-      "path": "skills/cloud-pi-native/cpn-pr-workflow"
-    },
-    {
-      "name": "cpn-pr-resolve",
-      "description": "Réconcilie review-threads d'une PR cloud-pi-native : ledger DoD + approbation/CI, SANS merger (extrait cpn-dev-workflow).",
-      "path": "skills/cloud-pi-native/cpn-pr-resolve"
     }
   ]
 }

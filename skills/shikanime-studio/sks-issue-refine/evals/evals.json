@@ -1,5 +1,4 @@
 {
-  "skill_name": "sks-issue-refine",
   "evals": [
     {
       "id": 1,
@@ -79,5 +78,6 @@
         "The body does not claim the cpn-issue-refine name."
       ]
     }
-  ]
+  ],
+  "skill_name": "sks-issue-refine"
 }

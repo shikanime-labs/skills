@@ -34,7 +34,8 @@ repo-lacking value.
 ## When to Use
 
 - "Triage an existing shikanime org issue."
-- "Assign metadata (type, labels, assignee, milestone, project, relationships, fields)."
+- "Assign metadata (type, labels, assignee, milestone, project, relationships,
+  fields)."
 - "Close an issue with a rationale if it will not be worked."
 - A triaged defect needs root-cause diagnosis → hand off to `sks-investigate`
   (research-only); do not diagnose inline during triage.
@@ -78,8 +79,8 @@ gh api repos/"$R"/fields --jq '.[].name' 2>/dev/null || echo "no repo-level fiel
 ### 3. Decide each field (apply only if empty + value exists in repo)
 
 - **type** — if empty and the repo has issue types: map by meaning
-  (defect/regression→`Bug`, new capability→`Feature`, task/tracking→`Task`).
-  Set only a name from the step-2 issue-types list — never invent. Apply with
+  (defect/regression→`Bug`, new capability→`Feature`, task/tracking→`Task`). Set
+  only a name from the step-2 issue-types list — never invent. Apply with
   `gh issue edit "$N" --repo "$R" --type <name>`.
 - **labels** — best match by meaning (defect→`bug`, new
   capability→`enhancement`, doc→`documentation`); add an area label only if it
@@ -94,7 +95,7 @@ gh api repos/"$R"/fields --jq '.[].name' 2>/dev/null || echo "no repo-level fiel
   - sub-issues: `--add-sub-issue <n>,<n>` for explicitly listed children.
   - blockers: `--add-blocked-by <n>` / `--add-blocking <n>` only when the body
     or a linked issue states the dependency. Empty + no textual signal → skip.
-- **fields** — custom fields live on the *project item*, not the issue. After
+- **fields** — custom fields live on the _project item_, not the issue. After
   adding to a project, set them via `gh project item-edit` / GraphQL
   (`updateProjectV2ItemFieldValue`) — see ceiling below. Skip when the repo has
   no project board or no custom fields (`gh api repos/$R/fields` 404).

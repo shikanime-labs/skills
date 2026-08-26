@@ -1,5 +1,4 @@
 {
-  "skill_name": "cpn-pr",
   "evals": [
     {
       "id": 1,
@@ -21,8 +20,8 @@
       "files": [],
       "prompt": "Crée une PR draft sur cloud-pi-native/console depuis la branche fix/telemetry, sans fermer l'issue.",
       "assertions": [
-        "Frontmatter 'description' starts with 'À utiliser quand' or 'Use when' and is <= 200 characters.",
-        "Le corps ouvre la PR avec `--head cloud-pi-native:<branch>` (origin-only policy).",
+        "Frontmatter 'description' starts with 'À utiliser quand' or 'Use when' and is \u003c= 200 characters.",
+        "Le corps ouvre la PR avec `--head cloud-pi-native:\u003cbranch\u003e` (origin-only policy).",
         "Le corps lie l'issue via `Issues liées:` et ferme délibérément."
       ]
     },
@@ -81,5 +80,6 @@
         "The body opens PRs against cloud-pi-native/* repos, not shikanime-studio."
       ]
     }
-  ]
+  ],
+  "skill_name": "cpn-pr"
 }

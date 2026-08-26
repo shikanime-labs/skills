@@ -1,5 +1,4 @@
 {
-  "skill_name": "cpn-commit",
   "evals": [
     {
       "id": 1,
@@ -96,5 +95,6 @@
         "The body is in French (does not adopt an sks- plain-English scope)."
       ]
     }
-  ]
+  ],
+  "skill_name": "cpn-commit"
 }

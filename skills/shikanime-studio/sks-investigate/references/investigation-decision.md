@@ -1,7 +1,7 @@
 # Investigation Decision Tree
 
 A compact routing aid for the four research phases. Start at the top; each
-answer picks the next move. This skill *researches and proposes* — it never
+answer picks the next move. This skill _researches and proposes_ — it never
 applies a fix. The full method and known cycles live in `SKILL.md`.
 
 - **Can you reproduce on demand?**
@@ -15,7 +15,7 @@ applies a fix. The full method and known cycles live in `SKILL.md`.
     multi-component system.
 
 - **One component or many?**
-  - Many independent → fan out one agent per boundary to *attribute* the
+  - Many independent → fan out one agent per boundary to _attribute_ the
     failure; converge, then single-thread hypothesis testing inside the
     implicated one.
   - One → hypothesize one variable at a time. Rule of three failed theories →

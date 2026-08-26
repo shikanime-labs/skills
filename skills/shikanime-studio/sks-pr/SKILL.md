@@ -221,4 +221,4 @@ links the correct issue, and `mergeable="MERGEABLE"` (step 2d).
 ## See also
 
 - `sks-commit` (parity rule) · `sks-issue-refine` (converged issue) ·
-  `sks-async` (stacked PRs) · `sks-pr-triage` (metadata) (metadata).
+  `sks-async` (stacked PRs) · `sks-pr-triage` (metadata).
