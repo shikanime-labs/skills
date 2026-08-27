@@ -3,7 +3,7 @@ name: sks-dev-workflow
 description:
   "Use when running the shikanime local dev loop: branching, push-to-origin, jj
   bookmark tracking, and landing via plain gh pr merge or direct push."
-version: 0.4.0
+version: 0.5.0
 author: Hermes Agent
 license: Apache-2.0
 metadata:
@@ -14,10 +14,10 @@ metadata:
       - shikanime-labs
       - shikanime-studio
     related_skills:
-      - cpn-dev-workflow
-      - cpn-async
       - sks-pr-review
       - sks-async
+      - sks-stack
+      - sks-swarm
       - sks-commit
       - sks-pr
       - sks-land
@@ -32,28 +32,52 @@ platforms:
 End-to-end local dev loop for shikanime repos: branching, pushing to `origin`,
 jj bookmark tracking, landing (PR vs direct push). Issue/PR policy lives in
 `sks-issue-workflow` / `sks-pr-workflow`; code review in `sks-pr-review`;
-parallel split in `sks-async` (multi-parent joins via `jj new <a> <b>`).
+coordination routed by the ladder in "Coordination ladder" (`sks-stack` /
+`sks-async` / `sks-swarm`).
 
 ## When to Use
 
 - "Start working on a shikanime repo" — end-to-end dev loop from discussion to
   landing.
 - "Push to origin and land this PR" — landing path (branch protection, stack).
+- "Isolate this one unit in a clean workspace" — `sks-stack` (concurrent WIP
+  must not fold in).
 - "Fan out this work into parallel streams" — `sks-async` parallel split.
+- "Distribute across a cluster of agents" — `sks-swarm` (A2A routing).
 - Assumption validation gate fails — probe and report blockers before work.
+
+## Coordination ladder (stack → async → swarm)
+
+Pick the coordination tool by unit count and infrastructure before branching;
+the ladder takes the minimum tool that fits:
+
+- **One unit** → `sks-stack` — fresh `jj` workspace pinned to `main@origin`,
+  bookmark scoped to that workspace. Default for a single fix; mandatory when
+  the checkout holds concurrent WIP you must not fold in.
+- **N parallel units, one repo** → `sks-async` — one workspace per unit,
+  depth/join DAG via `jj new <a> <b>`, independent or stacked PRs; fix shared
+  contracts before fan-out.
+- **Units needing different capabilities or machines** → `sks-swarm` — A2A
+  routing by capability tag, machine, and live runner pressure; never for a few
+  sibling PRs in one repo (that is `sks-async`).
+- **Single stream, clean checkout** → no coordination skill; run the plain loop
+  below.
+
+Escalation is one-way: `sks-stack` → `sks-async` → `sks-swarm`. Do not spin a
+swarm for one unit, and do not fan out before the issue ledger is settled.
 
 ## Lifecycle (ordered phases; gates in **bold**)
 
-| #   | Phase                                     | Owner                | Gate                  |
-| --- | ----------------------------------------- | -------------------- | --------------------- |
-| 0   | Discussion (RFC) if unconverged           | `sks-discussion`     | entry                 |
-| 1–2 | Issue: create → refine → triage           | `sks-issue-workflow` | **ledger settled**    |
-| 3   | Branch + implement                        | this                 | —                     |
-| 4   | Commit (plain-English + Automata trailer) | `sks-commit`         | **commit shape**      |
-| 5   | Adversarial code review                   | `sks-pr-review`      | **review gate**       |
-| 6   | PR: ensure issue → open → triage          | `sks-pr-workflow`    | —                     |
-| 7   | Land (`gh pr merge --squash`)             | `sks-async` / this   | **branch protection** |
-| 8   | Close issue deliberately (N of N)         | `sks-issue`          | **ledger discharged** |
+| #   | Phase                                     | Owner                            | Gate                  |
+| --- | ----------------------------------------- | -------------------------------- | --------------------- |
+| 0   | Discussion (RFC) if unconverged           | `sks-discussion`                 | entry                 |
+| 1–2 | Issue: create → refine → triage           | `sks-issue-workflow`             | **ledger settled**    |
+| 3   | Branch + implement                        | this / `sks-stack`               | —                     |
+| 4   | Commit (plain-English + Automata trailer) | `sks-commit`                     | **commit shape**      |
+| 5   | Adversarial code review                   | `sks-pr-review`                  | **review gate**       |
+| 6   | PR: ensure issue → open → triage          | `sks-pr-workflow`                | —                     |
+| 7   | Land (`gh pr merge --squash`)             | `sks-async` / `sks-swarm` / this | **branch protection** |
+| 8   | Close issue deliberately (N of N)         | `sks-issue`                      | **ledger discharged** |
 
 Never skip triage (ledger unsettled) or review (PR not ready).
 
@@ -91,23 +115,15 @@ silent scope change:
 
 ## Isolating a fix in a fresh jj workspace
 
-When the working folder has concurrent editors / pre-existing uncommitted WIP
-you must not fold in, open an isolated workspace at a clean revset instead of
-peeling subsets with `jj restore`/`jj split` (which can lose WIP):
+One unit in a folder with concurrent editors / pre-existing uncommitted WIP you
+must not fold in → run `sks-stack` (canonical recipe: snapshot WIP,
+`jj workspace add ../<repo>-<unit> -r 'main@origin'`, copy in only your files,
+bookmark, push). Never peel subsets with `jj restore`/`jj split` — that can lose
+the sibling WIP.
 
-```bash
-cd ~/Source/Repos/github.com/<orga>/<repo>
-mkdir -p /tmp/wip6
-for f in <WIP files>; do cp "$f" "/tmp/wip6/$(echo "$f" | tr '/' '__')"; done
-jj workspace add ../<repo>-fix -r 'main@origin' && cd ../<repo>-fix
-# copy in ONLY your fix files, then:
-jj add <fix files>; jj describe -m "$(cat /tmp/fixmsg.txt)"
-jj bookmark create fix/<desc> -r @; jj bookmark track fix/<desc> --remote=origin
-jj git push --remote origin -b fix/<desc>
-```
-
-Verify the pushed commit with `git show --show-signature FETCH_HEAD` +
-`git diff --stat origin/main FETCH_HEAD` from the original checkout.
+Verify the pushed commit from the original checkout with
+`git show --show-signature FETCH_HEAD` +
+`git diff --stat origin/main FETCH_HEAD`.
 
 ## Push flow
 
@@ -199,4 +215,5 @@ jj status && jj log -r @ -T 'bookmarks ++ " "'
 ## See also
 
 `sks-issue-workflow` / `sks-pr-workflow` (issue & PR sides), `sks-commit`,
-`sk-async` (stacked PRs), `sks-pr-review` (phase 5), `cpn-dev-workflow`.
+`sks-stack` (isolation), `sks-async` (stacked PRs), `sks-swarm` (agent cluster),
+`sks-pr-review` (phase 5).

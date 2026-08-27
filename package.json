@@ -76,6 +76,14 @@
         "path": "skills/cloud-pi-native/cpn-pr-workflow"
       },
       {
+        "name": "cpn-stack",
+        "path": "skills/cloud-pi-native/cpn-stack"
+      },
+      {
+        "name": "cpn-swarm",
+        "path": "skills/cloud-pi-native/cpn-swarm"
+      },
+      {
         "name": "sks-adversarial",
         "path": "skills/shikanime-studio/sks-adversarial"
       },
