@@ -75,6 +75,16 @@
       "path": "skills/cloud-pi-native/cpn-pr-workflow"
     },
     {
+      "name": "cpn-stack",
+      "description": "À utiliser quand vous isolez une unité de travail cloud-pi-native dans un workspace jj frais pour que le WIP concurrent ne soit jamais mélangé — bookmarks et pushes limités à ce workspace.",
+      "path": "skills/cloud-pi-native/cpn-stack"
+    },
+    {
+      "name": "cpn-swarm",
+      "description": "À utiliser quand vous distribuez une tâche cloud-pi-native sur un cluster d'agents via A2A — routage par capacité, machine et pression runner.",
+      "path": "skills/cloud-pi-native/cpn-swarm"
+    },
+    {
       "name": "sks-adversarial",
       "description": "Use when probing uncertain results in a disposable sandbox — large investigation, development, debugging, testing, UAT, white-room, or data validation before promoting a change.",
       "path": "skills/shikanime-studio/sks-adversarial"

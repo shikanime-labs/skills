@@ -3,7 +3,7 @@ name: cpn-dev-workflow
 description:
   "À utiliser quand vous travaillez dans le dépôt console
   cloud-pi-native/console : règles de contribution, cycle de dev et workflow PR."
-version: 0.3.1
+version: 0.4.0
 author: Hermes Agent
 license: Apache-2.0
 platforms:
@@ -29,6 +29,8 @@ metadata:
       - cpn-issue-triage
       - cpn-pr
       - cpn-pr-triage
+      - cpn-stack
+      - cpn-swarm
 ---
 
 # CPN Org Dev Workflow
@@ -44,6 +46,26 @@ target and repo layout?" / "What commands for console local dev, lint, tests?" /
 "What is the CPiN PR/commit/review workflow?" / "Implement/fix something in
 server-nestjs (issue-first, module-consistent, tested)" / "Write a vitest or e2e
 spec for a server-nestjs module".
+
+## Échelle de coordination (stack → async → swarm)
+
+Choisis l'outil de coordination par nombre d'unités et infrastructure avant de
+créer la branche ; l'échelle prend le minimum qui convient :
+
+- **Une unité** → `cpn-stack` — workspace jj frais épinglé sur `main@origin`,
+  bookmark limité à ce workspace. Défaut pour un correctif isolé ; obligatoire
+  si le checkout contient du WIP concurrent à ne pas mélanger.
+- **N unités parallèles, un dépôt** → `cpn-async` — un workspace par unité, DAG
+  depth/join via `jj new <a> <b>`, PR indépendantes ou en chaîne ; contrats
+  partagés figés avant fan-out.
+- **Unités exigeant capacités ou machines différentes** → `cpn-swarm` — routage
+  A2A par capacité, machine et pression runner ; jamais pour quelques PR sœurs
+  dans un dépôt (c'est `cpn-async`).
+- **Flux unique, checkout propre** → aucun skill de coordination ; boucle
+  normale ci-dessous.
+
+L'escalade est à sens unique : `cpn-stack` → `cpn-async` → `cpn-swarm`. Pas de
+swarm pour une unité, pas de fan-out avant le ledger d'issue réglé.
 
 ## Phases
 
@@ -132,7 +154,8 @@ delegate_task(tasks=[
    `pnpm run integ`.
 7. Checks before submit: `pnpm lint`, `pnpm test`, `pnpm playwright:test` if a
    journey is affected.
-8. Fresh jj workspace per item: `jj workspace add -m <name> . ../<name>` (or
+8. Fresh jj workspace per item (une unité → `cpn-stack`, voir Échelle de
+   coordination) : `jj workspace add -m <name> . ../<name>` (or
    `jj workspace add --revision <base> <path>`). Build a **stack of small child
    commits**; branch out with `jj new <other-parent>` when a commit doesn't need
    its parent. Multiple children of one parent → jj **diamond** (natively
@@ -242,4 +265,5 @@ and `pnpm playwright:test` as pre-submission checks.
 - `cpn-commit` — the commit shape (conventional subject, author identity, SSH
   signing) this workflow lands.
 - `cpn-pr` — origin-only PR opening from these commits.
-- `sks-dev-workflow` — shikanime twin (branch-based landing).
+- `cpn-stack` — isolation d'une unité en workspace frais.
+- `cpn-swarm` — cluster d'agents A2A.

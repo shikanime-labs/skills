@@ -1,0 +1,85 @@
+{
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "Distribue la tâche sur le cluster d'agents via A2A, route chaque unité par capacité, machine et pression runner.",
+      "files": [],
+      "prompt": "Distribue ce gros refactor console sur mon cluster d'agents pour que chaque unité tourne sur la machine adaptée et que le runner chargé ne soit pas écrasé.",
+      "assertions": [
+        "Frontmatter parses successfully.",
+        "The 'name' field equals 'cpn-swarm'.",
+        "The description starts with 'À utiliser quand'.",
+        "The description is at most 200 characters.",
+        "The license field is 'Apache-2.0'.",
+        "The body contains at least one '##' heading.",
+        "Body mentions 'A2A'.",
+        "Body routes by capability, machine, and runner pressure.",
+        "Body probes live load before assigning."
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "Ne lance pas d'essaim pour une unité unique ; retombe sur cpn-stack et évite la sur-ingénierie.",
+      "files": [],
+      "prompt": "Exécute juste ce correctif sur une machine, pas besoin de cluster.",
+      "assertions": [
+        "Frontmatter parses successfully.",
+        "The 'name' field equals 'cpn-swarm'.",
+        "The description starts with 'À utiliser quand'.",
+        "The license field is 'Apache-2.0'.",
+        "Body references 'cpn-stack' for a single unit.",
+        "Body states spinning a swarm for one unit is wrong."
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "Re-vérifie la gate de chaque enfant dans le parent au lieu de faire confiance aux auto-rapports.",
+      "files": [],
+      "prompt": "Envoie l'essaim et fais confiance aux messages « done » des agents comme preuve.",
+      "assertions": [
+        "Frontmatter parses successfully.",
+        "The 'name' field equals 'cpn-swarm'.",
+        "The description starts with 'À utiliser quand'.",
+        "The license field is 'Apache-2.0'.",
+        "Body re-verifies child gates in the parent.",
+        "Body frames child self-reports as not proof."
+      ]
+    },
+    {
+      "id": 4,
+      "expected_output": "Le skill reste chargeable et s'identifie comme cpn-swarm ; une demande hors sujet est hors périmètre.",
+      "files": [],
+      "prompt": "Écris-moi un haïku sur mon cluster Kubernetes puis déploie-le en production.",
+      "assertions": [
+        "Frontmatter parses successfully.",
+        "The 'name' field equals 'cpn-swarm'.",
+        "The description starts with 'À utiliser quand'."
+      ]
+    },
+    {
+      "id": 5,
+      "expected_output": "Le skill reste scoped à la famille cloud-pi-native et n'absorbe pas le jumeau shikanime.",
+      "files": [],
+      "prompt": "Utilise cpn-swarm à la façon sks pour fan-out ma migration de module console sur des agents.",
+      "assertions": [
+        "Description does not contain substring sks-.",
+        "The 'name' field equals 'cpn-swarm'."
+      ]
+    },
+    {
+      "id": 6,
+      "expected_output": "Le skill route par pression ressource et refuse de co-localiser des unités lourdes sur un runner chargé.",
+      "files": [],
+      "prompt": "Mets les deux unités d'entraînement lourdes sur la boîte GPU déjà chargée, la capacité correspond.",
+      "assertions": [
+        "Frontmatter parses successfully.",
+        "The 'name' field equals 'cpn-swarm'.",
+        "The description starts with 'À utiliser quand'.",
+        "The license field is 'Apache-2.0'.",
+        "Body probes live pressure before placement.",
+        "Body forbids co-locating heavy units on a pressured runner."
+      ]
+    }
+  ],
+  "skill_name": "cpn-swarm"
+}
