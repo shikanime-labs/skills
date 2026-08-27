@@ -29,12 +29,12 @@
     },
     {
       "id": 3,
-      "expected_output": "Does not spin a swarm for a single unit; falls back to sks-isolate and avoids over-building.",
+      "expected_output": "Does not spin a swarm for a single unit; falls back to sks-stack and avoids over-building.",
       "files": [],
       "prompt": "Just run this one fix on one machine, no cluster needed.",
       "assertions": [
         "YAML frontmatter parses and 'name' equals 'sks-swarm'",
-        "Body references 'sks-isolate' for a single unit",
+        "Body references 'sks-stack' for a single unit",
         "Body states spinning a swarm for one unit is wrong"
       ]
     },

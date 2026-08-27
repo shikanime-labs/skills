@@ -10,7 +10,7 @@
         "Frontmatter description starts with 'Use when' and is at most 200 characters",
         "Frontmatter license field is 'Apache-2.0'",
         "Body contains at least one '##' heading",
-        "Body mentions 'sks-isolate'",
+        "Body mentions 'sks-stack'",
         "Body mentions a promote-or-discard decision and 'sks-gc'"
       ]
     },

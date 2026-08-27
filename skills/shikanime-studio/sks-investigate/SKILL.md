@@ -21,7 +21,7 @@ metadata:
     related_skills:
       - sks-pr-review
       - sks-async
-      - sks-isolate
+      - sks-stack
       - sks-issue
       - sks-dev-workflow
 platforms:
@@ -193,6 +193,6 @@ echo "investigation complete: root cause + hypothesis + proposed fix" \
   incoming PRs.
 - `sks-async` — the isolation pattern, for parallel implementation rather than
   parallel debugging.
-- `sks-isolate` — canonical single-workspace isolation recipe before a fix.
+- `sks-stack` — canonical single-workspace isolation recipe before a fix.
 - `sks-issue` / `sks-dev-workflow` / `sks-pr` — receive the proposed solution
   and apply it as a reviewed change.
