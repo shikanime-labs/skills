@@ -1,4 +1,3 @@
----
 name: cpn-release-patch
 description:
   "Use when backporting the commits between two release tags onto a hotfix
@@ -84,7 +83,7 @@ Cross-check the milestone actually exists on the repo and capture its number
 
 ```bash
 MILE_NUM=$(gh api repos/cloud-pi-native/console/milestones --jq \
-  '.[] | select(.title == "'"$NEXT"'") | .number')
+  '.[] | select(.title == "'\''$NEXT'\''") | .number')
 echo "milestone $NEXT -> #$MILE_NUM"
 ```
 
@@ -176,10 +175,12 @@ jj bookmark set hotfix/$NEXT -r "$TIP"
 jj git push --bookmark hotfix/$NEXT --remote origin
 ```
 
-Path B —git cherry-pick fallback (see `references/git-cherry-pick-fallback.md`):
-```bash
-git push --force-with-lease origin hotfix/$NEXT
-```
+Path B —jj colocation escape hatch (when `jj duplicate` fails):
+See `references/jj-colocation-escape-hatch.md` for jj-native recovery
+(abandon stale scaffold, `jj goto BASE_TAG`, `jj dup --onto @`) and a
+last-resort `git cherry-pick` fallback when jj colocation state is
+irrecoverable. The git escape hatch is `git push --force-with-lease origin
+hotfix/$NEXT` after building the chain via git.
 
 If the push fails with `unexpectedly moved on the remote` / `stale info`, the
 local jj has a stale remote-tracking bookmark (e.g. from a prior force-push of
@@ -227,13 +228,14 @@ a `chore: Release v$NEXT` PR against `hotfix/$NEXT` with `always-bump-patch`.
   `jj rebase -r <chain_root> -d BASE_TAG && jj abandon <empty_commit_id>`.
 - **`jj duplicate --onto @` fails with colocation state** (e.g., a prior
   `jj bookmark set` moved the internal ref, leaving jj's working copy on a stale
-  scaffold). When this happens, fall back to `git cherry-pick` (see
-  `references/git-cherry-pick-fallback.md`). The fallback git approach is always
-  reliable: `git checkout -B hotfix/$NEXT BASE_TAG` then cherry-pick each SHA
-  sequentially, then `git push --force-with-lease origin hotfix/$NEXT`. After
-  that, sync jj with `jj git fetch` then `jj bookmark set hotfix/$NEXT` — never
-  `jj bookmark set` before the git push or it will leave the git ref pointing
-  at the old (possibly empty) commit.
+  scaffold). Try jj-native recovery first: `jj abandon @`, `jj goto BASE_TAG`,
+  then `jj duplicate --onto @`. If jj colocation state is irrecoverable, fall
+  back to `git cherry-pick` (see `references/jj-colocation-escape-hatch.md`).
+  The git escape hatch is `git checkout -B hotfix/$NEXT BASE_TAG`, cherry-pick
+  each SHA sequentially, then `git push --force-with-lease origin
+  hotfix/$NEXT`. After that, sync jj with `jj git fetch` then
+  `jj bookmark set hotfix/$NEXT` — never `jj bookmark set` before the git push
+  or it will leave the git ref pointing at the old (possibly empty) commit.
 - **Tip revset**: after `duplicate --onto @`, bookmark `heads(@)`, never a
   manually guessed commit. `heads(@)` is the newest duplicate.
 - **Stale remote-tracking blocks push**: after any prior force-push of
@@ -266,5 +268,6 @@ a `chore: Release v$NEXT` PR against `hotfix/$NEXT` with `always-bump-patch`.
 - `cpn-dev-workflow` — console contribution workflow, jj conventions, PR rules.
 - `cpn-pr` — open the release PR if release-please does not auto-open.
 - `cpn-commit` — commit message shape (conventional, SSH-signed).
-- `references/git-cherry-pick-fallback.md` — git cherry-pick escape hatch when jj
-duplicate fails (stale state, empty working copy).
+- `references/jj-colocation-escape-hatch.md` — jj-native recovery and a
+  last-resort `git cherry-pick` escape hatch when `jj duplicate` fails
+  (stale state, empty working copy, irrecoverable colocation).
