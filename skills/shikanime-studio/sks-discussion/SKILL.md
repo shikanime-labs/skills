@@ -29,14 +29,14 @@ platforms:
 Pre-issue RFC (lifecycle **discussion → issue → issue comments → PR**, see
 `sks-dev-workflow`): converge on the problem, then derive the issue
 (`sks-issue`) and link back — do NOT keep solving here. English bodies only (no
-French). A literal `@` (config keys, `@Inject(x)`,
-decorators) must be wrapped in a code span to avoid a stray GitHub mention.
+French). A literal `@` (config keys, `@Inject(x)`, decorators) must be wrapped
+in a code span to avoid a stray GitHub mention.
 
 Body = short context + the open question(s) + affected repos. No acceptance
 criteria, no `- [ ]` tasklist (that is issue scaffolding — belongs in the
 derived issue). No solution written here; the discussion converges on the
-problem, the issue carries the gate. See
-`references/example-discussion.md` for a filled example.
+problem, the issue carries the gate. See `references/example-discussion.md` for
+a filled example.
 
 ## When to Use
 

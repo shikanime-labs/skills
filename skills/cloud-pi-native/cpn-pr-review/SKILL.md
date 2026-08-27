@@ -48,9 +48,9 @@ never commit or merge.
 
 `terminal` for `jj`/`gh`/`pnpm`; `read_file`/`search_files` for context. PRs:
 `gh pr checkout <N>`. Load `references/console-architecture.md` (arch),
-`references/review-output.md` (FR), `sks-pr-review/references/review-doctrine.md`
-(std), `references/review-procedure.md` (phases),
-`references/pitfalls.md` (gotchas).
+`references/review-output.md` (FR),
+`sks-pr-review/references/review-doctrine.md` (std),
+`references/review-procedure.md` (phases), `references/pitfalls.md` (gotchas).
 
 ## Quick Reference
 
@@ -114,8 +114,8 @@ Husky, stale bots, token-hash CodeQL, migration sync).
 Done when: every finding posted inline at its line (severity-prefixed, French)
 via one review; body carries 2-3 sentence verdict + praise; corrected
 conventional commit message suggested when commitlint would reject. All findings
-are posted on the PR — inline at each line (`references/review-output.md`);
-use a top-level review comment (`gh pr review <N> --comment`) only when a
-point has no line anchor. No local-only summary.
+are posted on the PR — inline at each line (`references/review-output.md`); use
+a top-level review comment (`gh pr review <N> --comment`) only when a point has
+no line anchor. No local-only summary.
 
 Related: `sks-pr-review`, `github-code-review`.

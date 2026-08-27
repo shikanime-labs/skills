@@ -70,8 +70,8 @@ reconciled, skip.
 
 Land with plain `gh pr merge` (the org removed `gh stack`). For a lone PR use
 `gh pr merge --squash [--admin]`; never `gh pr merge` on a stacked PR — but
-stacked PRs are landed the same way now (one squash-merge per PR, base
-`main`). Never force-push. Background watcher waits for CI then merges:
+stacked PRs are landed the same way now (one squash-merge per PR, base `main`).
+Never force-push. Background watcher waits for CI then merges:
 
 ```bash
 gh run watch --exit-status --repo <org>/<repo> \
@@ -100,15 +100,14 @@ push. A failing run exits non-zero and skips merge (red never lands).
   commits (leaks jj's `*` / `---------` artifacts). One subject + correct
   trailers.
 - Lone, self-approval blocked (after verbal lgtm): use `--squash --admin`.
-- Stacked (multiple PRs off `main`): land each with `gh pr merge <PR_NUMBER>
-  --squash --admin` in dependency order (base first).
+- Stacked (multiple PRs off `main`): land each with
+  `gh pr merge <PR_NUMBER> --squash --admin` in dependency order (base first).
 - Branch protection needs linear history + signed commits; squash only.
 
 ## Post-merge
 
 1. Verify: `gh pr view <M> --repo <org>/<repo> --json state`.
-2. Close the issue **deliberately**: confirm
-   tasklist N/N, then
+2. Close the issue **deliberately**: confirm tasklist N/N, then
    `gh issue close <N> --repo <org>/<repo> -c "Discharged by <PR URL>"`.
 3. Rebase downstream: if other PRs sit on top of the merged branch, rebase them
    onto the new `main` (`jj rebase -d main`).
@@ -123,8 +122,8 @@ push. A failing run exits non-zero and skips merge (red never lands).
    jj git push --remote origin
    ```
 
-   `delete` propagates to tracked remotes on the next push (no `--remote`
-   flag). If `push` reports nothing changed, GitHub already removed it.
+   `delete` propagates to tracked remotes on the next push (no `--remote` flag).
+   If `push` reports nothing changed, GitHub already removed it.
 6. **Drop the isolated workspace** if you used one. Landing is a remote
    `gh pr merge`; the local checkout that held the change is then dead weight.
    sks-land never auto-deletes a workspace — remove it deliberately:
@@ -134,14 +133,13 @@ push. A failing run exits non-zero and skips merge (red never lands).
    rm -rf <path>
    ```
 
-   `forget` takes the workspace *name* (from `jj workspace list`), not the
-   path.
+   `forget` takes the workspace _name_ (from `jj workspace list`), not the path.
 
 ## Pitfalls
 
 - Unchecked criterion — discharge or escalate, don't merge.
-- Merging a dependent stacked PR before its base lands — go in dependency
-  order, base first.
+- Merging a dependent stacked PR before its base lands — go in dependency order,
+  base first.
 - Merge after new commits without re-review — approval binds to a head commit.
 - Auto-close via `Closes #N`/`Fixes #N` at merge — fires before the ledger is
   verified; close deliberately after N-of-N.
@@ -153,9 +151,9 @@ push. A failing run exits non-zero and skips merge (red never lands).
 - [ ] `sks-pr-review` approval on head; human review where protection requires.
 - [ ] All conversations reconciled (`sks-pr-resolve`).
 - [ ] CI green.
-- [ ] Merged via `gh pr merge --squash [--admin if protection blocks
-      self-approval]` (lone or stacked — one squash-merge per PR, base
-      `main`).
+- [ ] Merged via
+      `gh pr merge --squash [--admin if protection blocks     self-approval]`
+      (lone or stacked — one squash-merge per PR, base `main`).
 - [ ] Issue closed deliberately with rationale.
 - [ ] Landing bookmark removed locally and reconciled on origin.
 

@@ -47,9 +47,9 @@ Search before creating to avoid duplicates:
 gh issue list --repo <org>/<repo> --state all --search "<keywords>" --limit 10
 ```
 
-If an open (or recently closed) issue matches, surface the `#N` and confirm
-with the user whether to reuse it instead of opening a new one. Only create
-when no matching issue exists (or the user explicitly wants a fresh ticket).
+If an open (or recently closed) issue matches, surface the `#N` and confirm with
+the user whether to reuse it instead of opening a new one. Only create when no
+matching issue exists (or the user explicitly wants a fresh ticket).
 
 ### 1. Repo + type
 
@@ -85,10 +85,10 @@ solutions belong in comments, not tasklist/body.
 
 Observed variant (see `references/example-issue-body.md`): `## Problem` /
 `## Acceptance` with no separate References block — same content, fewer
-headings; either shape is acceptable.
-Keep the body stable; post findings/root-cause as `gh issue comment` and cite
-concrete evidence (the exact `- old` → `+ new` diff lines, or command output),
-not prose summaries. Interim comments may be deleted after convergence.
+headings; either shape is acceptable. Keep the body stable; post
+findings/root-cause as `gh issue comment` and cite concrete evidence (the exact
+`- old` → `+ new` diff lines, or command output), not prose summaries. Interim
+comments may be deleted after convergence.
 
 Body has a **References** section: official material (docs, linked issues/PRs,
 commits, changelogs, specs); more may be posted as comments to steer resolution,
@@ -117,6 +117,5 @@ Confirm title + label set; issue in org repo.
 
 ## See also
 
-`sks-discussion`, `sks-pr` (links back via `Related:`),
-`sks-issue-refine`, `sks-issue-triage` (run after creation),
-`sks-doc`.
+`sks-discussion`, `sks-pr` (links back via `Related:`), `sks-issue-refine`,
+`sks-issue-triage` (run after creation), `sks-doc`.

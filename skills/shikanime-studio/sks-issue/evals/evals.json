@@ -1,5 +1,4 @@
 {
-  "skill_name": "sks-issue",
   "evals": [
     {
       "id": 1,
@@ -71,5 +70,6 @@
         "Frontmatter 'name' equals the directory basename 'sks-issue'"
       ]
     }
-  ]
+  ],
+  "skill_name": "sks-issue"
 }

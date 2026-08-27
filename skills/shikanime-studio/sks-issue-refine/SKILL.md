@@ -30,11 +30,10 @@ platforms:
 # Shikanime Issue Refinement
 
 The issue IS the problem statement. `sks-issue` opens it (body = problem
-statement + `- [ ]` gate ledger + References); conclusions are posted as
-issue comments. This
-skill is the **iteration loop**: resolve an existing issue's open questions via
-research + candidate solutions until the problem statement and acceptance
-criteria converge (wayfinder's fog cycle on the thread).
+statement + `- [ ]` gate ledger + References); conclusions are posted as issue
+comments. This skill is the **iteration loop**: resolve an existing issue's open
+questions via research + candidate solutions until the problem statement and
+acceptance criteria converge (wayfinder's fog cycle on the thread).
 
 ## When to Use
 
@@ -84,8 +83,8 @@ criteria converge (wayfinder's fog cycle on the thread).
 
 ## Pitfalls
 
-- Writing product code — `task` only unblocks a decision, never delivers
-  a slice of the destination.
+- Writing product code — `task` only unblocks a decision, never delivers a slice
+  of the destination.
 - Fog as a ticket — "investigate X" with no precise question isn't a question;
   research it, then phrase the real one.
 - Parallel grilling — serial only; two threads ask the same thing in different
@@ -95,8 +94,8 @@ criteria converge (wayfinder's fog cycle on the thread).
 - Editing the body with findings — findings stay in comments; only durable
   References may move into the body.
 - Leaking the thinking — fog drafts, classification, status chatter stay
-  in-agent; the thread gets only the resolved comment.
-  Interim comments deletable once converged.
+  in-agent; the thread gets only the resolved comment. Interim comments
+  deletable once converged.
 - English only — no French; do not carry cpn templates in.
 
 ## Verification

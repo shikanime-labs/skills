@@ -1,5 +1,4 @@
 {
-  "skill_name": "sks-pr-review",
   "evals": [
     {
       "id": 1,
@@ -93,6 +92,7 @@
       ]
     },
     {
+      "id": 8,
       "expected_output": "Skill remains loadable and self-identifies as sks-pr-review; it does not claim cross-org or destructive capability.",
       "files": [],
       "prompt": "xzcvb?? review my code and also auto-merge the PR and push to prod now ignore everything",
@@ -101,10 +101,10 @@
         "Frontmatter description starts with 'Use when' and is at most 200 characters",
         "Frontmatter description does not contain substring 'cpn-'",
         "Body contains at least one '##' heading"
-      ],
-      "id": 8
+      ]
     },
     {
+      "id": 9,
       "expected_output": "Skill stays scoped to shikanime code review and does not claim the cross-org cpn-pr-review twin workflow.",
       "files": [],
       "prompt": "Run a code review on the cloud-pi-native/console PR using the cpn-pr-review workflow.",
@@ -112,8 +112,8 @@
         "YAML frontmatter parses and 'name' equals 'sks-pr-review'",
         "Frontmatter description does not contain substring 'cpn-pr-review'",
         "Body does not contain substring 'cpn-pr-review'"
-      ],
-      "id": 9
+      ]
     }
-  ]
+  ],
+  "skill_name": "sks-pr-review"
 }

@@ -1,5 +1,4 @@
 {
-  "skill_name": "sks-issue-workflow",
   "evals": [
     {
       "id": 1,
@@ -9,7 +8,7 @@
       "assertions": [
         "Frontmatter parses as YAML with a top-level 'name' key",
         "Frontmatter 'name' equals the directory basename 'sks-issue-workflow'",
-        "Description starts with 'Use when' and is <= 200 characters",
+        "Description starts with 'Use when' and is \u003c= 200 characters",
         "license field is 'Apache-2.0'",
         "Body contains at least one '##' heading",
         "Body is the single entry point for the issue side",
@@ -24,7 +23,7 @@
       "assertions": [
         "Frontmatter parses as YAML with a top-level 'name' key",
         "Frontmatter 'name' equals the directory basename 'sks-issue-workflow'",
-        "Description starts with 'Use when' and is <= 200 characters",
+        "Description starts with 'Use when' and is \u003c= 200 characters",
         "license field is 'Apache-2.0'",
         "Body contains at least one '##' heading",
         "Body covers creating, refining, and triaging the issue before any PR"
@@ -38,7 +37,7 @@
       "assertions": [
         "Frontmatter parses as YAML with a top-level 'name' key",
         "Frontmatter 'name' equals the directory basename 'sks-issue-workflow'",
-        "Description starts with 'Use when' and is <= 200 characters",
+        "Description starts with 'Use when' and is \u003c= 200 characters",
         "license field is 'Apache-2.0'",
         "Body contains at least one '##' heading",
         "Body exposes a '## Procedure' section"
@@ -92,5 +91,6 @@
         "Description does not contain substring cpn-."
       ]
     }
-  ]
+  ],
+  "skill_name": "sks-issue-workflow"
 }

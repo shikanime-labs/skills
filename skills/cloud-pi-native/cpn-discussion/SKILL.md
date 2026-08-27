@@ -38,10 +38,10 @@ space**; do not open an issue prematurely.
 
 See `references/graphql.md` for the body template, the `updateDiscussion`
 envelope, and the `createDiscussion` mutation. Rules: language **French**; links
-use full URLs or `owner/repo#N` for cross-repo refs (bare `#N` only links
-within console); a discussion is an **opening** (context +
-open questions), never with "Décision attendue" / "Définition du fini" (that's
-cpn-issue scope). Lifecycle: **discussion → issue → issue comments → PR.**
+use full URLs or `owner/repo#N` for cross-repo refs (bare `#N` only links within
+console); a discussion is an **opening** (context + open questions), never with
+"Décision attendue" / "Définition du fini" (that's cpn-issue scope). Lifecycle:
+**discussion → issue → issue comments → PR.**
 
 - `@nom` en prose déclenche une mention — pour un `@` littéral (clés de config,
   `@Inject(x)`), l'enfermer dans un bloc de code ; seul le code désactive

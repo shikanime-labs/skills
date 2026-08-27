@@ -71,11 +71,11 @@ commentaires. Cette skill itère dans l'issue jusqu'à convergence.
    si dépôt touché ; read-only, n'édite jamais le code produit). Voir
    `references/cpn-issue-refine.md` pour le modèle d'appel. Pour
    `grilling`/`prototype` : humain en série.
-5. **Ne poste que la conclusion en commentaire** — résolution → `gh issue
-   comment` : une ligne la décision prise, rien de plus. Pas de trouvaille ni de
-   liste de solutions candidates ; le corps reste l'énoncé stable. Référence
-   durable → ajoute à la section **Références** du corps via `gh issue edit`.
-   Toute réponse à l'humain reste courte et ciblée.
+5. **Ne poste que la conclusion en commentaire** — résolution →
+   `gh issue comment` : une ligne la décision prise, rien de plus. Pas de
+   trouvaille ni de liste de solutions candidates ; le corps reste l'énoncé
+   stable. Référence durable → ajoute à la section **Références** du corps via
+   `gh issue edit`. Toute réponse à l'humain reste courte et ciblée.
 6. **Test de convergence** — arrête si : aucun item ≠ « construit X »,
    brouillard levé, corps = énoncé propre + ledger `- [ ]` décidable.
 7. **Passe au solveur** — issue prête → `cpn-pr` / phase implémentation

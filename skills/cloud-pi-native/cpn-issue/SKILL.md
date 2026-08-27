@@ -133,7 +133,7 @@ Confirm title carries `🐛 [BUG]` or `💡 [REQUEST]`, label is
 
 ## See also
 
-- `cpn-pr` — link via `Issues liées: #N` ;
-  PR body restates the linked commit (source of truth, see `cpn-dev-workflow`).
+- `cpn-pr` — link via `Issues liées: #N` ; PR body restates the linked commit
+  (source of truth, see `cpn-dev-workflow`).
 - `cpn-dev-workflow` — branch discipline, direct push, local dev loop.
 - `cpn-issue-triage` — assigns metadata; run after creation.

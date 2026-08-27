@@ -1,5 +1,4 @@
 {
-  "skill_name": "cpn-issue-workflow",
   "evals": [
     {
       "id": 1,
@@ -21,7 +20,7 @@
       "files": [],
       "prompt": "Mène ce problème jusqu'à une issue convergée et triée sur le dépôt console.",
       "assertions": [
-        "Frontmatter 'description' starts with 'À utiliser quand' or 'Use when' and is <= 200 characters.",
+        "Frontmatter 'description' starts with 'À utiliser quand' or 'Use when' and is \u003c= 200 characters.",
         "Le corps applique labels, assignee, milestone et project lors du tri.",
         "Le corps définit une gate de complétion basée sur un ledger `- [ ]` convergé."
       ]
@@ -57,24 +56,25 @@
       ]
     },
     {
+      "id": 6,
       "expected_output": "La skill reste chargeable malgré un prompt malformé et orchestre sans logique de création propre.",
       "files": [],
-      "prompt": "Prépare le workflow issue console 🤖 (prompt incomplet ??? &&& 漢字 zéro dépôt)",
+      "prompt": "Prépare le workflow issue console 🤖 (prompt incomplet ??? \u0026\u0026\u0026 漢字 zéro dépôt)",
       "assertions": [
         "Frontmatter parses as valid YAML.",
         "The 'name' field equals the directory basename 'cpn-issue-workflow'."
-      ],
-      "id": 6
+      ]
     },
     {
+      "id": 7,
       "expected_output": "La skill refuse le dépôt shikanime et n'emprunte aucun préfixe sks- (orchestration console seulement).",
       "files": [],
       "prompt": "Prépare le workflow complet d'une issue sur shikanime-labs/skills et land-la via sks-dev-workflow.",
       "assertions": [
         "La description et le corps ne revendiquent pas le préfixe 'sks-'.",
         "Le corps orchestre uniquement cpn-issue, cpn-issue-refine et cpn-issue-triage (aucun merge/land)."
-      ],
-      "id": 7
+      ]
     }
-  ]
+  ],
+  "skill_name": "cpn-issue-workflow"
 }

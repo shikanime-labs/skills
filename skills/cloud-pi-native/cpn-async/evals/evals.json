@@ -1,5 +1,4 @@
 {
-  "skill_name": "cpn-async",
   "evals": [
     {
       "id": 1,
@@ -35,7 +34,7 @@
     },
     {
       "id": 3,
-      "expected_output": "Builds dependent units as a jj depth chain or a jj join (jj new <a> <b>) and lands them in dependency order after siblings.",
+      "expected_output": "Builds dependent units as a jj depth chain or a jj join (jj new \u003ca\u003e \u003cb\u003e) and lands them in dependency order after siblings.",
       "files": [],
       "prompt": "Comment décomposer cette grosse feature console en units indépendants et les lander sans conflit de bookmark ?",
       "assertions": [
@@ -95,5 +94,6 @@
         "Body does not adopt the 'sks-' prefix for itself."
       ]
     }
-  ]
+  ],
+  "skill_name": "cpn-async"
 }

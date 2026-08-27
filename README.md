@@ -101,45 +101,46 @@ specification, compatible with the
 
 | Skill                   | Description                                                                                                                  |
 | ----------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| `sks-dev-workflow`      | Branch/push discipline, gates, landing                                                                                       |
+| `sks-adversarial`       | Disposable sandbox for uncertain results: probe via sks-isolate/sks-async, then promote or discard                           |
 | `sks-async`             | jj workspace fan-out + stacked PRs for parallel work                                                                         |
 | `sks-commit`            | shikanime commit style + Automata co-author trailer                                                                          |
+| `sks-dev-workflow`      | Branch/push discipline, gates, landing                                                                                       |
 | `sks-discussion`        | RFC Discussions (pre-issue stage)                                                                                            |
+| `sks-discussion-triage` | Discussion triage: category + lifecycle (GraphQL)                                                                            |
+| `sks-doc`               | Repo `docs/` knowledge base (internal ops + optional user docs) as reviewable in-repo Markdown                               |
+| `sks-gc`                | Reclaim dangling bookmarks, skill-created jj workspaces, and leftover working-copy dirs from sks-async/sks-dev-workflow      |
+| `sks-investigate`       | Root-cause a bug/test/build failure before any fix; minimal repro + proven verification                                      |
+| `sks-isolate`           | Isolate one unit of shikanime work in a fresh jj workspace; bookmarks + pushes scoped to that workspace                      |
 | `sks-issue`             | Issues with the gate-ledger tasklist                                                                                         |
 | `sks-issue-refine`      | Iterate a problem to convergence within its issue via research + comments                                                    |
 | `sks-issue-triage`      | Issue triage: metadata + rationale closes                                                                                    |
-| `sks-pr-triage`         | PR triage: metadata, reviewers, issue linkage                                                                                |
 | `sks-issue-workflow`    | Issue side end-to-end: create → refine → triage                                                                              |
-| `sks-pr-workflow`       | PR side end-to-end: issue-exists → open → triage                                                                             |
-| `sks-discussion-triage` | Discussion triage: category + lifecycle (GraphQL)                                                                            |
-| `sks-pr`                | PRs derived from the commit, pushed to origin                                                                                |
 | `sks-land`              | Merge PRs after DoD + review gates pass                                                                                      |
+| `sks-pr`                | PRs derived from the commit, pushed to origin                                                                                |
 | `sks-pr-resolve`        | Reconcile PR review threads + ledger, report readiness without merging                                                       |
 | `sks-pr-review`         | Code review: YAGNI, root-cause, conventions                                                                                  |
-| `sks-investigate`       | Root-cause a bug/test/build failure before any fix; minimal repro + proven verification                                      |
-| `sks-doc`               | Repo `docs/` knowledge base (internal ops + optional user docs) as reviewable in-repo Markdown                               |
-| `sks-gc`                | Reclaim dangling bookmarks, skill-created jj workspaces, and leftover working-copy dirs from sks-async/sks-dev-workflow      |
-| `sks-adversarial`       | Disposable sandbox for uncertain results: probe via sks-isolate/sks-async, then promote or discard                           |
+| `sks-pr-triage`         | PR triage: metadata, reviewers, issue linkage                                                                                |
+| `sks-pr-workflow`       | PR side end-to-end: issue-exists → open → triage                                                                             |
 | `sks-swarm`             | Distribute a task across an agent cluster over A2A: route by capability, machine, and runner pressure (optionally sandboxed) |
 
 ### cloud-pi-native family
 
 | Skill                   | Description                                            |
 | ----------------------- | ------------------------------------------------------ |
-| `cpn-dev-workflow`      | Console repo dev loop, gates, PR workflow              |
-| `cpn-commit`            | Conventional commits for console                       |
-| `cpn-discussion`        | French Discussions via GraphQL                         |
-| `cpn-issue`             | French issue templates + gate ledger                   |
-| `cpn-pr`                | French PRs, pushed to origin, conventional             |
-| `cpn-pr-review`         | Review console PRs: arch, French artifacts             |
-| `cpn-issue-triage`      | Triage d'issue : métadonnées + fermetures motivées     |
-| `cpn-pr-triage`         | Triage de PR : métadonnées, reviewers, lien issue      |
-| `cpn-discussion-triage` | Triage de discussion : catégorie + cycle (GraphQL)     |
 | `cpn-async`             | Fan-out parallèle sur workspaces jj + PR en stack      |
+| `cpn-commit`            | Conventional commits for console                       |
+| `cpn-dev-workflow`      | Console repo dev loop, gates, PR workflow              |
+| `cpn-discussion`        | French Discussions via GraphQL                         |
+| `cpn-discussion-triage` | Triage de discussion : catégorie + cycle (GraphQL)     |
+| `cpn-issue`             | French issue templates + gate ledger                   |
 | `cpn-issue-refine`      | Raffine un problème vers la convergence dans l'issue   |
+| `cpn-issue-triage`      | Triage d'issue : métadonnées + fermetures motivées     |
 | `cpn-issue-workflow`    | Workflow issue : créer → raffiner → trier              |
-| `cpn-pr-workflow`       | Workflow PR : issue liée → PR draft → trier            |
+| `cpn-pr`                | French PRs, pushed to origin, conventional             |
 | `cpn-pr-resolve`        | Réconcilie les threads de review, rapporte sans merger |
+| `cpn-pr-review`         | Review console PRs: arch, French artifacts             |
+| `cpn-pr-triage`         | Triage de PR : métadonnées, reviewers, lien issue      |
+| `cpn-pr-workflow`       | Workflow PR : issue liée → PR draft → trier            |
 
 ## Development
 

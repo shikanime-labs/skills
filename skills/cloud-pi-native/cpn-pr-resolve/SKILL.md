@@ -35,9 +35,9 @@ approbation/CI. **Ne land JAMAIS** (merge = `cpn-dev-workflow`).
 - « Résous / vide les threads de review sur #M ».
 - « #M est-elle prête à land ? » — réconcilie et rapporte, sans merger.
 - Pré-landing : chaque thread résolu + ledger N/N avant `cpn-dev-workflow`.
-- **Pre-check (PR à fort impact)** : si la PR requiert une validation e2e
-  lourde avant le land, exécute manuellement la **merge queue** dans le jj
-  workspace courant AVANT de rapporter « prête ».
+- **Pre-check (PR à fort impact)** : si la PR requiert une validation e2e lourde
+  avant le land, exécute manuellement la **merge queue** dans le jj workspace
+  courant AVANT de rapporter « prête ».
 
 Hors scope : ouvrir/reviewer/merger →
 `cpn-pr`/`cpn-pr-review`/`cpn-dev-workflow`.
@@ -69,7 +69,8 @@ gh pr view <M> --repo cloud-pi-native/<repo> --json reviews,headRefOid \
 ```
 
 - Branche protégée bloquant l'auto-approb (ex. `cloud-pi-native/console`) →
-  `lgtm` verbal suffit (merge reste dans `cpn-dev-workflow`, `gh pr merge`/queue).
+  `lgtm` verbal suffit (merge reste dans `cpn-dev-workflow`,
+  `gh pr merge`/queue).
 - CI : `gh pr checks <M> --repo cloud-pi-native/<repo>`.
 
 ## Pre-check — Merge queue manuelle (PR à fort impact)
@@ -81,7 +82,8 @@ et qui exigent une validation de bout en bout avant fusion, le dispatcher
 ce n'est pas un merge réel, c'est la validation e2e pilotée sur la branche.
 
 1. **Travaille dans le jj workspace de la PR** (pas de `git`, pas de workspace
-   partagé) : `jj workspace add ../<repo>.<unit> --name <repo>.<unit>` si absent.
+   partagé) : `jj workspace add ../<repo>.<unit> --name <repo>.<unit>` si
+   absent.
 2. **Discerne le scope** : un ou plusieurs modules consommateurs de l'API
    touchée (imports croisés) → exécute la queue depuis le workspace qui porte le
    commit racine (le père commun) ; PR isolée → depuis son propre workspace.
@@ -89,8 +91,8 @@ ce n'est pas un merge réel, c'est la validation e2e pilotée sur la branche.
    fusiner) :
    - POSITIF → annote « e2e validé (merge queue manuelle) » et continue vers
      `cpn-dev-workflow`.
-   - NÉGATIF → bloque le land, rapporte l'échec + logs ; ne coche pas, ne
-     résous pas les threads en silence.
+   - NÉGATIF → bloque le land, rapporte l'échec + logs ; ne coche pas, ne résous
+     pas les threads en silence.
 
 ## Gate 3 — Conversations réconciliées (cœur)
 
@@ -110,8 +112,8 @@ scope** — seuls les threads inline gatent via `isResolved`.
 
 ## Output
 
-Verdict : Ledger N/N (items ouverts) · Approbation `cpn-pr-review` sur head
-(ou `lgtm` verbal) · Conversations résolues/rationale ou threads en attente · CI
+Verdict : Ledger N/N (items ouverts) · Approbation `cpn-pr-review` sur head (ou
+`lgtm` verbal) · Conversations résolues/rationale ou threads en attente · CI
 green/pending/failing. Merge = `cpn-dev-workflow`.
 
 ## Pitfalls
@@ -139,8 +141,8 @@ green/pending/failing. Merge = `cpn-dev-workflow`.
 ## Checklist
 
 - [ ] Tasklist issue liée coché : chaque critère vérifié contre diff/CI.
-- [ ] Approbation `cpn-pr-review` sur le head ; review humaine si protection
-      (ou `lgtm` verbal pour `cpn-dev-workflow`).
+- [ ] Approbation `cpn-pr-review` sur le head ; review humaine si protection (ou
+      `lgtm` verbal pour `cpn-dev-workflow`).
 - [ ] Chaque thread réconcilié : pertinent adressé/ajouté, non pertinent rejeté
       avec rationale.
 - [ ] CI checks rapportés.

@@ -1,5 +1,4 @@
 {
-  "skill_name": "cpn-issue",
   "evals": [
     {
       "id": 1,
@@ -89,5 +88,6 @@
         "The body opens issues against cloud-pi-native/console, not shikanime-studio."
       ]
     }
-  ]
+  ],
+  "skill_name": "cpn-issue"
 }

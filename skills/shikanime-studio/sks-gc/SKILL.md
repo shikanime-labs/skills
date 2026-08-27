@@ -1,7 +1,7 @@
 ---
 name: sks-gc
 description:
-  Use when reclaiming resources leaked by shikanime jj workflows: dangling
+  Use when reclaiming resources leaked by shikanime jj workflows — dangling
   bookmarks, skill-created jj workspaces, and leftover working-copy dirs from
   sks-async/sks-dev-workflow.
 version: 0.1.0
@@ -43,8 +43,8 @@ leave on disk. Destructive — always dry-run first.
 
 ## Hard rules (do not skip)
 
-- **Dry-run first.** Print every candidate; never `forget`/`rm` on the same
-  pass that discovers it. Require an explicit apply step after review.
+- **Dry-run first.** Print every candidate; never `forget`/`rm` on the same pass
+  that discovers it. Require an explicit apply step after review.
 - **Never drop `main` / `trunk` / `master`** or a bookmark with an OPEN PR.
 - **Never forget a workspace with uncommitted changes.** Skip it and report —
   losing WIP is data loss.
@@ -142,6 +142,5 @@ gh pr list --state open   # confirm no protected bm forgotten, canonical wc unto
 
 - `sks-async` — the fan-out that creates the workspaces/bookmarks this skill
   reclaims.
-- `sks-dev-workflow` — isolation workspace pattern
-  (`../<repo>-fix`).
+- `sks-dev-workflow` — isolation workspace pattern (`../<repo>-fix`).
 - `sks-land` — lands PRs (this skill only reclaims after landing, never merges).

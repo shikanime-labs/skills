@@ -43,8 +43,8 @@ branch name, not a tag — see Verification.
 
 "Backport v9.24.4 to v9.24.5", "duplicate the diff of main onto the v9.24.4 tag
 as a hotfix", "make a patch hotfix branch from v9.24.4", or any request to take
-the commits between a tag and `main` and land them on a `hotfix/<x.y.z>`
-branch for release-please to cut.
+the commits between a tag and `main` and land them on a `hotfix/<x.y.z>` branch
+for release-please to cut.
 
 ## Inputs
 
@@ -66,8 +66,8 @@ git rev-parse -q --verify BASE_TAG   # tag must exist; replace BASE_TAG
 jj git fetch                    # sync remote tags + bookmarks
 ```
 
-If `BASE_TAG` is missing or you lack write: report `BLOCKED: <requirement> —
-<evidence> — <recovery>`, do not proceed.
+If `BASE_TAG` is missing or you lack write: report
+`BLOCKED: <requirement> — <evidence> — <recovery>`, do not proceed.
 
 ### 1. Resolve the patch milestone from the base tag
 
@@ -95,16 +95,17 @@ duplicate patch branch would collide with an already-cut release.
 
 The milestone's merged PRs ARE the backport set. Do **not** derive it from a
 `BASE_TAG..main` patch-id diff — that over-counts, because `main` carries the
-*next* minor's dev commits (`9.25.0` prerelease work) whose patch-ids are not on
+_next_ minor's dev commits (`9.25.0` prerelease work) whose patch-ids are not on
 the tag either, so they leak in. For `v9.24.4` the milestone had **16** commits;
 a `v9.24.4..main` patch-id diff returned **35** (16 in-milestone + 19 from
 `9.25.0` dev). The milestone is the precise source of truth.
 
 ```bash
 # milestone's closed PRs, merged commit SHA + merged date, oldest first
-gh api "repos/cloud-pi-native/console/issues?milestone=$MILE_NUM&state=closed&per_page=100" \
-  --jq '.[] | select(.pull_request) | "\(.pull_request.merged_at) \(.pull_request.merge_commit_sha)"' \
-  | sort | awk '{print $2}' > /tmp/cpn_ms_ids.txt
+gh api "repos/cloud-pi-native/console/issues?milestone=$MILE_NUM\
+  &state=closed&per_page=100" \
+  --jq '.[] | select(.pull_request) | "\(.pull_request.merged_at)"
+    + " \(.pull_request.merge_commit_sha)"' \
 
 wc -l /tmp/cpn_ms_ids.txt   # expect the milestone size (16 for v9.24.5)
 ```
@@ -119,12 +120,13 @@ already an ancestor of `BASE_TAG` — if any are, `jj duplicate` will simply
 produce an empty/no-op commit for it, which is harmless but worth noting:
 
 ```bash
-while read c; do git merge-base --is-ancestor "$c" BASE_TAG && echo "already-on-tag: $c"; done < /tmp/cpn_ms_ids.txt
+while read c; do git merge-base --is-ancestor "$c" BASE_TAG \
+  && echo "already-on-tag: $c"; done < /tmp/cpn_ms_ids.txt
 ```
 
 ### 3. Rebuild the chain directly on the tag (NO empty scaffold)
 
-Critical: do **not** `jj new BASE_TAG -m "..."`. That creates an *empty* commit
+Critical: do **not** `jj new BASE_TAG -m "..."`. That creates an _empty_ commit
 as a child of the tag, and when you duplicate `--onto @` the empty commit stays
 an ancestor of the tip — it then appears in `BASE_TAG..hotfix/$NEXT` and blocks
 the push ("Won't push commit … has no description"). Instead, point the working
@@ -139,13 +141,14 @@ TIP=$(jj log -r 'heads(@)' --no-graph -T commit_id | head -1)   # newest duplica
 ```
 
 `heads(@)` after the duplicate is exactly the tip of the new chain — no empty
-commit to drop. If you ever did use `jj new BASE_TAG -m`, recover by rebasing the
-chain root onto the tag and abandoning the empty commit:
+commit to drop. If you ever did use `jj new BASE_TAG -m`, recover by rebasing
+the chain root onto the tag and abandoning the empty commit:
 
 ```bash
 # WRONG: jj rebase -r root(<empty>::)  -> use the explicit root SHA instead
 # CORRECT recovery:
-ROOT=$(jj log -r '(<empty_commit_id>::)' --no-graph -T 'commit_id' | tail -1)   # oldest child of empty
+ROOT=$(jj log -r '(<empty_commit_id>::)' --no-graph -T 'commit_id'
+  | tail -1)   # oldest child of empty
 jj rebase -r "$ROOT" -d BASE_TAG
 jj abandon <empty_commit_id>
 ```
@@ -154,10 +157,14 @@ jj abandon <empty_commit_id>
 
 ```bash
 # exactly the milestone size, no empty/scaffold commit
-jj log -r "BASE_TAG..hotfix/$NEXT" --no-graph -T 'commit_id' | grep -c .   # = lines in /tmp/cpn_ms_ids.txt
+jj log -r "BASE_TAG..hotfix/$NEXT" --no-graph -T 'commit_id'
+  | grep -c .   # = lines in /tmp/cpn_ms_ids.txt
 # no conflict markers anywhere in the chain
-jj log -r "BASE_TAG..hotfix/$NEXT" --no-graph -T 'if(conflict, description.first_line(), "")' | grep -c .   # must be 0
-# tree reconstructs main's source (release-please files may differ) — optional but recommended
+jj log -r "BASE_TAG..hotfix/$NEXT" --no-graph
+  -T 'if(conflict, description.first_line(), "")' | grep -c .
+  # must be 0
+# tree reconstructs main's source (release-please files may differ)
+# — optional but recommended
 git diff --name-only "$TIP" main | grep -vE 'package\.json|CHANGELOG\.md|\.release-please-manifest\.json'
 # empty output above = trees identical; backport complete
 ```
@@ -211,11 +218,11 @@ a `chore: Release v$NEXT` PR against `hotfix/$NEXT` with `always-bump-patch`.
   19 from `9.25.0` dev work whose patch-ids are also absent from the tag.
   Duplicating all 35 leaks `9.25.0` features into the hotfix. Always source the
   set from the milestone's merged PRs (Step 2).
-- **NEVER `jj new BASE_TAG -m "..."` as the duplicate base.** It creates an empty
-  commit that becomes a permanent ancestor of the tip, shows up in
-  `BASE_TAG..hotfix/$NEXT`, and blocks `jj git push` ("Won't push commit …
-  has no description"). Use `jj goto BASE_TAG` (Step 3) so the chain roots
-  directly on the tag with no scaffold. If you already made the empty commit:
+- **NEVER `jj new BASE_TAG -m "..."` as the duplicate base.** It creates an
+  empty commit that becomes a permanent ancestor of the tip, shows up in
+  `BASE_TAG..hotfix/$NEXT`, and blocks `jj git push` ("Won't push commit … has
+  no description"). Use `jj goto BASE_TAG` (Step 3) so the chain roots directly
+  on the tag with no scaffold. If you already made the empty commit:
   `jj rebase -r <chain_root> -d BASE_TAG && jj abandon <empty_commit_id>`.
 - **`jj duplicate --onto @` requires `@` to be the tag, not an empty child.** If
   `@` is a fresh empty commit on the tag, the duplicates hang off the empty
@@ -230,10 +237,11 @@ a `chore: Release v$NEXT` PR against `hotfix/$NEXT` with `always-bump-patch`.
   leakage makes it wrong as a backport source — hence the milestone in Step 2.
 - **Tag is not an ancestor of main**: expected for CPN release tags (they carry
   hotfix-only commits). Do not try to branch from `main`; branch from the tag.
-- **Verify by tree, not count**: after duplicate, `git diff --name-only <tip>
-  main` should show only `package.json` / `CHANGELOG.md` /
-  `.release-please-manifest.json`. Any other differing file means a milestone
-  commit was missed or mis-ordered — re-run Step 2, do not push.
+- **Verify by tree, not count**: after duplicate,
+  `git diff --name-only <tip> main` should show only `package.json` /
+  `CHANGELOG.md` / `.release-please-manifest.json`. Any other differing file
+  means a milestone commit was missed or mis-ordered — re-run Step 2, do not
+  push.
 - **No `jj git tag` in 0.43**: tags are git objects synced through colocation.
   Create branches with `jj bookmark create`/`set`, not tags.
 - **`jj op undo` does not exist** in this jj version — to roll back a dry run or

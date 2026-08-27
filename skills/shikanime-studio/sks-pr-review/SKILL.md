@@ -34,10 +34,9 @@ Review local diffs and GitHub PRs through the Ponytail/YAGNI lens, enforcing
 shikanime review practice and repo conventions. Reports only — never
 auto-commit/merge/fix. Uses `jj`, `gh`, and standard Hermes tools.
 
-The mechanics below (added-line security scan, independent fail-closed
-reviewer) are distilled from `requesting-code-review` and adapted to the
-shikanime human-gated flow: the agent posts findings and a verdict, a human
-approves.
+The mechanics below (added-line security scan, independent fail-closed reviewer)
+are distilled from `requesting-code-review` and adapted to the shikanime
+human-gated flow: the agent posts findings and a verdict, a human approves.
 
 ## When to Use
 
@@ -64,10 +63,11 @@ Command cheat-sheet: `references/commands.md`.
   one path the ticket named;
 - (4) test strategy present and owned by the right unit?
 
-**3 — Security scan (added lines).** Run `references/security-scan.md`. Any match
-= `blocking`. Covers hard-coded secrets, shell/SQL injection, `eval`/`exec`,
-unsafe deserialization, path traversal, XSS; plus auth trust-boundary checks
-(Keycloak/JWKS timeout + client binding, NestJS/Prisma type boundary).
+**3 — Security scan (added lines).** Run `references/security-scan.md`. Any
+match = `blocking`. Covers hard-coded secrets, shell/SQL injection,
+`eval`/`exec`, unsafe deserialization, path traversal, XSS; plus auth
+trust-boundary checks (Keycloak/JWKS timeout + client binding, NestJS/Prisma
+type boundary).
 
 **4 — Independent verdict.** Self-review checklist + a `delegate_task` reviewer
 with only the diff (no shared context, fail-closed on non-JSON):
@@ -88,12 +88,13 @@ Inline-anchoring syntax and `gh api` template: `references/inline-comments.md`.
 
 ## Posting (PRs)
 
-ONE review on the PR, inline comments per line (`references/inline-comments.md`),
-not a block: each at its `path`/`line`, severity-prefixed; body = 2-3 sentence
-verdict + one specific praise. Use a top-level review comment (`gh pr review <N>
---comment`) only when a finding has no line anchor. No local-only summary — every
-finding lands on the PR. If commits violate conventions, suggest a corrected
-plain-English message in the body (author amends — reviewer never pushes).
+ONE review on the PR, inline comments per line
+(`references/inline-comments.md`), not a block: each at its `path`/`line`,
+severity-prefixed; body = 2-3 sentence verdict + one specific praise. Use a
+top-level review comment (`gh pr review <N> --comment`) only when a finding has
+no line anchor. No local-only summary — every finding lands on the PR. If
+commits violate conventions, suggest a corrected plain-English message in the
+body (author amends — reviewer never pushes).
 
 ## Pitfalls
 

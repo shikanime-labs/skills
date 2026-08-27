@@ -61,29 +61,32 @@ onto jj's commit DAG as plain `gh pr` merges. Core splitting component of
    carries the trailer:
 
    ```bash
-   jj describe -m "<subject>" -m "Co-authored-by: Automata
-   <automata@shikanime.studio>"
+   jj describe -m "<subject>" -m "Co-authored-by: Automata <automata@shikanime.studio>"
    ```
 
 4. **Land** (push to `origin`, PRs with `--head <org>:<branch>`; see
    `sks-dev-workflow`):
    - Independent unit → own bookmark + standalone PR (or single-member stack).
-   - Dependent chain → one bookmark per link, then:
 
-     ```bash
-     # dependent chain: one bookmark per link, each as its own plain gh pr
-     jj bookmark set <next> -r <next>
-     gh pr create --repo <org>/<repo> --base main --head "<org>:<next>" \
-       --title "<subject>" --body "$(cat <<'EOF'
-     ```
+- Dependent chain → one bookmark per link. Example:
 
+```bash
+jj bookmark set <next> -r <next>
+gh pr create --repo <org>/<repo> --base main --head "<org>:<next>" \
+  --title "<subject>" \
+  --body "$(cat <<'EOF'
 ## What
+<brief bullet scope of this chain link>
 
 ## Why
+<linked issue: why now>
 
 ## References
 
-Related: <issue URL> EOF )" ```
+Related: <issue URL>
+EOF
+)"
+```
 
 - PR↔issue linkage per `sks-pr`: `Related: <issue URL>` by default.
 - Before opening each PR, run the `sks-pr` step 2b duplicate/stack check — an
@@ -98,7 +101,7 @@ Related: <issue URL> EOF )" ```
 
 Each child: workspace path, unit gates, commit shape (plain English + Automata
 co-author trailer). Parent re-verifies every gate via `terminal` in each
-workspace before reporting done. Dispatch `delegate_task(tasks=[…])`: **one task
+workspace before reporting done. Dispatch `delegate_task(tasks=[])`: **one task
 per leaf**, `goal` carries the contract; never bundle two leaves (defeats
 isolation). Skeleton: `references/sks-async-delegate.md`.
 
