@@ -99,7 +99,7 @@ peeling subsets with `jj restore`/`jj split` (which can lose WIP):
 cd ~/Source/Repos/github.com/<orga>/<repo>
 mkdir -p /tmp/wip6
 for f in <WIP files>; do cp "$f" "/tmp/wip6/$(echo "$f" | tr '/' '__')"; done
-jj workspace add ../<repo>-fix -r main && cd ../<repo>-fix
+jj workspace add ../<repo>-fix -r 'main@origin' && cd ../<repo>-fix
 # copy in ONLY your fix files, then:
 jj add <fix files>; jj describe -m "$(cat /tmp/fixmsg.txt)"
 jj bookmark create fix/<desc> -r @; jj bookmark track fix/<desc> --remote=origin

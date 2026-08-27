@@ -52,7 +52,7 @@ fan-out and the isolation lane of `sks-dev-workflow`.
    for f in <WIP files>; do
      cp "$f" "/tmp/wip-isolate/$(echo "$f" | tr '/' '__')"
    done
-   jj workspace add ../<repo>-<unit> -r main && cd ../<repo>-<unit>
+   jj workspace add ../<repo>-<unit> -r 'main@origin' && cd ../<repo>-<unit>
    ```
 
    `<unit>` is a short slug for this work (`fix`, `feat-x`). Prefer this over
@@ -82,7 +82,9 @@ fan-out and the isolation lane of `sks-dev-workflow`.
 ## Pitfalls
 
 - `jj workspace add` without `-r` parents the new workspace on the current `@`
-  (possibly dirty) — always pin `-r main` (or the agreed clean base).
+  (possibly dirty) — always pin `-r 'main@origin'`. Only override with an
+  explicit `-r '<other-base>@origin'` when stacking on a non-trunk base; never
+  inherit the local `main` (it can be stale).
 - Forgetting `jj bookmark track` makes `jj git push` reject the bookmark.
 - The new dir (`../<repo>-<unit>`) is a SIBLING of the repo root, not inside it;
   `sks-gc` reclaims it after landing.
