@@ -63,12 +63,26 @@ code, read the closest sibling and mirror its shape:
 For deeper module conventions load the sub-skills: `cpn-issue-triage` /
 `cpn-pr-triage` (issue/PR metadata), `cpn-pr-review` (pre-merge review).
 
-## Testing practice (vitest specs — inline rules)
+## Testing practice — scope decides the layer
 
-Every behavior change ships a unit spec AND an e2e spec. Refined on the
-project-secrets suite; apply everywhere.
+Pick the test layer from the change's scope, not from habit:
 
-Spec setup:
+| Change scope | Layer | Where |
+| ------------ | ----- | ----- |
+| Feature logic, important code segment, pure helper | **Unit (vitest)** | `src/**/*.spec.ts` colocated |
+| Systemic behavior, external-service reconcilers that may be down in isolation (GitLab/Keycloak/Vault/ArgoCD sync) | **e2e-spec (vitest)** | `apps/server-nestjs/test/<module>.e2e-spec.ts` |
+| User-facing + systemic (UI forms, flows, pages) | **Playwright** | `playwright/` |
+| Cross-service journey too fragile for Playwright | socle cahier | `../documentation-interne-socle/` `Tests Fonctionnels/` |
+
+Rule of thumb: if a user clicks it, Playwright; if it talks to an external
+service reconciler that can be down in an isolated way (so the e2e-spec can
+fail without touching the user), e2e-spec; if it's a feature or an important
+code segment (pure logic, permission checks, error mapping), unit.
+
+Every behavior change ships a unit spec AND (e2e-spec or Playwright depending
+on scope). Refined on the project-secrets suite; apply everywhere.
+
+### Unit (vitest specs — inline rules)
 
 - `prisma = mockDeep<PrismaService>()`, same for vault/other services; build the
   module with
@@ -116,9 +130,11 @@ Verification (from `console/`):
 - `cd apps/server-nestjs && pnpm exec tsc --noEmit -p tsconfig.json` — error
   count must not grow (baseline includes pre-existing errors; check the delta).
 
-## E2E spec requirement
+## E2E spec requirement (systemic, not user-facing)
 
-Each behavior change also gets a test in
+Systemic changes that don't reach the user directly — external-service
+reconcilers (GitLab/Keycloak/Vault/ArgoCD/… sync, orphan purge) that can be
+down in an isolated way — get a test in
 `apps/server-nestjs/test/<module>.e2e-spec.ts`. Shape (see
 `test/project-secrets.e2e-spec.ts`):
 
@@ -138,12 +154,12 @@ Each behavior change also gets a test in
   `vi.unstubAllEnvs()`.
 - Use `faker` for ids/slugs; clean up created resources in `afterAll`.
 
-## Client / Playwright requirement
+## Client / Playwright requirement (user-facing + systemic)
 
-- Any consumer-facing feature (client UI: forms, flows, pages) ships a
-  Playwright test in `console/playwright/` (Chromium + Firefox). Gate it under
-  the user journey it exercises; run via `pnpm playwright:test`. See
-  `console/playwright/README.md`.
+- Any consumer-facing feature that is also systemic (client UI: forms, flows,
+  pages) ships a Playwright test in `console/playwright/` (Chromium + Firefox).
+  Gate it under the user journey it exercises; run via `pnpm playwright:test`.
+  See `console/playwright/README.md`.
 - When a scenario is genuinely cross-service (client + server + external
   plugin/infra, so a single Playwright spec would be fragile/non-deterministic),
   don't force it into Playwright. Instead add a functional scenario to the socle
