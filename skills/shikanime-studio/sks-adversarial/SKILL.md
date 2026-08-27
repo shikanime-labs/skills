@@ -33,8 +33,8 @@ platforms:
 
 Try a change where failure costs nothing. This skill builds a disposable sandbox
 around an uncertain result and promotes only what survives. It composes
-`sks-stack`, `sks-async`, and `sks-investigate`; it adds only the sandbox
-shape and the promote-or-discard decision. It does NOT replace those skills.
+`sks-stack`, `sks-async`, and `sks-investigate`; it adds only the sandbox shape
+and the promote-or-discard decision. It does NOT replace those skills.
 
 ## When to Use
 

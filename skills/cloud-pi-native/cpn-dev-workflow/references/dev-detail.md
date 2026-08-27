@@ -67,20 +67,20 @@ For deeper module conventions load the sub-skills: `cpn-issue-triage` /
 
 Pick the test layer from the change's scope, not from habit:
 
-| Change scope | Layer | Where |
-| ------------ | ----- | ----- |
-| Feature logic, important code segment, pure helper | **Unit (vitest)** | `src/**/*.spec.ts` colocated |
-| Systemic behavior, external-service reconcilers that may be down in isolation (GitLab/Keycloak/Vault/ArgoCD sync) | **e2e-spec (vitest)** | `apps/server-nestjs/test/<module>.e2e-spec.ts` |
-| User-facing + systemic (UI forms, flows, pages) | **Playwright** | `playwright/` |
-| Cross-service journey too fragile for Playwright | socle cahier | `../documentation-interne-socle/` `Tests Fonctionnels/` |
+| Change scope                                                                                                      | Layer                 | Where                                                   |
+| ----------------------------------------------------------------------------------------------------------------- | --------------------- | ------------------------------------------------------- |
+| Feature logic, important code segment, pure helper                                                                | **Unit (vitest)**     | `src/**/*.spec.ts` colocated                            |
+| Systemic behavior, external-service reconcilers that may be down in isolation (GitLab/Keycloak/Vault/ArgoCD sync) | **e2e-spec (vitest)** | `apps/server-nestjs/test/<module>.e2e-spec.ts`          |
+| User-facing + systemic (UI forms, flows, pages)                                                                   | **Playwright**        | `playwright/`                                           |
+| Cross-service journey too fragile for Playwright                                                                  | socle cahier          | `../documentation-interne-socle/` `Tests Fonctionnels/` |
 
 Rule of thumb: if a user clicks it, Playwright; if it talks to an external
-service reconciler that can be down in an isolated way (so the e2e-spec can
-fail without touching the user), e2e-spec; if it's a feature or an important
-code segment (pure logic, permission checks, error mapping), unit.
+service reconciler that can be down in an isolated way (so the e2e-spec can fail
+without touching the user), e2e-spec; if it's a feature or an important code
+segment (pure logic, permission checks, error mapping), unit.
 
-Every behavior change ships a unit spec AND (e2e-spec or Playwright depending
-on scope). Refined on the project-secrets suite; apply everywhere.
+Every behavior change ships a unit spec AND (e2e-spec or Playwright depending on
+scope). Refined on the project-secrets suite; apply everywhere.
 
 ### Unit (vitest specs — inline rules)
 
@@ -133,8 +133,8 @@ Verification (from `console/`):
 ## E2E spec requirement (systemic, not user-facing)
 
 Systemic changes that don't reach the user directly — external-service
-reconcilers (GitLab/Keycloak/Vault/ArgoCD/… sync, orphan purge) that can be
-down in an isolated way — get a test in
+reconcilers (GitLab/Keycloak/Vault/ArgoCD/… sync, orphan purge) that can be down
+in an isolated way — get a test in
 `apps/server-nestjs/test/<module>.e2e-spec.ts`. Shape (see
 `test/project-secrets.e2e-spec.ts`):
 

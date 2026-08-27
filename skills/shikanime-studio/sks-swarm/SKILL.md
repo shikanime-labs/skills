@@ -119,6 +119,7 @@ This skill is a router, not a transport. It decides _what goes where_; A2A and
 # host reachable: a2a_discover(url) returns a parsed Agent Card
 curl --fail --silent --show-error http://<host>:9900/.well-known/agent-card.json
 ```
+
 Use `a2a_discover` to validate the Agent Card; curl is a quick replacement when
 A2A tooling is unavailable.
 

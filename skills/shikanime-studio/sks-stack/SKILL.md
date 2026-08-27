@@ -82,8 +82,8 @@ fan-out and the isolation lane of `sks-dev-workflow`.
 ## Pitfalls
 
 - `jj workspace add` without `-r` parents the new workspace on the current `@`
-  (possibly dirty) — always pin `-r 'main@origin'` so
-  the workspace forks from the remote tip, never stale local main.
+  (possibly dirty) — always pin `-r 'main@origin'` so the workspace forks from
+  the remote tip, never stale local main.
 - Forgetting `jj bookmark track` makes `jj git push` reject the bookmark.
 - The new dir (`../<repo>-<unit>`) is a SIBLING of the repo root, not inside it;
   `sks-gc` reclaims it after landing.
