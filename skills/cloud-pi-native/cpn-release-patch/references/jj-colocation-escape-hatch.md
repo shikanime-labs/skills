@@ -22,7 +22,8 @@ jj status
 # Is @ an empty scaffold?
 jj log -r @ --no-graph -T 'commit_id ++ " " ++ description.first_line()'
 # Is the bookmark stale?
-jj log -r 'hotfix/$NEXT' --no-graph -T 'commit_id ++ " " ++ description.first_line()' 2>&1
+jj log -r 'hotfix/$NEXT' --no-graph \
+  -T 'commit_id ++ " " ++ description.first_line()' 2>&1
 ```
 
 ### Step 2: Try jj-native recovery (preferred)
@@ -87,7 +88,8 @@ jj git fetch
 jj bookmark set hotfix/$NEXT
 
 # Verify the bookmark matches the git HEAD
-jj log -r 'hotfix/$NEXT' --no-graph -T 'change_id ++ " " ++ description.first_line() ++ "\n"'
+jj log -r 'hotfix/$NEXT' --no-graph \
+  -T 'change_id ++ " " ++ description.first_line() ++ "\n"'
 ```
 
 ## Key constraints

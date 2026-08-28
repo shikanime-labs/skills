@@ -1,3 +1,4 @@
+---
 name: cpn-release-patch
 description:
   "Use when backporting the commits between two release tags onto a hotfix
@@ -8,8 +9,8 @@ version: 0.3.0
 author: Hermes Agent
 license: Apache-2.0
 platforms:
-  - macos
   - linux
+  - macos
   - windows
 metadata:
   hermes:
@@ -100,9 +101,11 @@ a `v9.24.4..main` patch-id diff returned **35** (16 in-milestone + 19 from
 `9.25.0` dev). The milestone is the precise source of truth.
 
 ```bash
-# milestone's closed PRs, merged commit SHA + merged date, oldest first
-gh api "repos/cloud-pi-native/console/issues?milestone=$MILE_NUM&state=closed&per_page=100" \
-  --jq '.[] | select(.pull_request) | "\(.pull_request.merged_at) \(.pull_request.merge_commit_sha)"' \
+# milestone's closed PRs: merged commit SHA + merged date, oldest first
+URL="repos/cloud-pi-native/console/issues?milestone=$MILE_NUM&state=closed&per_page=100"
+gh api "$URL" \
+  --jq '.[] | select(.pull_request) |
+    "\\(.pull_request.merged_at) \\(.pull_request.merge_commit_sha)"' \
   | sort | awk '{print $2}' > /tmp/cpn_ms_ids.txt
 
 wc -l /tmp/cpn_ms_ids.txt   # expect the milestone size (16 for v9.24.5)
@@ -118,7 +121,8 @@ already an ancestor of `BASE_TAG` — if any are, `jj duplicate` will simply
 produce an empty/no-op commit for it, which is harmless but worth noting:
 
 ```bash
-while read c; do git merge-base --is-ancestor "$c" BASE_TAG && echo "already-on-tag: $c"; done < /tmp/cpn_ms_ids.txt
+while read c; do git merge-base --is-ancestor "$c" BASE_TAG && \
+  echo "already-on-tag: $c"; done < /tmp/cpn_ms_ids.txt
 ```
 
 ### 3. Rebuild the chain directly on the tag (NO empty scaffold)
@@ -144,7 +148,8 @@ chain root onto the tag and abandoning the empty commit:
 ```bash
 # WRONG: jj rebase -r root(<empty>::)  -> use the explicit root SHA instead
 # CORRECT recovery:
-ROOT=$(jj log -r '(<empty_commit_id>::)' --no-graph -T 'commit_id' | tail -1)   # oldest child of empty
+ROOT=$(jj log -r '(<empty_commit_id>::)' --no-graph \
+  -T 'commit_id' | tail -1)  # oldest child of empty
 jj rebase -r "$ROOT" -d BASE_TAG
 jj abandon <empty_commit_id>
 ```
@@ -153,11 +158,15 @@ jj abandon <empty_commit_id>
 
 ```bash
 # exactly the milestone size, no empty/scaffold commit
-jj log -r "BASE_TAG..hotfix/$NEXT" --no-graph -T 'commit_id' | grep -c .   # = lines in /tmp/cpn_ms_ids.txt
+jj log -r "BASE_TAG..hotfix/$NEXT" --no-graph -T 'commit_id' |
+  grep -c .   # = lines in /tmp/cpn_ms_ids.txt
 # no conflict markers anywhere in the chain
-jj log -r "BASE_TAG..hotfix/$NEXT" --no-graph -T 'if(conflict, description.first_line(), "")' | grep -c .   # must be 0
-# tree reconstructs main's source (release-please files may differ) — optional but recommended
-git diff --name-only "$TIP" main | grep -vE 'package\.json|CHANGELOG\.md|\.release-please-manifest\.json'
+jj log -r "BASE_TAG..hotfix/$NEXT" --no-graph \
+  -T 'if(conflict, description.first_line(), "")' | grep -c .   # must be 0
+# tree reconstructs main's source (release-please files may differ) — optional
+# but recommended
+git diff --name-only "$TIP" main | grep -vE \
+  'package\.json|CHANGELOG\.md|\.release-please-manifest\.json'
 # empty output above = trees identical; backport complete
 ```
 
@@ -170,6 +179,7 @@ titles; there must be zero extras (no `9.25.0` commits).
 **Two paths depending on how the chain was built.**
 
 Path A —jj `duplicate` (preferred when it works):
+
 ```bash
 jj bookmark set hotfix/$NEXT -r "$TIP"
 jj git push --bookmark hotfix/$NEXT --remote origin
