@@ -35,7 +35,7 @@ repo, never assume.
 
 ## Prerequisites
 
-- Environment per `sks-env`: `gh` authenticated, push right, repo is the org clone at `~/Source/Repos/github.com/<org>/<repo>`. Trust the gh remote over the local path.
+- Environment per `sks-constitution`: `gh` authenticated, push right, repo is the org clone at `~/Source/Repos/github.com/<org>/<repo>`. Trust the gh remote over the local path.
 - jj repos: `jj bookmark track <branch> --remote=origin` before any push.
 
 ## Commit style (when no hook enforces otherwise)

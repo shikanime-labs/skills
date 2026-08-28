@@ -32,6 +32,11 @@
         "path": "skills/cloud-pi-native/cpn-dev-workflow"
       },
       {
+        "name": "cpn-constitution",
+        "description": "Use when any cloud-pi-native org skill needs environment assumptions: org identity, repo paths, toolchain, branch protection, push policy, and validation probes.",
+        "path": "skills/cloud-pi-native/cpn-constitution"
+      },
+      {
         "name": "cpn-discussion",
         "path": "skills/cloud-pi-native/cpn-discussion"
       },
@@ -117,9 +122,9 @@
         "path": "skills/shikanime-studio/sks-dev-workflow"
       },
       {
-        "name": "sks-env",
+        "name": "sks-constitution",
         "description": "Use when any shikanime org skill needs environment assumptions: org identity, repo paths, toolchain, branch protection, push policy, and validation probes.",
-        "path": "skills/shikanime-studio/sks-env"
+        "path": "skills/shikanime-studio/sks-constitution"
       },
       {
         "name": "sks-discussion",

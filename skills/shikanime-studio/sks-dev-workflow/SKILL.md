@@ -32,7 +32,7 @@ platforms:
 End-to-end local dev loop for shikanime repos: branching, pushing to `origin`,
 jj bookmark tracking, landing (PR vs direct push). Environment facts (org
 identity, repo paths, toolchain, branch protection, push policy, pre-work
-probes) live in `sks-env` — load it when this skill needs them.
+probes) live in `sks-constitution` — load it when this skill needs them.
 
 ## When to Use
 

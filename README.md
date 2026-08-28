@@ -108,7 +108,7 @@ specification, compatible with the
 | `sks-commit`            | shikanime commit style + Automata co-author trailer                                                                          |
 | `sks-curate`            | Update, improve, compress, and token-optimize skills in the catalog                                                          |
 | `sks-dev-workflow`      | Branch/push discipline, gates, landing                                                                                       |
-| `sks-env`               | Org identity, repo paths, toolchain, branch protection, push policy, and pre-work validation probes                          |
+| `sks-constitution`      | Org identity, repo paths, toolchain, branch protection, push policy, and pre-work validation probes                          |
 | `sks-discussion`        | RFC Discussions (pre-issue stage)                                                                                            |
 | `sks-discussion-triage` | Discussion triage: category + lifecycle (GraphQL)                                                                            |
 | `sks-doc`               | Repo `docs/` knowledge base (internal ops + optional user docs) as reviewable in-repo Markdown                               |
@@ -138,6 +138,7 @@ specification, compatible with the
 | `cpn-async`             | Fan-out parallèle sur workspaces jj + PR en stack                                                     |
 | `cpn-commit`            | Conventional commits for console                                                                      |
 | `cpn-dev-workflow`      | Console repo dev loop, gates, PR workflow                                                             |
+| `cpn-constitution`      | Org identity, repo paths, toolchain, branch protection, push policy, and pre-work validation probes    |
 | `cpn-discussion`        | French Discussions via GraphQL                                                                        |
 | `cpn-discussion-triage` | Triage de discussion : catégorie + cycle (GraphQL)                                                    |
 | `cpn-issue`             | French issue templates + gate ledger                                                                  |

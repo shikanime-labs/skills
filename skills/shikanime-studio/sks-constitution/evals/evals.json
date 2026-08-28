@@ -1,0 +1,52 @@
+{
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "Reports the org identity, repo paths, toolchain, and pre-work validation probes a sibling skill would reference.",
+      "files": [],
+      "prompt": "I'm about to open a PR in shikanime-labs/machines. What environment assumptions should I validate first, and what are the canonical org facts?",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-constitution'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body lists the two orgs (shikanime-labs, shikanime-studio)",
+        "Body names the source-of-truth repo path ~/Source/Repos/github.com/<org>/<repo>",
+        "Body lists gh, jj, nix as toolchain commands",
+        "Body enumerates the pre-work validation probes (identity, push right, jj repo, issue, nix)"
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "Resolves the gh remote as canonical, warns about dual-clone drift, and explains jj bookmark tracking before push.",
+      "files": [],
+      "prompt": "My local path says shikanime-labs but the gh remote says shikanime-studio. Which do I trust, and what jj step do I keep forgetting before push?",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-constitution'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body states the gh remote is canonical over the local path",
+        "Body describes the dual-clone drift between ~/.hermes/skills and ~/Source/Repos",
+        "Body requires 'jj bookmark track <branch> --remote=origin' before push",
+        "Body notes jj does not auto-track bookmarks"
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "Detects branch protection via rulesets, requires PR landing for protected mains, and forbids silent scope narrowing.",
+      "files": [],
+      "prompt": "How do I know if main is protected when the classic branch-protection endpoint returns 404, and what do I do when a probe fails?",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-constitution'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body instructs to detect protection via rulesets not classic branch protection",
+        "Body references 'pull_request' rule with 'required_approving_review_count'",
+        "Body reports unmet requirements as 'BLOCKED' with evidence and recovery",
+        "Body restricts direct push to main to explicit user authorization"
+      ]
+    }
+  ]
+}

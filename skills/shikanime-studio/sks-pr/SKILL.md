@@ -42,11 +42,11 @@ repo.
 
 All PRs open from `origin` (the cloned org repo). Push the branch to `origin`
 and open with `--head <org>:<branch>`. Environment facts (org identity, repo
-paths, toolchain, branch protection, push policy) live in `sks-env`.
+paths, toolchain, branch protection, push policy) live in `sks-constitution`.
 
 ## Prerequisites
 
-- Environment per `sks-env`: `gh` authenticated, push right, linked issue exists.
+- Environment per `sks-constitution`: `gh` authenticated, push right, linked issue exists.
 - Branch pushed to `origin` before opening.
 
 ## Org PR conventions

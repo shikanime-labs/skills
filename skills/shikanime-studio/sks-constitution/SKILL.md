@@ -1,5 +1,5 @@
 ---
-name: sks-env
+name: sks-constitution
 description: "Use when any shikanime org skill needs environment assumptions: org identity, repo paths, toolchain, branch protection, push policy, and validation probes."
 version: 0.1.0
 author: Hermes Agent
@@ -13,7 +13,7 @@ metadata:
       - assumptions
       - org
     related_skills:
-      - sks-dev-workflow
+      - sks-constitution
       - sks-commit
       - sks-pr
       - sks-issue
@@ -44,7 +44,7 @@ platforms:
   - windows
 ---
 
-# Shikanime Org Environment
+# Shikanime Org Constitution
 
 Single reference for the implicit organizational and environment assumptions
 scattered across every `sks-*` skill. Load this when any sibling skill needs
@@ -120,20 +120,6 @@ A `pull_request` rule with `required_approving_review_count` +
   (`gh repo view <org>/<repo> --json defaultBranchRef`).
 - Never `gh pr merge` (poisoned commits); never force-push stacked branches.
 
-## Branch Naming
-
-- Off `main`: `fix/<slug>`, `feat/<slug>` (e.g. `fix/rwx-nfs-v4.0`).
-- One ticket → one branch → one PR; PRs stack on the previous ticket's branch.
-
-## Commit Style (when no hook enforces otherwise)
-
-- Plain English, imperative, capitalized title, **no prefix, no body**.
-- One logical fix per commit.
-- Always: `Co-authored-by: Automata <automata@shikanime.studio>`.
-- Doc repos: `doc:` prefix, else same shape. No `(...)` in titles/labels.
-- Repo-enforced hooks (gitlint, commitlint, DCO) ALWAYS win — detect per repo:
-  `ls .gitlint .commitlintrc* commitlint.config.* 2>/dev/null`.
-
 ## GitHub Message Conventions
 
 - **Full URLs** over `#N` / `owner/repo#N` (broken on GitHub):
@@ -152,43 +138,6 @@ A `pull_request` rule with `required_approving_review_count` +
 - PR title = commit subject.
 - PR body = commit message restated (`## What` / `## Why` / `## References`).
 - Commit is the source of truth; PR restates, never invents rationale.
-
-## jj Quirks
-
-- **Silent push no-op:** `jj describe`/edits rewrite the working-copy commit,
-  but the bookmark does not always move. After push, verify
-  `git rev-parse <branch> origin/<branch>` MATCH. If the bookmark lags,
-  `jj bookmark set <branch> -r @` and push again.
-- **Immutable pushed bookmark:** `jj rebase -d main -r <branch>` fails with
-  "Commit ... is immutable". Recovery: `jj new -m "<desc>" -r main@origin`,
-  `jj restore --from <old> --to @ <files...>`, diff vs `main@origin` (not vs
-  old branch), `jj bookmark set <branch> -r @ --allow-backwards`,
-  `git push origin <branch> --force-with-lease`.
-- **`jj restore --from` copies whatever the OLD commit holds** for each path —
-  unrelated edits to the same file ride along. Always diff against
-  `main@origin` before pushing.
-- **Working-copy clutter:** `jj status` first in an existing working copy;
-  uncommitted changes from prior sessions risk polluting `jj squash`. Isolate
-  with targeted `jj restore` / file write, never `jj squash` a dirty copy.
-
-## Nix Quirks
-
-- Flake inputs floating + `follows="nixpkgs"` dedup; never SHA-pin inputs.
-- **1-backslash rule** for `${{ }}` interpolation in Nix double-quoted strings:
-  `env.SOPS_AGE_KEY = "\${{ secrets.X }}";` (1 backslash byte). 2 bytes is a
-  parse error. Verify with `nix-instantiate --eval`.
-- `nix build .#packages.<system>.<name> --dry-run` must eval the full graph
-  with zero errors before shipping a Nix change.
-
-## Repo Class Detection
-
-| Signal | Implication |
-| --- | --- |
-| `AGENTS.md` with `Related:` URL | follow it (e.g. `manifests`) |
-| `doc:` prefix convention | doc repo → `doc:` titles |
-| branch protection on `main` | PR mandatory |
-| jj repo (`.jj/`) | `jj bookmark track <branch> --remote=origin` before push |
-| NixOS/infra (`machines`, `nix-containers`) | `nix eval`/`nix build` before switch; control-plane needs quorum |
 
 ## Pre-Work Validation Probes
 
