@@ -2,9 +2,8 @@
 name: sks-stack
 description:
   Use when isolating one unit of shikanime work in a fresh jj workspace — the
-  mandatory entry to implementation for every unit (clean checkout or not), so
-  concurrent editors / WIP never get folded in and bookmarks/pushes stay scoped
-  to that single workspace.
+  mandatory entry to implementation for every unit, so concurrent WIP never
+  folds in and bookmarks/pushes stay scoped.
 version: 0.3.0
 author: Hermes Agent
 license: Apache-2.0
