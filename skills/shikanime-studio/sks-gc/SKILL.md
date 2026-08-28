@@ -4,7 +4,7 @@ description:
   Use when reclaiming resources leaked by shikanime jj workflows — dangling
   bookmarks, skill-created jj workspaces, and leftover working-copy dirs from
   sks-async/sks-dev-workflow.
-version: 0.1.0
+version: 0.2.0
 author: Hermes Agent
 license: Apache-2.0
 metadata:
@@ -34,6 +34,13 @@ no open PR and not on `main`, `jj` workspaces the skills created
 (`<repo>.<unit>`, `<repo>-fix`), and the sibling working-copy directories they
 leave on disk. Destructive — always dry-run first.
 
+## Available script
+
+- `scripts/discover.sh [REPO_DIR]` — print every GC candidate: dangling
+  bookmarks (not trunk, no open PR) and skill workspaces with a clean/dirty
+  guard per workspace. Dry-run only; never forgets or removes. Run it first,
+  review the list, then apply manually (steps 2–4).
+
 ## When to Use
 
 - After a finished or stalled `sks-async` fan-out or `sks-dev-workflow`
@@ -53,57 +60,34 @@ leave on disk. Destructive — always dry-run first.
 
 ## Procedure
 
-1. **Baseline.**
+1. **Discover** — run the dry-run scanner, review its output:
 
    ```bash
    cd ~/Source/Repos/github.com/<orga>/<repo>
-   jj workspace list                          # name | path | revision
-   jj bookmark list                           # local + remote-tracking
-   gh pr list --state open --json number,headRefName   # protected branches
+   bash <skill-dir>/scripts/discover.sh   # scripts/ resolves against the
+                                          # skill dir, not the target repo
    ```
 
-2. **Identify dangling bookmarks** — reachable from nowhere on trunk and with no
-   open PR:
+   The script lists `== dangling bookmarks ==` (names only; trunk and
+   open-PR bookmarks already excluded) and `== skill workspaces ==`
+   (`CLEAN <name> <path>` vs `DIRTY <name> <path>`).
 
-   ```bash
-   # candidates: bookmarks NOT ancestors of main
-   jj bookmark list -r 'bookmarks() & ~::main'
-   ```
-
-   Drop any name in the `gh pr list` set and any trunk name. Remaining =
-   dangling.
-
-3. **Identify skill workspaces** — those the skills created, named
-   `<repo>.<unit>` (dot-qualified) or `<repo>-fix`:
-
-   ```bash
-   jj workspace list --color never \
-     | awk -F'\t' '$1 ~ /\./ || $1 ~ /-fix/ {print $1, $2}'
-   ```
-
-   Exclude the bare repo-name workspace. Guard each candidate against dirty WIP:
-
-   ```bash
-   jj -R <path> status --color never | grep -q 'has no changes' \
-     || echo "SKIP $name (dirty working copy)"
-   ```
-
-4. **Prune remote-tracking bookmarks no longer on origin** (safe, built-in):
-
-   ```bash
-   jj git fetch --prune --remote origin
-   ```
-
-5. **Apply** (only after review) — forget dangling bookmarks and clean
+2. **Apply** (only after review) — forget dangling bookmarks and clean
    workspaces:
 
    ```bash
    jj bookmark forget <dangling...>
    jj workspace forget <name...>       # already confirmed clean
-   rm -rf <path>                        # ONLY the sibling dir from step 3
+   rm -rf <path>                        # ONLY the sibling dir from step 1
    ```
 
-6. **Verify.**
+3. **Prune remote-tracking bookmarks no longer on origin** (safe, built-in):
+
+   ```bash
+   jj git fetch --prune --remote origin
+   ```
+
+4. **Verify.**
 
    ```bash
    jj workspace list && jj bookmark list
@@ -115,10 +99,10 @@ leave on disk. Destructive — always dry-run first.
 - `sks-async` → one `jj workspace add ../<repo>.<unit>` per stream and a
   bookmark + PR branch per link on `origin`.
 - `sks-dev-workflow` → `jj workspace add ../<repo>-fix` isolation dirs and
-  `/tmp/wip*` scratch copies (the latter are manual — list, but never auto-`rm`
-  without asking).
+  `/tmp/wip*` scratch copies (the latter are manual — list, but never
+  auto-`rm` without asking).
 - Parallel-stream chains → branch bookmarks on `origin`; cleared by forgetting
-  the bookmark plus `jj git fetch --prune` (step 4).
+  the bookmark plus `jj git fetch --prune` (step 3).
 
 ## Pitfalls
 
@@ -126,10 +110,16 @@ leave on disk. Destructive — always dry-run first.
   yourself after confirming it is the sibling skill dir, never the repo root.
 - A dirty workspace skipped by the guard means real WIP; surface it, do not
   force.
-- Remote-tracking bookmarks (`origin/...`) need `--prune` (step 4), not
+- Remote-tracking bookmarks (`origin/...`) need `--prune` (step 3), not
   `bookmark forget`, to clear.
 - The canonical workspace (bare repo name, no dot/`-fix`) is never a candidate;
   don't fold the trunk working copy into GC.
+- **jj 0.43 output formats.** `jj workspace list` default lines have no path
+  column, and `jj bookmark list` prints `name: changeid desc` plus indented
+  `@origin` continuation lines — parsing those with `awk '{print $1}'` yields
+  trailing colons and `@origin` noise. `discover.sh` templates the exact fields
+  (`-T 'name ++ "\t" ++ root'` for workspaces, `-T 'name ++ "\n"'` for
+  bookmarks); don't revert to awk on the default output.
 
 ## Verification
 
@@ -143,4 +133,5 @@ gh pr list --state open   # confirm no protected bm forgotten, canonical wc unto
 - `sks-async` — the fan-out that creates the workspaces/bookmarks this skill
   reclaims.
 - `sks-dev-workflow` — isolation workspace pattern (`../<repo>-fix`).
-- `sks-land` — lands PRs (this skill only reclaims after landing, never merges).
+- `sks-land` — lands PRs (this skill only reclaims after landing, never
+  merges).
