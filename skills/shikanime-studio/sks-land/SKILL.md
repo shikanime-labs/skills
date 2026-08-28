@@ -66,6 +66,27 @@ the protection; no separate human review is then required.
 (`sks-pr-resolve`'s output). If not run, do so now; if it already reported all
 reconciled, skip.
 
+**Gate 4 — `sks-commit` + `sks-pr` conventions.** Commit subject is
+plain-English imperative (no `fix:`/`feat:`/`chore:` conventional prefix),
+capitalized, no trailing period. PR title equals the commit subject; PR body
+restates the rationale. Verify:
+
+```bash
+gh pr view <M> --repo <org>/<repo> --json commits,title,body \
+  --jq '.commits[0].messageHeadline, .title, .body'
+```
+
+If the commit subject violates `sks-commit` (conventional prefix, lowercase
+start, trailing period) or the PR title diverges from it, fix before merging:
+
+```bash
+jj describe -m "<plain-English subject>" \
+  -m "Co-authored-by: Automata <automata@shikanime.studio>"
+```
+
+then force-push and re-verify. A doc-repo commit may carry a `doc:` prefix —
+that is the `sks-commit` override for doc repos, not a violation.
+
 ## Merge procedure
 
 Land with plain `gh pr merge` (the org removed `gh stack`). For a lone PR use
@@ -150,6 +171,8 @@ push. A failing run exits non-zero and skips merge (red never lands).
 - [ ] Issue tasklist N/N checked with evidence.
 - [ ] `sks-pr-review` approval on head; human review where protection requires.
 - [ ] All conversations reconciled (`sks-pr-resolve`).
+- [ ] `sks-commit` + `sks-pr` conventions verified (subject imperative, PR title
+      parity).
 - [ ] CI green.
 - [ ] Merged via
       `gh pr merge --squash [--admin if protection blocks     self-approval]`
@@ -167,3 +190,4 @@ gh pr checks "$N" --repo "$R"   # all green before merge; bookmark absent after
 ## See also
 
 - `sks-investigate` — root-cause research before any fix.
+- `sks-commit`, `sks-pr` — the conventions Gate 4 enforces before merge.

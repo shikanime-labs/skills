@@ -27,6 +27,7 @@
         "license field is 'Apache-2.0'",
         "Body contains at least one '##' heading",
         "Body exposes '## Pre-landing gates (must already hold)'",
+        "Body distances from cpn-land by gating on sks-commit/pr conventions",
         "Body lands every PR via gh pr merge --squash (stacked ones base-first)"
       ]
     },
