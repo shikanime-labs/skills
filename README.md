@@ -104,6 +104,7 @@ specification, compatible with the
 | `sks-adversarial`       | Disposable sandbox for uncertain results: probe via sks-isolate/sks-async, then promote or discard                           |
 | `sks-async`             | jj workspace fan-out + stacked PRs for parallel work                                                                         |
 | `sks-commit`            | shikanime commit style + Automata co-author trailer                                                                          |
+| `sks-curate`            | Update, improve, compress, and token-optimize skills in the catalog                                                          |
 | `sks-dev-workflow`      | Branch/push discipline, gates, landing                                                                                       |
 | `sks-discussion`        | RFC Discussions (pre-issue stage)                                                                                            |
 | `sks-discussion-triage` | Discussion triage: category + lifecycle (GraphQL)                                                                            |
@@ -125,6 +126,7 @@ specification, compatible with the
 | `sks-restack`           | Restack a jj stack onto moved main and resolve every conflict (jj marker dialect, :ours/:theirs, push gate)                  |
 | `sks-converge`           | Resolve jj conflicts and divergent changes after a tree move: per-revision resolution, twin abandonment, push gate          |
 | `sks-swarm`             | Distribute a task across an agent cluster over A2A: route by capability, machine, and runner pressure (optionally sandboxed) |
+| `sks-update`            | End-to-end skill update: curate, ship via dev workflow, resync to local Hermes agents                                        |
 
 ### cloud-pi-native family
 

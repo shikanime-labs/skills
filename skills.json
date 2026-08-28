@@ -100,6 +100,11 @@
       "path": "skills/shikanime-studio/sks-commit"
     },
     {
+      "name": "sks-curate",
+      "description": "Use when updating, improving, compressing, or token-optimizing a skill in the shikanime-labs/skills catalog: rework the body, tighten it, refresh evals, and keep it loadable.",
+      "path": "skills/shikanime-studio/sks-curate"
+    },
+    {
       "name": "sks-converge",
       "description": "Use when jj conflicts or divergent changes block a shikanime repo after a tree move: resolve conflicted revisions and divergent twins until pushable.",
       "path": "skills/shikanime-studio/sks-converge"
@@ -198,6 +203,11 @@
       "name": "sks-swarm",
       "description": "Use when distributing one task across a cluster of agents over A2A — route by capability need, machine resource, and runner pressure, optionally inside a disposable sandbox.",
       "path": "skills/shikanime-studio/sks-swarm"
+    },
+    {
+      "name": "sks-update",
+      "description": "Use when updating a skill in the shikanime-labs/skills catalog: curate it, land the improvement through the dev workflow, and resync it to local Hermes agents.",
+      "path": "skills/shikanime-studio/sks-update"
     }
   ]
 }

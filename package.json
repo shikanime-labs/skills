@@ -96,6 +96,10 @@
         "path": "skills/shikanime-studio/sks-commit"
       },
       {
+        "name": "sks-curate",
+        "path": "skills/shikanime-studio/sks-curate"
+      },
+      {
         "name": "sks-converge",
         "description": "Use when jj conflicts or divergent changes block a shikanime repo after a tree move: resolve conflicted revisions and divergent twins until pushable.",
         "path": "skills/shikanime-studio/sks-converge"
@@ -176,6 +180,10 @@
       {
         "name": "sks-swarm",
         "path": "skills/shikanime-studio/sks-swarm"
+      },
+      {
+        "name": "sks-update",
+        "path": "skills/shikanime-studio/sks-update"
       }
     ]
   }

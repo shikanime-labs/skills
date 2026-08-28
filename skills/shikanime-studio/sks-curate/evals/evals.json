@@ -1,0 +1,59 @@
+{
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "Compresses the skill body to a lean token budget, keeps the safety and gate steps, and refreshes the evals to match the new body.",
+      "files": [],
+      "prompt": "Compress sks-dev-workflow so it loads leaner without dropping the gate steps.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-curate'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body contains the word 'compress'",
+        "Body mentions a token budget",
+        "Body requires refreshing evals",
+        "Body keeps safety and gate steps during compression"
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "Applies the distillation pass: grounded, gap-filling, decisive, self-sufficient guidance, with progressive disclosure and an explicit reference load condition.",
+      "files": [],
+      "prompt": "Make my skill more token-efficient and sharper, and tell me what I cut.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-curate'",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body mentions 'grounding'",
+        "Body mentions 'progressive disclosure'",
+        "Body requires reporting the delta in numbers"
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "Refuses to author a brand-new skill from scratch; curation starts from an existing SKILL.md and points from-scratch authoring at sks-skill-authoring.",
+      "files": [],
+      "prompt": "Write me a brand new skill from scratch for managing Kubernetes clusters.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-curate'",
+        "Frontmatter description does not contain substring 'cpn-'",
+        "Body contains at least one '##' heading",
+        "Body frames curation as a rework of an existing skill",
+        "Body routes from-scratch authoring to 'sks-skill-authoring'"
+      ]
+    },
+    {
+      "id": 4,
+      "expected_output": "The skill stays scoped to the shikanime family; it does not absorb the cloud-pi-native twin.",
+      "files": [],
+      "prompt": "Curate my console module skill the cpn way with French artifacts.",
+      "assertions": [
+        "Frontmatter 'name' equals the directory basename 'sks-curate'",
+        "Frontmatter description does not contain substring 'cpn-'",
+        "Body does not contain substring 'cpn-'"
+      ]
+    }
+  ],
+  "skill_name": "sks-curate"
+}
