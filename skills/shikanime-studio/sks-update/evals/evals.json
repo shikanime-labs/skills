@@ -2,21 +2,35 @@
   "evals": [
     {
       "id": 1,
-      "expected_output": "Curates the target skill, ships it through the dev workflow (isolation, commit, PR, land), and resyncs the landed skill to local Hermes agents.",
+      "expected_output": "Defaults to updating every skill in the catalog, curating each, shipping the full curated set as one atomic PR, and resyncing all updated skills to local Hermes agents.",
       "files": [],
-      "prompt": "Update sks-gc and sync it into my local Hermes agents.",
+      "prompt": "Update the skills catalog and sync everything into my local Hermes agents.",
       "assertions": [
         "YAML frontmatter parses and 'name' equals 'sks-update'",
         "Frontmatter description starts with 'Use when' and is at most 200 characters",
         "Frontmatter license field is 'Apache-2.0'",
         "Body contains at least one '##' heading",
-        "Body routes the curation pass to 'sks-curate'",
-        "Body routes the shipping loop to 'sks-dev-workflow'",
+        "Body defaults to updating every skill in the catalog",
+        "Body narrows to a named subset only when the user explicitly lists skills",
         "Body includes a resync step"
       ]
     },
     {
       "id": 2,
+      "expected_output": "Audits every in-scope skill (frontmatter, description, evals, .skillignore, line length) and curates only what the audit flags, keeping healthy skills untouched.",
+      "files": [],
+      "prompt": "Which skills actually need curation, and what's wrong with them?",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-update'",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body drives curation from an automated audit",
+        "Body leaves healthy skills untouched",
+        "Body mentions 'evals' and 'skillignore' in the audit"
+      ]
+    },
+    {
+      "id": 3,
       "expected_output": "Resyncs a landed skill into local Hermes agents via the tap/update path (or manual copy), resolving the real home from $HERMES_HOME when a profile is active.",
       "files": [],
       "prompt": "Resync the skills I just merged into my local Hermes setup.",
@@ -30,18 +44,18 @@
       ]
     },
     {
-      "id": 3,
-      "expected_output": "The skill stays scoped to the shikanime family; it does not absorb the cloud-pi-native twin.",
+      "id": 4,
+      "expected_output": "The skill identifies as sks-update and does not absorb the cpn twin's trigger or conventions, even though the catalog pass legitimately touches cpn-* skills as catalog members.",
       "files": [],
       "prompt": "Update my console skill the cpn way and push it.",
       "assertions": [
         "Frontmatter 'name' equals the directory basename 'sks-update'",
         "Frontmatter description does not contain substring 'cpn-'",
-        "Body does not contain substring 'cpn-'"
+        "Frontmatter description does not contain substring 'À utiliser quand'"
       ]
     },
     {
-      "id": 4,
+      "id": 5,
       "expected_output": "The skill stays loadable and self-identifies as sks-update; an unrelated request is out of scope.",
       "files": [],
       "prompt": "Write me a haiku about your Kubernetes cluster and deploy it.",

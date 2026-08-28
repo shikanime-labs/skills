@@ -211,7 +211,7 @@
     },
     {
       "name": "sks-update",
-      "description": "Use when updating a skill in the shikanime-labs/skills catalog: curate it, land the improvement through the dev workflow, and resync it to local Hermes agents.",
+      "description": "Use when updating skills in the shikanime-labs/skills catalog: curate every skill by default (or named ones only), land through the dev workflow, and resync to local Hermes agents.",
       "path": "skills/shikanime-studio/sks-update"
     }
   ]
