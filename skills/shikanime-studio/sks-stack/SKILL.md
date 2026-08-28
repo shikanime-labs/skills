@@ -1,10 +1,11 @@
 ---
 name: sks-stack
 description:
-  Use when isolating one unit of shikanime work in a fresh jj workspace so
-  concurrent editors / WIP never get folded in — bookmarks and pushes are scoped
+  Use when isolating one unit of shikanime work in a fresh jj workspace — the
+  mandatory entry to implementation for every unit (clean checkout or not), so
+  concurrent editors / WIP never get folded in and bookmarks/pushes stay scoped
   to that single workspace.
-version: 0.2.1
+version: 0.3.0
 author: Hermes Agent
 license: Apache-2.0
 metadata:
@@ -29,16 +30,26 @@ platforms:
 
 # Shikanime Org Stack Isolation
 
-Open a fresh `jj` workspace for ONE unit of work so an in-flight working folder
-(full of other editors' WIP you must not touch) never folds your change into the
-wrong commit. This is the single-stream primitive behind `sks-async`'s per-unit
+Open a fresh `jj` workspace for ONE unit of work. This is **mandatory for every
+implementation unit** — not only when WIP is present — so an in-flight working
+folder (full of other editors' WIP you must not touch) never folds your change
+into the wrong commit, and so the working surface is always isolated and
+reproducible. This is the single-stream primitive behind `sks-async`'s per-unit
 fan-out and the isolation lane of `sks-dev-workflow`.
+
+## Mandatory
+
+Every implementation unit runs in a fresh `jj` workspace created by this skill —
+never in the cloned checkout. `sks-dev-workflow` inherits this requirement; the
+checkout is a read-only reference surface. A unit that skips `sks-stack` has not
+entered the dev loop.
 
 ## When to Use
 
-- "Work on X in isolation / a clean workspace."
-- The checkout you're in has concurrent uncommitted WIP you must not lose or
-  mix.
+- Every shikanime implementation unit — even on a clean checkout. This is not an
+  isolation escape hatch for WIP; it is the default working surface (Phase 3 of
+  `sks-dev-workflow`). The cloned checkout is never where edits are made.
+- A checkout holding concurrent uncommitted WIP you must not lose or mix.
 - One unit only — for N parallel units, use `sks-async`.
 
 ## Procedure
