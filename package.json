@@ -84,6 +84,10 @@
         "path": "skills/cloud-pi-native/cpn-swarm"
       },
       {
+        "name": "nix-pr-review",
+        "path": "skills/nixpkgs/nix-pr-review"
+      },
+      {
         "name": "sks-adversarial",
         "path": "skills/shikanime-studio/sks-adversarial"
       },

@@ -22,6 +22,10 @@ conventional commits. Skills: `sks-dev-workflow`, `sks-async`, `sks-commit`,
 `sks-discussion`, `sks-issue`, `sks-pr`, `cpn-dev-workflow`, `cpn-commit`,
 `cpn-discussion`, `cpn-issue`, `cpn-pr`.
 
+A standalone `nixpkgs` family (`nix-pr-*`) reviews upstream NixOS/nixpkgs pull
+requests through the official contribution process — it is not an org workflow
+and has no discussion/issue/PR lifecycle of its own. Skills: `nix-pr-review`.
+
 ## Commit Style
 
 - Plain-text capitalized title, no conventional-commit prefix.

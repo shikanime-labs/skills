@@ -7,7 +7,9 @@ This catalog encodes **two parallel org workflows** distilled from practice —
 the shikanime `sks-*` family and the cloud-pi-native `cpn-*` family — covering
 the full lifecycle: **discussion → issue → issue comments → PR**, with
 proven-done gates, assumption validation, jj-workspace parallel fan-out, and
-stacked PR landing.
+stacked PR landing. A third, standalone `nixpkgs` family (`nix-pr-*`) reviews
+upstream NixOS/nixpkgs pull requests through the official contribution
+process.
 
 ## Quick Start
 
@@ -146,6 +148,16 @@ specification, compatible with the
 | `cpn-pr-workflow`       | Workflow PR : issue liée → PR draft → trier                                                           |
 | `cpn-stack`             | Isolation d'une unité en workspace jj frais : fork propre depuis main@origin, bookmark + push limités |
 | `cpn-swarm`             | Essaim d'agents A2A : routage par capacité, machine et pression runner                                |
+
+### nixpkgs family
+
+Standalone skills for reviewing upstream
+[NixOS/nixpkgs](https://github.com/NixOS/nixpkgs) pull requests — distinct from
+the org workflows above.
+
+| Skill           | Description                                                         |
+| --------------- | ------------------------------------------------------------------- |
+| `nix-pr-review` | Review an upstream nixpkgs PR: build changed packages with nixpkgs-review and check the diff against nixpkgs conventions |
 
 ## Development
 
