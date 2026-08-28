@@ -113,9 +113,10 @@ Husky, stale bots, token-hash CodeQL, migration sync).
 
 Done when: every finding posted inline at its line (severity-prefixed, French)
 via one review; body carries 2-3 sentence verdict + praise; corrected
-conventional commit message suggested when commitlint would reject. All findings
-are posted on the PR — inline at each line (`references/review-output.md`); use
-a top-level review comment (`gh pr review <N> --comment`) only when a point has
-no line anchor. No local-only summary.
+conventional commit message suggested when commitlint would reject; SonarQube
+Quality Gate passed with 0 new issues. All findings are posted on the PR —
+inline at each line (`references/review-output.md`); use a top-level review
+comment (`gh pr review <N> --comment`) only when a point has no line anchor.
+No local-only summary.
 
 Related: `sks-pr-review`, `github-code-review`.

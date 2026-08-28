@@ -178,7 +178,9 @@ milestone (by type), reviewers. Rules live in `cpn-pr-triage`. Always against
   approving review required). When checks are green but `mergeStateStatus` is
   `BLOCKED`, trigger the merge queue:
   `gh workflow run 243523481 --repo cloud-pi-native/console -f PR_NUMBER=<N>`.
-  Husky `pre-push` runs `vitest`, so unit tests must pass before `jj git push`.
+  Verify SonarQube Quality Gate passed via `gh pr checks <N>`
+  (`SonarQube Code Analysis` — 0 new issues, Quality Gate passed). Husky
+  `pre-push` runs `vitest`, so unit tests must pass before `jj git push`.
 - **other repos**: follow their branch protection / review rules.
 
 ### Finalize the commit

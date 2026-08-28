@@ -83,6 +83,9 @@ what to verify in the diff; the pitfall = what breaks if ignored.
 
 - Vitest unit colocated `*.spec.ts`; Playwright E2E in `playwright/` (needs
   Docker infra). Husky pre-push runs unit tests.
+- **SonarQube Quality Gate** — `SonarQube Code Analysis` check must pass
+  (Quality Gate passed, 0 new issues). Verify via `gh pr checks <N>`. New
+  blockers/major issues in annotations require resolution before approval.
 - Pitfall: new logic without a `*.spec.ts`; a red pre-push test means the PR is
   not mergeable. Don't fail the review on Playwright (Docker-dependent) — note
   it.
