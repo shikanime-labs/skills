@@ -76,6 +76,10 @@
         "path": "skills/cloud-pi-native/cpn-pr-workflow"
       },
       {
+        "name": "cpn-release-patch",
+        "path": "skills/cloud-pi-native/cpn-release-patch"
+      },
+      {
         "name": "cpn-stack",
         "path": "skills/cloud-pi-native/cpn-stack"
       },

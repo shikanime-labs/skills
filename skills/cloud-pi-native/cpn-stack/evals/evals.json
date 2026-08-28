@@ -1,0 +1,41 @@
+{
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "Ouvre un workspace jj frais isolé à main@origin pour UNE unité de travail, sans mélanger le WIP concurrent.",
+      "files": [],
+      "prompt": "Isole cette unité de travail console dans un workspace jj propre à main@origin.",
+      "assertions": [
+        "Frontmatter parses as valid YAML.",
+        "Frontmatter 'name' field equals 'cpn-stack'.",
+        "Frontmatter 'license' field equals 'Apache-2.0'.",
+        "SKILL.md body contains at least one Markdown '##' heading.",
+        "Le corps ouvre le workspace via `jj workspace add ../console-<unite> -r 'main@origin'`.",
+        "Le corps épingle `-r 'main@origin'` pour forker depuis le tip distant."
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "Sauvegarde d'abord le WIP à préserver, puis copie SEULEMENT les fichiers du changement avant de committer.",
+      "files": [],
+      "prompt": "Je veux isoler mon correctif dans un workspace jj propre sans perdre le travail en cours de mes collègues.",
+      "assertions": [
+        "Frontmatter 'description' starts with 'À utiliser quand' and is <= 200 characters.",
+        "Le corps sauvegarde le WIP hors du dossier d'isolation avant d'ouvrir le workspace.",
+        "Le corps copie uniquement les fichiers du changement via `jj add <fichiers du changement>`."
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "L'agent reconnaît qu'une seule unité doit être isolée ici et route le fan-out multi-unités vers cpn-async.",
+      "files": [],
+      "prompt": "Fais trois correctifs indépendants chacun dans son propre workspace jj.",
+      "assertions": [
+        "Frontmatter 'name' field equals 'cpn-stack' (not an sks- name).",
+        "Le corps indique qu'une seule unité est gérée ici.",
+        "Le corps renvoie le fan-out N unités vers 'cpn-async'."
+      ]
+    }
+  ],
+  "skill_name": "cpn-stack"
+}

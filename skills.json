@@ -75,6 +75,11 @@
       "path": "skills/cloud-pi-native/cpn-pr-workflow"
     },
     {
+      "name": "cpn-release-patch",
+      "description": "Use when backporting the commits between two release tags onto a hotfix branch in cloud-pi-native/console: find the patch milestone and duplicate those commits onto the tag with jj.",
+      "path": "skills/cloud-pi-native/cpn-release-patch"
+    },
+    {
       "name": "cpn-stack",
       "description": "À utiliser quand vous isolez une unité de travail cloud-pi-native dans un workspace jj frais pour que le WIP concurrent ne soit jamais mélangé — bookmarks et pushes limités à ce workspace.",
       "path": "skills/cloud-pi-native/cpn-stack"

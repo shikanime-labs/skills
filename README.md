@@ -148,6 +148,7 @@ specification, compatible with the
 | `cpn-pr-review`         | Review console PRs: arch, French artifacts                                                            |
 | `cpn-pr-triage`         | Triage de PR : métadonnées, reviewers, lien issue                                                     |
 | `cpn-pr-workflow`       | Workflow PR : issue liée → PR draft → trier                                                           |
+| `cpn-release-patch`     | Backporte l'écart entre deux tags release sur une branche hotfix pour release-please                    |
 | `cpn-stack`             | Isolation d'une unité en workspace jj frais : fork propre depuis main@origin, bookmark + push limités |
 | `cpn-swarm`             | Essaim d'agents A2A : routage par capacité, machine et pression runner                                |
 

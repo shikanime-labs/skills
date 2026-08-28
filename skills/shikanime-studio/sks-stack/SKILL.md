@@ -4,7 +4,7 @@ description:
   Use when isolating one unit of shikanime work in a fresh jj workspace so
   concurrent editors / WIP never get folded in — bookmarks and pushes are scoped
   to that single workspace.
-version: 0.2.0
+version: 0.2.1
 author: Hermes Agent
 license: Apache-2.0
 metadata:
