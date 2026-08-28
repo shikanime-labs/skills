@@ -4,7 +4,7 @@ description:
   Use when rebasing a shikanime jj stack onto moved main leaves conflicts —
   restack, then resolve each conflicted revision with edit/resolve until
   pushable.
-version: 0.1.0
+version: 0.2.0
 author: Hermes Agent
 license: Apache-2.0
 metadata:
@@ -17,6 +17,7 @@ metadata:
       - shikanime-labs
       - shikanime-studio
     related_skills:
+      - sks-converge
       - sks-dev-workflow
       - sks-stack
       - sks-async
@@ -76,80 +77,15 @@ bookmark. This skill covers the full loop: restack → resolve → push.
    Rebase auto-moves bookmarks — confirm with `jj bookmark list` after.
    Completion: no "skipped" lines for your revs.
 
-3. **Locate conflicts.**
+3. **Converge via `sks-converge`.** Resolving conflicts (and any divergence
+   the fetch reveals) is that skill's reusable loop: locate with
+   `conflicts()` / `divergent()`, resolve per revision, repoint bookmarks.
+   Load `sks-converge` and follow it; do not re-derive resolution here.
 
-   ```bash
-   jj log -r 'conflicts()' --no-graph \
-     -T 'change_id.short() ++ " | " ++ description.first_line() ++ "\n"'
-   ```
+4. **Return to your working copy** if `sks-converge` moved `@` (its Procedure
+   A step 3): `jj edit <original @ change-id>`.
 
-   Empty output = no conflicts; jump to step 6. Note `jj resolve --list` only
-   works on the working-copy commit — on other revs it errors
-   `No conflicts found at this revision`; use the revset instead.
-
-4. **Resolve each conflicted rev, oldest first.** Resolving a parent
-   re-materializes its children's conflicts — re-run the locator between every
-   rev, never trust the earlier list.
-
-   1. Check out the rev:
-
-      ```bash
-      jj edit <change-id>
-      ```
-
-   2. Read the conflict. jj materializes it in the working-copy file in its
-      own marker dialect — NOT classic git `<<<<<<<`/`>>>>>>>` markers:
-
-      ```text
-      alpha
-      <<<<<<< conflict 1 of 1
-      %%%%%%% diff from: rsmunysv "trunk base" (parents of rebased revision)
-      \\\\\\\\\        to: ynvnqypp "trunk move" (rebase destination)
-      -beta
-      +BETA-trunk
-      +++++++ ruunpwut "stack change" (rebased revision)
-      BETA-stack
-      >>>>>>> conflict 1 of 1 ends
-      gamma
-      ```
-
-      Side map:
-
-      - `%%%%%%% diff from:` block = the **destination** side — how moved
-        trunk changed the file relative to the base.
-      - `+++++++ <rev>` block = the **rebased revision** — your stack's own
-        change, verbatim.
-      - Lines outside the markers are shared context.
-
-      Hand-merge when both changes must survive: keep the file's context,
-      combine both intents, delete every marker line.
-
-   3. For whole-side picks, skip hand-merging — the built-in tools map
-      `:ours` = side #1 (destination, moved trunk) and `:theirs` = side #2
-      (rebased rev, your change):
-
-      ```bash
-      jj resolve --tool :ours <file>    # keep the moved-trunk version
-      jj resolve --tool :theirs <file>  # keep your stack's version
-      ```
-
-   4. Snapshot. Saving the file auto-snapshots into the checked-out rev:
-      `jj status` shows `M <file>` under the resolved rev and the `(conflict)`
-      tag disappears. `jj squash` is only needed when you resolved in a child
-      of the conflicted rev instead of editing it directly.
-
-   5. Re-scan: `jj log -r 'conflicts()' --no-graph` → resolve the next rev.
-
-5. **Return to your working copy.** `jj edit` moved `@`; restore it before
-   anything else snapshots into the stack rev:
-
-   ```bash
-   jj edit <original @ change-id>
-   ```
-
-6. **Push gate — zero conflicts.** `jj git push` hard-rejects conflicted
-   commits (`Error: Won't push commit <id> since it has conflicts`), so the
-   check is mandatory, not ceremony:
+5. **Push gate.** `sks-converge` exits pushable; re-assert here:
 
    ```bash
    jj log -r 'conflicts()' --no-graph   # MUST print nothing
@@ -162,18 +98,14 @@ bookmark. This skill covers the full loop: restack → resolve → push.
    `--config signing.behavior=drop --config git.sign-on-push=false` (key in no
    agent); GitHub squash-merge re-signs server-side.
 
-7. **Hand off.** Rewritten stack PRs land via `sks-land` / `sks-pr-workflow`;
+6. **Hand off.** Rewritten stack PRs land via `sks-land` / `sks-pr-workflow`;
    leftover `(empty)` revs and stale workspaces are `sks-gc` territory.
 
 ## Pitfalls
 
-- **Marker dialect.** jj writes `%%%%%%% diff from:` / `+++++++` markers; an
-  agent parsing the classic `<<<<<<<` shape mangles the file. Always
-  `read_file` the conflicted file before editing.
-- **`jj resolve --list` on non-head revs errors** `No conflicts found at this
-  revision`; the `conflicts()` revset is the reliable locator.
-- **`jj edit` re-parents `@`.** Forgetting step 5 snapshots your next edit
-  into a stack rev.
+- **Marker dialect, `jj resolve --list` limits, `jj edit` re-parenting** —
+  all resolution mechanics live in `sks-converge`; load it rather than
+  improvising.
 - **Push rejects conflicts.** `Won't push commit ... since it has conflicts`
   is the gate doing its job; resolve, never bypass.
 - **`[move sideways from X to Y]`** on push = bookmark moved non-FF by the
@@ -195,6 +127,8 @@ jj git push --remote origin -b <branch>      # accepted, no conflict rejection
 
 ## See also
 
+- `sks-converge` — the reusable conflict/divergence resolution loop this
+  skill hands off to after the rebase.
 - `sks-dev-workflow` — the landing gates this feeds; never force-push stack
   branches.
 - `sks-stack` — isolate before resolving when the main checkout is crowded.
