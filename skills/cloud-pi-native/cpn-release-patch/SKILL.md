@@ -2,10 +2,9 @@
 name: cpn-release-patch
 description:
   "Use when backporting the commits between two release tags onto a hotfix
-  branch in cloud-pi-native/console. Given a version tag (e.g. v9.24.4), find
-  its patch milestone, duplicate the milestone's commits on top of that tag with
-  jj, and push a hotfix/<milestone> branch that release-please consumes."
-version: 0.3.0
+  branch in cloud-pi-native/console: find the patch milestone and duplicate
+  those commits onto the tag with jj."
+version: 0.3.1
 author: Hermes Agent
 license: Apache-2.0
 platforms:

@@ -1,0 +1,41 @@
+{
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "Ouvre un workspace jj frais isolé à main@origin pour UNE unité de travail shikanime, sans mélanger le WIP concurrent.",
+      "files": [],
+      "prompt": "Isole cette unité de travail dans un workspace jj propre à main@origin.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-stack'.",
+        "Frontmatter license field is 'Apache-2.0'.",
+        "Body contains at least one '##' heading.",
+        "Body opens the workspace via `jj workspace add ../<repo>-<unit> -r 'main@origin'`.",
+        "Body pins `-r 'main@origin'` so the workspace forks from the remote tip."
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "Sauvegarde d'abord le WIP à préserver, puis copie SEULEMENT les fichiers du changement avant de committer.",
+      "files": [],
+      "prompt": "I want to isolate my fix in a clean jj workspace without losing my colleagues' in-progress work.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-stack'.",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters.",
+        "Body snapshots WIP outside the isolation dir before opening the workspace.",
+        "Body copies only the change files via `jj add <change files>`."
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "L'agent reconnaît qu'une seule unité doit être isolée ici et route le fan-out multi-unités vers sks-async.",
+      "files": [],
+      "prompt": "Fans out three independent fixes, each in its own fresh jj workspace.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-stack'.",
+        "Body states it handles one unit only.",
+        "Body routes N-unit fan-out to 'sks-async'."
+      ]
+    }
+  ],
+  "skill_name": "sks-stack"
+}

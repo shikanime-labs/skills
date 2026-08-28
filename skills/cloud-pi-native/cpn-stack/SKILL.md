@@ -1,10 +1,10 @@
 ---
 name: cpn-stack
 description:
-  À utiliser quand vous isolez une unité de travail cloud-pi-native dans un
-  workspace jj frais pour que les éditeurs concurrents / le WIP ne soient jamais
-  mélangés — bookmarks et pushes limités à ce workspace.
-version: 0.1.0
+  "À utiliser quand vous isolez une unité de travail cloud-pi-native dans un
+  workspace jj frais pour que le WIP concurrent ne soit jamais mélangé —
+  bookmarks et pushes limités à ce workspace."
+version: 0.1.1
 author: Hermes Agent
 license: Apache-2.0
 platforms:
