@@ -31,9 +31,9 @@ Triage an issue in `shikanime-labs/*`/`shikanime-studio/*`: fill fields **empty
 on the issue** and **derivable from its content**. English; never invent a
 repo-lacking value.
 
-## Available script
+## Available command
 
-- `scripts/discover-metadata.sh REPO` — print every triage-relevant value the
+- `skctl discover-metadata REPO` — print every triage-relevant value the
   repo offers: labels, open milestones, owner projects, assignees, enabled
   issue types, custom fields. This is the source of truth for Step 3 — every
   value you set must come from its output.
@@ -71,11 +71,8 @@ gh api repos/"$R"/issues/"$N" \
 
 ### 2. Discover available metadata (source of truth)
 
-Run from the skill directory — `scripts/` resolves against the skill dir,
-not the target repo:
-
 ```bash
-bash <skill-dir>/scripts/discover-metadata.sh "$R"
+nix run github:shikanime-labs/skills#skctl -- discover-metadata "$R"
 ```
 
 Read the full output before deciding anything: labels, milestones, projects,

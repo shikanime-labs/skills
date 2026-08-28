@@ -34,9 +34,9 @@ no open PR and not on `main`, `jj` workspaces the skills created
 (`<repo>.<unit>`, `<repo>-fix`), and the sibling working-copy directories they
 leave on disk. Destructive — always dry-run first.
 
-## Available script
+## Available command
 
-- `scripts/discover.sh [REPO_DIR]` — print every GC candidate: dangling
+- `skctl gc-discover [REPO_DIR]` — print every GC candidate: dangling
   bookmarks (not trunk, no open PR) and skill workspaces with a clean/dirty
   guard per workspace. Dry-run only; never forgets or removes. Run it first,
   review the list, then apply manually (steps 2–4).
@@ -64,11 +64,10 @@ leave on disk. Destructive — always dry-run first.
 
    ```bash
    cd ~/Source/Repos/github.com/<orga>/<repo>
-   bash <skill-dir>/scripts/discover.sh   # scripts/ resolves against the
-                                          # skill dir, not the target repo
+   nix run github:shikanime-labs/skills#skctl -- gc-discover .
    ```
 
-   The script lists `== dangling bookmarks ==` (names only; trunk and
+   The command lists `== dangling bookmarks ==` (names only; trunk and
    open-PR bookmarks already excluded) and `== skill workspaces ==`
    (`CLEAN <name> <path>` vs `DIRTY <name> <path>`).
 

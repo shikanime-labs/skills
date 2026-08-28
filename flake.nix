@@ -65,14 +65,40 @@
         git-hooks.flakeModule
         treefmt-nix.flakeModule
       ];
-      perSystem = _: {
-        devenv.shells.default.imports = [
-          devlib.devenvModules.git
-          devlib.devenvModules.nix
-          devlib.devenvModules.shell
-          devlib.devenvModules.shikanime-studio
-        ];
-      };
+      perSystem =
+        { lib, pkgs, ... }:
+        {
+          packages = {
+            # skctl wraps the mechanical operations the sks/cpn skills used to
+            # carry as bare shell scripts (see pkgs/skctl/README.md).
+            skctl = pkgs.rustPlatform.buildRustPackage {
+              pname = "skctl";
+              version = "0.1.0";
+              src = lib.cleanSource ./pkgs/skctl;
+              cargoLock.lockFile = ./pkgs/skctl/Cargo.lock;
+              meta = {
+                description = "Wrap common shikanime/cloud-pi-native operations behind one CLI";
+                license = lib.licenses.asl20;
+                mainProgram = "skctl";
+              };
+            };
+          };
+
+          devenv.shells.default.imports = [
+            devlib.devenvModules.git
+            devlib.devenvModules.nix
+            devlib.devenvModules.rust
+            devlib.devenvModules.shell
+            devlib.devenvModules.shikanime-studio
+            # clippy needs crates.io in the `nix flake check` sandbox and
+            # git-hooks' cargoDeps can't vendor single-crate deps there; drop
+            # clippy from the CI check only. Local clippy still runs via the
+            # devShell git-hooks hook on every check-in.
+            ({ lib, ... }: {
+              git-hooks.hooks.clippy.enable = lib.mkForce false;
+            })
+          ];
+        };
       systems = [
         "x86_64-linux"
         "aarch64-linux"

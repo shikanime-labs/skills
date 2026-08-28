@@ -174,6 +174,20 @@ Format Nix files before committing:
 nix fmt
 ```
 
+### skctl
+
+The repo ships `pkgs/skctl` — a tested Rust CLI that wraps the mechanical
+operations the skills used to carry as bare shell scripts, so agents call one
+command instead of a script per repo:
+
+```bash
+nix run github:shikanime-labs/skills#skctl -- <command> [args]
+```
+
+See [`pkgs/skctl/README.md`](pkgs/skctl/README.md) for the command table. When
+a skill needs a new mechanical operation, add a subcommand (with unit tests)
+rather than a new shell script.
+
 ### Evals
 
 Every skill carries `evals/evals.json` — realistic prompts plus assertions, in

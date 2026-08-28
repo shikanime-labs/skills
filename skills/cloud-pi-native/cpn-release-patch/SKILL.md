@@ -38,20 +38,22 @@ The repo is **jj-backed** (`.jj/` present; never `git commit`). Tags are
 lightweight git tags exported via jj colocation; release-please consumes the
 branch name, not a tag — see Verification.
 
-## Available scripts
+## Available commands
 
-Run from the skill directory; each validates its args and exits non-zero with a
+Run via the `skctl` tool; each validates its args and exits non-zero with a
 message on bad input.
 
-- `scripts/next-milestone.sh BASE_TAG` → next patch milestone (`v9.24.4` →
-  `9.24.5`).
-- `scripts/milestone-number.sh REPO MILESTONE_TITLE` → milestone number, or
-  exit 1 when absent/closed.
-- `scripts/fetch-backport-set.sh REPO MILE_NUM [OUTFILE]` → ordered
-  merge-commit SHAs of the milestone's merged PRs (default
-  `/tmp/cpn_ms_ids.txt`).
-- `scripts/verify-backport.sh BASE_TAG TIP EXPECTED_COUNT` → count /
-  conflict / tree-parity check, exit 0 when clean.
+```bash
+nix run github:shikanime-labs/skills#skctl -- <command> [args]
+```
+
+- `skctl next-milestone BASE_TAG` → next patch milestone (`v9.24.4` → `9.24.5`).
+- `skctl milestone-number REPO MILESTONE_TITLE` → milestone number, or exit 1
+  when absent/closed.
+- `skctl fetch-backport-set REPO MILE_NUM [OUTFILE]` → ordered merge-commit
+  SHAs of the milestone's merged PRs (default `/tmp/cpn_ms_ids.txt`).
+- `skctl verify-backport BASE_TAG TIP EXPECTED_COUNT` → count / conflict /
+  tree-parity check, exit 0 when clean.
 
 ## When to Use
 
@@ -89,11 +91,12 @@ If `BASE_TAG` is missing or you lack write: report `BLOCKED: <requirement> —
 guess:
 
 ```bash
-NEXT=$(bash scripts/next-milestone.sh "$BASE_TAG")
-MILE_NUM=$(bash scripts/milestone-number.sh cloud-pi-native/console "$NEXT")
+SKCTL="nix run github:shikanime-labs/skills#skctl --"
+NEXT=$($SKCTL next-milestone "$BASE_TAG")
+MILE_NUM=$($SKCTL milestone-number cloud-pi-native/console "$NEXT")
 ```
 
-If the milestone is absent or already closed, the script exits non-zero —
+If the milestone is absent or already closed, the command exits non-zero —
 surface it before pushing; a duplicate patch branch would collide with an
 already-cut release.
 
@@ -107,7 +110,7 @@ a `v9.24.4..main` patch-id diff returned **35** (16 in-milestone + 19 from
 `9.25.0` dev). The milestone is the precise source of truth.
 
 ```bash
-bash scripts/fetch-backport-set.sh cloud-pi-native/console "$MILE_NUM"
+$SKCTL fetch-backport-set cloud-pi-native/console "$MILE_NUM"
 wc -l /tmp/cpn_ms_ids.txt   # expect the milestone size (16 for v9.24.5)
 ```
 
@@ -151,11 +154,11 @@ jj abandon <empty_commit_id>
 ### 4. Verify the backport is complete and clean
 
 ```bash
-bash scripts/verify-backport.sh "$BASE_TAG" "$TIP" \
+$SKCTL verify-backport "$BASE_TAG" "$TIP" \
   "$(wc -l < /tmp/cpn_ms_ids.txt)"
 ```
 
-The script checks exact commit count (milestone size, no scaffold), zero
+The command checks exact commit count (milestone size, no scaffold), zero
 conflict markers in `BASE_TAG..$TIP`, and a tree that reconstructs
 `main`'s source (release-please files may differ). Also compare chain subjects
 against the milestone PR titles — zero extras (no `9.25.0` commits).
