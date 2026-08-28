@@ -84,6 +84,7 @@ jamais.
 - [ ] Contrats `@ts-rest` synchronisés client/serveur
 - [ ] Schéma Prisma + migration cohérents
 - [ ] Pas de secret dans le diff (`.env` ignoré)
+- [ ] SonarQube Quality Gate passed (`gh pr checks <N>` — 0 new issues)
 ```
 
 ## Règles de ton

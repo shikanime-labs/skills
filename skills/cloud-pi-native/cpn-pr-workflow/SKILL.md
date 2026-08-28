@@ -43,11 +43,12 @@ draft → triage). Logique PR déléguée.
 
 ## Gate
 
-PR complète = ouvre depuis `origin`, lie la bonne issue, métadonnées posées.
+PR complète = ouvre depuis `origin`, lie la bonne issue, métadonnées posées,
+SonarQube Quality Gate passed.
 Vérifie :
-
 ```bash
 gh pr view <N> --repo cloud-pi-native/<repo> --json title,baseRefName,body
+gh pr checks <N>   # inclut SonarQube Code Analysis
 ```
 
 ## See also
