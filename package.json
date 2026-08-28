@@ -120,6 +120,11 @@
         "path": "skills/shikanime-studio/sks-investigate"
       },
       {
+        "name": "sks-restack",
+        "description": "Use when rebasing a shikanime jj stack onto moved main leaves conflicts: restack, then resolve each conflicted revision with edit/resolve until pushable.",
+        "path": "skills/shikanime-studio/sks-restack"
+      },
+      {
         "name": "sks-stack",
         "path": "skills/shikanime-studio/sks-stack"
       },

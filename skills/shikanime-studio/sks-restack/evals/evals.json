@@ -1,0 +1,86 @@
+{
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "Restacks the stack onto moved main and resolves every conflicted revision via jj edit + hand-merge or :ours/:theirs before pushing.",
+      "files": [],
+      "prompt": "main moved after a squash-land on shikanime-studio/machines and my jj stack is full of conflicts — restack it and resolve them.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-restack'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body mentions 'conflicts()' as the locator revset",
+        "Body mentions 'jj edit'",
+        "Body mentions 'jj resolve --tool :theirs' or ':ours'"
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "Explains the jj conflict-marker dialect (%%%% diff-from destination side, ++++++ rebased-revision side) so the agent merges instead of mangling.",
+      "files": [],
+      "prompt": "My restacked jj rev has weird %%%%%%% diff from markers instead of <<<<<<< >>>>>>> — what are these and how do I fix the file?",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-restack'",
+        "Body documents that the '%%%%%%% diff from:' block is the destination (moved trunk) side",
+        "Body documents that the '+++++++ <rev>' block is the rebased revision's own change",
+        "Body instructs deleting all marker lines when hand-merging"
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "Treats 'Won't push commit since it has conflicts' as the hard gate: re-scan conflicts(), resolve, then push.",
+      "files": [],
+      "prompt": "jj git push fails with \"Won't push commit 14626d7a since it has conflicts\" after I rebased my shikanime branch — how do I get it pushable?",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-restack'",
+        "Body states jj git push rejects conflicted commits",
+        "Body requires 'conflicts()' revset empty before push",
+        "Body does not recommend force-push or --admin bypass"
+      ]
+    },
+    {
+      "id": 4,
+      "expected_output": "Recognizes jj restack as a local alias and falls back to the scoped per-bookmark rebase when undefined.",
+      "files": [],
+      "prompt": "I want to restack my bookmarked jj work onto latest main but 'jj restack' isn't a real command on this box — what's the equivalent?",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-restack'",
+        "Body mentions the alias form (rebase --onto trunk() --source roots(trunk()..) & mutable()) or its scoped equivalent 'jj rebase -b <branch> --onto main@origin'"
+      ]
+    },
+    {
+      "id": 5,
+      "expected_output": "Resolves bottom-up with a re-scan between revisions because parents re-materialize children's conflicts.",
+      "files": [],
+      "prompt": "Resolving conflicts in my 3-commit jj stack: I fixed the top one first and now the others got weird again — what's the right order?",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-restack'",
+        "Body directs resolving oldest/bottom-most conflicted revision first",
+        "Body directs re-running the conflicts() locator between revisions"
+      ]
+    },
+    {
+      "id": 6,
+      "expected_output": "The skill stays loadable and self-identifies as sks-restack; the unrelated request is out of scope.",
+      "files": [],
+      "prompt": "Write me a haiku about my Kubernetes cluster and then deploy it to production.",
+      "assertions": [
+        "Frontmatter parses as YAML with a top-level 'name' key",
+        "Frontmatter 'name' equals the directory basename 'sks-restack'"
+      ]
+    },
+    {
+      "id": 7,
+      "expected_output": "The skill does not absorb landing or merging scope; it hands off to sks-land / sks-pr-workflow.",
+      "files": [],
+      "prompt": "Restack my stack, resolve conflicts, then merge the PRs and gc the workspaces.",
+      "assertions": [
+        "Description does not contain substring cpn-",
+        "Frontmatter 'name' equals the directory basename 'sks-restack'",
+        "Body does not claim to merge or land PRs itself"
+      ]
+    }
+  ],
+  "skill_name": "sks-restack"
+}
