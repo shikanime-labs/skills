@@ -149,13 +149,15 @@ A `pull_request` rule with `required_approving_review_count` +
 - Temp body files are NOT hard-wrapped — one sentence per line; GitHub joins
   consecutive non-blank lines. Never `nix fmt` / `mdformat` a temp body file.
 
-## PR↔Commit Parity
+## Done Is Proven
 
-- PR title = commit subject.
-- PR body = commit message restated.
-- Commit is the source of truth; PR restates, never invents rationale.
+The fundamental constitution: **everything must be proven, never stated.**
 
-## Pre-Work Validation Probes
+Proof is a test, a doc, a reference, a command output — anything that
+demonstrates the claim is right. A claim without evidence is a rumor.
+
+"`pushed` / `landed` / `merged`" are claims until verified against real
+output:
 
 Probe and RECORD each; an unmet requirement is a reported blocker, never a
 silent scope change:
