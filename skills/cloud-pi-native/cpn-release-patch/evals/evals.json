@@ -2,7 +2,7 @@
   "evals": [
     {
       "id": 1,
-      "expected_output": "Résout la milestone patch depuis BASE_TAG et backporte les commits de la milestone sur hotfix/<milestone>.",
+      "expected_output": "Résout la milestone patch depuis BASE_TAG et backporte les commits de la milestone sur hotfix/\u003cmilestone\u003e.",
       "files": [],
       "prompt": "Backport v9.24.4 to v9.24.5 in cloud-pi-native/console.",
       "assertions": [
@@ -10,7 +10,7 @@
         "Frontmatter 'name' field equals 'cpn-release-patch'.",
         "Frontmatter 'license' field equals 'Apache-2.0'.",
         "SKILL.md body contains at least one Markdown '##' heading.",
-        "The body derives NEXT='$MAJ.$MIN.$((PAT + 1))' from BASE_TAG.",
+        "The body derives NEXT from BASE_TAG via scripts/next-milestone.sh.",
         "The body resolves the patch milestone from the base tag."
       ]
     },
@@ -20,7 +20,7 @@
       "files": [],
       "prompt": "What commits should the v9.24.5 hotfix carry, and where do I source them?",
       "assertions": [
-        "Frontmatter 'description' starts with 'Use when' and is <= 200 characters.",
+        "Frontmatter 'description' starts with 'Use when' and is \u003c= 200 characters.",
         "The body states the authoritative backport set is the milestone's merged PRs, not a BASE_TAG..main diff.",
         "The body warns that BASE_TAG..main over-counts next-minor dev commits."
       ]
@@ -34,7 +34,7 @@
         "Frontmatter 'name' field equals 'cpn-release-patch'.",
         "The body forbids `jj new BASE_TAG -m '...'` as the duplicate base.",
         "The body uses `jj goto BASE_TAG` before `jj duplicate --onto @`.",
-        "The body creates a hotfix/<milestone> bookmark and pushes it to origin."
+        "The body creates a hotfix/\u003cmilestone\u003e bookmark and pushes it to origin."
       ]
     }
   ],
