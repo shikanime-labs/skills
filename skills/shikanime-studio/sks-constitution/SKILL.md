@@ -89,28 +89,6 @@ re-stating these facts.
   `nix fmt` before shipping Nix files.
 - **`git`:** fallback for non-jj repos; `git push origin <branch>`.
 
-## Branch Protection
-
-Detect via **RULES**, not classic branch protection. The classic endpoint
-`gh api repos/<org>/<repo>/branches/main/protection` returns 404 on
-ruleset-backed repos (e.g. `manifests`), which misleadingly reads as
-"not protected":
-
-```bash
-gh api repos/<org>/<repo>/rulesets -q '.[].name'
-gh api repos/<org>/<repo>/rulesets/<id> -r '.rules[]'
-```
-
-A `pull_request` rule with `required_approving_review_count` +
-`require_code_owner_review` blocks self-approval — that is what forces
-`gh pr merge --squash --admin` after a verbal `lgtm`, not a classic
-`required_pull_request_reviews` block.
-
-- `main` is protected on some repos (e.g. `shikanime-studio/actions`,
-  `shikanime-labs/skills`) — never commit there; land via PR.
-- Direct push to `main` ONLY when the user explicitly says "push to main" /
-  "land it".
-
 ## Push Policy
 
 - Push working branches to `origin` — the cloned org repo.
