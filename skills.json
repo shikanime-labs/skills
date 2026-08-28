@@ -85,6 +85,11 @@
       "path": "skills/cloud-pi-native/cpn-swarm"
     },
     {
+      "name": "nix-pr-review",
+      "description": "Use when reviewing an upstream NixOS/nixpkgs pull request: build the changed packages with nixpkgs-review and check the diff against nixpkgs conventions.",
+      "path": "skills/nixpkgs/nix-pr-review"
+    },
+    {
       "name": "sks-adversarial",
       "description": "Use when probing uncertain results in a disposable sandbox — large investigation, development, debugging, testing, UAT, white-room, or data validation before promoting a change.",
       "path": "skills/shikanime-studio/sks-adversarial"
