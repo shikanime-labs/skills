@@ -1,0 +1,2 @@
+# Scanner: exclude eval fixtures from the install gate
+evals/

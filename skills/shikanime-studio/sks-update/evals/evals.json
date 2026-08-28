@@ -1,0 +1,57 @@
+{
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "Curates the target skill, ships it through the dev workflow (isolation, commit, PR, land), and resyncs the landed skill to local Hermes agents.",
+      "files": [],
+      "prompt": "Update sks-gc and sync it into my local Hermes agents.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-update'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body routes the curation pass to 'sks-curate'",
+        "Body routes the shipping loop to 'sks-dev-workflow'",
+        "Body includes a resync step"
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "Resyncs a landed skill into local Hermes agents via the tap/update path (or manual copy), resolving the real home from $HERMES_HOME when a profile is active.",
+      "files": [],
+      "prompt": "Resync the skills I just merged into my local Hermes setup.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-update'",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body mentions 'hermes skills'",
+        "Body mentions 'HERMES_HOME'",
+        "Body gates resync after the change lands on 'main'"
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "The skill stays scoped to the shikanime family; it does not absorb the cloud-pi-native twin.",
+      "files": [],
+      "prompt": "Update my console skill the cpn way and push it.",
+      "assertions": [
+        "Frontmatter 'name' equals the directory basename 'sks-update'",
+        "Frontmatter description does not contain substring 'cpn-'",
+        "Body does not contain substring 'cpn-'"
+      ]
+    },
+    {
+      "id": 4,
+      "expected_output": "The skill stays loadable and self-identifies as sks-update; an unrelated request is out of scope.",
+      "files": [],
+      "prompt": "Write me a haiku about your Kubernetes cluster and deploy it.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-update'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter description does not contain substring 'cpn-'",
+        "Body contains at least one '##' heading"
+      ]
+    }
+  ],
+  "skill_name": "sks-update"
+}
