@@ -41,16 +41,12 @@ repo.
 ## Internal policy: push to origin
 
 All PRs open from `origin` (the cloned org repo). Push the branch to `origin`
-and open with `--head <org>:<branch>`. The local path may read `shikanime-labs`
-while the gh remote is `shikanime-studio` (e.g. `nix-containers`) — trust the gh
-remote as canonical.
+and open with `--head <org>:<branch>`. Environment facts (org identity, repo
+paths, toolchain, branch protection, push policy) live in `sks-env`.
 
 ## Prerequisites
 
-- `gh` authenticated; active identity is a collaborator with push right. Do NOT
-  `gh auth switch`; push to `origin` directly.
-- Linked issue exists (see `sks-issue`); verify it matches the change
-  (`jj file annotate` / `jj show <commit>` if unsure).
+- Environment per `sks-env`: `gh` authenticated, push right, linked issue exists.
 - Branch pushed to `origin` before opening.
 
 ## Org PR conventions

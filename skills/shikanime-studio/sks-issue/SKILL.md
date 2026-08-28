@@ -28,8 +28,7 @@ platforms:
 Open issues in `shikanime-labs/*` / `shikanime-studio/*`; English (no French).
 Open the issue before the PR, link it via `sks-pr`.
 
-Prereqs: `gh` authenticated to the canonical org repo; target it directly.
-`gh auth status` clean.
+Prereqs: environment per `sks-env` (`gh` authenticated, push right, org repo); target it directly. `gh auth status` clean.
 
 ## When to Use
 

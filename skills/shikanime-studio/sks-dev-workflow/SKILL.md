@@ -30,10 +30,9 @@ platforms:
 # Shikanime Org Dev Workflow
 
 End-to-end local dev loop for shikanime repos: branching, pushing to `origin`,
-jj bookmark tracking, landing (PR vs direct push). Issue/PR policy lives in
-`sks-issue-workflow` / `sks-pr-workflow`; code review in `sks-pr-review`;
-coordination routed by the ladder in "Coordination ladder" (`sks-stack` /
-`sks-async` / `sks-swarm`).
+jj bookmark tracking, landing (PR vs direct push). Environment facts (org
+identity, repo paths, toolchain, branch protection, push policy, pre-work
+probes) live in `sks-env` — load it when this skill needs them.
 
 ## When to Use
 
@@ -110,8 +109,21 @@ silent scope change:
 
 - Branch off `main`: `fix/rwx-nfs-v4.0`, `feat/...`.
 - `main` is protected on some repos (`shikanime-studio/actions`) — never commit
-  there; land via PR. Detect:
-  `gh api repos/<org>/<repo>/branches/main/protection >/dev/null 2>&1`.
+  there; land via PR.
+- **Detect protection via RULESETS, not classic branch protection.** The classic
+  endpoint `gh api repos/<org>/<repo>/branches/main/protection` returns **404**
+  on repos where protection is ruleset-backed (e.g. `manifests`), which
+  misleadingly reads as "not protected". The real gate is the rulesets list +
+  per-ruleset detail:
+  ```bash
+  gh api repos/<org>/<repo>/rulesets -q '.[].name'
+  # list endpoint OMITS the rules; fetch each id to see what enforces the gate
+  gh api repos/<org>/<repo>/rulesets/<id> -q '.rules[]'
+  ```
+  A `pull_request` rule with `required_approving_review_count` + `require_code_owner_review`
+  (e.g. `manifests` "Landing protections") blocks self-approval — that is what
+  forces `--squash --admin` after a verbal lgtm, not a classic
+  `required_pull_request_reviews` branch-protection block.
 
 ## Isolating a fix in a fresh jj workspace
 
@@ -125,6 +137,47 @@ Verify the pushed commit from the original checkout with
 `git show --show-signature FETCH_HEAD` +
 `git diff --stat origin/main FETCH_HEAD`.
 
+## Rebuilding a branch whose bookmark is immutable (already pushed)
+
+A pushed bookmark is immutable — `jj rebase -d main -r <branch>` fails with
+"Commit ... is immutable". Recovery (verified pattern):
+
+```bash
+jj git fetch                        # get latest main@origin
+jj new -m "<same description>" -r main@origin   # fresh commit on trunk
+jj restore --from <old-branch> --to @ <file1> <file2> ...  # ONLY intended files
+jj diff -r @ --stat                # MANDATORY: diff vs base, not vs old branch
+jj bookmark set <branch> -r @ --allow-backwards
+git push origin <branch> --force-with-lease
+```
+
+`jj restore --from` copies whatever the OLD commit holds for each listed path —
+if that commit carried unrelated edits to the same file, they ride along.
+Always compare the new commit's diff against `main` (expected file list AND
+hunk size) before pushing; a diff that looks clean vs the old commit can still
+be bloated vs trunk. If scope creep slipped through a merged PR, split it out
+with a revert PR that restores the pre-merge file and keeps only the intended
+hunks.
+
+**Mine the reverted diff before discarding it.** A revert PR that lands does
+not mean the reverted work was worthless — the reusable parts belong in the
+shared module (`modules/...`) rather than the per-host file that carried them.
+Triage each reverted hunk as generic (kernel-module loading, services, image
+packaging) vs host-specific (SOPS, tailscale, openssh, per-machine TPM/LUKS),
+then backport the generic parts into the shared module — but HARD-CODE the
+fixed VM config rather than exposing `mkOption` extension points. Verified on
+`containerdisk.nix`: the user stripped every speculative option added this way
+(`kernelModules`, `extraKernelModules`, `extraPackages`, `usb.enable`,
+`machineInfo.enable`, `cloudInit.enable`) in favor of inlined constants and
+unconditional config; the module kept only `name` + `settings` passthrough.
+Opinionated template beats configurable library — add options only for attrs
+that genuinely vary per consumer. Before re-implementing a reverted service,
+check what NixOS already provides natively — `disk-image.nix` ships
+`boot.growPartition` (hand-rolled growfs is redundant) and timesyncd is on by
+default. Verify the backport end-to-end:
+`nix build .#packages.<system>.<name> --dry-run` must eval the full graph with
+zero errors; parse + `treefmt` on the module file before pushing.
+
 ## Push flow
 
 ```bash
@@ -134,6 +187,31 @@ jj git push --remote origin
 ```
 
 jj does not auto-track bookmarks — without `track`, push is rejected.
+
+### Silent push no-op when a bookmark did not follow a rewrite
+
+`jj describe`/edits rewrite the working-copy commit, but the bookmark does not
+always move with it (it can stay pinned to the old commit and go divergent).
+`git push origin <branch> --force-with-lease` then reports "Everything
+up-to-date" and pushes NOTHING — no error, no hint. Never trust that string;
+verify the bookmark actually moved:
+
+```bash
+git rev-parse <branch> origin/<branch>   # must MATCH after push
+jj bookmark list -T 'name ++ "\t" ++ commit_id.short() ++ "\n"'
+```
+
+If the bookmark lags the rewritten commit, re-attach it and push:
+
+```bash
+jj bookmark set <branch> -r @
+git push origin <branch> --force-with-lease
+```
+
+Cross-check the PR head afterwards (`gh pr view <n> --json headRefOid` vs the
+local commit) — the PR keeps showing the stale commit until the real push
+lands. `jj bookmark set` on a divergent bookmark prints `(divergent)`; that is
+expected when the old commit is still referenced by `origin/<branch>`.
 
 ## Landing
 
@@ -182,6 +260,12 @@ check ran; close the linked issue deliberately after N-of-N verified.
   create/merge; the push command's own success lines.
 - Re-measure any number (commits, PRs, files) before stating it; label
   unverified figures as such.
+- **GitHub's web diff view pads file context — never size a PR from it.**
+  A narrow-title PR can hide a whole-file rewrite; if the user quotes a stat
+  that contradicts your read, re-measure with
+  `gh pr view <n> --json files` / `jj diff -r <branch> --git --stat` before
+  arguing. Narrow title + large stat = scope-creep check: diff the changed
+  file against `main@origin` and classify each hunk in-scope vs not.
 - Surface blocked steps (branch protection, 403 wrong account, jj tracking
   conflict) with recovery — never silently skip.
 
@@ -205,6 +289,9 @@ use full URL). Skip per-task detail.
 ## Pitfalls
 
 Optional edge cases and gotchas — load `references/pitfalls.md` on demand.
+Nix/devenv escaping + flake eval verification for `machines`-class repos:
+`references/nix-flake-quirks.md` (1-backslash `\${{ }}` rule, SOPS_AGE_KEY
+eval env, catbox under `packages` not `nixosConfigurations`).
 
 ## Verification
 

@@ -108,6 +108,7 @@ specification, compatible with the
 | `sks-commit`            | shikanime commit style + Automata co-author trailer                                                                          |
 | `sks-curate`            | Update, improve, compress, and token-optimize skills in the catalog                                                          |
 | `sks-dev-workflow`      | Branch/push discipline, gates, landing                                                                                       |
+| `sks-env`               | Org identity, repo paths, toolchain, branch protection, push policy, and pre-work validation probes                          |
 | `sks-discussion`        | RFC Discussions (pre-issue stage)                                                                                            |
 | `sks-discussion-triage` | Discussion triage: category + lifecycle (GraphQL)                                                                            |
 | `sks-doc`               | Repo `docs/` knowledge base (internal ops + optional user docs) as reviewable in-repo Markdown                               |

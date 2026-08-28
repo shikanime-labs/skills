@@ -117,6 +117,11 @@
         "path": "skills/shikanime-studio/sks-dev-workflow"
       },
       {
+        "name": "sks-env",
+        "description": "Use when any shikanime org skill needs environment assumptions: org identity, repo paths, toolchain, branch protection, push policy, and validation probes.",
+        "path": "skills/shikanime-studio/sks-env"
+      },
+      {
         "name": "sks-discussion",
         "path": "skills/shikanime-studio/sks-discussion"
       },

@@ -28,7 +28,7 @@ platforms:
 
 # Shikanime Org PR Workflow
 
-Orchestrator over `sks-issue`/`sks-pr`/`sks-pr-triage`: issue → PR → triage.
+Orchestrator over `sks-issue`/`sks-pr`/`sks-pr-triage`: issue → PR → triage. Environment facts (org identity, repo paths, toolchain, branch protection, push policy) live in `sks-env`.
 
 ## When to Use
 

@@ -35,10 +35,7 @@ repo, never assume.
 
 ## Prerequisites
 
-- Working tree in target repo; `gh` authenticated.
-- Branches push to `origin` (the cloned org repo). Local path may read
-  `shikanime-labs` while the gh remote is `shikanime-studio` (nix-containers) —
-  trust the gh remote.
+- Environment per `sks-env`: `gh` authenticated, push right, repo is the org clone at `~/Source/Repos/github.com/<org>/<repo>`. Trust the gh remote over the local path.
 - jj repos: `jj bookmark track <branch> --remote=origin` before any push.
 
 ## Commit style (when no hook enforces otherwise)
