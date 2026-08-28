@@ -90,6 +90,10 @@ findings/root-cause as `gh issue comment` and cite concrete evidence (the exact
 `- old` → `+ new` diff lines, or command output), not prose summaries. Interim
 comments may be deleted after convergence.
 
+The issue template (`## Problem` / `## Acceptance`) is issue-only. The PR body
+must not reuse it — the PR side uses the `## What` / `## Why` / `## References`
+shape from `sks-pr`.
+
 Body has a **References** section: official material (docs, linked issues/PRs,
 commits, changelogs, specs); more may be posted as comments to steer resolution,
 but proof of the solution belongs in the PR. Close deliberately — ledger
