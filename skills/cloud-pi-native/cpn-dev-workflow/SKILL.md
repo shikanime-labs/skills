@@ -155,13 +155,14 @@ delegate_task(tasks=[
 7. Checks before submit: `pnpm lint`, `pnpm test`, `pnpm playwright:test` if a
    journey is affected.
 8. Fresh jj workspace per item (une unité → `cpn-stack`, voir Échelle de
-   coordination) : `jj workspace add -m <name> . ../<name>` (or
+   coordination) : `jj workspace add -m <repo>.<name> . ../<repo>.<name>` (or
    `jj workspace add --revision <base> <path>`). Build a **stack of small child
    commits**; branch out with `jj new <other-parent>` when a commit doesn't need
    its parent. Multiple children of one parent → jj **diamond** (natively
    tracked, parallelizes landing). Fully independent streams → own
-   `jj workspace add ../<name> --name <name>` at `@` and own **standalone** PR
-   (`cpn-async`: fan-out, join `jj new <a> <b>`, land via standalone `gh pr`).
+   `jj workspace add ../<repo>.<name> --name <repo>.<name>` at `@` and own a
+   **standalone** PR (`cpn-async`: fan-out, join `jj new <a> <b>`, land via
+   standalone `gh pr`).
    Don't stack unless a later module imports an earlier one's new code.
 9. Conventional English commits, one per unit. **jj-backed — never
    `git commit`**; use `jj describe -m "msg"` / `jj new -m "msg"`. Fold into
