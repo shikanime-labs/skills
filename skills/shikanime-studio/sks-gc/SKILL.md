@@ -31,7 +31,7 @@ platforms:
 
 Reclaim resources leaked by the parallel/migration skills: `jj` bookmarks with
 no open PR and not on `main`, `jj` workspaces the skills created
-(`<repo>.<unit>`, `<repo>-fix`), and the sibling working-copy directories they
+(`<repo>.<unit>`, `<repo>.fix`), and the sibling working-copy directories they
 leave on disk. Destructive — always dry-run first.
 
 ## Available script
@@ -98,7 +98,7 @@ leave on disk. Destructive — always dry-run first.
 
 - `sks-async` → one `jj workspace add ../<repo>.<unit>` per stream and a
   bookmark + PR branch per link on `origin`.
-- `sks-dev-workflow` → `jj workspace add ../<repo>-fix` isolation dirs and
+- `sks-dev-workflow` → `jj workspace add ../<repo>.fix` isolation dirs and
   `/tmp/wip*` scratch copies (the latter are manual — list, but never
   auto-`rm` without asking).
 - Parallel-stream chains → branch bookmarks on `origin`; cleared by forgetting
@@ -132,6 +132,6 @@ gh pr list --state open   # confirm no protected bm forgotten, canonical wc unto
 
 - `sks-async` — the fan-out that creates the workspaces/bookmarks this skill
   reclaims.
-- `sks-dev-workflow` — isolation workspace pattern (`../<repo>-fix`).
+- `sks-dev-workflow` — isolation workspace pattern (`../<repo>.fix`).
 - `sks-land` — lands PRs (this skill only reclaims after landing, never
   merges).

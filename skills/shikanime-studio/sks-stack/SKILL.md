@@ -62,7 +62,7 @@ entered the dev loop.
    for f in <WIP files>; do
      cp "$f" "/tmp/wip-isolate/$(echo "$f" | tr '/' '__')"
    done
-   jj workspace add ../<repo>-<unit> -r 'main@origin' && cd ../<repo>-<unit>
+   jj workspace add ../<repo>.<unit> -r 'main@origin' && cd ../<repo>.<unit>
    ```
 
    `<unit>` is a short slug for this work (`fix`, `feat-x`). Prefer this over
@@ -95,7 +95,7 @@ entered the dev loop.
   (possibly dirty) — always pin `-r 'main@origin'` so the workspace forks from
   the remote tip, never stale local main.
 - Forgetting `jj bookmark track` makes `jj git push` reject the bookmark.
-- The new dir (`../<repo>-<unit>`) is a SIBLING of the repo root, not inside it;
+- The new dir (`../<repo>.<unit>`) is a SIBLING of the repo root, not inside it;
   `sks-gc` reclaims it after landing.
 - Don't `rm -rf` the isolation dir while it holds uncommitted work — that is WIP
   loss. Retire via `sks-gc`.
@@ -103,7 +103,7 @@ entered the dev loop.
 ## Verification
 
 ```bash
-jj workspace list                       # new <repo>-<unit> present, clean
+jj workspace list                       # new <repo>.<unit> present, clean
 jj status && jj log -r @ -T 'bookmarks'
 gh pr view <N> --repo <org>/<repo> --json state,headRefName   # after PR step
 ```

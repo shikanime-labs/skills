@@ -49,7 +49,7 @@ fan-out de `cpn-async` et la voie d'isolation de `cpn-dev-workflow`.
    for f in <fichiers WIP>; do
      cp "$f" "/tmp/wip-isolate/$(echo "$f" | tr '/' '__')"
    done
-   jj workspace add ../console-<unite> -r 'main@origin' && cd ../console-<unite>
+   jj workspace add ../console.<unite> -r 'main@origin' && cd ../console.<unite>
    ```
 
    `<unite>` est un slug court pour ce travail (`fix`, `feat-x`). Préférer à
@@ -82,14 +82,14 @@ fan-out de `cpn-async` et la voie d'isolation de `cpn-dev-workflow`.
   (peut-être sale) — toujours épingler `-r 'main@origin'` pour forker depuis le
   tip distant, jamais le main local périmé.
 - Oublier `jj bookmark track` fait rejeter le push par jj.
-- Le nouveau dossier (`../console-<unite>`) est un FRÈRE du dépôt, pas dedans.
+- Le nouveau dossier (`../console.<unite>`) est un FRÈRE du dépôt, pas dedans.
 - Ne pas `rm -rf` le dossier d'isolation avec du travail non committé — c'est
   une perte de WIP.
 
 ## Verification
 
 ```bash
-jj workspace list                       # nouveau console-<unite> présent, propre
+jj workspace list                       # nouveau console.<unite> présent, propre
 jj status && jj log -r @ -T 'bookmarks'
 gh pr view <N> --repo cloud-pi-native/console --json state,headRefName
 ```

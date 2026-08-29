@@ -10,7 +10,7 @@
         "Frontmatter 'name' field equals 'cpn-stack'.",
         "Frontmatter 'license' field equals 'Apache-2.0'.",
         "SKILL.md body contains at least one Markdown '##' heading.",
-        "Le corps ouvre le workspace via `jj workspace add ../console-<unite> -r 'main@origin'`.",
+        "Le corps ouvre le workspace via `jj workspace add ../console.<unite> -r 'main@origin'`.",
         "Le corps épingle `-r 'main@origin'` pour forker depuis le tip distant."
       ]
     },
