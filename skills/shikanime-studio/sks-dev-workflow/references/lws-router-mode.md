@@ -82,6 +82,7 @@ Capacity math per node (128GB RAM, ~115GB usable after GPU reservation):
 ```
 
 Options for both nodes' capacity:
+
 1. **Single model** — trim preset to one model that fits (~87-93GB), 2 LWS
    replicas for redundancy/throughput.
 2. **Per-node preset differentiation** — node-specific kustomize overlays with
@@ -101,6 +102,7 @@ User corrected this naming; do not merge router StatefulSets/LWS into
 `apps/inference/`.
 
 Verified LWS shape:
+
 - `replicas: 2` with default `size: 1` → two leader pods, no worker template.
 - `nodeSelector: node.kubernetes.io/instance-type: minisforum-ms-s1` pins both
   pods to the two Strix Halo MS-S1 nodes (kushira/sashina);

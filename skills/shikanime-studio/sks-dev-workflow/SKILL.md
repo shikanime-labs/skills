@@ -333,8 +333,8 @@ a shikanime repo.
 The shikanime inference deployment (llama.cpp router mode, `inference-models-preset`
 ConfigMap, `backend.yaml` remote + local-floor backends, LWS 2-node capacity
 math, router layout, `aiservicebackend.yaml` migration) is **not** part of the dev
-loop. Load `references/lws-router-mode.md` when deploying or debugging inference on
-a `machines`-class repo.
+loop. Load `references/lws-router-mode.md` when deploying or debugging inference
+on a `machines`-class repo.
 
 ## Pitfalls
 
