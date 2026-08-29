@@ -145,6 +145,11 @@
       "path": "skills/shikanime-studio/sks-gc"
     },
     {
+      "name": "sks-hotfix",
+      "description": "Use when applying an urgent trunk fix fast: direct commit on main if unprotected, else a fast-tracked PR that skips the issue ledger.",
+      "path": "skills/shikanime-studio/sks-hotfix"
+    },
+    {
       "name": "sks-investigate",
       "description": "Use when investigating a bug, test failure, build break, or unexpected behavior in a shikanime repo: find root cause before any fix, minimal repro, and proven verification.",
       "path": "skills/shikanime-studio/sks-investigate"

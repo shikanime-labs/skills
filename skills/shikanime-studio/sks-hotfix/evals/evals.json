@@ -1,0 +1,48 @@
+{
+  "skill": "sks-hotfix",
+  "description": "Urgent trunk fix fastlane for shikanime repos: direct commit on main when unprotected, else a fast-tracked PR that skips the issue ledger.",
+  "cases": [
+    {
+      "name": "positive-hotfix-main",
+      "prompt": "Hotfix main — there's a broken config on the trunk, patch it now and don't bother with an issue.",
+      "expected": "should fire",
+      "assertions": [
+        "skill name is sks-hotfix",
+        "description starts with 'Use when'",
+        "license is Apache-2.0",
+        "body references sks-commit for commit shape",
+        "body references sks-land for landing",
+        "body detects protection via rulesets not classic branch protection",
+        "body offers a direct-commit path and a fast-tracked-PR path"
+      ]
+    },
+    {
+      "name": "positive-urgent-trunk",
+      "prompt": "urgent trunk fix needed, push the patch straight to main",
+      "expected": "should fire",
+      "assertions": [
+        "skill name matches directory sks-hotfix",
+        "description is under 200 characters",
+        "body keeps the signed-commit gate",
+        "body says verify landing against real output"
+      ]
+    },
+    {
+      "name": "negative-normal-feature",
+      "prompt": "Add a new feature branch and open a PR with a full issue ledger for review.",
+      "expected": "should not fire",
+      "assertions": [
+        "body scope states a hotfix is one defect, not unrelated refactors",
+        "skill does not claim to replace the full issue lifecycle for normal work"
+      ]
+    },
+    {
+      "name": "negative-cpn",
+      "prompt": "Ouvre une issue en français dans cloud-pi-native et prépare la PR.",
+      "expected": "should not fire",
+      "assertions": [
+        "skill is in the shikanime family with an sks- prefix, no cpn- cross-leak"
+      ]
+    }
+  ]
+}

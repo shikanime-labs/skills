@@ -112,6 +112,7 @@ specification, compatible with the
 | `sks-discussion-triage` | Discussion triage: category + lifecycle (GraphQL)                                                                            |
 | `sks-doc`               | Repo `docs/` knowledge base (internal ops + optional user docs) as reviewable in-repo Markdown                               |
 | `sks-gc`                | Reclaim dangling bookmarks, skill-created jj workspaces, and leftover working-copy dirs from sks-async/sks-dev-workflow      |
+| `sks-hotfix`            | Urgent trunk fix fastlane: direct commit on main if unprotected, else a fast-tracked PR skipping the issue ledger             |
 | `sks-investigate`       | Root-cause a bug/test/build failure before any fix; minimal repro + proven verification                                      |
 | `sks-isolate`           | Isolate one unit of shikanime work in a fresh jj workspace; bookmarks + pushes scoped to that workspace                      |
 | `sks-issue`             | Issues with the gate-ledger tasklist                                                                                         |

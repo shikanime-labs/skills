@@ -133,6 +133,10 @@
         "path": "skills/shikanime-studio/sks-gc"
       },
       {
+        "name": "sks-hotfix",
+        "path": "skills/shikanime-studio/sks-hotfix"
+      },
+      {
         "name": "sks-investigate",
         "path": "skills/shikanime-studio/sks-investigate"
       },
