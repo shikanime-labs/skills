@@ -128,13 +128,22 @@ push. A failing run exits non-zero and skips merge (red never lands).
 ## Post-merge
 
 1. Verify: `gh pr view <M> --repo <org>/<repo> --json state`.
-2. Close the issue **deliberately**: confirm tasklist N/N, then
-   `gh issue close <N> --repo <org>/<repo> -c "Discharged by <PR URL>"`.
-3. Rebase downstream: if other PRs sit on top of the merged branch, rebase them
+2. **Manual user acceptance (deployment gate).** A merged PR is a claim, not a
+   verified outcome. Once the change is deployed — resynced for agent/skill
+   repos, applied for infra (Flux reconcile / `nixos-rebuild switch` for
+   machines-class repos) — surface the deployed state and ask the user to
+   validate it behaves as asked. Do NOT close the issue or report the landing
+   complete on merge alone; only the user confirms the running change. If the
+   user rejects, treat it as a reported defect: fix via a new PR, re-deploy,
+   and re-request acceptance.
+3. Close the issue **deliberately**: confirm tasklist N/N and user acceptance
+   (step 2), then `gh issue close <N> --repo <org>/<repo> -c "Discharged by
+   <PR URL>"`.
+4. Rebase downstream: if other PRs sit on top of the merged branch, rebase them
    onto the new `main` (`jj rebase -d main`).
-4. **Sync docs** if ops/arch/runbooks changed — edit `docs/` per `sks-doc`; skip
+5. **Sync docs** if ops/arch/runbooks changed — edit `docs/` per `sks-doc`; skip
    if purely internal.
-5. **Teardown the landing bookmark.** GitHub drops the remote branch on merge,
+6. **Teardown the landing bookmark.** GitHub drops the remote branch on merge,
    but the local `jj` bookmark and its `origin` tracking ref linger and clutter
    the workspace. Remove both:
 
@@ -145,7 +154,7 @@ push. A failing run exits non-zero and skips merge (red never lands).
 
    `delete` propagates to tracked remotes on the next push (no `--remote` flag).
    If `push` reports nothing changed, GitHub already removed it.
-6. **Drop the isolated workspace** if you used one. Landing is a remote
+7. **Drop the isolated workspace** if you used one. Landing is a remote
    `gh pr merge`; the local checkout that held the change is then dead weight.
    sks-land never auto-deletes a workspace — remove it deliberately:
 
@@ -164,6 +173,9 @@ push. A failing run exits non-zero and skips merge (red never lands).
 - Merge after new commits without re-review — approval binds to a head commit.
 - Auto-close via `Closes #N`/`Fixes #N` at merge — fires before the ledger is
   verified; close deliberately after N-of-N.
+- Closing the issue before the user accepts the deployed change — merge is a
+  claim; wait for manual acceptance of the running/deployed state before
+  discharging the ledger.
 - Open threads — reconcile first via `sks-pr-resolve`.
 
 ## Verification Checklist
@@ -179,6 +191,8 @@ push. A failing run exits non-zero and skips merge (red never lands).
       (lone or stacked — one squash-merge per PR, base `main`).
 - [ ] Issue closed deliberately with rationale.
 - [ ] Landing bookmark removed locally and reconciled on origin.
+- [ ] User accepted the deployed change (manual acceptance gate, post-merge
+      step 2) — merge alone is not the end state.
 
 ## Verification
 

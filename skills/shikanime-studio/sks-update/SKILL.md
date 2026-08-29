@@ -113,6 +113,16 @@ when the user named one.
    - Verify the resync: `hermes skills list` shows each updated skill and
      `hermes skills diff <skill>` (or reading the file) shows the new body.
 
+6. **Manual user acceptance (deployment gate).** A green merge plus a
+   successful resync is a claim, not a verified outcome. After the resync
+   lands in local agents, surface the deployed change for inspection —
+   `hermes skills diff <skill>` (or a file read) for each updated skill — and
+   ask the user to validate it behaves as asked. Do NOT report the update
+   complete on merge/resync alone; only the user can confirm the deployed
+   behavior. If the user rejects, treat it as a reported defect and loop back
+   to step 3 (curate) or step 4 (re-ship), then re-deploy and re-request
+   acceptance.
+
 ## Resync gotchas
 
 - **Bundled vs hub-installed skills.** If a skill is bundled with Hermes, a
@@ -124,6 +134,10 @@ when the user named one.
 - **Resync is only meaningful after landing.** Copying a branch's skill into
   `~/.hermes/skills` before the PR merges loads un-reviewed content. Land
   first, resync second.
+- **Manual acceptance after deployment.** Green merge + successful resync is
+  not the end state. Surface the deployed change (`hermes skills diff
+  <skill>`) and wait for explicit user acceptance before reporting the update
+  complete; automated gates cannot confirm the change behaves as asked.
 - **Audit drives the pass, not taste.** Curate what the audit flags; leave
   healthy skills untouched so the full pass stays a small, reviewable diff
   rather than a rewrite of everything.
@@ -131,9 +145,11 @@ when the user named one.
 ## Gate
 
 Complete when every in-scope skill is curated (delta reported per skill),
-merged to `main` (`gh pr view <N> --json state` = `MERGED`), and local agents
-load the new bodies (`hermes skills list` + content check). Any unmet step is
-a blocker — say `BLOCKED:` with evidence and recovery, never silently skip.
+merged to `main` (`gh pr view <N> --json state` = `MERGED`), local agents
+load the new bodies (`hermes skills list` + content check), **and the user has
+explicitly accepted the deployed change** (manual acceptance, step 6). Any
+unmet step is a blocker — say `BLOCKED:` with evidence and recovery, never
+silently skip.
 
 ## See also
 
