@@ -319,30 +319,15 @@ future agent behavior: enforced hooks (gitlint/commitlint/DCO), branch
 protection, push-to-origin policy, mid-task quirks (e.g. broken `#N` shorthand →
 use full URL). Skip per-task detail.
 
-## GitHub Actions merge-queue triggers
-
-Authoring `.github/workflows/*.yaml` that interact with the merge queue or branch
-protection needs `pull_request_target` triggers alongside `pull_request`. The full
-trigger gotcha, the "unnecessary pull_request_target" pitfall, and the Nix YAML
-generation pattern live in
-`references/github-actions-merge-queue.md` — load it when editing CI workflows in
-a shikanime repo.
-
-## Inference stack (load on demand)
-
-The shikanime inference deployment (llama.cpp router mode, `inference-models-preset`
-ConfigMap, `backend.yaml` remote + local-floor backends, LWS 2-node capacity
-math, router layout, `aiservicebackend.yaml` migration) is **not** part of the dev
-loop. Load `references/lws-router-mode.md` when deploying or debugging inference
-on a `machines`-class repo.
-
 ## Pitfalls
 
-LWS + router mode patterns — load `references/lws-router-mode.md` for the full
-deployment reference (capacity math, LWS spec, node-specific overlays).
-Nix / treefmt formatting + devenv escaping for `machines`-class repos: load
-`references/nix-flake-quirks.md` (1-backslash `\\${{ }}` rule, SOPS_AGE_KEY eval
-env, catbox under `packages` not `nixosConfigurations`).
+- Editing directly in a cloned checkout (even when clean) is unsafe — other
+  editors' uncommitted WIP can fold into your commit. Always open a fresh `jj`
+  workspace via `sks-stack` for every implementation unit.
+- `jj` does not auto-track bookmarks; run `jj bookmark track <branch> --remote=origin`
+  before the first push.
+- Never skip `--skip` on markdown in `nix fmt`; `treefmt` runs rumdl-check on all
+  `.md` files and will fail the build on long lines.
 
 ## Verification
 
