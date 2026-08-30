@@ -124,10 +124,14 @@ Rebase onto `main` before pushing/opening (never from a stale base):
 For an existing PR verify mergeability:
 `gh pr view <N> --json mergeable,mergeStateStatus`.
 
-**Temp body files are NOT hard-wrapped** — author `--body`/`--body-file` in
-semantic line breaks (one sentence per line, no 80-col wrap); GitHub joins
-consecutive non-blank lines. Never run `nix fmt`/`mdformat` over a temp body
-file.
+**GitHub PR body is free text** — author `--body`/`--body-file` as natural
+prose: never wrap lines and never insert hard line breaks at a column width.
+GitHub renders the text as-is (a blank line separates paragraphs). Never run
+`nix fmt`/`mdformat` over a PR body; those tools enforce an 80-column wrap
+that does not apply to GitHub bodies. Encouragez un diagramme Mermaid (ex.
+`flowchart`) dans le corps quand une représentation visuelle aide le lecteur —
+GitHub rend le Mermaid dans les corps de PR. Le diagramme est un renfort
+optionnel, jamais un substitut à la prose.
 
 - `@nom` en prose déclenche une mention d'utilisateur/équipe — pour écrire un
   `@` littéral (decorators, clés de config, `@Inject(x)`), l'enfermer dans un

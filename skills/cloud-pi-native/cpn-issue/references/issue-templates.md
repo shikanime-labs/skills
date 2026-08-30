@@ -1,8 +1,9 @@
 # CPN console issue templates (French)
 
 Paste the matching block as the `--body` of the `gh issue create` command in
-`SKILL.md`. Author in semantic line breaks (one sentence per line, no 80-col
-wrap). Never run `nix fmt` / `mdformat` over a temp body file.
+`SKILL.md`. Author as free text: natural paragraphs, no line wrapping and no
+hard line breaks at a column width. Never run `nix fmt` / `mdformat` over an
+issue body.
 
 ## Bug issue
 

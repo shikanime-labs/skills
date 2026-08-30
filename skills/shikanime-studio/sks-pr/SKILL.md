@@ -66,18 +66,23 @@ remote as canonical.
    - `## References` — `Related: <full issue URL>` (mandatory) plus any
      commits/specs/changelogs proving the solution.
    - See `references/example-pr-body.md` for a filled example.
-   - Temp body files are NOT hard-wrapped: one sentence per line. GitHub joins
-     consecutive non-blank lines; a one-line edit churns only that line. Never
-     `nix fmt` / `mdformat` a temp body file.
+   - GitHub PR body is free text — never wrap lines and never insert hard line
+     breaks at a column width. Write natural paragraphs; a blank line
+     separates paragraphs, everything else renders as-is. Never run `nix fmt`
+     / `mdformat` over a PR body; those tools enforce an 80-column wrap that
+     does not apply to GitHub bodies.
+   - Encourage a Mermaid diagram (e.g. `flowchart TD`) in the body when a visual
+     aids the reader — GitHub renders Mermaid inline in PR bodies. The diagram
+     is optional reinforcement, never a substitute for the `## What` / `## Why`
+     / `## References` structure.
    - A bare `@name` in prose pings that user/team — wrap any literal `@` (NestJS
      `@Inject(x)`, decorators, config keys) in a code span or fenced block; only
      code disables mention parsing.
    - Use full URLs — never bare `#XXXX` / `owner/repo#XXXX` (broken):
      `Related: https://github.com/<org>/<repo>/issues/N` (same repo) or
-     `Related: https://github.com/owner/repo/issues/N` (cross-repo). Multiple:
-     comma-separate if ≤80 cols, else one `Related:` per URL (`manifests`
-     gitlint enforces 80-col). Repo-enforced shape (e.g. `manifests` `AGENTS`
-     file: `Related:` + 80-col + `Signed-off-by`) overrides — follow the repo.
+     `Related: https://github.com/owner/repo/issues/N` (cross-repo). List each
+     URL on its own line. Repo-enforced shape (e.g. `manifests` `AGENTS` file:
+     `Related:` + `Signed-off-by`) overrides — follow the repo.
    - **Guard — PR template ≠ issue template**: the PR body NEVER uses the
      issue's `## Problem` / `## Acceptance` shape. A body that copies the issue
      template, leaks a bare `#N`, or invents a field (e.g. `Stacks on:`) is a
