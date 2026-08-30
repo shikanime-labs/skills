@@ -5,6 +5,96 @@
   "license": "Apache-2.0",
   "skills": [
     {
+      "name": "book-cert-manager",
+      "description": "cert-manager install, issuers, and certs reference.",
+      "path": "skills/devops/book-cert-manager"
+    },
+    {
+      "name": "book-envoy-gateway",
+      "description": "Reference for Envoy Gateway concepts, install, and tasks.",
+      "path": "skills/devops/book-envoy-gateway"
+    },
+    {
+      "name": "book-external-dns",
+      "description": "ExternalDNS ops, annotations, and provider pitfalls.",
+      "path": "skills/devops/book-external-dns"
+    },
+    {
+      "name": "book-fluxcd",
+      "description": "Flux Toolkit controllers, CRDs, and CLI reference.",
+      "path": "skills/devops/book-fluxcd"
+    },
+    {
+      "name": "book-k8s-gateway-api",
+      "description": "Gateway API reference: resources, routes, TLS, mesh.",
+      "path": "skills/devops/book-k8s-gateway-api"
+    },
+    {
+      "name": "book-kameo",
+      "description": "Distilled reference for the Kameo Rust actor framework.",
+      "path": "skills/software-development/book-kameo"
+    },
+    {
+      "name": "book-llama-cpp",
+      "description": "Local llama.cpp GGUF inference, serving, and Hub discovery.",
+      "path": "skills/mlops/inference/book-llama-cpp"
+    },
+    {
+      "name": "book-longhorn",
+      "description": "Distilled Longhorn 1.12.1 documentation knowledge base.",
+      "path": "skills/devops/book-longhorn"
+    },
+    {
+      "name": "book-nestjs",
+      "description": "NestJS patterns and APIs distilled from official docs.",
+      "path": "skills/software-development/book-nestjs"
+    },
+    {
+      "name": "book-nix",
+      "description": "Distilled reference for Nix, NixOS, and Nixpkgs manuals.",
+      "path": "skills/devops/book-nix"
+    },
+    {
+      "name": "book-nushell",
+      "description": "Nushell book distilled: types, pipelines, commands, modules.",
+      "path": "skills/book-nushell"
+    },
+    {
+      "name": "book-pnpm",
+      "description": "Use when managing pnpm deps, workspaces, or lockfile.",
+      "path": "skills/software-development/book-pnpm"
+    },
+    {
+      "name": "book-rust",
+      "description": "Distilled Rust Book and Reference knowledge base.",
+      "path": "skills/software-development/book-rust"
+    },
+    {
+      "name": "book-victoria-metrics",
+      "description": "VictoriaMetrics reference: metrics, queries, cluster, ops.",
+      "path": "skills/devops/book-victoria-metrics"
+    },
+    {
+      "name": "book-victorialogs",
+      "description": "VictoriaLogs: data model, LogsQL, ingestion, querying, ops.",
+      "path": "skills/devops/book-victorialogs"
+    },
+    {
+      "name": "book-vite",
+      "description": "Use when configuring Vite, vite.config, or the dev server.",
+      "path": "skills/software-development/book-vite"
+    },
+    {
+      "name": "book-vitest",
+      "description": "Use when adding or running Vitest tests and config.",
+      "path": "skills/software-development/book-vitest"
+    },
+    {
+      "name": "book-vue3",
+      "description": "Vue 3 guide distilled: reactivity, components, composables.",
+      "path": "skills/software-development/book-vue3"
+    },
+    {
       "name": "cpn-async",
       "description": "À utiliser quand vous répartissez un travail multi-unités en parallèle sur workspaces jj isolés et PR en stack pour console cloud-pi-native.",
       "path": "skills/cloud-pi-native/cpn-async"
@@ -26,7 +116,7 @@
     },
     {
       "name": "cpn-discussion-triage",
-      "description": "Triage une discussion cloud-pi-native/console : catégorie, corps, Q\u0026A, clôture (GraphQL).",
+      "description": "Triage une discussion cloud-pi-native/console : catégorie, corps, Q&A, clôture (GraphQL).",
       "path": "skills/cloud-pi-native/cpn-discussion-triage"
     },
     {
@@ -110,14 +200,14 @@
       "path": "skills/shikanime-studio/sks-commit"
     },
     {
-      "name": "sks-curate",
-      "description": "Use when updating, improving, compressing, or token-optimizing a skill in the shikanime-labs/skills catalog: rework the body, tighten it, refresh evals, and keep it loadable.",
-      "path": "skills/shikanime-studio/sks-curate"
-    },
-    {
       "name": "sks-converge",
       "description": "Use when jj conflicts or divergent changes block a shikanime repo after a tree move: resolve conflicted revisions and divergent twins until pushable.",
       "path": "skills/shikanime-studio/sks-converge"
+    },
+    {
+      "name": "sks-curate",
+      "description": "Use when updating, improving, compressing, or token-optimizing a skill in the shikanime-labs/skills catalog: rework the body, tighten it, refresh evals, and keep it loadable.",
+      "path": "skills/shikanime-studio/sks-curate"
     },
     {
       "name": "sks-dev-workflow",
@@ -131,7 +221,7 @@
     },
     {
       "name": "sks-discussion-triage",
-      "description": "Use when triaging an existing shikanime org discussion: category, body shape, Q\u0026A answer, and conversion to an issue.",
+      "description": "Use when triaging an existing shikanime org discussion: category, body shape, Q&A answer, and conversion to an issue.",
       "path": "skills/shikanime-studio/sks-discussion-triage"
     },
     {
@@ -148,16 +238,6 @@
       "name": "sks-investigate",
       "description": "Use when investigating a bug, test failure, build break, or unexpected behavior in a shikanime repo: find root cause before any fix, minimal repro, and proven verification.",
       "path": "skills/shikanime-studio/sks-investigate"
-    },
-    {
-      "name": "sks-restack",
-      "description": "Use when rebasing a shikanime jj stack onto moved main leaves conflicts: restack, then resolve each conflicted revision with edit/resolve until pushable.",
-      "path": "skills/shikanime-studio/sks-restack"
-    },
-    {
-      "name": "sks-stack",
-      "description": "Use when isolating one unit of shikanime work in a fresh jj workspace so concurrent editors / WIP never get folded in — bookmarks and pushes are scoped to that single workspace.",
-      "path": "skills/shikanime-studio/sks-stack"
     },
     {
       "name": "sks-issue",
@@ -208,6 +288,16 @@
       "name": "sks-pr-workflow",
       "description": "Use when you need the single entry point for the shikanime PR side: ensure the issue exists, open, triage, and land the PR.",
       "path": "skills/shikanime-studio/sks-pr-workflow"
+    },
+    {
+      "name": "sks-restack",
+      "description": "Use when rebasing a shikanime jj stack onto moved main leaves conflicts: restack, then resolve each conflicted revision with edit/resolve until pushable.",
+      "path": "skills/shikanime-studio/sks-restack"
+    },
+    {
+      "name": "sks-stack",
+      "description": "Use when isolating one unit of shikanime work in a fresh jj workspace so concurrent editors / WIP never get folded in — bookmarks and pushes are scoped to that single workspace.",
+      "path": "skills/shikanime-studio/sks-stack"
     },
     {
       "name": "sks-swarm",

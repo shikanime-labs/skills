@@ -20,6 +20,78 @@
   "agents": {
     "skills": [
       {
+        "name": "book-cert-manager",
+        "path": "skills/devops/book-cert-manager"
+      },
+      {
+        "name": "book-envoy-gateway",
+        "path": "skills/devops/book-envoy-gateway"
+      },
+      {
+        "name": "book-external-dns",
+        "path": "skills/devops/book-external-dns"
+      },
+      {
+        "name": "book-fluxcd",
+        "path": "skills/devops/book-fluxcd"
+      },
+      {
+        "name": "book-k8s-gateway-api",
+        "path": "skills/devops/book-k8s-gateway-api"
+      },
+      {
+        "name": "book-kameo",
+        "path": "skills/software-development/book-kameo"
+      },
+      {
+        "name": "book-llama-cpp",
+        "path": "skills/mlops/inference/book-llama-cpp"
+      },
+      {
+        "name": "book-longhorn",
+        "path": "skills/devops/book-longhorn"
+      },
+      {
+        "name": "book-nestjs",
+        "path": "skills/software-development/book-nestjs"
+      },
+      {
+        "name": "book-nix",
+        "path": "skills/devops/book-nix"
+      },
+      {
+        "name": "book-nushell",
+        "path": "skills/book-nushell"
+      },
+      {
+        "name": "book-pnpm",
+        "path": "skills/software-development/book-pnpm"
+      },
+      {
+        "name": "book-rust",
+        "path": "skills/software-development/book-rust"
+      },
+      {
+        "name": "book-victoria-metrics",
+        "path": "skills/devops/book-victoria-metrics"
+      },
+      {
+        "name": "book-victorialogs",
+        "path": "skills/devops/book-victorialogs"
+      },
+      {
+        "name": "book-vite",
+        "path": "skills/software-development/book-vite"
+      },
+      {
+        "name": "book-vitest",
+        "path": "skills/software-development/book-vitest"
+      },
+      {
+        "name": "book-vue3",
+        "path": "skills/software-development/book-vue3"
+      },
+      {
         "name": "cpn-async",
         "path": "skills/cloud-pi-native/cpn-async"
       },
@@ -104,13 +176,13 @@
         "path": "skills/shikanime-studio/sks-commit"
       },
       {
-        "name": "sks-curate",
-        "path": "skills/shikanime-studio/sks-curate"
-      },
-      {
         "name": "sks-converge",
         "description": "Use when jj conflicts or divergent changes block a shikanime repo after a tree move: resolve conflicted revisions and divergent twins until pushable.",
         "path": "skills/shikanime-studio/sks-converge"
+      },
+      {
+        "name": "sks-curate",
+        "path": "skills/shikanime-studio/sks-curate"
       },
       {
         "name": "sks-dev-workflow",
@@ -135,15 +207,6 @@
       {
         "name": "sks-investigate",
         "path": "skills/shikanime-studio/sks-investigate"
-      },
-      {
-        "name": "sks-restack",
-        "description": "Use when rebasing a shikanime jj stack onto moved main leaves conflicts: restack, then resolve each conflicted revision with edit/resolve until pushable.",
-        "path": "skills/shikanime-studio/sks-restack"
-      },
-      {
-        "name": "sks-stack",
-        "path": "skills/shikanime-studio/sks-stack"
       },
       {
         "name": "sks-issue",
@@ -184,6 +247,15 @@
       {
         "name": "sks-pr-workflow",
         "path": "skills/shikanime-studio/sks-pr-workflow"
+      },
+      {
+        "name": "sks-restack",
+        "description": "Use when rebasing a shikanime jj stack onto moved main leaves conflicts: restack, then resolve each conflicted revision with edit/resolve until pushable.",
+        "path": "skills/shikanime-studio/sks-restack"
+      },
+      {
+        "name": "sks-stack",
+        "path": "skills/shikanime-studio/sks-stack"
       },
       {
         "name": "sks-swarm",

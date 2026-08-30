@@ -162,6 +162,33 @@ the org workflows above.
 | --------------- | ------------------------------------------------------------------- |
 | `nix-pr-review` | Review an upstream nixpkgs PR: build changed packages with nixpkgs-review and check the diff against nixpkgs conventions |
 
+### reference (book-*) family
+
+Distilled documentation knowledge bases for libraries, toolchains, and
+platform components — loaded on demand via `skill_view`. These carry the
+`book-` prefix and are organized by domain under `skills/`.
+
+| Skill                     | Description                                                                                        |
+| ------------------------- | -------------------------------------------------------------------------------------------------- |
+| `book-cert-manager`       | cert-manager install, issuers, and certs reference                                                 |
+| `book-envoy-gateway`      | Reference for Envoy Gateway concepts, install, and tasks                                            |
+| `book-external-dns`       | ExternalDNS ops, annotations, and provider pitfalls                                                |
+| `book-fluxcd`             | Flux Toolkit controllers, CRDs, and CLI reference                                                  |
+| `book-k8s-gateway-api`    | Gateway API reference: resources, routes, TLS, mesh                                               |
+| `book-longhorn`           | Distilled Longhorn 1.12.1 documentation knowledge base                                             |
+| `book-nix`                | Distilled reference for Nix, NixOS, and Nixpkgs manuals                                            |
+| `book-victoria-metrics`   | VictoriaMetrics reference: metrics, queries, cluster, ops                                          |
+| `book-victorialogs`       | VictoriaLogs: data model, LogsQL, ingestion, querying, ops                                         |
+| `book-kameo`              | Distilled reference for the Kameo Rust actor framework                                             |
+| `book-nestjs`             | NestJS patterns and APIs distilled from official docs                                              |
+| `book-pnpm`              | Use when managing pnpm deps, workspaces, or lockfile                                              |
+| `book-rust`               | Distilled Rust Book and Reference knowledge base                                                   |
+| `book-vite`              | Use when configuring Vite, vite.config, or the dev server                                         |
+| `book-vitest`             | Use when adding or running Vitest tests and config                                                 |
+| `book-vue3`              | Vue 3 guide distilled: reactivity, components, composables                                         |
+| `book-llama-cpp`          | Local llama.cpp GGUF inference, serving, and Hub discovery                                         |
+| `book-nushell`            | Nushell book distilled: types, pipelines, commands, modules                                        |
+
 ## Development
 
 ```bash

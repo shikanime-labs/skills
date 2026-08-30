@@ -25,27 +25,27 @@ echo "== dangling bookmarks (not trunk, no open PR) =="
 # `trunk()` resolves the configured trunk (main/trunk/master) so the revset
 # works on repos whose trunk is not named main.
 jj bookmark list -r 'bookmarks() & ~::trunk()' --color never \
-  -T 'name ++ "\n"' \
-  | sort -u | while read -r bm; do
-    case " $TRUNK " in
-      *" $bm "*) continue ;;
-    esac
-    if echo "$OPEN_PRS" | grep -qx "$bm"; then
-      continue
-    fi
-    echo "$bm"
-  done
+  -T 'name ++ "\n"' |
+  sort -u | while read -r bm; do
+  case " $TRUNK " in
+  *" $bm "*) continue ;;
+  esac
+  if echo "$OPEN_PRS" | grep -qx "$bm"; then
+    continue
+  fi
+  echo "$bm"
+done
 
 echo "== skill workspaces (<repo>.<unit> or <repo>.fix) =="
 # jj 0.43: default `workspace list` has no path column — template it explicitly
 REPO_NAME=$(basename "$PWD")
-jj workspace list --color never -T 'name ++ "\t" ++ root ++ "\n"' \
-  | while IFS=$'\t' read -r name path; do
-    [[ "$name" == "$REPO_NAME".* ]] \
-      || continue
+jj workspace list --color never -T 'name ++ "\t" ++ root ++ "\n"' |
+  while IFS=$'\t' read -r name path; do
+    [[ $name == "$REPO_NAME".* ]] ||
+      continue
     # canonical repo-named workspace is never a candidate
-    if jj -R "$path" status --color never 2>/dev/null \
-      | grep -q 'has no changes'; then
+    if jj -R "$path" status --color never 2>/dev/null |
+      grep -q 'has no changes'; then
       echo "CLEAN $name $path"
     else
       echo "DIRTY $name $path   # skip: uncommitted changes (data loss)"

@@ -6,7 +6,7 @@
 # output, one section per metadata class.
 set -euo pipefail
 
-if [[ $# -ne 1 || -z "$1" ]]; then
+if [[ $# -ne 1 || -z $1 ]]; then
   echo "Error: REPO (OWNER/REPO) is required." >&2
   echo "Usage: scripts/discover-metadata.sh shikanime-labs/skills" >&2
   exit 2
@@ -25,8 +25,8 @@ gh api --paginate "repos/$REPO/milestones?state=open" \
 
 echo "== projects (owner) =="
 gh project list --owner "$OWNER" --format json \
-  --jq '.[] | "\(.number)\t\(.title)"' 2>/dev/null \
-  || echo "no accessible projects (needs project scope)"
+  --jq '.[] | "\(.number)\t\(.title)"' 2>/dev/null ||
+  echo "no accessible projects (needs project scope)"
 
 echo "== assignees =="
 gh api --paginate "repos/$REPO/assignees" --jq '.[].login'
@@ -37,7 +37,7 @@ gh api --paginate "repos/$REPO/issue-types" \
 
 echo "== custom fields =="
 FIELDS=$(gh api --paginate "repos/$REPO/fields" --jq '.[].name' 2>/dev/null) || FIELDS=""
-if [[ -z "$FIELDS" ]]; then
+if [[ -z $FIELDS ]]; then
   echo "no repo-level fields"
 else
   echo "$FIELDS"

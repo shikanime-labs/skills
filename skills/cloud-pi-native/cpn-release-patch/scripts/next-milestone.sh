@@ -5,7 +5,7 @@
 # from this value.
 set -euo pipefail
 
-if [[ $# -ne 1 || -z "$1" ]]; then
+if [[ $# -ne 1 || -z $1 ]]; then
   echo "Error: BASE_TAG is required." >&2
   echo "Usage: scripts/next-milestone.sh v9.24.4" >&2
   exit 2
@@ -13,12 +13,12 @@ fi
 
 BASE_TAG=$1
 BASE=${BASE_TAG#v}
-if [[ "$BASE" != *.*.* || "$BASE" == *.*.*.* ]]; then
+if [[ $BASE != *.*.* || $BASE == *.*.*.* ]]; then
   echo "Error: '$BASE_TAG' is not a vMAJOR.MINOR.PATCH tag (e.g. v9.24.4)." >&2
   exit 2
 fi
 IFS=. read -r MAJ MIN PAT <<<"$BASE"
-if [[ ! "$MAJ" =~ ^[0-9]+$ || ! "$MIN" =~ ^[0-9]+$ || ! "$PAT" =~ ^[0-9]+$ ]]; then
+if [[ ! $MAJ =~ ^[0-9]+$ || ! $MIN =~ ^[0-9]+$ || ! $PAT =~ ^[0-9]+$ ]]; then
   echo "Error: '$BASE_TAG' is not a vMAJOR.MINOR.PATCH tag (e.g. v9.24.4)." >&2
   exit 2
 fi
