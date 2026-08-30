@@ -28,12 +28,7 @@ platforms:
 
 # Shikanime Org PR Workflow
 
-Orchestrator over `sks-issue`/`sks-pr`/`sks-pr-triage`: issue → PR → triage.
-
-Encourage authors to embed a Mermaid diagram in the issue or PR body when a
-flow or architecture helps the reader — GitHub renders Mermaid inline. The body
-stays free text; the diagram is optional reinforcement, never a substitute for
-the prose.
+Orchestrator over `sks-issue`/`sks-pr`/`sks-pr-triage`: issue → PR → triage. Environment facts (org identity, repo paths, toolchain, branch protection, push policy) live in `sks-env`.
 
 ## When to Use
 
