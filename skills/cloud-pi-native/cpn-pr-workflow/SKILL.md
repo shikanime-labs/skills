@@ -30,6 +30,11 @@ metadata:
 Fin-orchestrateur sur `cpn-issue`, `cpn-pr`, `cpn-pr-triage` (issue liée → PR
 draft → triage). Logique PR déléguée.
 
+Encouragez les auteurs à intégrer un diagramme Mermaid dans le corps de
+l'issue ou de la PR quand un flux ou une architecture aide le lecteur — GitHub
+rend le Mermaid en ligne. Le corps reste en texte libre ; le diagramme est un
+renfort optionnel, jamais un substitut à la prose.
+
 ## Étapes
 
 1. **Issue liée.** Sans `#N` fournie et convergée, charge `cpn-issue` (ou

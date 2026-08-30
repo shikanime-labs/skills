@@ -328,6 +328,8 @@ use full URL). Skip per-task detail.
   before the first push.
 - Never skip `--skip` on markdown in `nix fmt`; `treefmt` runs rumdl-check on all
   `.md` files and will fail the build on long lines.
+- GitHub issue/PR bodies are NOT repo markdown — they are free text. Never wrap
+  them and never run `nix fmt` / `mdformat` over a body (see each issue/PR skill).
 
 ## Verification
 

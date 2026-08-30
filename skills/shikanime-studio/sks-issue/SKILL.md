@@ -62,10 +62,11 @@ gh issue create --repo <org>/<repo> --title "<summary>" --label <type> --body ".
 
 ### 2. Body = problem statement only
 
-Temp body files are NOT hard-wrapped — semantic line breaks (one sentence per
-line, no 80-col wrap); GitHub joins consecutive non-blank lines, so a
-one-sentence edit churns only that line. Never `nix fmt` / `mdformat` a temp
-body file.
+GitHub issue body is free text — never wrap lines and never insert hard line
+breaks at a column width. Write natural paragraphs; a blank line separates
+paragraphs and everything else renders as-is. Never run `nix fmt` / `mdformat`
+over an issue body; those tools enforce an 80-column wrap that does not apply
+to GitHub bodies.
 
 - A bare `@name` in prose pings that user/team — wrap any literal `@` (NestJS
   `@Inject(x)`, decorators, config keys) in a code span or fenced block; only
@@ -77,6 +78,10 @@ version, impact). Post root-cause / investigation findings as a **comment**
 body — it must stay stable for triage. The issue is a clean conversation, not a
 notebook: concluded findings + open questions only, never raw reasoning/status
 chatter; interim comments deletable after convergence.
+
+Encourage a Mermaid diagram (e.g. `flowchart TD`) in the body when a visual
+aids the reader — GitHub renders Mermaid inline in issue bodies. The diagram is
+optional reinforcement, never a substitute for the prose.
 
 Acceptance criteria: a `- [ ]` tasklist, each item phrased so a command can
 decide it. An item is done only once its check ran, never from memory; an

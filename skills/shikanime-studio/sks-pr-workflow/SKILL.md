@@ -30,6 +30,11 @@ platforms:
 
 Orchestrator over `sks-issue`/`sks-pr`/`sks-pr-triage`: issue → PR → triage.
 
+Encourage authors to embed a Mermaid diagram in the issue or PR body when a
+flow or architecture helps the reader — GitHub renders Mermaid inline. The body
+stays free text; the diagram is optional reinforcement, never a substitute for
+the prose.
+
 ## When to Use
 
 - "Run the full PR side: issue → PR → triage."

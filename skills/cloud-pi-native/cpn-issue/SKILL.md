@@ -63,9 +63,14 @@ demande à l'utilisateur s'il faut la réutiliser plutôt qu'en ouvrir une
 nouvelle. Ne crée une nouvelle issue que s'il n'en existe aucune correspondante
 (ou si l'utilisateur préfère un ticket neuf).
 
-**Temp body files are NOT hard-wrapped** — semantic line breaks (one sentence
-per line, no 80-col wrap); GitHub joins non-blank lines into one paragraph.
-Never run `nix fmt` / `mdformat` over a temp body file.
+**GitHub issue body is free text** — never wrap lines and never insert hard
+line breaks at a column width. Write natural paragraphs; a blank line
+separates paragraphs, everything else renders as-is. Never run `nix fmt` /
+`mdformat` over an issue body; those tools enforce an 80-column wrap that does
+not apply to GitHub bodies. Encouragez un diagramme Mermaid (ex. `flowchart`)
+quand une représentation visuelle aide le lecteur — GitHub rend le Mermaid dans
+les corps d'issue. Le diagramme est un renfort optionnel, jamais un substitut à
+la prose.
 
 - `@nom` en prose déclenche une mention d'utilisateur/équipe — pour écrire un
   `@` littéral (decorators, clés de config, `@Inject(x)`), l'enfermer dans un
