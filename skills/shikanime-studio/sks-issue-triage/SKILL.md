@@ -1,10 +1,10 @@
 ---
 name: sks-issue-triage
 description:
-  "Use when triaging an existing shikanime org issue: assign type, labels,
-  assignee, milestone, project, relationships, and fields; close with rationale
-  if not workable."
-version: 0.2.0
+  "Use when triaging an existing shikanime org issue: assign type with
+  attribution rationale, labels, assignee, milestone, project, relationships,
+  and fields; close with rationale if not workable."
+version: 0.3.0
 author: Hermes Agent
 license: Apache-2.0
 metadata:
@@ -29,7 +29,8 @@ platforms:
 
 Triage an issue in `shikanime-labs/*`/`shikanime-studio/*`: fill fields **empty
 on the issue** and **derivable from its content**. English; never invent a
-repo-lacking value.
+repo-lacking value. When a type is assigned, the attribution (why that type)
+is recorded on the issue — not left in the agent transcript.
 
 ## Available script
 
@@ -87,7 +88,7 @@ mean those fields stay empty.
 - **type** — if empty and the repo has issue types: map by meaning
   (defect/regression→`Bug`, new capability→`Feature`,
   task/tracking→`Task`). Set only a name from the step-2 issue-types list —
-  never invent. Apply with `gh issue edit "$N" --repo "$R" --type <name>`.
+  never invent. Attribution is mandatory — see **Type attribution** below.
 - **labels** — best match by meaning (defect→`bug`, new
   capability→`enhancement`, doc→`documentation`); add an area label only if
   it exists. Drop any not in the step-2 list — never invent.
@@ -120,9 +121,44 @@ mean those fields stay empty.
   proceeding. Do **not** also edit or close the source issue — transfer
   empties it.
 
+### Type attribution (mandatory when a type is set)
+
+A type decision without recorded attribution is unverifiable: a later reviewer
+cannot tell whether `Bug` was assigned from actual defect evidence (repro,
+error output, regression vs prior behavior) or defaulted. Therefore, whenever
+step 3 assigns or changes the issue **type**, post the attribution on the
+issue before or with the type edit:
+
+```bash
+gh issue comment "$N" --repo "$R" --body "## Triage attribution
+
+**Type:** <Bug|Feature|Task>
+
+Evidence:
+- <quote or tightly paraphrased snippet from the issue body/reports>
+- <second snippet, when applicable>
+
+Mapping: <one clause — e.g. \"reproducible failure against shipped behavior\">
+"
+```
+
+Rules:
+
+- **Evidence over assertion.** Each bullet must be grounded in issue content
+  (body text, linked report, reproduction output). If no defect/capability
+  evidence exists, the type is `Task` and the attribution says what makes it
+  routine work rather than a defect or new capability.
+- **One comment per triage decision.** If a later pass re-types the issue, add
+  a new attribution comment; never edit history to hide the earlier call.
+- **Only when the type is empty or changing.** A re-triage that keeps the
+  existing type posts nothing.
+- The comment accompanies — never replaces — the type edit; a type with no
+  attribution comment is an incomplete triage.
+
 ### 4. Apply
 
 ```bash
+gh issue comment "$N" --repo "$R" --body "<attribution>"   # when type is set
 gh issue edit "$N" --repo "$R" --type "Bug"          # only if empty + enabled
 gh issue edit "$N" --repo "$R" \
   --add-label "bug" --add-label "area/..."
@@ -142,6 +178,9 @@ gh issue view "$N" --repo "$R" --json number,title,labels,assignees,milestone,pr
 gh api repos/"$R"/issues/"$N" \
   --jq '{type: (.type // ""), parent: (.parent_issue.number // null)}' \
   # confirm type + parent landed
+gh issue view "$N" --repo "$R" --json comments \
+  --jq '[.comments[] | select(.body | startswith("## Triage attribution"))] | length' \
+  # confirm the attribution comment landed when a type was set
 ```
 
 ### 6. Close issues that will not be worked

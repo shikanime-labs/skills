@@ -116,7 +116,7 @@ specification, compatible with the
 | `sks-isolate`           | Isolate one unit of shikanime work in a fresh jj workspace; bookmarks + pushes scoped to that workspace                      |
 | `sks-issue`             | Issues with the gate-ledger tasklist                                                                                         |
 | `sks-issue-refine`      | Iterate a problem to convergence within its issue via research + comments                                                    |
-| `sks-issue-triage`      | Issue triage: metadata + rationale closes                                                                                    |
+| `sks-issue-triage`      | Issue triage: type attribution + metadata + rationale closes                                                                 |
 | `sks-issue-workflow`    | Issue side end-to-end: create → refine → triage                                                                              |
 | `sks-land`              | Merge PRs after DoD + review gates pass                                                                                      |
 | `sks-pr`                | PRs derived from the commit, pushed to origin                                                                                |

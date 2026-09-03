@@ -12,7 +12,8 @@
         "The license field is 'Apache-2.0'.",
         "The body contains at least one '##' heading.",
         "Body assigns labels, assignee, milestone, and project.",
-        "Body never invents a repo-lacking label and only fills fields empty on the issue."
+        "Body never invents a repo-lacking label and only fills fields empty on the issue.",
+        "When the body assigns an issue type, it also posts a triage-attribution comment quoting evidence from the issue and the meaning-based mapping that justified the type."
       ]
     },
     {
@@ -101,6 +102,19 @@
         "The 'name' field equals 'sks-issue-triage'.",
         "The description does not contain substring 'cpn-issue-triage'.",
         "Body does not contain substring 'cpn-issue-triage'."
+      ]
+    },
+    {
+      "id": 9,
+      "expected_output": "Type assignment always carries on-issue attribution: evidence grounded in the issue content plus the meaning-based mapping, posted as a comment; no evidence means Task, not an invented Bug.",
+      "files": [],
+      "prompt": "Triage issue #7 in shikanime-studio/sk-async — it reports that uploads fail with a 500 since the last release. Set the issue type.",
+      "assertions": [
+        "Frontmatter parses as valid YAML.",
+        "The 'name' field equals 'sks-issue-triage'.",
+        "The body requires a triage-attribution comment whenever an issue type is assigned or changed.",
+        "The attribution comment template includes an Evidence section quoting issue content and a mapping clause.",
+        "Body states that a type decision without defect/capability evidence maps to Task rather than being defaulted."
       ]
     }
   ],
