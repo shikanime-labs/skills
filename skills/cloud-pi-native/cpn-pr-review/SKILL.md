@@ -3,7 +3,7 @@ name: cpn-pr-review
 description:
   "À utiliser quand vous relisez une PR de cloud-pi-native/console :
   architecture, conventions NestJS et rendu de revue en français."
-version: 0.1.1
+version: 0.2.0
 author: Hermes Agent
 license: Apache-2.0
 metadata:
@@ -18,6 +18,7 @@ metadata:
     related_skills:
       - cpn-pr-resolve
       - cpn-dev-workflow
+      - ponytail-review
 platforms:
   - linux
   - macos
@@ -69,7 +70,10 @@ gh pr review <N> --request-changes --body "..."   # post verdict
 **1 Context.** Read PR title/body, linked issue, branch. Confirm branched from
 `origin` and author email is the cpn identity. **2 High-level.** Run the console
 architecture checklist — see `references/console-architecture.md` +
-`references/review-procedure.md`. **3 Line-by-line.** Apply the line-level
+`references/review-procedure.md`. Lentille YAGNI (`ponytail-review`, plugin
+ponytail) : signaler ce qui peut être supprimé ou remplacé par la stdlib ;
+corner-cut délibéré → commentaire `ponytail:` (plafond + chemin de montée),
+récolté par `ponytail-debt`. **3 Line-by-line.** Apply the line-level
 checklist — see `references/review-procedure.md`. **4 Summary.** Severity-tag
 findings; post each inline as a French comment anchored at its line
 (`references/review-output.md`), NOT one block comment. Body = 2-3 sentence

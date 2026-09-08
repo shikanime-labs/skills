@@ -52,7 +52,7 @@ empty output. Verify via `jj file show` and cross-check counts:
 ```bash
 ROOT=$(jj root)
 jj file show -r <commit> <path> | grep -c "it('should"      # test count
-# AI-marker sweep
+# AI-marker sweep (ponytail: corner-cut markers; ledger via ponytail-debt)
 jj file show -r <commit> <path> | grep -l "ponytail"        # per-file
 # signature present
 jj log -r <commit> --no-graph -T 'if(signature, "signed", "UNSIGNED")'
@@ -119,6 +119,20 @@ Get `<known-remote-sha>` from `git ls-remote origin refs/heads/<branch>`.
   `git rebase --onto origin/main <slice-base> <temp-branch>`, then resolve
   cross-file overlaps by `git rm` the file already covered by the earlier PR.
   Amend the later PR's message to drop the now-absent file.
+- **Stacked PR on an existing own PR branch** (slice already pushed, no rebase
+  wanted): branch from the PR tip, push the new branch, open with
+  `--base <pr-branch>` (NOT main). GitHub accepts a sibling branch as base; the
+  stacked PR's diff shows only the slice. When the slice must INVERT part of
+  the parent PR (e.g. revert a rename pending an upstream console PR), keep the
+  parent untouched — the child commit is a pure reverse-diff; after the
+  upstream lands, `git revert <child-sha>` re-applies it. Reference the
+  dependency in « Issues liées » with merge order.
+- **`git add -A` on a doc worktree stages pnpm parasites.** Running
+  `prettier`/`pnpm` in the worktree generated `pnpm-workspace.yaml`
+  (`allowBuilds: esbuild: set this to true or false`) which got committed.
+  After any tooling run, `git status` before `git add`; if a parasite landed,
+  `git rm --cached <file> && rm <file> && git commit --amend --no-edit` then
+  `--force-with-lease` the push.
 - **SSH-sign check**: local `%G?` = `N` is a missing `allowedSignersFile` trust
   gap, NOT an unsigned commit. Confirm with
   `git cat-file -p <commit> | grep -c '^gpgsig'` (expect 1).

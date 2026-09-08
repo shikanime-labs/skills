@@ -22,6 +22,7 @@ metadata:
       - sks-land
       - sks-pr
       - requesting-code-review
+      - ponytail-review
 platforms:
   - linux
   - macos
@@ -30,9 +31,11 @@ platforms:
 
 # PR Review (sks-pr-review)
 
-Review local diffs and GitHub PRs through the Ponytail/YAGNI lens, enforcing
-shikanime review practice and repo conventions. Reports only — never
-auto-commit/merge/fix. Uses `jj`, `gh`, and standard Hermes tools.
+Review local diffs and GitHub PRs through the `ponytail`/YAGNI lens
+(`ponytail` plugin skills; `ponytail-review` is the over-engineering-only
+pass), enforcing shikanime review practice and repo conventions. Reports
+only — never auto-commit/merge/fix. Uses `jj`, `gh`, and standard Hermes
+tools.
 
 The mechanics below (added-line security scan, independent fail-closed reviewer)
 are distilled from `requesting-code-review` and adapted to the shikanime
@@ -55,13 +58,17 @@ human-gated flow: the agent posts findings and a verdict, a human approves.
 **1 — Scope.** Diff + stat. Empty diff → tell user. >15k chars → split by file.
 Command cheat-sheet: `references/commands.md`.
 
-**2 — High-level (Ponytail).** Per change:
+**2 — High-level (Ponytail ladder).** Per change:
 
 - (1) needed? speculative need → flag deletion, not review polish;
 - (2) already in codebase? reuse before reviewing a re-implementation;
 - (3) root cause not symptom — fix where all callers route through, not in the
   one path the ticket named;
 - (4) test strategy present and owned by the right unit?
+
+Full ladder: the `ponytail` skill. Deliberate corner-cuts found here should
+carry a `ponytail:` comment (ceiling + upgrade path) — `ponytail-debt`
+harvests them.
 
 **3 — Security scan (added lines).** Run `references/security-scan.md`. Any
 match = `blocking`. Covers hard-coded secrets, shell/SQL injection,
