@@ -9,7 +9,7 @@
         "YAML frontmatter parses and 'name' equals 'sks-stack'.",
         "Frontmatter license field is 'Apache-2.0'.",
         "Body contains at least one '##' heading.",
-        "Body opens the workspace via `jj workspace add ../<repo>.<unit> -r 'main@origin'`.",
+        "Body opens the workspace via `jj workspace add ../\u003crepo\u003e.\u003cunit\u003e -r 'main@origin'`.",
         "Body pins `-r 'main@origin'` so the workspace forks from the remote tip."
       ]
     },
@@ -22,7 +22,7 @@
         "YAML frontmatter parses and 'name' equals 'sks-stack'.",
         "Frontmatter description starts with 'Use when' and is at most 200 characters.",
         "Body snapshots WIP outside the isolation dir before opening the workspace.",
-        "Body copies only the change files via `jj add <change files>`."
+        "Body copies only the change files via `jj add \u003cchange files\u003e`."
       ]
     },
     {

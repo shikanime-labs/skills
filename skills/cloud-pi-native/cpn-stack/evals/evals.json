@@ -10,7 +10,7 @@
         "Frontmatter 'name' field equals 'cpn-stack'.",
         "Frontmatter 'license' field equals 'Apache-2.0'.",
         "SKILL.md body contains at least one Markdown '##' heading.",
-        "Le corps ouvre le workspace via `jj workspace add ../console.<unite> -r 'main@origin'`.",
+        "Le corps ouvre le workspace via `jj workspace add ../console.\u003cunite\u003e -r 'main@origin'`.",
         "Le corps épingle `-r 'main@origin'` pour forker depuis le tip distant."
       ]
     },
@@ -20,9 +20,9 @@
       "files": [],
       "prompt": "Je veux isoler mon correctif dans un workspace jj propre sans perdre le travail en cours de mes collègues.",
       "assertions": [
-        "Frontmatter 'description' starts with 'À utiliser quand' and is <= 200 characters.",
+        "Frontmatter 'description' starts with 'À utiliser quand' and is \u003c= 200 characters.",
         "Le corps sauvegarde le WIP hors du dossier d'isolation avant d'ouvrir le workspace.",
-        "Le corps copie uniquement les fichiers du changement via `jj add <fichiers du changement>`."
+        "Le corps copie uniquement les fichiers du changement via `jj add \u003cfichiers du changement\u003e`."
       ]
     },
     {

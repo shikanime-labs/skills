@@ -6,7 +6,7 @@
 # diff (that over-counts next-minor dev commits).
 set -euo pipefail
 
-if [[ $# -lt 2 || -z "$1" || -z "$2" ]]; then
+if [[ $# -lt 2 || -z $1 || -z $2 ]]; then
   echo "Error: REPO and MILE_NUM are required." >&2
   echo "Usage: scripts/fetch-backport-set.sh cloud-pi-native/console 42" >&2
   exit 2
@@ -22,13 +22,13 @@ PRS="$OUT.prs"
 gh api --paginate \
   "repos/$REPO/issues?milestone=$MILE_NUM&state=closed&per_page=100" \
   --jq '.[] | select(.pull_request and .pull_request.merged_at != null)
-    | "\(.pull_request.merged_at) \(.number)"' \
-  | sort | awk '{print $2}' >"$PRS"
+    | "\(.pull_request.merged_at) \(.number)"' |
+  sort | awk '{print $2}' >"$PRS"
 
 # Phase 2: merge_commit_sha per PR (only the pulls endpoint returns it).
 : >"$OUT"
 while read -r pr; do
-  [[ -n "$pr" ]] || continue
+  [[ -n $pr ]] || continue
   gh api "repos/$REPO/pulls/$pr" --jq '.merge_commit_sha' >>"$OUT"
 done <"$PRS"
 rm -f "$PRS"
