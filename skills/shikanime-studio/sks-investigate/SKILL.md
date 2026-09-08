@@ -4,7 +4,7 @@ description:
   Use when investigating a bug, test failure, build break, or unexpected
   behavior in a shikanime repo — find root cause, form a hypothesis, and propose
   a solution, never apply the fix itself.
-version: 0.2.0
+version: 0.3.0
 author: Hermes Agent
 license: Apache-2.0
 metadata:
@@ -24,6 +24,7 @@ metadata:
       - sks-stack
       - sks-issue
       - sks-dev-workflow
+      - ponytail-audit
 platforms:
   - linux
   - macos
@@ -111,6 +112,11 @@ step that would have shown the failure is in the network layer, not the handler.
 - Propose the solution as a concrete plan: the single change at the source where
   all callers route through (not a guard in every caller), sketched as a diff or
   PR description. Note the regression test that would lock it shut.
+- Pass the proposal through the `ponytail` ladder (laziest fix that works). When
+  the root cause traces to over-engineering — speculative abstraction, dead
+  flexibility, reinvented stdlib — run `ponytail-review` (diff) or
+  `ponytail-audit` (whole repo) on the failing component; its ranked
+  delete/simplify list doubles as the fix plan.
 - Record it in the linked issue. The proposal is verified when the repro
   confirms the theory and the proposed change addresses the source — not when
   code is merged. Hand off the application.
@@ -194,5 +200,7 @@ echo "investigation complete: root cause + hypothesis + proposed fix" \
 - `sks-async` — the isolation pattern, for parallel implementation rather than
   parallel debugging.
 - `sks-stack` — canonical single-workspace isolation recipe before a fix.
+- `ponytail-audit` — when the defect's root cause is accidental complexity, its
+  ranked simplification list seeds the proposal.
 - `sks-issue` / `sks-dev-workflow` / `sks-pr` — receive the proposed solution
   and apply it as a reviewed change.

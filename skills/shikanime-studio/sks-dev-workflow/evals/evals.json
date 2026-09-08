@@ -55,7 +55,7 @@
         "Frontmatter description starts with 'Use when' and is at most 200 characters",
         "Frontmatter license field is 'Apache-2.0'",
         "Body contains at least one '##' heading",
-        "Body probes gh identity and repo viewerPermission before work",
+        "Body probes gh identity and push permission before work",
         "Body reports unmet requirements as 'BLOCKED' with evidence and recovery",
         "Body treats 'pushed' or 'merged' as unproven until verified"
       ]

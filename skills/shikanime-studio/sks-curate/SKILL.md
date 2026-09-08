@@ -4,7 +4,7 @@ description:
   "Use when updating, improving, compressing, or token-optimizing a skill in
   the shikanime-labs/skills catalog: rework the body, tighten it, refresh
   evals, and keep it loadable."
-version: 0.1.0
+version: 0.2.0
 author: Hermes Agent
 license: Apache-2.0
 metadata:
@@ -21,6 +21,8 @@ metadata:
       - sks-skill-authoring
       - sks-dev-workflow
       - sks-pr-review
+      - ponytail-review
+      - ponytail-audit
 platforms:
   - linux
   - macos
@@ -92,8 +94,13 @@ place. Four properties decide whether a body is worth its weight:
 5. **Validate.** JSON-parse both manifests touched, run the evals assertions,
    and wrap markdown at 80 columns (MD013). Prefer `nix develop -c nix fmt`
    (full formatter set); a bare `nix fmt` outside the devenv skips
-   rumdl-check. Confirm the frontmatter `name` still matches the directory and
-   the description is still an imperative `Use when …` under 200 characters.
+   rumdl-check. **Also run `rumdl` directly** over every file you touched,
+   including each `references/` file you created or extracted
+   (`uvx rumdl check <dir>`). CI runs `rumdl-check` across the whole tree; a
+   locally-absent `rumdl` binary makes `treefmt` skip it silently and the
+   failure only surfaces after push. Confirm the frontmatter `name` still
+   matches the directory and the description is still an imperative
+   `Use when …` under 200 characters.
 6. **Report the delta.** State lines and tokens before/after, what you cut or
    added, and whether the evals changed. "Compressed" is a claim — prove it
    with the numbers.
@@ -132,12 +139,42 @@ naming the ceiling and the upgrade path.
 - **Compression ≠ deletion of safety.** Never remove the validation loops,
   input checks, or gate steps that prevent data loss or broken landings —
   those keep the skill safe, not fluffy.
+- **Extracted files are linted too.** When you move a block into `references/`,
+  CI runs `rumdl-check` (MD032/MD013) over those files as well as `SKILL.md`.
+  A `MD032` (list must be preceded by a blank line) in a freshly written
+  reference file is the most common miss — `uvx rumdl check` catches it before
+  the push, a missing local `rumdl` binary does not.
+- **Orphan reference = create, don't delete.** If the body points at
+  `references/<x>.md` that does not exist, the author intended progressive
+  disclosure — create `<x>.md` with the extracted content and keep the
+  load-on-demand pointer. Deleting the pointer loses the documented detail;
+  creating preserves it.
+- **Run the ponytail ladder on the body itself.** Before adding guidance,
+  check rung 2 (already in a sibling skill / reference?) — extraction beats
+  duplication, and the compression checklist above is the ladder applied to
+  prose. `ponytail-review` finds the bloat; this skill removes it.
+  For a whole-repo bloat pass, `ponytail-audit` is the analog of this
+  skill's structural audit.
+- **The local `.hermes/skills` mirror drifts ahead of the repo.** Verified
+  2026-09-08: the local `sks-dev-workflow` mirror was 1,559 lines against the
+  repo twin's 344 — months of session learnings accumulated only in the
+  operational clone. When curating, DIFF BOTH CLONES first and consolidate
+  the mirror's learnings into the repo (body or `references/`); otherwise the
+  next `hermes skills update` silently deletes them.
+- **Curate in a worktree, never `cp` over it.** When the user's tree is dirty,
+  check the PR commit out in a fresh `git worktree` and edit there. Never copy
+  the user's on-disk (possibly already-edited) file over the worktree's
+  pristine PR file — that clobbers the base and produces a bogus diff. If you
+  must move state, `git stash` the user's files, then `git checkout --` in the
+  worktree to restore its pristine base before porting fixes.
 
 ## Verification
 
 ```bash
 wc -l SKILL.md                # budget check
 nix develop -c nix fmt        # treefmt incl. rumdl-check (MD013)
+uvx rumdl check .             # markdown lint over SKILL.md + references/ (MD032/MD013)
+                              # — catches what a missing local rumdl binary hides
 # evals assertions pass, run programmatically (case-insensitive for prose)
 ```
 
@@ -151,3 +188,14 @@ description still triggers, and the before/after delta is stated in numbers.
   existing one).
 - `sks-dev-workflow` — the loop curation changes ship through.
 - `sks-pr-review` — review lens that often flags skills worth curating.
+- `ponytail-review` — over-engineering-only pass over a diff.
+- `ponytail-audit` — same lens, whole repo; template for the structural
+  audit step.
+
+## Repo-specific curation notes (verified)
+
+- `skills` repo commits: plain capitalized title + labeled body
+  (`Design:`/`Related:`) + `Signed-off-by: Shikanime Deva
+  <william.phetsinorath@shikanime.studio>` +
+  `Co-authored-by: Automata <automata@shikanime.studio>` — landed commits
+  (2026-09-03) carry both trailers.
