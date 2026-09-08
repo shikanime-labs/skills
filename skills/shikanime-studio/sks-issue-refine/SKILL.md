@@ -75,7 +75,9 @@ acceptance criteria converge (wayfinder's fog cycle on the thread).
    `gh issue comment` stating the decision reached, nothing more. No finding
    dumps, candidate lists, or reference trails; body stays the stable problem
    statement. Durable References move into the body via `gh issue edit`. Keep
-   any reply to the human short and on-point.
+   any reply to the human short and on-point. Comment shape: decision first,
+   evidence second (diff lines or command output), nothing else — one
+   resolution per comment, no nested parentheticals, asides become sentences.
 6. **Convergence test** — stop when: no item reads "build the X"; fog clears;
    body is a clean problem statement + decidable `- [ ]` ledger.
 7. **Hand off** — route to `sks-pr`/branch phase (`sks-dev-workflow` phase 3+).

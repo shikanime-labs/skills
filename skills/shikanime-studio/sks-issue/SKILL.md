@@ -88,6 +88,12 @@ decide it. An item is done only once its check ran, never from memory; an
 impossible criterion is struck with a comment, never dropped. Candidate
 solutions belong in comments, not tasklist/body.
 
+Comments follow the same prose rules as the body (free text, no wrapping) and
+stay terse: lead with the conclusion, back it with the cited evidence, stop.
+One subject per comment — split unrelated findings into separate comments.
+Never nest parentheticals; an aside becomes its own sentence. Run command
+output through a fenced block instead of narrating it inline.
+
 Observed variant (see `references/example-issue-body.md`): `## Problem` /
 `## Acceptance` with no separate References block — same content, fewer
 headings; either shape is acceptable. Keep the body stable; post

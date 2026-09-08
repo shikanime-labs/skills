@@ -278,7 +278,9 @@ parity. Each message type's exact shape lives in its owning skill:
 - **Discussion** → `sks-discussion` — RFC: context + open question + affected
   repos; no acceptance criteria (that is issue scope).
 - **Comment** → findings/proofs in comments, body stays stable; cite concrete
-  evidence (diff lines, command output), not prose.
+  evidence (diff lines, command output), not prose. Terse by default: one
+  finding per comment, code spans for commands/identifiers, no nested
+  parentheticals — move asides into a following sentence.
 - **PR** → `sks-pr` — title = commit subject; body `## What`/`## Why`/
   `## References` restating the commit; `Related: <full URL>`.
 
