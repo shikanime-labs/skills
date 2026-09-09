@@ -1,0 +1,150 @@
+agent:
+  clarify_timeout: 600
+  disabled_toolsets:
+    - computer_use
+    - homeassistant
+    - spotify
+    - x_search
+  reasoning_effort: medium
+  restart_drain_timeout: 180
+approvals:
+  destructive_slash_confirm: false
+  mode: manual
+  timeout: 60
+browser:
+  cloud_provider: nous
+  use_gateway: true
+command_allowlist:
+  - git reset --hard (destroys uncommitted changes)
+  - git branch force delete
+  - stop/restart system service
+  - script execution via -e/-c flag
+  - recursive delete
+  - disk copy
+  - delete in root path
+  - shell command via -c/-lc flag
+  - git clean with force (deletes untracked files)
+  - git force push (rewrites remote history)
+  - execute_code
+compression:
+  hygiene_hard_message_limit: 400
+  in_place: false
+curator:
+  consolidate: true
+custom_providers:
+  - name: shikanime-anthropic
+    api_mode: anthropic_messages
+    base_url: https://inference.i.shikanime.studio/anthropic
+    key_env: SKS_API_KEY
+    model: z-ai/glm-5.3-flash
+    models:
+      - z-ai/glm-5.3-flash
+      - z-ai/glm-5.3
+      - qwen/qwen3.8-27b
+      - qwen/qwen3.8-flash
+      - deepseek/deepseek-v4-flash
+  - name: shikanime-openai
+    api_mode: chat_completions
+    base_url: https://inference.i.shikanime.studio/v1
+    key_env: SKS_API_KEY
+    model: poolside/laguna-s-2.1:free
+    models:
+      - poolside/laguna-s-2.1:free
+      - qwen/qwen3.8-flash
+      - qwen/qwen3.8-27b
+      - deepseek/deepseek-v4-flash
+delegation:
+  child_timeout_seconds: 600
+  max_concurrent_children: 6
+discord:
+  websocket:
+    failure_threshold: 3
+    liveness_interval_seconds: 30
+display:
+  busy_input_mode: steer
+  interface: tui
+  reasoning_full: true
+  sections:
+    thinking: expanded
+  show_reasoning: false
+  skin: daylight
+  tool_progress: new
+gateway:
+  multiplex_profiles: true
+image_gen:
+  provider: nous
+kanban:
+  orchestrator_profile: commander
+logging:
+  memory_monitor:
+    enabled: true
+    interval_seconds: 300
+matrix:
+  allowed_rooms: "!QUaAaCBlSIBcYyOyLb:matrix.taila659a.ts.net"
+  allowed_users: '["@admin:matrix.taila659a.ts.net","@shikanime:matrix.taila659a.ts.net"]'
+memory:
+  provider: honcho
+model:
+  default: z-ai/glm-5.3-flash
+  provider: custom:shikanime-anthropic
+platforms:
+  api_server:
+    enabled: false
+  matrix:
+    enabled: true
+  relay:
+    enabled: false
+  webhook:
+    enabled: false
+    extra:
+      host: 127.0.0.1
+      port: 8644
+      secret: ""
+plugins:
+  enabled:
+    - basic
+    - discord-platform
+    - disk-cleanup
+    - hermes-lcm
+    - ponytail
+    - rtk-rewrite
+  entries:
+    hermes-lcm:
+      allow_tool_override: true
+  hermes-memory-store:
+    auto_extract: "false"
+    db_path: ~/.hermes/memory_store.db
+    default_trust: "0.5"
+    hrr_dim: "1024"
+session_reset:
+  mode: none
+skills:
+  disabled:
+    - ascii-video
+    - openhue
+    - p5js
+    - product-price-monitor
+    - songwriting-and-ai-music
+streaming:
+  fresh_final_after_seconds: 60.0
+stt:
+  provider: nous
+telegram:
+  extra:
+    rich_messages: true
+terminal:
+  env_passthrough:
+    - GITHUB_TOKEN
+    - SSH_AUTH_SOCK
+  modal_mode: managed
+  shell_init_files:
+    - ~/.zshrc
+tts:
+  provider: nous
+unauthorized_dm_behavior: pair
+updates:
+  pre_update_backup: false
+web:
+  backend: nous
+x_search:
+  model: grok-4.20-reasoning

@@ -1,0 +1,4 @@
+# Persona prose (profiles/*/SOUL.md) is agent-facing style guidance, not
+# documentation: long directive lines are intentional.
+[per-file-ignores]
+"profiles/*/SOUL.md" = ["MD013", "MD041"]

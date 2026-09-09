@@ -1,0 +1,5 @@
+name: designer
+version: 0.1.0
+description: Creates architectural diagrams, brand guidelines, and web designs using TouchDesigner MCP. Specializes in visual design workflows and digital asset management.
+author: Shikanime Deva <william.phetsinorath@shikanime.studio>
+license: Apache-2.0

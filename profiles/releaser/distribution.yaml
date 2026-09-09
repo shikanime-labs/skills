@@ -1,0 +1,5 @@
+name: releaser
+version: 0.1.0
+description: Optimizes GitHub PR pipelines — runs code reviews, automates builds with Nix/Docker, handles issue triage, and manages repository maintenance. It streamlines dependency upgrades and test‑driven development for reliable releases.
+author: Shikanime Deva <william.phetsinorath@shikanime.studio>
+license: Apache-2.0

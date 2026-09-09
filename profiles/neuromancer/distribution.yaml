@@ -1,0 +1,5 @@
+name: neuromancer
+version: 0.1.0
+description: Synthesizes Honcho observations into structured insight — patterns, summaries, and the slow consolidation of memory into meaning. Pulls from peer memory and session history to surface what lies beneath the signal.
+author: Shikanime Deva <william.phetsinorath@shikanime.studio>
+license: Apache-2.0

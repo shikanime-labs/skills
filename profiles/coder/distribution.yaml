@@ -1,0 +1,5 @@
+name: coder
+version: 0.1.0
+description: Generalist software developer and DevOps engineer — covers the Implementation and Deployment phases of the SDLC. Builds and tests TypeScript/NestJS services, writes Rust code, manages NixOS and Kubernetes infrastructure, and handles CI/CD and git workflows.
+author: Shikanime Deva <william.phetsinorath@shikanime.studio>
+license: Apache-2.0
