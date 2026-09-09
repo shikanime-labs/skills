@@ -1,0 +1,11 @@
+{
+  "jobs": [
+    {
+      "name": "weekly-veille-technologique",
+      "enabled": false,
+      "id": "e853fc6b7c7a",
+      "prompt": "Weekly technology watch + skill consolidation.\n\n1. Read your memories/MEMORY.md and USER.md. Scan recent session history (session_search) for recurring problems, corrections, and new tooling discovered since the last run.\n2. Use honcho memory: honcho_profile for the peer card and honcho_search for recent durable facts about the user; write back any new stable conclusion via honcho_conclude.\n3. Veille technologique: web_search for notable updates in the domains this profile works in (infer them from its skills). Max ~5 searches. Report only actionable or surprising findings.\n4. Skill consolidation: compare the shikanime-labs/skills catalog against this profile's skills; adopt valuable missing shared skills via `hermes skills install`, and suggest upstream edits rather than local forks. Never edit user-owned skills (created_by=None); note them instead.\n5. Output: short digest — (a) tech-watch highlights (\u003c=5 bullets), (b) skill actions taken or skipped, (c) cross-profile suggestions. Keep under 40 lines. Do not fabricate: if a source fails, say so.",
+      "schedule": { "kind": "cron", "expr": "0 7 * * 1" }
+    }
+  ]
+}

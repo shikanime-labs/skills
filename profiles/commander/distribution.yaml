@@ -1,0 +1,5 @@
+name: commander
+version: 0.1.0
+description: "Commander — generalist orchestration profile. Triages incoming work and routes domain tasks to specialist profiles (coder/researcher/reviewer) via delegation and kanban, handling general/fleet tasks directly. SDLC phases: Planning (triage, routing, priority assessment), Orchestration (fan-out delegation via delegate_task, kanban tracking, pipeline coordination), Validation (spot-check specialist output for quality and consistency), Release gate (final approval before merge). Purpose-scoped skill set: orchestration, devops/nix, kubernetes/gitops, github/vcs, software-development, security. Full toolset, MOA fan-out, Honcho long-term memory."
+author: Shikanime Deva <william.phetsinorath@shikanime.studio>
+license: Apache-2.0

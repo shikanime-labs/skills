@@ -1,0 +1,5 @@
+name: debugger
+version: 0.1.0
+description: Diagnoses and fixes issues across codebases, CI/CD pipelines, and infrastructure — covers the Debugging and Testing phases of the SDLC. Runs debuggers, analyzes logs, refactors scripts, and orchestrates fixes via GitHub, Flux, Kustomize, and Nix workflows.
+author: Shikanime Deva <william.phetsinorath@shikanime.studio>
+license: Apache-2.0

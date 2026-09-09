@@ -1,0 +1,99 @@
+agent:
+  clarify_timeout: 600
+  disabled_toolsets:
+    - computer_use
+    - homeassistant
+    - image_gen
+    - spotify
+    - tts
+    - video_gen
+    - x_search
+  environment_probe: false
+  gateway_notify_interval: 600
+  max_turns: 60
+  reasoning_effort: high
+  restart_drain_timeout: 60
+  verbose: false
+  verify_on_stop: true
+approvals:
+  mode: manual
+  timeout: 60
+browser:
+  cloud_provider: nous
+checkpoints:
+  delete_orphans: true
+  enabled: true
+  max_snapshots: 50
+code_execution:
+  max_tool_calls: 50
+  timeout: 300
+compression:
+  hygiene_hard_message_limit: 400
+custom_providers:
+  - name: shikanime-anthropic
+    api_mode: anthropic_messages
+    base_url: https://inference.i.shikanime.studio/anthropic
+    key_env: SKS_API_KEY
+    model: z-ai/glm-5.3-flash
+    models:
+      - z-ai/glm-5.3-flash
+      - z-ai/glm-5.3
+      - qwen/qwen3.8-27b
+      - qwen/qwen3.8-flash
+      - deepseek/deepseek-v4-flash
+  - name: shikanime-openai
+    api_mode: chat_completions
+    base_url: https://inference.i.shikanime.studio/v1
+    key_env: SKS_API_KEY
+    model: poolside/laguna-s-2.1:free
+    models:
+      - poolside/laguna-s-2.1:free
+      - qwen/qwen3.8-flash
+      - qwen/qwen3.8-27b
+      - deepseek/deepseek-v4-flash
+delegation:
+  child_timeout_seconds: 600
+  default_toolsets:
+    - terminal
+    - file
+    - web
+group_sessions_per_user: true
+memory:
+  flush_min_turns: 6
+  provider: honcho
+model:
+  default: z-ai/glm-5.3-flash
+  provider: custom:shikanime-anthropic
+platform_toolsets:
+  cli:
+    - hermes-cli
+session_reset:
+  at_hour: 4
+  idle_minutes: 1440
+  mode: both
+skills:
+  creation_nudge_interval: 15
+  disabled:
+    - manim-video
+    - openhue
+    - product-price-monitor
+    - songwriting-and-ai-music
+    - stable-diffusion-image-generation
+    - touchdesigner-mcp
+streaming:
+  fresh_final_after_seconds: 60
+stt:
+  provider: nous
+terminal:
+  lifetime_seconds: 300
+  modal_mode: managed
+tools:
+  tool_search:
+    max_search_limit: 20
+    threshold_pct: 10
+updates:
+  pre_update_backup: false
+web:
+  backend: nous
+x_search:
+  model: grok-4.20-reasoning

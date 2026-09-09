@@ -162,6 +162,21 @@ the org workflows above.
 | --------------- | ------------------------------------------------------------------- |
 | `nix-pr-review` | Review an upstream nixpkgs PR: build changed packages with nixpkgs-review and check the diff against nixpkgs conventions |
 
+### Agent profiles
+
+`profiles/<name>/` carries one Hermes profile distribution per directory
+(`distribution.yaml`, `SOUL.md`, `config.yaml`, `cron/`) — the shikanime
+fleet's agent personas, versioned like the skills above. Install with:
+
+```bash
+hermes profile install --name <name> --force profiles/<name>
+```
+
+Each install registers the profile with `hermes profile update` semantics:
+persona, settings, and cron are distribution-owned; memories, sessions, and
+credentials are never touched. Credential values are blanked in this repo —
+fill them in after install.
+
 ## Development
 
 ```bash
