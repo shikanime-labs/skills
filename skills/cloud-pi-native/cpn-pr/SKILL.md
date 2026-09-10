@@ -175,6 +175,16 @@ metadata and sets each empty, determinable field — labels, assignee, project,
 milestone (by type), reviewers. Rules live in `cpn-pr-triage`. Always against
 `cloud-pi-native/<repo>` (origin-only policy).
 
+PRs submitted from a separate jj workspace request `yorha-operator` (the
+Automata account) as reviewer at submission time, gated on access:
+
+```bash
+gh pr edit <N> --repo cloud-pi-native/<repo> --add-reviewer yorha-operator
+```
+
+Skip silently when `yorha-operator` is not a collaborator of the target repo,
+or when they authored the PR (GitHub rejects author review requests, 422).
+
 ### Repo-specific post-steps (3)
 
 - **console** (`cloud-pi-native/console`): push to `origin`, open with

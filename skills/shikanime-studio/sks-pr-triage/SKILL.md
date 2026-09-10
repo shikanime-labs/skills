@@ -68,8 +68,10 @@ gh api repos/"$R"/assignees --jq '.[].login'
   enhancement→next minor/major.
 - **project**: if repo boards and PR unboarded, `--add-project <number>`; skip
   if ambiguous.
-- **reviewers**: if no review requests, add one collaborator/team member; skip
-  if none obvious.
+- **reviewers**: if no review requests, request `yorha-operator` (the
+  Automata account) unless they authored the PR — GitHub rejects author
+  review requests (422); then another collaborator/team member; skip if
+  none works.
 
 ### 4. Apply (additive only: `--add-label`/`--add-assignee`, never `--label`)
 

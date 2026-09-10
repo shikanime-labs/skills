@@ -179,6 +179,18 @@ EOF
 )"
 ```
 
+PRs submitted from a separate jj workspace request `yorha-operator` (the
+Automata account) as reviewer at submission time:
+
+```bash
+gh pr edit <N> --repo "$ORG/<repo>" --add-reviewer yorha-operator
+```
+
+GitHub rejects a review request aimed at the PR author (422 "Review cannot
+be requested from pull request author"). When the agent submits under the
+Automata account itself, `yorha-operator` IS the author — skip the request;
+the approving review must come from the operator.
+
 Use `--draft` when checks aren't green yet.
 
 ### 2d. Verify mergeable after submit

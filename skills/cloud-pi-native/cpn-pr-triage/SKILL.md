@@ -56,8 +56,9 @@ gh api repos/"$R"/assignees --jq '.[].login'
 - **jalon** — bug→patch le plus haut de la ligne mineure courante (max `Z`) ;
   enhancement→mineure/majeure suivante.
 - **projet** — `--add-project <number>` si boardé et pas boardé ; sinon sauter.
-- **reviewers** — un reviewer parmi collaborateurs/équipe si aucune demande ;
-  sinon sauter.
+- **reviewers** — si aucune demande : `yorha-operator` (compte Automata),
+  sauf s'ils sont l'auteur de la PR (rejet GitHub 422) ; sinon un autre
+  collaborateur/équipe ; sinon sauter.
 
 ## 4. Appliquer
 
