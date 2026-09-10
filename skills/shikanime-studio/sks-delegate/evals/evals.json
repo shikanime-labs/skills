@@ -1,0 +1,42 @@
+{
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "Delegates the whole unit to the Automata account: isolates a fresh jj workspace at main@origin, switches gh to yorha-operator, commits with the Automata author override, pushes and runs gh as that account, then switches back.",
+      "files": [],
+      "prompt": "Delegate this whole unit to automata end to end in the skills repo.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-delegate'.",
+        "Frontmatter license field is 'Apache-2.0'.",
+        "Body requires sks-stack workspace isolation at main@origin before the identity switch.",
+        "Body switches the gh account via `gh auth switch --user yorha-automata` and verifies with `gh api user`.",
+        "Body re-stamps the commit author via a new env-authored child plus jj squash and abandon (jj describe alone cannot change the author), using the account noreply email.",
+        "Body switches the gh account back to shikanime when the unit lands."
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "Commits carry the Automata author, the single Co-authored-by Automata trailer, and the repo-mandated Signed-off-by, and pushes run under the Automata credential.",
+      "files": [],
+      "prompt": "Commit and push this change as automata in a DCO-enforced shikanime repo.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-delegate'.",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters.",
+        "Body states the keyring name yorha-automata differs from the GitHub login yorha-operator.",
+        "Body includes the 'Co-authored-by: Automata <automata@shikanime.studio>' trailer and a Signed-off-by trailer for DCO repos.",
+        "Body verifies the stamped author via jj log with author.email()."
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "The agent recognizes this unit is NOT delegated, runs it under the personal shikanime account, and does not apply the Automata identity overrides.",
+      "files": [],
+      "prompt": "Just use my normal account for this one, it's a quick fix.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-delegate'.",
+        "Body scopes the skill to units explicitly delegated to the Automata account rather than every shikanime unit.",
+        "Body keeps the personal shikanime identity out of delegated units (identity table or equivalent statement)."
+      ]
+    }
+  ]
+}
