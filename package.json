@@ -60,6 +60,10 @@
         "path": "skills/cloud-pi-native/cpn-pr"
       },
       {
+        "name": "cpn-land",
+        "path": "skills/cloud-pi-native/cpn-land"
+      },
+      {
         "name": "cpn-pr-resolve",
         "path": "skills/cloud-pi-native/cpn-pr-resolve"
       },
