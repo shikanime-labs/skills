@@ -155,10 +155,10 @@ naming the ceiling and the upgrade path.
   prose. `ponytail-review` finds the bloat; this skill removes it.
   For a whole-repo bloat pass, `ponytail-audit` is the analog of this
   skill's structural audit.
-- **The local `.hermes/skills` mirror drifts ahead of the repo.** Verified
-  2026-09-08: the local `sks-dev-workflow` mirror was 1,559 lines against the
-  repo twin's 344 — months of session learnings accumulated only in the
-  operational clone. When curating, DIFF BOTH CLONES first and consolidate
+- **The local `.hermes/skills` mirror drifts ahead of the repo.** The mirror
+  routinely runs hundreds of lines ahead of its repo twin — months of session
+  learnings accumulated only in the operational clone. When curating, DIFF BOTH
+  CLONES first and consolidate
   the mirror's learnings into the repo (body or `references/`); otherwise the
   next `hermes skills update` silently deletes them.
 - **Curate in a worktree, never `cp` over it.** When the user's tree is dirty,
@@ -198,4 +198,4 @@ description still triggers, and the before/after delta is stated in numbers.
   (`Design:`/`Related:`) + `Signed-off-by: Shikanime Deva
   <william.phetsinorath@shikanime.studio>` +
   `Co-authored-by: Automata <automata@shikanime.studio>` — landed commits
-  (2026-09-03) carry both trailers.
+  carry both trailers.

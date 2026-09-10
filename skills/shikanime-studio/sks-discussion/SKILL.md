@@ -43,7 +43,7 @@ a filled example.
 "RFC for <design>" / "discuss X before an issue" — problem unsettled; no issue
 can be stated yet.
 
-## Verified surface state (2026-08-20)
+## Surface state
 
 Discussions disabled on all repos in both orgs except `shikanime-studio/.github`
 (enabled). Probe first:
