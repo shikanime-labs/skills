@@ -36,7 +36,8 @@ repo.
 
 - "Open a PR in a shikanime org repo."
 - "Ensure issue linkage before creating a PR."
-- "Push to origin and land via plain `gh pr` (the org removed `gh stack`)."
+- "Push to origin and land via plain `gh pr` (`gh stack` for stacking, plain
+  `gh pr merge` for landing)."
 
 ## Internal policy: push to origin
 
@@ -97,7 +98,8 @@ remote as canonical.
 
 ## Landing via plain `gh pr`
 
-The org removed the `gh stack` extension — land with plain `gh pr merge` (see
+Stacks: use the `gh stack` extension to create, rebase, and submit stacks of
+branches; land each PR with plain `gh pr merge` (see
 `sks-land`). Squash-merge keeps a linear history and preserves PR↔commit parity
 (title = commit subject, body = commit message).
 
