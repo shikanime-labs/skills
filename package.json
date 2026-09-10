@@ -108,6 +108,10 @@
         "path": "skills/shikanime-studio/sks-commit"
       },
       {
+        "name": "sks-delegate",
+        "path": "skills/shikanime-studio/sks-delegate"
+      },
+      {
         "name": "sks-curate",
         "path": "skills/shikanime-studio/sks-curate"
       },
@@ -196,6 +200,102 @@
       {
         "name": "sks-update",
         "path": "skills/shikanime-studio/sks-update"
+      },
+      {
+        "name": "book-cert-manager",
+        "path": "skills/books/book-cert-manager"
+      },
+      {
+        "name": "book-copyparty",
+        "path": "skills/books/book-copyparty"
+      },
+      {
+        "name": "book-envoy-gateway",
+        "path": "skills/books/book-envoy-gateway"
+      },
+      {
+        "name": "book-external-dns",
+        "path": "skills/books/book-external-dns"
+      },
+      {
+        "name": "book-faker",
+        "path": "skills/books/book-faker"
+      },
+      {
+        "name": "book-fluxcd",
+        "path": "skills/books/book-fluxcd"
+      },
+      {
+        "name": "book-k8s-gateway-api",
+        "path": "skills/books/book-k8s-gateway-api"
+      },
+      {
+        "name": "book-kameo",
+        "path": "skills/books/book-kameo"
+      },
+      {
+        "name": "book-llama-cpp",
+        "path": "skills/books/book-llama-cpp"
+      },
+      {
+        "name": "book-lldap",
+        "path": "skills/books/book-lldap"
+      },
+      {
+        "name": "book-longhorn",
+        "path": "skills/books/book-longhorn"
+      },
+      {
+        "name": "book-nestjs",
+        "path": "skills/books/book-nestjs"
+      },
+      {
+        "name": "book-nix",
+        "path": "skills/books/book-nix"
+      },
+      {
+        "name": "book-nushell",
+        "path": "skills/books/book-nushell"
+      },
+      {
+        "name": "book-pnpm",
+        "path": "skills/books/book-pnpm"
+      },
+      {
+        "name": "book-rtk",
+        "path": "skills/books/book-rtk"
+      },
+      {
+        "name": "book-rust",
+        "path": "skills/books/book-rust"
+      },
+      {
+        "name": "book-victoria-metrics",
+        "path": "skills/books/book-victoria-metrics"
+      },
+      {
+        "name": "book-victoria-logs",
+        "path": "skills/books/book-victoria-logs"
+      },
+      {
+        "name": "book-vite",
+        "path": "skills/books/book-vite"
+      },
+      {
+        "name": "book-vitest",
+        "path": "skills/books/book-vitest"
+      },
+      {
+        "name": "book-vllm",
+        "path": "skills/books/book-vllm"
+      },
+      {
+        "name": "book-vue3",
+        "path": "skills/books/book-vue3"
+      },
+      {
+        "name": "book-wharf",
+        "path": "skills/books/book-wharf"
       }
     ]
   }
