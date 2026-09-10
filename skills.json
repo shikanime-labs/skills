@@ -55,6 +55,11 @@
       "path": "skills/cloud-pi-native/cpn-pr"
     },
     {
+      "name": "cpn-land",
+      "description": "Merge une PR cloud-pi-native : gates DoD/threads/CI + approbation yorha-operator.",
+      "path": "skills/cloud-pi-native/cpn-land"
+    },
+    {
       "name": "cpn-pr-resolve",
       "description": "Réconcilie review-threads d'une PR cloud-pi-native : ledger DoD + approbation/CI, SANS merger (extrait cpn-dev-workflow).",
       "path": "skills/cloud-pi-native/cpn-pr-resolve"

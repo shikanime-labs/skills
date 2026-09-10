@@ -143,6 +143,7 @@ specification, compatible with the
 | `cpn-issue-refine`      | Raffine un problème vers la convergence dans l'issue                                                  |
 | `cpn-issue-triage`      | Triage d'issue : métadonnées + fermetures motivées                                                    |
 | `cpn-issue-workflow`    | Workflow issue : créer → raffiner → trier                                                             |
+| `cpn-land`              | Merge de PR : gates DoD/threads/CI + approbation yorha-operator                                      |
 | `cpn-pr`                | French PRs, pushed to origin, conventional                                                            |
 | `cpn-pr-resolve`        | Réconcilie les threads de review, rapporte sans merger                                                |
 | `cpn-pr-review`         | Review console PRs: arch, French artifacts                                                            |
