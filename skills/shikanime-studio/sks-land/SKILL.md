@@ -3,7 +3,7 @@ name: sks-land
 description:
   Use when landing a shikanime org PR after reconciliation (sks-pr-resolve) and
   review approval gates pass; closes the linked issue deliberately.
-version: 0.2.3
+version: 0.3.0
 author: Hermes Agent
 license: Apache-2.0
 metadata:
@@ -113,14 +113,32 @@ creating and maintaining stacks; landing itself stays plain `gh pr merge`. For
 a lone PR use
 `gh pr merge --squash [--admin]`; never `gh pr merge` on a stacked PR — but
 stacked PRs are landed the same way now (one squash-merge per PR, base `main`).
-Never force-push. Background watcher waits for CI then merges:
+Never force-push. **Watch and merge are two separate steps — never one
+background chain.** A merge that fires unattended from a watcher is a
+recurring incident class: by the time it lands, gates may have moved (new
+commits, stale approval, red check). Keep the observe step separable from
+the act step:
+
+Step 1 — watch (observe-only; may run in a background terminal):
 
 ```bash
 gh run watch --exit-status --repo <org>/<repo> \
   $(gh run list --repo <org>/<repo> --branch <branch> --limit 1 \
-    --json databaseId -q '.[0].databaseId') \
-  && gh pr merge <M> --repo <org>/<repo> --squash --rebase \
-       -b "$(cat <<'EOF'
+    --json databaseId -q '.[0].databaseId')
+```
+
+Re-run after each fresh push. A failing run exits non-zero — red never
+merges. When it returns, STOP and re-verify the merge gates on the current
+head (`gh pr view <M> --json reviews,headRefOid,mergeable`) before merging;
+Step 2 binds the merge to that head with `--match-head-commit`.
+
+Step 2 — merge (act; foreground, deliberate, never auto-chained to the
+watch):
+
+```bash
+HEAD=$(gh pr view <M> --repo <org>/<repo> --json headRefOid -q .headRefOid)
+gh pr merge <M> --repo <org>/<repo> --squash --match-head-commit "$HEAD" \
+  -b "$(cat <<'EOF'
 <body: one coherent change, no jj * bullets / --------- separators; trailers
 only: Related: [url], Signed-off-by: [user], Co-authored-by: Automata
 <automata@shikanime.studio>
@@ -130,12 +148,12 @@ EOF
 )"
 ```
 
-Run in a background terminal with notify_on_complete; re-run after each fresh
-push. A failing run exits non-zero and skips merge (red never lands).
-
 > Gotcha: `gh run watch <run-id>` exits 0 even on FAIL — always pass
 > `--exit-status`. It takes a `<run-id>` (no `--branch`); resolve via
 > `gh run list`.
+> Gotcha: never join the two with a shell conjunction — one `&&` between
+> watch and merge IS the background-merge bug. The watch reports; a separate
+> decision merges.
 
 - **Squash hygiene**: pass `-b` (see `sks-commit`); `gh pr merge --squash` has
   **no `-m`** — the PR title is the subject. Never auto-concatenate branch
@@ -192,6 +210,9 @@ push. A failing run exits non-zero and skips merge (red never lands).
 - Merging a dependent stacked PR before its base lands — go in dependency order,
   base first.
 - Merge after new commits without re-review — approval binds to a head commit.
+- Joining the CI watch and the merge with a shell conjunction in one
+  background terminal — the merge fires unattended while gates move. Watch
+  reports; merge is a separate deliberate step on a re-verified head.
 - Auto-close via `Closes #N`/`Fixes #N` at merge — fires before the ledger is
   verified; close deliberately after N-of-N.
 - Closing the issue before the user accepts the deployed change — merge is a
@@ -208,6 +229,8 @@ push. A failing run exits non-zero and skips merge (red never lands).
 - [ ] `sks-commit` + `sks-pr` conventions verified (subject imperative, PR title
       parity).
 - [ ] CI green.
+- [ ] Watch and merge ran as separate steps (no `watch && merge` background
+      chain); gates re-verified on the head that merged.
 - [ ] Merged via
       `gh pr merge --squash [--admin if protection blocks     self-approval]`
       (lone or stacked — one squash-merge per PR, base `main`).

@@ -4,7 +4,7 @@ description:
   "Use when running the shikanime local dev loop: branching in a fresh jj
   workspace, push-to-origin, jj bookmark tracking, and landing via plain gh pr
   merge or direct push."
-version: 0.9.0
+version: 0.10.0
 author: Hermes Agent
 license: Apache-2.0
 metadata:
@@ -211,6 +211,11 @@ anchor can get duplicated — remove the stray copy before pushing.
   the user says "merge the PRs". A red required check or protection
   rejection is a gate doing its job — surface it, never `--admin` past it
   unasked.
+- **Watch is not merge.** A CI watch/poll phase (foreground shell or
+  background cron) observes and reports only — never join watch and merge
+  with a shell conjunction, and never give a background watcher merge
+  authority. When the watch reports green, re-verify the gates on the
+  current head and merge as a separate deliberate step.
 
 ## Drafting GitHub messages (family invariants)
 
