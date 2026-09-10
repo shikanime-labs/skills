@@ -89,7 +89,9 @@ that is the `sks-commit` override for doc repos, not a violation.
 
 ## Merge procedure
 
-Land with plain `gh pr merge` (the org removed `gh stack`). For a lone PR use
+Land with plain `gh pr merge`. `gh stack` (extension) is available for
+creating and maintaining stacks; landing itself stays plain `gh pr merge`. For
+a lone PR use
 `gh pr merge --squash [--admin]`; never `gh pr merge` on a stacked PR — but
 stacked PRs are landed the same way now (one squash-merge per PR, base `main`).
 Never force-push. Background watcher waits for CI then merges:
