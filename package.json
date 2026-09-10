@@ -104,10 +104,6 @@
         "path": "skills/shikanime-studio/sks-commit"
       },
       {
-        "name": "sks-delegate",
-        "path": "skills/shikanime-studio/sks-delegate"
-      },
-      {
         "name": "sks-curate",
         "path": "skills/shikanime-studio/sks-curate"
       },
