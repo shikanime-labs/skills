@@ -115,6 +115,11 @@
       "path": "skills/shikanime-studio/sks-curate"
     },
     {
+      "name": "sks-delegate",
+      "description": "Use when handing an entire shikanime unit to the Automata account: authoring, commits, pushes, and gh interactions run as yorha-operator, never the personal shikanime identity.",
+      "path": "skills/shikanime-studio/sks-delegate"
+    },
+    {
       "name": "sks-converge",
       "description": "Use when jj conflicts or divergent changes block a shikanime repo after a tree move: resolve conflicted revisions and divergent twins until pushable.",
       "path": "skills/shikanime-studio/sks-converge"

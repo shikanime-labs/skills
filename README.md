@@ -107,6 +107,7 @@ specification, compatible with the
 | `sks-async`             | jj workspace fan-out + stacked PRs for parallel work                                                                         |
 | `sks-commit`            | shikanime commit style + Automata co-author trailer                                                                          |
 | `sks-curate`            | Update, improve, compress, and token-optimize skills in the catalog                                                          |
+| `sks-delegate`          | End-to-end delegation to the Automata account: authoring, commits, pushes, and gh calls run as yorha-operator                 |
 | `sks-dev-workflow`      | Branch/push discipline, gates, landing                                                                                       |
 | `sks-discussion`        | RFC Discussions (pre-issue stage)                                                                                            |
 | `sks-discussion-triage` | Discussion triage: category + lifecycle (GraphQL)                                                                            |
