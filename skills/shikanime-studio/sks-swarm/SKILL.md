@@ -50,7 +50,7 @@ This skill is a router, not a transport. It decides _what goes where_; A2A and
 ## When NOT to Use
 
 - A few sibling PRs in one repo → `sks-async` (jj workspaces, no cluster).
-- One unit, one machine → `sks-stack`; do not spin up a swarm.
+- One unit, one machine → `sks-delegate`; do not spin up a swarm.
 - Root cause only → `sks-investigate`; this skill executes, not analyzes.
 
 ## Procedure
@@ -99,7 +99,7 @@ This skill is a router, not a transport. It decides _what goes where_; A2A and
   a hot runner — measure headroom, then place.
 - Treating a child's "done" self-report as verified — re-run its gate in the
   parent before promoting.
-- Spinning a swarm for one unit — `sks-stack` is the smaller, correct tool.
+- Spinning a swarm for one unit — `sks-delegate` is the smaller, correct tool.
 - A sandboxed swarm that merges un-reviewed skips the `sks-adversarial` promote
   gate; the sandbox is a trial, not an approved change.
 - Unauthenticated A2A binds `127.0.0.1` only. Remote needs a bearer token _and_

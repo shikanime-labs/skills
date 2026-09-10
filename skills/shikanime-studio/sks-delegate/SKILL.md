@@ -1,5 +1,5 @@
 ---
-name: sks-stack
+name: sks-delegate
 description:
   Use when isolating one unit of shikanime work in a fresh jj workspace — the
   mandatory entry to implementation for every unit, so concurrent WIP never
@@ -40,8 +40,8 @@ fan-out and the isolation lane of `sks-dev-workflow`.
 
 Every implementation unit runs in a fresh `jj` workspace created by this skill —
 never in the cloned checkout. `sks-dev-workflow` inherits this requirement; the
-checkout is a read-only reference surface. A unit that skips `sks-stack` has not
-entered the dev loop.
+checkout is a read-only reference surface. A unit that skips `sks-delegate`
+has not entered the dev loop.
 
 ## When to Use
 

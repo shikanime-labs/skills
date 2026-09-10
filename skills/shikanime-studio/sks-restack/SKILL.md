@@ -19,7 +19,7 @@ metadata:
     related_skills:
       - sks-converge
       - sks-dev-workflow
-      - sks-stack
+      - sks-delegate
       - sks-async
       - sks-gc
 platforms:
@@ -131,6 +131,6 @@ jj git push --remote origin -b <branch>      # accepted, no conflict rejection
   skill hands off to after the rebase.
 - `sks-dev-workflow` — the landing gates this feeds; never force-push stack
   branches.
-- `sks-stack` — isolate before resolving when the main checkout is crowded.
+- `sks-delegate` — isolate before resolving when the main checkout is crowded.
 - `sks-async` — multi-link stacks whose streams each need this loop.
 - `sks-gc` — reclaim empty revs and stale isolation workspaces afterwards.
