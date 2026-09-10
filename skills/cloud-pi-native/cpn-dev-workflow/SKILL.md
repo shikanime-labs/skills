@@ -211,8 +211,9 @@ Landing follows the same origin-only discipline as the other cpn skills:
   the branch to `origin`, and open the PR with
   `--head cloud-pi-native:<branch>`. (Pre-2026-08 `--head shikanime:<branch>`
   guidance is retired.)
-- **Plain `gh pr` is the landing path** (the org removed the `gh stack`
-  extension). Before opening each PR run the `cpn-pr` duplicate/stack check
+- **Plain `gh pr` is the landing path** (`gh stack` extension available for
+  stacking; land with plain `gh pr merge --squash`). Before opening each PR run
+  the `cpn-pr` duplicate/stack check
   (step 1b): no new PR if an open one already delivers the change; stack on the
   existing PR's branch when your change depends on it. Open each branch with
   `gh pr create --draft --fill --body "Refs #N"` and land with

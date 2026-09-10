@@ -48,15 +48,6 @@ Related: skills/shikanime, skills/cloud-pi-native
 Signed-off-by: Shikanime Deva <william.phetsinorath@shikanime.studio>
 ```
 
-## Stack (atomic delivery)
-
-- One ticket → one branch → one PR; PRs stack on the previous ticket's branch.
-- Each PR is atomic: one objective, linked issue (`Closes #N`), small enough for
-  a human to review in one sitting.
-- Agent runs a review as pre-flight; **a human approving review is the gate**
-  before landing (protect `main`).
-- Never `gh pr merge` (poisoned commits). Never force-push stacked branches.
-
 ## Protect `main`
 
 - Require 1 approving review
