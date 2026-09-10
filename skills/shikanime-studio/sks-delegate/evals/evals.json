@@ -6,7 +6,7 @@
       "files": [],
       "prompt": "Isole cette unité de travail dans un workspace jj propre à main@origin.",
       "assertions": [
-        "YAML frontmatter parses and 'name' equals 'sks-stack'.",
+        "YAML frontmatter parses and 'name' equals 'sks-delegate'.",
         "Frontmatter license field is 'Apache-2.0'.",
         "Body contains at least one '##' heading.",
         "Body opens the workspace via `jj workspace add ../\u003crepo\u003e.\u003cunit\u003e -r 'main@origin'`.",
@@ -19,7 +19,7 @@
       "files": [],
       "prompt": "I want to isolate my fix in a clean jj workspace without losing my colleagues' in-progress work.",
       "assertions": [
-        "YAML frontmatter parses and 'name' equals 'sks-stack'.",
+        "YAML frontmatter parses and 'name' equals 'sks-delegate'.",
         "Frontmatter description starts with 'Use when' and is at most 200 characters.",
         "Body snapshots WIP outside the isolation dir before opening the workspace.",
         "Body copies only the change files via `jj add \u003cchange files\u003e`."
@@ -31,11 +31,11 @@
       "files": [],
       "prompt": "Fans out three independent fixes, each in its own fresh jj workspace.",
       "assertions": [
-        "YAML frontmatter parses and 'name' equals 'sks-stack'.",
+        "YAML frontmatter parses and 'name' equals 'sks-delegate'.",
         "Body states it handles one unit only.",
         "Body routes N-unit fan-out to 'sks-async'."
       ]
     }
   ],
-  "skill_name": "sks-stack"
+  "skill_name": "sks-delegate"
 }

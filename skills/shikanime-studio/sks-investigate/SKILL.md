@@ -21,7 +21,7 @@ metadata:
     related_skills:
       - sks-pr-review
       - sks-async
-      - sks-stack
+      - sks-delegate
       - sks-issue
       - sks-dev-workflow
       - ponytail-audit
@@ -199,7 +199,7 @@ echo "investigation complete: root cause + hypothesis + proposed fix" \
   incoming PRs.
 - `sks-async` — the isolation pattern, for parallel implementation rather than
   parallel debugging.
-- `sks-stack` — canonical single-workspace isolation recipe before a fix.
+- `sks-delegate` — canonical single-workspace isolation recipe before a fix.
 - `ponytail-audit` — when the defect's root cause is accidental complexity, its
   ranked simplification list seeds the proposal.
 - `sks-issue` / `sks-dev-workflow` / `sks-pr` — receive the proposed solution

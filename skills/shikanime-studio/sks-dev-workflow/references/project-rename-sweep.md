@@ -6,7 +6,7 @@ package dir, flake outputs, docs) in an isolated jj workspace. Verified on
 
 ## Sweep recipe (order matters)
 
-1. Isolate per `sks-stack` (`jj workspace add ../<repo>-<unit> -r 'main@origin'`).
+1. Isolate per `sks-delegate` (`jj workspace add ../<repo>-<unit> -r 'main@origin'`).
    A project rename touches many files — the clone's foreign WIP will exist.
 2. Survey the surface FIRST: `grep -rn "<old-name>" --include=... . | grep -v vendor`
    — class the hit list into module paths / URLs, bare binary references,

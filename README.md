@@ -123,7 +123,7 @@ specification, compatible with the
 | `sks-pr-resolve`        | Reconcile PR review threads + ledger, report readiness without merging                                                       |
 | `sks-pr-review`         | Code review: YAGNI, root-cause, conventions                                                                                  |
 | `sks-pr-triage`         | PR triage: metadata, reviewers, issue linkage                                                                                |
-| `sks-stack`             | Single-unit jj workspace isolation primitive: fork a clean workspace from `main@origin`, push, hand off to PR workflow       |
+| `sks-delegate`             | Single-unit jj workspace isolation primitive: fork a clean workspace from `main@origin`, push, hand off to PR workflow       |
 |                         | `sks-pr-workflow`                                                                                                            |
 | `sks-restack`           | Restack a jj stack onto moved main and resolve every conflict (jj marker dialect, :ours/:theirs, push gate)                  |
 | `sks-converge`           | Resolve jj conflicts and divergent changes after a tree move: per-revision resolution, twin abandonment, push gate          |

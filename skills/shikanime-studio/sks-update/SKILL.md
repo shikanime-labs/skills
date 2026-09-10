@@ -19,7 +19,7 @@ metadata:
     related_skills:
       - sks-curate
       - sks-dev-workflow
-      - sks-stack
+      - sks-delegate
       - sks-commit
       - sks-pr-workflow
       - sks-land
@@ -74,7 +74,7 @@ when the user named one.
    the curation pass is what keeps the catalog lean.
 4. **Ship through the dev workflow** — Follow `sks-dev-workflow` for the
    branch/commit/PR/land path:
-   - Isolate in a fresh workspace at `main@origin` (`sks-stack`) so foreign
+   - Isolate in a fresh workspace at `main@origin` (`sks-delegate`) so foreign
      WIP is never folded in.
    - Commit per `sks-commit` (plain-English title, Automata trailer,
      `Signed-off-by:`; AGENTS.md repos add labeled `Design:`/`Related:` body).
@@ -155,6 +155,6 @@ silently skip.
 
 - `sks-curate` — the per-skill curation pass (step 3).
 - `sks-dev-workflow` — the shipping loop (step 4).
-- `sks-stack`, `sks-commit`, `sks-pr-workflow`, `sks-land` — the pieces of
+- `sks-delegate`, `sks-commit`, `sks-pr-workflow`, `sks-land` — the pieces of
   step 4.
 - `hermes-agent` — local agent configuration and skills management.

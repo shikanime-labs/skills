@@ -17,7 +17,7 @@ metadata:
     related_skills:
       - sks-pr-review
       - sks-async
-      - sks-stack
+      - sks-delegate
       - sks-swarm
       - sks-commit
       - sks-pr
@@ -42,7 +42,7 @@ recipes live in `references/` behind the load conditions in "Pitfall index".
 - "Start working on a shikanime repo" — end-to-end dev loop from discussion to
   landing.
 - "Push to origin and land this PR" — landing path (branch protection, stack).
-- "Isolate this one unit in a clean workspace" — `sks-stack` (concurrent WIP
+- "Isolate this one unit in a clean workspace" — `sks-delegate` (concurrent WIP
   must not fold in).
 - "Fan out this work into parallel streams" — `sks-async` parallel split.
 - "Distribute across a cluster of agents" — `sks-swarm` (A2A routing).
@@ -55,14 +55,14 @@ the ladder takes the minimum tool that fits:
 
 | Situation                          | Tool        | Shape                                  |
 | ---------------------------------- | ----------- | -------------------------------------- |
-| One unit (always, even trivial)    | `sks-stack` | fresh jj workspace pinned to           |
+| One unit (always, even trivial)    | `sks-delegate` | fresh jj workspace pinned to           |
 |                                    |             | `main@origin`, bookmark scoped to it   |
 | N parallel units, one repo         | `sks-async` | one workspace per unit; fix shared     |
 |                                    |             | contracts before fan-out               |
 | Units needing different machines   | `sks-swarm` | A2A routing by capability tag,         |
 | or capabilities                    |             | machine, live runner pressure          |
 
-Escalation is one-way: `sks-stack` → `sks-async` → `sks-swarm`. Never
+Escalation is one-way: `sks-delegate` → `sks-async` → `sks-swarm`. Never
 implement in the cloned checkout; never spin a swarm for one unit; never fan
 out before the issue ledger is settled.
 
@@ -72,7 +72,7 @@ out before the issue ledger is settled.
 | --- | -------------------------------------------- | -------------------- | --------------------- |
 | 0   | Discussion (RFC) if unconverged              | `sks-discussion`     | entry                 |
 | 1–2 | Issue: create → refine → triage              | `sks-issue-workflow` | **ledger settled**    |
-| 3   | Branch + implement (fresh jj workspace)      | `sks-stack`          | **workspace created** |
+| 3   | Branch + implement (fresh jj workspace)      | `sks-delegate`          | **workspace created** |
 | 4   | Commit (plain-English + Automata trailer)    | `sks-commit`         | **commit shape**      |
 | 5   | Adversarial code review                      | `sks-pr-review`      | **review gate**       |
 | 6   | PR: ensure issue → open → triage             | `sks-pr-workflow`    | —                     |
@@ -95,7 +95,7 @@ opens PRs `--head <org>:<branch>`, commits carry
 ## Workspace (every unit) + post-push verification
 
 Every implementation unit runs in a fresh `jj` workspace pinned to
-`main@origin` (`sks-stack` owns the recipe; the cloned checkout is never the
+`main@origin` (`sks-delegate` owns the recipe; the cloned checkout is never the
 working surface). After push, verify from the isolation workspace — it is a
 jj repo with no `.git`, so use jj-native commands and pass `-R` to gh:
 
@@ -335,6 +335,6 @@ jj status && jj log -r @ -T 'bookmarks ++ " "'
 ## See also
 
 `sks-issue-workflow` / `sks-pr-workflow` (issue & PR sides), `sks-commit`,
-`sks-stack` (isolation), `sks-async` (stacked PRs), `sks-swarm` (agent
+`sks-delegate` (isolation), `sks-async` (stacked PRs), `sks-swarm` (agent
 cluster), `sks-pr-review` (phase 5), `ponytail-review` (over-engineering
 lens).

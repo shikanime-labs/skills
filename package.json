@@ -142,8 +142,8 @@
         "path": "skills/shikanime-studio/sks-restack"
       },
       {
-        "name": "sks-stack",
-        "path": "skills/shikanime-studio/sks-stack"
+        "name": "sks-delegate",
+        "path": "skills/shikanime-studio/sks-delegate"
       },
       {
         "name": "sks-issue",

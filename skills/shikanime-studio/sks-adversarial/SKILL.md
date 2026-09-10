@@ -18,7 +18,7 @@ metadata:
       - shikanime-labs
       - shikanime-studio
     related_skills:
-      - sks-stack
+      - sks-delegate
       - sks-async
       - sks-investigate
       - sks-pr-review
@@ -33,7 +33,7 @@ platforms:
 
 Try a change where failure costs nothing. This skill builds a disposable sandbox
 around an uncertain result and promotes only what survives. It composes
-`sks-stack`, `sks-async`, and `sks-investigate`; it adds only the sandbox shape
+`sks-delegate`, `sks-async`, and `sks-investigate`; it adds only the sandbox shape
 and the promote-or-discard decision. It does NOT replace those skills.
 
 ## When to Use
@@ -47,7 +47,7 @@ and the promote-or-discard decision. It does NOT replace those skills.
 
 ## When NOT to Use
 
-- One clean change with a known shape → `sks-stack` alone.
+- One clean change with a known shape → `sks-delegate` alone.
 - You need the root cause, not a trial → `sks-investigate` (it proposes, never
   applies). This skill may run a trial; keep the two separate.
 - A finished change awaiting review → `sks-pr-review`.
@@ -56,7 +56,7 @@ and the promote-or-discard decision. It does NOT replace those skills.
 
 1. **Decide the sandbox shape** before opening anything:
 
-   - Single trial, one hypothesis → one `sks-stack` workspace.
+   - Single trial, one hypothesis → one `sks-delegate` workspace.
    - N independent trials, or trials that must run in parallel → one workspace
      per trial via `sks-async` (fan-out).
    - Known reproduction + unknown fix → `sks-investigate` first, then isolate
@@ -64,7 +64,7 @@ and the promote-or-discard decision. It does NOT replace those skills.
 
 2. **Open the sandbox** with the chosen primitive — never the main checkout:
 
-   - One unit → `sks-stack` (fresh `jj workspace add -r main@origin`).
+   - One unit → `sks-delegate` (fresh `jj workspace add -r main@origin`).
    - Many units → `sks-async` (one workspace per leaf, dot-qualified name
      `<repo>.<trial>`).
 
@@ -109,7 +109,7 @@ jj status && jj log -r @ -T 'bookmarks'
 
 ## See also
 
-- `sks-stack` — the single-workspace primitive for one trial.
+- `sks-delegate` — the single-workspace primitive for one trial.
 - `sks-async` — fan-out; one workspace per trial when trials run in parallel.
 - `sks-investigate` — root-cause discipline; use before isolating a fix.
 - `sks-pr-review` — the review gate a promoted change must still pass.
