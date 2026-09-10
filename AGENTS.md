@@ -36,6 +36,9 @@ and has no discussion/issue/PR lifecycle of its own. Skills: `nix-pr-review`.
 - Footers mandated by policy:
   - `Signed-off-by:` — required; commits must be signed (see Protect `main`).
   - `Change-Id:` — keep the originating change's id when amending.
+- Nix: dotted assignment (`a.b.c = v;`) for a single leaf under a shared
+  parent key; a record literal once two or more keys share the parent, keys
+  sorted
 - Wrap Markdown lines at 80 columns and run `nix fmt` before shipping.
 
 Example: Wire release management, milestone metadata, trunk-based jj stacking
