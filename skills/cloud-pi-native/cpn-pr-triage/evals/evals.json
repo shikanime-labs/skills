@@ -11,7 +11,9 @@
         "Frontmatter 'license' field equals 'Apache-2.0'.",
         "SKILL.md body contains at least one Markdown '##' heading.",
         "Le corps assigne labels, assignee, jalon (milestone) et reviewers aux PR à champs vides.",
-        "Le corps n'invente jamais de labels absents de `gh label list`."
+        "Le corps n'invente jamais de labels absents de `gh label list`.",
+        "Définit yorha-operator comme reviewer par défaut, pas l'auteur.",
+        "Repli sur un autre collaborateur quand le défaut est indisponible."
       ]
     },
     {
