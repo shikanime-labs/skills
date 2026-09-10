@@ -65,14 +65,38 @@
         git-hooks.flakeModule
         treefmt-nix.flakeModule
       ];
-      perSystem = _: {
-        devenv.shells.default.imports = [
-          devlib.devenvModules.git
-          devlib.devenvModules.nix
-          devlib.devenvModules.shell
-          devlib.devenvModules.shikanime-studio
-        ];
-      };
+      perSystem =
+        { pkgs, ... }:
+        let
+          toml = pkgs.formats.toml { };
+        in
+        {
+          devenv.shells.default = {
+            imports = [
+              devlib.devenvModules.git
+              devlib.devenvModules.nix
+              devlib.devenvModules.shell
+              devlib.devenvModules.shikanime-studio
+            ];
+            treefmt.config.settings.formatter.rumdl-check.options = [
+              "--config"
+              (toString (
+                toml.generate "rumdl.toml" {
+                  # Persona prose is agent-facing style guidance, not documentation:
+                  # long directive lines are intentional.
+                  "per-file-ignores"."profiles/*/SOUL.md" = [
+                    "MD013"
+                    "MD041"
+                  ];
+                  # Unbreakable tokens live in code blocks and tables; prose width
+                  # stays enforced.
+                  MD013.code_blocks = false;
+                  MD013.tables = false;
+                }
+              ))
+            ];
+          };
+        };
       systems = [
         "x86_64-linux"
         "aarch64-linux"

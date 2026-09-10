@@ -115,6 +115,11 @@
       "path": "skills/shikanime-studio/sks-curate"
     },
     {
+      "name": "sks-delegate",
+      "description": "Use when handing an entire shikanime unit to the Automata account: authoring, commits, pushes, and gh interactions run as yorha-operator, never the personal shikanime identity.",
+      "path": "skills/shikanime-studio/sks-delegate"
+    },
+    {
       "name": "sks-converge",
       "description": "Use when jj conflicts or divergent changes block a shikanime repo after a tree move: resolve conflicted revisions and divergent twins until pushable.",
       "path": "skills/shikanime-studio/sks-converge"
@@ -218,6 +223,126 @@
       "name": "sks-update",
       "description": "Use when updating skills in the shikanime-labs/skills catalog: curate every skill by default (or named ones only), land through the dev workflow, and resync to local Hermes agents.",
       "path": "skills/shikanime-studio/sks-update"
+    },
+    {
+      "name": "book-cert-manager",
+      "description": "cert-manager install, issuers, and certs reference.",
+      "path": "skills/books/book-cert-manager"
+    },
+    {
+      "name": "book-copyparty",
+      "description": "Configure and operate the copyparty file-sharing server.",
+      "path": "skills/books/book-copyparty"
+    },
+    {
+      "name": "book-envoy-gateway",
+      "description": "Reference for Envoy Gateway concepts, install, and tasks.",
+      "path": "skills/books/book-envoy-gateway"
+    },
+    {
+      "name": "book-external-dns",
+      "description": "ExternalDNS ops, annotations, and provider pitfalls.",
+      "path": "skills/books/book-external-dns"
+    },
+    {
+      "name": "book-faker",
+      "description": "Distilled @faker-js/faker + Faker docs for fake test data.",
+      "path": "skills/books/book-faker"
+    },
+    {
+      "name": "book-fluxcd",
+      "description": "Flux Toolkit controllers, CRDs, and CLI reference.",
+      "path": "skills/books/book-fluxcd"
+    },
+    {
+      "name": "book-k8s-gateway-api",
+      "description": "Gateway API reference: resources, routes, TLS, mesh.",
+      "path": "skills/books/book-k8s-gateway-api"
+    },
+    {
+      "name": "book-kameo",
+      "description": "Distilled reference for the Kameo Rust actor framework.",
+      "path": "skills/books/book-kameo"
+    },
+    {
+      "name": "book-llama-cpp",
+      "description": "Local llama.cpp GGUF inference, serving, and Hub discovery.",
+      "path": "skills/books/book-llama-cpp"
+    },
+    {
+      "name": "book-lldap",
+      "description": "Use for lLDAP ops: schema limits, GraphQL, LDAP probes.",
+      "path": "skills/books/book-lldap"
+    },
+    {
+      "name": "book-longhorn",
+      "description": "Distilled Longhorn 1.12.1 documentation knowledge base.",
+      "path": "skills/books/book-longhorn"
+    },
+    {
+      "name": "book-nestjs",
+      "description": "NestJS patterns and APIs distilled from official docs.",
+      "path": "skills/books/book-nestjs"
+    },
+    {
+      "name": "book-nix",
+      "description": "Distilled reference for Nix, NixOS, and Nixpkgs manuals.",
+      "path": "skills/books/book-nix"
+    },
+    {
+      "name": "book-nushell",
+      "description": "Nushell book distilled: types, pipelines, commands, modules.",
+      "path": "skills/books/book-nushell"
+    },
+    {
+      "name": "book-pnpm",
+      "description": "Use when managing pnpm deps, workspaces, or lockfile.",
+      "path": "skills/books/book-pnpm"
+    },
+    {
+      "name": "book-rtk",
+      "description": "Use when auditing or wiring the rtk-rewrite Hermes plugin.",
+      "path": "skills/books/book-rtk"
+    },
+    {
+      "name": "book-rust",
+      "description": "Distilled Rust Book and Reference knowledge base.",
+      "path": "skills/books/book-rust"
+    },
+    {
+      "name": "book-victoria-metrics",
+      "description": "VictoriaMetrics reference: metrics, queries, cluster, ops.",
+      "path": "skills/books/book-victoria-metrics"
+    },
+    {
+      "name": "book-victoria-logs",
+      "description": "VictoriaLogs: data model, LogsQL, ingestion, querying, ops.",
+      "path": "skills/books/book-victoria-logs"
+    },
+    {
+      "name": "book-vite",
+      "description": "Use when configuring Vite, vite.config, or the dev server.",
+      "path": "skills/books/book-vite"
+    },
+    {
+      "name": "book-vitest",
+      "description": "Use when adding or running Vitest tests and config.",
+      "path": "skills/books/book-vitest"
+    },
+    {
+      "name": "book-vllm",
+      "description": "Run vLLM: offline LLM, OpenAI API server, quant, spec decode, parallel.",
+      "path": "skills/books/book-vllm"
+    },
+    {
+      "name": "book-vue3",
+      "description": "Vue 3 guide distilled: reactivity, components, composables.",
+      "path": "skills/books/book-vue3"
+    },
+    {
+      "name": "book-wharf",
+      "description": "Use when building Nix flake OCI images with wharf.",
+      "path": "skills/books/book-wharf"
     }
   ]
 }

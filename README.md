@@ -107,6 +107,7 @@ specification, compatible with the
 | `sks-async`             | jj workspace fan-out + stacked PRs for parallel work                                                                         |
 | `sks-commit`            | shikanime commit style + Automata co-author trailer                                                                          |
 | `sks-curate`            | Update, improve, compress, and token-optimize skills in the catalog                                                          |
+| `sks-delegate`          | End-to-end delegation to the Automata account: authoring, commits, pushes, and gh calls run as yorha-operator                 |
 | `sks-dev-workflow`      | Branch/push discipline, gates, landing                                                                                       |
 | `sks-discussion`        | RFC Discussions (pre-issue stage)                                                                                            |
 | `sks-discussion-triage` | Discussion triage: category + lifecycle (GraphQL)                                                                            |
@@ -161,6 +162,38 @@ the org workflows above.
 | Skill           | Description                                                         |
 | --------------- | ------------------------------------------------------------------- |
 | `nix-pr-review` | Review an upstream nixpkgs PR: build changed packages with nixpkgs-review and check the diff against nixpkgs conventions |
+
+### books family
+
+Distilled reference knowledge bases (`book-*`) — one skill per tool or
+domain, with progressive disclosure into `references/`.
+
+| Skill                        | Description |
+| ---------------------------- | ----------- |
+| `book-cert-manager` | cert-manager install, issuers, and certs reference. |
+| `book-copyparty` | Configure and operate the copyparty file-sharing server. |
+| `book-envoy-gateway` | Reference for Envoy Gateway concepts, install, and tasks. |
+| `book-external-dns` | ExternalDNS ops, annotations, and provider pitfalls. |
+| `book-faker` | Distilled @faker-js/faker + Faker docs for fake test data. |
+| `book-fluxcd` | Flux Toolkit controllers, CRDs, and CLI reference. |
+| `book-k8s-gateway-api` | Gateway API reference: resources, routes, TLS, mesh. |
+| `book-kameo` | Distilled reference for the Kameo Rust actor framework. |
+| `book-llama-cpp` | Local llama.cpp GGUF inference, serving, and Hub discovery. |
+| `book-lldap` | Use for lLDAP ops: schema limits, GraphQL, LDAP probes. |
+| `book-longhorn` | Distilled Longhorn 1.12.1 documentation knowledge base. |
+| `book-nestjs` | NestJS patterns and APIs distilled from official docs. |
+| `book-nix` | Distilled reference for Nix, NixOS, and Nixpkgs manuals. |
+| `book-nushell` | Nushell book distilled: types, pipelines, commands, modules. |
+| `book-pnpm` | Use when managing pnpm deps, workspaces, or lockfile. |
+| `book-rtk` | Use when auditing or wiring the rtk-rewrite Hermes plugin. |
+| `book-rust` | Distilled Rust Book and Reference knowledge base. |
+| `book-victoria-metrics` | VictoriaMetrics reference: metrics, queries, cluster, ops. |
+| `book-victoria-logs` | VictoriaLogs: data model, LogsQL, ingestion, querying, ops. |
+| `book-vite` | Use when configuring Vite, vite.config, or the dev server. |
+| `book-vitest` | Use when adding or running Vitest tests and config. |
+| `book-vllm` |  |
+| `book-vue3` | Vue 3 guide distilled: reactivity, components, composables. |
+| `book-wharf` | Use when building Nix flake OCI images with wharf. |
 
 ### Agent profiles
 
