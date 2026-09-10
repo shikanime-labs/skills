@@ -48,8 +48,26 @@ re-read the ledger (unchecked box blocks merge):
 gh issue view <N> --repo <org>/<repo> --json body --jq .body
 ```
 
-**Gate 2 — `sks-pr-review` approval.** Approved on current head; re-review if
-new commits landed. CI green: `gh pr checks <M> --repo <org>/<repo>`.
+**Gate 2 — `yorha-operator` approval (mandatory, non-bypassable).** Before
+any other review consideration, the merge is blocked until `yorha-operator`
+has an APPROVED review on the current head commit — a stale approval after a
+new push does not count, and `--admin` may bypass branch protection but never
+this gate. CI green: `gh pr checks <M> --repo <org>/<repo>`. Verify the
+operator approval against the head SHA (REST reviews carry `commit_id`):
+
+```bash
+R=<org>/<repo>; M=<PR>
+HEAD=$(gh pr view "$M" -R "$R" --json headRefOid -q .headRefOid)
+gh api "repos/$R/pulls/$M/reviews" --paginate \
+  --jq 'map(select(.user.login == "yorha-operator" and .state == "APPROVED"
+                 and .commit_id == "'"$HEAD"'")) | length > 0'
+```
+
+`False` → `BLOCKED: yorha-operator approval required` — request it
+(`gh pr edit <M> -R "$R" --add-reviewer yorha-operator`) or obtain it
+verbally, then re-verify on the new head. In addition, `sks-pr-review`
+approval applies as before: approved on current head; re-review if new
+commits landed.
 
 ```bash
 gh pr view <M> --repo <org>/<repo> --json reviews,headRefOid \
@@ -58,7 +76,8 @@ gh pr view <M> --repo <org>/<repo> --json reviews,headRefOid \
 
 Agent review is pre-flight; **a human approving review is the gate.** Where
 branch protection blocks self-approval (e.g. `shikanime-labs/skills`,
-`nix-containers`), a verbal `lgtm` from the user satisfies Gate 2 — land via
+`nix-containers`), a verbal `lgtm` from the operator (the user operating
+`yorha-operator`) satisfies Gate 2 — land via
 `gh pr merge --squash --admin` (see Merge procedure). `--admin` is what bypasses
 the protection; no separate human review is then required.
 
@@ -183,7 +202,8 @@ push. A failing run exits non-zero and skips merge (red never lands).
 ## Verification Checklist
 
 - [ ] Issue tasklist N/N checked with evidence.
-- [ ] `sks-pr-review` approval on head; human review where protection requires.
+- [ ] `yorha-operator` approval on head (non-bypassable); `sks-pr-review`
+      approval; human review where protection requires.
 - [ ] All conversations reconciled (`sks-pr-resolve`).
 - [ ] `sks-commit` + `sks-pr` conventions verified (subject imperative, PR title
       parity).
