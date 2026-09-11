@@ -4,7 +4,7 @@ description:
   "Use when triaging an existing shikanime org issue: assign type, labels,
   assignee, milestone, project, relationships, and fields; close with rationale
   if not workable."
-version: 0.2.0
+version: 0.3.0
 author: Hermes Agent
 license: Apache-2.0
 metadata:
@@ -91,7 +91,10 @@ mean those fields stay empty.
 - **labels** — best match by meaning (defect→`bug`, new
   capability→`enhancement`, doc→`documentation`); add an area label only if
   it exists. Drop any not in the step-2 list — never invent.
-- **assignee** — if none: `ASSIGNEE=$(gh api user --jq .login)`.
+- **assignee** — if none: `yorha-operator` (the Automata account) but only
+  when it appears in the step-2 assignee list; else
+  `ASSIGNEE=$(gh api user --jq .login)`. Unlike PR reviewers, GitHub accepts
+  assigning the author on issues.
 - **milestone** — if none and milestones exist: bug→highest open **patch**
   on current minor (max `Z`); enhancement→next minor/major.
 - **project** — if a Projects V2 board exists and this is unboarded:

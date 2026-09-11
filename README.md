@@ -136,6 +136,7 @@ specification, compatible with the
 | ----------------------- | ----------------------------------------------------------------------------------------------------- |
 | `cpn-async`             | Fan-out parallèle sur workspaces jj + PR en stack                                                     |
 | `cpn-commit`            | Conventional commits for console                                                                      |
+| `cpn-delegate`          | Isolation d'une unité en workspace jj frais : fork propre depuis main@origin, bookmark + push limités |
 | `cpn-dev-workflow`      | Console repo dev loop, gates, PR workflow                                                             |
 | `cpn-discussion`        | French Discussions via GraphQL                                                                        |
 | `cpn-discussion-triage` | Triage de discussion : catégorie + cycle (GraphQL)                                                    |
@@ -143,14 +144,13 @@ specification, compatible with the
 | `cpn-issue-refine`      | Raffine un problème vers la convergence dans l'issue                                                  |
 | `cpn-issue-triage`      | Triage d'issue : métadonnées + fermetures motivées                                                    |
 | `cpn-issue-workflow`    | Workflow issue : créer → raffiner → trier                                                             |
-| `cpn-land`              | Merge de PR : gates DoD/threads/CI + approbation yorha-operator                                      |
+| `cpn-land`              | Merge de PR : gates DoD/threads/CI + approbation yorha-operator                                       |
 | `cpn-pr`                | French PRs, pushed to origin, conventional                                                            |
 | `cpn-pr-resolve`        | Réconcilie les threads de review, rapporte sans merger                                                |
 | `cpn-pr-review`         | Review console PRs: arch, French artifacts                                                            |
 | `cpn-pr-triage`         | Triage de PR : métadonnées, reviewers, lien issue                                                     |
 | `cpn-pr-workflow`       | Workflow PR : issue liée → PR draft → trier                                                           |
-| `cpn-release-patch`     | Backporte l'écart entre deux tags release sur une branche hotfix pour release-please                    |
-| `cpn-stack`             | Isolation d'une unité en workspace jj frais : fork propre depuis main@origin, bookmark + push limités |
+| `cpn-release-patch`     | Backporte l'écart entre deux tags release sur une branche hotfix pour release-please                  |
 | `cpn-swarm`             | Essaim d'agents A2A : routage par capacité, machine et pression runner                                |
 
 ### nixpkgs family

@@ -19,7 +19,7 @@
     },
     {
       "id": 2,
-      "expected_output": "Ne lance pas d'essaim pour une unité unique ; retombe sur cpn-stack et évite la sur-ingénierie.",
+      "expected_output": "Ne lance pas d'essaim pour une unité unique ; retombe sur cpn-delegate et évite la sur-ingénierie.",
       "files": [],
       "prompt": "Exécute juste ce correctif sur une machine, pas besoin de cluster.",
       "assertions": [
@@ -27,7 +27,7 @@
         "The 'name' field equals 'cpn-swarm'.",
         "The description starts with 'À utiliser quand'.",
         "The license field is 'Apache-2.0'.",
-        "Body references 'cpn-stack' for a single unit.",
+        "Body references 'cpn-delegate' for a single unit.",
         "Body states spinning a swarm for one unit is wrong."
       ]
     },

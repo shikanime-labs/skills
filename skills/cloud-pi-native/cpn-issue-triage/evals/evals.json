@@ -12,7 +12,8 @@
         "The body contains at least one '##' heading.",
         "The 'description' field starts with 'À utiliser quand' and is at most 200 characters.",
         "Le corps attribue les labels et le jalon (milestone) d'une issue console.",
-        "Le corps applique les métadonnées via 'gh issue edit' en mode additif (--add-label)."
+        "Le corps applique les métadonnées via 'gh issue edit' en mode additif (--add-label).",
+        "Le corps choisit yorha-operator (compte Automata) comme assignee par défaut uniquement s'il figure dans la liste d'assignees du dépôt, avec repli sur l'utilisateur courant."
       ]
     },
     {

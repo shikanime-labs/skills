@@ -12,7 +12,8 @@
         "The license field is 'Apache-2.0'.",
         "The body contains at least one '##' heading.",
         "Body assigns labels, assignee, milestone, and project.",
-        "Body never invents a repo-lacking label and only fills fields empty on the issue."
+        "Body never invents a repo-lacking label and only fills fields empty on the issue.",
+        "Body selects yorha-operator (the Automata account) as assignee only when it appears in the repo's eligible assignee list, falling back to the current user."
       ]
     },
     {
