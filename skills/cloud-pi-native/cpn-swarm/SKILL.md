@@ -45,7 +45,7 @@ Ce skill est un routeur, pas un transport. Il décide _quoi va où_ ; A2A et
 ## When NOT to Use
 
 - Quelques PR sœurs dans un dépôt → `cpn-async` (workspaces jj, pas de cluster).
-- Une unité, une machine → `cpn-stack` ; ne pas lancer d'essaim pour une unité.
+- Une unité, une machine → `cpn-delegate` ; ne pas lancer d'essaim pour une unité.
 
 ## Procedure
 
@@ -92,7 +92,7 @@ Ce skill est un routeur, pas un transport. Il décide _quoi va où_ ; A2A et
   lourdes sur un runner chaud — mesurer la marge, puis placer.
 - Traiter le « done » auto-déclaré d'un enfant comme vérifié — re-exécuter sa
   gate dans le parent avant de promouvoir.
-- Lancer un essaim pour une unité — `cpn-stack` est l'outil plus petit et
+- Lancer un essaim pour une unité — `cpn-delegate` est l'outil plus petit et
   correct.
 - A2A non authentifié ne lie que `127.0.0.1`. Distant : bearer token _et_
   `A2A_HOST`. `A2A_PEER_TOKENS="name:token,…"` définit l'identité par pair. Le
@@ -162,6 +162,6 @@ curl -X POST http://your-host:9900/ -H 'Content-Type: application/json' \
 
 - `cpn-async` — flux parallèles in-repo quand aucun cluster d'agents n'est
   nécessaire.
-- `cpn-stack` — isolation d'une unité (l'outil plus petit pour un flux unique).
+- `cpn-delegate` — isolation d'une unité (l'outil plus petit pour un flux unique).
 - `cpn-dev-workflow` — boucle complète ; gate de validation d'hypothèses AVANT
   tout fan-out.

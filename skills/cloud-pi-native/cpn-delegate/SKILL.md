@@ -1,10 +1,10 @@
 ---
-name: cpn-stack
+name: cpn-delegate
 description:
   "À utiliser quand vous isolez une unité de travail cloud-pi-native dans un
   workspace jj frais pour que le WIP concurrent ne soit jamais mélangé —
   bookmarks et pushes limités à ce workspace."
-version: 0.1.1
+version: 0.2.0
 author: Hermes Agent
 license: Apache-2.0
 platforms:
@@ -25,7 +25,7 @@ metadata:
       - cpn-pr
 ---
 
-# CPN Org — Isolation d'une unité (stack)
+# CPN Org — Isolation d'une unité (delegate)
 
 Ouvrir un workspace `jj` frais pour UNE unité de travail afin qu'un dossier de
 travail en cours (plein de WIP d'autres éditeurs à ne pas toucher) ne mélange

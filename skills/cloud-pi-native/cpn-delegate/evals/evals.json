@@ -7,7 +7,7 @@
       "prompt": "Isole cette unité de travail console dans un workspace jj propre à main@origin.",
       "assertions": [
         "Frontmatter parses as valid YAML.",
-        "Frontmatter 'name' field equals 'cpn-stack'.",
+        "Frontmatter 'name' field equals 'cpn-delegate'.",
         "Frontmatter 'license' field equals 'Apache-2.0'.",
         "SKILL.md body contains at least one Markdown '##' heading.",
         "Le corps ouvre le workspace via `jj workspace add ../console.\u003cunite\u003e -r 'main@origin'`.",
@@ -31,11 +31,11 @@
       "files": [],
       "prompt": "Fais trois correctifs indépendants chacun dans son propre workspace jj.",
       "assertions": [
-        "Frontmatter 'name' field equals 'cpn-stack' (not an sks- name).",
+        "Frontmatter 'name' field equals 'cpn-delegate' (not an sks- name).",
         "Le corps indique qu'une seule unité est gérée ici.",
         "Le corps renvoie le fan-out N unités vers 'cpn-async'."
       ]
     }
   ],
-  "skill_name": "cpn-stack"
+  "skill_name": "cpn-delegate"
 }

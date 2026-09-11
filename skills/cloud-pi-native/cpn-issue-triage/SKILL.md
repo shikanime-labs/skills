@@ -3,7 +3,7 @@ name: cpn-issue-triage
 description:
   "À utiliser quand vous triez une issue existante de cloud-pi-native/console :
   labels, assignee, jalon, projet ; clôture motivée."
-version: 0.1.1
+version: 0.2.0
 author: Hermes Agent
 license: Apache-2.0
 metadata:
@@ -43,7 +43,10 @@ Commandes détaillées : `references/cpn-issue-triage.md`.
      `💡 [REQUEST]`→`enhancement` ; corps structuré par templates. Zone depuis
      chemins touchés si label existe. **Filtrer contre `gh label list` — jamais
      inventer.**
-   - **assignee** : si aucun → `ASSIGNEE=$(gh api user --jq .login)`.
+   - **assignee** : si aucun → `yorha-operator` (compte Automata), mais
+     seulement s'il figure dans la liste d'assignees de l'étape 2 ; sinon
+     `ASSIGNEE=$(gh api user --jq .login)`. Sur une issue, GitHub accepte
+     d'assigner l'auteur (la contrainte 422 ne vise que les reviewers de PR).
    - **jalon** : bug→plus haut **patch** ouvert de la ligne mineure (max `Z`) ;
      enhancement→mineure/majeure suivante.
    - **projet** : `--add-project <number>` si non boardé ; sauter si ambigu (pas

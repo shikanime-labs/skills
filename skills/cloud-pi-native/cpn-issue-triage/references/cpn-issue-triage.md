@@ -20,7 +20,14 @@ gh api repos/"$R"/assignees --jq '.[].login'     # qui peut être assigné
 ## 3. Décider — assignee
 
 ```bash
-ASSIGNEE=$(gh api user --jq .login)   # si aucun assignee
+# défaut : yorha-operator (compte Automata) s'il figure dans la liste
+# d'assignees ci-dessus, sinon l'utilisateur courant. Sur une issue,
+# GitHub accepte d'assigner l'auteur (pas de 422 reviewer).
+if gh api repos/"$R"/assignees --jq '.[].login' | grep -qx yorha-operator; then
+  ASSIGNEE=yorha-operator
+else
+  ASSIGNEE=$(gh api user --jq .login)
+fi
 ```
 
 ## 4. Appliquer (additif : --add-label / --add-assignee, jamais --label)
