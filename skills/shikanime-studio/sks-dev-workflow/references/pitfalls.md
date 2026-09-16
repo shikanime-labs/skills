@@ -184,7 +184,7 @@ Escape (per `sks-issue`, `sks-pr`, `cpn-issue`, `cpn-pr`):
   else renders as-is.
 - Never run `nix fmt` / `mdformat` over a body; those tools enforce an
   80-column wrap that does not belong on GitHub.
-The `## What`/`## Why`/`## References` (PR) and `## Problem`/`## Acceptance`
+The `## Why`/`## What`/`## References` (PR) and `## Problem`/`## Acceptance`
 (issue) headings are the only structure; the paragraph text under them stays
 unwrapped.
 

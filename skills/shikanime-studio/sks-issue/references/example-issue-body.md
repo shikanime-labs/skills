@@ -9,7 +9,7 @@ move to comments, never into the tasklist.
 ## Problem
 
 `gh pr create` seeds the PR title/body from the top commit, but the skill's
-documented `## What`/`## Why`/`## References` sections are not produced by the
+documented `## Why`/`## What`/`## References` sections are not produced by the
 command, so agents write divergent prose.
 
 ## References

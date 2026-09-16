@@ -102,7 +102,7 @@ findings/root-cause as `gh issue comment` and cite concrete evidence (the exact
 comments may be deleted after convergence.
 
 The issue template (`## Problem` / `## Acceptance`) is issue-only. The PR body
-must not reuse it — the PR side uses the `## What` / `## Why` / `## References`
+must not reuse it — the PR side uses the `## Why` / `## What` / `## References`
 shape from `sks-pr`.
 
 Body has a **References** section: official material (docs, linked issues/PRs,
