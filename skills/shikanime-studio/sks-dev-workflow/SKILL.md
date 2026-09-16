@@ -232,7 +232,7 @@ Exact shapes live in the owning skills:
 - **Comment** — findings/proofs in comments; cite concrete evidence (diff
   lines, command output). Terse: one finding per comment, code spans for
   commands, no nested parentheticals.
-- **PR** → `sks-pr` — title = commit subject; body `## What`/`## Why`/
+- **PR** → `sks-pr` — title = commit subject; body `## Why`/`## What`/
   `## References` restating the commit; `Related: <full URL>`.
 
 Cross-cutting: a ledger item is command-decidable and done only once its

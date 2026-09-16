@@ -75,11 +75,11 @@ jj bookmark set <next> -r <next>
 gh pr create --repo <org>/<repo> --base main --head "<org>:<next>" \
   --title "<subject>" \
   --body "$(cat <<'EOF'
-## What
-<brief bullet scope of this chain link>
-
 ## Why
 <linked issue: why now>
+
+## What
+<brief bullet scope of this chain link>
 
 ## References
 

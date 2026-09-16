@@ -62,8 +62,8 @@ remote as canonical.
    parity with commit.
 3. **Body** — restates the commit body as three fixed sections (commit is the
    source of truth; restate, do NOT invent new rationale):
-   - `## What` — one-line summary + bullet scope (what this PR delivers).
    - `## Why` — why now: the drift/risk/pain this closes (one short paragraph).
+   - `## What` — one-line summary + bullet scope (what this PR delivers).
    - `## References` — `Related: <full issue URL>` (mandatory) plus any
      commits/specs/changelogs proving the solution.
    - See `references/example-pr-body.md` for a filled example.
@@ -74,7 +74,7 @@ remote as canonical.
      does not apply to GitHub bodies.
    - Encourage a Mermaid diagram (e.g. `flowchart TD`) in the body when a visual
      aids the reader — GitHub renders Mermaid inline in PR bodies. The diagram
-     is optional reinforcement, never a substitute for the `## What` / `## Why`
+     is optional reinforcement, never a substitute for the `## Why` / `## What`
      / `## References` structure.
    - A bare `@name` in prose pings that user/team — wrap any literal `@` (NestJS
      `@Inject(x)`, decorators, config keys) in a code span or fenced block; only
@@ -172,8 +172,8 @@ jj bookmark track <branch> --remote=origin
 jj git push --remote origin
 gh pr create --repo "$ORG/<repo>" --base main --head "$ORG:<branch>" \
   --title "TITLE" --body "$(cat <<'EOF'
-## What
 ## Why
+## What
 ## References
 <linked issues/PRs, commits, changelogs, specs proving the solution>
 Related: https://github.com/<org>/<repo>/issues/N
