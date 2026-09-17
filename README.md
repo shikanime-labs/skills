@@ -82,15 +82,19 @@ Shared doctrine across both families:
 1. **Issue-first** — a PR always solves an issue; the issue body is the problem
    statement, acceptance criteria are a command-decidable tasklist (the gate
    ledger), findings go in comments.
-2. **Done is proven, not asserted** — every landing claim is verified against
+2. **Repo templates override the defaults.** When a repo ships
+   `.github/ISSUE_TEMPLATE` or a PR template, bodies conform to its sections
+   verbatim; without one the `## Problem`/`## Acceptance` (issue) and
+   `## Why`/`## What`/`## References` (PR) shapes apply.
+3. **Done is proven, not asserted** — every landing claim is verified against
    real command output; a red check is surfaced, never `--admin`'d past.
-3. **Validate assumptions before work** — probe identity, push rights,
+4. **Validate assumptions before work** — probe identity, push rights,
    toolchain, and issue existence; report `BLOCKED:` with evidence and a
    recovery path rather than silently narrowing scope.
-4. **Parallelize in a graph** — `sks-async` splits multi-unit work into jj
+5. **Parallelize in a graph** — `sks-async` splits multi-unit work into jj
    workspaces (fan-out), joins with multi-parent commits, lands as independent
    PRs or stacked chains.
-5. **Many-to-many linkage** — link PRs with `Related:` / `Issues liées:`; avoid
+6. **Many-to-many linkage** — link PRs with `Related:` / `Issues liées:`; avoid
    auto-close keywords; close deliberately after verifying the ledger.
 
 ## What's Here

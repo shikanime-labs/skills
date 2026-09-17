@@ -3,7 +3,7 @@ name: sks-issue
 description:
   "Use when opening an issue in shikanime-labs or shikanime-studio: body is the
   problem statement, acceptance criteria as a command-decidable tasklist."
-version: 0.1.1
+version: 0.1.2
 author: Hermes Agent
 license: Apache-2.0
 metadata:
@@ -105,10 +105,20 @@ The issue template (`## Problem` / `## Acceptance`) is issue-only. The PR body
 must not reuse it — the PR side uses the `## Why` / `## What` / `## References`
 shape from `sks-pr`.
 
-Body has a **References** section: official material (docs, linked issues/PRs,
-commits, changelogs, specs); more may be posted as comments to steer resolution,
-but proof of the solution belongs in the PR. Close deliberately — ledger
-verified N of N after final merge.
+**Templates: detect, then conform.** Probe for repo issue templates before
+writing the body — candidate paths: `.github/ISSUE_TEMPLATE.md`,
+`.github/ISSUE_TEMPLATE/`, `.github/issue_template.md`. When one exists,
+fill its sections and keep its headings verbatim; the acceptance-criteria
+tasklist rides in whichever section fits. Cross-check the form's `labels:`
+against `gh label list` before flagging or passing a label. No template →
+the default shapes above.
+
+A body without a template has a **References** section: official material
+(docs, linked issues/PRs, commits, changelogs, specs); with a template, place
+references in a suitable template-defined section instead of adding headings
+it lacks. More may be posted as comments to steer resolution, but proof of the
+solution belongs in the PR. Close deliberately — ledger verified N of N after
+final merge.
 
 ### 3. Triage metadata
 
