@@ -21,6 +21,7 @@ metadata:
       - sks-skill-authoring
       - sks-dev-workflow
       - sks-pr-review
+      - caveman-compress
       - ponytail-review
       - ponytail-audit
 platforms:
@@ -118,6 +119,15 @@ Delete or rewrite anything that matches:
 - **Orphan references** — `references/` files nothing loads; either add the
   explicit load condition or delete them.
 - **Stale versions/gates** — commands or rules the workflow no longer uses.
+- **Invented abbreviations** — `cfg`/`impl`/`req`/`fn` split the same as the
+  full word at the tokenizer, save zero tokens, and force a decode. Keep
+  standard acronyms (DB/API/HTTP); keep the full word otherwise.
+- **Causal arrows** — a `→` is its own token and saves nothing; write the
+  plain words.
+- **Long compound sentences** — one idea per sentence, target ≤ 20 words,
+  active voice. Same term for the same thing, no synonym rotation.
+- **Negation flips** — never drop `not`/`never`/`no`/`only`/`except` to save a
+  token; flipping a guard is worse than any saving.
 
 Compression is bounded by clarity: a one-line answer the reader cannot act on
 is not cheaper, it is broken. When a choice cuts a real corner, leave a note
@@ -161,6 +171,19 @@ naming the ceiling and the upgrade path.
   CLONES first and consolidate
   the mirror's learnings into the repo (body or `references/`); otherwise the
   next `hermes skills update` silently deletes them.
+- **Mirror catalog lives untracked; syncs can cull it silently.** Verified
+  2026-09-08: `origin/main` tracks only a subset of the operational catalog
+  (~196 `SKILL.md` dirs on disk); whole categories (`apple/`, `media/`,
+  `productivity/`, most `devops/` books) exist only as untracked mirror
+  files. An `export from jj` sync left the mirror HEAD on a stale tree and
+  the untracked layer was gone from disk. Recover from the newest mirror
+  commit that still carries the catalog: list additions via
+  `git diff --name-only --diff-filter=A origin/main <sha> > <list>`, then
+  `git restore --source=<sha> --worktree --pathspec-from-file=<list>`.
+  Keep the recovery untracked — repo doctrine ships only the sks and cpn
+  families. After
+  any mirror reset or `hermes skills update`, spot-check a local-only skill
+  (e.g. `devops/envoy-byod-gateway`) before trusting the catalog.
 - **Curate in a worktree, never `cp` over it.** When the user's tree is dirty,
   check the PR commit out in a fresh `git worktree` and edit there. Never copy
   the user's on-disk (possibly already-edited) file over the worktree's
