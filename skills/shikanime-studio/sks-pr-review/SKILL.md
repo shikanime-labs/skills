@@ -93,6 +93,15 @@ request changes only on `blocking`. Never block on polish.
 `blocking` / `important` / `nit` / `suggestion` / `learning` / `praise`.
 Inline-anchoring syntax and `gh api` template: `references/inline-comments.md`.
 
+## Finding format
+
+One line per finding: `<file>:L<line>: <severity>: <problem>. <fix>.` Keep the
+exact line and exact symbol name in backticks, and a concrete fix, not
+"consider refactoring". Drop restating what the line does, hedging ("perhaps"),
+and throat-clearing. If the fix is not obvious from the problem, add the why.
+Full paragraphs only for security/architecture findings; resume the one-line
+format after.
+
 ## Posting (PRs)
 
 ONE review on the PR, inline comments per line
