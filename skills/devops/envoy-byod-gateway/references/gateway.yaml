@@ -1,0 +1,30 @@
+# Known-good Gateway for a Tailscale BYOD data plane (apps/syncthing/base).
+# Terminates UI TLS at the Gateway (cert from ClusterIssuer nishir); exposes
+# UI (443 HTTPS) plus sync (22000 TCP + UDP) on the same Envoy data plane.
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: syncthing
+spec:
+  gatewayClassName: syncthing
+  listeners:
+    - name: https
+      port: 443
+      protocol: HTTPS
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - name: syncthing-tls
+            group: ""
+            kind: Secret
+    - name: syncthing
+      port: 22000
+      protocol: TCP
+    - name: syncthing-udp
+      port: 22000
+      protocol: UDP
+  infrastructure:
+    parametersRef:
+      name: syncthing
+      group: gateway.envoyproxy.io
+      kind: EnvoyProxy

@@ -1,0 +1,35 @@
+# Compliant debug pod to probe TCP reachability from inside `envoy-system`.
+# The cluster enforces PodSecurity `restricted`, so a plain `kubectl run alpine`
+# is rejected (must set runAsNonRoot/runAsUser + allowPrivilegeEscalation:false
+# + capabilities drop ALL + seccomp RuntimeDefault). alpine defaults to root, so
+# runAsUser must be non-zero (65534). Apply, wait, then `kubectl -n envoy-system
+# logs synctest`. Replace POD_IP and SVC_IP with the syncthing pod IP and the
+# envoy-system Service ClusterIP.
+apiVersion: v1
+kind: Pod
+metadata:
+  name: synctest
+  namespace: envoy-system
+spec:
+  restartPolicy: Never
+  securityContext:
+    runAsNonRoot: true
+    runAsUser: 65534
+    runAsGroup: 65534
+    seccompProfile:
+      type: RuntimeDefault
+  containers:
+    - name: t
+      image: alpine:3.20
+      command: ["sh", "-c"]
+      args:
+        - >-
+          apk add -q --no-cache nc >/dev/null 2>&1;
+          echo "to pod IP POD_IP:22000:";
+          nc -vz -w 5 POD_IP 22000; echo "pod_exit=$?";
+          echo "to svc ClusterIP SVC_IP:22000:";
+          nc -vz -w 5 SVC_IP 22000; echo "svc_exit=$?"
+      securityContext:
+        allowPrivilegeEscalation: false
+        capabilities:
+          drop: ["ALL"]

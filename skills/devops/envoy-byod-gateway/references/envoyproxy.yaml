@@ -1,0 +1,22 @@
+# Known-good EnvoyProxy for a Tailscale BYOD data plane (apps/syncthing/base).
+# Pin a stable envoyService.name so the tailnet hostname below is independent
+# of Envoy Gateway's generated names. loadBalancerClass: tailscale makes the
+# operator own the data plane as a tailnet device.
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: EnvoyProxy
+metadata:
+  name: syncthing
+  namespace: shikanime
+spec:
+  provider:
+    type: Kubernetes
+    kubernetes:
+      envoyService:
+        name: syncthing
+        type: LoadBalancer
+        loadBalancerClass: tailscale
+        annotations:
+          # Distinct from the tailnet's reserved device name 'syncthing' (held
+          # by the real syncthing peer); the operator suffixes collisions, so
+          # we pin a unique name to keep cert SAN + route hostname aligned.
+          tailscale.com/hostname: syncthing-gw
