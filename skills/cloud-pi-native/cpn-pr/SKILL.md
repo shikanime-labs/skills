@@ -3,7 +3,7 @@ name: cpn-pr
 description:
   "À utiliser quand vous ouvrez une PR cloud-pi-native : titre conventionnel,
   corps en français, lien vers l'issue."
-version: 0.2.4
+version: 0.3.0
 author: Hermes Agent
 license: Apache-2.0
 metadata:
@@ -18,6 +18,7 @@ metadata:
       - cpn-dev-workflow
       - cpn-issue
       - cpn-pr-triage
+      - caveman
 platforms:
   - linux
   - macos
@@ -132,6 +133,9 @@ that does not apply to GitHub bodies. Encouragez un diagramme Mermaid (ex.
 `flowchart`) dans le corps quand une représentation visuelle aide le lecteur —
 GitHub rend le Mermaid dans les corps de PR. Le diagramme est un renfort
 optionnel, jamais un substitut à la prose.
+
+Le corps de PR reste la prose française du template (artefact persisté) :
+les modes de compression ne touchent que le chat.
 
 - `@nom` en prose déclenche une mention d'utilisateur/équipe — pour écrire un
   `@` littéral (decorators, clés de config, `@Inject(x)`), l'enfermer dans un

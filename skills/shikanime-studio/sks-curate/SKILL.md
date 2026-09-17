@@ -4,7 +4,7 @@ description:
   "Use when updating, improving, compressing, or token-optimizing a skill in
   the shikanime-labs/skills catalog: rework the body, tighten it, refresh
   evals, and keep it loadable."
-version: 0.2.0
+version: 0.3.0
 author: Hermes Agent
 license: Apache-2.0
 metadata:
@@ -23,6 +23,7 @@ metadata:
       - sks-pr-review
       - ponytail-review
       - ponytail-audit
+      - caveman-compress
 platforms:
   - linux
   - macos
@@ -122,6 +123,10 @@ Delete or rewrite anything that matches:
 Compression is bounded by clarity: a one-line answer the reader cannot act on
 is not cheaper, it is broken. When a choice cuts a real corner, leave a note
 naming the ceiling and the upgrade path.
+
+Compression here means token reduction of persisted skill bodies —
+normal prose, never caveman-speak; `caveman-compress` is for memory files
+only.
 
 ## Gotchas
 

@@ -3,7 +3,7 @@ name: sks-commit
 description:
   "Use when committing in shikanime-labs or shikanime-studio repos:
   plain-English imperative titles and repo-enforced hooks (gitlint, DCO) win."
-version: 0.2.0
+version: 0.3.0
 author: Hermes Agent
 license: Apache-2.0
 metadata:
@@ -17,6 +17,7 @@ metadata:
       - sks-pr-review
       - sks-dev-workflow
       - sks-pr
+      - caveman-commit
 platforms:
   - linux
   - macos
@@ -43,12 +44,16 @@ repo, never assume.
 
 ## Commit style (when no hook enforces otherwise)
 
+Commit messages are persisted artifacts: the plain-English org style and
+any enforcing hook always win — `caveman-commit` voice never overrides
+them.
+
 - **Code repos**: plain English, imperative, capitalized title, **no prefix, no
   body**. One trailer ALWAYS:
   `Co-authored-by: Automata <automata@shikanime.studio>`. One logical fix per
   commit.
-  - Good: `Force NFS v4.0 on RWX StorageClasses` + trailer.
-  - Bad: `fix: force nfs v4.0` (conventional prefix not used here).
+- Good: `Force NFS v4.0 on RWX StorageClasses` + trailer.
+- Bad: `fix: force nfs v4.0` (conventional prefix not used here).
 - **Doc repos**: `doc:` prefix, else same shape. No `(...)` in titles/labels.
 
 ## Squash / multi-commit hygiene

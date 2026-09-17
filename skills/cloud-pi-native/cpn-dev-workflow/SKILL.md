@@ -3,7 +3,7 @@ name: cpn-dev-workflow
 description:
   "À utiliser quand vous travaillez dans le dépôt console
   cloud-pi-native/console : règles de contribution, cycle de dev et workflow PR."
-version: 0.4.0
+version: 0.4.1
 author: Hermes Agent
 license: Apache-2.0
 platforms:
@@ -31,6 +31,8 @@ metadata:
       - cpn-pr
       - cpn-pr-triage
       - cpn-swarm
+      - caveman
+      - ponytail
 ---
 
 # CPN Org Dev Workflow

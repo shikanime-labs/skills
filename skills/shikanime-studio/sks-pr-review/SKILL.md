@@ -3,7 +3,7 @@ name: sks-pr-review
 description:
   "Use when reviewing shikanime code: enforce YAGNI, root-cause fixes, and
   project conventions before approval."
-version: 0.2.0
+version: 0.3.0
 author: Hermes Agent
 license: Apache-2.0
 metadata:
@@ -23,6 +23,7 @@ metadata:
       - sks-pr
       - requesting-code-review
       - ponytail-review
+      - caveman-review
 platforms:
   - linux
   - macos
@@ -86,7 +87,9 @@ with only the diff (no shared context, fail-closed on non-JSON):
 **6 — Summary.** Severity-tag findings; post each inline at its line
 (`references/inline-comments.md`), not one block; body = 2-3 sentence verdict +
 praise. Standard doctrine: approve if it improves health even if imperfect;
-request changes only on `blocking`. Never block on polish.
+request changes only on `blocking`. Never block on polish. Findings
+may be one line each (`caveman-review` style); security findings and
+architectural disagreements stay full paragraphs.
 
 ## Severity Labels
 

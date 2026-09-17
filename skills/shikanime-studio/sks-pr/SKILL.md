@@ -3,7 +3,7 @@ name: sks-pr
 description:
   "Use when opening a PR in shikanime-labs or shikanime-studio: push to origin,
   --head org:branch, plain-English title, issue linkage, parity with commit."
-version: 0.1.1
+version: 0.2.0
 author: Hermes Agent
 license: Apache-2.0
 metadata:
@@ -19,6 +19,7 @@ metadata:
       - sks-land
       - sks-pr-workflow
       - sks-doc
+      - caveman
 platforms:
   - linux
   - macos
@@ -67,6 +68,8 @@ remote as canonical.
    - `## References` — `Related: <full issue URL>` (mandatory) plus any
      commits/specs/changelogs proving the solution.
    - See `references/example-pr-body.md` for a filled example.
+   - The PR body is a persisted artifact: normal prose — compression modes
+     cover chat only (see `sks-dev-workflow`).
    - GitHub PR body is free text — never wrap lines and never insert hard line
      breaks at a column width. Write natural paragraphs; a blank line
      separates paragraphs, everything else renders as-is. Never run `nix fmt`

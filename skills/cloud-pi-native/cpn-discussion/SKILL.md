@@ -3,7 +3,7 @@ name: cpn-discussion
 description:
   "À utiliser quand vous ouvrez ou modifiez une Discussion console
   cloud-pi-native comme étape pré-issue (français, GraphQL)."
-version: 0.1.0
+version: 0.2.0
 author: Hermes Agent
 license: Apache-2.0
 metadata:
@@ -16,6 +16,7 @@ metadata:
     related_skills:
       - cpn-discussion-triage
       - cpn-issue
+      - caveman
 platforms:
   - linux
   - macos
@@ -47,6 +48,9 @@ console); a discussion is an **opening** (context + open questions), never with
   `@Inject(x)`), l'enfermer dans un bloc de code ; seul le code désactive
   l'analyse des mentions.
 - Categories: `General` (default for openings), `Ideas`.
+
+Le corps de discussion reste en prose normale (contexte + questions
+ouvertes) : artefact persisté, hors de portée des modes de compression.
 
 ## How to Run
 

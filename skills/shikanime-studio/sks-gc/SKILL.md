@@ -4,7 +4,7 @@ description:
   Use when reclaiming resources leaked by shikanime jj workflows — dangling
   bookmarks, skill-created jj workspaces, and leftover working-copy dirs from
   sks-async/sks-dev-workflow.
-version: 0.2.0
+version: 0.2.1
 author: Hermes Agent
 license: Apache-2.0
 metadata:
@@ -21,6 +21,7 @@ metadata:
       - sks-async
       - sks-dev-workflow
       - sks-land
+      - caveman
 platforms:
   - linux
   - macos

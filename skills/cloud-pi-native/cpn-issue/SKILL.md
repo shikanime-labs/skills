@@ -3,7 +3,7 @@ name: cpn-issue
 description:
   "À utiliser quand vous ouvrez une issue console cloud-pi-native : énoncé du
   problème en français et critères d'acceptation décidables."
-version: 0.1.2
+version: 0.2.0
 author: Hermes Agent
 license: Apache-2.0
 metadata:
@@ -17,6 +17,7 @@ metadata:
       - cpn-dev-workflow
       - cpn-issue-triage
       - cpn-pr
+      - caveman
 platforms:
   - linux
   - macos
@@ -111,6 +112,9 @@ enhancement → next release). Always against `cloud-pi-native/console`.
 ```bash
 gh issue comment <N> --repo cloud-pi-native/console --body-file /tmp/finding.md
 ```
+
+Le corps de l'issue reste un énoncé en prose normale (artefact persisté) :
+caveman ne compresse que le chat, jamais le corps.
 
 ## References & investigation
 

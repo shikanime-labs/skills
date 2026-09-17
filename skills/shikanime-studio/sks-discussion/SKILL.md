@@ -3,7 +3,7 @@ name: sks-discussion
 description:
   "Use when opening an RFC Discussion in a shikanime org as the pre-issue stage:
   converge on the problem, then derive the issue."
-version: 0.1.1
+version: 0.2.0
 author: Hermes Agent
 license: Apache-2.0
 metadata:
@@ -18,6 +18,7 @@ metadata:
       - sks-discussion-triage
       - sks-issue
       - sks-issue-workflow
+      - caveman
 platforms:
   - linux
   - macos
@@ -37,6 +38,8 @@ criteria, no `- [ ]` tasklist (that is issue scaffolding — belongs in the
 derived issue). No solution written here; the discussion converges on the
 problem, the issue carries the gate. See `references/example-discussion.md` for
 a filled example.
+The discussion body is a persisted artifact: normal prose, out of scope
+for compression modes (see `sks-dev-workflow`).
 
 ## When to Use
 

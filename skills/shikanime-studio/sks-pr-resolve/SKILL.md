@@ -3,7 +3,7 @@ name: sks-pr-resolve
 description:
   Use when resolving a shikanime PR's review conversations, checking the DoD
   ledger, and reconciling before merge (no merge itself).
-version: 0.1.1
+version: 0.1.2
 author: Hermes Agent
 license: Apache-2.0
 metadata:
@@ -22,6 +22,7 @@ metadata:
       - sks-doc
       - sks-issue
       - sks-investigate
+      - caveman
 platforms:
   - linux
   - macos

@@ -3,7 +3,7 @@ name: cpn-discussion-triage
 description:
   "À utiliser quand vous triez une discussion cloud-pi-native/console :
   catégorie, corps, réponse Q&A, clôture (GraphQL)."
-version: 0.1.1
+version: 0.1.2
 author: Hermes Agent
 license: Apache-2.0
 metadata:
@@ -18,6 +18,7 @@ metadata:
     related_skills:
       - cpn-discussion
       - cpn-issue
+      - caveman
 platforms:
   - linux
   - macos

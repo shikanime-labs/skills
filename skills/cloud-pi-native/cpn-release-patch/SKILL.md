@@ -4,7 +4,7 @@ description:
   "Use when backporting the commits between two release tags onto a hotfix
   branch in cloud-pi-native/console: find the patch milestone and duplicate
   those commits onto the tag with jj."
-version: 0.4.0
+version: 0.5.0
 author: Hermes Agent
 license: Apache-2.0
 platforms:
@@ -24,6 +24,7 @@ metadata:
       - cpn-dev-workflow
       - cpn-pr
       - cpn-commit
+      - caveman
 ---
 
 # CPN Release Patch (tag → hotfix branch)
@@ -147,6 +148,9 @@ ROOT=$(jj log -r '(<empty_commit_id>::)' --no-graph -T 'commit_id' | tail -1)
 jj rebase -r "$ROOT" -d BASE_TAG
 jj abandon <empty_commit_id>
 ```
+
+Backport commit messages stay normal conventional prose — compression
+modes never apply to persisted commit bodies.
 
 ### 4. Verify the backport is complete and clean
 

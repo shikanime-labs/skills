@@ -3,7 +3,7 @@ name: sks-doc
 description:
   Use when documenting a shikanime project in the repo's docs/ directory after a
   behavior-changing PR.
-version: 0.3.0
+version: 0.4.0
 author: Hermes Agent
 license: Apache-2.0
 metadata:
@@ -18,6 +18,7 @@ metadata:
       - sks-pr
       - sks-land
       - sks-issue
+      - caveman
 platforms:
   - linux
   - macos
@@ -114,6 +115,8 @@ Head each page with an owner comment:
 Edit the Markdown file in `docs/`. One page = one concern. English, plain prose,
 80-col where reasonable. Link related pages with relative Markdown links
 (`[Architecture](./Architecture.md)`).
+Docs pages are persisted artifacts: plain prose even with a compression
+mode active (see `sks-dev-workflow`).
 
 - Internal page → add to the internal section of `docs/README.md`.
 - User page → add to the user section; if a docs site already owns that content,

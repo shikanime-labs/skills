@@ -4,7 +4,7 @@ description:
   "À utiliser quand vous devez merger une PR cloud-pi-native : déchargez les
   gates DoD, threads, CI et l'approbation obligatoire de yorha-operator, puis
   mergez."
-version: 0.1.0
+version: 0.2.0
 author: Hermes Agent
 license: Apache-2.0
 metadata:
@@ -19,6 +19,7 @@ metadata:
       - cpn-pr-review
       - cpn-pr
       - cpn-pr-triage
+      - caveman
 platforms:
   - linux
   - macos
@@ -38,6 +39,10 @@ refusé sans approbation de `yorha-operator` — gate non négociable.
 - Pas pour ouvrir ou reviewer une PR.
 
 ## Gates (tous obligatoires, dans l'ordre)
+
+Les preuves de gate (ledger, CI, approbation `yorha-operator`) restent
+verbatim : aucun mode de compression ne s'applique aux sorties de
+vérification.
 
 **Gate 1 — Issue liée déchargée.** La PR résout une issue ; relisez le ledger
 (`## Définition du fini`) et exigez toutes les cases cochées :

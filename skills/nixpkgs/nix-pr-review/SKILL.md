@@ -3,7 +3,7 @@ name: nix-pr-review
 description:
   "Use when reviewing an upstream NixOS/nixpkgs pull request: build the changed
   packages with nixpkgs-review and check the diff against nixpkgs conventions."
-version: 0.1.0
+version: 0.2.0
 author: Hermes Agent
 license: Apache-2.0
 metadata:
@@ -17,6 +17,8 @@ metadata:
     related_skills:
       - sks-pr-review
       - github-code-review
+      - caveman
+      - ponytail-review
 platforms:
   - linux
   - macos
@@ -183,5 +185,9 @@ the reviewer has exercised the built binaries. Record the report (`built`/
 pass like #557075, confirm no convention regressions (structured attrs, meta,
 test hooks) were introduced.
 
+Chat discussion of findings may be terse (`caveman`); the `--post-result`
+report stays normal prose — it is a persisted artifact.
+
 Related: `sks-pr-review` (same severity/verdict discipline applied to
-shikanime PRs), `github-code-review`.
+shikanime PRs), `ponytail-review` (convention/simplicity lens for step 2),
+`github-code-review`.

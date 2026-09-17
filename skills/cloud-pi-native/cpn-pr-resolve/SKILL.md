@@ -3,7 +3,7 @@ name: cpn-pr-resolve
 description:
   "À utiliser quand vous réconciliez les review-threads d'une PR cloud-pi-native
   : ledger DoD, approbation et CI, sans merger."
-version: 0.1.1
+version: 0.1.2
 author: Hermes Agent
 license: Apache-2.0
 platforms:
@@ -23,6 +23,7 @@ metadata:
       - cpn-dev-workflow
       - cpn-issue
       - cpn-pr
+      - caveman
 ---
 
 # CPN Org — Résolution de PR (sans merge)

@@ -3,7 +3,7 @@ name: cpn-pr-review
 description:
   "À utiliser quand vous relisez une PR de cloud-pi-native/console :
   architecture, conventions NestJS et rendu de revue en français."
-version: 0.2.0
+version: 0.3.0
 author: Hermes Agent
 license: Apache-2.0
 metadata:
@@ -19,6 +19,7 @@ metadata:
       - cpn-pr-resolve
       - cpn-dev-workflow
       - ponytail-review
+      - caveman-review
 platforms:
   - linux
   - macos
@@ -80,7 +81,9 @@ findings; post each inline as a French comment anchored at its line
 verdict + praise. Approve when it improves code health even if imperfect. If
 commits violate commitlint, suggest corrected conventional message (author
 amends). Verdict: `gh pr review <N> --request-changes` only on
-`blocking`/`important`; else `--approve`.
+`blocking`/`important`; else `--approve`. Un finding peut tenir sur une
+ligne (style `caveman-review`) ; les findings de sécurité et les
+désaccords d'architecture restent des paragraphes complets.
 
 ## Severity Labels
 

@@ -3,7 +3,7 @@ name: sks-land
 description:
   Use when landing a shikanime org PR after reconciliation (sks-pr-resolve) and
   review approval gates pass; closes the linked issue deliberately.
-version: 0.3.0
+version: 0.4.0
 author: Hermes Agent
 license: Apache-2.0
 metadata:
@@ -20,6 +20,7 @@ metadata:
       - sks-issue
       - sks-pr-review
       - sks-doc
+      - caveman
 platforms:
   - linux
   - macos
@@ -40,6 +41,9 @@ for opening (`sks-pr`), review (`sks-pr-review`), reconciling
 - "Run post-merge sync (docs, downstream rebases)."
 
 ## Pre-landing gates (must already hold)
+
+Landing gates are org gates: compression modes never skip, tersify, or
+compress them or their evidence (see `sks-dev-workflow`).
 
 **Gate 1 — DoD discharged.** Issue criteria (`- [ ]`, `sks-issue`) all checked;
 re-read the ledger (unchecked box blocks merge):

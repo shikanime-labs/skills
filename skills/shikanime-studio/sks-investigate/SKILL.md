@@ -4,7 +4,7 @@ description:
   Use when investigating a bug, test failure, build break, or unexpected
   behavior in a shikanime repo — find root cause, form a hypothesis, and propose
   a solution, never apply the fix itself.
-version: 0.3.0
+version: 0.4.0
 author: Hermes Agent
 license: Apache-2.0
 metadata:
@@ -25,6 +25,7 @@ metadata:
       - sks-issue
       - sks-dev-workflow
       - ponytail-audit
+      - caveman
 platforms:
   - linux
   - macos
@@ -200,7 +201,7 @@ echo "investigation complete: root cause + hypothesis + proposed fix" \
 - `sks-async` — the isolation pattern, for parallel implementation rather than
   parallel debugging.
 - `sks-delegate` — canonical single-workspace isolation recipe before a fix.
-- `ponytail-audit` — when the defect's root cause is accidental complexity, its
-  ranked simplification list seeds the proposal.
+- `ponytail-audit` — when the defect's root cause is accidental complexity,
+  its ranked simplification list seeds the proposal.
 - `sks-issue` / `sks-dev-workflow` / `sks-pr` — receive the proposed solution
   and apply it as a reviewed change.

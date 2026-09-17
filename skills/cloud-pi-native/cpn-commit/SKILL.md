@@ -3,7 +3,7 @@ name: cpn-commit
 description:
   "À utiliser quand vous committez dans cloud-pi-native/console : commits
   conventionnels en français via jj."
-version: 0.1.0
+version: 0.2.0
 author: Hermes Agent
 license: Apache-2.0
 metadata:
@@ -17,6 +17,7 @@ metadata:
     related_skills:
       - cpn-dev-workflow
       - cpn-pr
+      - caveman
 platforms:
   - linux
   - macos
@@ -53,6 +54,10 @@ Does NOT push, open PRs, or run CI — those live in `cpn-pr` /
 > Reference safety: `#N` in a commit body resolves to a console issue/PR and
 > `Closes` / `Fixes` / `Resolves` auto-close it on merge. Bare `#N` is only safe
 > for a console ticket; cross-repo refs use a full URL or `owner/repo#N`.
+
+Le message de commit reste une prose conventionnelle normale : les modes
+de compression (caveman) ne touchent que le chat — un corps de commit
+compressé est un défaut.
 
 ## Procedure
 

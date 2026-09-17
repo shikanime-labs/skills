@@ -3,7 +3,7 @@ name: cpn-issue-refine
 description:
   "À utiliser quand vous itérez un problème vers la convergence dans son issue
   GitHub console via recherche et commentaires."
-version: 0.1.1
+version: 0.1.2
 author: Hermes Agent
 license: Apache-2.0
 platforms:
@@ -26,6 +26,7 @@ metadata:
       - cpn-issue
       - cpn-issue-triage
       - cpn-pr
+      - caveman
 ---
 
 # CPN Org — Raffinage d'issue

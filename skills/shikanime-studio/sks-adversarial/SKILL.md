@@ -4,7 +4,7 @@ description:
   Use when probing uncertain results in a disposable sandbox — large
   investigation, development, debugging, testing, UAT, white-room, or data
   validation before promoting a change.
-version: 0.1.0
+version: 0.2.0
 author: Hermes Agent
 license: Apache-2.0
 metadata:
@@ -23,6 +23,7 @@ metadata:
       - sks-investigate
       - sks-pr-review
       - sks-gc
+      - caveman
 platforms:
   - linux
   - macos
@@ -82,7 +83,8 @@ and the promote-or-discard decision. It does NOT replace those skills.
 
 5. **Record** uncertain-result findings (the repro, the outcome, the
    promote/discard call) in the linked issue's comments, not in the sandbox
-   commit message.
+   commit message. Those comments are persisted artifacts: normal, evidence-bearing
+   prose — compression modes (see `sks-dev-workflow`) cover chat only.
 
 The sandbox is burnable by design — losing a discarded one is free; an
 uncommitted real change is not. Commit or `jj squash` first, then reclaim via

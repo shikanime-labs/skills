@@ -3,7 +3,7 @@ name: sks-issue-refine
 description:
   Use when iterating a problem to convergence inside its GitHub issue via
   research and comments before deriving the PR.
-version: 0.1.1
+version: 0.1.2
 author: Hermes Agent
 license: Apache-2.0
 metadata:
@@ -21,6 +21,7 @@ metadata:
       - sks-issue-workflow
       - sks-issue-triage
       - sks-investigate
+      - caveman
 platforms:
   - linux
   - macos

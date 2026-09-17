@@ -4,7 +4,7 @@ description:
   "Use when updating skills in the shikanime-labs/skills catalog: curate every
   skill by default (or named ones only), land through the dev workflow, and
   resync to local Hermes agents."
-version: 0.2.0
+version: 0.3.0
 author: Hermes Agent
 license: Apache-2.0
 metadata:
@@ -23,6 +23,7 @@ metadata:
       - sks-commit
       - sks-pr-workflow
       - sks-land
+      - caveman
 platforms:
   - linux
   - macos
@@ -150,6 +151,8 @@ load the new bodies (`hermes skills list` + content check), **and the user has
 explicitly accepted the deployed change** (manual acceptance, step 6). Any
 unmet step is a blocker — say `BLOCKED:` with evidence and recovery, never
 silently skip.
+Chat audit/delta reports may be terse (`caveman`); `BLOCKED:` evidence is
+never dropped and the acceptance gate is never compressed away.
 
 ## See also
 

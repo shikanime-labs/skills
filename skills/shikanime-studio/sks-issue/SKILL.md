@@ -3,7 +3,7 @@ name: sks-issue
 description:
   "Use when opening an issue in shikanime-labs or shikanime-studio: body is the
   problem statement, acceptance criteria as a command-decidable tasklist."
-version: 0.1.1
+version: 0.2.0
 author: Hermes Agent
 license: Apache-2.0
 metadata:
@@ -17,6 +17,7 @@ metadata:
       - sks-doc
       - sks-issue-refine
       - sks-pr
+      - caveman
 platforms:
   - linux
   - macos
@@ -67,6 +68,9 @@ breaks at a column width. Write natural paragraphs; a blank line separates
 paragraphs and everything else renders as-is. Never run `nix fmt` / `mdformat`
 over an issue body; those tools enforce an 80-column wrap that does not apply
 to GitHub bodies.
+
+The issue body and its comments are persisted artifacts: normal prose —
+caveman terseness applies only to the chat reply confirming the issue.
 
 - A bare `@name` in prose pings that user/team — wrap any literal `@` (NestJS
   `@Inject(x)`, decorators, config keys) in a code span or fenced block; only

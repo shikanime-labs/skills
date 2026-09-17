@@ -3,7 +3,7 @@ name: cpn-async
 description:
   À utiliser quand vous répartissez un travail multi-unités en parallèle sur
   workspaces jj isolés et PR en stack pour console cloud-pi-native.
-version: 0.1.1
+version: 0.1.2
 author: Hermes Agent
 license: Apache-2.0
 platforms:
@@ -24,6 +24,7 @@ metadata:
       - cpn-commit
       - cpn-dev-workflow
       - cpn-pr
+      - caveman
 ---
 
 # CPN Org — Flux parallèles
