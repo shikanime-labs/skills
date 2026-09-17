@@ -4,7 +4,7 @@ description:
   "Use when running the shikanime local dev loop: branching in a fresh jj
   workspace, push-to-origin, jj bookmark tracking, and landing via plain gh pr
   merge or direct push."
-version: 0.10.0
+version: 0.11.0
 author: Hermes Agent
 license: Apache-2.0
 metadata:
@@ -189,6 +189,28 @@ jj git push --remote origin -b <branch>     # "move sideways" — no force
 
 After a multi-line block deletion, re-read the file: a trailing comment
 anchor can get duplicated — remove the stray copy before pushing.
+
+## Compression modes (caveman, ponytail)
+
+When the caveman or ponytail skills are installed, caveman shapes how chat
+output is written and ponytail governs scope; neither changes what the
+lifecycle requires:
+
+- Scope: chat prose only — status lines, explanations, review findings.
+- Artifact boundary: commits (`sks-commit`), PR/issue/discussion bodies
+  (`sks-pr`, `sks-issue`, `sks-discussion`), docs, and memory files stay
+  normal prose. Caveman's own Boundaries rule exempts persisted artifacts;
+  a compressed commit body or PR body is a defect.
+- Phase 5 review: findings may be one line per finding (`L42: 🔴 bug: user
+  can be null. Add guard.`), but security findings and architectural
+  disagreements stay full paragraphs (caveman-review Auto-Clarity).
+- The ponytail lens stays governance, not voice: it governs scope, never
+  chat style, and never deletes a lifecycle gate; `ponytail-review` is a
+  findings report, not a license to skip the review gate.
+- Org gates are never compressed away: acceptance criteria, verification
+  output, and `BLOCKED:` evidence stay verbatim regardless of mode.
+
+Upstream: <https://github.com/JuliusBrussee/caveman>
 
 ## Landing
 
