@@ -1,7 +1,8 @@
 # Manifests repo: git commit and PR pitfalls
 
-The `manifests` repo uses plain `git` (not jj). The `sks-dev-workflow` skill's
-jj recipes don't apply — use these git-specific rules.
+The `manifests` repo is jj-colocated (verified 2026-09-16: `.jj/` present,
+`jj workspace add` isolation works). The jj recipes in the parent skill DO
+apply; the git rules below remain for git-only edge cases.
 
 ## Detached HEAD → create branch before push
 

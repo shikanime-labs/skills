@@ -22,6 +22,21 @@ gh api graphql -f query='
   }' -f owner=<org> -f repo=<repo> -F num=<M>
 ```
 
+## reply-thread
+
+Replies do NOT nest the input — flat `pullRequestReviewThreadId` + `body`:
+
+```bash
+gh api graphql -f query='
+  mutation($tid:ID!,$body:String!){
+    addPullRequestReviewThreadReply(input:{
+      pullRequestReviewThreadId:$tid, body:$body
+    }){ comment{ databaseId } }
+  }' -f tid=<threadId> -F body=<reply>
+```
+
+A reply alone never closes the thread — always follow with `resolve-thread`.
+
 ## resolve-thread
 
 ```bash

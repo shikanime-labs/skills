@@ -50,7 +50,9 @@ gh api repos/"$R"/assignees --jq '.[].login'
 ## 3. Décider (si vide + valeur existante)
 
 - **labels** — titre/corps : défaut→`bug`, capacité→`enhancement`,
-  doc→`documentation`. Type via template ; zone depuis chemins si existant ;
+  doc→`docs` (le label réel du repo ; `documentation` n'existe pas — toujours
+  filtrer contre `gh label list`, jamais de mémoire). Type via template ;
+  zone depuis chemins si existant ;
   écarter les absents de l'étape 2.
 - **assignee** — si aucun : `ASSIGNEE=$(gh api user --jq .login)`.
 - **jalon** — bug→patch le plus haut de la ligne mineure courante (max `Z`) ;

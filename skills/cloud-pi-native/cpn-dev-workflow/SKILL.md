@@ -24,12 +24,12 @@ metadata:
       - cpn-async
       - cpn-pr-review
       - cpn-commit
-      - cpn-delegate
       - cpn-discussion
       - cpn-issue
       - cpn-issue-triage
       - cpn-pr
       - cpn-pr-triage
+      - cpn-stack
       - cpn-swarm
 ---
 
@@ -47,12 +47,12 @@ target and repo layout?" / "What commands for console local dev, lint, tests?" /
 server-nestjs (issue-first, module-consistent, tested)" / "Write a vitest or e2e
 spec for a server-nestjs module".
 
-## Échelle de coordination (delegate → async → swarm)
+## Échelle de coordination (stack → async → swarm)
 
 Choisis l'outil de coordination par nombre d'unités et infrastructure avant de
 créer la branche ; l'échelle prend le minimum qui convient :
 
-- **Une unité** → `cpn-delegate` — workspace jj frais épinglé sur `main@origin`,
+- **Une unité** → `cpn-stack` — workspace jj frais épinglé sur `main@origin`,
   bookmark limité à ce workspace. Défaut pour un correctif isolé ; obligatoire
   si le checkout contient du WIP concurrent à ne pas mélanger.
 - **N unités parallèles, un dépôt** → `cpn-async` — un workspace par unité, DAG
@@ -64,7 +64,7 @@ créer la branche ; l'échelle prend le minimum qui convient :
 - **Flux unique, checkout propre** → aucun skill de coordination ; boucle
   normale ci-dessous.
 
-L'escalade est à sens unique : `cpn-delegate` → `cpn-async` → `cpn-swarm`. Pas de
+L'escalade est à sens unique : `cpn-stack` → `cpn-async` → `cpn-swarm`. Pas de
 swarm pour une unité, pas de fan-out avant le ledger d'issue réglé.
 
 ## Phases
@@ -154,10 +154,9 @@ delegate_task(tasks=[
    `pnpm run integ`.
 7. Checks before submit: `pnpm lint`, `pnpm test`, `pnpm playwright:test` if a
    journey is affected.
-8. Fresh jj workspace per item (une unité → `cpn-delegate`, voir Échelle de
-   coordination) : `jj workspace add -m <repo>.<name> . ../<repo>.<name>`
-   pinned to `-r 'main@origin'` (or `jj workspace add --revision <base>
-   <path>`). Build a **stack of small child
+8. Fresh jj workspace per item (une unité → `cpn-stack`, voir Échelle de
+   coordination) : `jj workspace add -m <repo>.<name> . ../<repo>.<name>` (or
+   `jj workspace add --revision <base> <path>`). Build a **stack of small child
    commits**; branch out with `jj new <other-parent>` when a commit doesn't need
    its parent. Multiple children of one parent → jj **diamond** (natively
    tracked, parallelizes landing). Fully independent streams → own
@@ -212,9 +211,8 @@ Landing follows the same origin-only discipline as the other cpn skills:
   the branch to `origin`, and open the PR with
   `--head cloud-pi-native:<branch>`. (Pre-2026-08 `--head shikanime:<branch>`
   guidance is retired.)
-- **Plain `gh pr` is the landing path** (`gh stack` extension available for
-  stacking; land with plain `gh pr merge --squash`). Before opening each PR run
-  the `cpn-pr` duplicate/stack check
+- **Plain `gh pr` is the landing path** (the `gh stack` extension is installed locally — verified 2026-09; use it for stacking, but land with plain `gh pr merge --squash`).
+  Before opening each PR run the `cpn-pr` duplicate/stack check
   (step 1b): no new PR if an open one already delivers the change; stack on the
   existing PR's branch when your change depends on it. Open each branch with
   `gh pr create --draft --fill --body "Refs #N"` and land with
@@ -268,5 +266,5 @@ and `pnpm playwright:test` as pre-submission checks.
 - `cpn-commit` — the commit shape (conventional subject, author identity, SSH
   signing) this workflow lands.
 - `cpn-pr` — origin-only PR opening from these commits.
-- `cpn-delegate` — isolation d'une unité en workspace frais.
+- `cpn-stack` — isolation d'une unité en workspace frais.
 - `cpn-swarm` — cluster d'agents A2A.

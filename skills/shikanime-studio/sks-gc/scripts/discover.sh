@@ -41,7 +41,7 @@ echo "== skill workspaces (<repo>.<unit> or <repo>.fix) =="
 REPO_NAME=$(basename "$PWD")
 jj workspace list --color never -T 'name ++ "\t" ++ root ++ "\n"' |
   while IFS=$'\t' read -r name path; do
-    [[ $name == "$REPO_NAME".* ]] ||
+    [[ $name == "$REPO_NAME".* || $name == "$REPO_NAME"-* ]] ||
       continue
     # canonical repo-named workspace is never a candidate
     if jj -R "$path" status --color never 2>/dev/null |

@@ -91,6 +91,23 @@
   at merge. Flag the file in the PR body ("shared with #X/#Y — coordinate at
   merge") and leave the constant/assertion where it lives. Only fix files unique
   to the PR you're finishing.
+- **Comment noise in `routing.conf` PRs**: location blocks added by migration
+  PRs often carry self-announcing banners (`# [Vague 1 - log] 2026-09-11`,
+  `# ── Services migrées vers NestJS ──`) — redundant with git history and
+  sometimes contradicting the adjacent `# ── Routes par défaut (legacy) ──`
+  banner. Sweep every open PR's diff for added `#` lines in routing.conf before
+  review; delete with the PR's own amend, not a drive-by commit.
+- **Render `routing.conf` for `nginx -t`: envsubst MUST be restricted to the
+  two upstream vars, and the file carries its own `upstream` blocks.** Use
+  `LEGACY_UPSTREAM=… NESTJS_UPSTREAM=… envsubst '${LEGACY_UPSTREAM}${NESTJS_UPSTREAM}'
+  < routing.conf`, wrap only in `events{}`/`http{}`. Unrestricted `envsubst`
+  destroys nginx runtime vars (`$host`, `$remote_addr` → `invalid number of
+  arguments in "proxy_set_header"`), and adding your own `upstream` blocks in
+  `server{}` fails (`upstream directive is not allowed here`).
+- **Posting review comments in bulk via gh api hits the secondary creation rate limit after ~40 posts.** Pace posts 2-3s apart with 60/120s backoff on "secondary rate limit" errors, and expect `commit_id`-anchored inline comments to fall back to issue threads when the PR moves under you (your own fix push invalidates the anchor). Verify totals per PR by counting only today's comments authored by you (raw counts include historical review threads and always "mismatch").
+- **Fix-then-notify thread hygiene**: after pushing fix commits, reply once per flat/thread finding with « Traité dans <short-sha> » so reviewers see findings are resolved — only for findings your commit actually addressed.
+- **Removing the shell's cwd worktree wedges every later `terminal` call** (persistent cwd points at a deleted dir; every command fails before running). Always pass an absolute `workdir` per call, or `cd` to a live absolute path as the FIRST command.
+- **Restacking an nginx-toggle PR onto its module PR**: worktree on the new module head, `git cherry-pick <old-head>`, force-with-lease the stack branch, then `gh api -X PATCH …/pulls/<N> -f base=<module-branch>` (the 422 "part of a stack" guard blocks base flips via `gh pr edit`); verify MERGEABLE after.
 - **Trust jj/gh ground truth, not subagent self-reports.** A subagent's "done"
   is self-certification; before reporting a PR finished, verify with
   `jj bookmark list` / `gh pr view <N> --json headRefOid` / `jj diff -r <rev>`

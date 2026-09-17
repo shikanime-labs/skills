@@ -4,7 +4,7 @@ description:
   Use when reclaiming resources leaked by shikanime jj workflows — dangling
   bookmarks, skill-created jj workspaces, and leftover working-copy dirs from
   sks-async/sks-dev-workflow.
-version: 0.2.0
+version: 0.3.0
 author: Hermes Agent
 license: Apache-2.0
 metadata:
@@ -84,8 +84,13 @@ leave on disk. Destructive — always dry-run first.
 3. **Prune remote-tracking bookmarks no longer on origin** (safe, built-in):
 
    ```bash
-   jj git fetch --prune --remote origin
+   jj git fetch --remote origin
    ```
+
+   This jj build has **no `--fetch/--prune` flag** (verified 2026-09-08:
+   `jj git fetch --prune` errors). Fetching auto-prunes tracking refs whose
+   remote bookmark is gone — merging a PR with "delete head branches"
+   (GitHub default) suffices; no explicit prune step exists.
 
 4. **Verify.**
 

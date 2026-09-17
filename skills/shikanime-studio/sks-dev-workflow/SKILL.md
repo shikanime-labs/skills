@@ -178,6 +178,28 @@ bookmark and PR head actually moved (`jj bookmark list`; `gh pr view <n> -R
 <org>/<repo> --json headRefOid` vs local `jj log -r @ -T
 'commit_id.short()'`). Recovery: `references/jj-recovery.md`.
 
+### machines-class repos: signatures + author identity
+
+`machines` main carries a `required_signatures` rule, and its commits must be
+authored with the GitHub noreply address (a personal address is rejected as
+GH007). jj 0.44 has no `jj describe --author`; use:
+
+```bash
+jj config set --repo user.email "<id>+<login>@users.noreply.github.com"
+jj metaedit --author "<Name> <id>+<login>@users.noreply.github.com>" -r @
+jj sign -r @          # any rewrite (describe/metaedit) drops the signature
+```
+
+`jj git push` can fail with `Object ... of type commit not found` — a stale
+object in the shared store that persists across rewrites and is unrelated to
+your sha. Bypass jj's push entirely from the colocated clone:
+
+```bash
+SHA=$(jj log -r @ --no-graph -T 'commit_id')
+git -C <main-clone> push origin "$SHA:refs/heads/<branch>"
+git -C <main-clone> ls-remote origin refs/heads/<branch>   # verify
+```
+
 Narrowing an already-pushed PR in place (drop a file/hunk, no new PR):
 
 ```bash
@@ -255,6 +277,19 @@ output:
   Narrow title + large stat = scope-creep check against `main@origin`.
 - Surface blocked steps (branch protection, 403 wrong account, jj tracking
   conflict) with recovery — never silently skip.
+- A squash-merge can silently resolve away hunks its branch carried — the
+  landed commit holds only what survived conflict resolution, whatever the
+  PR title says. After any merge you depend on, verify content:
+  `git show <merge-sha> --stat` / `git show origin/main:<file>` must contain
+  the intended change (verified 2026-09-10 #2243: title promised an
+  appProtocol sweep; the squash landed only the two digest bumps). Also
+  check `gh pr view <n> --json state` before force-pushing a rebased branch:
+  if the PR merged mid-rebase, the push fails and the delta must be re-spun
+  off the new main as a fresh branch + cherry-pick. When an upstream edit
+  collides with a line-targeted insertion, audit the WHOLE port/resource
+  block for duplicate keys (a key can sit mid-block, not only after
+  `- name:`) and diff before/after failed-render lists to prove zero new
+  breakage.
 
 ## Repo class detection
 

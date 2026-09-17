@@ -3,7 +3,7 @@ name: cpn-pr-resolve
 description:
   "À utiliser quand vous réconciliez les review-threads d'une PR cloud-pi-native
   : ledger DoD, approbation et CI, sans merger."
-version: 0.1.1
+version: 0.2.0
 author: Hermes Agent
 license: Apache-2.0
 platforms:
@@ -28,16 +28,16 @@ metadata:
 # CPN Org — Résolution de PR (sans merge)
 
 Réconcilie une PR `cloud-pi-native/*` : threads de review, ledger DoD,
-approbation/CI. **Ne land JAMAIS** (merge = `cpn-dev-workflow`).
+approbation/CI. **Ne land JAMAIS** (merge = `cpn-land`).
 
 ## When to Use
 
 - « Résous / vide les threads de review sur #M ».
 - « #M est-elle prête à land ? » — réconcilie et rapporte, sans merger.
-- Pré-landing : chaque thread résolu + ledger N/N avant `cpn-dev-workflow`.
+- Pré-landing : chaque thread résolu + ledger N/N avant `cpn-land`.
 - **Pre-check (PR à fort impact)** : si la PR requiert une validation e2e lourde
-  avant le land, exécute manuellement la **merge queue** dans le jj workspace
-  courant AVANT de rapporter « prête ».
+  avant le land, exécute manuellement la **merge queue** dans le worktree git de
+  la PR AVANT de rapporter « prête ».
 
 Hors scope : ouvrir/reviewer/merger →
 `cpn-pr`/`cpn-pr-review`/`cpn-dev-workflow`.
@@ -68,8 +68,12 @@ gh pr view <M> --repo cloud-pi-native/<repo> --json reviews,headRefOid \
   --jq '.reviews | map(select(.state == "APPROVED")) | length > 0'
 ```
 
+- Approbation liée au head : compare `submittedAt` de l'APPROVED avec la date du
+  commit head (`gh api repos/<org>/<repo>/commits/<head> --jq .commit.committer.date`)
+  — tout push nouveau déplace le head et **DISMISSE l'approval** (re-review
+  requise avant land).
 - Branche protégée bloquant l'auto-approb (ex. `cloud-pi-native/console`) →
-  `lgtm` verbal suffit (merge reste dans `cpn-dev-workflow`,
+  `lgtm` verbal suffit (merge reste dans `cpn-land`,
   `gh pr merge`/queue).
 - CI : `gh pr checks <M> --repo cloud-pi-native/<repo>`.
 
@@ -78,15 +82,14 @@ gh pr view <M> --repo cloud-pi-native/<repo> --json reviews,headRefOid \
 Pour les PR `cloud-pi-native/*` dont le land déclenche des **tests e2e lourds**
 (impact étendu : schéma, auth/Keycloak, syncs, parcours critique de la console)
 et qui exigent une validation de bout en bout avant fusion, le dispatcher
-**exécute manuellement la merge queue dans son jj workspace** comme pre-check —
+**exécute manuellement la merge queue dans son worktree git** comme pre-check —
 ce n'est pas un merge réel, c'est la validation e2e pilotée sur la branche.
 
-1. **Travaille dans le jj workspace de la PR** (pas de `git`, pas de workspace
-   partagé) : `jj workspace add ../<repo>.<unit> --name <repo>.<unit>` si
-   absent.
+1. **Travaille dans le worktree git de la PR** :
+   `git worktree add ../<repo>.<topic> origin/<branch>` si absent.
 2. **Discerne le scope** : un ou plusieurs modules consommateurs de l'API
-   touchée (imports croisés) → exécute la queue depuis le workspace qui porte le
-   commit racine (le père commun) ; PR isolée → depuis son propre workspace.
+   touchée (imports croisés) → exécute la queue depuis le worktree qui porte le
+   commit racine (le père commun) ; PR isolée → depuis son propre worktree.
 3. **Lance la merge queue manuelle** (dry-run / validation sur branche, sans
    fusiner) :
    - POSITIF → annote « e2e validé (merge queue manuelle) » et continue vers
@@ -114,7 +117,7 @@ scope** — seuls les threads inline gatent via `isResolved`.
 
 Verdict : Ledger N/N (items ouverts) · Approbation `cpn-pr-review` sur head (ou
 `lgtm` verbal) · Conversations résolues/rationale ou threads en attente · CI
-green/pending/failing. Merge = `cpn-dev-workflow`.
+green/pending/failing. Merge = `cpn-land`.
 
 ## Pitfalls
 
@@ -123,6 +126,17 @@ green/pending/failing. Merge = `cpn-dev-workflow`.
 - Réconcilier après nouveaux commits sans re-review (approbation liée au head).
 - Confondre commentaires issue/PR et threads gate (seuls les inline gatent).
 - Merger depuis cette skill — elle réconcilie seulement.
+- **Branche locale divergente du PR** : le tip local (même sujet, SHA différent)
+  ≠ head poussé = rebase local jamais poussé. Compare `git rev-parse` local vs
+  `headRefOid` AVANT d'ajouter des commits ; si le contenu des fichiers du PR est
+  identique sur les deux tips, commite sur le tip rebasé et pousse
+  `--force-with-lease=refs/heads/<bm>:<headRefOid>` (CAS, rien d'écrasé).
+  Reset local = risque de non-FF.
+- **Worktree git, pas jj** (console = worktree `../console.<topic>`, `git`/`gh`
+  hors scope dans cette skill) ; hooks Husky inactifs sans `pnpm install` →
+  commite avec hooks sautés silencieusement, alors valide le message via
+  `commitlint` depuis le checkout principal (config résolue depuis le CWD ;
+  lit le message depuis stdin).
 - **Ne jamais affirmer un fix de code que tu n'as pas commité.** Si tu réponds à
   un thread en disant « renommage appliqué » / « constante extraite », le diff
   DOIT le montrer. Deux cas : (a) tu as le workspace et le commit → fais l'édit,

@@ -58,9 +58,9 @@ has not entered the dev loop.
 
    ```bash
    cd ~/Source/Repos/github.com/<orga>/<repo>
-   mkdir -p /tmp/wip-isolate
+   mkdir -p "$HOME/.hermes/tmp-wip-isolate"   # never /tmp: parallel sessions share it
    for f in <WIP files>; do
-     cp "$f" "/tmp/wip-isolate/$(echo "$f" | tr '/' '__')"
+     cp "$f" "$HOME/.hermes/tmp-wip-isolate/$(echo "$f" | tr '/' '__')"
    done
    jj workspace add ../<repo>.<unit> -r 'main@origin' && cd ../<repo>.<unit>
    ```

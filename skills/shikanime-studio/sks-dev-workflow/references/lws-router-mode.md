@@ -1,5 +1,17 @@
 # LWS (LeaderWorkerSet) + llama.cpp Router Mode
 
+> **Superseded layout (2026-09-10, #2279):** the router/embedding LWS pair is
+> gone. `apps/llama-cpp/base/` now holds ONE `llama-cpp` StatefulSet (leader,
+> not host-pinned, dials RPC peers over headless-service DNS) and
+> `apps/llama-cpp-rpc/` holds the GPU servers (MS-S1-pinned via the NFD GPU
+> label, Multus br1 attachment). Capacity table and preset shape below remain
+> valid. NFD speed rules note: `kernel.loadedmodule` matchers never fire on
+> NixOS (r8169/igc built-in) — key custom rules on `network.device`
+> speed/operstate, and probe them live with a temporary NodeFeatureRule before
+> wiring affinity. Rule labels land with the `feature.node.kubernetes.io/`
+> prefix — a selector on the bare key silently matches nothing; the worker
+> relabels on a 60s cycle, so probe verification must wait ≥95s.
+
 Verified reference for the shikanime inference refactor on nishir. The two
 Strix Halo MS-S1 machines are `kushira` and `sashina`, labeled
 `node.kubernetes.io/instance-type: minisforum-ms-s1` (set in

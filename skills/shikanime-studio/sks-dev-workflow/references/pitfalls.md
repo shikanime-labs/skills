@@ -242,3 +242,35 @@ patches:
 
 (This is distinct from a single `patches:` entry in other files; the pitfall
 is app overlays where routing and networking patches coexist.)
+
+## Kustomization-wide apply failure masquerading as a child-resource error
+
+Verified 2026-09-08 (PR #2208): the live `Receiver github-receiver` failed with
+`unable to read token from secret 'flux-system/receiver-token-24b424h8d2'`
+(TokenNotFound), but the real fault was the parent Kustomization
+`config-flux-operator` failing EVERY apply with
+`Gateway/flux-operator-receivers namespace not specified: the server could not
+find the requested resource`. The failed apply left the cluster torn: the
+receiver token Secret regenerated under a new content hash while the Receiver
+patch never landed, so the child dangled on the pruned hash.
+
+Diagnose children through the parent before touching the child:
+
+```bash
+kubectl -n flux-system get kustomization <name> \
+  -o jsonpath='{.status.conditions}'
+# lastAttemptedRevision lagging lastAppliedRevision = applies keep failing
+```
+
+Root cause of the Gateway failure: a sweep PR's hunk added an
+`external-dns` annotation to a Gateway and REPLACED the adjacent
+`namespace: flux-system` line. No overlay in the chain sets a global
+`namespace:`, so the namespaced object rendered namespaceless. After a
+rebase or sweep hunk touches a manifest's `metadata:`, re-render and
+check each doc's namespace — never trust the diff alone:
+
+```bash
+kubectl kustomize <overlay> | grep -A4 '^kind: Gateway'
+```
+
+Fix is one line: restore `namespace:` alongside the annotation.
