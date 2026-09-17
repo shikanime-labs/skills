@@ -21,6 +21,7 @@ metadata:
       - sks-skill-authoring
       - sks-dev-workflow
       - sks-pr-review
+      - caveman-compress
       - ponytail-review
       - ponytail-audit
 platforms:

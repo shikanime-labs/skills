@@ -22,6 +22,7 @@ metadata:
       - sks-land
       - sks-pr
       - requesting-code-review
+      - caveman-review
       - ponytail-review
 platforms:
   - linux
