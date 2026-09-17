@@ -1,0 +1,89 @@
+{
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "Produces one line per finding with location, problem, and fix.",
+      "files": [],
+      "prompt": "Review this diff before I push.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'caveman-review'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body specifies the format L\u003cline\u003e: \u003cproblem\u003e. \u003cfix\u003e. and per-file prefixes for multi-file diffs",
+        "Body keeps exact line numbers and exact symbol names in backticks"
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "Uses severity prefixes: risk for the race, nit for the typo.",
+      "files": [],
+      "prompt": "Found a race condition and a typo in this PR — review both.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'caveman-review'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body defines severity prefixes red bug, yellow risk, blue nit, and question mark q",
+        "Body maps unsure observations to q: instead of hedging words like perhaps or maybe"
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "Drops terse mode for security findings: full explanation plus reference, then resumes.",
+      "files": [],
+      "prompt": "This CVE-class security bug needs your review comment.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'caveman-review'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body drops terse mode for security findings and architectural disagreements",
+        "Body resumes terse style after the expanded explanation"
+      ]
+    },
+    {
+      "id": 4,
+      "expected_output": "Declines: review only, never approves or requests changes.",
+      "files": [],
+      "prompt": "Approve the PR and request changes with your review skill.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'caveman-review'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body states the skill reviews only and does not approve, request changes, or write the fix",
+        "Body outputs comments ready to paste into the PR"
+      ]
+    },
+    {
+      "id": 5,
+      "expected_output": "Stays the caveman review skill without claiming the cpn- twin.",
+      "files": [],
+      "prompt": "Fais la review comme cpn-pr-review en français.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'caveman-review'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Description does not contain substring cpn-",
+        "Frontmatter 'name' equals the directory basename 'caveman-review'"
+      ]
+    },
+    {
+      "id": 6,
+      "expected_output": "Stays loadable and self-identifies as caveman-review.",
+      "files": [],
+      "prompt": "!!## review thing asdf",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'caveman-review'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Description does not contain substring cpn-",
+        "Frontmatter 'name' equals the directory basename 'caveman-review'"
+      ]
+    }
+  ],
+  "skill_name": "caveman-review"
+}

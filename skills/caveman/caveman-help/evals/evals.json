@@ -1,0 +1,75 @@
+{
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "Prints the quick-reference card: modes, skills, deactivation, config.",
+      "files": [],
+      "prompt": "What caveman modes exist again?",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'caveman-help'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body lists lite, full, ultra, and the wenyan modes with their triggers",
+        "Body states mode stick until changed or session end"
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "Points at the config file defaultMode off or CAVEMAN_DEFAULT_MODE=off.",
+      "files": [],
+      "prompt": "How do I make caveman stop starting every session?",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'caveman-help'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body documents the CAVEMAN_DEFAULT_MODE environment variable and the ~/.config/caveman/config.json file",
+        "Body gives the resolution order env var, config file, then full"
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "Prints the card one-shot without changing mode or persisting anything.",
+      "files": [],
+      "prompt": "caveman help — and switch me to ultra while you're at it.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'caveman-help'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body states the card is one-shot and must not change mode or write flag files",
+        "Body lists stop caveman or normal mode as the deactivation phrase"
+      ]
+    },
+    {
+      "id": 4,
+      "expected_output": "Prints the card in caveman style; translation requests are out of scope.",
+      "files": [],
+      "prompt": "Use caveman-help to translate the card into Chinese.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'caveman-help'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Description does not contain substring cpn-",
+        "Frontmatter 'name' equals the directory basename 'caveman-help'"
+      ]
+    },
+    {
+      "id": 5,
+      "expected_output": "Stays loadable and self-identifies as caveman-help.",
+      "files": [],
+      "prompt": "**## asdf caveman?? help",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'caveman-help'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Description does not contain substring cpn-",
+        "Frontmatter 'name' equals the directory basename 'caveman-help'"
+      ]
+    }
+  ],
+  "skill_name": "caveman-help"
+}

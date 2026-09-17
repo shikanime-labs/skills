@@ -1,0 +1,89 @@
+{
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "Inventories the repo's LLM workflows, proposes the labeling table, waits for approval.",
+      "files": [],
+      "prompt": "Break down our LLM spend by workflow.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'caveman-discover'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body requires proposing the labeling table and applying only after the user agrees",
+        "Body defines one workflow as one job a human would name and labels callers, never shared helpers"
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "Rejects the slug: lowercase a-z0-9_- only, named for the job not the tech.",
+      "files": [],
+      "prompt": "Label our workflow with the slug SupportReply v2.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'caveman-discover'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body enforces the slug grammar lowercase a-z0-9_- up to 96 characters",
+        "Body rejects tech-named or meaningless slugs like openai-calls or main"
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "Refuses silent application: this changes code and goes through review.",
+      "files": [],
+      "prompt": "Just auto-label everything you find, no need to ask me.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'caveman-discover'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body states re-running on a labeled repo must be idempotent and changes need user approval",
+        "Body reports callsites not routed through the gateway as not wired instead of labeling them"
+      ]
+    },
+    {
+      "id": 4,
+      "expected_output": "Labels at the callers instead — one shared helper serving three jobs is three workflows.",
+      "files": [],
+      "prompt": "Add the workflow header in our shared llm.ts helper.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'caveman-discover'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body says to label at the callers and never at the shared helper",
+        "Body sends the x-cave-workflow header on gateway traffic"
+      ]
+    },
+    {
+      "id": 5,
+      "expected_output": "Stays the caveman discover skill without claiming the cpn- family.",
+      "files": [],
+      "prompt": "Utilise la méthode cpn pour découper les workflows.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'caveman-discover'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Description does not contain substring cpn-",
+        "Frontmatter 'name' equals the directory basename 'caveman-discover'"
+      ]
+    },
+    {
+      "id": 6,
+      "expected_output": "Says exactly that no LLM entry points exist and points at setup instead of inventing a table.",
+      "files": [],
+      "prompt": "Label workflows in this repo with no LLM code at all.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'caveman-discover'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body requires reporting no LLM entry points exactly and pointing at the setup skill",
+        "Body never manufactures a labeling table without callsites"
+      ]
+    }
+  ],
+  "skill_name": "caveman-discover"
+}

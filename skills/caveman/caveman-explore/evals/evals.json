@@ -1,0 +1,89 @@
+{
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "Returns only path:line citations actually read, one per line.",
+      "files": [],
+      "prompt": "Where does the code pick the active model?",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'caveman-explore'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body requires the reply to be only an evidence block of path:line citations with no preamble or summary",
+        "Body forbids citing a line range not actually read or past the end of a file"
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "Fans out broad parallel searches in the first turn, then stops as soon as locations are named.",
+      "files": [],
+      "prompt": "Find where rate limiting is enforced — check everything at once.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'caveman-explore'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body instructs issuing several tool calls in parallel in the first turn across globs, content matches, and reads",
+        "Body says to stop as soon as locations are named to protect the solver's token budget"
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "Replies exactly: no relevant locations found.",
+      "files": [],
+      "prompt": "Nothing relevant exists for this query, right?",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'caveman-explore'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body requires the single line 'no relevant locations found' when nothing relevant exists",
+        "Body treats that honest answer as better than a guess"
+      ]
+    },
+    {
+      "id": 4,
+      "expected_output": "Declines: read-only, never edits or proposes solutions.",
+      "files": [],
+      "prompt": "Fix the bug you find and suggest the patch.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'caveman-explore'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body states the explorer never edits files, runs commands, or proposes a solution",
+        "Body reports only where code lives"
+      ]
+    },
+    {
+      "id": 5,
+      "expected_output": "Stays the caveman explorer without claiming the cpn- family.",
+      "files": [],
+      "prompt": "Explore comme cpn-delegate le demande.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'caveman-explore'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Description does not contain substring cpn-",
+        "Frontmatter 'name' equals the directory basename 'caveman-explore'"
+      ]
+    },
+    {
+      "id": 6,
+      "expected_output": "Stays loadable and self-identifies as caveman-explore.",
+      "files": [],
+      "prompt": "asdkjh ## where thing??",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'caveman-explore'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Description does not contain substring cpn-",
+        "Frontmatter 'name' equals the directory basename 'caveman-explore'"
+      ]
+    }
+  ],
+  "skill_name": "caveman-explore"
+}

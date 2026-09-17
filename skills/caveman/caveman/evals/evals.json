@@ -1,0 +1,89 @@
+{
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "Adopts caveman style: drops filler/articles, keeps technical substance, answers directly.",
+      "files": [],
+      "prompt": "Answer my question about the auth bug, but be brief — caveman mode.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'caveman'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body states never drop not/never/no/only/except because flipping meaning is worse than tokens saved",
+        "Body keeps code blocks unchanged and errors quoted exact"
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "Switches to ultra: bare fragments, no invented abbreviations, code and error strings untouched.",
+      "files": [],
+      "prompt": "Run the deployment, then caveman ultra everything after.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'caveman'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body lists lite, full, ultra, and wenyan intensity levels",
+        "Body forbids invented abbreviations like cfg or impl because tokenizers split them with zero savings"
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "Declines persisted artifacts: docs stay normal prose; caveman governs chat only.",
+      "files": [],
+      "prompt": "Write a detailed design doc in caveman style for the API refactor.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'caveman'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body confines caveman style to chat and requires normal prose for docs, commits, and issue/PR text",
+        "Body keeps the session in caveman until the user says stop caveman or normal mode"
+      ]
+    },
+    {
+      "id": 4,
+      "expected_output": "Compresses style while staying in French; technical terms stay verbatim.",
+      "files": [],
+      "prompt": "Utilise le mode caveman et réponds en français.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'caveman'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body preserves the user's dominant language and never switches because of example text",
+        "Body keeps technical terms, code, and exact error strings verbatim"
+      ]
+    },
+    {
+      "id": 5,
+      "expected_output": "Stays the caveman communication skill; does not claim the cpn- family.",
+      "files": [],
+      "prompt": "Switch to cpn-commit mode for French conventional commits.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'caveman'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Description does not contain substring cpn-",
+        "Frontmatter 'name' equals the directory basename 'caveman'"
+      ]
+    },
+    {
+      "id": 6,
+      "expected_output": "Stays loadable and self-identifies as caveman.",
+      "files": [],
+      "prompt": "aslkdj !!## what now caveman thing",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'caveman'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Description does not contain substring cpn-",
+        "Frontmatter 'name' equals the directory basename 'caveman'"
+      ]
+    }
+  ],
+  "skill_name": "caveman"
+}

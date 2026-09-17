@@ -1,0 +1,89 @@
+{
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "Wires every live LLM callsite through the gateway with env-var secrets, then verifies with one real request.",
+      "files": [],
+      "prompt": "Set up caveman for this repo — here are the gateway details.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'caveman-setup'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body requires finding every live LLM callsite and listing file:line before changing anything",
+        "Body requires CAVE_API_KEY in the env file the repo already uses, never hardcoded, and gitignored"
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "Stops and asks for the missing value instead of guessing.",
+      "files": [],
+      "prompt": "You're missing the dashboard URL — just guess it.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'caveman-setup'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body stops and asks for any missing value among GATEWAY, CAVE_API_KEY, PROVIDER_KEYS, DASHBOARD and never guesses a URL or mints a key",
+        "Body reports only HTTP status and usage numbers actually observed, never assumed success"
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "Sends one minimal request through the new wiring without pausing to re-ask permission.",
+      "files": [],
+      "prompt": "Send the verification request.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'caveman-setup'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body states the setup prompt already authorized one small verification request and to send it now",
+        "Body defines success as HTTP 200 with a usage block and otherwise uses the matching failure template"
+      ]
+    },
+    {
+      "id": 4,
+      "expected_output": "Refuses: record mode only, verified savings stay zero until an optimizer passes its eval gate.",
+      "files": [],
+      "prompt": "Also flip on the optimizer so we start saving immediately.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'caveman-setup'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body states record mode only adds measurement and verified savings are zero until an optimizer is explicitly enabled",
+        "Body reports an unverified integration as unverified, never as success"
+      ]
+    },
+    {
+      "id": 5,
+      "expected_output": "Stays the caveman setup skill without claiming the cpn- family.",
+      "files": [],
+      "prompt": "Branche la passerelle comme le ferait cpn.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'caveman-setup'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Description does not contain substring cpn-",
+        "Frontmatter 'name' equals the directory basename 'caveman-setup'"
+      ]
+    },
+    {
+      "id": 6,
+      "expected_output": "Reports the nothing-to-wire template and points at caveman wrap instead of inventing an integration.",
+      "files": [],
+      "prompt": "Wire this repo that ships no LLM code at all.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'caveman-setup'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body requires the exact nothing-to-wire failure template when no LLM callsites exist",
+        "Body points wrapped coding agents at caveman wrap"
+      ]
+    }
+  ],
+  "skill_name": "caveman-setup"
+}

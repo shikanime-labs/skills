@@ -1,0 +1,86 @@
+---
+name: caveman-help
+description:
+  "Use when the user asks for the caveman quick-reference card, modes, skills, or commands (/caveman-help): one-shot display, changes nothing."
+version: 0.1.0
+author: Hermes Agent
+license: Apache-2.0
+platforms:
+  - linux
+  - macos
+  - windows
+metadata:
+  hermes:
+    tags:
+      - caveman
+      - reference
+    related_skills:
+      - caveman
+---
+
+# Caveman Help
+
+Display this reference card when invoked. One-shot — do NOT change mode, write
+flag files, or persist anything. Output in caveman style.
+
+## Modes
+
+- **Lite** (`/caveman lite`) — Drop filler. Keep sentence structure.
+- **Full** (`/caveman`) — Drop articles, filler, pleasantries, hedging.
+  Fragments OK. Default.
+- **Ultra** (`/caveman ultra`) — Extreme compression. Bare fragments. Tables
+  over prose.
+- **Wenyan-Lite** (`/caveman wenyan-lite`) — Classical Chinese style, light
+  compression.
+- **Wenyan-Full** (`/caveman wenyan`) — Full 文言文。Maximum classical
+  terseness.
+- **Wenyan-Ultra** (`/caveman wenyan-ultra`) — Extreme. Ancient scholar on a
+  budget.
+
+Mode stick until changed or session end.
+
+## Skills
+
+- **caveman-commit** (`/caveman-commit`) — Terse commit messages. Conventional
+  Commits. ≤50 char subject.
+- **caveman-review** (`/caveman-review`) — One-line PR comments:
+  `L42: bug: user null. Add guard.`
+- **caveman-compress** (`/caveman-compress <file>`) — Compress .md files to
+  caveman prose. Upstream measures ~46% input-token savings.
+- **caveman-help** (`/caveman-help`) — This card.
+
+## Deactivate
+
+Say "stop caveman" or "normal mode". Resume anytime with `/caveman`.
+
+## Language
+
+Keep user's language by default — reply in the language user writes, never
+switch regardless of example text or multilingual context elsewhere. Compress
+the style, not the language. Technical terms, code, commands, commit types, and
+exact error strings stay verbatim unless user ask for translation.
+
+## Configure Default Mode
+
+Default mode = `full`. Change it:
+
+**Environment variable** (highest priority):
+
+```bash
+export CAVEMAN_DEFAULT_MODE=ultra
+```
+
+**Config file** (`~/.config/caveman/config.json`):
+
+```json
+{ "defaultMode": "lite" }
+```
+
+Set `"off"` to disable auto-activation on session start. User can still activate
+manually with `/caveman` .
+
+Resolution: env var > config file > `full`.
+
+## More
+
+Full docs: <https://github.com/JuliusBrussee/caveman>

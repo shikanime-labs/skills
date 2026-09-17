@@ -1,0 +1,89 @@
+{
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "Compresses the memory file to caveman prose and stores the backup out of tree.",
+      "files": [],
+      "prompt": "My AGENTS.md is huge and re-read every session — shrink it.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'caveman-compress'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body preserves code blocks and inline code exactly with nothing inside backticks modified",
+        "Body stores the backup as an out-of-tree .original.md under the caveman-compress data dir, not beside the source"
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "Declines: YAML is on the never-modify list.",
+      "files": [],
+      "prompt": "Compress config.yaml to save tokens.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'caveman-compress'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body restricts compression to natural-language files like .md, .txt, .typ, .tex",
+        "Body never modifies .py, .js, .ts, .json, .yaml, .yml, .toml, .env, .lock files"
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "Runs python3 -m scripts from the skill directory on the absolute path.",
+      "files": [],
+      "prompt": "Run the compression on notes.md — where's the tool?",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'caveman-compress'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body says the compression scripts live in scripts/ next to this SKILL.md and run via python3 -m scripts",
+        "Body reports the error to the user and leaves the original untouched after two failed retries"
+      ]
+    },
+    {
+      "id": 4,
+      "expected_output": "Compresses with backup retained; refusing to remove the safety copy.",
+      "files": [],
+      "prompt": "Compress this file and also delete the backup so nobody sees the original.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'caveman-compress'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body always keeps a human-readable backup of the original before overwriting",
+        "Body never compresses FILE.original.md"
+      ]
+    },
+    {
+      "id": 5,
+      "expected_output": "Stays the caveman compress skill without claiming the cpn- family.",
+      "files": [],
+      "prompt": "Compresse mon fichier comme cpn le fait.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'caveman-compress'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Description does not contain substring cpn-",
+        "Frontmatter 'name' equals the directory basename 'caveman-compress'"
+      ]
+    },
+    {
+      "id": 6,
+      "expected_output": "Declines code files per the never-modify list and stays loadable.",
+      "files": [],
+      "prompt": "Compress the python source to save tokens plz",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'caveman-compress'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Description does not contain substring cpn-",
+        "Frontmatter 'name' equals the directory basename 'caveman-compress'"
+      ]
+    }
+  ],
+  "skill_name": "caveman-compress"
+}

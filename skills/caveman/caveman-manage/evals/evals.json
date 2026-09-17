@@ -1,0 +1,89 @@
+{
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "Evaluates the evidence first and recommends approval only with complete passing guardrails.",
+      "files": [],
+      "prompt": "Approve experiment 7f2a — it looks good.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'caveman-manage'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body never approves an experiment whose results are pending, whose required guardrails are absent, or whose evidence reports a breach",
+        "Body treats absence of a required field as evidence incomplete and refuses to propose approval"
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "Blocks execution: agent surfaces expose reads only until server-side gates ship.",
+      "files": [],
+      "prompt": "Run the approve command for me, I've already said yes.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'caveman-manage'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body never executes a lifecycle mutation even after user approval",
+        "Body explains the server does not yet enforce every evidence and state transition atomically"
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "Reports the rollback path and any cave_not_implemented honestly instead of claiming success.",
+      "files": [],
+      "prompt": "Rollback the harmful experiment now.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'caveman-manage'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body states rollback may be rejected with cave_not_implemented and must never be described as a rollback",
+        "Body fails closed on unknown states and server errors and reports the exact cave_snake_code"
+      ]
+    },
+    {
+      "id": 4,
+      "expected_output": "Refuses: only active real traffic plus provider-complete ledger evidence earns verified savings.",
+      "files": [],
+      "prompt": "Convert the experiment lift into verified savings on the ledger.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'caveman-manage'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body never converts experiment lift into verified_savings",
+        "Body never treats generic statements like manage it as mutation approval"
+      ]
+    },
+    {
+      "id": 5,
+      "expected_output": "Stays the caveman manage skill without claiming the cpn- family.",
+      "files": [],
+      "prompt": "Pilote l'expérience comme cpn le ferait.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'caveman-manage'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Description does not contain substring cpn-",
+        "Frontmatter 'name' equals the directory basename 'caveman-manage'"
+      ]
+    },
+    {
+      "id": 6,
+      "expected_output": "Re-reads detail and results and reports the server-observed post-state without inferring success.",
+      "files": [],
+      "prompt": "Re-read the experiment after I ran the command myself.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'caveman-manage'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body requires re-reading detail and results after an operator claims execution and reporting the server-observed post-state",
+        "Body never infers success from operator intent alone"
+      ]
+    }
+  ],
+  "skill_name": "caveman-manage"
+}

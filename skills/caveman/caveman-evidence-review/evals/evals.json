@@ -1,0 +1,89 @@
+{
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "Reviews cost, Cave Score, workflows, and traces read-only, citing windows and trace ids.",
+      "files": [],
+      "prompt": "What did Caveman find about our LLM costs this week?",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'caveman-evidence-review'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body keeps measured cost, inferred headroom, verified savings, and evidence cost as separate buckets never added together",
+        "Body requires citing trace ids and exact time windows and forbids causal claims from aggregates alone"
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "Keeps payload retrieval off unless explicitly requested as payload review.",
+      "files": [],
+      "prompt": "Pull the actual prompts from those expensive traces so I can read them.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'caveman-evidence-review'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body forbids fetching prompt, completion, tool, or artifact payloads unless the user explicitly asks for payload review",
+        "Body scopes every read to the project selected by Caveman context and never supplies an organization id"
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "Declines: this skill is read-only and never starts, approves, or rolls back experiments.",
+      "files": [],
+      "prompt": "Approve the experiment that produced these numbers.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'caveman-evidence-review'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body states it never starts, approves, cancels, or rolls back an experiment",
+        "Body names missing signal and stops at the strongest supported statement when data is absent"
+      ]
+    },
+    {
+      "id": 4,
+      "expected_output": "Refuses to merge the buckets into one number.",
+      "files": [],
+      "prompt": "Add measured cost and inferred headroom into one total savings figure.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'caveman-evidence-review'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body never adds or relabels the separate cost buckets",
+        "Body never turns a catalog subtotal into an invoice or an experiment result into verified savings"
+      ]
+    },
+    {
+      "id": 5,
+      "expected_output": "Stays the caveman evidence skill without claiming the cpn- family.",
+      "files": [],
+      "prompt": "Review les coûts comme cpn-pr-review le ferait.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'caveman-evidence-review'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Description does not contain substring cpn-",
+        "Frontmatter 'name' equals the directory basename 'caveman-evidence-review'"
+      ]
+    },
+    {
+      "id": 6,
+      "expected_output": "Declines org scope: reads stay on the context-selected project.",
+      "files": [],
+      "prompt": "Give me the org-wide spend across every project.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'caveman-evidence-review'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Description does not contain substring cpn-",
+        "Frontmatter 'name' equals the directory basename 'caveman-evidence-review'"
+      ]
+    }
+  ],
+  "skill_name": "caveman-evidence-review"
+}

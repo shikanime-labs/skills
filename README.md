@@ -9,7 +9,8 @@ the full lifecycle: **discussion → issue → issue comments → PR**, with
 proven-done gates, assumption validation, jj-workspace parallel fan-out, and
 stacked PR landing. A third, standalone `nixpkgs` family (`nix-pr-*`) reviews
 upstream NixOS/nixpkgs pull requests through the official contribution
-process.
+process, and a fourth `caveman` family ports the JuliusBrussee/caveman
+token-compression and observability skills.
 
 ## Quick Start
 
@@ -162,6 +163,30 @@ the org workflows above.
 | Skill           | Description                                                         |
 | --------------- | ------------------------------------------------------------------- |
 | `nix-pr-review` | Review an upstream nixpkgs PR: build changed packages with nixpkgs-review and check the diff against nixpkgs conventions |
+
+### caveman family
+
+Skills from [JuliusBrussee/caveman](https://github.com/JuliusBrussee/caveman)
+(`skills/` tree, MIT): token-compression communication modes plus the Caveman
+Cloud observability lifecycle — measure LLM spend, label it by workflow, and
+act on evidence with consent gates. Integrated under the catalog conventions;
+diverges from upstream where host-specific artifacts required generalization.
+
+| Skill                    | Description                                                             |
+| ------------------------ | ----------------------------------------------------------------------- |
+| `caveman`                | Ultra-compressed communication mode (lite/full/ultra/wenyan levels)      |
+| `caveman-commit`         | Conventional Commits compressed to intent                               |
+| `caveman-review`         | One-line code review findings: location, problem, fix                   |
+| `caveman-help`           | Quick-reference card for caveman modes and skills                       |
+| `caveman-compress`       | Compress a memory file into caveman prose, out-of-tree backup           |
+| `caveman-discover`       | Find and label every LLM workflow for spend grouping                    |
+| `caveman-evidence-review`| Read-only review of Caveman Cloud evidence                              |
+| `caveman-explore`        | Read-only repository explorer with path:line citations                  |
+| `caveman-learn`          | Act on a learn report with per-edit consent and measured results        |
+| `caveman-manage`         | Inspect experiment lifecycle, block unsafe execution                    |
+| `caveman-optimize`       | Optimization observation into operator-chosen paired eval               |
+| `caveman-setup`          | Wire a repo through the Caveman gateway for measurement                 |
+| `caveman-stats`          | Recorded output and cache-read usage for the current session            |
 
 ### Agent profiles
 

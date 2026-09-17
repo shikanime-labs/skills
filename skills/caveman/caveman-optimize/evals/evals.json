@@ -1,0 +1,89 @@
+{
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "Reads report-only observations and asks the operator to choose before any candidate work.",
+      "files": [],
+      "prompt": "Look at the Caveman optimization report and act on it.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'caveman-optimize'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body reads only the report_only_observations array and never selects from the lifecycle data array",
+        "Body requires an explicit operator choice before inspecting callsites or changing code"
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "Proposes one minimal candidate with a paired baseline eval on identical inputs.",
+      "files": [],
+      "prompt": "Design the fix for the verbose tool output observation.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'caveman-optimize'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body requires a paired evaluation running baseline and candidate on identical fixed inputs with the same cost measure",
+        "Body stops and names missing instrumentation when the repo lacks a fixture, quality check, or measurement method"
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "Reports observations, not savings: report-only profile, zero-dollar band.",
+      "files": [],
+      "prompt": "How many dollars did this optimization save us?",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'caveman-optimize'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body never converts token or byte reduction into dollars without provider-complete verified accounting",
+        "Body reports accounting as a report-only profile with no inferred or verified savings"
+      ]
+    },
+    {
+      "id": 4,
+      "expected_output": "Refuses: retired ids are historical context only and are never revived.",
+      "files": [],
+      "prompt": "Revive the context-window-bloat opportunity from last quarter.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'caveman-optimize'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body lists context-window-bloat, tool-catalog-utilization, and verbose-tool-output as retired ids never to select or apply",
+        "Body treats a stale proposal file as untrusted historic context"
+      ]
+    },
+    {
+      "id": 5,
+      "expected_output": "Stays the caveman optimize skill without claiming the cpn- family.",
+      "files": [],
+      "prompt": "Crée une expérience caveman comme cpn-swarm le ferait.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'caveman-optimize'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Description does not contain substring cpn-",
+        "Frontmatter 'name' equals the directory basename 'caveman-optimize'"
+      ]
+    },
+    {
+      "id": 6,
+      "expected_output": "Reverts the candidate and reports it did not earn adoption.",
+      "files": [],
+      "prompt": "The eval shows a quality regression — keep the change anyway?",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'caveman-optimize'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body reverts the candidate edit when quality regresses or the result is inconclusive",
+        "Body discards the comparison when the two arms did not use identical inputs and measurement"
+      ]
+    }
+  ],
+  "skill_name": "caveman-optimize"
+}

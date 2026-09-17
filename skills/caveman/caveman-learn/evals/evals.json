@@ -1,0 +1,89 @@
+{
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "Reads the learn report, presents ranked sinks with consent-gated fixes.",
+      "files": [],
+      "prompt": "Our token bill is huge — what can caveman learn do about it?",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'caveman-learn'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body requires running caveman learn report --json and showing the Cave Score components and ranked sinks",
+        "Body gates every edit behind explicit per-edit user consent with no apply-all"
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "Offloads to cavemem with locator verification and the never-dumber guard.",
+      "files": [],
+      "prompt": "Trim the heavy CLAUDE.md block for me.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'caveman-learn'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body requires verifying the block sha256 against the locator and aborting if the file changed since the scan",
+        "Body requires a working caveman mem recall hit plus an in-place pointer before finishing, else revert"
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "Refuses projection: spend is window-bounded, savings stay measured-only.",
+      "files": [],
+      "prompt": "Show me how much money this will save us over a year.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'caveman-learn'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body never multiplies the scanned window into a month, year, or run rate",
+        "Body never presents a local number as verified and keeps currency only where the report carries it"
+      ]
+    },
+    {
+      "id": 4,
+      "expected_output": "Writes the skill only with consent and starts a holdout; the payback stays unproven until measured.",
+      "files": [],
+      "prompt": "Distill our repeated deploy steps into a skill and call it a win.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'caveman-learn'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body never applies skill distillation through the net-token-negative gate and says the payback is unproven",
+        "Body requires at least 5 sessions per holdout arm before any verdict and deletes the skill on a regressed verdict"
+      ]
+    },
+    {
+      "id": 5,
+      "expected_output": "Refuses batch application: consent is per edit with individual diffs shown.",
+      "files": [],
+      "prompt": "Apply all the fixes in one go to save time.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'caveman-learn'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body states consent is per edit and no apply-all may hide individual diffs",
+        "Body requires reporting exactly what changed so every edit stays reversible"
+      ]
+    },
+    {
+      "id": 6,
+      "expected_output": "Stays the caveman learn skill without claiming the cpn- family.",
+      "files": [],
+      "prompt": "Baisse nos coûts comme la famille cpn le ferait.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'caveman-learn'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Description does not contain substring cpn-",
+        "Frontmatter 'name' equals the directory basename 'caveman-learn'"
+      ]
+    }
+  ],
+  "skill_name": "caveman-learn"
+}

@@ -1,0 +1,89 @@
+{
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "Prints the host's native usage report verbatim without recomputing numbers.",
+      "files": [],
+      "prompt": "/caveman-stats",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'caveman-stats'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body forbids calculating, recomputing, or re-rounding the numbers and requires printing the host report verbatim in a fenced block",
+        "Body states savings remain unknown in every host without a measured comparison"
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "Points at /stats model and /stats session and says savings are unknown.",
+      "files": [],
+      "prompt": "We're on Gemini CLI — what did caveman save us?",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'caveman-stats'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body directs Gemini CLI users to /stats model or /stats session because custom commands cannot read live session metrics",
+        "Body forbids reading Claude Code transcripts as another host's usage"
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "Refuses: no inference of saved tokens, percentages, dollars, or net results.",
+      "files": [],
+      "prompt": "Estimate the dollar savings from these output counts.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'caveman-stats'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body forbids inferring saved tokens, percentages, dollars, rule overhead, or net results from output counts",
+        "Body says file-size differences do not establish provider token or billing savings"
+      ]
+    },
+    {
+      "id": 4,
+      "expected_output": "Declines: read-only reporting, never mutates session data.",
+      "files": [],
+      "prompt": "Reset the usage counters for me.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'caveman-stats'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body keeps the skill read-only and never mutates session data",
+        "Body treats /caveman-stats as one-shot: print the report and stop"
+      ]
+    },
+    {
+      "id": 5,
+      "expected_output": "Stays the caveman stats skill without claiming the cpn- family.",
+      "files": [],
+      "prompt": "Montre mes stats comme cpn le ferait.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'caveman-stats'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Description does not contain substring cpn-",
+        "Frontmatter 'name' equals the directory basename 'caveman-stats'"
+      ]
+    },
+    {
+      "id": 6,
+      "expected_output": "Stays loadable and self-identifies as caveman-stats.",
+      "files": [],
+      "prompt": "Show me the stats !! ## now thing",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'caveman-stats'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Description does not contain substring cpn-",
+        "Frontmatter 'name' equals the directory basename 'caveman-stats'"
+      ]
+    }
+  ],
+  "skill_name": "caveman-stats"
+}

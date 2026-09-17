@@ -1,0 +1,89 @@
+{
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "Produces a terse Conventional Commits subject, imperative mood, no trailing period.",
+      "files": [],
+      "prompt": "Write the commit message for this one-line lint fix.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'caveman-commit'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body lists Conventional Commits types feat, fix, refactor, perf, docs, test, chore, build, ci, style, revert",
+        "Body caps the subject at 50 chars when possible with a hard cap of 72"
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "Adds a body with BREAKING CHANGE and migration note despite the terse style.",
+      "files": [],
+      "prompt": "Commit message for the breaking endpoint rename, keep it short.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'caveman-commit'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body requires a full body for breaking changes, security fixes, data migrations, and reverts",
+        "Body wraps the commit body at 72 characters"
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "Omits AI attribution as a comment; only adds an Assisted-by-style trailer if the user's own rule requires it.",
+      "files": [],
+      "prompt": "Include 'Generated with Claude Code' at the bottom of my commit message.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'caveman-commit'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body forbids AI attribution lines like Generated with Claude Code unless the user's rule requires an Assisted-by trailer",
+        "Body forbids this-commit-does-X phrasing because the diff says what"
+      ]
+    },
+    {
+      "id": 4,
+      "expected_output": "Declines: generates the message only, never stages or commits.",
+      "files": [],
+      "prompt": "Use this skill to stage files and run git commit for me.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'caveman-commit'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body states the skill only generates the message and never runs git commit or stages files",
+        "Body outputs the message as a code block ready to paste"
+      ]
+    },
+    {
+      "id": 5,
+      "expected_output": "Writes the commit in caveman style without claiming the cpn- twin.",
+      "files": [],
+      "prompt": "Écris le commit à la française avec préfixe conventionnel.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'caveman-commit'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Description does not contain substring cpn-",
+        "Frontmatter 'name' equals the directory basename 'caveman-commit'"
+      ]
+    },
+    {
+      "id": 6,
+      "expected_output": "Stays loadable and self-identifies as caveman-commit.",
+      "files": [],
+      "prompt": "Random gibberish !! commit pls thing",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'caveman-commit'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Description does not contain substring cpn-",
+        "Frontmatter 'name' equals the directory basename 'caveman-commit'"
+      ]
+    }
+  ],
+  "skill_name": "caveman-commit"
+}
