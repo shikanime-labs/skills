@@ -178,7 +178,7 @@ naming the ceiling and the upgrade path.
   files. An `export from jj` sync left the mirror HEAD on a stale tree and
   the untracked layer was gone from disk. Recover from the newest mirror
   commit that still carries the catalog: list additions via
-  `git diff --name-status origin/main <sha> | grep '^A'`, then
+  `git diff --name-only --diff-filter=A origin/main <sha> > <list>`, then
   `git restore --source=<sha> --worktree --pathspec-from-file=<list>`.
   Keep the recovery untracked — repo doctrine ships only the sks and cpn
   families. After
