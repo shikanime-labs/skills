@@ -3,7 +3,7 @@ name: sks-pr
 description:
   "Use when opening a PR in shikanime-labs or shikanime-studio: push to origin,
   --head org:branch, plain-English title, issue linkage, parity with commit."
-version: 0.1.1
+version: 0.1.2
 author: Hermes Agent
 license: Apache-2.0
 metadata:
@@ -84,17 +84,37 @@ remote as canonical.
      `Related: https://github.com/owner/repo/issues/N` (cross-repo). List each
      URL on its own line. Repo-enforced shape (e.g. `manifests` `AGENTS` file:
      `Related:` + `Signed-off-by`) overrides — follow the repo.
-   - **Guard — PR template ≠ issue template**: the PR body NEVER uses the
-     issue's `## Problem` / `## Acceptance` shape. A body that copies the issue
-     template, leaks a bare `#N`, or invents a field (e.g. `Stacks on:`) is a
-     defect — reject and rewrite before opening.
+   - **Templates: detect, then conform.** Probe for a repo PR template
+     before writing the body — candidates:
+     `.github/pull_request_template.md`,
+     `.github/PULL_REQUEST_TEMPLATE.md`, `.github/PULL_REQUEST_TEMPLATE/`.
+
+     ```bash
+     gh api repos/<org>/<repo>/contents/.github \
+       --jq '.[].name' | grep -i 'pull_request_template'   # empty = no template
+     ```
+
+     Fetch the matched path's content (`gh api
+     repos/<org>/<repo>/contents/.github/<name>` + `base64 -d`) before
+     writing the body — the listing covers both file casings and the
+     template directory. No template → the `## Why` / `## What` /
+     `## References` shape above.
+     Template → fill every section it defines, keep its headings verbatim,
+     and leave checklist boxes unchecked (`- [ ]`) for the human author.
+     The `## References` rules (full URLs, no bare `#N`) still apply inside
+     whichever section carries the links. NEVER copy the issue template's
+     shape (`## Problem` / `## Acceptance`) into a PR body — a body that
+     leaks a bare `#N` or invents a field (e.g. `Stacks on:`) is a defect;
+     reject and rewrite before opening.
    - Linkage is **many-to-many** (discussion → issue → comments → PR): a PR
      always solves an issue. Default `Related: <issue URL>`; otherwise close
      deliberately after final merge (verify N-of-N, then `gh issue close`). Same
      deliberate close (see `sks-dev-workflow`).
 4. **Head** — `--head <org>:<branch>`; push to `origin` only.
 5. **Parity** — PR title MUST equal commit subject; PR body MUST restate the
-   commit message; no added rationale (see `sks-commit`).
+   commit message; no added rationale (see `sks-commit`). When a repo PR
+   template fixes the body shape, the template wins and the commit's
+   rationale maps into its sections — parity holds at the content level.
 
 ## Landing via plain `gh pr`
 

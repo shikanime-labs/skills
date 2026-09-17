@@ -26,7 +26,8 @@
         "Description starts with 'Use when' and is \u003c= 200 characters",
         "license field is 'Apache-2.0'",
         "Body contains at least one '##' heading",
-        "Body enforces PR title/body parity with the commit"
+        "Body enforces PR title/body parity with the commit",
+        "Body probes for a repo PR template and conforms to its sections when present."
       ]
     },
     {
@@ -82,6 +83,21 @@
       "assertions": [
         "Description does not contain substring cpn-",
         "Frontmatter 'name' equals the directory basename 'sks-pr'"
+      ]
+    },
+    {
+      "id": 8,
+      "expected_output": "The PR body fills the repo's PR template sections verbatim (Summary + Checklist) instead of the default Why/What/References shape.",
+      "files": [],
+      "prompt": "Open a PR in shikanime-labs/dotfiles for my fix/chezmoi-hook branch, and make sure the body uses whatever PR template that repo ships.",
+      "assertions": [
+        "Frontmatter parses as YAML with a top-level 'name' key",
+        "Frontmatter 'name' equals the directory basename 'sks-pr'",
+        "Body probes for a repo PR template before writing the body.",
+        "Body keeps its own default Why/What/References shape only when no template exists.",
+        "Body fills every template section with headings verbatim when a template exists.",
+        "Body leaves template checklist boxes unchecked (- [ ]).",
+        "Body keeps PR title parity with the commit subject."
       ]
     }
   ],

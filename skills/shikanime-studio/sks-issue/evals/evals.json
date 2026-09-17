@@ -12,7 +12,8 @@
         "The license field is 'Apache-2.0'.",
         "The body contains at least one '##' heading.",
         "Body enforces issue-first workflow with acceptance criteria tasklist.",
-        "Body keeps the issue body a clean problem statement and posts findings as comments, not in the body."
+        "Body keeps the issue body a clean problem statement and posts findings as comments, not in the body.",
+        "Body probes for repo issue templates and conforms to their sections when present."
       ]
     },
     {
@@ -68,6 +69,21 @@
       "assertions": [
         "Description does not contain substring cpn-",
         "Frontmatter 'name' equals the directory basename 'sks-issue'"
+      ]
+    },
+    {
+      "id": 7,
+      "expected_output": "The issue body conforms to the repo's .github/ISSUE_TEMPLATE sections verbatim instead of the default shape, with the form's labels cross-checked.",
+      "files": [],
+      "prompt": "Open a bug issue in shikanime-labs/dotfiles for the chezmoi apply hook failing, and make sure the issue respects whatever template that repo defines.",
+      "assertions": [
+        "Frontmatter parses as valid YAML.",
+        "Frontmatter 'name' equals the directory basename 'sks-issue'",
+        "Body probes for .github/ISSUE_TEMPLATE before writing the body.",
+        "Body keeps its own default shape only when no template exists.",
+        "Body fills the template's sections and keeps its headings verbatim when a template exists.",
+        "Body cross-checks the template form's labels against gh label list.",
+        "Body keeps acceptance criteria as a command-decidable tasklist."
       ]
     }
   ],
