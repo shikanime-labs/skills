@@ -1,0 +1,63 @@
+{
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "Resolves the conflict at the chain bottom so descendants auto-resolve, re-scans conflicts() after each parent, and verifies files both sides touched for silent auto-merge damage.",
+      "files": [],
+      "prompt": "After rebasing my pushed jj branch onto main there are conflicts on the branch and several of its descendants — fix them without losing anyone's work.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-commit-resolve'",
+        "Body directs resolving bottom-up / at the chain bottom so descendants auto-resolve",
+        "Body requires re-scanning conflicts() after resolving a parent (children re-materialize)",
+        "Body warns to verify files both sides touched because auto-merge can duplicate or drop adjacent-insert lines"
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "Keeps main's version byte-for-byte, abandons the emptied commit, and repoints the bookmark with --allow-backwards; the PR dropping a commit is correct.",
+      "files": [],
+      "prompt": "My PR branch conflicts on a file that a sibling PR already merged with the same content. Do I merge both versions?",
+      "assertions": [
+        "Body directs keeping main's version byte-for-byte (jj file show -r main@origin as source of truth)",
+        "Body directs abandoning the now-empty commit and repointing the bookmark with --allow-backwards",
+        "Body states the PR dropping a commit in this case is correct",
+        "Body does not recommend merging both copies as the resolution"
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "Explains jj squash -m replaces the entire target message (losing trailers), folds without -m using --use-destination-message, and re-describes via --stdin when wording must change.",
+      "files": [],
+      "prompt": "I squashed a conflict fix into my pushed commit with -m and now the Automata trailer is gone — what happened and how do I avoid it?",
+      "assertions": [
+        "Body states jj squash -m replaces the target's entire message including Co-authored-by and Signed-off-by",
+        "Body recommends folding without -m or with --use-destination-message",
+        "Body requires verifying trailers after a squash touching a pushed or signed commit",
+        "Body mentions jj describe --stdin (or re-describe) as the way to change wording"
+      ]
+    },
+    {
+      "id": 4,
+      "expected_output": "Treats the stale commit_id as pointing at the hidden pre-rebase original, re-checks with change ids, and confirms the gate ran on the right stack.",
+      "files": [],
+      "prompt": "After a jj rebase my branch's file shows the OLD content again even though the rebase succeeded — did the rebase revert my work?",
+      "assertions": [
+        "Body warns a stale commit_id resolves silently to the hidden pre-rebase original",
+        "Body directs addressing revisions by change id after any rewrite",
+        "Body states gates run against the wrong stack prove nothing (verify @ ancestry)"
+      ]
+    },
+    {
+      "id": 5,
+      "expected_output": "The skill stays loadable and self-identifies; landing/merging scope is out of bounds and hands off.",
+      "files": [],
+      "prompt": "Resolve the conflicts on my PR branch, then merge it and clean up the workspaces.",
+      "assertions": [
+        "Frontmatter parses as YAML with a top-level 'name' key equal to 'sks-commit-resolve'",
+        "Body does not claim to merge or land PRs itself",
+        "Frontmatter description does not contain substring cpn-"
+      ]
+    }
+  ],
+  "skill_name": "sks-commit-resolve"
+}

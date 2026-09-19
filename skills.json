@@ -115,6 +115,11 @@
       "path": "skills/shikanime-studio/sks-commit"
     },
     {
+      "name": "sks-commit-resolve",
+      "description": "Use when a jj commit or pushed PR branch is conflicted against a moved trunk: collision verdicts, chain resolution order, squash traps until pushable.",
+      "path": "skills/shikanime-studio/sks-commit-resolve"
+    },
+    {
       "name": "sks-curate",
       "description": "Use when updating, improving, compressing, or token-optimizing a skill in the shikanime-labs/skills catalog: rework the body, tighten it, refresh evals, and keep it loadable.",
       "path": "skills/shikanime-studio/sks-curate"

@@ -110,6 +110,7 @@ specification, compatible with the
 | `sks-adversarial`       | Disposable sandbox for uncertain results: probe via sks-isolate/sks-async, then promote or discard                           |
 | `sks-async`             | jj workspace fan-out + stacked PRs for parallel work                                                                         |
 | `sks-commit`            | shikanime commit style + Automata co-author trailer                                                                          |
+| `sks-commit-resolve`    | Resolve a conflicted jj commit or pushed PR branch: collision verdicts, chain order, squash traps until pushable             |
 | `sks-curate`            | Update, improve, compress, and token-optimize skills in the catalog                                                          |
 | `sks-dev-workflow`      | Branch/push discipline, gates, landing                                                                                       |
 | `sks-discussion`        | RFC Discussions (pre-issue stage)                                                                                            |
