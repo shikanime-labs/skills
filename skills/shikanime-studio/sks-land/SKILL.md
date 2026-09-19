@@ -85,26 +85,48 @@ the protection; no separate human review is then required.
 (`sks-pr-resolve`'s output). If not run, do so now; if it already reported all
 reconciled, skip.
 
-**Gate 4 — `sks-commit` + `sks-pr` conventions.** Commit subject is
-plain-English imperative (no `fix:`/`feat:`/`chore:` conventional prefix),
-capitalized, no trailing period. PR title equals the commit subject; PR body
-restates the rationale. Verify:
+**Gate 4 — `sks-commit` + `sks-pr` conventions (verified, never eyeballed).**
+Commit subject is plain-English imperative (no `fix:`/`feat:`/`chore:`
+conventional prefix), capitalized, no trailing period. PR title equals the
+commit subject; PR body restates the rationale. ALWAYS run the shape check
+before merging — on every landing, not only when a violation is suspected; a
+`BLOCKED` line is the gate working, not a tooling failure. A doc-repo commit
+may carry a `doc:` prefix — that is the `sks-commit` override for doc repos,
+and the check accepts it.
 
 ```bash
-gh pr view <M> --repo <org>/<repo> --json commits,title,body \
-  --jq '.commits[0].messageHeadline, .title, .body'
+R=<org>/<repo>; M=<PR>
+gh pr view "$M" -R "$R" --json commits,title,body -q '
+  .commits[0].messageHeadline as $s
+  | if ($s | test("^(fix|feat|chore|docs|refactor|test|build|ci|perf|"
+                  + "renovate)(\\([^)]*\\))?!?: "))
+    then error("BLOCKED: conventional prefix: " + $s)
+    elif ($s | test("^[a-z]") and ($s | startswith("doc: ") | not))
+    then error("BLOCKED: lowercase subject: " + $s)
+    elif ($s | endswith(".")) then error("BLOCKED: trailing period: " + $s)
+    elif ($s != .title)
+    then error("BLOCKED: PR title differs from commit subject")
+    elif ([.commits[].messageBody // ""
+           | select(test("(?m)^Co-authored-by: Automata"
+                         + " <automata@shikanime\\.studio>"))]
+           | length) == 0
+    then error("BLOCKED: no Co-authored-by: Automata trailer")
+    else "OK: commit conventions pass" end'
 ```
 
-If the commit subject violates `sks-commit` (conventional prefix, lowercase
-start, trailing period) or the PR title diverges from it, fix before merging:
+Non-zero exit with `BLOCKED: <reason>` on violation; `OK: commit conventions
+pass` is the only merge-ready signal. If the commit subject violates
+`sks-commit` (conventional prefix, lowercase start, trailing period) or the
+PR title diverges from it, fix before merging:
 
 ```bash
 jj describe -m "<plain-English subject>" \
   -m "Co-authored-by: Automata <automata@shikanime.studio>"
 ```
 
-then force-push and re-verify. A doc-repo commit may carry a `doc:` prefix —
-that is the `sks-commit` override for doc repos, not a violation.
+then force-push and re-run the check. The recurring failure mode is skipping
+the check: a recent landing merged without the Automata trailer because Gate
+4 dumped the commit message for eyeball review instead of deciding.
 
 ## Merge procedure
 
