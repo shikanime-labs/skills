@@ -30,12 +30,15 @@ platforms:
   - windows
 ---
 
-# Shikanime Org Parallel Streams
+# Parallel Streams
 
 Decompose a multi-unit change into parallel, isolated streams; land each as an
 independent PR or stacked chain. Distills unlazy depth-tree delegation fan-out
 onto jj's commit DAG as plain `gh pr` merges. Core splitting component of
 `sks-dev-workflow`.
+
+For shikanime-org specifics (co-author trailer, remote split), read
+`references/org-conventions.md` when operating in shikanime repos.
 
 ## When to Use
 
@@ -58,17 +61,19 @@ onto jj's commit DAG as plain `gh pr` merges. Core splitting component of
    New workspace's working copy is a child of `@`; for depth > 1 root with
    `jj new <parent>`.
 3. **Work each stream** in its dir; commit per `sks-commit` — every commit
-   carries the trailer:
+   carries the org co-author trailer (shikanime repos:
+   `Co-authored-by: Automata <automata@shikanime.studio>`):
 
    ```bash
-   jj describe -m "<subject>" -m "Co-authored-by: Automata <automata@shikanime.studio>"
+   jj describe -m "<subject>" -m "<co-author trailer>"
    ```
 
 4. **Land** (push to `origin`, PRs with `--head <org>:<branch>`; see
    `sks-dev-workflow`):
    - Independent unit → own bookmark + standalone PR (or single-member stack).
 
-- Dependent chain → one bookmark per link. Example:
+- Dependent chain → one bookmark per link; land links in dependency order
+  (base first). Example:
 
 ```bash
 jj bookmark set <next> -r <next>
@@ -99,7 +104,7 @@ EOF
 
 ## Fan-out via delegate_task
 
-Each child: workspace path, unit gates, commit shape (plain English + Automata
+Each child: workspace path, unit gates, commit shape (plain English + the org
 co-author trailer). Parent re-verifies every gate via `terminal` in each
 workspace before reporting done. Dispatch `delegate_task(tasks=[])`: **one task
 per leaf**, `goal` carries the contract; never bundle two leaves (defeats

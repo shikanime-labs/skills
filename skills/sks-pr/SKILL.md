@@ -25,12 +25,12 @@ platforms:
   - windows
 ---
 
-# Shikanime Org PR Creation
+# PR Creation
 
-Open PRs against `shikanime-labs/*` and `shikanime-studio/*`: push to `origin`,
-open with `--head <org>:<branch>`, base `main`, plain-English (or `doc:`) title,
-issue linkage. Repo enforcement (branch protection, CI, hooks) is detected per
-repo.
+Open PRs against the org repos (scope per `references/org-conventions.md`):
+push to `origin`, open with `--head <org>:<branch>`, base `main`, plain-English
+(or `doc:`) title, issue linkage. Repo enforcement (branch protection, CI,
+hooks) is detected per repo.
 
 ## When to Use
 
@@ -42,9 +42,9 @@ repo.
 ## Internal policy: push to origin
 
 All PRs open from `origin` (the cloned org repo). Push the branch to `origin`
-and open with `--head <org>:<branch>`. The local path may read `shikanime-labs`
-while the gh remote is `shikanime-studio` (e.g. `nix-containers`) — trust the gh
-remote as canonical.
+and open with `--head <org>:<branch>`. Where the local clone path and the gh
+remote disagree on owner spelling (see `references/org-conventions.md`), trust
+the gh remote as canonical.
 
 ## Prerequisites
 
@@ -128,16 +128,17 @@ jj rebase -d main                      # ALWAYS rebase onto trunk before landing
 gh pr merge <M> --repo <org>/<repo> --squash --admin \
   -b "$(cat <<'EOF'
 <body: one coherent change, no jj * bullets / --------- separators;
-trailers only: Related: [url], Signed-off-by: [user]>
+trailers only: Related: [url], Signed-off-by: [user], required co-author
+trailer (see references/org-conventions.md)>
 
-Co-authored-by: Automata <automata@shikanime.studio>
+<required trailer lines — see references/org-conventions.md>
 EOF
 )"                                     # --admin bypasses self-approval protection
 ```
 
-- Branch protection blocks self-approval on some repos (e.g.
-  `shikanime-labs/skills`); a verbal `lgtm` satisfies the gate — land with
-  `--squash --admin`.
+- Branch protection blocks self-approval on some repos (see
+  `references/org-conventions.md`); a verbal `lgtm` satisfies the gate — land
+  with `--squash --admin`.
 - **Conflict check** before merge:
   `gh pr view <N> --json mergeable,mergeStateStatus` (existing PR) or
   `jj rebase -d main` locally (conflict markers = author rebases; never push a
@@ -149,7 +150,7 @@ EOF
 ### 1. Branch + commit
 
 - Feature branch off `main` (e.g. `fix/rwx-nfs-v4.0`). `main` is protected on
-  some repos (e.g. `shikanime-studio/actions`) — never commit directly to
+  some repos (see `references/org-conventions.md`) — never commit directly to
   `main`.
 - Commits per `sks-commit` (plain English / `doc:`; repo hook policy wins).
 
@@ -201,17 +202,17 @@ EOF
 )"
 ```
 
-PRs submitted from a separate jj workspace request `yorha-operator` (the
-Automata account) as reviewer at submission time:
+PRs submitted from a separate jj workspace request the default reviewer (see
+`references/org-conventions.md`) at submission time:
 
 ```bash
-gh pr edit <N> --repo "$ORG/<repo>" --add-reviewer yorha-operator
+gh pr edit <N> --repo "$ORG/<repo>" --add-reviewer <default-reviewer>
 ```
 
 GitHub rejects a review request aimed at the PR author (422 "Review cannot
-be requested from pull request author"). When the agent submits under the
-Automata account itself, `yorha-operator` IS the author — skip the request;
-the approving review must come from the operator.
+be requested from pull request author"). When the agent submits under that
+same account, it IS the author — skip the request; the approving review must
+come from the operator.
 
 Use `--draft` when checks aren't green yet.
 
@@ -241,9 +242,9 @@ re-derive here.
 
 ## Post-steps
 
-- **Protected `main`** (e.g. `shikanime-studio/actions`): a separate approving
-  review may be mandatory; don't self-merge if blocked.
-- **Merging**: on `nix-containers` "merge the PRs", use
+- **Protected `main`** (repos listed in `references/org-conventions.md`): a
+  separate approving review may be mandatory; don't self-merge if blocked.
+- **Merging**: on self-approval-blocked repos, use
   `gh pr merge --squash --admin -b "<clean body>"` (admin required; no `-m` on
   current `gh` — pass body via `-b`, see `sks-land`). Other repos: merge per
   allowed strategy once green + reviewed.

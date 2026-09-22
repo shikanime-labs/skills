@@ -27,7 +27,7 @@ metadata:
 
 # CPN Org — Résolution de PR (sans merge)
 
-Réconcilie une PR `cloud-pi-native/*` : threads de review, ledger DoD,
+Réconcilie une PR `<org>/*` : threads de review, ledger DoD,
 approbation/CI. **Ne land JAMAIS** (merge = `cpn-dev-workflow`).
 
 ## When to Use
@@ -48,8 +48,8 @@ Critères = tasklist `- [ ]` du corps de l'issue liée (voir `cpn-issue`) ; chaq
 item vérifié contre le diff/CI.
 
 ```bash
-gh issue view <N> --repo cloud-pi-native/<repo> --json body --jq .body
-gh pr view <M> --repo cloud-pi-native/<repo> --json body,state --jq .body
+gh issue view <N> --repo <org>/<repo> --json body --jq .body
+gh pr view <M> --repo <org>/<repo> --json body,state --jq .body
 ```
 
 - Case décochée = ouvert → rapporte, ne coche pas silencieusement.
@@ -62,21 +62,21 @@ gh pr view <M> --repo cloud-pi-native/<repo> --json body,state --jq .body
 `cpn-pr-review` sur le head (re-review si nouveaux commits).
 
 ```bash
-gh pr view <M> --repo cloud-pi-native/<repo> --json reviews,headRefOid \
+gh pr view <M> --repo <org>/<repo> --json reviews,headRefOid \
   --jq '{head: .headRefOid,
          reviews: [.reviews[] | {state: .state, submittedAt}]}' \
   --jq '.reviews | map(select(.state == "APPROVED")) | length > 0'
 ```
 
-- Branche protégée bloquant l'auto-approb (ex. `cloud-pi-native/console`) →
-  `lgtm` verbal suffit (merge reste dans `cpn-dev-workflow`,
-  `gh pr merge`/queue).
-- CI : `gh pr checks <M> --repo cloud-pi-native/<repo>`.
+- Branche protégée bloquant l'auto-approb (ex. le dépôt le plus strict de
+  l'org — `references/org-conventions.md`) → `lgtm` verbal suffit (merge
+  reste dans `cpn-dev-workflow`, `gh pr merge`/queue).
+- CI : `gh pr checks <M> --repo <org>/<repo>`.
 
 ## Pre-check — Merge queue manuelle (PR à fort impact)
 
-Pour les PR `cloud-pi-native/*` dont le land déclenche des **tests e2e lourds**
-(impact étendu : schéma, auth/Keycloak, syncs, parcours critique de la console)
+Pour les PR `<org>/*` dont le land déclenche des **tests e2e lourds**
+(impact étendu : schéma, auth/Keycloak, syncs, parcours critique du produit)
 et qui exigent une validation de bout en bout avant fusion, le dispatcher
 **exécute manuellement la merge queue dans son jj workspace** comme pre-check —
 ce n'est pas un merge réel, c'est la validation e2e pilotée sur la branche.

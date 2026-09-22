@@ -24,7 +24,7 @@ platforms:
   - windows
 ---
 
-# Shikanime Org Issue Workflow
+# Issue Workflow
 
 Thin orchestrator over `sks-issue` → `sks-issue-refine` → `sks-issue-triage`.
 

@@ -30,9 +30,13 @@ platforms:
 
 # Shikanime Org PR Resolution (no merge)
 
-Reconcile a PR in `shikanime-labs/*`/`shikanime-studio/*`: enumerate review
+Reconcile a PR: enumerate review
 conversations, check the linked issue DoD ledger, report approval/CI. **Never
 lands the PR** — that is `sks-land`.
+
+Read `references/org-conventions.md` when working in a shikanime org repo
+(`shikanime-labs/*`/`shikanime-studio/*`); the org's branch-protection
+self-approval quirks live there.
 
 ## When to Use
 
@@ -69,8 +73,8 @@ gh pr view <M> --repo <org>/<repo> --json body,state --jq .body
 if new commits landed after the last review. Check approval via the query in
 `references/resolve.md`.
 
-- Where branch protection blocks self-approval (e.g. `shikanime-labs/skills`,
-  `nix-containers`), a verbal `lgtm` from the user satisfies this gate — merge
+- Where branch protection blocks self-approval, a verbal `lgtm` from the
+  user satisfies this gate (see `references/org-conventions.md`) — merge
   stays in `sks-land` (`gh pr merge --squash --admin`).
 - CI: `gh pr checks <M> --repo <org>/<repo>`.
 
@@ -106,8 +110,8 @@ threads gate via `isResolved`.
 Readiness verdict:
 
 - Ledger: N of N satisfied, listing open items.
-- Approval: `sks-pr-review` approval on current head (or verbal `lgtm` for
-  `sks-land`).
+- Approval: `sks-pr-review` approval on current head (or verbal `lgtm` per
+  `references/org-conventions.md`).
 - Conversations: every thread resolved with one-line rationale, or list needing
   author decision.
 - CI: green / pending / failing.

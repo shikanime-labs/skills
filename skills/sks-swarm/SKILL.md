@@ -37,6 +37,9 @@ each unit by the capability it needs, the machine it should run on, and the live
 resource pressure on the runner — then optionally run the whole swarm inside a
 disposable `sks-adversarial` sandbox so a misroute costs nothing.
 
+Read `references/org-conventions.md` when working in a shikanime org repo;
+linked-issue conventions live there.
+
 This skill is a router, not a transport. It decides _what goes where_; A2A and
 `delegate_task` do the delivery. It does NOT replace them.
 

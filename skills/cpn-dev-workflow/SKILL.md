@@ -37,7 +37,9 @@ metadata:
 
 Local `cloud-pi-native` console repo: structure, stack, contribution rules,
 local dev, quality gates, issues/PR workflow. Does not provision clusters or
-operate remote environments unless asked.
+operate remote environments unless asked. Console repo facts (checkout path,
+layout, backend target, dev commands): read `references/org-conventions.md`
+when working in a cloud-pi-native org repo.
 
 ## When to Use
 
@@ -83,18 +85,19 @@ Work-item lifecycle; gate phases are the mechanical walls a change must clear.
 | 7   | Land (`gh pr merge --squash` + merge queue)                    | this skill                           | branch protection |
 | 8   | Close deliberately (verify N of N)                             | `cpn-issue`                          | ledger discharged |
 
-Phases 2 and 5 are the before-code / before-merge gates. The console `Procedure`
-(steps 1–12) implements phases 3–7.
+Phases 2 and 5 are the before-code / before-merge gates. The org `Procedure`
+(steps 1–10) implements phases 3–7.
 
 ## Prerequisites
 
-- Local checkout at `~/Source/Repos/github.com/cloud-pi-native`
-- Docker >= 27 (compose >= 2.35, buildx), Node.js >= 24, pnpm >= 10
+- Local checkout of the org repo (console path:
+  `references/org-conventions.md`)
+- Toolchain versions per repo (console: `references/org-conventions.md`)
 
 ## How to Run
 
-Use `read_file` / `search_files` on the repo paths; run console commands via
-`terminal` from the `console` dir.
+Use `read_file` / `search_files` on the repo paths; run repo commands via
+`terminal` from the repo dir.
 
 Parallelize independent, non-overlapping module changes with `delegate_task`
 (e.g. implementation + its vitest spec, or two unrelated modules) as
@@ -109,7 +112,7 @@ delegate_task(tasks=[
     {"goal": "Implement <module> in <org>/<repo>: <contract>. Run <lint/test> "
              "and confirm green before reporting done. Keep dependent "
              "typecheck/test in the same task.",
-     "context": "cpn console repo; one workspace per unit per cpn-async; "
+     "context": "org console repo; one workspace per unit per cpn-async; "
                 "contracts fixed before fan-out.",
      "toolsets": ["terminal", "file"]},
 ])
@@ -117,19 +120,15 @@ delegate_task(tasks=[
 
 ## Quick Reference
 
-- `console/README.md` — overview, architecture, ports, run modes
-- `console/CONTRIBUTING.md` — scope, backend target, quality gates
-- `console/package.json` — workspace scripts: lint, test, build, docker
-- `console/.github/PULL_REQUEST_TEMPLATE.md` — required PR sections
-- `console/apps/server-nestjs` — current backend target; `console/apps/server` —
-  historical, **do not modify**
-- `console/misc/plugins.md` — plugin lifecycle; `console/playwright/README.md` —
-  Playwright e2e
+- Repo layout, backend target, package scripts, PR template:
+  `references/org-conventions.md` (console specifics).
 
 ## Procedure
 
-1. Read `console/CONTRIBUTING.md` before changing backend/dependency behavior.
-2. Backend target is `apps/server-nestjs`; never touch `apps/server`.
+1. Read the repo's `CONTRIBUTING.md` before changing backend/dependency
+   behavior.
+2. Backend target is the active backend app; never touch the frozen historical
+   one (console specifics: `references/org-conventions.md`).
 3. **Issue-first is mandatory.** Lifecycle: discussion → issue → issue comments
    → PR. Unclear problem → open a Discussion RFC first (`cpn-discussion`). Issue
    body = **problem statement** (need, scope, API/data/security impact, `- [ ]`
@@ -138,23 +137,17 @@ delegate_task(tasks=[
    `Refs #N` (fermer délibérément après N-sur-N, voir `references/pitfalls.md`).
    No bare-request implementation; no PR without an issue behind it.
 
-   Reference-safety: `#N` in a PR/commit body resolves to console issue/PR **N**
-   and `Closes` / `Fixes` / `Resolves` auto-close it on merge. Bare `#N` is only
-   safe for a console ticket; cross-repo refs use a full URL or `owner/repo#N`.
+   Reference-safety: `#N` in a PR/commit body resolves to an issue/PR **N** of
+   the same repo and `Closes` / `Fixes` / `Resolves` auto-close it on merge.
+   Bare `#N` is only safe for a ticket in that repo; cross-repo refs use a full
+   URL or `owner/repo#N`.
 4. **Triage before work** (`cpn-issue-triage`): assign every exposed metadata —
    labels (conventional-prefix → type), assignee (active `gh` identity),
    milestone (bug → current patch, feature → next release), project if obvious,
    reviewers. Apply only empty, determinable fields; never invent a label.
-5. From `console`: `pnpm install`, `pnpm build`,
-   `pnpm --filter @cpn-console/server-nestjs run db:generate`.
-6. Launch: local+remote → `pnpm run dev` then
-   `pnpm --filter @cpn-console/server-nestjs run dev` +
-   `pnpm --filter @cpn-console/client run dev`; full containerized →
-   `pnpm run docker:dev`; integration → `pnpm run docker:integ` or
-   `pnpm run integ`.
-7. Checks before submit: `pnpm lint`, `pnpm test`, `pnpm playwright:test` if a
-   journey is affected.
-8. Fresh jj workspace per item (une unité → `cpn-delegate`, voir Échelle de
+5. From the repo root: install, build, generate DB client, then launch dev /
+   checks before submit (console commands: `references/org-conventions.md`).
+6. Fresh jj workspace per item (une unité → `cpn-delegate`, voir Échelle de
    coordination) : `jj workspace add -m <repo>.<name> . ../<repo>.<name>`
    pinned to `-r 'main@origin'` (or `jj workspace add --revision <base>
    <path>`). Build a **stack of small child
@@ -165,26 +158,26 @@ delegate_task(tasks=[
    **standalone** PR (`cpn-async`: fan-out, join `jj new <a> <b>`, land via
    standalone `gh pr`).
    Don't stack unless a later module imports an earlier one's new code.
-9. Conventional English commits, one per unit. **jj-backed — never
+7. Conventional English commits, one per unit. **jj-backed — never
    `git commit`**; use `jj describe -m "msg"` / `jj new -m "msg"`. Fold into
    existing: `jj log -r '::@'`; if covered,
    `jj squash -m "msg" -f @ -t <existing>` instead of a new commit. Detect jj
    via `jj status` / `.jj/`; `git reflog` showing `export from jj` means
    jj-owned.
-10. Before PR: (a) conflict-check children — `jj log -r '::@'`, rebase each onto
-    parent (`jj rebase -d <parent> -r <child>`); 2-sided `<<<<<<<` resolves in
-    WC (`jj status` clears). A `<name> (conflicted)` bookmark is a remote
-    tracking conflict — surface it, don't `jj bookmark set`. (b) Re-describe:
-    `jj log -r '@-|@'`; if a squash merged concerns,
-    `jj describe -r <rev> -m "msg"`.
-11. Open **DRAFT** PR via `.github/PULL_REQUEST_TEMPLATE.md`:
+8. Before PR: (a) conflict-check children — `jj log -r '::@'`, rebase each onto
+   parent (`jj rebase -d <parent> -r <child>`); 2-sided `<<<<<<<` resolves in
+   WC (`jj status` clears). A `<name> (conflicted)` bookmark is a remote
+   tracking conflict — surface it, don't `jj bookmark set`. (b) Re-describe:
+   `jj log -r '@-|@'`; if a squash merged concerns,
+   `jj describe -r <rev> -m "msg"`.
+9. Open **DRAFT** PR via the repo's `PULL_REQUEST_TEMPLATE.md`:
 
 ```bash
 gh pr create --draft --fill --body "Refs #N"
 ```
 
 Don't mark ready until review passes; WIP at handoff → leave draft + say so
-(migration PRs draft unless told). 12. **Code review before merge**
+(migration PRs draft unless told). 10. **Code review before merge**
 (`cpn-pr-review`): adversarial over diff — architecture, conventional-commit +
 French rules, trust-boundary security, root-cause vs symptom. The review is the
 gate; don't mark ready until findings resolved or explicitly waived.
@@ -195,10 +188,10 @@ Probe each requirement and RECORD the result; an unmet requirement is a reported
 blocker, never a silent scope change:
 
 - gh identity + write: `gh api user --jq .login` and
-  `gh api repos/cloud-pi-native/console --jq .viewerPermission` — need
-  `write`/`admin` to push to origin.
-- Toolchain: `node --version` (≥24), `pnpm --version`; jj present (console is
-  jj-backed — never `git commit`; use `jj describe`/`jj new`).
+  `gh api repos/<org>/<repo> --jq .viewerPermission` — need `write`/`admin` to
+  push to origin.
+- Toolchain per repo (`references/org-conventions.md`); jj present (jj-backed
+  repo — never `git commit`; use `jj describe`/`jj new`).
 - The issue exists (issue-first; create via `cpn-issue` if not).
 
 Report shape: `BLOCKED: <requirement> — <evidence> — <recovery path>`. Unblocked
@@ -208,10 +201,9 @@ streams may fan out (`cpn-async`); the blocked stream is surfaced.
 
 Landing follows the same origin-only discipline as the other cpn skills:
 
-- **Origin-only.** Clone the org repo so `origin` is `cloud-pi-native/*`, push
-  the branch to `origin`, and open the PR with
-  `--head cloud-pi-native:<branch>`. (Pre-2026-08 `--head shikanime:<branch>`
-  guidance is retired.)
+- **Origin-only.** Clone the org repo so `origin` is `<org>/*`, push the branch
+  to `origin`, and open the PR with `--head <org>:<branch>`. (Legacy
+  `--head <fork>:<branch>` guidance is retired.)
 - **Plain `gh pr` is the landing path** (`gh stack` extension available for
   stacking; land with plain `gh pr merge --squash`). Before opening each PR run
   the `cpn-pr` duplicate/stack check
@@ -241,7 +233,7 @@ These are kept out of the always-loaded footprint; load on demand:
 - **Testing practice** (vitest spec rules, mockDeep, faker, no describe-scope
   calls) and **E2E / Playwright** requirements: `references/dev-detail.md`
 
-## Migration PR review (Fastify → server-nestjs)
+## Migration PR review (backend migration)
 
 A migration PR can pass typecheck/lint/unit yet still ship a **silent sync
 regression**: the new service emits domain events via `EventEmitter2` but
@@ -259,9 +251,9 @@ Optional edge cases and gotchas — load `references/pitfalls.md` on demand.
 
 ## Verification
 
-Run `read_file` on `console/CONTRIBUTING.md` and confirm it states
-`apps/server-nestjs` as the backend target and lists `pnpm lint`, `pnpm test`,
-and `pnpm playwright:test` as pre-submission checks.
+Run `read_file` on the repo's `CONTRIBUTING.md` and confirm it states the
+active backend app as the backend target and lists the pre-submission lint /
+test / e2e checks (console specifics: `references/org-conventions.md`).
 
 ## See also
 

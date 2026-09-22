@@ -34,19 +34,22 @@ platforms:
 
 Review local diffs and GitHub PRs through the `ponytail`/YAGNI lens
 (`ponytail` plugin skills; `ponytail-review` is the over-engineering-only
-pass), enforcing shikanime review practice and repo conventions. Reports
+pass), enforcing review practice and repo conventions. Reports
 only — never auto-commit/merge/fix. Uses `jj`, `gh`, and standard Hermes
 tools.
 
+Read `references/conventions.md` when the repo under review uses the
+shikanime org stack (Keycloak/NestJS/Prisma auth trust boundaries).
+
 The mechanics below (added-line security scan, independent fail-closed reviewer)
-are distilled from `requesting-code-review` and adapted to the shikanime
+are distilled from `requesting-code-review` and adapted to the
 human-gated flow: the agent posts findings and a verdict, a human approves.
 
 ## When to Use
 
 - "review this diff", "check before pushing", "review PR #N", "look at this PR"
 - After a task touching 2+ files
-- Before opening/merging a PR in shikanime/*
+- Before opening/merging a PR
 
 ## Prerequisites
 
@@ -74,8 +77,8 @@ harvests them.
 **3 — Security scan (added lines).** Run `references/security-scan.md`. Any
 match = `blocking`. Covers hard-coded secrets, shell/SQL injection,
 `eval`/`exec`, unsafe deserialization, path traversal, XSS; plus auth
-trust-boundary checks (Keycloak/JWKS timeout + client binding, NestJS/Prisma
-type boundary).
+trust-boundary checks for the repo's stack (org-stack specifics:
+`references/conventions.md`).
 
 **4 — Independent verdict.** Self-review checklist + a `delegate_task` reviewer
 with only the diff (no shared context, fail-closed on non-JSON):

@@ -27,7 +27,7 @@ platforms:
   - windows
 ---
 
-# Shikanime Org Stack Isolation
+# Stack Isolation
 
 Open a fresh `jj` workspace for ONE unit of work. This is **mandatory for every
 implementation unit** — not only when WIP is present — so an in-flight working
@@ -35,6 +35,9 @@ folder (full of other editors' WIP you must not touch) never folds your change
 into the wrong commit, and so the working surface is always isolated and
 reproducible. This is the single-stream primitive behind `sks-async`'s per-unit
 fan-out and the isolation lane of `sks-dev-workflow`.
+
+For shikanime-org specifics (repo layout, co-author trailer), read
+`references/org-conventions.md` when operating in shikanime repos.
 
 ## Mandatory
 
@@ -45,7 +48,8 @@ has not entered the dev loop.
 
 ## When to Use
 
-- Every shikanime implementation unit — even on a clean checkout. This is not an
+- Every implementation unit of the target org — even on a clean checkout. This
+  is not an
   isolation escape hatch for WIP; it is the default working surface (Phase 3 of
   `sks-dev-workflow`). The cloned checkout is never where edits are made.
 - A checkout holding concurrent uncommitted WIP you must not lose or mix.
@@ -68,12 +72,13 @@ has not entered the dev loop.
    `<unit>` is a short slug for this work (`fix`, `feat-x`). Prefer this over
    `jj restore`/`jj split` to peel subsets — those can drop the sibling WIP.
 
-2. **Copy in ONLY your change files**, then commit per `sks-commit`:
+2. **Copy in ONLY your change files**, then commit per `sks-commit` (org
+   co-author trailer — shikanime repos:
+   `Co-authored-by: Automata <automata@shikanime.studio>`):
 
    ```bash
    jj add <change files>
-   jj describe -m "<subject>" -m "Co-authored-by: Automata
-   <automata@shikanime.studio>"
+   jj describe -m "<subject>" -m "<co-author trailer>"
    ```
 
 3. **Bookmark + push** (jj does not auto-track — `track` is mandatory):

@@ -27,7 +27,7 @@ platforms:
   - windows
 ---
 
-# Shikanime Issue Refinement
+# Issue Refinement
 
 The issue IS the problem statement. `sks-issue` opens it (body = problem
 statement + `- [ ]` gate ledger + References); conclusions are posted as issue
@@ -98,7 +98,8 @@ acceptance criteria converge (wayfinder's fog cycle on the thread).
 - Leaking the thinking — fog drafts, classification, status chatter stay
   in-agent; the thread gets only the resolved comment. Interim comments
   deletable once converged.
-- English only — no French; do not carry cpn templates in.
+- Language and template rules live in `references/org-conventions.md`; follow
+  them.
 
 ## Verification
 

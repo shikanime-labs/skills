@@ -108,7 +108,7 @@ Ce skill est un routeur, pas un transport. Il décide _quoi va où_ ; A2A et
 curl --fail --silent --show-error http://<hôte>:9900/.well-known/agent-card.json
 # après envoi : chaque unité a un hôte + tag de capacité enregistrés
 # pression : re-sonder les hôtes candidats avant chaque (ré)envoi
-# réconcilier : gh issue view <N> --repo cloud-pi-native/console
+# réconcilier : gh issue view <N> --repo <org>/<repo>
 ```
 
 Utiliser `a2a_discover` pour valider la carte d'agent ; curl est un remplacement

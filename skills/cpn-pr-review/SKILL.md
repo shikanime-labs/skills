@@ -29,20 +29,22 @@ platforms:
 
 Review `cloud-pi-native/*` changes and GitHub PRs via the four-phase process
 with console architecture checkpoints and French artifacts. `jj`+`gh` only —
-never commit or merge.
+never commit or merge. Org facts (identity, toolchain, artifact language):
+read `references/org-conventions.md` when working in a cloud-pi-native org
+repo.
 
 ## When to Use
 
-- "review this console PR", "check before pushing to cloud-pi-native", "review
-  PR #N in console"
-- After touching `apps/client`, `apps/server`, `apps/server-nestjs`,
-  `plugins/*`, `packages/*`
+- "review this org-repo PR", "check before pushing to the org", "review
+  PR #N in the org repo"
+- After touching app/plugin/package modules of the repo
 - Before opening/merging a `cloud-pi-native/*` PR
 
 ## Prerequisites
 
 - `gh` authenticated, in a `cloud-pi-native/*` repo (`origin` = org repo)
-- Node >= 26, pnpm v11.8 (local `pnpm test`/lint)
+- Toolchain versions per repo (console: `references/org-conventions.md`;
+  local `pnpm test`/lint)
 - Origin-only PRs and author identity: see **cpn Contribution Rules** below
 
 ## How to Run
@@ -57,10 +59,10 @@ never commit or merge.
 
 ```bash
 jj diff --from main --to @ --stat          # scope
-pnpm test                                  # vitest unit (all packages)
+pnpm test                                  # unit (all packages)
 pnpm playwright:test                       # E2E (needs docker infra)
 npx eslint .                               # ESLint 9 flat (antfu base)
-pnpm --filter @cpn-console/server-nestjs exec prisma generate  # prisma generate
+pnpm --filter <backend-app> exec prisma generate  # prisma generate
 gh pr view <N> && gh pr diff <N> --name-only
 gh pr review <N> --request-changes --body "..."   # post verdict
 ```
@@ -68,8 +70,8 @@ gh pr review <N> --request-changes --body "..."   # post verdict
 ## Procedure
 
 **1 Context.** Read PR title/body, linked issue, branch. Confirm branched from
-`origin` and author email is the cpn identity. **2 High-level.** Run the console
-architecture checklist — see `references/console-architecture.md` +
+`origin` and author email is the org identity
+(`references/org-conventions.md`). **2 High-level.** Run the architecture
 `references/review-procedure.md`. Lentille YAGNI (`ponytail-review`, plugin
 ponytail) : signaler ce qui peut être supprimé ou remplacé par la stdlib ;
 corner-cut délibéré → commentaire `ponytail:` (plafond + chemin de montée),
@@ -96,11 +98,10 @@ amends). Verdict: `gh pr review <N> --request-changes` only on
 ## cpn Contribution Rules (enforced)
 
 - **Origin-only PRs** — push to `origin` (org repo), open
-  `--head cloud-pi-native:<branch>`. With `jj`, track the bookmark:
+  `--head <org>:<branch>`. With `jj`, track the bookmark:
   `jj bookmark track <branch> --remote=origin`.
-- **Author identity** —
-  `William Phetsinorath <william.phetsinorath-open@interieur.gouv.fr>`,
-  SSH-signed.
+- **Author identity** — org identity, SSH-signed
+  (`references/org-conventions.md`).
 - **Minimal PRs** — out-of-scope fixes → follow-up issue, not the same PR.
 - **Artifact language** — issues/PRs/discussions in French; no `(...)` in
   headings.

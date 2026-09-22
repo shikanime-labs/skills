@@ -26,12 +26,14 @@ platforms:
 
 Renseigner chaque champ **vide** et **déterminable depuis le contenu**
 (conventions : `cpn-issue`). Ne jamais inventer de valeur absente du dépôt.
-Commandes détaillées : `references/cpn-issue-triage.md`.
+Commandes détaillées : `references/cpn-issue-triage.md`. Défauts d'org
+(dépôt, assignee de secours) : `references/org-conventions.md`.
 
 ## Prerequisites
 
 - `gh` authentifié comme collaborateur. Ne PAS `gh auth switch`.
-- `R=cloud-pi-native/console`, `N` = numéro d'issue.
+- `R=<org>/<repo>` (défaut org : `references/org-conventions.md`), `N` =
+  numéro d'issue.
 
 ## Procedure
 
@@ -43,18 +45,19 @@ Commandes détaillées : `references/cpn-issue-triage.md`.
      `💡 [REQUEST]`→`enhancement` ; corps structuré par templates. Zone depuis
      chemins touchés si label existe. **Filtrer contre `gh label list` — jamais
      inventer.**
-   - **assignee** : si aucun → `yorha-operator` (compte Automata), mais
-     seulement s'il figure dans la liste d'assignees de l'étape 2 ; sinon
+   - **assignee** : si aucun → compte de secours de l'org
+     (`references/org-conventions.md`), mais seulement s'il figure dans la
+     liste d'assignees de l'étape 2 ; sinon
      `ASSIGNEE=$(gh api user --jq .login)`. Sur une issue, GitHub accepte
      d'assigner l'auteur (la contrainte 422 ne vise que les reviewers de PR).
    - **jalon** : bug→plus haut **patch** ouvert de la ligne mineure (max `Z`) ;
      enhancement→mineure/majeure suivante.
    - **projet** : `--add-project <number>` si non boardé ; sauter si ambigu (pas
      de projet unique évident).
-   - **transfert** — si l'issue appartient manifestement à un autre dépôt
-     `cloud-pi-native/*` ou `shikanime-labs/*` (mauvais dépôt, pas seulement
-     mauvais label), la déplacer plutôt que trier sur place. Le transfert
-     conserve commentaires, labels et le lien croisé :
+   - **transfert** — si l'issue appartient manifestement à un autre dépôt de
+     l'org (mauvais dépôt, pas seulement mauvais label), la déplacer plutôt que
+     trier sur place. Le transfert conserve commentaires, labels et le lien
+     croisé :
 
      ```bash
      gh issue transfer "$N" "$DEST_REPO"        # DEST_REPO = OWNER/REPO

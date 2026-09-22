@@ -26,11 +26,11 @@ platforms:
 
 # CPN Org PR Creation
 
-Open PRs against any `cloud-pi-native/*` repo with org-wide conventions: a
+Open PRs against any `<org>/*` repo with org-wide conventions: a
 conventional PR title, a French body, and an issue linkage. Repo-specific
 enforcement (commitlint, Release Please, branch protection, merge queue) is
-**detected per repo** (Repo-Class Detection), not assumed — `console` is
-strictest; `documentation` may enforce none.
+**detected per repo** (Repo-Class Detection), not assumed — the org's strictest
+repo enforces everything; a docs repo may enforce none.
 
 Deep detail (squash/author/sign a finalized commit, content verification, and
 the full pitfalls list) lives in `references/cpn-pr-squash.md` — load it before
@@ -38,14 +38,14 @@ squashing or when diagnosing a squash/force-push/rebase failure.
 
 ## Internal policy: origin-only
 
-Open all PRs directly from the org repo `cloud-pi-native/*`: clone so `origin`
+Open all PRs directly from the org repo `<org>/*`: clone so `origin`
 is the org repo, push the working branch to `origin`, open with
-`--head cloud-pi-native:<branch>`. (Pre-2026-08 `--head shikanime:<branch>` is
+`--head <org>:<branch>`. (Legacy `--head <fork>:<branch>` guidance is
 retired.)
 
 ## When to Use
 
-- "Open a PR against `<cloud-pi-native repo>`" / "link this fix to issue #N".
+- "Open a PR against the org repo" / "link this fix to issue #N".
 - Any org PR needing the org shape.
 
 ## Prerequisites
@@ -71,7 +71,7 @@ retired.)
 Probe the target repo before enforcing console-only rules elsewhere:
 
 ```bash
-REPO=cloud-pi-native/<repo>
+REPO=<org>/<repo>
 gh api repos/$REPO/branches/main/protection >/dev/null 2>&1 \
   && echo "protected" || echo "no protection"
 ls .github/PULL_REQUEST_TEMPLATE* 2>/dev/null || echo "no template"
@@ -86,8 +86,8 @@ grep -rilE "commitlint|release-please|@commitlint" . \
 | `release-please`                                          | PR-title type drives the version bump — get the type right.                                                                             |
 | branch protection                                         | Use a feature/`hotfix/*` branch; a separate approving review is mandatory; may need a merge queue.                                      |
 | no commitlint/release-please                              | Follow the repo's own commit convention; conventional PR title still expected.                                                          |
-| need to publish a branch                                  | Push to `origin` and open with `--head cloud-pi-native:<branch>`.                                                                       |
-| doc repo (`documentation`, `documentation-interne-socle`) | Commit subject MUST be `doc:`-prefixed (old "plain-English no prefix" note was WRONG). Conventional PR title still expected everywhere. |
+| need to publish a branch                                  | Push to `origin` and open with `--head <org>:<branch>`.                                                                       |
+| doc repo | Commit subject MUST be `doc:`-prefixed where the org declares doc repos (see `references/org-conventions.md`; old "plain-English no prefix" note was WRONG). Conventional PR title still expected everywhere. |
 
 ## Procedure
 
@@ -104,7 +104,7 @@ grep -rilE "commitlint|release-please|@commitlint" . \
 Avant d'ouvrir TOUTE nouvelle PR, lister ce qui existe déjà :
 
 ```bash
-gh pr list --repo cloud-pi-native/<repo> --state open \
+gh pr list --repo <org>/<repo> --state open \
   --json number,title,headRefName --jq '.[] | "\(.number)\t\(.title)\t\(.headRefName)"'
 ```
 
@@ -143,9 +143,9 @@ else the canonical org body:
 
 ```bash
 gh pr create \
-  --repo cloud-pi-native/<repo> \
+  --repo <org>/<repo> \
   --base main \
-  --head cloud-pi-native:<branch> \
+  --head <org>:<branch> \
   --draft \
   --title "fix: <short summary>" \
   --body "$(cat <<'EOF'
@@ -173,28 +173,30 @@ EOF
 After creation, delegate to `cpn-pr-triage` (#N): it enumerates the repo's
 metadata and sets each empty, determinable field — labels, assignee, project,
 milestone (by type), reviewers. Rules live in `cpn-pr-triage`. Always against
-`cloud-pi-native/<repo>` (origin-only policy).
+`<org>/<repo>` (origin-only policy).
 
-PRs submitted from a separate jj workspace request `yorha-operator` (the
-Automata account) as reviewer at submission time, gated on access:
+PRs submitted from a separate jj workspace request the org's mandatory
+reviewer (see `references/org-conventions.md`) at submission time, gated on
+access:
 
 ```bash
-gh pr edit <N> --repo cloud-pi-native/<repo> --add-reviewer yorha-operator
+gh pr edit <N> --repo <org>/<repo> --add-reviewer <reviewer org>
 ```
 
-Skip silently when `yorha-operator` is not a collaborator of the target repo,
+Skip silently when that reviewer is not a collaborator of the target repo,
 or when they authored the PR (GitHub rejects author review requests, 422).
 
 ### Repo-specific post-steps (3)
 
-- **console** (`cloud-pi-native/console`): push to `origin`, open with
-  `--head cloud-pi-native:<branch>`. Do NOT self-merge (another collaborator's
+- **strictest repo** (probe first; cloud-pi-native facts:
+  `references/org-conventions.md`): push to `origin`, open with
+  `--head <org>:<branch>`. Do NOT self-merge (another collaborator's
   approving review required). When checks are green but `mergeStateStatus` is
-  `BLOCKED`, trigger the merge queue:
-  `gh workflow run 243523481 --repo cloud-pi-native/console -f PR_NUMBER=<N>`.
-  Verify SonarQube Quality Gate passed via `gh pr checks <N>`
-  (`SonarQube Code Analysis` — 0 new issues, Quality Gate passed). Husky
-  `pre-push` runs `vitest`, so unit tests must pass before `jj git push`.
+  `BLOCKED`, trigger the merge queue (workflow id per repo —
+  `references/org-conventions.md`).
+  Verify the Quality Gate passed via `gh pr checks <N>` (SonarQube Code
+  Analysis — 0 new issues, Quality Gate passed). Husky `pre-push` runs
+  `vitest`, so unit tests must pass before `jj git push`.
 - **other repos**: follow their branch protection / review rules.
 
 ### Finalize the commit
@@ -206,7 +208,7 @@ are in `references/cpn-pr-squash.md`.
 ## Verification
 
 ```bash
-gh pr view <N> --repo cloud-pi-native/<repo> --json title,baseRefName,body
+gh pr view <N> --repo <org>/<repo> --json title,baseRefName,body
 ```
 
 Confirm: base is `main` (or repo default), title is conventional, and the body
@@ -217,5 +219,5 @@ the canonical French sections still apply.
 
 - `cpn-commit` — the commit this PR must restate (parity rule).
 - `cpn-dev-workflow` — branch discipline and pre-push checks for this PR.
-- `sks-pr` — shikanime twin (plain-English titles).
+- `sks-pr` — twin skill from another family (plain-English titles).
 - `cpn-pr-triage` — assigns PR metadata; run it after creation.

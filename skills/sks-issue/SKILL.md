@@ -23,12 +23,13 @@ platforms:
   - windows
 ---
 
-# Shikanime Org Issue Creation
+# Issue Creation
 
-Open issues in `shikanime-labs/*` / `shikanime-studio/*`; English (no French).
-Open the issue before the PR, link it via `sks-pr`.
+Open issues in the org repos; English only. Open the issue before the PR,
+link it via `sks-pr`. Read `references/org-conventions.md` when working in a
+shikanime org repo — repo scoping and language rules live there.
 
-Prereqs: `gh` authenticated to the canonical org repo; target it directly.
+Prereqs: `gh` authenticated to the target repo; target it directly.
 `gh auth status` clean.
 
 ## When to Use
@@ -130,7 +131,8 @@ labels, assignee, milestone, project); rules live there.
 - Wrong repo — always use the org repo.
 - Rewriting body with findings — findings go in a comment.
 - Inventing labels the repo lacks — verify with `gh label list` first.
-- English only; don't carry over cpn's French templates.
+- Language and template rules live in `references/org-conventions.md`; follow
+  them.
 
 ## Verification
 

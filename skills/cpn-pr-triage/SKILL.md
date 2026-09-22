@@ -30,7 +30,8 @@ inventer ; ne jamais fermer de PR.
 ## Prerequisites
 
 - `gh` collaborateur du dépôt, ne PAS `gh auth switch`.
-- Dépôt : `cloud-pi-native/console`. `N` = n° PR, `R` = ce dépôt (défaut).
+- Dépôt : `<org>/<repo>` (défaut org : `references/org-conventions.md`).
+  `N` = n° PR, `R` = ce dépôt.
 
 ## 1. Récupérer
 
@@ -43,7 +44,7 @@ gh pr view "$N" --repo "$R" --json number,title,body,labels,assignees,milestone,
 ```bash
 gh label list --repo "$R" --limit 200 --json name,description
 gh api repos/"$R"/milestones?state=open --jq '.[] | "\(.number)\t\(.title)"'
-gh project list --owner cloud-pi-native
+gh project list --owner <org>
 gh api repos/"$R"/assignees --jq '.[].login'
 ```
 
@@ -56,9 +57,9 @@ gh api repos/"$R"/assignees --jq '.[].login'
 - **jalon** — bug→patch le plus haut de la ligne mineure courante (max `Z`) ;
   enhancement→mineure/majeure suivante.
 - **projet** — `--add-project <number>` si boardé et pas boardé ; sinon sauter.
-- **reviewers** — si aucune demande : `yorha-operator` (compte Automata),
-  sauf s'ils sont l'auteur de la PR (rejet GitHub 422) ; sinon un autre
-  collaborateur/équipe ; sinon sauter.
+- **reviewers** — si aucune demande : le reviewer de secours de l'org
+  (`references/org-conventions.md`), sauf s'il est l'auteur de la PR (rejet
+  GitHub 422) ; sinon un autre collaborateur/équipe ; sinon sauter.
 
 ## 4. Appliquer
 

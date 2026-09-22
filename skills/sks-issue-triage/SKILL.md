@@ -25,9 +25,10 @@ platforms:
   - windows
 ---
 
-# Shikanime Issue Triage
+# Issue Triage
 
-Triage an issue in `shikanime-labs/*`/`shikanime-studio/*`: fill fields **empty
+Triage an issue in an org repo (see `references/org-conventions.md` for the
+scoping and default-assignee rules): fill fields **empty
 on the issue** and **derivable from its content**. English; never invent a
 repo-lacking value.
 
@@ -55,8 +56,8 @@ repo-lacking value.
 ## Inputs
 
 - `N` : issue number.
-- `R` : `OWNER/REPO`. Defaults to cwd `origin` remote, validated under
-  `shikanime-labs/` or `shikanime-studio/`; else ask.
+- `R` : `OWNER/REPO`. Defaults to the cwd `origin` remote; validate per
+  `references/org-conventions.md`, else ask.
 
 ## Procedure
 
@@ -91,9 +92,9 @@ mean those fields stay empty.
 - **labels** — best match by meaning (defect→`bug`, new
   capability→`enhancement`, doc→`documentation`); add an area label only if
   it exists. Drop any not in the step-2 list — never invent.
-- **assignee** — if none: `yorha-operator` (the Automata account) but only
-  when it appears in the step-2 assignee list; else
-  `ASSIGNEE=$(gh api user --jq .login)`. Unlike PR reviewers, GitHub accepts
+- **assignee** — if none: `yorha-operator` (the Automata account; rule in
+  `references/org-conventions.md`), but only when it appears in the step-2
+  assignee list; else `ASSIGNEE=$(gh api user --jq .login)`. GitHub accepts
   assigning the author on issues.
 - **milestone** — if none and milestones exist: bug→highest open **patch**
   on current minor (max `Z`); enhancement→next minor/major.
@@ -110,10 +111,9 @@ mean those fields stay empty.
   (`updateProjectV2ItemFieldValue`) — see ceiling below. Skip when the repo
   has no project board or no custom fields (step-2 output says "no repo-level
   fields").
-- **transfer** — if the issue clearly belongs in another `shikanime-labs/*`
-  /`shikanime-studio/*` repo (wrong repo, not merely a wrong label), move it
-  rather than triaging in place. Transfer preserves comments, labels, and the
-  cross-link:
+- **transfer** — if the issue clearly belongs in another org repo (wrong
+  repo, not merely a wrong label), move it rather than triaging in place.
+  Transfer preserves comments, labels, and the cross-link:
 
   ```bash
   gh issue transfer "$N" "$DEST_REPO"        # DEST_REPO = OWNER/REPO

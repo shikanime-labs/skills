@@ -62,10 +62,10 @@ Fan-out parallèle sur workspaces jj isolés + PR indépendantes (`gh pr`). Base
 
    Commit de copie = enfant du `@` courant ; depth > 1 → `jj new <parent>`.
 3. **Travaille chaque flux** dans son workspace ; commit via `cpn-commit`
-   (conventionnel, signé SSH). Trailer
-   `Co-authored-by: Automata <automata@shikanime.studio>` si applicable.
-4. **Land** — push `origin`, PRs draft avec `--head cloud-pi-native:<branch>` ;
-   voir `cpn-dev-workflow` / `cpn-pr`) : exécuter d'abord la vérification
+   (conventionnel, signé SSH). Trailer d'attribution si applicable — lire
+   `references/org-conventions.md` (org cloud-pi-native).
+4. **Land** — push `origin`, PRs draft avec `--head <org>:<branch>` ; voir
+   `cpn-dev-workflow` / `cpn-pr`) : exécuter d'abord la vérification
    doublon / pile de `cpn-pr` (étape 1b) — PR existante couvrant l'unité =
    pousser dessus ou empiler, jamais une seconde PR pour le même changement.
    - Unit indépendant → bookmark propre + PR standalone (ou stack mono-membre).
@@ -73,8 +73,8 @@ Fan-out parallèle sur workspaces jj isolés + PR indépendantes (`gh pr`). Base
 
      ```bash
      jj bookmark set <next> -r <next>
-     gh pr create --repo cloud-pi-native/console --base main \
-       --head "cloud-pi-native:<next>"
+     gh pr create --repo <org>/<repo> --base main \
+       --head "<org>:<next>"
      ```
 
    - Liaison PR↔issue via `cpn-pr` : `Refs #N` par défaut.
@@ -86,7 +86,7 @@ Fan-out parallèle sur workspaces jj isolés + PR indépendantes (`gh pr`). Base
 ## Fan-out via delegate_task
 
 Chaque enfant reçoit : chemin du workspace, gates de l'unit, forme du commit
-(conventionnel + trailer Automata). Le parent re-vérifie chaque gate via
+(conventionnel + trailer d'attribution). Le parent re-vérifie chaque gate via
 `terminal` dans chaque workspace avant de déclarer terminé. Un task par feuille
 ; le `goal` porte le contrat. **NE VER fusionner deux feuilles dans un seul
 `goal`.** Exemple : `references/delegate_task.md`.
@@ -114,5 +114,6 @@ in-workspace.
 
 - `cpn-dev-workflow` — parent ; gate de validation d'hypothèses AVANT le
   fan-out.
-- `cpn-commit` / `cpn-pr` — forme du commit (trailer Automata) et liaison PR.
-- `sks-async` — jumeau shikanime (plain-English).
+- `cpn-commit` / `cpn-pr` — forme du commit (trailer d'attribution) et liaison
+  PR.
+- `sks-async` — jumeau d'une autre famille (plain-English).

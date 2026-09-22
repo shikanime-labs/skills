@@ -26,12 +26,13 @@ platforms:
   - windows
 ---
 
-# Shikanime Org PR Landing
+# PR Landing
 
-Land a `shikanime-labs/*` / `shikanime-studio/*` PR only after `sks-pr-resolve`
-**reconciled** it and a human approving review is in place — protect `main`. Not
-for opening (`sks-pr`), review (`sks-pr-review`), reconciling
-(`sks-pr-resolve`), or direct "push to main". This skill only lands.
+Land an org PR only after `sks-pr-resolve` **reconciled** it and a human
+approving review is in place — protect `main`. Scope:
+`references/org-conventions.md`. Not for opening (`sks-pr`), review
+(`sks-pr-review`), reconciling (`sks-pr-resolve`), or direct "push to main".
+This skill only lands.
 
 ## When to Use
 
@@ -75,11 +76,11 @@ gh pr view <M> --repo <org>/<repo> --json reviews,headRefOid \
 ```
 
 Agent review is pre-flight; **a human approving review is the gate.** Where
-branch protection blocks self-approval (e.g. `shikanime-labs/skills`,
-`nix-containers`), a verbal `lgtm` from the operator (the user operating
-`yorha-operator`) satisfies Gate 2 — land via
-`gh pr merge --squash --admin` (see Merge procedure). `--admin` is what bypasses
-the protection; no separate human review is then required.
+branch protection blocks self-approval (repos listed in
+`references/org-conventions.md`), a verbal `lgtm` from the operator (the user
+operating `yorha-operator`) satisfies Gate 2 — land via
+`gh pr merge --squash --admin` (see Merge procedure). `--admin` is what
+bypasses the protection; no separate human review is then required.
 
 **Gate 3 — Conversations reconciled.** Every inline thread resolved
 (`sks-pr-resolve`'s output). If not run, do so now; if it already reported all
@@ -106,11 +107,6 @@ gh pr view "$M" -R "$R" --json commits,title,body -q '
     elif ($s | endswith(".")) then error("BLOCKED: trailing period: " + $s)
     elif ($s != .title)
     then error("BLOCKED: PR title differs from commit subject")
-    elif ([.commits[].messageBody // ""
-           | select(test("(?m)^Co-authored-by: Automata"
-                         + " <automata@shikanime\\.studio>"))]
-           | length) == 0
-    then error("BLOCKED: no Co-authored-by: Automata trailer")
     else "OK: commit conventions pass" end'
 ```
 
@@ -121,12 +117,14 @@ PR title diverges from it, fix before merging:
 
 ```bash
 jj describe -m "<plain-English subject>" \
-  -m "Co-authored-by: Automata <automata@shikanime.studio>"
+  -m "<required trailer lines — see references/org-conventions.md>"
 ```
 
-then force-push and re-run the check. The recurring failure mode is skipping
-the check: a recent landing merged without the Automata trailer because Gate
-4 dumped the commit message for eyeball review instead of deciding.
+then force-push and re-run the check. Required trailers (e.g. a bot co-author
+line) are org-specific — see `references/org-conventions.md`. The recurring
+failure mode is skipping the check: a landing merged without the required
+trailer because Gate 4 dumped the commit message for eyeball review instead of
+deciding.
 
 ## Merge procedure
 
@@ -162,10 +160,10 @@ HEAD=$(gh pr view <M> --repo <org>/<repo> --json headRefOid -q .headRefOid)
 gh pr merge <M> --repo <org>/<repo> --squash --match-head-commit "$HEAD" \
   -b "$(cat <<'EOF'
 <body: one coherent change, no jj * bullets / --------- separators; trailers
-only: Related: [url], Signed-off-by: [user], Co-authored-by: Automata
-<automata@shikanime.studio>
+only: Related: [url], Signed-off-by: [user], required co-author trailer (see
+references/org-conventions.md)>
 
-Co-authored-by: Automata <automata@shikanime.studio>
+<required trailer lines — see references/org-conventions.md>
 EOF
 )"
 ```
@@ -179,8 +177,8 @@ EOF
 
 - **Squash hygiene**: pass `-b` (see `sks-commit`); `gh pr merge --squash` has
   **no `-m`** — the PR title is the subject. Never auto-concatenate branch
-  commits (leaks jj's `*` / `---------` artifacts). One subject + correct
-  trailers.
+  commits (leaks jj's `*` / `---------` artifacts). One subject + required
+  trailers (`references/org-conventions.md`).
 - Lone, self-approval blocked (after verbal lgtm): use `--squash --admin`.
 - Stacked (multiple PRs off `main`): land each with
   `gh pr merge <PR_NUMBER> --squash --admin` in dependency order (base first).

@@ -39,6 +39,9 @@ an alias — `jj config get aliases` shows
 the scoped equivalent is `jj rebase -b <branch> --onto main@origin` per
 bookmark. This skill covers the full loop: restack → resolve → push.
 
+Read `references/org-conventions.md` when working in a shikanime org repo;
+local checkout layout lives there.
+
 ## When to Use
 
 - Trunk moved (squash-landed PR, cascading rebase) and your stack must follow:
@@ -59,7 +62,7 @@ bookmark. This skill covers the full loop: restack → resolve → push.
 1. **Baseline.**
 
    ```bash
-   cd ~/Source/Repos/github.com/<orga>/<repo>
+   cd <local checkout>   # org layout: references/org-conventions.md
    jj git fetch --remote origin
    jj bookmark list && jj log -r 'trunk()..mutable()' --limit 15
    ```
@@ -94,7 +97,7 @@ bookmark. This skill covers the full loop: restack → resolve → push.
 
    A restacked bookmark already on origin is rewritten non-FF: the push output
    reads `[move sideways from <old> to <new>]` — expected shape, not an error.
-   On this host push with
+   GitHub-hosted repos: push with
    `--config signing.behavior=drop --config git.sign-on-push=false` (key in no
    agent); GitHub squash-merge re-signs server-side.
 

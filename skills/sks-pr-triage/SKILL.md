@@ -26,9 +26,13 @@ platforms:
 
 # Shikanime PR Triage
 
-Triage a PR in `shikanime-labs/*`/`shikanime-studio/*`: fill every metadata
+Triage a PR: fill every metadata
 field **empty on the PR** and **derivable from its own content**. English; never
 invent a missing repo value; triage never closes PRs.
+
+Read `references/org-conventions.md` when working in a shikanime org repo
+(`shikanime-labs/*`/`shikanime-studio/*`); repo scope and the default
+reviewer live there.
 
 ## When to Use
 
@@ -41,7 +45,7 @@ invent a missing repo value; triage never closes PRs.
 Prereqs: `gh` authed vs the canonical org repo; target it directly.
 
 Inputs: `N` PR number; `R`=`OWNER/REPO`, default cwd `origin`, must be under
-`shikanime-labs/` or `shikanime-studio/` else ask.
+an org repo per `references/org-conventions.md` else ask.
 
 ## 1. Fetch
 
@@ -68,10 +72,10 @@ gh api repos/"$R"/assignees --jq '.[].login'
   enhancement→next minor/major.
 - **project**: if repo boards and PR unboarded, `--add-project <number>`; skip
   if ambiguous.
-- **reviewers**: if no review requests, request `yorha-operator` (the
-  Automata account) unless they authored the PR — GitHub rejects author
-  review requests (422); then another collaborator/team member; skip if
-  none works.
+- **reviewers**: if no review requests, request the org default reviewer
+  (`references/org-conventions.md`) unless they authored the PR — GitHub
+  rejects author review requests (422); then another collaborator/team
+  member; skip if none works.
 
 ### 4. Apply (additive only: `--add-label`/`--add-assignee`, never `--label`)
 

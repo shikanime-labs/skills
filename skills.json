@@ -26,7 +26,7 @@
     },
     {
       "name": "cpn-discussion-triage",
-      "description": "Triage une discussion cloud-pi-native/console : catégorie, corps, Q&A, clôture (GraphQL).",
+      "description": "Triage une discussion cloud-pi-native/console : catégorie, corps, Q\u0026A, clôture (GraphQL).",
       "path": "skills/cpn-discussion-triage"
     },
     {
@@ -136,7 +136,7 @@
     },
     {
       "name": "sks-discussion-triage",
-      "description": "Use when triaging an existing shikanime org discussion: category, body shape, Q&A answer, and conversion to an issue.",
+      "description": "Use when triaging an existing shikanime org discussion: category, body shape, Q\u0026A answer, and conversion to an issue.",
       "path": "skills/sks-discussion-triage"
     },
     {

@@ -24,24 +24,27 @@ platforms:
 
 # CPN Org Discussion
 
-GitHub **Discussions** for `cloud-pi-native/console` are GraphQL-only (no REST
-for body edits). A "discussion issue" request = a _discussion_, not a GitHub
-Issue — route here, not cpn-issue. Use the discussion as the **iteration
-space**; do not open an issue prematurely.
+GitHub **Discussions** are GraphQL-only (no REST for body edits). A "discussion
+issue" request = a _discussion_, not a GitHub Issue — route here, not cpn-issue.
+Use the discussion as the **iteration space**; do not open an issue
+prematurely. Org specifics (target repo, French-artifact rules, categories):
+read `references/org-conventions.md` when working in a cloud-pi-native org
+repo.
 
 ## Prerequisites
 
-- `gh` authenticated with repo write; target `cloud-pi-native/console` (Issues
-  disabled, Discussions active).
+- `gh` authenticated with repo write; target repo per
+  `references/org-conventions.md` (Issues disabled, Discussions active).
 
 ## House structure & mutations
 
 See `references/graphql.md` for the body template, the `updateDiscussion`
-envelope, and the `createDiscussion` mutation. Rules: language **French**; links
-use full URLs or `owner/repo#N` for cross-repo refs (bare `#N` only links within
-console); a discussion is an **opening** (context + open questions), never with
-"Décision attendue" / "Définition du fini" (that's cpn-issue scope). Lifecycle:
-**discussion → issue → issue comments → PR.**
+envelope, and the `createDiscussion` mutation. Org rules (language, link
+format, opening-vs-issue scope): `references/org-conventions.md`. Generic
+rules: links use full URLs or `owner/repo#N` for cross-repo refs (bare `#N`
+only links within the same repo); a discussion is an **opening** (context +
+open questions), never with "Décision attendue" / "Définition du fini" (that's
+cpn-issue scope). Lifecycle: **discussion → issue → issue comments → PR.**
 
 - `@nom` en prose déclenche une mention — pour un `@` littéral (clés de config,
   `@Inject(x)`), l'enfermer dans un bloc de code ; seul le code désactive
@@ -55,7 +58,7 @@ Read (capture the `id`, required for mutations):
 ```bash
 gh api graphql -f query='
 query {
-  repository(owner: "cloud-pi-native", name: "console") {
+  repository(owner: "<org>", name: "<repo>") {
     discussion(number: 2474) {
       id
       title
@@ -78,7 +81,7 @@ fetch ids first:
 ```bash
 gh api graphql -f query='
 query {
-  repository(owner:"cloud-pi-native", name:"console") {
+  repository(owner:"<org>", name:"<repo>") {
     id
     discussionCategories(first:10){ nodes { id name slug } }
   }
@@ -95,7 +98,7 @@ Optional edge cases and gotchas — load `references/pitfalls.md` on demand.
 
 ```bash
 gh api graphql -f query='query {
-  repository(owner: "cloud-pi-native", name: "console") {
+  repository(owner: "<org>", name: "<repo>") {
     discussion(number: 2474) { title body category { name } }
   }
 }'
@@ -109,4 +112,5 @@ structure.
 - `cpn-issue` — derive the issue once the discussion converges.
 - `cpn-discussion-triage` — discussion triage (category, lifecycle routing,
   closure).
-- `sks-discussion` — shikanime twin (English, pre-issue RFC stage).
+- `sks-discussion` — twin skill from another family (English, pre-issue RFC
+  stage).

@@ -24,7 +24,7 @@ platforms:
   - windows
 ---
 
-# Shikanime Org Docs
+# Project Docs
 
 Maintain a project's knowledge base as plain Markdown under `docs/` in the repo
 — reviewed via PR, no separate wiki remote to sync. Two zones:
@@ -73,8 +73,9 @@ duplicating.
 
 ### 1. Locate or seed the docs source
 
-Target repo `R` (`OWNER/REPO`), validated under `shikanime-labs/` or
-`shikanime-studio/`. Confirm the in-repo source:
+Repo scoping rule: read `references/org-conventions.md` when scoping the
+target repo — it names the orgs and the validation rule. Validate repo `R`
+(`OWNER/REPO`) there, then confirm the in-repo source:
 
 ```bash
 jj file list docs/ 2>/dev/null
@@ -135,7 +136,7 @@ jj file list docs/   # confirm the page landed and README lists it
 - Stale index — a page added but missing from `docs/README.md` is unreachable.
   Update the index on every add/move.
 - Unowned pages — add the owner/zone/purpose comment or the page rots.
-- Wiki-size reflex — a separate `.wiki.git` remote is no longer used; docs live
+- Wiki-size reflex — a separate `.wiki.git` remote is not used; docs live
   in the repo and follow the repo's size norms.
 
 ## Verification

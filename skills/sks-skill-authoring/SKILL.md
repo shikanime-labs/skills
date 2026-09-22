@@ -30,19 +30,22 @@ platforms:
 # Shikanime Org Skill Authoring
 
 Create a NEW skill for the catalog: distill a real execution into a grounded
-`SKILL.md`, give it honest evals, register it, and ship it through the shikanime
-dev loop. This is the authoring counterpart to `sks-curate` (which reworks an
+`SKILL.md`, give it honest evals, register it, and ship it through the dev
+loop. This is the authoring counterpart to `sks-curate` (which reworks an
 existing skill).
+
+Read `references/org-conventions.md` when authoring for the shikanime
+catalog (`shikanime-labs/skills`); which skill families ship lives there.
 
 ## When to Use
 
-- "Create / add / write a new skill for shikanime-labs or shikanime-studio."
+- "Create / add / write a new skill for this catalog."
 - "Turn the procedure we just ran into a reusable catalog skill."
 - A gap review shows a recurring task with no catalog entry and no user-local
   skill worth promoting.
 
 Don't use for: improving an existing skill (`sks-curate`), the whole-catalog
-pass (`sks-update`), or skills outside the two org families (those stay
+pass (`sks-update`), or skills outside the catalog families (those stay
 user-local in `~/.hermes/skills/` and never ship in this repo).
 
 ## Before You Write
@@ -52,8 +55,8 @@ Climb in order; stop at the first rung that holds:
 1. **Does it exist?** Search the catalog and `~/.hermes/skills/` for an
    overlapping trigger. A near-duplicate means extend the existing skill, not
    create a narrow sibling.
-2. **Does it belong here?** This repo ships exactly three families: `sks-*`
-   (shikanime-studio), `cpn-*` (cloud-pi-native), and `nixpkgs`. Anything else
+2. **Does it belong here?** The catalog ships only its own families — see
+   `references/org-conventions.md` for the family list. Anything else
    is user-local, full stop.
 3. **Is it grounded?** The body must be distilled from a real execution you
    ran: the steps that worked, corrections made, exact commands, the

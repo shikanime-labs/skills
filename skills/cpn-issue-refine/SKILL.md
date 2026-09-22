@@ -85,7 +85,7 @@ commentaires. Cette skill itère dans l'issue jusqu'à convergence.
 ## Verification
 
 ```bash
-gh issue view <N> --repo cloud-pi-native/console --json number,title,comments
+gh issue view <N> --repo <org>/<repo> --json number,title,comments
 ```
 
 Chaque question ouverte a un commentaire de résolution ; le corps ne porte

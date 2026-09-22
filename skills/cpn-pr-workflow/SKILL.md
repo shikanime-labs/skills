@@ -41,7 +41,7 @@ renfort optionnel, jamais un substitut à la prose.
    `cpn-issue-workflow` pour créer+raffiner+trier) et crée-la d'abord. Une PR
    résout toujours une issue — jamais seule. Vérifie via `jj show <commit>`.
 2. **PR draft org.** Charge `cpn-pr`. Push `origin` (dépôt org), ouvre
-   `--head cloud-pi-native:<branch>` base `main` ; dérive titre/body du commit,
+   `--head <org>:<branch>` base `main` ; dérive titre/body du commit,
    lie via `Refs: <#N>`.
 3. **Tri immédiat.** Charge `cpn-pr-triage` : labels, assignee, milestone,
    project, reviewers. Champs vides et déterminables seulement ; n'invente rien.
@@ -53,8 +53,8 @@ SonarQube Quality Gate passed.
 Vérifie :
 
 ```bash
-gh pr view <N> --repo cloud-pi-native/<repo> --json title,baseRefName,body
-gh pr checks <N>   # inclut SonarQube Code Analysis
+gh pr view <N> --repo <org>/<repo> --json title,baseRefName,body
+gh pr checks <N>   # inclut les Quality Gates configurés
 ```
 
 ## See also

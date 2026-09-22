@@ -26,12 +26,13 @@ platforms:
 
 # CPN Discussion Triage
 
-Discussion `cloud-pi-native/console` : pas de labels/assignees, triage =
-**catégorie** + routage du cycle. **GraphQL uniquement**.
+Discussion triage : pas de labels/assignees, triage = **catégorie** + routage du
+cycle. **GraphQL uniquement**.
 
 ## Entrées
 
-- `N` numéro, `R=cloud-pi-native/console` (défaut).
+- `N` numéro, `R=<org>/<repo>` (défaut org : voir
+  `references/org-conventions.md`).
 
 ## 1. Sonder + récupérer
 
@@ -46,7 +47,7 @@ Récupérer (le `id` de nœud sert aux mutations) :
 ```bash
 gh api graphql -f query='
 query {
-  repository(owner: "cloud-pi-native", name: "console") {
+  repository(owner: "<org>", name: "<repo>") {
     discussion(number: '"$N"') {
       id title body category { name slug }
       answer { id }  # Q&A uniquement

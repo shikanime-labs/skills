@@ -26,14 +26,17 @@ platforms:
   - windows
 ---
 
-# Shikanime Org jj Convergence
+# jj Convergence
 
-Resolve the two states that block a shikanime jj repo after the tree moves
-(rebase, restack, remote rewrite): **conflicted revisions** and **divergent
+Resolve the two states that block a jj repo of the target org after the tree
+moves (rebase, restack, remote rewrite): **conflicted revisions** and **divergent
 changes**. Reusable standalone — `sks-restack` hands off here after its
 rebase; any skill may call this loop directly. Exit condition for both:
 pushable, i.e. `conflicts()` and `divergent()` empty and bookmarks
 unconflicted.
+
+For shikanime-org specifics, read `references/org-conventions.md` when
+operating in shikanime repos.
 
 ## When to Use
 

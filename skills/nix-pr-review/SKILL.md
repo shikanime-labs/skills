@@ -183,5 +183,4 @@ the reviewer has exercised the built binaries. Record the report (`built`/
 pass like #557075, confirm no convention regressions (structured attrs, meta,
 test hooks) were introduced.
 
-Related: `sks-pr-review` (same severity/verdict discipline applied to
-shikanime PRs), `github-code-review`.
+Related: `sks-pr-review` (same severity/verdict discipline), `github-code-review`.

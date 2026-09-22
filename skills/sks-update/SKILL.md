@@ -32,9 +32,13 @@ platforms:
 # Shikanime Org Skill Update
 
 End-to-end update of the catalog: curate each skill (`sks-curate`), ship the
-improvements through the shikanime dev loop, and resync the landed skills to
+improvements through the dev loop, and resync the landed skills to
 local Hermes agents. This is the orchestration shell — curation and shipping
 delegate to their owning skills.
+
+Read `references/org-conventions.md` when working on the
+`shikanime-labs/skills` catalog; family list, commit trailer, and resync tap
+live there.
 
 **Default scope: every skill in the catalog.** Only narrow to a named subset
 when the user explicitly lists skills ("update sks-commit only"). "Update the
@@ -53,7 +57,8 @@ when the user named one.
 
 1. **Scope.** Decide the target set:
    - Full pass (default): enumerate the catalog from `README.md` (or the
-     `skills/` tree) — every `sks-*` and `cpn-*` `SKILL.md`.
+     `skills/` tree) — every catalog `SKILL.md` (families per
+     `references/org-conventions.md`).
    - Explicit subset: only the skills the user named.
    Record the set. Do not skip skills silently; a skipped one is a reported
    reason, not an omission.
@@ -76,7 +81,7 @@ when the user named one.
    branch/commit/PR/land path:
    - Isolate in a fresh workspace at `main@origin` (`sks-delegate`) so foreign
      WIP is never folded in.
-   - Commit per `sks-commit` (plain-English title, Automata trailer,
+   - Commit per `sks-commit` (plain-English title, org co-author trailer,
      `Signed-off-by:`; AGENTS.md repos add labeled `Design:`/`Related:` body).
    - Push to origin, open the PR per `sks-pr-workflow` (`--head <org>:<branch>`,
      base `main`, `Related:` full issue URL). A full pass is one atomic PR
@@ -92,8 +97,8 @@ when the user named one.
    - Default (tap): ensure the repo is tapped, then update:
 
      ```bash
-     hermes skills tap add shikanime-labs/skills 2>/dev/null || true
-     hermes skills update shikanime-labs/skills
+     hermes skills tap add <catalog-tap> 2>/dev/null || true
+     hermes skills update <catalog-tap>
      ```
 
      `hermes skills update` refreshes installed hub/tap skills; `--help`

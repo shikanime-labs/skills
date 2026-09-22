@@ -29,12 +29,15 @@ platforms:
   - windows
 ---
 
-# Shikanime Org Adversarial Probing
+# Adversarial Probing
 
 Try a change where failure costs nothing. This skill builds a disposable sandbox
 around an uncertain result and promotes only what survives. It composes
 `sks-delegate`, `sks-async`, and `sks-investigate`; it adds only the sandbox shape
 and the promote-or-discard decision. It does NOT replace those skills.
+
+For shikanime-org specifics, read
+`references/org-conventions.md` when operating in shikanime repos.
 
 ## When to Use
 

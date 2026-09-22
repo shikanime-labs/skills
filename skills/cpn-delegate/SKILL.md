@@ -41,15 +41,16 @@ fan-out de `cpn-async` et la voie d'isolation de `cpn-dev-workflow`.
 ## Procedure
 
 1. **Sauvegarder le WIP à préserver** (hors du dossier d'isolation), puis ouvrir
-   le workspace depuis une rev propre :
+   le workspace depuis une rev propre (chemins de checkout org :
+   `references/org-conventions.md`) :
 
    ```bash
-   cd ~/Source/Repos/github.com/cloud-pi-native/console
+   cd <checkout org par défaut>
    mkdir -p /tmp/wip-isolate
    for f in <fichiers WIP>; do
      cp "$f" "/tmp/wip-isolate/$(echo "$f" | tr '/' '__')"
    done
-   jj workspace add ../console.<unite> -r 'main@origin' && cd ../console.<unite>
+   jj workspace add ../<repo>.<unite> -r 'main@origin' && cd ../<repo>.<unite>
    ```
 
    `<unite>` est un slug court pour ce travail (`fix`, `feat-x`). Préférer à
@@ -72,8 +73,8 @@ fan-out de `cpn-async` et la voie d'isolation de `cpn-dev-workflow`.
    jj git push --remote origin -b <branche>
    ```
 
-4. **Passer à `cpn-pr`** pour la PR DRAFT (`--head cloud-pi-native:<branche>`,
-   base `main`, `Refs #N` ; exécuter d'abord sa vérification doublon / pile). Ne
+4. **Passer à `cpn-pr`** pour la PR DRAFT (`--head <org>:<branche>`, base
+   `main`, `Refs #N` ; exécuter d'abord sa vérification doublon / pile). Ne
    PAS merger ici.
 
 ## Pitfalls
@@ -82,16 +83,16 @@ fan-out de `cpn-async` et la voie d'isolation de `cpn-dev-workflow`.
   (peut-être sale) — toujours épingler `-r 'main@origin'` pour forker depuis le
   tip distant, jamais le main local périmé.
 - Oublier `jj bookmark track` fait rejeter le push par jj.
-- Le nouveau dossier (`../console.<unite>`) est un FRÈRE du dépôt, pas dedans.
+- Le nouveau dossier (`../<repo>.<unite>`) est un FRÈRE du dépôt, pas dedans.
 - Ne pas `rm -rf` le dossier d'isolation avec du travail non committé — c'est
   une perte de WIP.
 
 ## Verification
 
 ```bash
-jj workspace list                       # nouveau console.<unite> présent, propre
+jj workspace list                       # nouveau <repo>.<unite> présent, propre
 jj status && jj log -r @ -T 'bookmarks'
-gh pr view <N> --repo cloud-pi-native/console --json state,headRefName
+gh pr view <N> --repo <org>/<repo> --json state,headRefName
 ```
 
 ## See also

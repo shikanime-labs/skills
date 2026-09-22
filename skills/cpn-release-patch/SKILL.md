@@ -2,7 +2,7 @@
 name: cpn-release-patch
 description:
   "Use when backporting the commits between two release tags onto a hotfix
-  branch in cloud-pi-native/console: find the patch milestone and duplicate
+  branch in <org>/<repo>: find the patch milestone and duplicate
   those commits onto the tag with jj."
 version: 0.4.0
 author: Hermes Agent
@@ -75,7 +75,7 @@ base.
 
 ```bash
 jj status                       # .jj/ present, no surprise working-copy churn
-gh api repos/cloud-pi-native/console --jq .viewerPermission   # need write/admin
+gh api repos/<org>/<repo> --jq .viewerPermission   # need write/admin
 git rev-parse -q --verify BASE_TAG   # tag must exist; replace BASE_TAG
 jj git fetch                    # sync remote tags + bookmarks
 ```
@@ -90,7 +90,7 @@ guess:
 
 ```bash
 NEXT=$(bash scripts/next-milestone.sh "$BASE_TAG")
-MILE_NUM=$(bash scripts/milestone-number.sh cloud-pi-native/console "$NEXT")
+MILE_NUM=$(bash scripts/milestone-number.sh <org>/<repo> "$NEXT")
 ```
 
 If the milestone is absent or already closed, the script exits non-zero —
@@ -107,7 +107,7 @@ a `v9.24.4..main` patch-id diff returned **35** (16 in-milestone + 19 from
 `9.25.0` dev). The milestone is the precise source of truth.
 
 ```bash
-bash scripts/fetch-backport-set.sh cloud-pi-native/console "$MILE_NUM"
+bash scripts/fetch-backport-set.sh <org>/<repo> "$MILE_NUM"
 wc -l /tmp/cpn_ms_ids.txt   # expect the milestone size (16 for v9.24.5)
 ```
 
@@ -193,6 +193,8 @@ a `chore: Release v$NEXT` PR against `hotfix/$NEXT` with `always-bump-patch`.
 
 ## Verification (release-please mechanics — why this works)
 
+Cloud-pi-native console specifics (`references/org-conventions.md`):
+
 - `release-please-config.json`: `release-type: node`, single package `.` =
   `console`; next version comes from `.release-please-manifest.json` (currently
   `9.24.4`).
@@ -237,7 +239,7 @@ a `chore: Release v$NEXT` PR against `hotfix/$NEXT` with `always-bump-patch`.
 - **`A..B` in jj = set difference**, not git's "exclusive range with merge
   base". `BASE_TAG..main` names the commits, but content overlap / next-minor
   leakage makes it wrong as a backport source — hence the milestone in Step 2.
-- **Tag is not an ancestor of main**: expected for CPN release tags (they carry
+- **Tag is not an ancestor of main**: expected for org release tags (they carry
   hotfix-only commits). Do not try to branch from `main`; branch from the tag.
 - **Verify by tree, not count**: after duplicate, `git diff --name-only <tip>
   main` should show only `package.json` / `CHANGELOG.md` /
@@ -259,8 +261,8 @@ a `chore: Release v$NEXT` PR against `hotfix/$NEXT` with `always-bump-patch`.
 
 ## See also
 
-- `cpn-dev-workflow` — console contribution workflow, jj conventions, PR
-  rules.
+- `cpn-dev-workflow` — the org repo's contribution workflow, jj conventions,
+  PR rules.
 - `cpn-pr` — open the release PR if release-please does not auto-open.
 - `cpn-commit` — commit message shape (conventional, SSH-signed).
 - `references/jj-colocation-escape-hatch.md` — jj-native recovery and a

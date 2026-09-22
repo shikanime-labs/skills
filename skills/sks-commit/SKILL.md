@@ -23,22 +23,24 @@ platforms:
   - windows
 ---
 
-# Shikanime Org Commit
+# Commit
 
-Commit in `shikanime-labs/*` / `shikanime-studio/*`. Repo-enforced hooks
+Commit in the target org's repos. Repo-enforced hooks
 (gitlint, commitlint, DCO) ALWAYS win over the defaults below — detect them per
 repo, never assume.
 
 ## When to Use
 
-- Any commit in a shikanime-owned repo.
+- Any commit in a target-org repo. For the shikanime remote split
+  (local path vs gh remote may disagree) and protected-main repos, read
+  `references/org-conventions.md` when operating in shikanime repos.
 
 ## Prerequisites
 
 - Working tree in target repo; `gh` authenticated.
-- Branches push to `origin` (the cloned org repo). Local path may read
-  `shikanime-labs` while the gh remote is `shikanime-studio` (nix-containers) —
-  trust the gh remote.
+- Branches push to `origin` (the cloned org repo). Where the local path and
+  the gh remote disagree, trust the gh remote (the org remote split — see
+  `references/org-conventions.md`).
 - jj repos: `jj bookmark track <branch> --remote=origin` before any push.
 
 ## Commit style (when no hook enforces otherwise)
@@ -108,11 +110,12 @@ jj describe -m "<subject>" -m "Co-authored-by: Automata <automata@shikanime.stud
 - Push to `origin`; open PRs from `--head <org>:<branch>` (`sks-pr`).
 - NEVER push to `main` unless the user explicitly authorizes ("push to main" /
   "land it") — then push directly, no PR.
-- Protected `main` (e.g. `shikanime-studio/actions`) → PR; direct push rejected.
+- Protected `main` repos → PR; direct push rejected (org examples in
+  `references/org-conventions.md`).
 
 ## Pitfalls
 
-- Assuming cpn conventional style — shikanime code repos use plain English.
+- Assuming cpn conventional style — the org's code repos use plain English.
 - Ignoring a repo hook → local commit rejected; detect first.
 - Pushing a branch to the wrong remote — `origin` is the single push target.
 - Forgetting `jj bookmark track <branch> --remote=origin` → push fails.

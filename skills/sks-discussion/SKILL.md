@@ -24,13 +24,16 @@ platforms:
   - windows
 ---
 
-# Shikanime Org Discussion
+# Discussion
 
 Pre-issue RFC (lifecycle **discussion → issue → issue comments → PR**, see
 `sks-dev-workflow`): converge on the problem, then derive the issue
 (`sks-issue`) and link back — do NOT keep solving here. English bodies only (no
 French). A literal `@` (config keys, `@Inject(x)`, decorators) must be wrapped
 in a code span to avoid a stray GitHub mention.
+
+For shikanime-org specifics (discussion surfaces), read
+`references/org-conventions.md` when operating in shikanime repos.
 
 Body = short context + the open question(s) + affected repos. No acceptance
 criteria, no `- [ ]` tasklist (that is issue scaffolding — belongs in the
@@ -45,8 +48,8 @@ can be stated yet.
 
 ## Surface state
 
-Discussions disabled on all repos in both orgs except `shikanime-studio/.github`
-(enabled). Probe first:
+Discussions are disabled on most repos; the org-level `.github` repo has them
+enabled (shikanime orgs: `shikanime-studio/.github`). Probe first:
 
 ```bash
 gh api repos/<org>/<repo> --jq .has_discussions

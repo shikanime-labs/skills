@@ -29,18 +29,19 @@ platforms:
   - windows
 ---
 
-# Shikanime Org Dev Workflow
+# Dev Workflow
 
-End-to-end local dev loop for shikanime repos: branching, pushing to `origin`,
-jj bookmark tracking, landing (PR vs direct push). Environment facts (org
-identity, repo paths, toolchain, branch protection, push policy, pre-work
-probes) live in `sks-env` — load it when this skill needs them. Deep recovery
+End-to-end local dev loop for the target org's repos: branching, pushing to
+`origin`, jj bookmark tracking, landing (PR vs direct push). Environment facts
+(org identity, repo paths, toolchain, branch protection, push policy, pre-work
+probes) live in the `sks-env` reference — read
+`references/sks-env.md` when operating in shikanime repos. Deep recovery
 recipes live in `references/` behind the load conditions in "Pitfall index".
 
 ## When to Use
 
-- "Start working on a shikanime repo" — end-to-end dev loop from discussion to
-  landing.
+- "Start working on a repo of the org" — end-to-end dev loop from discussion
+  to landing.
 - "Push to origin and land this PR" — landing path (branch protection, stack).
 - "Isolate this one unit in a clean workspace" — `sks-delegate` (concurrent WIP
   must not fold in).
@@ -73,7 +74,7 @@ out before the issue ledger is settled.
 | 0   | Discussion (RFC) if unconverged              | `sks-discussion`     | entry                 |
 | 1–2 | Issue: create → refine → triage              | `sks-issue-workflow` | **ledger settled**    |
 | 3   | Branch + implement (fresh jj workspace)      | `sks-delegate`          | **workspace created** |
-| 4   | Commit (plain-English + Automata trailer)    | `sks-commit`         | **commit shape**      |
+| 4   | Commit (plain-English + org trailer)         | `sks-commit`         | **commit shape**      |
 | 5   | Adversarial code review                      | `sks-pr-review`      | **review gate**       |
 | 6   | PR: ensure issue → open → triage             | `sks-pr-workflow`    | —                     |
 | 7   | Land (`gh pr merge --squash`)                | this / `sks-land`    | **branch protection** |
@@ -83,14 +84,14 @@ Never skip triage (ledger unsettled) or review (PR not ready).
 
 ## Core rule: push to the org repo
 
-Push working branches to `origin` — the cloned org repo (`shikanime-labs` /
-`shikanime-studio`). The gh remote is canonical even when the local path says
-otherwise (nix-containers: path `shikanime-labs`, remote `shikanime-studio`).
+Push working branches to `origin` — the cloned org repo. The gh remote is
+canonical even when the local path says otherwise (the org remote split).
 Operate at `~/Source/Repos/<host>/<orga>/<repo>`.
 
 **Agent mode:** agent gh account holds org membership, pushes to `origin`,
-opens PRs `--head <org>:<branch>`, commits carry
-`Co-authored-by: Automata <automata@shikanime.studio>` (`sks-commit`).
+opens PRs `--head <org>:<branch>`, commits carry the org co-author trailer
+(shikanime repos: `Co-authored-by: Automata <automata@shikanime.studio>`;
+`sks-commit`).
 
 ## Workspace (every unit) + post-push verification
 
@@ -122,8 +123,9 @@ streams may fan out (`sks-async`) while the blocker is surfaced.
 
 ## Branch discipline
 
-- Branch off `main`: `fix/rwx-nfs-v4.0`, `feat/...`. Some repos protect
-  `main` (`shikanime-studio/actions`) — never commit there; land via PR.
+- Branch off `main`: `fix/<slug>`, `feat/...`. Some repos protect `main`
+  (org examples in `references/sks-env.md`) — never commit there; land via
+  PR.
 - **Detect protection via RULESETS, not classic branch protection.** The
   classic endpoint `gh api repos/<org>/<repo>/branches/main/protection`
   returns 404 on ruleset-backed repos (e.g. `manifests`), which misleadingly
@@ -299,8 +301,8 @@ Deep recipes live in `references/`; read the file when its condition fires:
 - `references/gh-cli-gaps.md` — a `gh` flag errors or a PR verifies wrong:
   no `--json` on create, no `--head-ref`, head-branch immutability,
   credential-helper account split, `-R` inside jj workspaces.
-- `references/pitfalls.md` — dual-clone discipline (`.hermes/skills` vs
-  `~/Source/Repos`), dirty working copies, kustomize generator-not-found,
+- `references/pitfalls.md` — dual-clone discipline (`.hermes/skills` vs the
+  org repo root), dirty working copies, kustomize generator-not-found,
   two `patches:` blocks, alias-in-prose, body wrapping.
 - `references/sops-manifests.md` — decrypt-editing sops files for Flux:
   recipient set, unwrapped binary, INI store traps, extension-driven

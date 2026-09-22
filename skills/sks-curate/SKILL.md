@@ -30,7 +30,7 @@ platforms:
   - windows
 ---
 
-# Shikanime Org Skill Curation
+# Skill Curation
 
 Refine an existing skill in the catalog: improve its guidance, compress it to
 a lean token budget, and keep its evals honest. Curation is a rework pass, not
@@ -217,8 +217,6 @@ description still triggers, and the before/after delta is stated in numbers.
 
 ## Repo-specific curation notes (verified)
 
-- `skills` repo commits: plain capitalized title + labeled body
-  (`Design:`/`Related:`) + `Signed-off-by: Shikanime Deva
-  <william.phetsinorath@shikanime.studio>` +
-  `Co-authored-by: Automata <automata@shikanime.studio>` — landed commits
-  carry both trailers.
+- Shikanime-org specifics (commit trailers and envelope in the org's
+  `skills` repo): read `references/org-conventions.md` when operating in
+  shikanime repos.

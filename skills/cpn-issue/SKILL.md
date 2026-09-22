@@ -25,27 +25,29 @@ platforms:
 
 # CPN Org Issue Creation
 
-Open `cloud-pi-native/console` issues with its French templates. Issue-first
-repo norm: open the issue before any PR, then link it (see `cpn-pr`).
+Open issues with the org's French templates (templates: read
+`references/org-conventions.md` when working in a cloud-pi-native org repo).
+Issue-first repo norm: open the issue before any PR, then link it (see
+`cpn-pr`).
 
 ## When to Use
 
-- "Open an issue on console" / "create a bug/feature ticket for console".
+- "Open an issue on the org repo" / "create a bug/feature ticket".
 
 ## Prerequisites
 
 - `gh` authenticated (`gh auth status`); active identity must be a repo
   collaborator. Do NOT run `gh auth switch` — edit the scoped config instead.
-- `cloud-pi-native/console` is the issue tracker: query/link issues against it
-  directly.
+- Default target repo (cloud-pi-native: the console repo —
+  `references/org-conventions.md`); query/link issues against it directly.
 
 ## Quick Reference
 
 | Goal          | Command                                                                                                                         |
 | ------------- | ------------------------------------------------------------------------------------------------------------------------------- |
-| Bug issue     | `gh issue create --repo cloud-pi-native/console --title "🐛 [BUG] - <t>" --label bug --body "$(cat <<'EOF' … EOF)"`             |
-| Feature issue | `gh issue create --repo cloud-pi-native/console --title "💡 [REQUEST] - <t>" --label enhancement --body "$(cat <<'EOF' … EOF)"` |
-| Verify        | `gh issue view <N> --repo cloud-pi-native/console --json number,title,labels`                                                   |
+| Bug issue     | `gh issue create --repo <org>/<repo> --title "🐛 [BUG] - <t>" --label bug --body "$(cat <<'EOF' … EOF)"`             |
+| Feature issue | `gh issue create --repo <org>/<repo> --title "💡 [REQUEST] - <t>" --label enhancement --body "$(cat <<'EOF' … EOF)"` |
+| Verify        | `gh issue view <N> --repo <org>/<repo> --json number,title,labels`                                                   |
 
 ## Procedure
 
@@ -54,7 +56,7 @@ repo norm: open the issue before any PR, then link it (see `cpn-pr`).
 Recherche avant création pour éviter les doublons :
 
 ```bash
-gh issue list --repo cloud-pi-native/console --state all \
+gh issue list --repo <org>/<repo> --state all \
   --search "<mots-clés>" --limit 10
 ```
 
@@ -82,7 +84,7 @@ Full French templates →
 
 ```bash
 gh issue create \
-  --repo cloud-pi-native/console \
+  --repo <org>/<repo> \
   --title "🐛 [BUG] - <short summary>" \
   --label "bug" \
   --body "$(cat <<'EOF'
@@ -95,7 +97,7 @@ EOF
 
 After the body is set, delegate to `cpn-issue-triage` (#N): it sets labels
 (seeded by template), assignee, project, milestone (bug → current patch,
-enhancement → next release). Always against `cloud-pi-native/console`.
+enhancement → next release). Always against `<org>/<repo>`.
 
 ## Comment vs Body
 
@@ -103,13 +105,13 @@ enhancement → next release). Always against `cloud-pi-native/console`.
   (Description, reproduction steps, affected version, _Définition du fini_).
   Must stay a stable, clean statement for triage.
 - **Findings → comments:**
-  `gh issue comment <N> --repo cloud-pi-native/console --body-file <file>`.
+  `gh issue comment <N> --repo <org>/<repo> --body-file <file>`.
 - `Définition du fini` is the work ledger (rules →
   [references/ledger.md](references/ledger.md)); closure is deliberate —
   verified N of N, then `gh issue close <N> -c "<evidence>"`:
 
 ```bash
-gh issue comment <N> --repo cloud-pi-native/console --body-file /tmp/finding.md
+gh issue comment <N> --repo <org>/<repo> --body-file /tmp/finding.md
 ```
 
 ## References & investigation
@@ -121,7 +123,8 @@ gh issue comment <N> --repo cloud-pi-native/console --body-file /tmp/finding.md
   [references/regression-trace.md](references/regression-trace.md): `jj log`
   pickaxe → `jj file annotate` → `jj show` → `gh pr list --search <hash>` →
   follow the PR's linked issue. Verify the linked issue actually describes the
-  change — PRs are often mis-linked here; state if unrecorded.
+  change — PRs are often mis-linked (org note:
+  `references/org-conventions.md`); state if unrecorded.
 
 ## Pitfalls
 
@@ -130,7 +133,7 @@ Optional edge cases and gotchas — load `references/pitfalls.md` on demand.
 ## Verification
 
 ```bash
-gh issue view <N> --repo cloud-pi-native/console --json number,title,labels
+gh issue view <N> --repo <org>/<repo> --json number,title,labels
 ```
 
 Confirm title carries `🐛 [BUG]` or `💡 [REQUEST]`, label is

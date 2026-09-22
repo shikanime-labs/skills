@@ -24,15 +24,18 @@ platforms:
   - windows
 ---
 
-# Shikanime Discussion Triage
+# Discussion Triage
 
-GraphQL-only triage for `shikanime-labs/*`/`shikanime-studio/*`. Triage metadata
-= **category** + lifecycle only (English). Inputs `N` (number), `R`
+GraphQL-only triage for the target org's repos. Triage metadata =
+**category** + lifecycle only (English). Inputs `N` (number), `R`
 (`OWNER/REPO`).
+
+For shikanime-org specifics, read `references/org-conventions.md` when
+operating in shikanime repos.
 
 ## When to Use
 
-- "Triage an existing shikanime org discussion."
+- "Triage an existing org discussion."
 - "Recategorize a discussion to the correct lifecycle state."
 - "Close a resolved discussion with a rationale comment."
 

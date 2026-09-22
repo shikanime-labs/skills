@@ -25,16 +25,19 @@ platforms:
 
 # CPN Org Commit
 
-Conventional commits in `cloud-pi-native/console`, honoring the enforced
-commitlint config that drives release-please and the PR-title rule (`cpn-pr`).
-Does NOT push, open PRs, or run CI — those live in `cpn-pr` /
-`cpn-dev-workflow`.
+Conventional commits, honoring the repo's enforced commitlint config when
+present (drives release-please and the PR-title rule, `cpn-pr`). Does NOT
+push, open PRs, or run CI — those live in `cpn-pr` / `cpn-dev-workflow`.
+Cloud-pi-native org facts (attribution trailer, console specifics): read
+`references/org-conventions.md` when working in a cloud-pi-native org repo.
 
 ## Prerequisites
 
-- Working tree in `cloud-pi-native/console`.
+- Working tree in the target repo (default per
+  `references/org-conventions.md`).
 - Husky `commit-msg` hook runs `pnpx commitlint --edit ${1}`
-  (`.husky/commit-msg`), enforcing `commitlint.config.cjs`.
+  (`.husky/commit-msg`), enforcing `commitlint.config.cjs` — where the repo
+  enforces it.
 - That config extends `@commitlint/config-conventional` and adds
   `'body-leading-blank': [2, 'always']` — an empty line MUST follow the subject
   even when there is no body.
@@ -50,9 +53,10 @@ Does NOT push, open PRs, or run CI — those live in `cpn-pr` /
 | Body     | optional, separated from subject by exactly one blank line                                |
 | Footer   | optional `BREAKING CHANGE:` (no `Closes #N` — close deliberately)                         |
 
-> Reference safety: `#N` in a commit body resolves to a console issue/PR and
-> `Closes` / `Fixes` / `Resolves` auto-close it on merge. Bare `#N` is only safe
-> for a console ticket; cross-repo refs use a full URL or `owner/repo#N`.
+> Reference safety: `#N` in a commit body resolves to an issue/PR of that repo
+> and `Closes` / `Fixes` / `Resolves` auto-close it on merge. Bare `#N` is only
+> safe for a ticket in the same repo; cross-repo refs use a full URL or
+> `owner/repo#N`.
 
 ## Procedure
 
@@ -78,11 +82,12 @@ EOF
 )"
 ```
 
-3. Agent attribution ALWAYS (operator instruction), as a second `-m` block:
+3. Agent attribution per org convention (see
+   `references/org-conventions.md`), as a second `-m` block:
 
 ```bash
 jj describe -m "fix: prevent null group lookup in Keycloak sync" \
-  -m "Co-authored-by: Automata <automata@shikanime.studio>"
+  -m "<org attribution trailer, see references/org-conventions.md>"
 ```
 
 4. Confirm: `jj log -1 --pretty=%B`.

@@ -27,7 +27,7 @@ platforms:
   - windows
 ---
 
-# Shikanime Org Workspace Garbage Collection
+# Workspace Garbage Collection
 
 Reclaim resources leaked by the parallel/migration skills: `jj` bookmarks with
 no open PR and not on `main`, `jj` workspaces the skills created
@@ -55,15 +55,18 @@ leave on disk. Destructive — always dry-run first.
 - **Never drop `main` / `trunk` / `master`** or a bookmark with an OPEN PR.
 - **Never forget a workspace with uncommitted changes.** Skip it and report —
   losing WIP is data loss.
-- Operate in the repo root (`~/Source/Repos/.../<repo>`); the canonical
-  workspace (named after the repo, no unit suffix) is NEVER a candidate.
+- Operate in the repo root (see `references/org-conventions.md` for the
+  canonical checkout location); the canonical workspace (named after the
+  repo, no unit suffix) is NEVER a candidate.
 
 ## Procedure
 
 1. **Discover** — run the dry-run scanner, review its output:
 
    ```bash
-   cd ~/Source/Repos/github.com/<orga>/<repo>
+   cd "$(jj workspace root)"   # or the repo root; see
+                               # references/org-conventions.md for the
+                               # canonical checkout location
    bash <skill-dir>/scripts/discover.sh   # scripts/ resolves against the
                                           # skill dir, not the target repo
    ```
@@ -113,7 +116,8 @@ leave on disk. Destructive — always dry-run first.
 - Remote-tracking bookmarks (`origin/...`) need `--prune` (step 3), not
   `bookmark forget`, to clear.
 - The canonical workspace (bare repo name, no dot/`-fix`) is never a candidate;
-  don't fold the trunk working copy into GC.
+  don't fold the trunk working copy into GC (paths per
+  `references/org-conventions.md`).
 - **jj 0.43 output formats.** `jj workspace list` default lines have no path
   column, and `jj bookmark list` prints `name: changeid desc` plus indented
   `@origin` continuation lines — parsing those with `awk '{print $1}'` yields

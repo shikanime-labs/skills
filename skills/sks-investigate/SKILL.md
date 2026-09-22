@@ -31,7 +31,7 @@ platforms:
   - windows
 ---
 
-# Shikanime Org Investigation
+# Root-Cause Investigation
 
 One discipline, stated plainly: never propose a change you cannot explain.
 Research the defect's origin, prove it with a command, form a hypothesis, and

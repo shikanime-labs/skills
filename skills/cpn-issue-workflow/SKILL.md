@@ -28,7 +28,8 @@ metadata:
 
 Orchestrateur fin sur `cpn-issue`, `cpn-issue-refine`, `cpn-issue-triage` ; sans
 logique de création propre. Déclencheur : « prépare une issue sur <repo> » ou «
-mène ce problème jusqu'à une issue triée ».
+mène ce problème jusqu'à une issue triée » (dépôt par défaut org :
+`references/org-conventions.md`).
 
 ## Procedure
 
@@ -54,7 +55,7 @@ Complète seulement quand corps = énoncé stable + ledger `- [ ]` convergé, et
 métadonnées de tri posées. Vérifie :
 
 ```bash
-gh issue view <N> --repo cloud-pi-native/console --json number,title,labels
+gh issue view <N> --repo <org>/<repo> --json number,title,labels
 ```
 
 ## See also
