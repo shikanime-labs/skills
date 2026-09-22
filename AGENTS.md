@@ -7,8 +7,8 @@ agents. Each skill lives in its own directory with a `SKILL.md`.
 
 ## Structure
 
-- `skills/shikanime-studio/` — the shikanime `sks-*` workflow family
-- `skills/cloud-pi-native/` — the cloud-pi-native `cpn-*` workflow family
+- `skills/` — every catalog skill; families are name-prefixed
+  (`sks-*`, `cpn-*`, `nix-pr-*`)
 - `README.md` — Installation and usage documentation
 
 ## Workflow
@@ -47,7 +47,7 @@ Example: Wire release management, milestone metadata, trunk-based jj stacking
 Encode four principles into the workflow substrate and skills.
 
 Design: README.md, AGENTS.md
-Related: skills/shikanime-studio
+Related: skills/
 Signed-off-by: Shikanime Deva <william.phetsinorath@shikanime.studio>
 ```
 
@@ -114,7 +114,7 @@ Source: agentskills.io best practices (`skill-creation/best-practices`,
 Families are name-prefixed, not directory-scoped: `sks-*` (shikanime org
 workflow), `cpn-*` (cloud-pi-native console dev loop, GitHub lifecycle, commit
 conventions), `nix-pr-*` (upstream NixOS/nixpkgs PR review). All live in
-`skills/shikanime-studio/`.
+`skills/`.
 
 _Each skill must include a valid `SKILL.md` with YAML frontmatter. Test against
 the target agent before submitting_

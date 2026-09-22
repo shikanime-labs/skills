@@ -103,7 +103,7 @@ when the user named one.
    - Fallback (manual copy from a local checkout):
 
      ```bash
-     cp -r skills/shikanime-studio/<skill> ~/.hermes/skills/shikanime-studio/
+     cp -r skills/<skill> ~/.hermes/skills/
      ```
 
      Repeat per updated skill. Resolve the real home from `$HERMES_HOME` when a

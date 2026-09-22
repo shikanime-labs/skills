@@ -127,7 +127,7 @@ fails before review.
 
 ```bash
 nix develop -c nix fmt              # treefmt incl. rumdl-check (MD013)
-uvx rumdl check skills/shikanime-studio/<name>/
+uvx rumdl check skills/<name>/
 python3 -c "import json; json.load(open('skills.json')); \
 json.load(open('package.json')); print('manifests ok')"
 # evals assertions pass, run programmatically (case-insensitive for prose)

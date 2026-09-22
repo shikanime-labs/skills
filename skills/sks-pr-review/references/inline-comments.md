@@ -25,7 +25,7 @@ BODY="<2-3 sentence verdict + one specific praise>"
 COMMENTS=$(cat <<'JSON'
 [
   {
-    "path": "skills/shikanime-studio/sks-pr-review/SKILL.md",
+    "path": "skills/sks-pr-review/SKILL.md",
     "line": 60,
     "body": "Add root-cause check here — all callers route through this step."
   },
