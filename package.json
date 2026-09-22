@@ -190,6 +190,10 @@
         "path": "skills/shikanime-studio/sks-pr-workflow"
       },
       {
+        "name": "sks-skill-authoring",
+        "path": "skills/shikanime-studio/sks-skill-authoring"
+      },
+      {
         "name": "sks-swarm",
         "path": "skills/shikanime-studio/sks-swarm"
       },
