@@ -1,0 +1,40 @@
+{
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "Composes with the named workflow skill and runs its full procedure unattended — no confirmation asks, blockers recorded and worked around, one end report stopping at the skill's merge gate.",
+      "files": [],
+      "prompt": "Fastlane sks-dev-workflow on shikanime-labs/skills: fix the flaky eval assertions end to end and don't stop to ask me anything.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-fastlane'.",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters.",
+        "Body states the composed skill owns the procedure and its gates, and fastlane only changes pacing.",
+        "Body records blocked gates as BLOCKED and continues independent work instead of ending the run.",
+        "Body stops at the target skill's merge authorization and reports the pending merge command instead of merging."
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "Treats the red required check as a gate doing its job: fix forward, re-run, never bypass — fastlane's speed never removes hard stops.",
+      "files": [],
+      "prompt": "You're mid-fastlane on a workflow run and the required CI check just went red. Speed matters — just get it merged.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-fastlane'.",
+        "Body forbids --admin past a red required check and forbids direct pushes to protected main.",
+        "Body keeps merging out of the watch phase: watch observes, a separate deliberate step merges.",
+        "Body forbids fabricating results under speed pressure and requires reporting only what actually ran."
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "Declines to run standalone: fastlane is a modifier with no steps of its own, and a partial request goes straight to the owning skill.",
+      "files": [],
+      "prompt": "Run sks-fastlane by itself for my repo, and also just open the PR for the branch I pushed.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-fastlane'.",
+        "Body marks standalone invocation as a don't-use case: with no target workflow there is nothing to accelerate.",
+        "Body routes partial runs (just open the PR) to the owning skill without fastlane."
+      ]
+    }
+  ]
+}

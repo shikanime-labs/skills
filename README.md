@@ -115,6 +115,7 @@ specification, compatible with the
 | `sks-discussion`        | RFC Discussions (pre-issue stage)                                                                                            |
 | `sks-discussion-triage` | Discussion triage: category + lifecycle (GraphQL)                                                                            |
 | `sks-doc`               | Repo `docs/` knowledge base (internal ops + optional user docs) as reviewable in-repo Markdown                               |
+| `sks-fastlane`          | Execution-mode modifier: run a composed workflow skill end to end unattended, stopping only at its human gates                |
 | `sks-gc`                | Reclaim dangling bookmarks, skill-created jj workspaces, and leftover working-copy dirs from sks-async/sks-dev-workflow      |
 | `sks-investigate`       | Root-cause a bug/test/build failure before any fix; minimal repro + proven verification                                      |
 | `sks-isolate`           | Isolate one unit of shikanime work in a fresh jj workspace; bookmarks + pushes scoped to that workspace                      |
