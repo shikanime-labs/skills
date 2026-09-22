@@ -107,7 +107,7 @@ specification, compatible with the
 
 | Skill                   | Description                                                                                                                  |
 | ----------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| `sks-adversarial`       | Disposable sandbox for uncertain results: probe via sks-isolate/sks-async, then promote or discard                           |
+| `sks-adversarial`       | Disposable sandbox for uncertain results: probe via sks-delegate/sks-async, then promote or discard                           |
 | `sks-async`             | jj workspace fan-out + stacked PRs for parallel work                                                                         |
 | `sks-commit`            | shikanime commit style + Automata co-author trailer                                                                          |
 | `sks-curate`            | Update, improve, compress, and token-optimize skills in the catalog                                                          |
@@ -117,7 +117,6 @@ specification, compatible with the
 | `sks-doc`               | Repo `docs/` knowledge base (internal ops + optional user docs) as reviewable in-repo Markdown                               |
 | `sks-gc`                | Reclaim dangling bookmarks, skill-created jj workspaces, and leftover working-copy dirs from sks-async/sks-dev-workflow      |
 | `sks-investigate`       | Root-cause a bug/test/build failure before any fix; minimal repro + proven verification                                      |
-| `sks-isolate`           | Isolate one unit of shikanime work in a fresh jj workspace; bookmarks + pushes scoped to that workspace                      |
 | `sks-issue`             | Issues with the gate-ledger tasklist                                                                                         |
 | `sks-issue-refine`      | Iterate a problem to convergence within its issue via research + comments                                                    |
 | `sks-issue-triage`      | Issue triage: metadata + rationale closes                                                                                    |
