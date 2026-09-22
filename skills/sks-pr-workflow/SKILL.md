@@ -39,6 +39,10 @@ flow or architecture helps the reader — GitHub renders Mermaid inline. The bod
 stays free text; the diagram is optional reinforcement, never a substitute for
 the prose.
 
+When the repo's gate includes code-quality checks (e.g. SonarQube Quality
+Gate, 0 new issues), verify them via `gh pr checks <N>` before declaring the
+PR complete; org-specific gate ids live in the org reference.
+
 ## When to Use
 
 - "Run the full PR side: issue → PR → triage."

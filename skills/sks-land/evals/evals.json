@@ -28,7 +28,6 @@
         "Body contains at least one '##' heading",
         "Body exposes '## Pre-landing gates (must already hold)'",
         "Body requires yorha-operator approval on the current head before merge and forbids bypassing that gate with --admin",
-        "Body distances from cpn-land by gating on sks-commit/pr conventions",
         "Body lands every PR via gh pr merge --squash (stacked ones base-first)"
       ]
     },
@@ -58,11 +57,10 @@
     },
     {
       "id": 5,
-      "expected_output": "The skill does not claim to be the cloud-pi-native cpn-land twin; it stays scoped to landing shikanime PRs.",
+      "expected_output": "The skill applies its generic procedure; org-specific conventions load from references.",
       "files": [],
-      "prompt": "Land my cloud-pi-native console PR the cpn-land way in cloud-pi-native/console.",
+      "prompt": "Land my cloud-pi-native console PR in cloud-pi-native/console, following that repo's merge gates.",
       "assertions": [
-        "Description does not contain substring cpn-",
         "Frontmatter 'name' equals the directory basename 'sks-land'"
       ]
     },
@@ -84,6 +82,19 @@
       "assertions": [
         "Description does not contain substring sks-async",
         "Frontmatter 'name' equals the directory basename 'sks-land'"
+      ]
+    },
+    {
+      "id": 8,
+      "expected_output": "Landing follows the cloud-pi-native gate flip from references/cloud-pi-native.md.",
+      "files": [],
+      "prompt": "Merge la PR #42 de cloud-pi-native/console maintenant que les reviews et la CI sont vertes.",
+      "assertions": [
+        "Frontmatter parses as valid YAML.",
+        "Frontmatter 'name' equals 'sks-land'.",
+        "A 'references/cloud-pi-native.md' file exists and states that in cloud-pi-native repos the commit carries a conventional prefix and the PR title/body are French with 'Refs: \u003c#N\u003e' present.",
+        "That references file names SonarQube Quality Gate as the org CI check.",
+        "Body still requires yorha-operator approval on the current head before merge."
       ]
     }
   ],

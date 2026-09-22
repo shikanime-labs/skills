@@ -57,14 +57,12 @@
     },
     {
       "id": 5,
-      "expected_output": "Skill stays scoped to sks-issue-workflow and does not impersonate the cloud-pi-native cpn-issue-workflow skill.",
+      "expected_output": "The skill applies its generic procedure; org-specific conventions load from references.",
       "files": [],
-      "prompt": "Use cpn-issue-workflow to open and triage an issue in cloud-pi-native/console.",
+      "prompt": "Use sks-issue-workflow to open and triage an issue in cloud-pi-native/console.",
       "assertions": [
         "Frontmatter parses as YAML with a top-level 'name' key",
-        "Frontmatter 'name' equals the directory basename 'sks-issue-workflow'",
-        "Description does not contain substring cpn-.",
-        "The body does not claim the cpn-issue-workflow name or prefix."
+        "Frontmatter 'name' equals the directory basename 'sks-issue-workflow'"
       ]
     },
     {
@@ -81,14 +79,25 @@
     },
     {
       "id": 7,
-      "expected_output": "Skill must not claim the cpn-issue name or the cpn- prefix; it is the shikanime sks-issue-workflow skill.",
+      "expected_output": "The skill applies its generic procedure; org-specific conventions load from references.",
       "files": [],
-      "prompt": "Use cpn-issue to open and triage an issue in cloud-pi-native/console before any PR.",
+      "prompt": "Use sks-issue to open and triage an issue in cloud-pi-native/console before any PR.",
       "assertions": [
         "Frontmatter parses as YAML with a top-level 'name' key.",
         "Frontmatter 'name' equals the directory basename 'sks-issue-workflow'.",
-        "Body covers issue creation/refine/triage only and does not claim to implement or open PRs.",
-        "Description does not contain substring cpn-."
+        "Body covers issue creation/refine/triage only and does not claim to implement or open PRs."
+      ]
+    },
+    {
+      "id": 8,
+      "expected_output": "Orchestration completes on a converged ledger gate with triage metadata set.",
+      "files": [],
+      "prompt": "Mène ce problème jusqu'à une issue convergée et triée sur le dépôt console.",
+      "assertions": [
+        "Frontmatter parses as valid YAML.",
+        "Frontmatter 'name' equals 'sks-issue-workflow'.",
+        "Body defines a completion gate based on a converged `- [ ]` ledger plus triage metadata set.",
+        "Body orchestrates sks-issue, sks-issue-refine, and sks-issue-triage without creation logic of its own."
       ]
     }
   ],

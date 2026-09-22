@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Usage: scripts/fetch-backport-set.sh REPO MILE_NUM [OUTFILE]
-# Print (or write to OUTFILE, default /tmp/cpn_ms_ids.txt) the ordered
+# Print (or write to OUTFILE, default /tmp/sks_ms_ids.txt) the ordered
 # (oldest->newest) merge commit SHAs of a milestone's merged PRs. One SHA per
 # line. The milestone is the authoritative backport set — NOT a BASE_TAG..main
 # diff (that over-counts next-minor dev commits).
@@ -14,7 +14,7 @@ fi
 
 REPO=$1
 MILE_NUM=$2
-OUT=${3:-/tmp/cpn_ms_ids.txt}
+OUT=${3:-/tmp/sks_ms_ids.txt}
 PRS="$OUT.prs"
 
 # Phase 1: the milestone's PR numbers, oldest merged first. The issues endpoint

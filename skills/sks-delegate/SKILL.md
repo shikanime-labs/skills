@@ -37,7 +37,10 @@ reproducible. This is the single-stream primitive behind `sks-async`'s per-unit
 fan-out and the isolation lane of `sks-dev-workflow`.
 
 For shikanime-org specifics (repo layout, co-author trailer), read
-`references/org-conventions.md` when operating in shikanime repos.
+`references/org-conventions.md` when operating in shikanime repos. For
+cloud-pi-native specifics (console checkout path, `yorha-operator` reviewer,
+French artifacts, `Refs #N`), read `references/cloud-pi-native.md` when
+working in the cloud-pi-native/console repository.
 
 ## Mandatory
 
@@ -73,8 +76,7 @@ has not entered the dev loop.
    `jj restore`/`jj split` to peel subsets — those can drop the sibling WIP.
 
 2. **Copy in ONLY your change files**, then commit per `sks-commit` (org
-   co-author trailer — shikanime repos:
-   `Co-authored-by: Automata <automata@shikanime.studio>`):
+   co-author trailer — value per `references/org-conventions.md`):
 
    ```bash
    jj add <change files>

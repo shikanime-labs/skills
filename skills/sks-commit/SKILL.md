@@ -33,7 +33,10 @@ repo, never assume.
 
 - Any commit in a target-org repo. For the shikanime remote split
   (local path vs gh remote may disagree) and protected-main repos, read
-  `references/org-conventions.md` when operating in shikanime repos.
+  `references/org-conventions.md` when operating in shikanime repos. For
+  cloud-pi-native commitlint rules (French-org, conventional English commits
+  with `body-leading-blank`), read `references/cloud-pi-native.md` when
+  committing in the cloud-pi-native/console repository.
 
 ## Prerequisites
 
@@ -115,7 +118,6 @@ jj describe -m "<subject>" -m "Co-authored-by: Automata <automata@shikanime.stud
 
 ## Pitfalls
 
-- Assuming cpn conventional style — the org's code repos use plain English.
 - Ignoring a repo hook → local commit rejected; detect first.
 - Pushing a branch to the wrong remote — `origin` is the single push target.
 - Forgetting `jj bookmark track <branch> --remote=origin` → push fails.
@@ -133,3 +135,5 @@ jj log -1 --no-graph -T 'description' && jj status
 
 - `sks-pr` — PR title/body derived from this commit (source of truth).
 - `sks-dev-workflow` — branch discipline this feeds into.
+- cloud-pi-native commitlint rules (English conventional commits,
+  `body-leading-blank`, no DCO): `references/cloud-pi-native.md`.

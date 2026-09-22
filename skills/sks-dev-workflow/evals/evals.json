@@ -68,7 +68,6 @@
       "assertions": [
         "YAML frontmatter parses and 'name' equals 'sks-dev-workflow'",
         "Frontmatter description starts with 'Use when' and is at most 200 characters",
-        "Frontmatter description does not contain substring 'cpn-'",
         "Body contains at least one '##' heading"
       ]
     },
@@ -92,7 +91,6 @@
       "assertions": [
         "YAML frontmatter parses and 'name' equals 'sks-dev-workflow'",
         "Frontmatter description starts with 'Use when' and is at most 200 characters",
-        "Frontmatter description does not contain substring 'cpn-'",
         "Body contains at least one '##' heading"
       ]
     },
@@ -115,19 +113,18 @@
       "assertions": [
         "YAML frontmatter parses and 'name' equals 'sks-dev-workflow'",
         "Frontmatter description starts with 'Use when' and is at most 200 characters",
-        "Frontmatter description does not contain substring 'cpn-'",
         "Body contains at least one '##' heading"
       ]
     },
     {
       "id": 10,
-      "expected_output": "Skill stays scoped to the shikanime dev loop and does not claim the cross-org cpn-dev-workflow twin workflow.",
+      "expected_output": "Skill stays scoped to the shikanime dev loop and does not claim the cross-org sks-dev-workflow twin workflow.",
       "files": [],
-      "prompt": "Walk me through the cloud-pi-native/console dev loop using cpn-dev-workflow so I can land my branch.",
+      "prompt": "Walk me through the cloud-pi-native/console dev loop with console conventions applied so I can land my branch.",
       "assertions": [
         "YAML frontmatter parses and 'name' equals 'sks-dev-workflow'",
-        "Frontmatter description does not contain substring 'cpn-dev-workflow'",
-        "Body does not contain substring 'cpn-dev-workflow'"
+        "Frontmatter description does not contain substring 'sks-dev-workflow'",
+        "Body does not contain substring 'sks-dev-workflow'"
       ]
     }
   ],

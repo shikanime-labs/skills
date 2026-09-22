@@ -3,13 +3,12 @@
 A curated catalog of self-improved agent skills for
 [Hermes](https://hermes-agent.nousresearch.com/docs) and compatible agents.
 
-This catalog encodes **two parallel org workflows** distilled from practice —
-the shikanime `sks-*` family and the cloud-pi-native `cpn-*` family — covering
-the full lifecycle: **discussion → issue → issue comments → PR**, with
-proven-done gates, assumption validation, jj-workspace parallel fan-out, and
-stacked PR landing. A third, standalone `nixpkgs` family (`nix-pr-*`) reviews
-upstream NixOS/nixpkgs pull requests through the official contribution
-process.
+This catalog encodes **one org-agnostic workflow** distilled from practice,
+covering the full lifecycle: **discussion → issue → issue comments → PR**,
+with proven-done gates, assumption validation, jj-workspace parallel fan-out,
+and stacked PR landing. Organization-specific conventions (shikanime,
+cloud-pi-native, upstream nixpkgs review) live behind per-skill references
+and load only when working in that org's repos.
 
 ## Quick Start
 
@@ -67,21 +66,23 @@ npx agents export --target claude
 The `agents` field in `package.json` and the `skills.json` manifest at the repo
 root enable discovery by npm-based skill managers. Both list the skills below.
 
-## The Two Workflows
+## One Workflow, Per-Org Flavors
 
-Two orgs, one doctrine. The lifecycle is identical — **discussion → issue →
-issue comments → PR** — with org-specific conventions:
+One lifecycle everywhere — **discussion → issue → issue comments → PR**. The
+issue body is the problem statement, acceptance criteria are a
+command-decidable tasklist (the gate ledger), the PR proves it. Skill bodies
+are org-neutral; organization-specific conventions load on demand from
+per-skill references:
 
-- **shikanime (`sks-*`)**: plain English commits with the Automata co-author
-  trailer, plain `gh pr` landing, direct push on explicit instruction.
-- **cloud-pi-native (`cpn-*`)**: French artifacts, conventional commits, PRs
-  pushed to origin from `cloud-pi-native/*`, Release Please versioning.
+- `references/org-conventions.md` — shikanime defaults (plain-English
+  commits, Automata co-author trailer, plain `gh pr` landing).
+- `references/cloud-pi-native.md` — cloud-pi-native overrides (French
+  artifacts, conventional commits, Release Please, console specifics).
 
-Shared doctrine across both families:
+Shared doctrine:
 
-1. **Issue-first** — a PR always solves an issue; the issue body is the problem
-   statement, acceptance criteria are a command-decidable tasklist (the gate
-   ledger), findings go in comments.
+1. **Issue-first** — a PR always solves an issue; findings go in issue
+   comments.
 2. **Repo templates override the defaults.** When a repo ships
    `.github/ISSUE_TEMPLATE` or a PR template, bodies conform to its sections
    verbatim; without one the `## Problem`/`## Acceptance` (issue) and
@@ -94,8 +95,8 @@ Shared doctrine across both families:
 5. **Parallelize in a graph** — `sks-async` splits multi-unit work into jj
    workspaces (fan-out), joins with multi-parent commits, lands as independent
    PRs or stacked chains.
-6. **Many-to-many linkage** — link PRs with `Related:` / `Issues liées:`; avoid
-   auto-close keywords; close deliberately after verifying the ledger.
+6. **Many-to-many linkage** — link PRs with `Related:`; avoid auto-close
+   keywords; close deliberately after verifying the ledger.
 
 ## What's Here
 
@@ -103,69 +104,36 @@ All skills follow the [Agent Skills](https://agentskills.io/specification)
 specification, compatible with the
 [Hermes format](https://hermes-agent.nousresearch.com/docs).
 
-### shikanime family
-
-| Skill                   | Description                                                                                                                  |
-| ----------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| `sks-adversarial`       | Disposable sandbox for uncertain results: probe via sks-delegate/sks-async, then promote or discard                           |
-| `sks-async`             | jj workspace fan-out + stacked PRs for parallel work                                                                         |
-| `sks-commit`            | shikanime commit style + Automata co-author trailer                                                                          |
-| `sks-curate`            | Update, improve, compress, and token-optimize skills in the catalog                                                          |
-| `sks-dev-workflow`      | Branch/push discipline, gates, landing                                                                                       |
-| `sks-discussion`        | RFC Discussions (pre-issue stage)                                                                                            |
-| `sks-discussion-triage` | Discussion triage: category + lifecycle (GraphQL)                                                                            |
-| `sks-doc`               | Repo `docs/` knowledge base (internal ops + optional user docs) as reviewable in-repo Markdown                               |
-| `sks-gc`                | Reclaim dangling bookmarks, skill-created jj workspaces, and leftover working-copy dirs from sks-async/sks-dev-workflow      |
-| `sks-investigate`       | Root-cause a bug/test/build failure before any fix; minimal repro + proven verification                                      |
-| `sks-issue`             | Issues with the gate-ledger tasklist                                                                                         |
-| `sks-issue-refine`      | Iterate a problem to convergence within its issue via research + comments                                                    |
-| `sks-issue-triage`      | Issue triage: metadata + rationale closes                                                                                    |
-| `sks-issue-workflow`    | Issue side end-to-end: create → refine → triage                                                                              |
-| `sks-land`              | Merge PRs after DoD + review gates pass                                                                                      |
-| `sks-pr`                | PRs derived from the commit, pushed to origin                                                                                |
-| `sks-pr-resolve`        | Reconcile PR review threads + ledger, report readiness without merging                                                       |
-| `sks-pr-review`         | Code review: YAGNI, root-cause, conventions                                                                                  |
-| `sks-pr-triage`         | PR triage: metadata, reviewers, issue linkage                                                                                |
-| `sks-delegate`             | Single-unit jj workspace isolation primitive: fork a clean workspace from `main@origin`, push, hand off to PR workflow       |
-|                         | `sks-pr-workflow`                                                                                                            |
-| `sks-restack`           | Restack a jj stack onto moved main and resolve every conflict (jj marker dialect, :ours/:theirs, push gate)                  |
-| `sks-converge`           | Resolve jj conflicts and divergent changes after a tree move: per-revision resolution, twin abandonment, push gate          |
-| `sks-skill-authoring`   | Author a brand-new catalog skill: grounded body, evals, three manifests, ship via dev workflow                               |
-| `sks-swarm`             | Distribute a task across an agent cluster over A2A: route by capability, machine, and runner pressure (optionally sandboxed) |
-| `sks-update`            | Update the whole catalog by default (or named skills): curate, ship via dev workflow, resync to local Hermes agents                      |
-
-### cloud-pi-native family
-
-| Skill                   | Description                                                                                           |
-| ----------------------- | ----------------------------------------------------------------------------------------------------- |
-| `cpn-async`             | Fan-out parallèle sur workspaces jj + PR en stack                                                     |
-| `cpn-commit`            | Conventional commits for console                                                                      |
-| `cpn-delegate`          | Isolation d'une unité en workspace jj frais : fork propre depuis main@origin, bookmark + push limités |
-| `cpn-dev-workflow`      | Console repo dev loop, gates, PR workflow                                                             |
-| `cpn-discussion`        | French Discussions via GraphQL                                                                        |
-| `cpn-discussion-triage` | Triage de discussion : catégorie + cycle (GraphQL)                                                    |
-| `cpn-issue`             | French issue templates + gate ledger                                                                  |
-| `cpn-issue-refine`      | Raffine un problème vers la convergence dans l'issue                                                  |
-| `cpn-issue-triage`      | Triage d'issue : métadonnées + fermetures motivées                                                    |
-| `cpn-issue-workflow`    | Workflow issue : créer → raffiner → trier                                                             |
-| `cpn-land`              | Merge de PR : gates DoD/threads/CI + approbation yorha-operator                                       |
-| `cpn-pr`                | French PRs, pushed to origin, conventional                                                            |
-| `cpn-pr-resolve`        | Réconcilie les threads de review, rapporte sans merger                                                |
-| `cpn-pr-review`         | Review console PRs: arch, French artifacts                                                            |
-| `cpn-pr-triage`         | Triage de PR : métadonnées, reviewers, lien issue                                                     |
-| `cpn-pr-workflow`       | Workflow PR : issue liée → PR draft → trier                                                           |
-| `cpn-release-patch`     | Backporte l'écart entre deux tags release sur une branche hotfix pour release-please                  |
-| `cpn-swarm`             | Essaim d'agents A2A : routage par capacité, machine et pression runner                                |
-
-### nixpkgs family
-
-Standalone skills for reviewing upstream
-[NixOS/nixpkgs](https://github.com/NixOS/nixpkgs) pull requests — distinct from
-the org workflows above.
-
-| Skill           | Description                                                         |
-| --------------- | ------------------------------------------------------------------- |
-| `nix-pr-review` | Review an upstream nixpkgs PR: build changed packages with nixpkgs-review and check the diff against nixpkgs conventions |
+| Skill | Description |
+| --- | --- |
+| `sks-adversarial` | Use when probing uncertain results in a disposable sandbox — large investigation, development, debugging, testing,... |
+| `sks-async` | Use when splitting multi-unit work into parallel, isolated jj workspaces (depth-tree fan-out) and landing as indepe... |
+| `sks-commit` | Use when committing in shikanime-labs or shikanime-studio repos: plain-English imperative titles and repo-enforced... |
+| `sks-converge` | Use when jj conflicts or divergent changes block a shikanime repo after a tree move: resolve conflicted revisions a... |
+| `sks-curate` | Use when updating, improving, compressing, or token-optimizing a skill in the shikanime-labs/skills catalog: rework... |
+| `sks-delegate` | Use when isolating one unit of shikanime work in a fresh jj workspace so concurrent editors / WIP never get folded... |
+| `sks-dev-workflow` | Use when running the shikanime local dev loop: branching, push-to-origin, jj bookmark tracking, and landing via pla... |
+| `sks-discussion` | Use when opening an RFC Discussion in a shikanime org as the pre-issue stage: converge on the problem, then derive... |
+| `sks-discussion-triage` | Use when triaging an existing shikanime org discussion: category, body shape, Q&A answer, and conversion to an issue. |
+| `sks-doc` | Use when documenting a shikanime project in the repo's docs/ directory after a behavior-changing PR. |
+| `sks-gc` | Use when reclaiming resources leaked by shikanime jj workflows: dangling bookmarks, skill-created jj workspaces, an... |
+| `sks-investigate` | Use when investigating a bug, test failure, build break, or unexpected behavior in a shikanime repo: find root caus... |
+| `sks-issue` | Use when opening an issue in shikanime-labs or shikanime-studio: body is the problem statement, acceptance criteria... |
+| `sks-issue-refine` | Use when iterating a problem to convergence inside its GitHub issue via research and comments before deriving the PR. |
+| `sks-issue-triage` | Use when triaging an existing shikanime org issue: assign labels, assignee, milestone, and project; close with rati... |
+| `sks-issue-workflow` | Use when you need the single entry point for the shikanime issue side: create, refine, and triage the issue before... |
+| `sks-land` | Use when landing a shikanime org PR after reconciliation (sks-pr-resolve) and review approval gates pass; closes th... |
+| `nixpkgs-pr-review` | Use when reviewing an upstream NixOS/nixpkgs pull request: build the changed packages with nixpkgs-review and check... |
+| `sks-pr` | Use when opening a PR in shikanime-labs or shikanime-studio: push to origin, --head org:branch, plain-English title... |
+| `sks-pr-resolve` | Use when resolving a shikanime PR's review conversations, checking the DoD ledger, and reconciling before merge (no... |
+| `sks-pr-review` | Use when reviewing shikanime code: enforce YAGNI, root-cause fixes, and project conventions before approval. |
+| `sks-pr-triage` | Use when triaging an existing shikanime org PR: labels, assignee, milestone, and reviewers. |
+| `sks-pr-workflow` | Use when you need the single entry point for the shikanime PR side: ensure the issue exists, open, triage, and land... |
+| `cpn-release-patch` | Use when backporting the commits between two release tags onto a hotfix branch in <org>/<repo>: find the patch mile... |
+| `sks-restack` | Use when rebasing a shikanime jj stack onto moved main leaves conflicts: restack, then resolve each conflicted revi... |
+| `sks-skill-authoring` | Use when creating a brand-new skill for the shikanime-labs/skills catalog: grounded body, evals, manifests, and shi... |
+| `sks-swarm` | Use when distributing one task across a cluster of agents over A2A — route by capability need, machine resource, an... |
+| `sks-update` | Use when updating skills in the shikanime-labs/skills catalog: curate every skill by default (or named ones only),... |
 
 ### Agent profiles
 

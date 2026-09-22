@@ -53,7 +53,6 @@
       "assertions": [
         "YAML frontmatter parses and 'name' equals 'sks-discussion'",
         "Frontmatter description starts with 'Use when' and is at most 200 characters",
-        "Frontmatter description does not contain substring 'cpn-'",
         "Body contains at least one '##' heading"
       ]
     },
@@ -77,7 +76,6 @@
       "assertions": [
         "YAML frontmatter parses and 'name' equals 'sks-discussion'",
         "Frontmatter description starts with 'Use when' and is at most 200 characters",
-        "Frontmatter description does not contain substring 'cpn-'",
         "Body contains at least one '##' heading"
       ]
     },
@@ -100,19 +98,18 @@
       "assertions": [
         "YAML frontmatter parses and 'name' equals 'sks-discussion'",
         "Frontmatter description starts with 'Use when' and is at most 200 characters",
-        "Frontmatter description does not contain substring 'cpn-'",
         "Body contains at least one '##' heading"
       ]
     },
     {
       "id": 9,
-      "expected_output": "Skill stays scoped to opening shikanime RFC Discussions and does not claim the cross-org cpn-discussion twin workflow.",
+      "expected_output": "Skill stays scoped to opening shikanime RFC Discussions and does not claim the cross-org sks-discussion twin workflow.",
       "files": [],
-      "prompt": "Open an RFC Discussion in cloud-pi-native/console using the cpn-discussion process to converge before filing an issue.",
+      "prompt": "Open an RFC Discussion in cloud-pi-native/console with console discussion conventions to converge before filing an issue.",
       "assertions": [
         "YAML frontmatter parses and 'name' equals 'sks-discussion'",
-        "Frontmatter description does not contain substring 'cpn-discussion'",
-        "Body does not contain substring 'cpn-discussion'"
+        "Frontmatter description does not contain substring 'sks-discussion'",
+        "Body does not contain substring 'sks-discussion'"
       ]
     }
   ],

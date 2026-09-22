@@ -29,7 +29,7 @@ platforms:
   - windows
 ---
 
-# Shikanime Org Agent Swarm
+# Agent Swarm
 
 Distribute one task across a cluster of agents over the Hermes A2A protocol
 (<https://hermes-agent.nousresearch.com/docs/user-guide/messaging/a2a>). Route
@@ -38,7 +38,9 @@ resource pressure on the runner — then optionally run the whole swarm inside a
 disposable `sks-adversarial` sandbox so a misroute costs nothing.
 
 Read `references/org-conventions.md` when working in a shikanime org repo;
-linked-issue conventions live there.
+linked-issue conventions live there. Read `references/cloud-pi-native.md`
+when working in the cloud-pi-native/console repository (reconciliation repo,
+French issue language, no-swarm-for-siblings rule).
 
 This skill is a router, not a transport. It decides _what goes where_; A2A and
 `delegate_task` do the delivery. It does NOT replace them.

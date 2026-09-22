@@ -52,19 +52,16 @@
       "assertions": [
         "YAML frontmatter parses and 'name' equals 'sks-pr-review'",
         "Frontmatter description starts with 'Use when' and is at most 200 characters",
-        "Frontmatter description does not contain substring 'cpn-'",
         "Body contains at least one '##' heading"
       ]
     },
     {
       "id": 5,
-      "expected_output": "Skill stays scoped to shikanime code review and does not claim to open RFC Discussions or the cpn-discussion domain.",
+      "expected_output": "The skill applies its generic procedure; org-specific conventions load from references.",
       "files": [],
       "prompt": "Open an RFC Discussion in cloud-pi-native/console so we can converge on the design before filing an issue.",
       "assertions": [
         "YAML frontmatter parses and 'name' equals 'sks-pr-review'",
-        "Frontmatter description does not contain substring 'cpn-discussion'",
-        "Body does not contain substring 'cpn-discussion'",
         "Frontmatter description does not contain substring 'sks-discussion'"
       ]
     },
@@ -76,7 +73,6 @@
       "assertions": [
         "YAML frontmatter parses and 'name' equals 'sks-pr-review'",
         "Frontmatter description starts with 'Use when' and is at most 200 characters",
-        "Frontmatter description does not contain substring 'cpn-'",
         "Body contains at least one '##' heading"
       ]
     },
@@ -99,19 +95,16 @@
       "assertions": [
         "YAML frontmatter parses and 'name' equals 'sks-pr-review'",
         "Frontmatter description starts with 'Use when' and is at most 200 characters",
-        "Frontmatter description does not contain substring 'cpn-'",
         "Body contains at least one '##' heading"
       ]
     },
     {
       "id": 9,
-      "expected_output": "Skill stays scoped to shikanime code review and does not claim the cross-org cpn-pr-review twin workflow.",
+      "expected_output": "The skill applies its generic procedure; org-specific conventions load from references.",
       "files": [],
-      "prompt": "Run a code review on the cloud-pi-native/console PR using the cpn-pr-review workflow.",
+      "prompt": "Run a code review on the cloud-pi-native/console PR using the sks-pr-review workflow.",
       "assertions": [
-        "YAML frontmatter parses and 'name' equals 'sks-pr-review'",
-        "Frontmatter description does not contain substring 'cpn-pr-review'",
-        "Body does not contain substring 'cpn-pr-review'"
+        "YAML frontmatter parses and 'name' equals 'sks-pr-review'"
       ]
     }
   ],

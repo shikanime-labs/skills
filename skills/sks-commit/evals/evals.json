@@ -57,11 +57,10 @@
     },
     {
       "id": 5,
-      "expected_output": "The skill does not claim to be the cloud-pi-native cpn-commit twin; it stays scoped to shikanime commit style.",
+      "expected_output": "The skill does not claim to be the cloud-pi-native sks-commit twin; it stays scoped to shikanime commit style.",
       "files": [],
-      "prompt": "Use sks-commit to open and commit a PR in the cloud-pi-native console repo the cpn-commit way.",
+      "prompt": "Use sks-commit to open and commit a PR in the cloud-pi-native console repo following its conventions.",
       "assertions": [
-        "Description does not contain substring cpn-",
         "Frontmatter 'name' equals the directory basename 'sks-commit'"
       ]
     },
@@ -77,11 +76,10 @@
     },
     {
       "id": 7,
-      "expected_output": "The skill does not claim to be the cpn-commit twin or absorb sks-pr; it stays scoped to shikanime commit style (plain-English title, no conventional prefix).",
+      "expected_output": "The skill does not claim to be the sks-commit twin or absorb sks-pr; it stays scoped to shikanime commit style (plain-English title, no conventional prefix).",
       "files": [],
-      "prompt": "Open and commit a PR in the cloud-pi-native console repo the cpn-commit French way with a conventional commit prefix.",
+      "prompt": "Open and commit a PR in the cloud-pi-native console repo with French artifacts with a conventional commit prefix.",
       "assertions": [
-        "Description does not contain substring cpn-",
         "Frontmatter 'name' equals the directory basename 'sks-commit'"
       ]
     }

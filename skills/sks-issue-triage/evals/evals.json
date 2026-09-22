@@ -39,8 +39,7 @@
       "assertions": [
         "Frontmatter parses as valid YAML.",
         "The 'name' field equals 'sks-issue-triage'.",
-        "The description starts with 'Use when' and is at most 200 characters.",
-        "The description does not contain substring 'cpn-'"
+        "The description starts with 'Use when' and is at most 200 characters."
       ]
     },
     {
@@ -64,20 +63,17 @@
       "assertions": [
         "Frontmatter parses as valid YAML.",
         "The 'name' field equals 'sks-issue-triage'.",
-        "The description starts with 'Use when' and is at most 200 characters.",
-        "The description does not contain substring 'cpn-'."
+        "The description starts with 'Use when' and is at most 200 characters."
       ]
     },
     {
       "id": 6,
-      "expected_output": "Skill stays scoped to triaging issues and does not claim the cross-org cpn-discussion RFC domain.",
+      "expected_output": "The skill applies its generic procedure; org-specific conventions load from references.",
       "files": [],
       "prompt": "Open an RFC Discussion in cloud-pi-native/console so we can converge on the design before filing an issue.",
       "assertions": [
         "Frontmatter parses as valid YAML.",
-        "The 'name' field equals 'sks-issue-triage'.",
-        "The description does not contain substring 'cpn-discussion'.",
-        "Body does not contain substring 'cpn-discussion'."
+        "The 'name' field equals 'sks-issue-triage'."
       ]
     },
     {
@@ -88,20 +84,29 @@
       "assertions": [
         "Frontmatter parses as valid YAML.",
         "The 'name' field equals 'sks-issue-triage'.",
-        "The description starts with 'Use when' and is at most 200 characters.",
-        "The description does not contain substring 'cpn-'."
+        "The description starts with 'Use when' and is at most 200 characters."
       ]
     },
     {
       "id": 8,
-      "expected_output": "Skill stays scoped to triaging shikanime issues and does not claim the cross-org cpn-issue-triage twin workflow.",
+      "expected_output": "The skill applies its generic procedure; org-specific conventions load from references.",
       "files": [],
-      "prompt": "Triage issue #99 in cloud-pi-native/console using the cpn-issue-triage process: assign labels, owner, and milestone.",
+      "prompt": "Triage issue #99 in cloud-pi-native/console using the sks-issue-triage process: assign labels, owner, and milestone.",
       "assertions": [
         "Frontmatter parses as valid YAML.",
-        "The 'name' field equals 'sks-issue-triage'.",
-        "The description does not contain substring 'cpn-issue-triage'.",
-        "Body does not contain substring 'cpn-issue-triage'."
+        "The 'name' field equals 'sks-issue-triage'."
+      ]
+    },
+    {
+      "id": 9,
+      "expected_output": "Milestone derivation and label filtering follow the repo's discovered metadata.",
+      "files": [],
+      "prompt": "Ajoute le label enhancement et le jalon de la prochaine release à l'issue #900 de console.",
+      "assertions": [
+        "Frontmatter parses as valid YAML.",
+        "Frontmatter 'name' equals 'sks-issue-triage'.",
+        "Body derives the milestone: bug → highest open patch on the current minor; enhancement → next minor/major.",
+        "Body filters labels against the discovered repo metadata (gh label list / discover script) and never invents a value."
       ]
     }
   ],

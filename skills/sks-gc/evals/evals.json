@@ -58,7 +58,6 @@
       "files": [],
       "prompt": "Use sks-gc to clean up my cloud-pi-native console module migration workspaces the cpn way across the console repo.",
       "assertions": [
-        "Description does not contain substring cpn-",
         "Frontmatter 'name' equals the directory basename 'sks-gc'"
       ]
     },
@@ -78,7 +77,6 @@
       "files": [],
       "prompt": "Reconcile the review threads on my shikanime PR, land it, then gc the branches it left behind.",
       "assertions": [
-        "Description does not contain substring cpn-",
         "Frontmatter 'name' equals the directory basename 'sks-gc'",
         "Body does not claim to merge or land PRs"
       ]

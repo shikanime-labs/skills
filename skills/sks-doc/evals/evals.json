@@ -39,7 +39,6 @@
         "Frontmatter parses as valid YAML.",
         "The 'name' field equals 'sks-doc'.",
         "The description starts with 'Use when' and is at most 200 characters.",
-        "The description does not contain substring 'cpn-'",
         "The body contains at least one '##' heading."
       ]
     },
@@ -64,8 +63,7 @@
       "assertions": [
         "Frontmatter parses as valid YAML.",
         "The 'name' field equals 'sks-doc'.",
-        "The description starts with 'Use when' and is at most 200 characters.",
-        "The description does not contain substring 'cpn-'."
+        "The description starts with 'Use when' and is at most 200 characters."
       ]
     },
     {
@@ -88,8 +86,7 @@
       "assertions": [
         "Frontmatter parses as valid YAML.",
         "The 'name' field equals 'sks-doc'.",
-        "The description starts with 'Use when' and is at most 200 characters.",
-        "The description does not contain substring 'cpn-'."
+        "The description starts with 'Use when' and is at most 200 characters."
       ]
     },
     {

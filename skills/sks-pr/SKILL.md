@@ -53,6 +53,9 @@ the gh remote as canonical.
 - Linked issue exists (see `sks-issue`); verify it matches the change
   (`jj file annotate` / `jj show <commit>` if unsure).
 - Branch pushed to `origin` before opening.
+Deep detail (squash/author/sign a finalized commit, content verification, and
+the full pitfalls list) lives in `references/squash.md` — load it before
+squashing or when diagnosing a squash/force-push/rebase failure.
 
 ## Org PR conventions
 
@@ -115,6 +118,25 @@ the gh remote as canonical.
    commit message; no added rationale (see `sks-commit`). When a repo PR
    template fixes the body shape, the template wins and the commit's
    rationale maps into its sections — parity holds at the content level.
+
+## Repo-class detection (adapt, don't assume)
+
+Probe the target repo before enforcing any single org's rules elsewhere:
+
+```bash
+REPO=<org>/<repo>
+gh api repos/$REPO/branches/main/protection >/dev/null 2>&1 \
+  && echo "protected" || echo "no protection"
+ls .github/PULL_REQUEST_TEMPLATE* 2>/dev/null || echo "no template"
+grep -rilE "commitlint|release-please|@commitlint" . \
+  --include=package.json --include=*.cjs --include=*.json 2>/dev/null \
+  | grep -v node_modules || echo "no conventional tooling"
+```
+
+- `commitlint` + Husky `commit-msg` → commits MUST be conventional.
+- `release-please` → PR-title type drives the version bump.
+- branch protection → feature/`hotfix/*` branch, separate approving review.
+- none → follow the repo's own commit style; title per org convention.
 
 ## Landing via plain `gh pr`
 

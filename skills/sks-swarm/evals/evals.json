@@ -65,7 +65,6 @@
       "files": [],
       "prompt": "Use sks-swarm the cpn way to fan out my console module migration across agents.",
       "assertions": [
-        "Description does not contain substring cpn-",
         "Frontmatter 'name' equals the directory basename 'sks-swarm'"
       ]
     },
@@ -76,6 +75,18 @@
       "prompt": "Put both heavy training units on the already-loaded GPU box, capability matches.",
       "assertions": [
         "YAML frontmatter parses and 'name' equals 'sks-swarm'",
+        "Body probes live pressure before placement",
+        "Body forbids co-locating heavy units on a pressured runner"
+      ]
+    },
+    {
+      "id": 8,
+      "expected_output": "Routes by live resource pressure and refuses to co-locate heavy units on a pressured runner.",
+      "files": [],
+      "prompt": "Mets les deux unités d'entraînement lourdes sur la boîte GPU déjà chargée, la capacité correspond.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-swarm'",
+        "Frontmatter license field is 'Apache-2.0'",
         "Body probes live pressure before placement",
         "Body forbids co-locating heavy units on a pressured runner"
       ]

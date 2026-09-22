@@ -1,7 +1,8 @@
-# cpn-release-patch — conventions d'org (cloud-pi-native / console)
+# cpn-release-patch — cloud-pi-native / console specifics
 
-À lire quand vous backportez entre deux tags de release du dépôt console
-cloud-pi-native.
+Load when backporting between release tags of the cloud-pi-native/console
+repository; the generic procedure in SKILL.md applies to any release-please
+repo otherwise.
 
 - Dépôt : `cloud-pi-native/console` (permission `write`/`admin` requise).
 - release-please (console) : `release-type: node`, package unique `.` ;

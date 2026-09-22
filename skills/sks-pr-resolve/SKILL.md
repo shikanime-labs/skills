@@ -105,6 +105,24 @@ note supersession in the comment.
 Issue-level discussion and PR comments are **out of scope** — only inline review
 threads gate via `isResolved`.
 
+## Pre-check — manual merge queue (high-impact PRs)
+
+For PRs whose landing triggers heavyweight e2e validation (wide impact:
+schema, auth flows, syncs, critical product paths), run the org's merge-queue
+workflow manually in the current jj workspace as a pre-check — not a real
+merge, but e2e validation driven on the branch:
+
+1. Work in the PR's jj workspace (no shared workspace).
+2. Scope: consumers of the touched API (cross-imports) → run the queue from
+   the workspace carrying the root commit; isolated PR → its own workspace.
+3. Run the queue manually (dry-run / branch validation, no fast-forward):
+   - PASS → annotate "e2e validated (manual merge queue)" and continue.
+   - FAIL → block the landing, report the failure + logs; do not check boxes
+     or resolve threads silently.
+
+Workflow id and impact rules per org: `references/org-conventions.md` /
+`references/cloud-pi-native.md` as applicable.
+
 ## Output (hand back)
 
 Readiness verdict:

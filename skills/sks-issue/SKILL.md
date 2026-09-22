@@ -25,17 +25,17 @@ platforms:
 
 # Issue Creation
 
-Open issues in the org repos; English only. Open the issue before the PR,
-link it via `sks-pr`. Read `references/org-conventions.md` when working in a
-shikanime org repo — repo scoping and language rules live there.
+Open issues in the org repos; language and repo scoping rules live in
+`references/org-conventions.md` (load it when working in an org repo). Open
+the issue before the PR, link it via `sks-pr`.
 
 Prereqs: `gh` authenticated to the target repo; target it directly.
 `gh auth status` clean.
 
 ## When to Use
 
-- "Create a new shikanime issue."
-- "Track and manage a shikanime GitHub issue."
+- "Create a new org issue."
+- "Track and manage a GitHub issue."
 - "Verify issue exists before opening a PR (issue-first policy)."
 
 ## Procedure

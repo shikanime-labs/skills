@@ -41,7 +41,7 @@ jj goto BASE_TAG
 jj log -r @ --no-graph -T 'commit_id ++ " " ++ description.first_line()'
 
 # Now duplicate the milestone set
-IDS=($(cat /tmp/cpn_ms_ids.txt))
+IDS=($(cat /tmp/sks_ms_ids.txt))
 # jj dup each SHA in order (oldest first), onto @
 for c in "${IDS[@]}"; do
   jj dup "$c" --onto @
@@ -62,15 +62,15 @@ errors on a specific commit, or colocation is irrecoverably broken):
 git checkout -B hotfix/$NEXT BASE_TAG
 
 # 2. Cherry-pick each milestone commit in order (oldest first)
-#    IDs are in /tmp/cpn_ms_ids.txt, one SHA per line
-IDS=($(cat /tmp/cpn_ms_ids.txt))
+#    IDs are in /tmp/sks_ms_ids.txt, one SHA per line
+IDS=($(cat /tmp/sks_ms_ids.txt))
 for c in "${IDS[@]}"; do
   git cherry-pick "$c"
 done
 
 # 3. Verify commit count matches milestone size
 COMMITS=$(git rev-list --count BASE_TAG..hotfix/$NEXT)
-expected=$(wc -l < /tmp/cpn_ms_ids.txt)
+expected=$(wc -l < /tmp/sks_ms_ids.txt)
 echo "$COMMITS commits (expected $expected)"
 
 # 4. Push (force-with-lease replaces the remote bookmark)

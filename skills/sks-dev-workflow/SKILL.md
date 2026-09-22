@@ -35,8 +35,12 @@ End-to-end local dev loop for the target org's repos: branching, pushing to
 `origin`, jj bookmark tracking, landing (PR vs direct push). Environment facts
 (org identity, repo paths, toolchain, branch protection, push policy, pre-work
 probes) live in the `sks-env` reference — read
-`references/sks-env.md` when operating in shikanime repos. Deep recovery
-recipes live in `references/` behind the load conditions in "Pitfall index".
+`references/sks-env.md` when operating in shikanime repos. Cloud-pi-native
+console repo facts (checkout path, layout, French artifacts, toolchain,
+migration parity, jj/git desync recipes) live in
+`references/cloud-pi-native.md` — read it when working in the
+cloud-pi-native/console repository. Deep recovery recipes live in
+`references/` behind the load conditions in "Pitfall index".
 
 ## When to Use
 
@@ -90,8 +94,7 @@ Operate at `~/Source/Repos/<host>/<orga>/<repo>`.
 
 **Agent mode:** agent gh account holds org membership, pushes to `origin`,
 opens PRs `--head <org>:<branch>`, commits carry the org co-author trailer
-(shikanime repos: `Co-authored-by: Automata <automata@shikanime.studio>`;
-`sks-commit`).
+(org value in `references/sks-env.md`; `sks-commit`).
 
 ## Workspace (every unit) + post-push verification
 
@@ -226,8 +229,8 @@ Exact shapes live in the owning skills:
 
 - **Commit** → `sks-commit` — plain capitalized title, labeled body
   (`Design:` / `Related:` / `Closes #N` per repo AGENTS.md),
-  `Co-authored-by: Automata` plus repo-mandated `Signed-off-by` (gitlint CC1
-  rejects its absence on `manifests` and `skills`).
+  the org `Co-authored-by` trailer plus repo-mandated `Signed-off-by`
+  (gitlint CC1 rejects its absence on `manifests` and `skills`).
 - **Issue** → `sks-issue` — stable problem statement + `- [ ]` ledger.
 - **Discussion** → `sks-discussion` — RFC: context + open question; no
   acceptance criteria (that is issue scope).
@@ -332,6 +335,10 @@ Deep recipes live in `references/`; read the file when its condition fires:
   worktree devenv, per-package tsc, import rewrites, ghstack poisoning.
 - `references/orphaned-record-drift.md` — live records drifting from
   manifests (orphaned CRs, stale state).
+- `references/cloud-pi-native.md` — working in the
+  cloud-pi-native/console repository: French artifacts, checkout path and
+  layout, toolchain commands, unsalted-token/ArgoCD/GitLab-409 pitfalls,
+  migration parity, jj/git snapshot desync.
 
 ## Verification
 

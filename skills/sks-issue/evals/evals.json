@@ -43,11 +43,10 @@
     },
     {
       "id": 4,
-      "expected_output": "The skill does not claim to be the cloud-pi-native cpn-issue twin; it stays scoped to shikanime issue creation in English.",
+      "expected_output": "The skill stays scoped to the generic issue-creation procedure; org conventions load from references when working in an org repo.",
       "files": [],
-      "prompt": "File my cloud-pi-native console bug the cpn-issue French way in cloud-pi-native/console.",
+      "prompt": "Create the issue for my cloud-pi-native console bug following that repo's conventions.",
       "assertions": [
-        "Description does not contain substring cpn-",
         "Frontmatter 'name' equals the directory basename 'sks-issue'"
       ]
     },
@@ -63,11 +62,10 @@
     },
     {
       "id": 6,
-      "expected_output": "The skill does not claim to be the cpn-issue twin or absorb sks-pr; it stays scoped to shikanime issue creation in English with a problem-statement body.",
+      "expected_output": "The skill stays scoped to the generic issue-creation procedure with a problem-statement body; org conventions load from references.",
       "files": [],
-      "prompt": "Open my cloud-pi-native console bug the cpn-issue French way, then create a PR linking it the sks-pr way.",
+      "prompt": "Open my cloud-pi-native console bug following that repo's French conventions, then create a PR linking it with sks-pr.",
       "assertions": [
-        "Description does not contain substring cpn-",
         "Frontmatter 'name' equals the directory basename 'sks-issue'"
       ]
     },
@@ -84,6 +82,19 @@
         "Body fills the template's sections and keeps its headings verbatim when a template exists.",
         "Body cross-checks the template form's labels against gh label list.",
         "Body keeps acceptance criteria as a command-decidable tasklist."
+      ]
+    },
+    {
+      "id": 8,
+      "expected_output": "Issue routed with the cloud-pi-native French conventions from references/cloud-pi-native.md.",
+      "files": [],
+      "prompt": "Ouvre une issue bug sur cloud-pi-native/console : le cache se vide au redémarrage du pod.",
+      "assertions": [
+        "Frontmatter parses as valid YAML.",
+        "Frontmatter 'name' equals 'sks-issue'.",
+        "A 'references/cloud-pi-native.md' file exists and opens with a load condition for working in the cloud-pi-native/console repository.",
+        "That references file documents the French bug/feature templates with '🐛 [BUG]' / '💡 [REQUEST]' titles and the 'Définition du fini' ledger.",
+        "The body still delegates triage metadata to sks-issue-triage after creation."
       ]
     }
   ],

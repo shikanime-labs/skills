@@ -36,7 +36,7 @@ This skill only lands.
 
 ## When to Use
 
-- "Land a shikanime PR after DoD gates pass."
+- "Land an org PR after DoD gates pass."
 - "Close an issue deliberately after merge (verify N-of-N)."
 - "Run post-merge sync (docs, downstream rebases)."
 

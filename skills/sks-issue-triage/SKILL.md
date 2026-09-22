@@ -41,7 +41,7 @@ repo-lacking value.
 
 ## When to Use
 
-- "Triage an existing shikanime org issue."
+- "Triage an existing org issue."
 - "Assign metadata (type, labels, assignee, milestone, project, relationships,
   fields)."
 - "Close an issue with a rationale if it will not be worked."

@@ -177,7 +177,7 @@ the `sks-dev-workflow` Formatting section reads as applying to ALL markdown,
 including GitHub bodies. It does NOT — committed repo Markdown (SKILL.md, docs,
 README) wraps at 80; GitHub issue/PR bodies are free text.
 
-Escape (per `sks-issue`, `sks-pr`, `cpn-issue`, `cpn-pr`):
+Escape (per `sks-issue`, `sks-pr`, `sks-issue`, `sks-pr`):
 
 - Write issue/PR bodies as natural prose paragraphs — no line wrapping, no hard
   line breaks at a column width. A blank line separates paragraphs; everything

@@ -20,82 +20,6 @@
   "agents": {
     "skills": [
       {
-        "name": "cpn-async",
-        "path": "skills/cpn-async"
-      },
-      {
-        "name": "cpn-commit",
-        "path": "skills/cpn-commit"
-      },
-      {
-        "name": "cpn-dev-workflow",
-        "path": "skills/cpn-dev-workflow"
-      },
-      {
-        "name": "cpn-discussion",
-        "path": "skills/cpn-discussion"
-      },
-      {
-        "name": "cpn-discussion-triage",
-        "path": "skills/cpn-discussion-triage"
-      },
-      {
-        "name": "cpn-issue",
-        "path": "skills/cpn-issue"
-      },
-      {
-        "name": "cpn-issue-refine",
-        "path": "skills/cpn-issue-refine"
-      },
-      {
-        "name": "cpn-issue-triage",
-        "path": "skills/cpn-issue-triage"
-      },
-      {
-        "name": "cpn-issue-workflow",
-        "path": "skills/cpn-issue-workflow"
-      },
-      {
-        "name": "cpn-pr",
-        "path": "skills/cpn-pr"
-      },
-      {
-        "name": "cpn-land",
-        "path": "skills/cpn-land"
-      },
-      {
-        "name": "cpn-pr-resolve",
-        "path": "skills/cpn-pr-resolve"
-      },
-      {
-        "name": "cpn-pr-review",
-        "path": "skills/cpn-pr-review"
-      },
-      {
-        "name": "cpn-pr-triage",
-        "path": "skills/cpn-pr-triage"
-      },
-      {
-        "name": "cpn-pr-workflow",
-        "path": "skills/cpn-pr-workflow"
-      },
-      {
-        "name": "cpn-release-patch",
-        "path": "skills/cpn-release-patch"
-      },
-      {
-        "name": "cpn-delegate",
-        "path": "skills/cpn-delegate"
-      },
-      {
-        "name": "cpn-swarm",
-        "path": "skills/cpn-swarm"
-      },
-      {
-        "name": "nix-pr-review",
-        "path": "skills/nix-pr-review"
-      },
-      {
         "name": "sks-adversarial",
         "path": "skills/sks-adversarial"
       },
@@ -108,13 +32,17 @@
         "path": "skills/sks-commit"
       },
       {
+        "name": "sks-converge",
+        "description": "Use when jj conflicts or divergent changes block a shikanime repo after a tree move: resolve conflicted revisions and divergent twins until pushable.",
+        "path": "skills/sks-converge"
+      },
+      {
         "name": "sks-curate",
         "path": "skills/sks-curate"
       },
       {
-        "name": "sks-converge",
-        "description": "Use when jj conflicts or divergent changes block a shikanime repo after a tree move: resolve conflicted revisions and divergent twins until pushable.",
-        "path": "skills/sks-converge"
+        "name": "sks-delegate",
+        "path": "skills/sks-delegate"
       },
       {
         "name": "sks-dev-workflow",
@@ -141,15 +69,6 @@
         "path": "skills/sks-investigate"
       },
       {
-        "name": "sks-restack",
-        "description": "Use when rebasing a shikanime jj stack onto moved main leaves conflicts: restack, then resolve each conflicted revision with edit/resolve until pushable.",
-        "path": "skills/sks-restack"
-      },
-      {
-        "name": "sks-delegate",
-        "path": "skills/sks-delegate"
-      },
-      {
         "name": "sks-issue",
         "path": "skills/sks-issue"
       },
@@ -170,6 +89,10 @@
         "path": "skills/sks-land"
       },
       {
+        "name": "nixpkgs-pr-review",
+        "path": "skills/nixpkgs-pr-review"
+      },
+      {
         "name": "sks-pr",
         "path": "skills/sks-pr"
       },
@@ -188,6 +111,15 @@
       {
         "name": "sks-pr-workflow",
         "path": "skills/sks-pr-workflow"
+      },
+      {
+        "name": "cpn-release-patch",
+        "path": "skills/cpn-release-patch"
+      },
+      {
+        "name": "sks-restack",
+        "description": "Use when rebasing a shikanime jj stack onto moved main leaves conflicts: restack, then resolve each conflicted revision with edit/resolve until pushable.",
+        "path": "skills/sks-restack"
       },
       {
         "name": "sks-skill-authoring",

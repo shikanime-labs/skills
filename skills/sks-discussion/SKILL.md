@@ -33,7 +33,11 @@ French). A literal `@` (config keys, `@Inject(x)`, decorators) must be wrapped
 in a code span to avoid a stray GitHub mention.
 
 For shikanime-org specifics (discussion surfaces), read
-`references/org-conventions.md` when operating in shikanime repos.
+`references/org-conventions.md` when operating in shikanime repos. For
+cloud-pi-native specifics (console repo: Issues disabled/Discussions active,
+French house structure, General/Ideas categories), read
+`references/cloud-pi-native.md` when working in the cloud-pi-native/console
+repository.
 
 Body = short context + the open question(s) + affected repos. No acceptance
 criteria, no `- [ ]` tasklist (that is issue scaffolding — belongs in the

@@ -39,7 +39,9 @@ only — never auto-commit/merge/fix. Uses `jj`, `gh`, and standard Hermes
 tools.
 
 Read `references/conventions.md` when the repo under review uses the
-shikanime org stack (Keycloak/NestJS/Prisma auth trust boundaries).
+shikanime org stack (Keycloak/NestJS/Prisma auth trust boundaries). Read
+`references/cloud-pi-native.md` when reviewing a cloud-pi-native console PR
+(console architecture checkpoints, French output templates, toolchain).
 
 The mechanics below (added-line security scan, independent fail-closed reviewer)
 are distilled from `requesting-code-review` and adapted to the

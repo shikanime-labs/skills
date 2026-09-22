@@ -76,7 +76,6 @@
       "files": [],
       "prompt": "Converge my stack then merge the PRs and gc the workspaces.",
       "assertions": [
-        "Description does not contain substring cpn-",
         "Frontmatter 'name' equals the directory basename 'sks-converge'",
         "Body does not claim to merge or land PRs itself"
       ]

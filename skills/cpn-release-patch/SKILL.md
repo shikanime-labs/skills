@@ -21,12 +21,12 @@ metadata:
       - hotfix
       - backport
     related_skills:
-      - cpn-dev-workflow
-      - cpn-pr
-      - cpn-commit
+      - sks-dev-workflow
+      - sks-pr
+      - sks-commit
 ---
 
-# CPN Release Patch (tag → hotfix branch)
+# Release Patch (tag → hotfix branch)
 
 Backport the gap between two release tags onto a `hotfix/<milestone>` branch so
 release-please opens the patch release PR. The authoritative backport set is the
@@ -49,7 +49,7 @@ message on bad input.
   exit 1 when absent/closed.
 - `scripts/fetch-backport-set.sh REPO MILE_NUM [OUTFILE]` → ordered
   merge-commit SHAs of the milestone's merged PRs (default
-  `/tmp/cpn_ms_ids.txt`).
+  `/tmp/sks_ms_ids.txt`).
 - `scripts/verify-backport.sh BASE_TAG TIP EXPECTED_COUNT` → count /
   conflict / tree-parity check, exit 0 when clean.
 
@@ -108,10 +108,10 @@ a `v9.24.4..main` patch-id diff returned **35** (16 in-milestone + 19 from
 
 ```bash
 bash scripts/fetch-backport-set.sh <org>/<repo> "$MILE_NUM"
-wc -l /tmp/cpn_ms_ids.txt   # expect the milestone size (16 for v9.24.5)
+wc -l /tmp/sks_ms_ids.txt   # expect the milestone size (16 for v9.24.5)
 ```
 
-`/tmp/cpn_ms_ids.txt` is the ordered (oldest→newest) list of the exact commits
+`/tmp/sks_ms_ids.txt` is the ordered (oldest→newest) list of the exact commits
 to duplicate. Order matters: `jj duplicate` replays them in argument order, and
 each must parent onto the previous so the chain re-roots cleanly on the tag.
 
@@ -120,7 +120,7 @@ of `BASE_TAG` — a hit makes `jj duplicate` produce a harmless no-op commit:
 
 ```bash
 while read c; do git merge-base --is-ancestor "$c" BASE_TAG && \
-  echo "already-on-tag: $c"; done < /tmp/cpn_ms_ids.txt
+  echo "already-on-tag: $c"; done < /tmp/sks_ms_ids.txt
 ```
 
 ### 3. Rebuild the chain directly on the tag (NO empty scaffold)
@@ -133,7 +133,7 @@ duplicated chain's root parent is the tag, with no scaffold:
 
 ```bash
 jj goto BASE_TAG                 # @ becomes the tag commit (no new empty commit)
-IDS=$(tr '\n' ' ' < /tmp/cpn_ms_ids.txt)
+IDS=$(tr '\n' ' ' < /tmp/sks_ms_ids.txt)
 jj duplicate $IDS --onto @       # duplicated commits are children of @ (= BASE_TAG)
 TIP=$(jj log -r 'heads(@)' --no-graph -T commit_id | head -1)   # newest duplicate
 ```
@@ -152,7 +152,7 @@ jj abandon <empty_commit_id>
 
 ```bash
 bash scripts/verify-backport.sh "$BASE_TAG" "$TIP" \
-  "$(wc -l < /tmp/cpn_ms_ids.txt)"
+  "$(wc -l < /tmp/sks_ms_ids.txt)"
 ```
 
 The script checks exact commit count (milestone size, no scaffold), zero
@@ -193,7 +193,7 @@ a `chore: Release v$NEXT` PR against `hotfix/$NEXT` with `always-bump-patch`.
 
 ## Verification (release-please mechanics — why this works)
 
-Cloud-pi-native console specifics (`references/org-conventions.md`):
+Console release-please specifics (cloud-pi-native; `references/org-conventions.md`):
 
 - `release-please-config.json`: `release-type: node`, single package `.` =
   `console`; next version comes from `.release-please-manifest.json` (currently
@@ -261,9 +261,9 @@ Cloud-pi-native console specifics (`references/org-conventions.md`):
 
 ## See also
 
-- `cpn-dev-workflow` — the org repo's contribution workflow, jj conventions,
+- `sks-dev-workflow` — the org repo's contribution workflow, jj conventions,
   PR rules.
-- `cpn-pr` — open the release PR if release-please does not auto-open.
-- `cpn-commit` — commit message shape (conventional, SSH-signed).
+- `sks-pr` — open the release PR if release-please does not auto-open.
+- `sks-commit` — commit message shape (conventional, SSH-signed).
 - `references/jj-colocation-escape-hatch.md` — jj-native recovery and a
   last-resort `git cherry-pick` escape hatch when `jj duplicate` fails.

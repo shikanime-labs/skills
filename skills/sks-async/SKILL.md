@@ -19,9 +19,6 @@ metadata:
       - shikanime-labs
       - shikanime-studio
     related_skills:
-      - cpn-async
-      - cpn-commit
-      - cpn-dev-workflow
       - sks-dev-workflow
       - sks-pr
 platforms:
@@ -38,7 +35,10 @@ onto jj's commit DAG as plain `gh pr` merges. Core splitting component of
 `sks-dev-workflow`.
 
 For shikanime-org specifics (co-author trailer, remote split), read
-`references/org-conventions.md` when operating in shikanime repos.
+`references/org-conventions.md` when operating in shikanime repos. For
+cloud-pi-native specifics (French artifacts, Automata trailer, draft PRs with
+`Refs #N`), read `references/cloud-pi-native.md` when working in the
+cloud-pi-native/console repository.
 
 ## When to Use
 
@@ -61,8 +61,8 @@ For shikanime-org specifics (co-author trailer, remote split), read
    New workspace's working copy is a child of `@`; for depth > 1 root with
    `jj new <parent>`.
 3. **Work each stream** in its dir; commit per `sks-commit` — every commit
-   carries the org co-author trailer (shikanime repos:
-   `Co-authored-by: Automata <automata@shikanime.studio>`):
+   carries the org co-author trailer (org value per
+   `references/org-conventions.md`):
 
    ```bash
    jj describe -m "<subject>" -m "<co-author trailer>"
@@ -125,5 +125,6 @@ has in-workspace evidence.
 - `sks-dev-workflow` — parent; run its assumption-validation gate BEFORE
   fan-out.
 - `sks-commit` / `sks-pr` — commit shape (co-author trailer) and PR linkage.
-- `cpn-dev-workflow` — same fan-out for console module migrations.
+- Cloud-pi-native specifics (French artifacts, Automata trailer, draft PRs
+  with `Refs #N`): `references/cloud-pi-native.md`.
 - Model, pitfalls, dispatch skeleton: `references/sks-async-delegate.md`.

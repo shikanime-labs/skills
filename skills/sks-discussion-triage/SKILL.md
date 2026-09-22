@@ -31,7 +31,10 @@ GraphQL-only triage for the target org's repos. Triage metadata =
 (`OWNER/REPO`).
 
 For shikanime-org specifics, read `references/org-conventions.md` when
-operating in shikanime repos.
+operating in shikanime repos. For cloud-pi-native specifics (console repo
+default, French artifacts, category routing Ideas/General/Q&A), read
+`references/cloud-pi-native.md` when working in the cloud-pi-native/console
+repository.
 
 ## When to Use
 

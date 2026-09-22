@@ -35,6 +35,17 @@
         "Body states it handles one unit only.",
         "Body routes N-unit fan-out to 'sks-async'."
       ]
+    },
+    {
+      "id": 4,
+      "expected_output": "Reconnaît qu'une seule unité est gérée ici et route le fan-out multi-unités vers sks-async.",
+      "files": [],
+      "prompt": "Fais trois correctifs indépendants chacun dans son propre workspace jj.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-delegate'.",
+        "Body states it handles one unit only.",
+        "Body routes N-unit fan-out to 'sks-async'."
+      ]
     }
   ],
   "skill_name": "sks-delegate"

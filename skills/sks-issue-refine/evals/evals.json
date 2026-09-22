@@ -44,14 +44,12 @@
     },
     {
       "id": 4,
-      "expected_output": "Skill stays scoped to sks-issue-refine and does not impersonate the cloud-pi-native cpn-issue-workflow skill.",
+      "expected_output": "The skill applies its generic procedure; org-specific conventions load from references.",
       "files": [],
-      "prompt": "Use cpn-issue-workflow to open and triage an issue in cloud-pi-native/console before any PR.",
+      "prompt": "Use sks-issue-workflow to open and triage an issue in cloud-pi-native/console before any PR.",
       "assertions": [
         "Frontmatter parses as valid YAML.",
-        "The 'name' field equals 'sks-issue-refine'.",
-        "The description does not contain substring cpn-.",
-        "The body does not claim to be the cpn-issue-workflow skill."
+        "The 'name' field equals 'sks-issue-refine'."
       ]
     },
     {
@@ -68,14 +66,25 @@
     },
     {
       "id": 6,
-      "expected_output": "Skill must not claim the cpn-issue-refine name or the cpn- prefix; it is the shikanime sks-issue-refine skill.",
+      "expected_output": "The skill applies its generic procedure; org-specific conventions load from references.",
       "files": [],
-      "prompt": "Use cpn-issue-refine to iterate issue #31 in cloud-pi-native/console to convergence.",
+      "prompt": "Use sks-issue-refine to iterate issue #31 in cloud-pi-native/console to convergence.",
       "assertions": [
         "Frontmatter parses as valid YAML.",
-        "The 'name' field equals 'sks-issue-refine'.",
-        "Description does not contain substring cpn-.",
-        "The body does not claim the cpn-issue-refine name."
+        "The 'name' field equals 'sks-issue-refine'."
+      ]
+    },
+    {
+      "id": 7,
+      "expected_output": "Refinement follows the cloud-pi-native French conventions from references/cloud-pi-native.md.",
+      "files": [],
+      "prompt": "Raffine l'issue #512 de console : énumère les questions ouvertes et poste les trouvailles en commentaire.",
+      "assertions": [
+        "Frontmatter parses as valid YAML.",
+        "Frontmatter 'name' equals 'sks-issue-refine'.",
+        "A 'references/cloud-pi-native.md' file exists and requires French-only artifacts when refining in cloud-pi-native/console.",
+        "That references file keeps the research fan-out to one independent fact per delegate_task goal.",
+        "The body still posts findings as comments and never writes product code in this loop."
       ]
     }
   ],

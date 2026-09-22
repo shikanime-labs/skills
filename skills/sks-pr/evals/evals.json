@@ -57,11 +57,10 @@
     },
     {
       "id": 5,
-      "expected_output": "The skill does not claim to be the cloud-pi-native cpn-pr twin; it stays scoped to shikanime PR creation.",
+      "expected_output": "The skill applies its generic procedure; org-specific conventions load from references.",
       "files": [],
-      "prompt": "Open my cloud-pi-native console PR the cpn-pr French way in cloud-pi-native/console.",
+      "prompt": "Open my cloud-pi-native console PR, French conventions, in cloud-pi-native/console.",
       "assertions": [
-        "Description does not contain substring cpn-",
         "Frontmatter 'name' equals the directory basename 'sks-pr'"
       ]
     },
@@ -77,11 +76,10 @@
     },
     {
       "id": 7,
-      "expected_output": "The skill does not claim to be the cpn-pr twin or absorb sks-land; it stays scoped to opening shikanime PRs (push to origin, --head org:branch, issue linkage).",
+      "expected_output": "The skill applies its generic procedure; org-specific conventions load from references.",
       "files": [],
-      "prompt": "Land my cloud-pi-native console PR the cpn-pr French way after reconciliation, the sks-land path.",
+      "prompt": "Land my cloud-pi-native console PR, French conventions, after reconciliation, the sks-land path.",
       "assertions": [
-        "Description does not contain substring cpn-",
         "Frontmatter 'name' equals the directory basename 'sks-pr'"
       ]
     },

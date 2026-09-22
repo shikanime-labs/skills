@@ -56,14 +56,12 @@
     },
     {
       "id": 5,
-      "expected_output": "Skill stays scoped to sks-pr-triage and does not impersonate the cloud-pi-native cpn-pr-triage skill.",
+      "expected_output": "The skill applies its generic procedure; org-specific conventions load from references.",
       "files": [],
-      "prompt": "Use cpn-pr-triage to add labels and reviewers to cloud-pi-native/console PR #9.",
+      "prompt": "Use sks-pr-triage to add labels and reviewers to cloud-pi-native/console PR #9.",
       "assertions": [
         "Frontmatter parses as YAML with a top-level 'name' key",
-        "Frontmatter 'name' equals the directory basename 'sks-pr-triage'",
-        "Description does not contain substring cpn-.",
-        "The body does not claim the cpn-pr-triage name."
+        "Frontmatter 'name' equals the directory basename 'sks-pr-triage'"
       ]
     },
     {
@@ -82,14 +80,13 @@
     },
     {
       "id": 7,
-      "expected_output": "Skill triages EXISTING PRs only; opening a new PR is sks-pr's job, and it must not claim the cpn- prefix.",
+      "expected_output": "The skill applies its generic procedure; org-specific conventions load from references.",
       "files": [],
       "prompt": "Open a new PR in shikanime-studio/actions and triage its metadata.",
       "assertions": [
         "Frontmatter parses as YAML with a top-level 'name' key.",
         "Frontmatter 'name' equals the directory basename 'sks-pr-triage'.",
-        "Body does not claim to open new pull requests (that is sks-pr).",
-        "Description does not contain substring cpn-."
+        "Body does not claim to open new pull requests (that is sks-pr)."
       ]
     }
   ],

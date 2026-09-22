@@ -55,11 +55,10 @@
     },
     {
       "id": 5,
-      "expected_output": "The skill does not claim to be the cloud-pi-native cpn-async twin; it stays scoped to shikanime jj parallel streams.",
+      "expected_output": "The skill does not claim to be the cloud-pi-native sks-async twin; it stays scoped to shikanime jj parallel streams.",
       "files": [],
-      "prompt": "Use sks-async to fan out my cloud-pi-native console module migration in parallel the way cpn-async does across the console repo.",
+      "prompt": "Use sks-async to fan out my cloud-pi-native console module migration in parallel in parallel across the console repo.",
       "assertions": [
-        "Description does not contain substring cpn-",
         "Frontmatter 'name' equals the directory basename 'sks-async'"
       ]
     },
@@ -75,11 +74,10 @@
     },
     {
       "id": 7,
-      "expected_output": "The skill does not claim to be the cloud-pi-native cpn-async twin or absorb sks-commit/sks-pr/sks-land; it stays scoped to shikanime jj parallel fan-out and landing as independent PRs.",
+      "expected_output": "The skill does not claim to be the cloud-pi-native sks-async twin or absorb sks-commit/sks-pr/sks-land; it stays scoped to shikanime jj parallel fan-out and landing as independent PRs.",
       "files": [],
-      "prompt": "Reconcile review threads and land my cloud-pi-native console PR the cpn-async way, then commit it with a conventional fix: prefix.",
+      "prompt": "Reconcile review threads and land my cloud-pi-native console PR via the async stack, then commit it with a conventional fix: prefix.",
       "assertions": [
-        "Description does not contain substring cpn-",
         "Frontmatter 'name' equals the directory basename 'sks-async'"
       ]
     }

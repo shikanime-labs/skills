@@ -97,6 +97,26 @@ If title/body cites `#M` (open, unlinked issue), ensure body has `Related: #M`
 gh pr view "$N" --repo "$R" --json number,title,labels,assignees,milestone,reviewRequests
 ```
 
+### 7. Reword / body↔diff reconciliation
+
+When asked to **reword** a PR title or body (after force-push, scope change,
+or "reword it based on new changes"), never copy the existing body with
+touch-ups: it drifts from the code.
+
+1. `gh pr diff "$N" --repo "$R"` — the real diff (source of truth for
+   behavior).
+2. `gh api repos/"$R"/pulls/"$N"/files --jq '.[] |
+   "\(.filename)\tadd=\(.additions)\tdel=\(.deletions)"'` — per-file counts.
+3. Re-check each body claim against the diff:
+   - **Claim absent from the diff** → delete it (e.g. "added
+     `max-parallel: 2`" while `strategy`/`matrix` never changed).
+   - **Real fix understated** (e.g. "typo hygiene" while the diff also
+     changes port `8080`→`9000`, the actual issue fix) → elevate it and link
+     the issue (#M).
+4. `gh pr edit "$N" --repo "$R" --title "..." --body-file /tmp/pr_body.md`.
+
+Detail and a worked trap: `references/pr-body-reconciliation.md`.
+
 ## Verification
 
 ```bash

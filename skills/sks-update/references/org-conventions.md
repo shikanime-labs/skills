@@ -2,7 +2,7 @@
 
 ## Catalog
 
-Repo `shikanime-labs/skills`; a full pass enumerates the `sks-*` and `cpn-*`
+Repo `shikanime-labs/skills`; a full pass enumerates every catalog skill in
 families (plus `nixpkgs`) from the `skills/` tree.
 
 ## Commit trailer
