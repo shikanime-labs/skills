@@ -5,229 +5,144 @@
   "license": "Apache-2.0",
   "skills": [
     {
-      "name": "cpn-async",
-      "description": "À utiliser quand vous répartissez un travail multi-unités en parallèle sur workspaces jj isolés et PR en stack pour console cloud-pi-native.",
-      "path": "skills/cloud-pi-native/cpn-async"
-    },
-    {
-      "name": "cpn-commit",
-      "description": "Commit to cloud-pi-native/console with conventional format.",
-      "path": "skills/cloud-pi-native/cpn-commit"
-    },
-    {
-      "name": "cpn-dev-workflow",
-      "description": "À utiliser quand vous travaillez dans le dépôt console cloud-pi-native/console : règles de contribution, cycle de dev et workflow PR.",
-      "path": "skills/cloud-pi-native/cpn-dev-workflow"
-    },
-    {
-      "name": "cpn-discussion",
-      "description": "Create/edit console Discussions (French, GraphQL).",
-      "path": "skills/cloud-pi-native/cpn-discussion"
-    },
-    {
-      "name": "cpn-discussion-triage",
-      "description": "Triage une discussion cloud-pi-native/console : catégorie, corps, Q\u0026A, clôture (GraphQL).",
-      "path": "skills/cloud-pi-native/cpn-discussion-triage"
-    },
-    {
-      "name": "cpn-issue",
-      "description": "Open CPN console issues with French templates.",
-      "path": "skills/cloud-pi-native/cpn-issue"
-    },
-    {
-      "name": "cpn-issue-refine",
-      "description": "Itérer un problème vers la convergence dans son issue GitHub via recherche + commentaires (console cloud-pi-native).",
-      "path": "skills/cloud-pi-native/cpn-issue-refine"
-    },
-    {
-      "name": "cpn-issue-triage",
-      "description": "Triage une issue existante du dépôt cloud-pi-native/console : labels, assignee, jalon, projet ; fermeture motivée si non traitable.",
-      "path": "skills/cloud-pi-native/cpn-issue-triage"
-    },
-    {
-      "name": "cpn-issue-workflow",
-      "description": "À utiliser quand vous voulez le point d'entrée unique du côté issue cloud-pi-native : créer l'issue, la raffiner vers la convergence, puis la trier.",
-      "path": "skills/cloud-pi-native/cpn-issue-workflow"
-    },
-    {
-      "name": "cpn-pr",
-      "description": "Open cloud-pi-native org PRs with French body and conventional title.",
-      "path": "skills/cloud-pi-native/cpn-pr"
-    },
-    {
-      "name": "cpn-land",
-      "description": "Merge une PR cloud-pi-native : gates DoD/threads/CI + approbation yorha-operator.",
-      "path": "skills/cloud-pi-native/cpn-land"
-    },
-    {
-      "name": "cpn-pr-resolve",
-      "description": "Réconcilie review-threads d'une PR cloud-pi-native : ledger DoD + approbation/CI, SANS merger (extrait cpn-dev-workflow).",
-      "path": "skills/cloud-pi-native/cpn-pr-resolve"
-    },
-    {
-      "name": "cpn-pr-review",
-      "description": "Review cloud-pi-native console PRs: arch, French.",
-      "path": "skills/cloud-pi-native/cpn-pr-review"
-    },
-    {
-      "name": "cpn-pr-triage",
-      "description": "Triage une PR existante du dépôt cloud-pi-native/console : labels, assignee, jalon, reviewers, lien issue.",
-      "path": "skills/cloud-pi-native/cpn-pr-triage"
-    },
-    {
-      "name": "cpn-pr-workflow",
-      "description": "À utiliser quand vous voulez le point d'entrée unique du côté PR cloud-pi-native : assure l'issue, ouvre la PR draft dérivée du commit, puis trie.",
-      "path": "skills/cloud-pi-native/cpn-pr-workflow"
-    },
-    {
-      "name": "cpn-release-patch",
-      "description": "Use when backporting the commits between two release tags onto a hotfix branch in cloud-pi-native/console: find the patch milestone and duplicate those commits onto the tag with jj.",
-      "path": "skills/cloud-pi-native/cpn-release-patch"
-    },
-    {
-      "name": "cpn-delegate",
-      "description": "À utiliser quand vous isolez une unité de travail cloud-pi-native dans un workspace jj frais pour que le WIP concurrent ne soit jamais mélangé — bookmarks et pushes limités à ce workspace.",
-      "path": "skills/cloud-pi-native/cpn-delegate"
-    },
-    {
-      "name": "cpn-swarm",
-      "description": "À utiliser quand vous distribuez une tâche cloud-pi-native sur un cluster d'agents via A2A — routage par capacité, machine et pression runner.",
-      "path": "skills/cloud-pi-native/cpn-swarm"
-    },
-    {
-      "name": "nix-pr-review",
-      "description": "Use when reviewing an upstream NixOS/nixpkgs pull request: build the changed packages with nixpkgs-review and check the diff against nixpkgs conventions.",
-      "path": "skills/nixpkgs/nix-pr-review"
-    },
-    {
       "name": "sks-adversarial",
       "description": "Use when probing uncertain results in a disposable sandbox — large investigation, development, debugging, testing, UAT, white-room, or data validation before promoting a change.",
-      "path": "skills/shikanime-studio/sks-adversarial"
+      "path": "skills/sks-adversarial"
     },
     {
       "name": "sks-async",
       "description": "Use when splitting multi-unit work into parallel, isolated jj workspaces (depth-tree fan-out) and landing as independent plain gh pr merges.",
-      "path": "skills/shikanime-studio/sks-async"
+      "path": "skills/sks-async"
     },
     {
       "name": "sks-commit",
       "description": "Use when committing in shikanime-labs or shikanime-studio repos: plain-English imperative titles and repo-enforced hooks (gitlint, DCO) win.",
-      "path": "skills/shikanime-studio/sks-commit"
-    },
-    {
-      "name": "sks-curate",
-      "description": "Use when updating, improving, compressing, or token-optimizing a skill in the shikanime-labs/skills catalog: rework the body, tighten it, refresh evals, and keep it loadable.",
-      "path": "skills/shikanime-studio/sks-curate"
+      "path": "skills/sks-commit"
     },
     {
       "name": "sks-converge",
       "description": "Use when jj conflicts or divergent changes block a shikanime repo after a tree move: resolve conflicted revisions and divergent twins until pushable.",
-      "path": "skills/shikanime-studio/sks-converge"
+      "path": "skills/sks-converge"
     },
     {
-      "name": "sks-dev-workflow",
-      "description": "Use when running the shikanime local dev loop: branching, push-to-origin, jj bookmark tracking, and landing via plain gh pr merge or direct push.",
-      "path": "skills/shikanime-studio/sks-dev-workflow"
-    },
-    {
-      "name": "sks-discussion",
-      "description": "Use when opening an RFC Discussion in a shikanime org as the pre-issue stage: converge on the problem, then derive the issue.",
-      "path": "skills/shikanime-studio/sks-discussion"
-    },
-    {
-      "name": "sks-discussion-triage",
-      "description": "Use when triaging an existing shikanime org discussion: category, body shape, Q\u0026A answer, and conversion to an issue.",
-      "path": "skills/shikanime-studio/sks-discussion-triage"
-    },
-    {
-      "name": "sks-doc",
-      "description": "Use when documenting a shikanime project in the repo's docs/ directory after a behavior-changing PR.",
-      "path": "skills/shikanime-studio/sks-doc"
-    },
-    {
-      "name": "sks-gc",
-      "description": "Use when reclaiming resources leaked by shikanime jj workflows: dangling bookmarks, skill-created jj workspaces, and leftover working-copy dirs from sks-async/sks-dev-workflow.",
-      "path": "skills/shikanime-studio/sks-gc"
-    },
-    {
-      "name": "sks-investigate",
-      "description": "Use when investigating a bug, test failure, build break, or unexpected behavior in a shikanime repo: find root cause before any fix, minimal repro, and proven verification.",
-      "path": "skills/shikanime-studio/sks-investigate"
-    },
-    {
-      "name": "sks-restack",
-      "description": "Use when rebasing a shikanime jj stack onto moved main leaves conflicts: restack, then resolve each conflicted revision with edit/resolve until pushable.",
-      "path": "skills/shikanime-studio/sks-restack"
+      "name": "sks-curate",
+      "description": "Use when updating, improving, compressing, or token-optimizing a skill in the shikanime-labs/skills catalog: rework the body, tighten it, refresh evals, and keep it loadable.",
+      "path": "skills/sks-curate"
     },
     {
       "name": "sks-delegate",
       "description": "Use when isolating one unit of shikanime work in a fresh jj workspace so concurrent editors / WIP never get folded in — bookmarks and pushes are scoped to that single workspace.",
-      "path": "skills/shikanime-studio/sks-delegate"
+      "path": "skills/sks-delegate"
+    },
+    {
+      "name": "sks-dev-workflow",
+      "description": "Use when running the shikanime local dev loop: branching, push-to-origin, jj bookmark tracking, and landing via plain gh pr merge or direct push.",
+      "path": "skills/sks-dev-workflow"
+    },
+    {
+      "name": "sks-discussion",
+      "description": "Use when opening an RFC Discussion in a shikanime org as the pre-issue stage: converge on the problem, then derive the issue.",
+      "path": "skills/sks-discussion"
+    },
+    {
+      "name": "sks-discussion-triage",
+      "description": "Use when triaging an existing shikanime org discussion: category, body shape, Q\u0026A answer, and conversion to an issue.",
+      "path": "skills/sks-discussion-triage"
+    },
+    {
+      "name": "sks-doc",
+      "description": "Use when documenting a shikanime project in the repo's docs/ directory after a behavior-changing PR.",
+      "path": "skills/sks-doc"
+    },
+    {
+      "name": "sks-gc",
+      "description": "Use when reclaiming resources leaked by shikanime jj workflows: dangling bookmarks, skill-created jj workspaces, and leftover working-copy dirs from sks-async/sks-dev-workflow.",
+      "path": "skills/sks-gc"
+    },
+    {
+      "name": "sks-investigate",
+      "description": "Use when investigating a bug, test failure, build break, or unexpected behavior in a shikanime repo: find root cause before any fix, minimal repro, and proven verification.",
+      "path": "skills/sks-investigate"
     },
     {
       "name": "sks-issue",
       "description": "Use when opening an issue in shikanime-labs or shikanime-studio: body is the problem statement, acceptance criteria as a command-decidable tasklist.",
-      "path": "skills/shikanime-studio/sks-issue"
+      "path": "skills/sks-issue"
     },
     {
       "name": "sks-issue-refine",
       "description": "Use when iterating a problem to convergence inside its GitHub issue via research and comments before deriving the PR.",
-      "path": "skills/shikanime-studio/sks-issue-refine"
+      "path": "skills/sks-issue-refine"
     },
     {
       "name": "sks-issue-triage",
       "description": "Use when triaging an existing shikanime org issue: assign labels, assignee, milestone, and project; close with rationale if not workable.",
-      "path": "skills/shikanime-studio/sks-issue-triage"
+      "path": "skills/sks-issue-triage"
     },
     {
       "name": "sks-issue-workflow",
       "description": "Use when you need the single entry point for the shikanime issue side: create, refine, and triage the issue before any PR.",
-      "path": "skills/shikanime-studio/sks-issue-workflow"
+      "path": "skills/sks-issue-workflow"
     },
     {
       "name": "sks-land",
       "description": "Use when landing a shikanime org PR after reconciliation (sks-pr-resolve) and review approval gates pass; closes the linked issue deliberately.",
-      "path": "skills/shikanime-studio/sks-land"
+      "path": "skills/sks-land"
+    },
+    {
+      "name": "nixpkgs-pr-review",
+      "description": "Use when reviewing an upstream NixOS/nixpkgs pull request: build the changed packages with nixpkgs-review and check the diff against nixpkgs conventions.",
+      "path": "skills/nixpkgs-pr-review"
     },
     {
       "name": "sks-pr",
       "description": "Use when opening a PR in shikanime-labs or shikanime-studio: push to origin, --head org:branch, plain-English title, issue linkage, parity with commit.",
-      "path": "skills/shikanime-studio/sks-pr"
+      "path": "skills/sks-pr"
     },
     {
       "name": "sks-pr-resolve",
       "description": "Use when resolving a shikanime PR's review conversations, checking the DoD ledger, and reconciling before merge (no merge itself).",
-      "path": "skills/shikanime-studio/sks-pr-resolve"
+      "path": "skills/sks-pr-resolve"
     },
     {
       "name": "sks-pr-review",
       "description": "Use when reviewing shikanime code: enforce YAGNI, root-cause fixes, and project conventions before approval.",
-      "path": "skills/shikanime-studio/sks-pr-review"
+      "path": "skills/sks-pr-review"
     },
     {
       "name": "sks-pr-triage",
       "description": "Use when triaging an existing shikanime org PR: labels, assignee, milestone, and reviewers.",
-      "path": "skills/shikanime-studio/sks-pr-triage"
+      "path": "skills/sks-pr-triage"
     },
     {
       "name": "sks-pr-workflow",
       "description": "Use when you need the single entry point for the shikanime PR side: ensure the issue exists, open, triage, and land the PR.",
-      "path": "skills/shikanime-studio/sks-pr-workflow"
+      "path": "skills/sks-pr-workflow"
+    },
+    {
+      "name": "cpn-release-patch",
+      "description": "Use when backporting the commits between two release tags onto a hotfix branch in \u003corg\u003e/\u003crepo\u003e: find the patch milestone and duplicate those commits onto the tag with jj.",
+      "path": "skills/cpn-release-patch"
+    },
+    {
+      "name": "sks-restack",
+      "description": "Use when rebasing a shikanime jj stack onto moved main leaves conflicts: restack, then resolve each conflicted revision with edit/resolve until pushable.",
+      "path": "skills/sks-restack"
     },
     {
       "name": "sks-skill-authoring",
       "description": "Use when creating a brand-new skill for the shikanime-labs/skills catalog: grounded body, evals, manifests, and ship through the dev workflow.",
-      "path": "skills/shikanime-studio/sks-skill-authoring"
+      "path": "skills/sks-skill-authoring"
     },
     {
       "name": "sks-swarm",
       "description": "Use when distributing one task across a cluster of agents over A2A — route by capability need, machine resource, and runner pressure, optionally inside a disposable sandbox.",
-      "path": "skills/shikanime-studio/sks-swarm"
+      "path": "skills/sks-swarm"
     },
     {
       "name": "sks-update",
       "description": "Use when updating skills in the shikanime-labs/skills catalog: curate every skill by default (or named ones only), land through the dev workflow, and resync to local Hermes agents.",
-      "path": "skills/shikanime-studio/sks-update"
+      "path": "skills/sks-update"
     }
   ]
 }

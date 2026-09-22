@@ -20,186 +20,118 @@
   "agents": {
     "skills": [
       {
-        "name": "cpn-async",
-        "path": "skills/cloud-pi-native/cpn-async"
-      },
-      {
-        "name": "cpn-commit",
-        "path": "skills/cloud-pi-native/cpn-commit"
-      },
-      {
-        "name": "cpn-dev-workflow",
-        "path": "skills/cloud-pi-native/cpn-dev-workflow"
-      },
-      {
-        "name": "cpn-discussion",
-        "path": "skills/cloud-pi-native/cpn-discussion"
-      },
-      {
-        "name": "cpn-discussion-triage",
-        "path": "skills/cloud-pi-native/cpn-discussion-triage"
-      },
-      {
-        "name": "cpn-issue",
-        "path": "skills/cloud-pi-native/cpn-issue"
-      },
-      {
-        "name": "cpn-issue-refine",
-        "path": "skills/cloud-pi-native/cpn-issue-refine"
-      },
-      {
-        "name": "cpn-issue-triage",
-        "path": "skills/cloud-pi-native/cpn-issue-triage"
-      },
-      {
-        "name": "cpn-issue-workflow",
-        "path": "skills/cloud-pi-native/cpn-issue-workflow"
-      },
-      {
-        "name": "cpn-pr",
-        "path": "skills/cloud-pi-native/cpn-pr"
-      },
-      {
-        "name": "cpn-land",
-        "path": "skills/cloud-pi-native/cpn-land"
-      },
-      {
-        "name": "cpn-pr-resolve",
-        "path": "skills/cloud-pi-native/cpn-pr-resolve"
-      },
-      {
-        "name": "cpn-pr-review",
-        "path": "skills/cloud-pi-native/cpn-pr-review"
-      },
-      {
-        "name": "cpn-pr-triage",
-        "path": "skills/cloud-pi-native/cpn-pr-triage"
-      },
-      {
-        "name": "cpn-pr-workflow",
-        "path": "skills/cloud-pi-native/cpn-pr-workflow"
-      },
-      {
-        "name": "cpn-release-patch",
-        "path": "skills/cloud-pi-native/cpn-release-patch"
-      },
-      {
-        "name": "cpn-delegate",
-        "path": "skills/cloud-pi-native/cpn-delegate"
-      },
-      {
-        "name": "cpn-swarm",
-        "path": "skills/cloud-pi-native/cpn-swarm"
-      },
-      {
-        "name": "nix-pr-review",
-        "path": "skills/nixpkgs/nix-pr-review"
-      },
-      {
         "name": "sks-adversarial",
-        "path": "skills/shikanime-studio/sks-adversarial"
+        "path": "skills/sks-adversarial"
       },
       {
         "name": "sks-async",
-        "path": "skills/shikanime-studio/sks-async"
+        "path": "skills/sks-async"
       },
       {
         "name": "sks-commit",
-        "path": "skills/shikanime-studio/sks-commit"
-      },
-      {
-        "name": "sks-curate",
-        "path": "skills/shikanime-studio/sks-curate"
+        "path": "skills/sks-commit"
       },
       {
         "name": "sks-converge",
         "description": "Use when jj conflicts or divergent changes block a shikanime repo after a tree move: resolve conflicted revisions and divergent twins until pushable.",
-        "path": "skills/shikanime-studio/sks-converge"
+        "path": "skills/sks-converge"
+      },
+      {
+        "name": "sks-curate",
+        "path": "skills/sks-curate"
+      },
+      {
+        "name": "sks-delegate",
+        "path": "skills/sks-delegate"
       },
       {
         "name": "sks-dev-workflow",
-        "path": "skills/shikanime-studio/sks-dev-workflow"
+        "path": "skills/sks-dev-workflow"
       },
       {
         "name": "sks-discussion",
-        "path": "skills/shikanime-studio/sks-discussion"
+        "path": "skills/sks-discussion"
       },
       {
         "name": "sks-discussion-triage",
-        "path": "skills/shikanime-studio/sks-discussion-triage"
+        "path": "skills/sks-discussion-triage"
       },
       {
         "name": "sks-doc",
-        "path": "skills/shikanime-studio/sks-doc"
+        "path": "skills/sks-doc"
       },
       {
         "name": "sks-gc",
-        "path": "skills/shikanime-studio/sks-gc"
+        "path": "skills/sks-gc"
       },
       {
         "name": "sks-investigate",
-        "path": "skills/shikanime-studio/sks-investigate"
+        "path": "skills/sks-investigate"
+      },
+      {
+        "name": "sks-issue",
+        "path": "skills/sks-issue"
+      },
+      {
+        "name": "sks-issue-refine",
+        "path": "skills/sks-issue-refine"
+      },
+      {
+        "name": "sks-issue-triage",
+        "path": "skills/sks-issue-triage"
+      },
+      {
+        "name": "sks-issue-workflow",
+        "path": "skills/sks-issue-workflow"
+      },
+      {
+        "name": "sks-land",
+        "path": "skills/sks-land"
+      },
+      {
+        "name": "nixpkgs-pr-review",
+        "path": "skills/nixpkgs-pr-review"
+      },
+      {
+        "name": "sks-pr",
+        "path": "skills/sks-pr"
+      },
+      {
+        "name": "sks-pr-resolve",
+        "path": "skills/sks-pr-resolve"
+      },
+      {
+        "name": "sks-pr-review",
+        "path": "skills/sks-pr-review"
+      },
+      {
+        "name": "sks-pr-triage",
+        "path": "skills/sks-pr-triage"
+      },
+      {
+        "name": "sks-pr-workflow",
+        "path": "skills/sks-pr-workflow"
+      },
+      {
+        "name": "cpn-release-patch",
+        "path": "skills/cpn-release-patch"
       },
       {
         "name": "sks-restack",
         "description": "Use when rebasing a shikanime jj stack onto moved main leaves conflicts: restack, then resolve each conflicted revision with edit/resolve until pushable.",
-        "path": "skills/shikanime-studio/sks-restack"
-      },
-      {
-        "name": "sks-delegate",
-        "path": "skills/shikanime-studio/sks-delegate"
-      },
-      {
-        "name": "sks-issue",
-        "path": "skills/shikanime-studio/sks-issue"
-      },
-      {
-        "name": "sks-issue-refine",
-        "path": "skills/shikanime-studio/sks-issue-refine"
-      },
-      {
-        "name": "sks-issue-triage",
-        "path": "skills/shikanime-studio/sks-issue-triage"
-      },
-      {
-        "name": "sks-issue-workflow",
-        "path": "skills/shikanime-studio/sks-issue-workflow"
-      },
-      {
-        "name": "sks-land",
-        "path": "skills/shikanime-studio/sks-land"
-      },
-      {
-        "name": "sks-pr",
-        "path": "skills/shikanime-studio/sks-pr"
-      },
-      {
-        "name": "sks-pr-resolve",
-        "path": "skills/shikanime-studio/sks-pr-resolve"
-      },
-      {
-        "name": "sks-pr-review",
-        "path": "skills/shikanime-studio/sks-pr-review"
-      },
-      {
-        "name": "sks-pr-triage",
-        "path": "skills/shikanime-studio/sks-pr-triage"
-      },
-      {
-        "name": "sks-pr-workflow",
-        "path": "skills/shikanime-studio/sks-pr-workflow"
+        "path": "skills/sks-restack"
       },
       {
         "name": "sks-skill-authoring",
-        "path": "skills/shikanime-studio/sks-skill-authoring"
+        "path": "skills/sks-skill-authoring"
       },
       {
         "name": "sks-swarm",
-        "path": "skills/shikanime-studio/sks-swarm"
+        "path": "skills/sks-swarm"
       },
       {
         "name": "sks-update",
-        "path": "skills/shikanime-studio/sks-update"
+        "path": "skills/sks-update"
       }
     ]
   }

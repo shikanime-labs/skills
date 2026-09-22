@@ -7,24 +7,18 @@ agents. Each skill lives in its own directory with a `SKILL.md`.
 
 ## Structure
 
-- `skills/shikanime-studio/` — the shikanime `sks-*` workflow family
-- `skills/cloud-pi-native/` — the cloud-pi-native `cpn-*` workflow family
+- `skills/` — every catalog skill (org-neutral bodies, org specifics in
+  per-skill `references/`)
 - `README.md` — Installation and usage documentation
 
 ## Workflow
 
-Two orgs, one doctrine — the lifecycle is **discussion → issue → issue comments
-→ PR** for both families. The issue body is the problem statement with
-acceptance criteria as a command-decidable tasklist (the gate ledger); the PR
-proves it. shikanime skills are written in English with plain-English commits +
-Automata co-author trailer; cloud-pi-native skills operate in French with
-conventional commits. Skills: `sks-dev-workflow`, `sks-async`, `sks-commit`,
-`sks-discussion`, `sks-issue`, `sks-pr`, `cpn-dev-workflow`, `cpn-commit`,
-`cpn-discussion`, `cpn-issue`, `cpn-pr`.
-
-A standalone `nixpkgs` family (`nix-pr-*`) reviews upstream NixOS/nixpkgs pull
-requests through the official contribution process — it is not an org workflow
-and has no discussion/issue/PR lifecycle of its own. Skills: `nix-pr-review`.
+One doctrine — the lifecycle is **discussion → issue → issue comments → PR**.
+The issue body is the problem statement with acceptance criteria as a
+command-decidable tasklist (the gate ledger); the PR proves it. Skill bodies
+are org-neutral; organization-specific conventions load on demand from
+per-skill references (`references/org-conventions.md` for shikanime,
+`references/cloud-pi-native.md` for cloud-pi-native console work).
 
 ## Commit Style
 
@@ -47,7 +41,7 @@ Example: Wire release management, milestone metadata, trunk-based jj stacking
 Encode four principles into the workflow substrate and skills.
 
 Design: README.md, AGENTS.md
-Related: skills/shikanime, skills/cloud-pi-native
+Related: skills/
 Signed-off-by: Shikanime Deva <william.phetsinorath@shikanime.studio>
 ```
 
@@ -111,9 +105,8 @@ Source: agentskills.io best practices (`skill-creation/best-practices`,
 
 ## Skill Categories
 
-- `shikanime` — the shikanime org workflow family (`sks-*`)
-- `cloud-pi-native` — the cloud-pi-native org workflow family (`cpn-*`): console
-  dev loop, GitHub lifecycle, and commit conventions
+One flat catalog in `skills/`. Bodies are generic; org specifics live in
+per-skill references loaded on demand.
 
 _Each skill must include a valid `SKILL.md` with YAML frontmatter. Test against
 the target agent before submitting_
