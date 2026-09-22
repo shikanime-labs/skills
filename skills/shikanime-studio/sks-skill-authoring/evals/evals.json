@@ -1,0 +1,40 @@
+{
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "Searches the catalog and local skills for an overlapping trigger first; extends an existing skill rather than creating a narrow sibling.",
+      "files": [],
+      "prompt": "We keep re-running the same release-notes procedure for shikanime repos. Make it a skill.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-skill-authoring'.",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters.",
+        "Body requires checking for an existing overlapping skill before creating a new one.",
+        "Body requires the procedure to have been actually executed before writing the SKILL.md."
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "Authors the skill inside a fresh jj workspace with SKILL.md, evals/evals.json, and .skillignore, then registers it in README.md, skills.json, and package.json.",
+      "files": [],
+      "prompt": "Create a brand-new catalog skill for a workflow we just validated, with evals.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-skill-authoring'.",
+        "Body isolates the work in a fresh jj workspace per sks-delegate.",
+        "Body lists evals/evals.json with objective assertions as required anatomy.",
+        "Body registers the skill in all three surfaces: README.md, skills.json, and package.json."
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "Routes the rework request to sks-curate and the whole-catalog pass to sks-update; this skill only authors brand-new entries.",
+      "files": [],
+      "prompt": "Tighten the sks-land skill, it got bloated after last quarter's changes.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-skill-authoring'.",
+        "Body routes improving an existing skill to 'sks-curate'.",
+        "Body routes the whole-catalog pass to 'sks-update'."
+      ]
+    }
+  ],
+  "skill_name": "sks-skill-authoring"
+}

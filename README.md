@@ -131,6 +131,7 @@ specification, compatible with the
 |                         | `sks-pr-workflow`                                                                                                            |
 | `sks-restack`           | Restack a jj stack onto moved main and resolve every conflict (jj marker dialect, :ours/:theirs, push gate)                  |
 | `sks-converge`           | Resolve jj conflicts and divergent changes after a tree move: per-revision resolution, twin abandonment, push gate          |
+| `sks-skill-authoring`   | Author a brand-new catalog skill: grounded body, evals, three manifests, ship via dev workflow                               |
 | `sks-swarm`             | Distribute a task across an agent cluster over A2A: route by capability, machine, and runner pressure (optionally sandboxed) |
 | `sks-update`            | Update the whole catalog by default (or named skills): curate, ship via dev workflow, resync to local Hermes agents                      |
 

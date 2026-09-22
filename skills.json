@@ -215,6 +215,11 @@
       "path": "skills/shikanime-studio/sks-pr-workflow"
     },
     {
+      "name": "sks-skill-authoring",
+      "description": "Use when creating a brand-new skill for the shikanime-labs/skills catalog: grounded body, evals, manifests, and ship through the dev workflow.",
+      "path": "skills/shikanime-studio/sks-skill-authoring"
+    },
+    {
       "name": "sks-swarm",
       "description": "Use when distributing one task across a cluster of agents over A2A — route by capability need, machine resource, and runner pressure, optionally inside a disposable sandbox.",
       "path": "skills/shikanime-studio/sks-swarm"
