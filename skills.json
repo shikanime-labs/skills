@@ -7,97 +7,97 @@
     {
       "name": "cpn-async",
       "description": "À utiliser quand vous répartissez un travail multi-unités en parallèle sur workspaces jj isolés et PR en stack pour console cloud-pi-native.",
-      "path": "skills/cloud-pi-native/cpn-async"
+      "path": "skills/shikanime-studio/cpn-async"
     },
     {
       "name": "cpn-commit",
       "description": "Commit to cloud-pi-native/console with conventional format.",
-      "path": "skills/cloud-pi-native/cpn-commit"
+      "path": "skills/shikanime-studio/cpn-commit"
     },
     {
       "name": "cpn-dev-workflow",
       "description": "À utiliser quand vous travaillez dans le dépôt console cloud-pi-native/console : règles de contribution, cycle de dev et workflow PR.",
-      "path": "skills/cloud-pi-native/cpn-dev-workflow"
+      "path": "skills/shikanime-studio/cpn-dev-workflow"
     },
     {
       "name": "cpn-discussion",
       "description": "Create/edit console Discussions (French, GraphQL).",
-      "path": "skills/cloud-pi-native/cpn-discussion"
+      "path": "skills/shikanime-studio/cpn-discussion"
     },
     {
       "name": "cpn-discussion-triage",
-      "description": "Triage une discussion cloud-pi-native/console : catégorie, corps, Q\u0026A, clôture (GraphQL).",
-      "path": "skills/cloud-pi-native/cpn-discussion-triage"
+      "description": "Triage une discussion cloud-pi-native/console : catégorie, corps, Q&A, clôture (GraphQL).",
+      "path": "skills/shikanime-studio/cpn-discussion-triage"
     },
     {
       "name": "cpn-issue",
       "description": "Open CPN console issues with French templates.",
-      "path": "skills/cloud-pi-native/cpn-issue"
+      "path": "skills/shikanime-studio/cpn-issue"
     },
     {
       "name": "cpn-issue-refine",
       "description": "Itérer un problème vers la convergence dans son issue GitHub via recherche + commentaires (console cloud-pi-native).",
-      "path": "skills/cloud-pi-native/cpn-issue-refine"
+      "path": "skills/shikanime-studio/cpn-issue-refine"
     },
     {
       "name": "cpn-issue-triage",
       "description": "Triage une issue existante du dépôt cloud-pi-native/console : labels, assignee, jalon, projet ; fermeture motivée si non traitable.",
-      "path": "skills/cloud-pi-native/cpn-issue-triage"
+      "path": "skills/shikanime-studio/cpn-issue-triage"
     },
     {
       "name": "cpn-issue-workflow",
       "description": "À utiliser quand vous voulez le point d'entrée unique du côté issue cloud-pi-native : créer l'issue, la raffiner vers la convergence, puis la trier.",
-      "path": "skills/cloud-pi-native/cpn-issue-workflow"
+      "path": "skills/shikanime-studio/cpn-issue-workflow"
     },
     {
       "name": "cpn-pr",
       "description": "Open cloud-pi-native org PRs with French body and conventional title.",
-      "path": "skills/cloud-pi-native/cpn-pr"
+      "path": "skills/shikanime-studio/cpn-pr"
     },
     {
       "name": "cpn-land",
       "description": "Merge une PR cloud-pi-native : gates DoD/threads/CI + approbation yorha-operator.",
-      "path": "skills/cloud-pi-native/cpn-land"
+      "path": "skills/shikanime-studio/cpn-land"
     },
     {
       "name": "cpn-pr-resolve",
       "description": "Réconcilie review-threads d'une PR cloud-pi-native : ledger DoD + approbation/CI, SANS merger (extrait cpn-dev-workflow).",
-      "path": "skills/cloud-pi-native/cpn-pr-resolve"
+      "path": "skills/shikanime-studio/cpn-pr-resolve"
     },
     {
       "name": "cpn-pr-review",
       "description": "Review cloud-pi-native console PRs: arch, French.",
-      "path": "skills/cloud-pi-native/cpn-pr-review"
+      "path": "skills/shikanime-studio/cpn-pr-review"
     },
     {
       "name": "cpn-pr-triage",
       "description": "Triage une PR existante du dépôt cloud-pi-native/console : labels, assignee, jalon, reviewers, lien issue.",
-      "path": "skills/cloud-pi-native/cpn-pr-triage"
+      "path": "skills/shikanime-studio/cpn-pr-triage"
     },
     {
       "name": "cpn-pr-workflow",
       "description": "À utiliser quand vous voulez le point d'entrée unique du côté PR cloud-pi-native : assure l'issue, ouvre la PR draft dérivée du commit, puis trie.",
-      "path": "skills/cloud-pi-native/cpn-pr-workflow"
+      "path": "skills/shikanime-studio/cpn-pr-workflow"
     },
     {
       "name": "cpn-release-patch",
       "description": "Use when backporting the commits between two release tags onto a hotfix branch in cloud-pi-native/console: find the patch milestone and duplicate those commits onto the tag with jj.",
-      "path": "skills/cloud-pi-native/cpn-release-patch"
+      "path": "skills/shikanime-studio/cpn-release-patch"
     },
     {
       "name": "cpn-delegate",
       "description": "À utiliser quand vous isolez une unité de travail cloud-pi-native dans un workspace jj frais pour que le WIP concurrent ne soit jamais mélangé — bookmarks et pushes limités à ce workspace.",
-      "path": "skills/cloud-pi-native/cpn-delegate"
+      "path": "skills/shikanime-studio/cpn-delegate"
     },
     {
       "name": "cpn-swarm",
       "description": "À utiliser quand vous distribuez une tâche cloud-pi-native sur un cluster d'agents via A2A — routage par capacité, machine et pression runner.",
-      "path": "skills/cloud-pi-native/cpn-swarm"
+      "path": "skills/shikanime-studio/cpn-swarm"
     },
     {
       "name": "nix-pr-review",
       "description": "Use when reviewing an upstream NixOS/nixpkgs pull request: build the changed packages with nixpkgs-review and check the diff against nixpkgs conventions.",
-      "path": "skills/nixpkgs/nix-pr-review"
+      "path": "skills/shikanime-studio/nix-pr-review"
     },
     {
       "name": "sks-adversarial",
@@ -136,7 +136,7 @@
     },
     {
       "name": "sks-discussion-triage",
-      "description": "Use when triaging an existing shikanime org discussion: category, body shape, Q\u0026A answer, and conversion to an issue.",
+      "description": "Use when triaging an existing shikanime org discussion: category, body shape, Q&A answer, and conversion to an issue.",
       "path": "skills/shikanime-studio/sks-discussion-triage"
     },
     {

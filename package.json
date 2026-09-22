@@ -21,79 +21,79 @@
     "skills": [
       {
         "name": "cpn-async",
-        "path": "skills/cloud-pi-native/cpn-async"
+        "path": "skills/shikanime-studio/cpn-async"
       },
       {
         "name": "cpn-commit",
-        "path": "skills/cloud-pi-native/cpn-commit"
+        "path": "skills/shikanime-studio/cpn-commit"
       },
       {
         "name": "cpn-dev-workflow",
-        "path": "skills/cloud-pi-native/cpn-dev-workflow"
+        "path": "skills/shikanime-studio/cpn-dev-workflow"
       },
       {
         "name": "cpn-discussion",
-        "path": "skills/cloud-pi-native/cpn-discussion"
+        "path": "skills/shikanime-studio/cpn-discussion"
       },
       {
         "name": "cpn-discussion-triage",
-        "path": "skills/cloud-pi-native/cpn-discussion-triage"
+        "path": "skills/shikanime-studio/cpn-discussion-triage"
       },
       {
         "name": "cpn-issue",
-        "path": "skills/cloud-pi-native/cpn-issue"
+        "path": "skills/shikanime-studio/cpn-issue"
       },
       {
         "name": "cpn-issue-refine",
-        "path": "skills/cloud-pi-native/cpn-issue-refine"
+        "path": "skills/shikanime-studio/cpn-issue-refine"
       },
       {
         "name": "cpn-issue-triage",
-        "path": "skills/cloud-pi-native/cpn-issue-triage"
+        "path": "skills/shikanime-studio/cpn-issue-triage"
       },
       {
         "name": "cpn-issue-workflow",
-        "path": "skills/cloud-pi-native/cpn-issue-workflow"
+        "path": "skills/shikanime-studio/cpn-issue-workflow"
       },
       {
         "name": "cpn-pr",
-        "path": "skills/cloud-pi-native/cpn-pr"
+        "path": "skills/shikanime-studio/cpn-pr"
       },
       {
         "name": "cpn-land",
-        "path": "skills/cloud-pi-native/cpn-land"
+        "path": "skills/shikanime-studio/cpn-land"
       },
       {
         "name": "cpn-pr-resolve",
-        "path": "skills/cloud-pi-native/cpn-pr-resolve"
+        "path": "skills/shikanime-studio/cpn-pr-resolve"
       },
       {
         "name": "cpn-pr-review",
-        "path": "skills/cloud-pi-native/cpn-pr-review"
+        "path": "skills/shikanime-studio/cpn-pr-review"
       },
       {
         "name": "cpn-pr-triage",
-        "path": "skills/cloud-pi-native/cpn-pr-triage"
+        "path": "skills/shikanime-studio/cpn-pr-triage"
       },
       {
         "name": "cpn-pr-workflow",
-        "path": "skills/cloud-pi-native/cpn-pr-workflow"
+        "path": "skills/shikanime-studio/cpn-pr-workflow"
       },
       {
         "name": "cpn-release-patch",
-        "path": "skills/cloud-pi-native/cpn-release-patch"
+        "path": "skills/shikanime-studio/cpn-release-patch"
       },
       {
         "name": "cpn-delegate",
-        "path": "skills/cloud-pi-native/cpn-delegate"
+        "path": "skills/shikanime-studio/cpn-delegate"
       },
       {
         "name": "cpn-swarm",
-        "path": "skills/cloud-pi-native/cpn-swarm"
+        "path": "skills/shikanime-studio/cpn-swarm"
       },
       {
         "name": "nix-pr-review",
-        "path": "skills/nixpkgs/nix-pr-review"
+        "path": "skills/shikanime-studio/nix-pr-review"
       },
       {
         "name": "sks-adversarial",

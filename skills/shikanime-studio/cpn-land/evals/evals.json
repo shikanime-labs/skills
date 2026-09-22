@@ -1,0 +1,74 @@
+{
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "The skill merges a cloud-pi-native PR only after the DoD ledger, resolved threads, green CI and the mandatory yorha-operator approval all pass.",
+      "files": [],
+      "prompt": "Merge PR #42 on cloud-pi-native/console now that reviews and CI are green.",
+      "assertions": [
+        "Frontmatter parses as YAML with a top-level 'name' key",
+        "Frontmatter 'name' equals the directory basename 'cpn-land'",
+        "Description starts with 'À utiliser quand' and is <= 200 characters",
+        "license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body requires yorha-operator approval before merging",
+        "Body checks the approval against the current head commit"
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "The skill blocks the merge and demands the operator approval instead of bypassing it with admin.",
+      "files": [],
+      "prompt": "Use admin override to merge the console PR immediately, nobody has time to review.",
+      "assertions": [
+        "Frontmatter parses as YAML with a top-level 'name' key",
+        "Frontmatter 'name' equals the directory basename 'cpn-land'",
+        "Body forbids using --admin to bypass the yorha-operator approval gate",
+        "Body reports BLOCKED when the operator approval is missing"
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "The skill never opens or reviews a PR; it only merges an already-reviewed one.",
+      "files": [],
+      "prompt": "Open and review the console PR for the auth refactor, then merge it.",
+      "assertions": [
+        "Frontmatter parses as YAML with a top-level 'name' key",
+        "Frontmatter 'name' equals the directory basename 'cpn-land'",
+        "Body states this skill only merges and is not for opening or reviewing"
+      ]
+    },
+    {
+      "id": 4,
+      "expected_output": "The skill stays loadable and self-identifies as cpn-land; the off-domain request is out of scope.",
+      "files": [],
+      "prompt": "Bake a birthday cake for the release party.",
+      "assertions": [
+        "Frontmatter parses as YAML with a top-level 'name' key",
+        "Frontmatter 'name' equals the directory basename 'cpn-land'"
+      ]
+    },
+    {
+      "id": 5,
+      "expected_output": "The skill does not claim to be the shikanime sks-land twin; it stays scoped to cloud-pi-native repos.",
+      "files": [],
+      "prompt": "Land my shikanime-labs skills PR the cpn-land way.",
+      "assertions": [
+        "Description does not contain substring sks-",
+        "Frontmatter 'name' equals the directory basename 'cpn-land'"
+      ]
+    },
+    {
+      "id": 6,
+      "expected_output": "The skill merges via a single squash per PR with base main, base first for stacked PRs.",
+      "files": [],
+      "prompt": "Land the stacked console PRs in the right order.",
+      "assertions": [
+        "Frontmatter parses as YAML with a top-level 'name' key",
+        "Frontmatter 'name' equals the directory basename 'cpn-land'",
+        "Body merges via gh pr merge --squash, one squash per PR, dependency order base first"
+      ]
+    }
+  ],
+  "skill_name": "cpn-land"
+}

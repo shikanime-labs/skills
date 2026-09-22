@@ -47,7 +47,7 @@ Example: Wire release management, milestone metadata, trunk-based jj stacking
 Encode four principles into the workflow substrate and skills.
 
 Design: README.md, AGENTS.md
-Related: skills/shikanime, skills/cloud-pi-native
+Related: skills/shikanime-studio
 Signed-off-by: Shikanime Deva <william.phetsinorath@shikanime.studio>
 ```
 
@@ -111,9 +111,10 @@ Source: agentskills.io best practices (`skill-creation/best-practices`,
 
 ## Skill Categories
 
-- `shikanime` — the shikanime org workflow family (`sks-*`)
-- `cloud-pi-native` — the cloud-pi-native org workflow family (`cpn-*`): console
-  dev loop, GitHub lifecycle, and commit conventions
+Families are name-prefixed, not directory-scoped: `sks-*` (shikanime org
+workflow), `cpn-*` (cloud-pi-native console dev loop, GitHub lifecycle, commit
+conventions), `nix-pr-*` (upstream NixOS/nixpkgs PR review). All live in
+`skills/shikanime-studio/`.
 
 _Each skill must include a valid `SKILL.md` with YAML frontmatter. Test against
 the target agent before submitting_
