@@ -12,9 +12,9 @@ rejected. If a commit lands on local `main` before branching, move it to a
 branch and reset `main` to `origin/main`:
 
 ```bash
-git branch <branch> HEAD                 # snapshot the stray commit
-git reset --hard origin/main             # local main back to trunk
-jj bookmark create <branch> -r <branch>  # jj auto-imports the git branch
+jj bookmark create <branch> -r @         # snapshot the stray commit
+jj bookmark set main -r main@origin --allow-backwards
+jj new main                              # WC on trunk; <branch> keeps the stray
 jj bookmark track <branch> --remote=origin
 jj git push --remote origin --bookmark <branch>
 # open PR --head <org>:<branch>; land via gh pr merge --squash --admin
@@ -52,12 +52,10 @@ Also: passing `-r @` before `--stdin` works, but bare `jj describe --stdin`
 ## `jj checkout` does not exist
 
 This jj version has no `jj checkout` subcommand (errors "unrecognized
-subcommand 'checkout'"). To move the working copy back onto a bookmark/branch,
-use git:
+subcommand 'checkout'"). To move the working copy onto a bookmark/branch:
 
 ```bash
-# switches the underlying git branch; jj re-imports it
-git checkout <bookmark>
+jj edit <bookmark>       # sets WC revision; new empty change left behind if any
 ```
 
 `jj add` is also absent — use `jj file track` for new files only; tracked files
@@ -71,8 +69,8 @@ In a jj checkout the git index tracks the *checked-out* commit, which can lag
 commit tree instead:
 
 ```bash
-git fetch origin
-git reset --hard origin/main            # resync the local checkout first
+jj git fetch --remote origin
+jj new main@origin                      # resync the local checkout first
 git ls-tree -r --name-only <merge-commit> | grep -i <path> || echo "absent in tree"
 git diff --stat <merge-commit>^ <merge-commit>
 ```
@@ -228,8 +226,7 @@ do not retry the push.
   `jj file track <path>`. (Where a skill says `jj add`, ignore it.)
 - `jj describe -F <file>` does not exist — use `jj describe --stdin <
   <file>` for multi-line bodies with trailers.
-- `jj checkout` does not exist — `git checkout <bookmark>` instead; jj
-  re-imports the moved git branch.
+- `jj checkout` does not exist — `jj edit <bookmark>` instead.
 - Resolve a commit by short change-id prefix directly:
   `jj log -r '<prefix>'`. Grep `jj log -T` if the exact rev does not resolve.
 - `committer()` does not exist in the template language — use `author.*`

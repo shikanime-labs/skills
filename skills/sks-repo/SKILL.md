@@ -94,14 +94,17 @@ an initial semver tag. Distilled from the live bootstrap of
    --accept-flake-config --no-pure-eval`) so `PWD` reaches the evaluator
    under direnv.
 
-4. **Stage the scaffold, then activate direnv and generate.** `git add` all
+4. **Stage the scaffold, then activate direnv and generate.** Track all
    scaffold files BEFORE `direnv allow` — direnv evaluates the flake on
    activation and nix evaluates the git tree, so an untracked `flake.nix` is
-   invisible (error: "not tracked by Git"). The user directive: use direnv
-   like other repos, not bare `nix develop`:
+   invisible (error: "not tracked by Git"). In a jj colocated repo
+   `jj file track <paths>` is the staging equivalent; in a plain git clone use
+   `git add`. The user directive: use direnv like other repos, not bare
+   `nix develop`:
 
    ```bash
-   git add -A
+   # or in a plain git clone: git add -A
+   jj file track flake.nix .envrc SECURITY.md CODE_OF_CONDUCT.md
    direnv allow
    eval "$(direnv export bash 2>/dev/null)"
    devenv tasks run devlib:license:install
@@ -113,8 +116,8 @@ an initial semver tag. Distilled from the live bootstrap of
 5. **Land via PR (never direct to main).** Branch `feat/<slug>` (branch-naming
    ruleset), commit with `Co-authored-by: Automata
    <automata@shikanime.studio>` + `Signed-off-by`, push, open PR with
-   `--head <org>:<branch>`. Run `git add -A` only AFTER `.gitignore` exists —
-   the devenv run drops `.direnv/` and `.devenv/` caches plus a
+   `--head <org>:<branch>`. Track files only AFTER `.gitignore` exists — the
+   devenv run drops `.direnv/` and `.devenv/` caches plus a
    `.pre-commit-config.yaml` symlink that must not enter the commit
    (gitignore covers them only if it landed first).
 
@@ -131,8 +134,9 @@ an initial semver tag. Distilled from the live bootstrap of
 7. **Tag.** On merged main:
 
    ```bash
-   git fetch origin main && git tag -a v0.1.0 -m "v0.1.0" origin/main
-   git push origin v0.1.0
+   jj git fetch                           # latest main@origin
+   jj tag set v0.1.0 -r main@origin
+   jj git push --remote origin --tag v0.1.0
    ```
 
    The tag-naming ruleset rejects anything but `^v[0-9]+\.[0-9]+\.[0-9]+$`.

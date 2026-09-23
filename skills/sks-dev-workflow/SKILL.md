@@ -157,7 +157,7 @@ jj new -m "<same description>" -r main@origin   # fresh commit on trunk
 jj restore --from <old-branch> --to @ <file1> <file2> ...  # ONLY intended files
 jj diff -r @ --stat                # MANDATORY: diff vs base, not vs old branch
 jj bookmark set <branch> -r @ --allow-backwards
-git push origin <branch> --force-with-lease
+jj git push --remote origin -b <branch>   # lease semantics: fails on fetch mismatch
 ```
 
 `jj restore --from` copies whatever the OLD commit holds for each listed
@@ -275,8 +275,8 @@ output:
 
 - `nix fmt` (treefmt) reformats the WHOLE tree on every run (~64 unrelated
   files dirty). Scope it (`nix fmt apps/<app>`); after a whole-tree run,
-  restore everything outside your scope before staging — `git add -A` or
-  `git commit --amend` on that tree collapses the PR and GitHub auto-closes
+  restore everything outside your scope before finalizing — a whole-tree
+  stage/amend on that tree collapses the PR and GitHub auto-closes
   the zero-diff head.
 - Repo markdown wraps at 80 columns (rumdl MD013); never skip the markdown
   formatters. GitHub issue/PR bodies are exempt free text — never wrap them,
