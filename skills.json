@@ -140,6 +140,11 @@
       "path": "skills/sks-swarm"
     },
     {
+      "name": "sks-repo",
+      "description": "Use when creating a new shikanime org repo: apply the 5-ruleset protection template, bootstrap the devlib devenv scaffold, and tag v0.1.0.",
+      "path": "skills/sks-repo"
+    },
+    {
       "name": "sks-update",
       "description": "Use when updating skills in the shikanime-labs/skills catalog: curate every skill by default (or named ones only), land through the dev workflow, and resync to local Hermes agents.",
       "path": "skills/sks-update"

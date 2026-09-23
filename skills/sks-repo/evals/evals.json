@@ -1,0 +1,43 @@
+{
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "Applies the 5-ruleset template fetched from an already-protected org repo, scaffolds the devlib devenv flake, generates LICENSE/gitignore/renovate/workflows via devenv tasks through direnv, lands via PR, and tags v0.1.0.",
+      "files": [],
+      "prompt": "Create a new repo called metrics-playground in shikanime-labs with all the standard protections and the usual dev environment.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-repo'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body applies five rulesets including Main branch protections and Enforce tag naming",
+        "Body fetches rulesets by individual id because the list endpoint omits rules",
+        "Body generates LICENSE, gitignore, renovate, and workflows via devlib devenv tasks",
+        "Body lands content through a pull request and creates a semantic version tag"
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "Checks out the existing empty repo and runs the standard bootstrap: ruleset template, devlib scaffold with the devenv.root fix, task generation via direnv, PR landing, v0.1.0 tag.",
+      "files": [],
+      "prompt": "The shikanime-studio repo fade2 exists but is empty. Bootstrap it the usual way.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-repo'",
+        "Body handles an existing-but-empty repo",
+        "Body sets devenv.root (builtins.getEnv \"PWD\") to compensate for devlib replacing devenv.modules",
+        "Body warns against toString ./ because it resolves to the read-only store path",
+        "Body runs tasks through direnv rather than bare nix develop"
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "Routes to the dev workflow skill: the repo is already bootstrapped, so the request is normal feature development, not repo creation.",
+      "files": [],
+      "prompt": "Add a CI fix to shikanime-labs/colemak.",
+      "assertions": [
+        "Body routes routine feature work to sks-dev-workflow instead of running a bootstrap",
+        "Body does not re-apply rulesets to an already-protected repo for this request"
+      ]
+    }
+  ],
+  "skill_name": "sks-repo"
+}
