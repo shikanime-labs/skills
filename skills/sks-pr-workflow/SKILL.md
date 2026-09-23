@@ -58,16 +58,17 @@ Every PR carries ONLY its own change set. Before opening (step 2), verify:
    files from parallel agents or interrupted sessions.
    - jj: `jj diff -r @ --stat` and `jj file list -r @`; anything outside scope
      stays in `@` / a separate commit, never in this PR.
-   - git: `git status --porcelain --untracked-files=all` and
-     `git diff --stat origin/main..HEAD`.
+   - jj: `jj log -r @ --no-graph -T 'if(empty, "", "dirty\n")'` plus
+     `jj diff -r 'main@origin..@' --stat` (git checkouts:
+     `git status --porcelain --untracked-files=all` and
+     `git diff --stat origin/main..HEAD`).
 2. Conflict-free base — the branch descends from the PR base with no conflict
    markers.
    - `BASE=$(gh pr view <N> --json baseRefOid -q .baseRefOid)` (new PR:
      `origin/main`).
-   - `git fetch origin ${BASE:-main} && git merge-base --is-ancestor` \
-     `"${BASE:-origin/main}" HEAD && echo clean || echo CONFLICT`.
-   - Rebase onto base (`jj rebase -r @ -d main` / `git rebase origin/main`);
-     clean rebase = gate pass.
+   - jj: `jj rebase -d main@origin -r @` — a clean rebase = gate pass; a
+     conflict report = real conflict. (git checkouts:
+     `git merge-base --is-ancestor "${BASE:-origin/main}" HEAD`.)
    - `CONFLICTING`/`DIRTY` = real conflict; `BLOCKED` = pending CI, not
      conflict.
 

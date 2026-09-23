@@ -25,16 +25,18 @@ the source-of-truth clone, copy modified files to the operational clone (or push
 
 Reusing branch names across isolation sessions can land commits on the wrong
 revset (`@`), especially when a previous session's working tree was not fully
-cleaned. Before staging/committing: verify
-`git branch --show-current` and `git log --oneline -5` against `origin/main`.
-`git checkout` can silently switch between branches when working trees overlap.
-Re-isolate (`jj reset --hard origin/main`) if the target is wrong.
+cleaned. Before staging/committing: verify the current bookmark
+(`jj log -r @ --no-graph -T 'bookmarks'`) and the recent log
+(`jj log --limit 5`) against `main@origin`. A stale git `checkout` can
+silently switch between branches when working trees overlap.
+Re-isolate (`jj new main@origin` after `jj git fetch`) if the target is wrong.
 
 ## `git checkout <path>` wipes untracked new files
 
 In a jj-repo, `git checkout origin/main -- .` reverts tracked files but also
 destroys any untracked files that were committed in a prior session. Use
-`jj reset --hard origin/main` followed by targeted file restoration instead.
+`jj new main@origin` (after `jj git fetch`) followed by targeted
+`jj restore --from <rev>` file recovery instead.
 
 ## Uncommitted working-copy clutter from prior sessions
 

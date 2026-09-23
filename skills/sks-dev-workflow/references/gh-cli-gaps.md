@@ -62,8 +62,8 @@ second bookmark cannot be attached to the PR later.
 
 ### Remote-ref verification (trust `ls-remote`)
 
-`git push --force-with-lease` can silently no-op when the tracking ref is
-stale. Verify the remote ref actually moved:
+A push can silently no-op when the tracking ref is stale. Verify the remote
+ref actually moved:
 
 ```bash
 git ls-remote origin refs/heads/<branch>     # bare remote SHA

@@ -184,12 +184,13 @@ naming the ceiling and the upgrade path.
   families. After
   any mirror reset or `hermes skills update`, spot-check a local-only skill
   (e.g. `devops/envoy-byod-gateway`) before trusting the catalog.
-- **Curate in a worktree, never `cp` over it.** When the user's tree is dirty,
-  check the PR commit out in a fresh `git worktree` and edit there. Never copy
-  the user's on-disk (possibly already-edited) file over the worktree's
-  pristine PR file — that clobbers the base and produces a bogus diff. If you
-  must move state, `git stash` the user's files, then `git checkout --` in the
-  worktree to restore its pristine base before porting fixes.
+- **Curate in a workspace, never `cp` over it.** When the user's tree is dirty,
+  check the PR commit out in a fresh `jj workspace add ../<name> -r <rev>` (git
+  checkouts: `git worktree`) and edit there. Never copy the user's on-disk
+  (possibly already-edited) file over the workspace's pristine PR file — that
+  clobbers the base and produces a bogus diff. If you must move state, abandon
+  the workspace's working-copy change and `jj edit <rev>` to re-anchor it on
+  the pristine base before porting fixes.
 
 ## Verification
 
