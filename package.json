@@ -130,6 +130,10 @@
         "path": "skills/sks-swarm"
       },
       {
+        "name": "sks-repo",
+        "path": "skills/sks-repo"
+      },
+      {
         "name": "sks-update",
         "path": "skills/sks-update"
       }
