@@ -110,3 +110,11 @@ per-skill references loaded on demand.
 
 _Each skill must include a valid `SKILL.md` with YAML frontmatter. Test against
 the target agent before submitting_
+
+## Environment
+
+This repository ships a `.envrc` for direnv. Run `direnv allow` once after
+cloning; direnv then loads the Nix flake dev shell automatically on every
+directory change (`.envrc` runs
+`use flake . --accept-flake-config --no-pure-eval`). Without direnv, enter
+the same shell manually with `nix develop`.
