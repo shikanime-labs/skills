@@ -187,14 +187,14 @@ EOF
 ## Post-merge
 
 1. Verify: `gh pr view <M> --repo <org>/<repo> --json state`.
-2. **Manual user acceptance (deployment gate).** A merged PR is a claim, not a
-   verified outcome. Once the change is deployed — resynced for agent/skill
-   repos, applied for infra (Flux reconcile / `nixos-rebuild switch` for
-   machines-class repos) — surface the deployed state and ask the user to
-   validate it behaves as asked. Do NOT close the issue or report the landing
-   complete on merge alone; only the user confirms the running change. If the
-   user rejects, treat it as a reported defect: fix via a new PR, re-deploy,
-   and re-request acceptance.
+2. **Run the acceptance gate (deployment gate).** A merged PR is a claim, not a
+   verified outcome — the gate runs, it is not assumed. Deploy first: resync
+   for agent/skill repos, apply for infra (Flux reconcile /
+   `nixos-rebuild switch` for machines-class repos). Then surface the deployed
+   state and ask the user to validate it behaves as asked. Do NOT close the
+   issue or report the landing complete on merge alone; only the user confirms
+   the running change. If the user rejects, treat it as a reported defect: fix
+   via a new PR, re-deploy, and re-request acceptance.
 3. Close the issue **deliberately**: confirm tasklist N/N and user acceptance
    (step 2), then `gh issue close <N> --repo <org>/<repo> -c "Discharged by
    <PR URL>"`.
