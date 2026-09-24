@@ -20,6 +20,15 @@ are org-neutral; organization-specific conventions load on demand from
 per-skill references (`references/org-conventions.md` for shikanime,
 `references/cloud-pi-native.md` for cloud-pi-native console work).
 
+## Version Control
+
+Use jj (Jujutsu), not git, for all local work: clone with `git clone` then
+`jj git init --git-repo .`, develop on bookmarks (`jj new main@origin -m
+"…"`), push with `jj git push -b <branch>`. Fall back to plain git only
+where jj is refused by the server (signed annotated tags trip pre_receive
+rules — `git tag -s` + `git push origin vX.Y.Z`). Fetch before starting:
+`jj git fetch` (stale clones produce empty-diff PRs).
+
 ## Commit Style
 
 - Plain-text capitalized title, no conventional-commit prefix.
