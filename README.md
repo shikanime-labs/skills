@@ -123,6 +123,7 @@ specification, compatible with the
 | `sks-issue-triage` | Use when triaging an existing shikanime org issue: assign labels, assignee, milestone, and project; close with rati... |
 | `sks-issue-workflow` | Use when you need the single entry point for the shikanime issue side: create, refine, and triage the issue before... |
 | `sks-land` | Use when landing a shikanime org PR after reconciliation (sks-pr-resolve) and review approval gates pass; closes th... |
+| `sks-fastlane` | Use when a hotfix, small update, or insignificant chore is too trivial for the full gate train: merge its PR without human review once CI is green. |
 | `nixpkgs-pr-review` | Use when reviewing an upstream NixOS/nixpkgs pull request: build the changed packages with nixpkgs-review and check... |
 | `sks-pr` | Use when opening a PR in shikanime-labs or shikanime-studio: push to origin, --head org:branch, plain-English title... |
 | `sks-pr-resolve` | Use when resolving a shikanime PR's review conversations, checking the DoD ledger, and reconciling before merge (no... |

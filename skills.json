@@ -55,6 +55,11 @@
       "path": "skills/sks-doc"
     },
     {
+      "name": "sks-fastlane",
+      "description": "Use when a hotfix, small update, or insignificant chore is too trivial for the full gate train: merge its PR without human review once CI is green.",
+      "path": "skills/sks-fastlane"
+    },
+    {
       "name": "sks-gc",
       "description": "Use when reclaiming resources leaked by shikanime jj workflows: dangling bookmarks, skill-created jj workspaces, and leftover working-copy dirs from sks-async/sks-dev-workflow.",
       "path": "skills/sks-gc"

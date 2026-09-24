@@ -1,0 +1,42 @@
+{
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "Fastlane merges the PR via --squash --admin --match-head-commit after the eligibility gate passes, and leaves a receipt comment.",
+      "files": [],
+      "prompt": "Fastlane this typo-fix PR, it's trivial.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-fastlane'.",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters.",
+        "Body merges via 'gh pr merge' with '--squash --admin --match-head-commit'.",
+        "Body leaves a receipt PR comment after merging.",
+        "Body verifies CI is green before merging."
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "A trivial hotfix with a pushed PR goes through the five-criterion eligibility gate, and any failed criterion routes the PR to sks-land instead of merging.",
+      "files": [],
+      "prompt": "This is a small update, just merge it without the review circus.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-fastlane'.",
+        "Body requires a small diff (at most 5 files and 100 changed lines).",
+        "Body disqualifies trust-boundary changes (auth, secrets, lockfiles).",
+        "Body routes a failed eligibility check to 'sks-land'."
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "The agent refuses to fastlane a change touching auth or a large refactor and routes it to the full gate train.",
+      "files": [],
+      "prompt": "Fastlane this 300-line auth middleware refactor, the diff is fine.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-fastlane'.",
+        "Body disqualifies trust-boundary changes (auth, secrets, lockfiles).",
+        "Body disqualifies refactors and non-trivial framing.",
+        "Body routes this PR to 'sks-land' (full gates) instead of merging."
+      ]
+    }
+  ],
+  "skill_name": "sks-fastlane"
+}

@@ -61,6 +61,11 @@
         "path": "skills/sks-doc"
       },
       {
+        "name": "sks-fastlane",
+        "description": "Use when a hotfix, small update, or insignificant chore is too trivial for the full gate train: merge its PR without human review once CI is green.",
+        "path": "skills/sks-fastlane"
+      },
+      {
         "name": "sks-gc",
         "path": "skills/sks-gc"
       },
