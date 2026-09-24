@@ -60,11 +60,15 @@ an initial semver tag. Distilled from the live bootstrap of
      `require_code_owner_review`, `require_last_push_approval`,
      `require_extra_approval_for_unattributed_changes`, thread resolution,
      squash/rebase only, 0 required approvals.
-   - `Enforce branch naming` (branch, `~ALL` minus main/master/release-*):
-     `^(main|(feat|fix|chore|docs|refactor|test|ci|build|perf|renovate)/[a-z0-9][a-z0-9._/-]*|release-[0-9]+\.[0-9]+)$`.
+   - `Enforce branch naming` (branch, `refs/heads/*`, exclude
+     main/master/release-*):
+     `^(main|(feat|fix|chore|docs|refactor|test|ci|build|perf|renovate)/
+     [a-z0-9][a-z0-9._/-]*|release-[0-9]+\.[0-9]+)$`.
      The regex is long; fetch the exact pattern from the template repo
-     rather than retyping it.
-   - `Enforce tag naming` (tag, `~ALL`): `^v[0-9]+\.[0-9]+\.[0-9]+$`.
+     rather than retyping it. Scope includes to `refs/heads/*` — see
+     Gotchas (`~ALL` blocks tag pushes).
+   - `Enforce tag naming` (tag, `refs/tags/*`):
+     `^v[0-9]+\.[0-9]+\.[0-9]+$`.
    - `Copilot review for default branch` (branch, `~DEFAULT_BRANCH`):
      `deletion` + `non_fast_forward` + `copilot_code_review`.
 
@@ -131,18 +135,41 @@ an initial semver tag. Distilled from the live bootstrap of
    DELETE+POST), merge, then restore the exact template ruleset and
    byte-verify.
 
-7. **Tag.** On merged main:
+7. **Tag.** On merged main, push a signed annotated tag via git — jj tag
+   pushes get declined by the rules (pre_receive violations):
 
    ```bash
-   jj git fetch                           # latest main@origin
-   jj tag set v0.1.0 -r main@origin
-   jj git push --remote origin --tag v0.1.0
+   git fetch origin main
+   git tag -s v0.1.0 -m v0.1.0 origin/main
+   git push origin v0.1.0
    ```
 
    The tag-naming ruleset rejects anything but `^v[0-9]+\.[0-9]+\.[0-9]+$`.
+   If a tag name was ever rejected mid-push, GitHub can hold a phantom
+   "immutable release" server-side that permanently blocks that exact tag
+   (ruleset removal does not clear it) — skip to the next patch version
+   instead of retrying.
 
 ## Gotchas
 
+- **`~ALL` on branch-name rulesets pattern-matches tags as branches.** A
+  branch-naming ruleset targeting `~ALL` makes every tag push fail with
+  GH013 "Cannot create ref due to creations being restricted", because tag
+  names like `v0.1.0` don't match the branch regex. `exclude:
+  ["refs/tags/*"]` is rejected ("Invalid target patterns"); the fix is to
+  scope includes to `refs/heads/*` and, on the tag ruleset, `refs/tags/*`.
+  When replicating from a template repo, rewrite these conditions rather
+  than copying them verbatim.
+- **Ruleset APIs need a public repo on the free plan.** Both repo-level and
+  org-level ruleset endpoints 403 on private repos (org rulesets need
+  Team). Bootstrap order: create the repo public, or defer rulesets until
+  visibility flips.
+- **devlib `*:install` tasks may not exist on the minimal consumer** —
+  `devenv tasks run devlib:license:install` etc. return TaskNotFound, and
+  `devenv tasks` has no `list` subcommand to probe names. Fallback: copy
+  the generated artifacts (LICENSE, .gitignore, renovate.json, workflows,
+  .pre-commit-config.yaml) from the reference repo; they are deterministic
+  outputs.
 - **Empty repo default-branch deadlock.** An empty repo has no `main`; the
   first pushed branch becomes the default branch and immediately falls under
   the default-branch rulesets (non-fast-forward, deletion) — it can then be
