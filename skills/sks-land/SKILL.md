@@ -49,24 +49,25 @@ re-read the ledger (unchecked box blocks merge):
 gh issue view <N> --repo <org>/<repo> --json body --jq .body
 ```
 
-**Gate 2 — `yorha-operator` approval (mandatory, non-bypassable).** Before
-any other review consideration, the merge is blocked until `yorha-operator`
-has an APPROVED review on the current head commit — a stale approval after a
-new push does not count, and `--admin` may bypass branch protection but never
-this gate. CI green: `gh pr checks <M> --repo <org>/<repo>`. Verify the
-operator approval against the head SHA (REST reviews carry `commit_id`):
+**Gate 2 — mandatory approver approval (non-bypassable).** The org designates
+one approver account (`references/org-conventions.md`); before any other
+review consideration, the merge is blocked until that account has an APPROVED
+review on the current head commit — a stale approval after a new push does not
+count, and `--admin` may bypass branch protection but never this gate. CI
+green: `gh pr checks <M> --repo <org>/<repo>`. Verify the approval against the
+head SHA (REST reviews carry `commit_id`):
 
 ```bash
-R=<org>/<repo>; M=<PR>
+R=<org>/<repo>; M=<PR>; APPROVER=<approver login>  # references/org-conventions.md
 HEAD=$(gh pr view "$M" -R "$R" --json headRefOid -q .headRefOid)
 gh api "repos/$R/pulls/$M/reviews" --paginate \
-  --jq 'map(select(.user.login == "yorha-operator" and .state == "APPROVED"
+  --jq 'map(select(.user.login == "'"$APPROVER"'" and .state == "APPROVED"
                  and .commit_id == "'"$HEAD"'")) | length > 0'
 ```
 
-`False` → `BLOCKED: yorha-operator approval required` — request it
-(`gh pr edit <M> -R "$R" --add-reviewer yorha-operator`) or obtain it
-verbally, then re-verify on the new head. In addition, `sks-pr-review`
+`False` → `BLOCKED: <approver> approval required` — request it
+(`gh pr edit <M> -R "$R" --add-reviewer "$APPROVER"`) or obtain it verbally,
+then re-verify on the new head. In addition, `sks-pr-review`
 approval applies as before: approved on current head; re-review if new
 commits landed.
 
@@ -77,8 +78,8 @@ gh pr view <M> --repo <org>/<repo> --json reviews,headRefOid \
 
 Agent review is pre-flight; **a human approving review is the gate.** Where
 branch protection blocks self-approval (repos listed in
-`references/org-conventions.md`), a verbal `lgtm` from the operator (the user
-operating `yorha-operator`) satisfies Gate 2 — land via
+`references/org-conventions.md`), a verbal `lgtm` from the operator (the human
+who owns the approver account) satisfies Gate 2 — land via
 `gh pr merge --squash --admin` (see Merge procedure). `--admin` is what
 bypasses the protection; no separate human review is then required.
 
@@ -243,7 +244,8 @@ EOF
 ## Verification Checklist
 
 - [ ] Issue tasklist N/N checked with evidence.
-- [ ] `yorha-operator` approval on head (non-bypassable); `sks-pr-review`
+- [ ] Mandatory approver approval on head (non-bypassable;
+      `references/org-conventions.md`); `sks-pr-review`
       approval; human review where protection requires.
 - [ ] All conversations reconciled (`sks-pr-resolve`).
 - [ ] `sks-commit` + `sks-pr` conventions verified (subject imperative, PR title
