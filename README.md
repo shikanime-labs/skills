@@ -108,6 +108,7 @@ specification, compatible with the
 | --- | --- |
 | `sks-adversarial` | Use when probing uncertain results in a disposable sandbox — large investigation, development, debugging, testing,... |
 | `sks-async` | Use when splitting multi-unit work into parallel, isolated jj workspaces (depth-tree fan-out) and landing as indepe... |
+| `sks-bulk` | Use when auditing or bulk-changing many shikanime-labs / shikanime-studio repos at once: enumerate targets, drive ... |
 | `sks-commit` | Use when committing in shikanime-labs or shikanime-studio repos: plain-English imperative titles and repo-enforced... |
 | `sks-converge` | Use when jj conflicts or divergent changes block a shikanime repo after a tree move: resolve conflicted revisions a... |
 | `sks-curate` | Use when updating, improving, compressing, or token-optimizing a skill in the shikanime-labs/skills catalog: rework... |

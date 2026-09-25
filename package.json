@@ -28,6 +28,10 @@
         "path": "skills/sks-async"
       },
       {
+        "name": "sks-bulk",
+        "path": "skills/sks-bulk"
+      },
+      {
         "name": "sks-commit",
         "path": "skills/sks-commit"
       },

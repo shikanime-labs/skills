@@ -15,6 +15,11 @@
       "path": "skills/sks-async"
     },
     {
+      "name": "sks-bulk",
+      "description": "Use when auditing or bulk-changing many shikanime-labs / shikanime-studio repos at once: enumerate targets, drive the batch from a plan file, and verify every result.",
+      "path": "skills/sks-bulk"
+    },
+    {
       "name": "sks-commit",
       "description": "Use when committing in shikanime-labs or shikanime-studio repos: plain-English imperative titles and repo-enforced hooks (gitlint, DCO) win.",
       "path": "skills/sks-commit"

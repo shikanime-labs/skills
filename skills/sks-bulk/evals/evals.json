@@ -1,0 +1,44 @@
+{
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "Enumerates the org's repos with the archive/empty filters in the gh query, probes each target from the Contents API tree, and drives the loop from a tab-separated plan file rather than xargs.",
+      "files": [],
+      "prompt": "Which of our repos are missing the standard security file? Check every shikanime-labs repo.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-bulk'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body requires filtering archived and empty repos in the enumeration query",
+        "Body probes gaps from the Contents API tree and rejects the community profile endpoint",
+        "Body drives the loop from a tab-separated plan file and names the xargs whitespace trap"
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "Mutates one throwaway clone per repo on a branch, never the default branch, and verifies every push and merge by re-querying GitHub instead of trusting the command's own output.",
+      "files": [],
+      "prompt": "Backport the workflow-parse fix to every repo in the org that has the broken workflow.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-bulk'",
+        "Body pushes branches and forbids pushing to the default branch",
+        "Body verifies the batch by re-querying every target and reporting N/M with named failures",
+        "Body states that a push command's own success line proves nothing",
+        "Body mentions verifying merges with 'gh pr view' rather than the merge command output",
+        "Body requires classifying pre-existing CI red before landing a revived workflow"
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "The skill keeps its own name and scope and routes single-repo work elsewhere instead of expanding into the one-repo dev loop.",
+      "files": [],
+      "prompt": "Open a PR in shikanime-labs/dashboards that bumps one dependency.",
+      "assertions": [
+        "Frontmatter 'name' equals the directory basename 'sks-bulk'",
+        "Body routes single-repo work to another skill rather than covering it",
+        "Body does not instruct pushing to 'main' for a single-repo change"
+      ]
+    }
+  ],
+  "skill_name": "sks-bulk"
+}
