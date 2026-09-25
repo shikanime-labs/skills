@@ -27,7 +27,7 @@
         "license field is 'Apache-2.0'",
         "Body contains at least one '##' heading",
         "Body exposes '## Pre-landing gates (must already hold)'",
-        "Body requires yorha-operator approval on the current head before merge and forbids bypassing that gate with --admin",
+        "Body requires the org's mandatory approver approval on the current head before merge and forbids bypassing that gate with --admin",
         "Body lands every PR via gh pr merge --squash (stacked ones base-first)"
       ]
     },
@@ -94,7 +94,7 @@
         "Frontmatter 'name' equals 'sks-land'.",
         "A 'references/cloud-pi-native.md' file exists and states that in cloud-pi-native repos the commit carries a conventional prefix and the PR title/body are French with 'Refs: \u003c#N\u003e' present.",
         "That references file names SonarQube Quality Gate as the org CI check.",
-        "Body still requires yorha-operator approval on the current head before merge."
+        "Body still requires mandatory approver approval on the current head before merge."
       ]
     }
   ],
