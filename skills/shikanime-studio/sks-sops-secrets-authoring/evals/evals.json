@@ -1,0 +1,89 @@
+{
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "Edits a sops-encrypted file through sops and verifies it still decrypts and carries the right recipients; routes manifests vs machines correctly.",
+      "files": [],
+      "prompt": "I need to change a secret value in machines/secrets/telsha.enc.yaml — what's the right way to edit it so the file stays valid and the target host can still read it?",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-sops-secrets-authoring'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body states repo-enforced hooks/formatters must not touch .enc files",
+        "Body shows a 'sops' edit path (sops <file> or -e/-d pipeline), not a plain-editor edit of the .enc file",
+        "Body requires verifying the file still decrypts after the edit with sops --decrypt",
+        "Body checks the sops recipient set (sops_age / sops_pgp / sops_kms) after editing",
+        "Body treats .enc.env and .enc.conf files as distinct from .enc.yaml and warns against editing them like YAML",
+        "Body mentions sops-nix plumbing: sops.defaultSopsFile per host and sops.templates.*",
+        "Body delegates manifests-specific detail (recipient keys, devenv wrapper trap, INI store, formatForPath) to sks-dev-workflow/references/sops-manifests.md"
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "Refuses to commit a plaintext secret file and instead edits through sops; flags nix fmt as a corruption risk on .enc files.",
+      "files": [],
+      "prompt": "I decrypted telsha.enc.yaml to a plaintext file on disk, edited it in my editor, and now I want to commit the plaintext version and delete the .enc.yaml. Fix my plan.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-sops-secrets-authoring'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body states that editing a plaintext copy and committing it is wrong, and that edits must go through sops so only the encrypted file is on disk",
+        "Body states nix fmt / treefmt must not be run across secrets/*.enc.* and would corrupt the file",
+        "Body mentions verifying no accidental plaintext secret is on disk (git status --porcelain secrets/)",
+        "Body states deleting the .enc.yaml is not the right move; the encrypted file is the artifact to keep"
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "Adds a recipient safely and warns that removing a recipient from a file still consumed by a live host is an availability bug; for manifests uses the three fleet age recipients and the unwrapped sops binary.",
+      "files": [],
+      "prompt": "A new operator needs to read the shared machine.enc.yaml. How do I give them access without breaking the hosts that already consume it?",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-sops-secrets-authoring'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body says adding a recipient is the safe direction and the new recipient set must be a superset for every live consumer",
+        "Body warns that removing a recipient from a file still in use by another host is an availability bug, not cleanup",
+        "Body mentions age recipients (AGE-SECRET-KEY public keys / sops_age metadata) as the mechanism",
+        "Body checks the recipient set after the edit with sops and grep on sops_age or sops_*",
+        "Body distinguishes the machines per-host recipient model from the manifests three-fleet-recipient model"
+      ]
+    },
+    {
+      "id": 4,
+      "expected_output": "The skill stays loadable and self-identifies as sks-sops-secrets-authoring; a request to build a Nix package or review code is out of scope.",
+      "files": [],
+      "prompt": "Build me a Nix package that wraps sops and then review my rust code for safety issues.",
+      "assertions": [
+        "Frontmatter parses as YAML with a top-level 'name' key",
+        "Frontmatter 'name' equals the directory basename 'sks-sops-secrets-authoring'"
+      ]
+    },
+    {
+      "id": 5,
+      "expected_output": "The skill does not claim to be a cloud-pi-native cpn-* skill; it stays scoped to shikanime sops editing.",
+      "files": [],
+      "prompt": "Use sks-sops-secrets-authoring to open and merge a PR in the cloud-pi-native console repo the cpn-pr way with French artifacts.",
+      "assertions": [
+        "Description does not contain substring cpn-",
+        "Frontmatter 'name' equals the directory basename 'sks-sops-secrets-authoring'"
+      ]
+    },
+    {
+      "id": 6,
+      "expected_output": "The skill does not absorb the full PR/landing lifecycle; it stays scoped to sops editing and refers to sks-commit/sks-dev-workflow/sks-pr/sks-delegate for the rest.",
+      "files": [],
+      "prompt": "Use sks-sops-secrets-authoring to commit and land my secret edit with the full PR workflow, gitlint hooks, and squash merge.",
+      "assertions": [
+        "Body refers to sks-commit for commit style (or mentions the Automata co-author trailer)",
+        "Body states it does not itself cover the full PR/landing lifecycle and points to sks-dev-workflow, sks-pr, or sks-delegate for that",
+        "Frontmatter parses as YAML with a top-level 'name' key",
+        "Frontmatter 'name' equals the directory basename 'sks-sops-secrets-authoring'"
+      ]
+    }
+  ],
+  "skill_name": "sks-sops-secrets-authoring"
+}

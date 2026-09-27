@@ -1,0 +1,84 @@
+{
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "Places a new workload in the right tree with one-kind-per-file naming, sorted resources list, pod-port probes, and the two-key app.kubernetes.io labels; refuses to add a redundant VPA or a probe on a macvlan host.",
+      "files": [],
+      "prompt": "I'm adding a StatefulSet for a new app called 'minidlna' to the manifests repo. Write the base files the shikanime way — which files, what names, what labels, what probes, where does the PVC go?",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-manifest-authoring'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body names the base directory shape apps/<app>/base with one kind per file named by short resource name (sts.yaml svc.yaml httproute.yaml vpa.yaml pvc.yaml)",
+        "Body states resources: lists are sorted alphabetically",
+        "Body states the two-key app.kubernetes.io labels (instance + name) on workload and service selector",
+        "Body states probes target a named container port (tcpSocket.port), never a macvlan/br1 host address",
+        "Body states VPA is already present on every app base and a second one is drift",
+        "Body states base is flavor-agnostic and labels that differ per cluster/hostname belong in the overlay"
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "Refuses to hand-edit generated YAML to sort it, refuses to add a pass-through overlay that only re-lists the same resources, and refuses to add a ConfigMap that duplicates already-available env.",
+      "files": [],
+      "prompt": "My flake renders a kustomization.yaml and the resources list is out of order — should I hand-edit the rendered YAML to sort it? Also, should I add a pass-through overlay that lists the same resources in case we need cluster-specific patches later, and a ConfigMap so the app can read its config from files too?",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-manifest-authoring'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body states generated YAML should not be hand-edited to fix sorting; the generating source (Nix or the manifest source) should be fixed and re-rendered",
+        "Body states a pass-through overlay that only re-lists the same resources is a future merge conflict and should be deleted",
+        "Body states a ConfigMap/Secret that duplicates what the app already reads from env or a mounted secret is a second unnecessary delivery path",
+        "Body states kustomize build is the verification, not a visual diff"
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "Routes sops-encrypted secret handling to sks-sops-secrets-authoring and refuses to commit decrypted secret outputs.",
+      "files": [],
+      "prompt": "I need to add a secretGenerator entry for a new app's webhook token and also edit the .enc.env file. What's the right way to do both in the manifests repo?",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-manifest-authoring'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body states editing .enc.* files, encrypted_regex, and sops recipients is sks-sops-secrets-authoring's territory",
+        "Body states the repo stays open-source with per-app encrypted_regex rules in flake.nix, and secret files live in a subfolder named after the secret",
+        "Body states never to commit decrypted outputs — change the encrypted source instead"
+      ]
+    },
+    {
+      "id": 4,
+      "expected_output": "The skill stays loadable and self-identifies as sks-manifest-authoring; a request to author Nix or edit sops secrets is routed elsewhere.",
+      "files": [],
+      "prompt": "Use sks-manifest-authoring to write a Nix flake output that builds a NixOS configuration and then encrypt the ssh keys with sops.",
+      "assertions": [
+        "Frontmatter parses as YAML with a top-level 'name' key",
+        "Frontmatter 'name' equals the directory basename 'sks-manifest-authoring'"
+      ]
+    },
+    {
+      "id": 5,
+      "expected_output": "The skill does not claim to be a cloud-pi-native cpn-* skill; it stays scoped to shikanime manifests.",
+      "files": [],
+      "prompt": "Use sks-manifest-authoring to write the French console K8s manifests the cpn way with conventional commits.",
+      "assertions": [
+        "Description does not contain substring cpn-",
+        "Frontmatter 'name' equals the directory basename 'sks-manifest-authoring'"
+      ]
+    },
+    {
+      "id": 6,
+      "expected_output": "The skill stays loadable and self-identifies as sks-manifest-authoring; the incoherent malformed request is out of scope.",
+      "files": [],
+      "prompt": "asdfgh !!#$% write me the yaml that does the stuff for the k8s thingy pls now",
+      "assertions": [
+        "Frontmatter parses as YAML with a top-level 'name' key",
+        "Frontmatter 'name' equals the directory basename 'sks-manifest-authoring'"
+      ]
+    }
+  ],
+  "skill_name": "sks-manifest-authoring"
+}

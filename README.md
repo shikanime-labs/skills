@@ -108,6 +108,7 @@ specification, compatible with the
 | --- | --- |
 | `sks-adversarial` | Use when probing uncertain results in a disposable sandbox — large investigation, development, debugging, testing,... |
 | `sks-async` | Use when splitting multi-unit work into parallel, isolated jj workspaces (depth-tree fan-out) and landing as indepe... |
+| `sks-bulk` | Use when auditing or bulk-changing many shikanime-labs / shikanime-studio repos at once: enumerate targets, drive ... |
 | `sks-commit` | Use when committing in shikanime-labs or shikanime-studio repos: plain-English imperative titles and repo-enforced... |
 | `sks-converge` | Use when jj conflicts or divergent changes block a shikanime repo after a tree move: resolve conflicted revisions a... |
 | `sks-curate` | Use when updating, improving, compressing, or token-optimizing a skill in the shikanime-labs/skills catalog: rework... |
@@ -132,6 +133,9 @@ specification, compatible with the
 | `sks-pr-workflow` | Use when you need the single entry point for the shikanime PR side: ensure the issue exists, open, triage, and land... |
 | `cpn-release-patch` | Use when backporting the commits between two release tags onto a hotfix branch in <org>/<repo>: find the patch mile... |
 | `sks-restack` | Use when rebasing a shikanime jj stack onto moved main leaves conflicts: restack, then resolve each conflicted revi... |
+| `sks-manifest-authoring` | Use when authoring or editing Kubernetes manifests in a shikanime repo: one-kind-per-file naming, sorted resources lists, base/overlays shape, labels, pod-port probes, YAGNI on new abstractions |
+| `sks-nix-authoring` | Use when authoring or editing Nix in a shikanime repo: nixfmt-sorted style, single-use let bindings, no explanatory comments, YAGNI on new options |
+| `sks-sops-secrets-authoring` | Use when editing sops-encrypted files in a shikanime repo: decrypt-and-edit workflow, re-encryption guards, and sops-nix secret plumbing |
 | `sks-skill-authoring` | Use when creating a brand-new skill for the shikanime-labs/skills catalog: grounded body, evals, manifests, and shi... |
 | `sks-swarm` | Use when distributing one task across a cluster of agents over A2A — route by capability need, machine resource, an... |
 | `sks-repo` | Use when creating a new shikanime org repo: apply the 5-ruleset protection template, bootstrap the devlib devenv scaffold, and tag v0.1.0. |
