@@ -140,11 +140,6 @@
       "path": "skills/shikanime-studio/sks-restack"
     },
     {
-      "name": "sks-manifest-authoring",
-      "description": "Use when authoring or editing Kubernetes manifests in a shikanime repo: one-kind-per-file naming, sorted resources lists, base/overlays shape, labels, pod-port probes, YAGNI on new abstractions.",
-      "path": "skills/shikanime-studio/sks-manifest-authoring"
-    },
-    {
       "name": "sks-nix-authoring",
       "description": "Use when authoring or editing Nix in a shikanime repo: nixfmt-sorted style, single-use let bindings, no explanatory comments, YAGNI on new options.",
       "path": "skills/shikanime-studio/sks-nix-authoring"

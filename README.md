@@ -133,7 +133,6 @@ specification, compatible with the
 | `sks-pr-workflow` | Use when you need the single entry point for the shikanime PR side: ensure the issue exists, open, triage, and land... |
 | `cpn-release-patch` | Use when backporting the commits between two release tags onto a hotfix branch in <org>/<repo>: find the patch mile... |
 | `sks-restack` | Use when rebasing a shikanime jj stack onto moved main leaves conflicts: restack, then resolve each conflicted revi... |
-| `sks-manifest-authoring` | Use when authoring or editing Kubernetes manifests in a shikanime repo: one-kind-per-file naming, sorted resources lists, base/overlays shape, labels, pod-port probes, YAGNI on new abstractions |
 | `sks-nix-authoring` | Use when authoring or editing Nix in a shikanime repo: nixfmt-sorted style, single-use let bindings, no explanatory comments, YAGNI on new options |
 | `sks-sops-secrets-authoring` | Use when editing sops-encrypted files in a shikanime repo: decrypt-and-edit workflow, re-encryption guards, and sops-nix secret plumbing |
 | `sks-skill-authoring` | Use when creating a brand-new skill for the shikanime-labs/skills catalog: grounded body, evals, manifests, and shi... |
