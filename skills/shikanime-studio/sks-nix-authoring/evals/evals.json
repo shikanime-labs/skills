@@ -1,0 +1,84 @@
+{
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "Author Nix with sorted keys, inline single-use let bindings, no explanatory comments, and nix fmt applied — and skips adding an option the defaults already cover.",
+      "files": [],
+      "prompt": "I need to add a new option to a machines profile module and wire it into the flake. Write it the shikanime way.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-nix-authoring'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body states nix fmt owns formatting and the file must be fmt-checked after editing",
+        "Body states sorted keys / record-literal style is the house norm (dotted assignment for one leaf, record literal with sorted keys for two or more)",
+        "Body states single-use let bindings should be inlined unless the name carries meaning the expression lacks",
+        "Body states explanatory comments inside .nix are out of fashion and a comment restating the code should be deleted",
+        "Body states a new option should only be added when a real non-default consumer exists, and defaults that mirror upstream should not be restated",
+        "Body refers to sks-dev-workflow for the nix fmt whole-tree caveat (do not run bare nix fmt across non-Nix files / .enc.*)"
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "Refuses to add a wrapper module or package wrap that only restates a default, and refuses to add an option with no live non-default consumer.",
+      "files": [],
+      "prompt": "I want to add a wrapper module that re-exposes another module's option with the same default, and a new config option in case someone wants it later. Is that the right call?",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-nix-authoring'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body states a wrapper module that re-exposes another module's option with the same default adds surface and zero behavior and should be removed",
+        "Body states a package wrap that only sets the default flags upstream already sets should use upstream directly",
+        "Body states an option added 'in case we need it later' is premature and should not be added",
+        "Body states defaults that mirror upstream default should not be restated as local defaults"
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "Distinguishes the Nix side from the generated-YAML side: sorting the Nix is this skill, sorting the manifests the manifests skill owns, and the generated YAML is not hand-edited to fix sorting.",
+      "files": [],
+      "prompt": "My flake generates a kustomization.yaml and the resources list is out of order — should I hand-edit the YAML to sort it?",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-nix-authoring'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body states the Nix side (formatting, sorting, YAGNI) is this skill and the generated YAML/kube structure side is a different skill",
+        "Body states the generated YAML should not be hand-edited to fix sorting; the Nix that produces it should be fixed and re-rendered",
+        "Body refers to sks-manifest-authoring for the kube/manifest structure side"
+      ]
+    },
+    {
+      "id": 4,
+      "expected_output": "The skill stays loadable and self-identifies as sks-nix-authoring; a request to author Kubernetes manifests or edit sops secrets is routed elsewhere.",
+      "files": [],
+      "prompt": "Use sks-nix-authoring to write a sorted Deployment YAML and encrypt its imagePullSecret with sops.",
+      "assertions": [
+        "Frontmatter parses as YAML with a top-level 'name' key",
+        "Frontmatter 'name' equals the directory basename 'sks-nix-authoring'"
+      ]
+    },
+    {
+      "id": 5,
+      "expected_output": "The skill does not claim to be a cloud-pi-native cpn-* skill; it stays scoped to shikanime Nix authoring.",
+      "files": [],
+      "prompt": "Use sks-nix-authoring to write a Nix package for the cloud-pi-native console the cpn way.",
+      "assertions": [
+        "Description does not contain substring cpn-",
+        "Frontmatter 'name' equals the directory basename 'sks-nix-authoring'"
+      ]
+    },
+    {
+      "id": 6,
+      "expected_output": "The skill stays loadable and self-identifies as sks-nix-authoring; the incoherent malformed request is out of scope.",
+      "files": [],
+      "prompt": "asdfgh !!#$% write me the nix that does the stuff for the flake thingy pls now",
+      "assertions": [
+        "Frontmatter parses as YAML with a top-level 'name' key",
+        "Frontmatter 'name' equals the directory basename 'sks-nix-authoring'"
+      ]
+    }
+  ],
+  "skill_name": "sks-nix-authoring"
+}

@@ -150,7 +150,7 @@ an initial semver tag. Distilled from the live bootstrap of
    (ruleset removal does not clear it) — skip to the next patch version
    instead of retrying.
 
-## Gotchas
+## Pitfalls
 
 - **`~ALL` on branch-name rulesets pattern-matches tags as branches.** A
   branch-naming ruleset targeting `~ALL` makes every tag push fail with

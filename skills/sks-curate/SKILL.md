@@ -133,7 +133,7 @@ Compression is bounded by clarity: a one-line answer the reader cannot act on
 is not cheaper, it is broken. When a choice cuts a real corner, leave a note
 naming the ceiling and the upgrade path.
 
-## Gotchas
+## Pitfalls
 
 - **Description drift.** After a big rework the description may no longer
   match the body; keep it a 200-char imperative that names the real triggers,

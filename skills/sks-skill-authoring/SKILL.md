@@ -109,7 +109,7 @@ fails before review.
 6. **Validate locally** (see Verification), then commit per `sks-commit` and
    open the PR per `sks-pr-workflow`.
 
-## Gotchas
+## Pitfalls
 
 - **Non-imperative description never fires.** The description is a trigger;
   "Authoring tools for skills" is decorative. "Use when creating …" routes.
