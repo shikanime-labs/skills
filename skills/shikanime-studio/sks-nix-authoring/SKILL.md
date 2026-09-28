@@ -184,7 +184,7 @@ grep -rn "<new-option>" .          # at least one non-default consumer, or drop 
 jj diff --git | grep -E '^diff --git a/.*\.nix'
 ```
 
-## Gotchas
+## Pitfalls
 
 - **`nix fmt` is whole-tree by default in these flakes.** A bare `nix fmt` in a
   repo that also carries non-Nix files rewrites everything treefmt owns and can

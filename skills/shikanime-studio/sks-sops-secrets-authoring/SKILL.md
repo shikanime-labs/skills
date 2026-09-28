@@ -203,7 +203,7 @@ In the machines repo, hosts consume secrets through `sops-nix`:
    Exclude `secrets/*.enc.*` from formatting. Never run a formatter across a
    checkout that has a dirty secret file.
 
-## Gotchas
+## Pitfalls
 
 - **`nix fmt` / treefmt on `.enc.*` corrupts the file.** They treat it as an
   arbitrary file and may reformat the encrypted material or the metadata block.
