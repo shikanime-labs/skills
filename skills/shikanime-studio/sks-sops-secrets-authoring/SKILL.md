@@ -53,10 +53,10 @@ lifecycle.
 The sops toolchain is the same; the recipient set, file shape, and consuming
 side differ:
 
-|| Repo               | File shape              | Recipient model                          | Consumer           |
-|| ------------------ | ----------------------- | ---------------------------------------- | ------------------ |
-|| `machines`         | `secrets/<host>.enc.yaml` | per-host age key; no repo `.sops.yaml` | `sops-nix` on that host |
-|| `manifests`        | `*.enc.env`, `*.enc.conf` | THREE fleet age recipients; no repo `.sops.yaml` | Flux `sops` decrypt |
+|  Repo               | File shape              | Recipient model                          | Consumer           |
+|  ------------------ | ----------------------- | ---------------------------------------- | ------------------ |
+|  `machines`         | `secrets/<host>.enc.yaml` | per-host age key; no repo `.sops.yaml` | `sops-nix` on that host |
+|  `manifests`        | `*.enc.env`, `*.enc.conf` | THREE fleet age recipients; no repo `.sops.yaml` | Flux `sops` decrypt |
 
 The generic edit flow below covers both. The manifests fleet layer — exact
 recipient keys, the devenv `sops` wrapper trap, INI store rules, the

@@ -59,24 +59,24 @@ Don't use for: editing the Nix that *generates* manifests — that is
 The repo separates concerns into five top-level trees plus a sixth bootstrap tree.
 Place each resource in the bucket that owns it.
 
-|| Tree                          | Owns                                                                   |
-|| ---------------------------- | ---------------------------------------------------------------------- |
-|| `apps/<app>/`                 | Application workloads. One dir per app.                               |
-|| `apps/<app>/base/`            | Resources common to every cluster the app runs on.                    |
-|| `apps/<app>/components/`      | Optional Kustomize components (e.g. `tls/`, `ftp/`, `v4l/`, …).      |
-|| `apps/<app>/overlays/<cluster>/`   | Cluster-specific patches/config for `<cluster>`.                  |
-|| `apps/<app>/overlays/<cluster>-tailnet/` | Tailnet flavor overlay (hostnames) for `<cluster>`.         |
-|| `clusters/<cluster>/`         | Cluster entrypoint and shared cluster bits.                           |
-|| `clusters/<cluster>/base/`    | Namespaces, shared PVCs, default policies for that cluster.           |
-|| `clusters/<cluster>/components/` | Cluster-wide components (tls, tailscale, longhorn, monitoring, …). |
-|| `clusters/<cluster>/overlays/<overlay>/` | Build entrypoint composing base + components + app overlays. |
-|| `infrastructure/<operator>/`  | Per-operator platform deployments, mostly Flux `HelmRelease` +        |
-||                              | `helmrepo.yaml`; some carry base `ns.yaml`, `vpa.yaml`, and a          |
-||                              | `components/monitoring/` block.                                       |
-|| `configs/<area>/`             | Global, operator-dependent config NOT tied to a single app (storage   |
-||                              | classes, issuers, mutations, machine templates).                     |
-|| `bootstraps/<cluster>/`       | Out-of-band controller/operator installation (Flux `HelmChart`        |
-||                              | resources). The Kustomize overlays assume these already exist.        |
+|  Tree                          | Owns                                                                   |
+|  ---------------------------- | ---------------------------------------------------------------------- |
+|  `apps/<app>/`                 | Application workloads. One dir per app.                               |
+|  `apps/<app>/base/`            | Resources common to every cluster the app runs on.                    |
+|  `apps/<app>/components/`      | Optional Kustomize components (e.g. `tls/`, `ftp/`, `v4l/`, …).      |
+|  `apps/<app>/overlays/<cluster>/`   | Cluster-specific patches/config for `<cluster>`.                  |
+|  `apps/<app>/overlays/<cluster>-tailnet/` | Tailnet flavor overlay (hostnames) for `<cluster>`.         |
+|  `clusters/<cluster>/`         | Cluster entrypoint and shared cluster bits.                           |
+|  `clusters/<cluster>/base/`    | Namespaces, shared PVCs, default policies for that cluster.           |
+|  `clusters/<cluster>/components/` | Cluster-wide components (tls, tailscale, longhorn, monitoring, …). |
+|  `clusters/<cluster>/overlays/<overlay>/` | Build entrypoint composing base + components + app overlays. |
+|  `infrastructure/<operator>/`  | Per-operator platform deployments, mostly Flux `HelmRelease` +        |
+|                               | `helmrepo.yaml`; some carry base `ns.yaml`, `vpa.yaml`, and a          |
+|                               | `components/monitoring/` block.                                       |
+|  `configs/<area>/`             | Global, operator-dependent config NOT tied to a single app (storage   |
+|                               | classes, issuers, mutations, machine templates).                     |
+|  `bootstraps/<cluster>/`       | Out-of-band controller/operator installation (Flux `HelmChart`        |
+|                               | resources). The Kustomize overlays assume these already exist.        |
 
 Reading the file tree is enough to answer "where does this go?" in most cases:
 
