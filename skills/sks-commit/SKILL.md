@@ -33,7 +33,7 @@ repo, never assume.
 
 - Any commit in a target-org repo. For the shikanime remote split
   (local path vs gh remote may disagree) and protected-main repos, read
-  `references/org-conventions.md` when operating in shikanime repos. For
+  `references/shikanime.md` when operating in shikanime repos. For
   cloud-pi-native commitlint rules (French-org, conventional English commits
   with `body-leading-blank`), read `references/cloud-pi-native.md` when
   committing in the cloud-pi-native/console repository.
@@ -43,15 +43,15 @@ repo, never assume.
 - Working tree in target repo; `gh` authenticated.
 - Branches push to `origin` (the cloned org repo). Where the local path and
   the gh remote disagree, trust the gh remote (the org remote split — see
-  `references/org-conventions.md`).
+  `references/shikanime.md`).
 - jj repos: `jj bookmark track <branch> --remote=origin` before any push.
 
 ## Commit style (when no hook enforces otherwise)
 
 - **Code repos**: plain English, imperative, capitalized title, **no prefix, no
-  body**. One trailer ALWAYS:
-  `Co-authored-by: Automata <automata@shikanime.studio>`. One logical fix per
-  commit.
+  body**. One trailer ALWAYS: the org
+  co-author trailer (value per `references/shikanime.md`). One logical
+  fix per commit.
   - Good: `Force NFS v4.0 on RWX StorageClasses` + trailer.
   - Bad: `fix: force nfs v4.0` (conventional prefix not used here).
 - **Doc repos**: `doc:` prefix, else same shape. No `(...)` in titles/labels.
@@ -64,8 +64,8 @@ commit/merge:
 - `*` bullet lines separating former descriptions.
 - `---------` separators where descriptions overlapped. Final message = exactly
   one plain-English subject + the correct trailers:
-- Exactly ONE `Co-authored-by: Automata <automata@shikanime.studio>` when
-  agent-assisted. Never a self `Co-authored-by:` or repeated `Signed-off-by:`.
+- Exactly ONE org co-author trailer when agent-assisted. Never a self
+  `Co-authored-by:` or repeated `Signed-off-by:`.
 - `Signed-off-by: <user>` only where a hook/ruleset requires DCO.
 - Never rely on GitHub's auto-concatenation of branch commits — pass it clean:
 
@@ -75,7 +75,7 @@ gh pr merge <M> --repo <org>/<repo> --squash \
   -m "$(cat <<'EOF'
 <coherent body; no * bullets, no --------->
 
-Co-authored-by: Automata <automata@shikanime.studio>
+Co-authored-by: <the org co-author trailer>
 EOF
 )"
 ```
@@ -87,9 +87,11 @@ ls .gitlint .commitlintrc* commitlint.config.* 2>/dev/null
 grep -rl "Signed-off-by" .github/ 2>/dev/null
 ```
 
-- `manifests`: gitlint enforces a **body** (B6 "body message is missing") and a
-  `Signed-off-by` (CC1). A commit with both + no `Related:` passes. Use full
-  issue URLs — never bare `#N` / `owner/repo#N` (broken on GitHub):
+- A gitlint-enforced manifests-class repo (org examples per
+  `references/shikanime.md`) enforces a **body** (B6 "body message is
+  missing") and a `Signed-off-by` (CC1). A commit with both + no `Related:`
+  passes. Use full issue URLs — never bare `#N` / `owner/repo#N` (broken on
+  GitHub):
   `Related: https://github.com/<org>/<repo>/issues/N`. 80-col wrap. Capitalized
   plain title, no prefix. See `references/example-commit.md` for a filled
   example.
@@ -103,7 +105,7 @@ grep -rl "Signed-off-by" .github/ 2>/dev/null
 2. Commit; two `-m` blocks = subject + trailer paragraph:
 
 ```bash
-jj describe -m "<subject>" -m "Co-authored-by: Automata <automata@shikanime.studio>"
+jj describe -m "<subject>" -m "<the org co-author trailer>"
 ```
 
 3. Confirm the hook accepted it: `jj log -1`.
@@ -114,7 +116,7 @@ jj describe -m "<subject>" -m "Co-authored-by: Automata <automata@shikanime.stud
 - NEVER push to `main` unless the user explicitly authorizes ("push to main" /
   "land it") — then push directly, no PR.
 - Protected `main` repos → PR; direct push rejected (org examples in
-  `references/org-conventions.md`).
+  `references/shikanime.md`).
 
 ## Pitfalls
 

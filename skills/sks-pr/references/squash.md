@@ -4,7 +4,7 @@ Load from `SKILL.md` before squashing a finalized PR branch, or when
 diagnosing a squash / rebase / force-push failure. Covers finalizing a PR's
 commit and the gotchas that recur when squashing / rebase / force-pushing.
 Applies to any repo; trailer conventions live in
-`references/org-conventions.md`.
+`references/shikanime.md`.
 
 ## Squash + author/sign a finalized PR commit
 
@@ -77,7 +77,7 @@ duplicate/self trailers into the merged commit (same risk as `sks-commit`):
   markers), no stray `Change-Id:` lines from unrelated prior commits.
 - One subject + one coherent body + exactly the trailers the repo wants:
   required co-author/Signed-off-by/Change-Id trailers per repo policy (see
-  `references/org-conventions.md`) — never duplicate, never self-co-author.
+  `references/shikanime.md`) — never duplicate, never self-co-author.
 - When landing via `gh pr merge --squash`, ALWAYS pass the final message
   explicitly with `-m` (subject) and `-m` (body + trailers). Never rely on
   GitHub auto-concatenation of branch commit messages.

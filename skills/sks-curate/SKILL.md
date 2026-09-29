@@ -180,10 +180,10 @@ naming the ceiling and the upgrade path.
   commit that still carries the catalog: list additions via
   `git diff --name-only --diff-filter=A origin/main <sha> > <list>`, then
   `git restore --source=<sha> --worktree --pathspec-from-file=<list>`.
-  Keep the recovery untracked — repo doctrine ships only the sks and cpn
-  families. After
+  Keep the recovery untracked — repo doctrine ships only the org's curated
+  skill families. After
   any mirror reset or `hermes skills update`, spot-check a local-only skill
-  (e.g. `devops/envoy-byod-gateway`) before trusting the catalog.
+  (e.g. a `devops/` book skill) before trusting the catalog.
 - **Curate in a workspace, never `cp` over it.** When the user's tree is dirty,
   check the PR commit out in a fresh `jj workspace add ../<name> -r <rev>` (git
   checkouts: `git worktree`) and edit there. Never copy the user's on-disk
@@ -208,7 +208,7 @@ description still triggers, and the before/after delta is stated in numbers.
 ## Repo-specific curation notes
 
 - Shikanime-org specifics (commit trailers and envelope in the org's
-  `skills` repo): read `references/org-conventions.md` when operating in
+  `skills` repo): read `references/shikanime.md` when operating in
   shikanime repos.
 
 ## See also

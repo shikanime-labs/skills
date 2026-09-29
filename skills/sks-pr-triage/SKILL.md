@@ -30,13 +30,12 @@ Triage a PR: fill every metadata
 field **empty on the PR** and **derivable from its own content**. English; never
 invent a missing repo value; triage never closes PRs.
 
-Read `references/org-conventions.md` when working in a shikanime org repo
-(`shikanime-labs/*`/`shikanime-studio/*`); repo scope and the default
-reviewer live there.
+Read `references/shikanime.md` when operating in a shikanime org; repo
+scope and the default reviewer live there.
 
 ## When to Use
 
-- "Triage an existing shikanime org PR."
+- "Triage an existing org PR."
 - "Assign metadata (labels, assignee, milestone, project, reviewers)."
 - "Link issue ↔ PR."
 - A bug-labelled PR's fix cites no root cause → flag for `sks-investigate`
@@ -45,12 +44,13 @@ reviewer live there.
 Prereqs: `gh` authed vs the canonical org repo; target it directly.
 
 Inputs: `N` PR number; `R`=`OWNER/REPO`, default cwd `origin`, must be under
-an org repo per `references/org-conventions.md` else ask.
+an org repo per `references/shikanime.md` else ask.
 
 ## Fetch
 
 ```bash
-gh pr view "$N" --repo "$R" --json number,title,body,labels,assignees,milestone,reviewRequests
+gh pr view "$N" --repo "$R" --json number,title,body,labels,assignees,\
+milestone,reviewRequests
 ```
 
 ### 2. Metadata source of truth
@@ -73,7 +73,7 @@ gh api repos/"$R"/assignees --jq '.[].login'
 - **project**: if repo boards and PR unboarded, `--add-project <number>`; skip
   if ambiguous.
 - **reviewers**: if no review requests, request the org default reviewer
-  (`references/org-conventions.md`) unless they authored the PR — GitHub
+  (`references/shikanime.md`) unless they authored the PR — GitHub
   rejects author review requests (422); then another collaborator/team
   member; skip if none works.
 
@@ -94,7 +94,8 @@ If title/body cites `#M` (open, unlinked issue), ensure body has `Related: #M`
 ### 6. Verify
 
 ```bash
-gh pr view "$N" --repo "$R" --json number,title,labels,assignees,milestone,reviewRequests
+gh pr view "$N" --repo "$R" --json number,title,labels,assignees,\
+milestone,reviewRequests
 ```
 
 ### 7. Reword / body↔diff reconciliation
@@ -120,7 +121,8 @@ Detail and a worked trap: `references/pr-body-reconciliation.md`.
 ## Verification
 
 ```bash
-gh pr view "$N" --repo "$R" --json number,title,labels,assignees,milestone,reviewRequests
+gh pr view "$N" --repo "$R" --json number,title,labels,assignees,\
+milestone,reviewRequests
 # title/body cites an open issue via Related: #M if applicable
 ```
 

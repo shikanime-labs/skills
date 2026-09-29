@@ -24,14 +24,17 @@ platforms:
 
 # Repo Bootstrap
 
-Create a new shikanime org repo end to end: GitHub repo with the standard
-5-ruleset protection template, devlib-based devenv scaffold, generated CI, and
-an initial semver tag. Distilled from the live bootstrap of
-`shikanime-labs/dashboards` (empty repo to merged PR).
+Create a new org repo end to end: GitHub repo with the standard 5-ruleset
+protection template, devlib-based devenv scaffold, generated CI, and an
+initial semver tag. Distilled from a live bootstrap (empty repo to merged PR;
+org examples per `references/shikanime.md`).
 
 ## When to Use
 
 - "Create a repo in the org" / "bootstrap a new repo with rulesets."
+- When operating in a shikanime org, read
+  `references/shikanime.md` for template repo and scaffold-donor
+  examples.
 - An org repo exists but is empty and needs the standard scaffold.
 
 ## Prerequisites (probe first, report blockers)
@@ -47,7 +50,8 @@ an initial semver tag. Distilled from the live bootstrap of
 ## Procedure
 
 1. **Apply the 5-ruleset template.** The canonical payloads live on any
-   already-protected repo (e.g. `shikanime-labs/skills`). Fetch each ruleset
+   already-protected repo (org examples in
+   `references/shikanime.md`). Fetch each ruleset
    by id (the list endpoint OMITS `rules` — always fetch
    `repos/<org>/<repo>/rulesets/<id>`), strip server fields (`id`, `node_id`,
    `source`, `source_type`, timestamps, `_links`,
@@ -76,9 +80,10 @@ an initial semver tag. Distilled from the live bootstrap of
    `enforcement`/`conditions`/`rules`/`bypass_actors` against the template.
 
 2. **Scaffold the repo content.** Copy from the most minimal devlib consumer
-   (e.g. `shikanime-labs/colemak`): `flake.nix` (devlib inputs, flake-parts,
+   (the most minimal devlib consumer in the org): `flake.nix` (devlib inputs,
+   flake-parts,
    `devenv.shells.default` importing `devlib.devenvModules.git`, `.nix`,
-   `.shell`, `.shikanime-studio`), `.envrc` (`use flake .`), plus org-standard
+   `.shell`, org-specific modules), `.envrc` (`use flake .`), plus org-standard
    `SECURITY.md` and `CODE_OF_CONDUCT.md` (hand-authored, NOT generated).
 
 3. **Add the devenv.root fix.** devlib's flake module sets
@@ -94,7 +99,7 @@ an initial semver tag. Distilled from the live bootstrap of
 
    `toString ./.` is wrong — it resolves to the read-only /nix store copy and
    devenv then fails writing `.devenv/`. `getEnv "PWD"` requires impure flake
-   evaluation; keep the colemak-style `.envrc` (`use flake .
+   evaluation; keep the donor repo's `.envrc` (`use flake .
    --accept-flake-config --no-pure-eval`) so `PWD` reaches the evaluator
    under direnv.
 
@@ -118,8 +123,8 @@ an initial semver tag. Distilled from the live bootstrap of
    ```
 
 5. **Land via PR (never direct to main).** Branch `feat/<slug>` (branch-naming
-   ruleset), commit with `Co-authored-by: Automata
-   <automata@shikanime.studio>` + `Signed-off-by`, push, open PR with
+   ruleset), commit with the org co-author trailer + `Signed-off-by` (values per
+   `references/shikanime.md`), push, open PR with
    `--head <org>:<branch>`. Track files only AFTER `.gitignore` exists — the
    devenv run drops `.direnv/` and `.devenv/` caches plus a
    `.pre-commit-config.yaml` symlink that must not enter the commit

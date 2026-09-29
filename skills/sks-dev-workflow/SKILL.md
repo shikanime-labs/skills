@@ -90,7 +90,8 @@ Never skip triage (ledger unsettled) or review (PR not ready).
 
 Push working branches to `origin` — the cloned org repo. The gh remote is
 canonical even when the local path says otherwise (the org remote split).
-Operate at `~/Source/Repos/<host>/<orga>/<repo>`.
+Operate at the org's standard repo checkout root (org path layout per
+`references/sks-env.md`).
 
 **Agent mode:** agent gh account holds org membership, pushes to `origin`,
 opens PRs `--head <org>:<branch>`, commits carry the org co-author trailer
@@ -131,7 +132,8 @@ streams may fan out (`sks-async`) while the blocker is surfaced.
   PR.
 - **Detect protection via RULESETS, not classic branch protection.** The
   classic endpoint `gh api repos/<org>/<repo>/branches/main/protection`
-  returns 404 on ruleset-backed repos (e.g. `manifests`), which misleadingly
+  returns 404 on ruleset-backed repos (e.g. a manifests-class repo), which
+  misleadingly
   reads as "not protected". Fetch each ruleset id — the list endpoint omits
   the rules:
 
@@ -140,11 +142,13 @@ streams may fan out (`sks-async`) while the blocker is surfaced.
   gh api repos/<org>/<repo>/rulesets/<id> -q '.rules[]'
   ```
 
-- A `pull_request` rule with `require_code_owner_review` (e.g. `manifests`
-  "Landing protections") blocks self-approval — that is what forces
+- A `pull_request` rule with `require_code_owner_review` (an org
+  "Landing protections" ruleset — org examples in `references/sks-env.md`)
+  blocks self-approval — that is what forces
   `gh pr merge --squash --admin` after a verbal lgtm.
-- `manifests` commits: gitlint CC1 rejects any commit without `Signed-off-by`
-  (full envelope: `references/manifests-git-commit-pitfalls.md`).
+- Manifests-class repo commits: gitlint CC1 rejects any commit without
+  `Signed-off-by` (full envelope:
+  `references/manifests-git-commit-pitfalls.md`).
 
 ## Rebuilding a branch whose bookmark is immutable
 
@@ -212,8 +216,9 @@ anchor can get duplicated — remove the stray copy before pushing.
   harvests them. Reports only — a human approves.
 - **Direct push to `main`:** ONLY when the user explicitly says "push to
   main" / "land it".
-- **Merge:** `nix-containers` requires `gh pr merge --squash --admin` when
-  the user says "merge the PRs". A red required check or protection
+- **Merge:** some org repos require `gh pr merge --squash --admin` when
+  the user says "merge the PRs" (org examples in
+  `references/shikanime.md`). A red required check or protection
   rejection is a gate doing its job — surface it, never `--admin` past it
   unasked.
 - **Watch is not merge.** A CI watch/poll phase (foreground shell or
@@ -230,7 +235,8 @@ Exact shapes live in the owning skills:
 - **Commit** → `sks-commit` — plain capitalized title, labeled body
   (`Design:` / `Related:` / `Closes #N` per repo AGENTS.md),
   the org `Co-authored-by` trailer plus repo-mandated `Signed-off-by`
-  (gitlint CC1 rejects its absence on `manifests` and `skills`).
+  (gitlint CC1 rejects its absence — org examples in
+  `references/sks-env.md`).
 - **Issue** → `sks-issue` — stable problem statement + `- [ ]` ledger.
 - **Discussion** → `sks-discussion` — RFC: context + open question; no
   acceptance criteria (that is issue scope).
@@ -265,11 +271,12 @@ output:
 
 | Signal                                     | Implication                                                      |
 | ------------------------------------------ | ---------------------------------------------------------------- |
-| `AGENTS.md` with `Related:` URL            | follow it (e.g. `manifests`)                                     |
+| `AGENTS.md` with `Related:` URL            | follow it (e.g. a manifests-class repo)                          |
 | `doc:` prefix convention                   | doc repo → `doc:` titles                                         |
 | branch protection on `main`                | PR mandatory                                                     |
 | jj repo (`.jj/`)                           | `jj bookmark track <branch> --remote=origin` before push         |
-| NixOS/infra (`machines`, `nix-containers`) | `nix eval`/`nix build` before switch; control-plane needs quorum |
+| NixOS/infra (org examples per               | `nix eval`/`nix build` before switch; control-plane needs quorum |
+|                                            | `references/shikanime.md`)                                 |
 
 ## Formatting: nix fmt + markdown
 

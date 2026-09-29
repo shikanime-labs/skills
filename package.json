@@ -21,15 +21,15 @@
     "skills": [
       {
         "name": "sks-adversarial",
-        "path": "skills/shikanime-studio/sks-adversarial"
+        "path": "skills/sks-adversarial"
       },
       {
         "name": "sks-async",
-        "path": "skills/shikanime-studio/sks-async"
+        "path": "skills/sks-async"
       },
       {
         "name": "sks-bulk",
-        "path": "skills/shikanime-studio/sks-bulk"
+        "path": "skills/sks-bulk"
       },
       {
         "name": "sks-bulk",
@@ -37,69 +37,69 @@
       },
       {
         "name": "sks-commit",
-        "path": "skills/shikanime-studio/sks-commit"
+        "path": "skills/sks-commit"
       },
       {
         "name": "sks-converge",
         "description": "Use when jj conflicts or divergent changes block a shikanime repo after a tree move: resolve conflicted revisions and divergent twins until pushable.",
-        "path": "skills/shikanime-studio/sks-converge"
+        "path": "skills/sks-converge"
       },
       {
         "name": "sks-curate",
-        "path": "skills/shikanime-studio/sks-curate"
+        "path": "skills/sks-curate"
       },
       {
         "name": "sks-delegate",
-        "path": "skills/shikanime-studio/sks-delegate"
+        "path": "skills/sks-delegate"
       },
       {
         "name": "sks-dev-workflow",
-        "path": "skills/shikanime-studio/sks-dev-workflow"
+        "path": "skills/sks-dev-workflow"
       },
       {
         "name": "sks-discussion",
-        "path": "skills/shikanime-studio/sks-discussion"
+        "path": "skills/sks-discussion"
       },
       {
         "name": "sks-discussion-triage",
-        "path": "skills/shikanime-studio/sks-discussion-triage"
+        "path": "skills/sks-discussion-triage"
       },
       {
         "name": "sks-doc",
-        "path": "skills/shikanime-studio/sks-doc"
+        "path": "skills/sks-doc"
       },
       {
         "name": "sks-fastlane",
         "description": "Use when a hotfix, small update, or insignificant chore is too trivial for the full gate train: merge its PR without human review once CI is green.",
-        "path": "skills/shikanime-studio/sks-fastlane"
+        "path": "skills/sks-fastlane"
       },
       {
         "name": "sks-gc",
-        "path": "skills/shikanime-studio/sks-gc"
+        "path": "skills/sks-gc"
       },
       {
         "name": "sks-investigate",
-        "path": "skills/shikanime-studio/sks-investigate"
+        "path": "skills/sks-investigate"
       },
       {
         "name": "sks-issue",
-        "path": "skills/shikanime-studio/sks-issue"
+        "path": "skills/sks-issue"
       },
       {
         "name": "sks-issue-refine",
-        "path": "skills/shikanime-studio/sks-issue-refine"
+        "path": "skills/sks-issue-refine"
       },
       {
         "name": "sks-issue-triage",
-        "path": "skills/shikanime-studio/sks-issue-triage"
+        "path": "skills/sks-issue-triage"
       },
       {
         "name": "sks-issue-workflow",
-        "path": "skills/shikanime-studio/sks-issue-workflow"
+        "path": "skills/sks-issue-workflow"
       },
       {
         "name": "sks-land",
-        "path": "skills/shikanime-studio/sks-land"
+        "path": "skills/sks-land"
       },
       {
         "name": "nixpkgs-pr-review",
@@ -107,23 +107,23 @@
       },
       {
         "name": "sks-pr",
-        "path": "skills/shikanime-studio/sks-pr"
+        "path": "skills/sks-pr"
       },
       {
         "name": "sks-pr-resolve",
-        "path": "skills/shikanime-studio/sks-pr-resolve"
+        "path": "skills/sks-pr-resolve"
       },
       {
         "name": "sks-pr-review",
-        "path": "skills/shikanime-studio/sks-pr-review"
+        "path": "skills/sks-pr-review"
       },
       {
         "name": "sks-pr-triage",
-        "path": "skills/shikanime-studio/sks-pr-triage"
+        "path": "skills/sks-pr-triage"
       },
       {
         "name": "sks-pr-workflow",
-        "path": "skills/shikanime-studio/sks-pr-workflow"
+        "path": "skills/sks-pr-workflow"
       },
       {
         "name": "cpn-release-patch",
@@ -132,12 +132,12 @@
       {
         "name": "sks-restack",
         "description": "Use when rebasing a shikanime jj stack onto moved main leaves conflicts: restack, then resolve each conflicted revision with edit/resolve until pushable.",
-        "path": "skills/shikanime-studio/sks-restack"
+        "path": "skills/sks-restack"
       },
       {
         "name": "sks-nix-authoring",
         "description": "Use when authoring or editing Nix in a shikanime repo: nixfmt-sorted style, single-use let bindings, no explanatory comments, YAGNI on new options.",
-        "path": "skills/shikanime-studio/sks-nix-authoring"
+        "path": "skills/sks-nix-authoring"
       },
       {
         "name": "sks-skill-authoring",
@@ -146,11 +146,11 @@
       {
         "name": "sks-sops-secrets-authoring",
         "description": "Use when editing sops-encrypted files in a shikanime repo: decrypt-and-edit workflow, re-encryption guards, and sops-nix secret plumbing.",
-        "path": "skills/shikanime-studio/sks-sops-secrets-authoring"
+        "path": "skills/sks-sops-secrets-authoring"
       },
       {
         "name": "sks-swarm",
-        "path": "skills/shikanime-studio/sks-swarm"
+        "path": "skills/sks-swarm"
       },
       {
         "name": "sks-repo",
@@ -158,7 +158,7 @@
       },
       {
         "name": "sks-update",
-        "path": "skills/shikanime-studio/sks-update"
+        "path": "skills/sks-update"
       }
     ]
   }

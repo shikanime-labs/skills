@@ -30,7 +30,7 @@ platforms:
 
 Land an org PR only after `sks-pr-resolve` **reconciled** it and a human
 approving review is in place — protect `main`. Scope:
-`references/org-conventions.md`. Not for opening (`sks-pr`), review
+`references/shikanime.md`. Not for opening (`sks-pr`), review
 (`sks-pr-review`), reconciling (`sks-pr-resolve`), or direct "push to main".
 This skill only lands.
 
@@ -50,7 +50,7 @@ gh issue view <N> --repo <org>/<repo> --json body --jq .body
 ```
 
 **Gate 2 — mandatory approver approval (non-bypassable).** The org designates
-one approver account (`references/org-conventions.md`); before any other
+one approver account (`references/shikanime.md`); before any other
 review consideration, the merge is blocked until that account has an APPROVED
 review on the current head commit — a stale approval after a new push does not
 count, and `--admin` may bypass branch protection but never this gate. CI
@@ -58,7 +58,7 @@ green: `gh pr checks <M> --repo <org>/<repo>`. Verify the approval against the
 head SHA (REST reviews carry `commit_id`):
 
 ```bash
-R=<org>/<repo>; M=<PR>; APPROVER=<approver login>  # references/org-conventions.md
+R=<org>/<repo>; M=<PR>; APPROVER=<approver login>  # references/shikanime.md
 HEAD=$(gh pr view "$M" -R "$R" --json headRefOid -q .headRefOid)
 gh api "repos/$R/pulls/$M/reviews" --paginate \
   --jq 'map(select(.user.login == "'"$APPROVER"'" and .state == "APPROVED"
@@ -78,7 +78,7 @@ gh pr view <M> --repo <org>/<repo> --json reviews,headRefOid \
 
 Agent review is pre-flight; **a human approving review is the gate.** Where
 branch protection blocks self-approval (repos listed in
-`references/org-conventions.md`), a verbal `lgtm` from the operator (the human
+`references/shikanime.md`), a verbal `lgtm` from the operator (the human
 who owns the approver account) satisfies Gate 2 — land via
 `gh pr merge --squash --admin` (see Merge procedure). `--admin` is what
 bypasses the protection; no separate human review is then required.
@@ -118,11 +118,11 @@ PR title diverges from it, fix before merging:
 
 ```bash
 jj describe -m "<plain-English subject>" \
-  -m "<required trailer lines — see references/org-conventions.md>"
+  -m "<required trailer lines — see references/shikanime.md>"
 ```
 
 then force-push and re-run the check. Required trailers (e.g. a bot co-author
-line) are org-specific — see `references/org-conventions.md`. The recurring
+line) are org-specific — see `references/shikanime.md`. The recurring
 failure mode is skipping the check: a landing merged without the required
 trailer because Gate 4 dumped the commit message for eyeball review instead of
 deciding.
@@ -162,9 +162,9 @@ gh pr merge <M> --repo <org>/<repo> --squash --match-head-commit "$HEAD" \
   -b "$(cat <<'EOF'
 <body: one coherent change, no jj * bullets / --------- separators; trailers
 only: Related: [url], Signed-off-by: [user], required co-author trailer (see
-references/org-conventions.md)>
+references/shikanime.md)>
 
-<required trailer lines — see references/org-conventions.md>
+<required trailer lines — see references/shikanime.md>
 EOF
 )"
 ```
@@ -179,7 +179,7 @@ EOF
 - **Squash hygiene**: pass `-b` (see `sks-commit`); `gh pr merge --squash` has
   **no `-m`** — the PR title is the subject. Never auto-concatenate branch
   commits (leaks jj's `*` / `---------` artifacts). One subject + required
-  trailers (`references/org-conventions.md`).
+  trailers (`references/shikanime.md`).
 - Lone, self-approval blocked (after verbal lgtm): use `--squash --admin`.
 - Stacked (multiple PRs off `main`): land each with
   `gh pr merge <PR_NUMBER> --squash --admin` in dependency order (base first).
@@ -191,7 +191,7 @@ EOF
 2. **Run the acceptance gate (deployment gate).** A merged PR is a claim, not a
    verified outcome — the gate runs, it is not assumed. Deploy first: resync
    for agent/skill repos, apply for infra (Flux reconcile /
-   `nixos-rebuild switch` for machines-class repos). Then surface the deployed
+   `nixos-rebuild switch` for machine-config repos). Then surface the deployed
    state and ask the user to validate it behaves as asked. Do NOT close the
    issue or report the landing complete on merge alone; only the user confirms
    the running change. If the user rejects, treat it as a reported defect: fix
@@ -245,7 +245,7 @@ EOF
 
 - [ ] Issue tasklist N/N checked with evidence.
 - [ ] Mandatory approver approval on head (non-bypassable;
-      `references/org-conventions.md`); `sks-pr-review`
+      `references/shikanime.md`); `sks-pr-review`
       approval; human review where protection requires.
 - [ ] All conversations reconciled (`sks-pr-resolve`).
 - [ ] `sks-commit` + `sks-pr` conventions verified (subject imperative, PR title

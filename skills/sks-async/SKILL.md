@@ -35,8 +35,8 @@ onto jj's commit DAG as plain `gh pr` merges. Core splitting component of
 `sks-dev-workflow`.
 
 For shikanime-org specifics (co-author trailer, remote split), read
-`references/org-conventions.md` when operating in shikanime repos. For
-cloud-pi-native specifics (French artifacts, Automata trailer, draft PRs with
+`references/shikanime.md` when operating in shikanime repos. For
+cloud-pi-native specifics (French artifacts, co-author trailer, draft PRs with
 `Refs #N`), read `references/cloud-pi-native.md` when working in the
 cloud-pi-native/console repository.
 
@@ -62,7 +62,7 @@ cloud-pi-native/console repository.
    `jj new <parent>`.
 3. **Work each stream** in its dir; commit per `sks-commit` — every commit
    carries the org co-author trailer (org value per
-   `references/org-conventions.md`):
+   `references/shikanime.md`):
 
    ```bash
    jj describe -m "<subject>" -m "<co-author trailer>"
@@ -125,6 +125,6 @@ has in-workspace evidence.
 - `sks-dev-workflow` — parent; run its assumption-validation gate BEFORE
   fan-out.
 - `sks-commit` / `sks-pr` — commit shape (co-author trailer) and PR linkage.
-- Cloud-pi-native specifics (French artifacts, Automata trailer, draft PRs
+- Cloud-pi-native specifics (French artifacts, co-author trailer, draft PRs
   with `Refs #N`): `references/cloud-pi-native.md`.
 - Model, pitfalls, dispatch skeleton: `references/sks-async-delegate.md`.

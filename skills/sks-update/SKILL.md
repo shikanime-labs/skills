@@ -36,9 +36,9 @@ improvements through the dev loop, and resync the landed skills to
 local Hermes agents. This is the orchestration shell — curation and shipping
 delegate to their owning skills.
 
-Read `references/org-conventions.md` when working on the
-`shikanime-labs/skills` catalog; family list, commit trailer, and resync tap
-live there.
+Read `references/shikanime.md` when operating in a shikanime org
+(the org's skills catalog repo); family list, commit trailer, and resync
+tap live there.
 
 **Default scope: every skill in the catalog.** Only narrow to a named subset
 when the user explicitly lists skills ("update sks-commit only"). "Update the
@@ -58,7 +58,7 @@ when the user named one.
 1. **Scope.** Decide the target set:
    - Full pass (default): enumerate the catalog from `README.md` (or the
      `skills/` tree) — every catalog `SKILL.md` (families per
-     `references/org-conventions.md`).
+     `references/shikanime.md`).
    - Explicit subset: only the skills the user named.
    Record the set. Do not skip skills silently; a skipped one is a reported
    reason, not an omission.

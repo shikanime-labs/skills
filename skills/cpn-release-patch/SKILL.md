@@ -43,8 +43,8 @@ branch name, not a tag — see Verification.
 Run from the skill directory; each validates its args and exits non-zero with a
 message on bad input.
 
-- `scripts/next-milestone.sh BASE_TAG` → next patch milestone (`v9.24.4` →
-  `9.24.5`).
+- `scripts/next-milestone.sh BASE_TAG` → next patch milestone
+  (`vX.Y.Z` → `X.Y.Z+1`).
 - `scripts/milestone-number.sh REPO MILESTONE_TITLE` → milestone number, or
   exit 1 when absent/closed.
 - `scripts/fetch-backport-set.sh REPO MILE_NUM [OUTFILE]` → ordered
@@ -55,14 +55,14 @@ message on bad input.
 
 ## When to Use
 
-"Backport v9.24.4 to v9.24.5", "duplicate the diff of main onto the v9.24.4 tag
-as a hotfix", "make a patch hotfix branch from v9.24.4", or any request to take
+"Backport vX.Y.Z to vX.Y.Z+1", "duplicate the diff of main onto the vX.Y.Z tag
+as a hotfix", "make a patch hotfix branch from vX.Y.Z", or any request to take
 the commits between a tag and `main` and land them on a `hotfix/<x.y.z>`
 branch for release-please to cut.
 
 ## Inputs
 
-- `BASE_TAG` (required): a published tag, e.g. `v9.24.4`. The patch milestone is
+- `BASE_TAG` (required): a published tag, e.g. `vX.Y.Z`. The patch milestone is
   derived from it (see Step 1), the hotfix branch is named after that milestone,
   and the duplicated commits are placed on top of `BASE_TAG`.
 
@@ -85,7 +85,7 @@ If `BASE_TAG` is missing or you lack write: report `BLOCKED: <requirement> —
 
 ### 1. Resolve the patch milestone from the base tag
 
-`v9.24.4` → next patch milestone is `9.24.5`. Derive mechanically, do not
+`vX.Y.Z` → next patch milestone is `X.Y.Z+1`. Derive mechanically, do not
 guess:
 
 ```bash
@@ -101,14 +101,15 @@ already-cut release.
 
 The milestone's merged PRs ARE the backport set. Do **not** derive it from a
 `BASE_TAG..main` patch-id diff — that over-counts, because `main` carries the
-*next* minor's dev commits (`9.25.0` prerelease work) whose patch-ids are not on
-the tag either, so they leak in. For `v9.24.4` the milestone had **16** commits;
-a `v9.24.4..main` patch-id diff returned **35** (16 in-milestone + 19 from
-`9.25.0` dev). The milestone is the precise source of truth.
+next minor's dev commits (`<next-minor>` prerelease work) whose patch-ids are
+not on the tag either, so they leak in. In one observed case the milestone
+had **16** commits while a `BASE_TAG..main` patch-id diff returned **35**
+(16 in-milestone + 19 from the next minor's dev). The milestone is the
+precise source of truth.
 
 ```bash
 bash scripts/fetch-backport-set.sh <org>/<repo> "$MILE_NUM"
-wc -l /tmp/sks_ms_ids.txt   # expect the milestone size (16 for v9.24.5)
+wc -l /tmp/sks_ms_ids.txt   # expect the milestone size
 ```
 
 `/tmp/sks_ms_ids.txt` is the ordered (oldest→newest) list of the exact commits
@@ -158,7 +159,7 @@ bash scripts/verify-backport.sh "$BASE_TAG" "$TIP" \
 The script checks exact commit count (milestone size, no scaffold), zero
 conflict markers in `BASE_TAG..$TIP`, and a tree that reconstructs
 `main`'s source (release-please files may differ). Also compare chain subjects
-against the milestone PR titles — zero extras (no `9.25.0` commits).
+against the milestone PR titles — zero extras (no next-minor commits).
 
 ### 5. Create the hotfix bookmark and push
 
@@ -193,11 +194,12 @@ a `chore: Release v$NEXT` PR against `hotfix/$NEXT` with `always-bump-patch`.
 
 ## Pitfalls
 
-- **The backport set is the MILESTONE, not `BASE_TAG..main`.** A `v9.24.4..main`
-  patch-id diff returns 35 commits for `v9.24.4`: 16 in the `9.24.5` milestone +
-  19 from `9.25.0` dev work whose patch-ids are also absent from the tag.
-  Duplicating all 35 leaks `9.25.0` features into the hotfix. Always source the
-  set from the milestone's merged PRs (Step 2).
+- **The backport set is the MILESTONE, not `BASE_TAG..main`.** A
+  `BASE_TAG..main` patch-id diff over-counts: in the observed case it
+  returned 35 commits — 16 in the patch milestone + 19 from the next
+  minor's dev work whose patch-ids are also absent from the tag.
+  Duplicating all 35 leaks next-minor features into the hotfix. Always
+  source the set from the milestone's merged PRs (Step 2).
 - **The issues API hides merge_commit_sha.** `repos/R/issues?milestone=N`
   returns `pull_request.merge_commit_sha: null`; only the pulls endpoint
   (`repos/R/pulls/<n>`) exposes the real SHA. `fetch-backport-set.sh` fetches
@@ -225,8 +227,9 @@ a `chore: Release v$NEXT` PR against `hotfix/$NEXT` with `always-bump-patch`.
 - **`A..B` in jj = set difference**, not git's "exclusive range with merge
   base". `BASE_TAG..main` names the commits, but content overlap / next-minor
   leakage makes it wrong as a backport source — hence the milestone in Step 2.
-- **Tag is not an ancestor of main**: expected for org release tags (they carry
-  hotfix-only commits). Do not try to branch from `main`; branch from the tag.
+- **Tag is not an ancestor of main**: expected for this org's release tags
+  (they carry hotfix-only commits). Do not try to branch from `main`; branch
+  from the tag.
 - **Verify by tree, not count**: after duplicate, `git diff --name-only <tip>
   main` should show only `package.json` / `CHANGELOG.md` /
   `.release-please-manifest.json`. Any other differing file means a milestone
@@ -247,17 +250,17 @@ a `chore: Release v$NEXT` PR against `hotfix/$NEXT` with `always-bump-patch`.
 
 ## Verification
 
-Console release-please specifics (cloud-pi-native; `references/org-conventions.md`):
+Org release-please specifics — when operating in cloud-pi-native/console,
+read `references/cloud-pi-native.md` for the repo's exact config:
 
-- `release-please-config.json`: `release-type: node`, single package `.` =
-  `console`; next version comes from `.release-please-manifest.json` (currently
-  `9.24.4`).
-- `.github/workflows/job-release-please.yml`: on a `hotfix/*` branch it uses
-  `versioning-strategy: always-bump-patch`, so the manifest `9.24.4` becomes
-  `9.24.5` — the milestone `NEXT` derived in Step 1. The branch name
+- `release-please-config.json`: `release-type: node`, single package `.`;
+  next version comes from `.release-please-manifest.json`.
+- The release workflow on a `hotfix/*` branch uses
+  `versioning-strategy: always-bump-patch`, so the manifest version bumps
+  to the patch — the milestone `NEXT` derived in Step 1. The branch name
   `hotfix/<x.y.z>` is the only trigger; no tag needed.
-- Therefore: name the branch `hotfix/$NEXT`, push it, let release-please open
-  the release PR. Do not hand-cut `v$NEXT`.
+- Therefore: name the branch `hotfix/$NEXT`, push it, let release-please
+  open the release PR. Do not hand-cut `v$NEXT`.
 
 ## See also
 

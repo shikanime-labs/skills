@@ -55,9 +55,10 @@ leave on disk. Destructive — always dry-run first.
 - **Never drop `main` / `trunk` / `master`** or a bookmark with an OPEN PR.
 - **Never forget a workspace with uncommitted changes.** Skip it and report —
   losing WIP is data loss.
-- Operate in the repo root (see `references/org-conventions.md` for the
-  canonical checkout location); the canonical workspace (named after the
-  repo, no unit suffix) is NEVER a candidate.
+- Operate in the repo root — when operating in an org repo, read
+  `references/shikanime.md` for the canonical checkout location. The
+  canonical workspace (named after the repo, no unit suffix) is NEVER a
+  candidate.
 
 ## Procedure
 
@@ -65,7 +66,7 @@ leave on disk. Destructive — always dry-run first.
 
    ```bash
    cd "$(jj workspace root)"   # or the repo root; see
-                               # references/org-conventions.md for the
+                               # references/shikanime.md for the
                                # canonical checkout location
    bash <skill-dir>/scripts/discover.sh   # scripts/ resolves against the
                                           # skill dir, not the target repo
@@ -117,7 +118,7 @@ leave on disk. Destructive — always dry-run first.
   `bookmark forget`, to clear.
 - The canonical workspace (bare repo name, no dot/`-fix`) is never a candidate;
   don't fold the trunk working copy into GC (paths per
-  `references/org-conventions.md`).
+  `references/shikanime.md`).
 - **jj 0.43 output formats.** `jj workspace list` default lines have no path
   column, and `jj bookmark list` prints `name: changeid desc` plus indented
   `@origin` continuation lines — parsing those with `awk '{print $1}'` yields

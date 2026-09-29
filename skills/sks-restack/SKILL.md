@@ -39,7 +39,7 @@ an alias — `jj config get aliases` shows
 the scoped equivalent is `jj rebase -b <branch> --onto main@origin` per
 bookmark. This skill covers the full loop: restack → resolve → push.
 
-Read `references/org-conventions.md` when working in a shikanime org repo;
+Read `references/shikanime.md` when operating in a shikanime org;
 local checkout layout lives there.
 
 ## When to Use
@@ -62,7 +62,7 @@ local checkout layout lives there.
 1. **Baseline.**
 
    ```bash
-   cd <local checkout>   # org layout: references/org-conventions.md
+   cd <local checkout>   # org layout: references/shikanime.md
    jj git fetch --remote origin
    jj bookmark list && jj log -r 'trunk()..mutable()' --limit 15
    ```
@@ -98,8 +98,10 @@ local checkout layout lives there.
    A restacked bookmark already on origin is rewritten non-FF: the push output
    reads `[move sideways from <old> to <new>]` — expected shape, not an error.
    GitHub-hosted repos: push with
-   `--config signing.behavior=drop --config git.sign-on-push=false` (key in no
-   agent); GitHub squash-merge re-signs server-side.
+   `--config signing.behavior=drop --config git.sign-on-push=false` when the
+   org's host setup requires it (`references/shikanime.md` when
+   operating in shikanime repos; key in no agent); GitHub squash-merge
+   re-signs server-side.
 
 6. **Hand off.** Rewritten stack PRs land via `sks-land` / `sks-pr-workflow`;
    leftover `(empty)` revs and stale workspaces are `sks-gc` territory.

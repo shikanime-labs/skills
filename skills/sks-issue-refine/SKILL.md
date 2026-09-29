@@ -98,8 +98,8 @@ acceptance criteria converge (wayfinder's fog cycle on the thread).
 - Leaking the thinking — fog drafts, classification, status chatter stay
   in-agent; the thread gets only the resolved comment. Interim comments
   deletable once converged.
-- Language and template rules live in `references/org-conventions.md`; follow
-  them.
+- When operating in an org repo, read `references/shikanime.md` for
+  the language and template rules; follow them.
 
 ## Verification
 

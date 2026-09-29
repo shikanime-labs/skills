@@ -26,7 +26,7 @@ platforms:
 # Issue Creation
 
 Open issues in the org repos; language and repo scoping rules live in
-`references/org-conventions.md` (load it when working in an org repo). Open
+`references/shikanime.md` (load it when working in an org repo). Open
 the issue before the PR, link it via `sks-pr`.
 
 Prereqs: `gh` authenticated to the target repo; target it directly.
@@ -131,7 +131,7 @@ labels, assignee, milestone, project); rules live there.
 - Wrong repo — always use the org repo.
 - Rewriting body with findings — findings go in a comment.
 - Inventing labels the repo lacks — verify with `gh label list` first.
-- Language and template rules live in `references/org-conventions.md`; follow
+- Language and template rules live in `references/shikanime.md`; follow
   them.
 
 ## Verification
