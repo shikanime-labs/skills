@@ -122,6 +122,13 @@ org examples per `references/shikanime.md`).
    devenv tasks run devlib:github:workflows:install
    ```
 
+   Turn off automatic issue closing: uncheck **Auto-close issues with
+   merged linked pull requests** under Settings → General → Issues. It
+   defaults on, and a merged linked pull request would then close its issue
+   before the ledger is verified — issues here close deliberately. No API
+   covers the setting (REST, GraphQL, and the CLI all omit it), so disable
+   it in the UI during the bootstrap and record it as a manual step.
+
 5. **Land via PR (never direct to main).** Branch `feat/<slug>` (branch-naming
    ruleset), commit with the org co-author trailer + `Signed-off-by` (values per
    `references/shikanime.md`), push, open PR with
