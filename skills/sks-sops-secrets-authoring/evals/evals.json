@@ -16,7 +16,7 @@
         "Body checks the sops recipient set (sops_age / sops_pgp / sops_kms) after editing",
         "Body treats .enc.env and .enc.conf files as distinct from .enc.yaml and warns against editing them like YAML",
         "Body mentions sops-nix plumbing: sops.defaultSopsFile per host and sops.templates.*",
-        "Body delegates manifests-specific detail (recipient keys, devenv wrapper trap, INI store, formatForPath) to sks-dev-workflow/references/sops-manifests.md"
+        "Body delegates manifests-specific detail (recipient keys, devenv wrapper trap, INI store, formatForPath) to its own references/sops-manifests.md"
       ]
     },
     {
