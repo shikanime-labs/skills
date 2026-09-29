@@ -165,6 +165,11 @@
       "path": "skills/sks-repo"
     },
     {
+      "name": "sks-triage",
+      "description": "Use when triaging a shikanime org, repo, issue, or PR: sweep the scope for untriaged items, then assign every empty, context-derivable field — type, labels, assignee, fields.",
+      "path": "skills/sks-triage"
+    },
+    {
       "name": "sks-update",
       "description": "Use when updating skills in the shikanime-labs/skills catalog: curate every skill by default (or named ones only), land through the dev workflow, and resync to local Hermes agents.",
       "path": "skills/sks-update"

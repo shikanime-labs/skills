@@ -157,6 +157,11 @@
         "path": "skills/sks-repo"
       },
       {
+        "name": "sks-triage",
+        "description": "Use when triaging a shikanime org, repo, issue, or PR: sweep the scope for untriaged items, then assign every empty, context-derivable field — type, labels, assignee, fields.",
+        "path": "skills/sks-triage"
+      },
+      {
         "name": "sks-update",
         "path": "skills/sks-update"
       }
