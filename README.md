@@ -126,6 +126,7 @@ specification, compatible with the
 | `sks-land` | Use when landing a shikanime org PR after reconciliation (sks-pr-resolve) and review approval gates pass; closes th... |
 | `sks-fastlane` | Use when a hotfix, small update, or insignificant chore is too trivial for the full gate train: merge its PR without human review once CI is green. |
 | `nixpkgs-pr-review` | Use when reviewing an upstream NixOS/nixpkgs pull request: build the changed packages with nixpkgs-review and check... |
+| `sks-moderation` | Use when hiding, unhiding, or moderating comments on GitHub issues, PRs, or discussions with the Hide feature. |
 | `sks-pr` | Use when opening a PR in shikanime-labs or shikanime-studio: push to origin, --head org:branch, plain-English title... |
 | `sks-pr-resolve` | Use when resolving a shikanime PR's review conversations, including CodeRabbit review comments, checking the DoD le... |
 | `sks-pr-review` | Use when reviewing shikanime code: enforce YAGNI, root-cause fixes, and project conventions before approval. |

@@ -1,0 +1,51 @@
+{
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "Resolves the comment's GraphQL node ID, hides it with minimizeComment and classifier SPAM, then verifies isMinimized via a read-back of the REST .minimized.reason field without touching sibling comments.",
+      "files": [],
+      "prompt": "Hide that spammy comment on issue #42 in shikanime-labs/skills — the advertising one from @someuser.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-moderation'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body names minimizeComment and unminimizeComment as the hide/unhide mutations and states REST cannot hide comments",
+        "Body states mutations take the GraphQL node ID, not the REST databaseId",
+        "Body lists all seven ReportedContentClassifiers values as legitimate Hide reasons",
+        "Body includes a read-back verification step using isMinimized or the REST .minimized.reason field",
+        "Body states a PR review comment is a distinct PullRequestReviewComment node with a PRRC-prefixed id, and a mismatched inline fragment silently returns null"
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "Unhides via the unminimizeComment mutation, querying the unminimizedComment payload field rather than minimizedComment, and verifies isMinimized returns false.",
+      "files": [],
+      "prompt": "The off-topic flag on discussion #7 was wrong — unhide that comment.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-moderation'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body warns the unminimizeComment payload field is 'unminimizedComment', not 'minimizedComment'",
+        "Body states discussion comments are resolved through GraphQL only, with no REST endpoint",
+        "Body includes a read-back verification step using isMinimized or the REST .minimized.reason field"
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "Routes elsewhere: Hide folds comments but never deletes content, locks conversations, or blocks users — that is enforcement, outside this skill's moderation scope.",
+      "files": [],
+      "prompt": "Delete the abusive comments on PR #12 and lock the issue so nobody can comment again.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-moderation'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body states Hide never deletes and never edits the comment",
+        "Body places deleting, locking, and blocking outside this skill's scope",
+        "Body states moderation improves readability and all seven classifiers are fair Hide reasons"
+      ]
+    }
+  ],
+  "skill_name": "sks-moderation"
+}
