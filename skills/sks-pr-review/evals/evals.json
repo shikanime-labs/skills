@@ -12,7 +12,9 @@
         "Body contains at least one '##' heading",
         "Body references YAGNI",
         "Body requires root-cause fixes rather than symptom patches",
-        "Body states the reviewer never auto-commits, merges, or fixes"
+        "Body states the reviewer never auto-commits, merges, or fixes",
+        "Body contains a flag test gating findings on being introduced by the reviewed change and fixable by the author",
+        "Body instructs reporting 'No findings.' when nothing qualifies"
       ]
     },
     {
