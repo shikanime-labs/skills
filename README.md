@@ -117,6 +117,7 @@ specification, compatible with the
 | `sks-discussion` | Use when opening an RFC Discussion in a shikanime org as the pre-issue stage: converge on the problem, then derive... |
 | `sks-discussion-triage` | Use when triaging an existing shikanime org discussion: category, body shape, Q&A answer, and conversion to an issue. |
 | `sks-doc` | Use when documenting a shikanime project in the repo's docs/ directory after a behavior-changing PR. |
+| `sks-evolve` | Use when evolving the agent substrate without a hand-named target: mine experience for signals, evolve skills, profiles, memory, conventions, cron, or config, and repeat the fitness loop. |
 | `sks-gc` | Use when reclaiming resources leaked by shikanime jj workflows: dangling bookmarks, skill-created jj workspaces, an... |
 | `sks-investigate` | Use when investigating a bug, test failure, build break, or unexpected behavior in a shikanime repo: find root caus... |
 | `sks-issue` | Use when opening an issue in shikanime-labs or shikanime-studio: body is the problem statement, acceptance criteria... |
