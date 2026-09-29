@@ -27,7 +27,7 @@ platforms:
   - windows
 ---
 
-# Shikanime Org Skill Authoring
+# Skill Authoring
 
 Create a NEW skill for the catalog: distill a real execution into a grounded
 `SKILL.md`, give it honest evals, register it, and ship it through the dev

@@ -24,7 +24,7 @@ platforms:
   - windows
 ---
 
-# Shikanime PR Triage
+# PR Triage
 
 Triage a PR: fill every metadata
 field **empty on the PR** and **derivable from its own content**. English; never
@@ -47,7 +47,7 @@ Prereqs: `gh` authed vs the canonical org repo; target it directly.
 Inputs: `N` PR number; `R`=`OWNER/REPO`, default cwd `origin`, must be under
 an org repo per `references/org-conventions.md` else ask.
 
-## 1. Fetch
+## Fetch
 
 ```bash
 gh pr view "$N" --repo "$R" --json number,title,body,labels,assignees,milestone,reviewRequests

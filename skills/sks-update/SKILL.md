@@ -29,7 +29,7 @@ platforms:
   - windows
 ---
 
-# Shikanime Org Skill Update
+# Skill Update
 
 End-to-end update of the catalog: curate each skill (`sks-curate`), ship the
 improvements through the dev loop, and resync the landed skills to
@@ -147,7 +147,7 @@ when the user named one.
   healthy skills untouched so the full pass stays a small, reviewable diff
   rather than a rewrite of everything.
 
-## Gate
+## Verification
 
 Complete when every in-scope skill is curated (delta reported per skill),
 merged to `main` (`gh pr view <N> --json state` = `MERGED`), local agents

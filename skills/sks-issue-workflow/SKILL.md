@@ -48,7 +48,7 @@ Thin orchestrator over `sks-issue` → `sks-issue-refine` → `sks-issue-triage`
    project now. Only empty/determinable fields — **never invent a label the repo
    lacks**.
 
-## Gate
+## Verification
 
 Complete when body is a stable problem statement with a converged `- [ ]` ledger
 and triage metadata is set. Verify:
@@ -57,7 +57,7 @@ and triage metadata is set. Verify:
 gh issue view <N> --repo <org>/<repo> --json number,title,labels
 ```
 
-## Verification
+## Gate
 
 ```bash
 gh issue view <N> --repo <org>/<repo> --json number,title,labels \

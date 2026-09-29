@@ -80,7 +80,7 @@ EOF
 )"
 ```
 
-## Repo-enforced overrides (detect, then obey)
+## Repo-enforced overrides
 
 ```bash
 ls .gitlint .commitlintrc* commitlint.config.* 2>/dev/null

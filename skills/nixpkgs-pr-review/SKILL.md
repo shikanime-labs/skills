@@ -22,7 +22,7 @@ platforms:
   - macos
 ---
 
-# Nixpkgs PR Review (nixpkgs-pr-review)
+# Nixpkgs PR Review
 
 Review upstream [NixOS/nixpkgs](https://github.com/NixOS/nixpkgs) pull requests
 through the official contribution process: build every package the PR changes
@@ -183,4 +183,7 @@ the reviewer has exercised the built binaries. Record the report (`built`/
 pass like #557075, confirm no convention regressions (structured attrs, meta,
 test hooks) were introduced.
 
-Related: `sks-pr-review` (same severity/verdict discipline), `github-code-review`.
+## See also
+
+- `sks-pr-review` — same severity and verdict discipline.
+- `github-code-review` — generic PR review mechanics.

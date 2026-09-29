@@ -42,7 +42,7 @@ repository.
 - "Recategorize a discussion to the correct lifecycle state."
 - "Close a resolved discussion with a rationale comment."
 
-## 1. Probe + fetch
+## Probe + fetch
 
 ```bash
 gh api repos/"$R" --jq .has_discussions
@@ -50,7 +50,7 @@ gh api repos/"$R" --jq .has_discussions
 
 Fetch: `references/fetch-query.md` (GraphQL).
 
-## 2. Decide + apply (mutations use `--input`, never `-F variables=@file`)
+## Decide + apply (mutations use `--input`, never `-F variables=@file`)
 
 - **Recategorize** (mismatch): RFC/design → `Ideas`; threads/decision →
   `General`; questions → `Q&A`:
