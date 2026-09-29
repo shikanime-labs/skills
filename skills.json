@@ -111,7 +111,7 @@
     },
     {
       "name": "sks-pr-resolve",
-      "description": "Use when resolving a shikanime PR's review conversations, checking the DoD ledger, and reconciling before merge (no merge itself).",
+      "description": "Use when resolving a shikanime PR's review conversations, including CodeRabbit review comments, checking the DoD ledger, and reconciling before merge (no merge itself).",
       "path": "skills/shikanime-studio/sks-pr-resolve"
     },
     {

@@ -1,9 +1,10 @@
 ---
 name: sks-pr-resolve
 description:
-  Use when resolving a shikanime PR's review conversations, checking the DoD
-  ledger, and reconciling before merge (no merge itself).
-version: 0.1.1
+  Use when resolving a shikanime PR's review conversations, including
+  CodeRabbit review comments, checking the DoD ledger, and reconciling
+  before merge (no merge itself).
+version: 0.1.2
 author: Hermes Agent
 license: Apache-2.0
 metadata:
@@ -40,6 +41,8 @@ org repo scope and branch-protection self-approval quirks live there.
 ## When to Use
 
 - "Resolve the suggestions on PR #M", "clear the review threads on #M".
+- "Handle the CodeRabbit comments on #M" — evaluate the bot's proposed
+  fixes and reconcile its threads.
 - "Is PR #M ready to land?" — reconcile and report, no merge.
 - Pre-landing cleanup before handing off to `sks-land`.
 - "Resolve review threads on an org PR."
@@ -92,6 +95,12 @@ For each **unresolved** thread:
   resolve silently.
 - **No root cause** — a bug fix reconciles but states no cause (symptom patch);
   flag and route to `sks-investigate`; do not resolve as done.
+- **Bot comment (`coderabbitai[bot]`)** — same buckets; the author never
+  changes the bar. Verify the claim on the current head, evaluate the
+  proposed fix (root cause, scope, convention fit) before adopting any of it,
+  then resolve with evidence like any thread. Never bulk-resolve by author
+  (`@coderabbitai resolve`); load `references/coderabbit.md` when the PR
+  carries CodeRabbit review comments.
 
 When closing a thread with a fix, cite the concrete evidence in the comment —
 the exact `- old` → `+ new` diff lines or the command/CI output proving it, not
@@ -143,6 +152,8 @@ Then stop — merging is `sks-land`'s job.
 - Reconciling after new commits without re-review — approval is bound to a head
   commit.
 - Treating issue/PR comments as gate threads — only inline review threads gate.
+- Bulk-resolving CodeRabbit threads or applying its suggested patch unread —
+  evaluate each bot comment first (`references/coderabbit.md`).
 - Merging from this skill — it only reconciles; defer to `sks-land`.
 
 ## Verification
