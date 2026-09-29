@@ -1,4 +1,4 @@
-# CodeRabbit review comments (lazy-loaded)
+# CodeRabbit review comments
 
 Triage recipe for `coderabbitai[bot]` review comments during Gate 3 of
 `sks-pr-resolve`. Read when the PR carries CodeRabbit review comments.
@@ -22,7 +22,8 @@ CodeRabbit threads reconcile through the Gate 3 buckets like any other
 thread; the author does not change the bar:
 
 - Pertinent + in ledger — verify the diff covers it, resolve with evidence.
-- Pertinent + not in ledger — add to the issue tasklist, then resolve.
+- Pertinent + not in ledger — add to the issue tasklist; resolve only if
+  the diff already covers it.
 - Not pertinent — resolve with a one-line rationale. "It's a bot" is not a
   rationale; never bulk-resolve by author.
 

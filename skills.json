@@ -47,17 +47,17 @@
     {
       "name": "sks-discussion",
       "description": "Use when opening an RFC Discussion in a shikanime org as the pre-issue stage: converge on the problem, then derive the issue.",
-      "path": "skills/shikanime-studio/sks-discussion"
+      "path": "skills/sks-discussion"
     },
     {
       "name": "sks-discussion-triage",
       "description": "Use when triaging an existing shikanime org discussion: category, body shape, Q\u0026A answer, and conversion to an issue.",
-      "path": "skills/shikanime-studio/sks-discussion-triage"
+      "path": "skills/sks-discussion-triage"
     },
     {
       "name": "sks-doc",
       "description": "Use when documenting a shikanime project in the repo's docs/ directory after a behavior-changing PR.",
-      "path": "skills/shikanime-studio/sks-doc"
+      "path": "skills/sks-doc"
     },
     {
       "name": "sks-fastlane",
@@ -67,37 +67,37 @@
     {
       "name": "sks-gc",
       "description": "Use when reclaiming resources leaked by shikanime jj workflows: dangling bookmarks, skill-created jj workspaces, and leftover working-copy dirs from sks-async/sks-dev-workflow.",
-      "path": "skills/shikanime-studio/sks-gc"
+      "path": "skills/sks-gc"
     },
     {
       "name": "sks-investigate",
       "description": "Use when investigating a bug, test failure, build break, or unexpected behavior in a shikanime repo: find root cause before any fix, minimal repro, and proven verification.",
-      "path": "skills/shikanime-studio/sks-investigate"
+      "path": "skills/sks-investigate"
     },
     {
       "name": "sks-issue",
       "description": "Use when opening an issue in shikanime-labs or shikanime-studio: body is the problem statement, acceptance criteria as a command-decidable tasklist.",
-      "path": "skills/shikanime-studio/sks-issue"
+      "path": "skills/sks-issue"
     },
     {
       "name": "sks-issue-refine",
       "description": "Use when iterating a problem to convergence inside its GitHub issue via research and comments before deriving the PR.",
-      "path": "skills/shikanime-studio/sks-issue-refine"
+      "path": "skills/sks-issue-refine"
     },
     {
       "name": "sks-issue-triage",
       "description": "Use when triaging an existing shikanime org issue: assign labels, assignee, milestone, and project; close with rationale if not workable.",
-      "path": "skills/shikanime-studio/sks-issue-triage"
+      "path": "skills/sks-issue-triage"
     },
     {
       "name": "sks-issue-workflow",
       "description": "Use when you need the single entry point for the shikanime issue side: create, refine, and triage the issue before any PR.",
-      "path": "skills/shikanime-studio/sks-issue-workflow"
+      "path": "skills/sks-issue-workflow"
     },
     {
       "name": "sks-land",
       "description": "Use when landing a shikanime org PR after reconciliation (sks-pr-resolve) and review approval gates pass; closes the linked issue deliberately.",
-      "path": "skills/shikanime-studio/sks-land"
+      "path": "skills/sks-land"
     },
     {
       "name": "nixpkgs-pr-review",
@@ -107,27 +107,27 @@
     {
       "name": "sks-pr",
       "description": "Use when opening a PR in shikanime-labs or shikanime-studio: push to origin, --head org:branch, plain-English title, issue linkage, parity with commit.",
-      "path": "skills/shikanime-studio/sks-pr"
+      "path": "skills/sks-pr"
     },
     {
       "name": "sks-pr-resolve",
       "description": "Use when resolving a shikanime PR's review conversations, including CodeRabbit review comments, checking the DoD ledger, and reconciling before merge (no merge itself).",
-      "path": "skills/shikanime-studio/sks-pr-resolve"
+      "path": "skills/sks-pr-resolve"
     },
     {
       "name": "sks-pr-review",
       "description": "Use when reviewing shikanime code: enforce YAGNI, root-cause fixes, and project conventions before approval.",
-      "path": "skills/shikanime-studio/sks-pr-review"
+      "path": "skills/sks-pr-review"
     },
     {
       "name": "sks-pr-triage",
       "description": "Use when triaging an existing shikanime org PR: labels, assignee, milestone, and reviewers.",
-      "path": "skills/shikanime-studio/sks-pr-triage"
+      "path": "skills/sks-pr-triage"
     },
     {
       "name": "sks-pr-workflow",
       "description": "Use when you need the single entry point for the shikanime PR side: ensure the issue exists, open, triage, and land the PR.",
-      "path": "skills/shikanime-studio/sks-pr-workflow"
+      "path": "skills/sks-pr-workflow"
     },
     {
       "name": "cpn-release-patch",
@@ -137,12 +137,12 @@
     {
       "name": "sks-restack",
       "description": "Use when rebasing a shikanime jj stack onto moved main leaves conflicts: restack, then resolve each conflicted revision with edit/resolve until pushable.",
-      "path": "skills/shikanime-studio/sks-restack"
+      "path": "skills/sks-restack"
     },
     {
       "name": "sks-nix-authoring",
       "description": "Use when authoring or editing Nix in a shikanime repo: nixfmt-sorted style, single-use let bindings, no explanatory comments, YAGNI on new options.",
-      "path": "skills/shikanime-studio/sks-nix-authoring"
+      "path": "skills/sks-nix-authoring"
     },
     {
       "name": "sks-skill-authoring",
@@ -152,12 +152,12 @@
     {
       "name": "sks-sops-secrets-authoring",
       "description": "Use when editing sops-encrypted files in a shikanime repo: decrypt-and-edit workflow, re-encryption guards, and sops-nix secret plumbing.",
-      "path": "skills/shikanime-studio/sks-sops-secrets-authoring"
+      "path": "skills/sks-sops-secrets-authoring"
     },
     {
       "name": "sks-swarm",
       "description": "Use when distributing one task across a cluster of agents over A2A — route by capability need, machine resource, and runner pressure, optionally inside a disposable sandbox.",
-      "path": "skills/shikanime-studio/sks-swarm"
+      "path": "skills/sks-swarm"
     },
     {
       "name": "sks-repo",
@@ -167,7 +167,7 @@
     {
       "name": "sks-update",
       "description": "Use when updating skills in the shikanime-labs/skills catalog: curate every skill by default (or named ones only), land through the dev workflow, and resync to local Hermes agents.",
-      "path": "skills/shikanime-studio/sks-update"
+      "path": "skills/sks-update"
     }
   ]
 }
