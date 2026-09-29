@@ -104,6 +104,19 @@ All skills follow the [Agent Skills](https://agentskills.io/specification)
 specification, compatible with the
 [Hermes format](https://hermes-agent.nousresearch.com/docs).
 
+The table below is one flat list, but the skills are not flat in role:
+entry points (`sks-dev-workflow`, `sks-investigate`, `sks-bulk`, `sks-repo`,
+`cpn-release-patch`, `nixpkgs-pr-review`) start work and hand it to lifecycle
+hubs (`sks-issue-workflow`, `sks-delegate`, `sks-commit`, `sks-pr-workflow`,
+`sks-pr`, `sks-pr-review`, `sks-land`), which route one-concern satellites
+(triage, resolve, fan-out, restack, reclaim, authoring). Scale-out is a
+one-way ladder, `sks-delegate` -> `sks-async` -> `sks-swarm`. A few
+`related_skills` point outside the catalog (`caveman-*`, `ponytail-*`,
+`requesting-code-review`, `github-*` families maintained elsewhere). The
+hierarchy and generated dependency graph live in
+[docs/skill-graph.md](docs/skill-graph.md); the SKILL.md frontmatter contract
+lives in [docs/skill-schema.md](docs/skill-schema.md).
+
 | Skill | Description |
 | --- | --- |
 | `sks-adversarial` | Use when probing uncertain results in a disposable sandbox — large investigation, development, debugging, testing,... |
