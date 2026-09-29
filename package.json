@@ -106,6 +106,10 @@
         "path": "skills/nixpkgs-pr-review"
       },
       {
+        "name": "sks-moderation",
+        "path": "skills/sks-moderation"
+      },
+      {
         "name": "sks-pr",
         "path": "skills/sks-pr"
       },

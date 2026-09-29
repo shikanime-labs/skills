@@ -105,6 +105,11 @@
       "path": "skills/nixpkgs-pr-review"
     },
     {
+      "name": "sks-moderation",
+      "description": "Use when hiding, unhiding, or moderating comments on GitHub issues, PRs, or discussions with the Hide feature: classifier choice, GraphQL mutations, verification.",
+      "path": "skills/sks-moderation"
+    },
+    {
       "name": "sks-pr",
       "description": "Use when opening a PR in shikanime-labs or shikanime-studio: push to origin, --head org:branch, plain-English title, issue linkage, parity with commit.",
       "path": "skills/sks-pr"
