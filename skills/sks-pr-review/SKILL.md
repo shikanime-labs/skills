@@ -1,9 +1,9 @@
 ---
 name: sks-pr-review
 description:
-  "Use when reviewing shikanime code: enforce YAGNI, root-cause fixes, and
-  project conventions before approval."
-version: 0.2.0
+  "Use when reviewing shikanime code: cross-check related issues, enforce
+  YAGNI, root-cause fixes, and project conventions before approval."
+version: 0.3.0
 author: Hermes Agent
 license: Apache-2.0
 metadata:
@@ -66,6 +66,17 @@ human-gated flow: the agent posts findings and a verdict, a human approves.
 **1 — Scope.** Diff + stat. Empty diff → tell user. >15k chars → split by file.
 Command cheat-sheet: `references/commands.md`.
 
+**1b — Issue cross-check.** Before the verdict, search the repo's issues
+and PRs related to the diff. Search by changed file paths, symbols, and the
+subject keyphrase (`gh issue list -R <org>/<repo> --state all --search
+"<symbol or path>" --limit 10`). Verify a recurring bug's fix against the
+issue's root cause, not the symptom it names. Do not re-flag a tradeoff a
+closed issue already accepted. Cite an open issue that covers the same
+change. If the search finds nothing and the diff touches a
+domain-specific area (infra, auth, storage), consult memory
+(`honcho_search`) for known pitfalls first. Never skip the search on the
+assumption memory already covers the area.
+
 **2 — High-level (Ponytail ladder).** Per change:
 
 - (1) needed? speculative need → flag deletion, not review polish;
@@ -107,8 +118,9 @@ One line per finding: `<file>:L<line>: <severity>: <problem>. <fix>.` Keep the
 exact line and exact symbol name in backticks, and a concrete fix, not
 "consider refactoring". Drop restating what the line does, hedging ("perhaps"),
 and throat-clearing. If the fix is not obvious from the problem, add the why.
-Full paragraphs only for security/architecture findings; resume the one-line
-format after.
+Cite the full URL of a related issue when it confirms or contradicts the
+finding. Full paragraphs only for security/architecture findings; resume the
+one-line format after.
 
 ## Posting (PRs)
 
@@ -127,6 +139,9 @@ body (author amends — reviewer never pushes).
 - `delegate_task` non-JSON → treat as FAIL (fail-closed).
 - False positives → note intentional patterns, don't block.
 - Lint/test tools absent → skip that check silently; verdict still runs.
+- In jj workspaces `gh` can fail to resolve the repo; always pass `-R
+  <org>/<repo>` to issue and PR queries. Report a failed or empty search;
+  it never blocks the review.
 
 ## Verification
 
