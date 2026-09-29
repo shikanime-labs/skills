@@ -160,6 +160,11 @@
       "path": "skills/sks-swarm"
     },
     {
+      "name": "sks-ts-authoring",
+      "description": "Use when writing or reviewing TypeScript: parse-don't-validate boundaries, cast-free explicit types, linear single-purpose functions, and schema-first inputs.",
+      "path": "skills/sks-ts-authoring"
+    },
+    {
       "name": "sks-repo",
       "description": "Use when creating a new shikanime org repo: apply the 5-ruleset protection template, bootstrap the devlib devenv scaffold, and tag v0.1.0.",
       "path": "skills/sks-repo"

@@ -358,4 +358,7 @@ jj status && jj log -r @ -T 'bookmarks ++ " "'
 `sks-issue-workflow` / `sks-pr-workflow` (issue & PR sides), `sks-commit`,
 `sks-delegate` (isolation), `sks-async` (stacked PRs), `sks-swarm` (agent
 cluster), `sks-pr-review` (phase 5), `ponytail-review` (over-engineering
-lens).
+lens). Authoring-convention skills apply during the write phase:
+`sks-ts-authoring` (TypeScript), `sks-nix-authoring` (Nix),
+`sks-skill-authoring` (skills), `sks-sops-secrets-authoring` (sops
+secrets).
