@@ -3,7 +3,7 @@ name: sks-pr-review
 description:
   "Use when reviewing shikanime code: cross-check related issues, enforce
   YAGNI, root-cause fixes, and project conventions before approval."
-version: 0.3.0
+version: 0.4.0
 author: Hermes Agent
 license: Apache-2.0
 metadata:
@@ -64,7 +64,9 @@ human-gated flow: the agent posts findings and a verdict, a human approves.
 ## Procedure
 
 **1 — Scope.** Diff + stat. Empty diff → tell user. >15k chars → split by file.
-Command cheat-sheet: `references/commands.md`.
+Command cheat-sheet: `references/commands.md`. Review the diff that would
+merge, not the branch tip: `main@origin..@` locally; a PR's merge-base diff
+against `main`.
 
 **1b — Issue cross-check.** Before the verdict, search the repo's issues
 and PRs related to the diff. Search by changed file paths, symbols, and the
@@ -106,6 +108,21 @@ with only the diff (no shared context, fail-closed on non-JSON):
 (`references/inline-comments.md`), not one block; body = 2-3 sentence verdict +
 praise. Standard doctrine: approve if it improves health even if imperfect;
 request changes only on `blocking`. Never block on polish.
+
+## Flag test
+
+A `blocking` or `important` finding qualifies only when ALL hold: it
+meaningfully affects correctness, security, performance, or maintainability;
+it is discrete and actionable; it was introduced by the reviewed change
+(never pre-existing or an intentional behavior change); a demonstrable call
+path exists in the code; the author would likely fix it. The test does not
+gate `nit`, `suggestion`, `learning`, or `praise` — those stay reportable
+under Severity Labels and never gate the verdict. It also does not gate
+security-scan matches (step 3): any added-line match is `blocking`
+regardless of call path. Confirm each qualifying finding against the tests
+and call sites before posting, and keep traversing
+the whole diff after the first one. Nothing qualifies at any tier → say
+`No findings.` — never invent one to fill the report.
 
 ## Severity Labels
 
