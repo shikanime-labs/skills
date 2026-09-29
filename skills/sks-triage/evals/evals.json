@@ -1,0 +1,67 @@
+{
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "Issue-scope triage assigns type, assignee, and org issue fields by reading current values first, merging, and writing; labels stay additive.",
+      "files": [],
+      "prompt": "Triage issue #290 in shikanime-labs/skills — it has the enhancement label but no type, assignee, or fields.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-triage'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Body sets issue fields through the org issue-fields discovery and the issue-field-values write",
+        "Body requires reading current field values and merging before the write that replaces them",
+        "Body assigns the org default assignee (references/shikanime.md) only when present in the repo's eligible assignee list",
+        "Body uses '--add-label', not '--label'"
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "Repo-scale sweep enumerates open items in a single paginated call, computes gaps against supported classes, and applies the per-item flow within a cap.",
+      "files": [],
+      "prompt": "Sweep shikanime-labs/skills and assign whatever metadata is missing on open issues and PRs.",
+      "assertions": [
+        "Body enumerates open issues and PRs with one paginated gh api call per repo",
+        "Body computes missing classes against what the repo supports (types, milestones, fields)",
+        "Body caps the number of items touched per sweep and reports the untouched remainder",
+        "Body verifies each item by re-reading it after applying",
+        "Body forbids closing items during a sweep"
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "Org-scale triage filters archived and empty repos before scanning each repo and stays bounded.",
+      "files": [],
+      "prompt": "Go through the shikanime-labs org and triage the backlog across its repos.",
+      "assertions": [
+        "Body enumerates repos with archived and empty repos filtered out",
+        "Body scans each repo for untriaged items before mutating",
+        "Body bounds the org run and reports the remainder",
+        "Body keeps scope to the shikanime orgs unless the user confirms another target"
+      ]
+    },
+    {
+      "id": 4,
+      "expected_output": "PR-scope triage assigns labels, assignee, and the default reviewer, skipping issue-only classes and never requesting the author as reviewer.",
+      "files": [],
+      "prompt": "Triage PR #45 in shikanime-studio/actions: it has no labels, assignee, or reviewers.",
+      "assertions": [
+        "Body applies labels with '--add-label' and assignee additively on PRs",
+        "Body requests the org default reviewer unless they authored the PR",
+        "Body skips type and issue fields on PRs as issue-only",
+        "Body falls back to another collaborator or skips when the default reviewer cannot be requested"
+      ]
+    },
+    {
+      "id": 5,
+      "expected_output": "Out-of-scope requests route elsewhere: discussions to the discussion skill, closure to the issue skill.",
+      "files": [],
+      "prompt": "Triage discussion #12 in shikanime-labs/manifests and also close the issues that will not be worked.",
+      "assertions": [
+        "Body routes discussions to 'sks-discussion-triage' rather than claiming to triage them",
+        "Body states closure is not part of a sweep and routes it to 'sks-issue-triage'",
+        "Body does not instruct closing items during a sweep"
+      ]
+    }
+  ],
+  "skill_name": "sks-triage"
+}
