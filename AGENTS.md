@@ -95,9 +95,10 @@ Source: agentskills.io best practices (`skill-creation/best-practices`,
 - **Calibrate control.** Prescribe exact sequences for fragile or
   consistency-critical operations; explain _why_ and leave freedom where
   multiple approaches are valid.
-- **Gotchas > general advice.** A `## Gotchas` section of concrete corrections
-  that defy assumptions is the highest-value content. When an agent makes a
-  mistake you correct, add the correction there.
+- **Pitfalls > general advice.** A `## Pitfalls` section of concrete
+  corrections that defy assumptions is the highest-value content. When an
+  agent makes a mistake you correct, add the correction there. The heading is
+  always `## Pitfalls`; `## Gotchas` is never used.
 - **Templates + checklists.** Give output templates for fixed formats; use
   checklists for multi-step workflows; add validation loops (do → check → fix →
   repeat) and plan-validate-execute for batch or destructive operations.

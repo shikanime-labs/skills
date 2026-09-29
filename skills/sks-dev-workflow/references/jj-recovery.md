@@ -172,7 +172,7 @@ jj workspace forget <name> 2>/dev/null      # drop the stale workspace entry
 jj workspace add <same-or-new-path> -r <change-id>   # re-materialize the tree
 ```
 
-Then continue work in the recreated dir. Gotchas:
+Then continue work in the recreated dir. Pitfalls:
 
 - Any `/tmp` scratch (decrypted plaintext, `.sops.yaml`, encrypt scripts) is
   GONE — keep decrypted artifacts under `/tmp` only transiently and expect to

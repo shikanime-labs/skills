@@ -1,9 +1,9 @@
 ---
 name: sks-update
 description:
-  "Use when updating skills in the shikanime-labs/skills catalog: curate every
-  skill by default (or named ones only), land through the dev workflow, and
-  resync to local Hermes agents."
+  "Use when updating skills or profiles in the shikanime-labs/skills catalog:
+  curate every skill by default (or named ones only), land through the dev
+  workflow, and resync to local Hermes agents."
 version: 0.2.0
 author: Hermes Agent
 license: Apache-2.0
@@ -31,16 +31,16 @@ platforms:
 
 # Skill Update
 
-End-to-end update of the catalog: curate each skill (`sks-curate`), ship the
-improvements through the dev loop, and resync the landed skills to
-local Hermes agents. This is the orchestration shell — curation and shipping
-delegate to their owning skills.
+End-to-end update of the catalog: curate each skill and profile
+(`sks-curate`), ship the improvements through the dev loop, and resync the
+landed skills to local Hermes agents. This is the orchestration shell —
+curation and shipping delegate to their owning skills.
 
 Read `references/shikanime.md` when operating in a shikanime org
 (the org's skills catalog repo); family list, commit trailer, and resync
 tap live there.
 
-**Default scope: every skill in the catalog.** Only narrow to a named subset
+**Default scope: every skill and profile in the catalog.** Only narrow
 when the user explicitly lists skills ("update sks-commit only"). "Update the
 catalog / all skills / sync everything" all mean the full pass. Never silently
 curate one skill when the user asked for all, and never silently expand to all
@@ -57,8 +57,8 @@ when the user named one.
 
 1. **Scope.** Decide the target set:
    - Full pass (default): enumerate the catalog from `README.md` (or the
-     `skills/` tree) — every catalog `SKILL.md` (families per
-     `references/shikanime.md`).
+     `skills/` tree) — every catalog `SKILL.md` and `profiles/<name>/`
+     distribution (families per `references/shikanime.md`).
    - Explicit subset: only the skills the user named.
    Record the set. Do not skip skills silently; a skipped one is a reported
    reason, not an omission.
@@ -73,6 +73,10 @@ when the user named one.
    - No lines over 80 columns (MD013); run `rumdl check` / `nix fmt` to catch
      it.
    - Body within budget (~500 lines / ~5,000 tokens).
+   - Profile in scope: `distribution.yaml` parses and `SOUL.md` is present.
+     Curate `SOUL.md` with the body: persona prose is agent-facing guidance,
+     so long directive lines stay exempt from MD013, but stale persona and
+     token bloat are curated out the same as a skill body.
 3. **Curate per skill.** Load `sks-curate`; apply improvement/compression/
    update to each audited defect, and refresh its `evals/evals.json`. Record
    the baseline and before/after delta for each. Do not ship un-curated edits;
@@ -115,6 +119,9 @@ when the user named one.
      profile is active (`~/.hermes/profiles/<name>/skills/...`), never hardcode
      `~/.hermes`.
 
+   - Profiles resync the same way: install the distribution with
+     `hermes profile install --name <name> --force profiles/<name>`.
+
    - Verify the resync: `hermes skills list` shows each updated skill and
      `hermes skills diff <skill>` (or reading the file) shows the new body.
 
@@ -128,7 +135,7 @@ when the user named one.
    to step 3 (curate) or step 4 (re-ship), then re-deploy and re-request
    acceptance.
 
-## Resync gotchas
+## Resync pitfalls
 
 - **Bundled vs hub-installed skills.** If a skill is bundled with Hermes, a
   manual `cp` marks it `user-modified`, which blocks future `hermes update`
@@ -149,8 +156,9 @@ when the user named one.
 
 ## Verification
 
-Complete when every in-scope skill is curated (delta reported per skill),
-merged to `main` (`gh pr view <N> --json state` = `MERGED`), local agents
+Complete when every in-scope skill or profile is curated (delta reported
+per skill), merged to `main` (`gh pr view <N> --json state` = `MERGED`),
+local agents
 load the new bodies (`hermes skills list` + content check), **and the user has
 explicitly accepted the deployed change** (manual acceptance, step 6). Any
 unmet step is a blocker — say `BLOCKED:` with evidence and recovery, never

@@ -70,7 +70,7 @@ org examples per `references/shikanime.md`).
      [a-z0-9][a-z0-9._/-]*|release-[0-9]+\.[0-9]+)$`.
      The regex is long; fetch the exact pattern from the template repo
      rather than retyping it. Scope includes to `refs/heads/*` — see
-     Gotchas (`~ALL` blocks tag pushes).
+     Pitfalls (`~ALL` blocks tag pushes).
    - `Enforce tag naming` (tag, `refs/tags/*`):
      `^v[0-9]+\.[0-9]+\.[0-9]+$`.
    - `Copilot review for default branch` (branch, `~DEFAULT_BRANCH`):
