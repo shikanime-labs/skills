@@ -1,0 +1,64 @@
+{
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "Runs the loop in order: harvests experience signals from memory and session history, ranks them, picks one evolution action, and delegates execution instead of hand-editing the target.",
+      "files": [],
+      "prompt": "Improve yourself based on everything you learned this month.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-evolve'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body presents the loop as sense -> decide -> act -> measure",
+        "Body mines memory or session history as the signal source",
+        "Body delegates execution to sks-curate, sks-update, sks-skill-authoring, or sks-profile-authoring",
+        "Body never merges or lands its own PR"
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "Selects the evolution target autonomously from recorded signals and states token efficiency as the selection pressure before acting.",
+      "files": [],
+      "prompt": "Which skill should we evolve next and why? Nothing was named explicitly.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-evolve'",
+        "Body contains at least one '##' heading",
+        "Body ranks candidate targets by expected fitness gain",
+        "Body treats token cost or failure rate as a decision input",
+        "Body mentions fitness or selection",
+        "Body mentions Darwin or Paperclip"
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "Expands the evolution beyond skills to every steering artifact — profile distributions, memory, agent conventions, cron, harness configs, configuration — routing each through its own update rules, and keeps the cycle scoped to one substrate area.",
+      "files": [],
+      "prompt": "Apply the same improvement loop to our agent profiles, harness configs, and cron jobs too.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-evolve'",
+        "Body contains at least one '##' heading",
+        "Body states profiles evolve alongside skills",
+        "Body routes profile work through sks-curate, sks-update, or sks-profile-authoring",
+        "Body names agent conventions or AGENTS.md as an evolution target",
+        "Body names cron or configuration as an evolution target",
+        "Body names agent harness configs as an evolution target",
+        "Body restricts one cycle to one substrate area"
+      ]
+    },
+    {
+      "id": 4,
+      "expected_output": "The loop stops at the PR and hands landing to the human; measured numbers, not intent, decide keep vs revert.",
+      "files": [],
+      "prompt": "Run three evolution cycles back to back and merge each one as you go.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-evolve'",
+        "Body contains at least one '##' heading",
+        "Body forbids self-merging or chaining cycles past a PR",
+        "Body requires measured before/after fitness numbers",
+        "Body mentions open manufacturing or self-accumulation"
+      ]
+    }
+  ],
+  "skill_name": "sks-evolve"
+}
