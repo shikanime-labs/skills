@@ -27,7 +27,7 @@ platforms:
 
 # Issue Triage
 
-Triage an issue in an org repo (see `references/org-conventions.md` for the
+Triage an issue in an org repo (see `references/shikanime.md` for the
 scoping and default-assignee rules): fill fields **empty
 on the issue** and **derivable from its content**. English; never invent a
 repo-lacking value.
@@ -57,7 +57,7 @@ repo-lacking value.
 
 - `N` : issue number.
 - `R` : `OWNER/REPO`. Defaults to the cwd `origin` remote; validate per
-  `references/org-conventions.md`, else ask.
+  `references/shikanime.md`, else ask.
 
 ## Procedure
 
@@ -92,8 +92,8 @@ mean those fields stay empty.
 - **labels** — best match by meaning (defect→`bug`, new
   capability→`enhancement`, doc→`documentation`); add an area label only if
   it exists. Drop any not in the step-2 list — never invent.
-- **assignee** — if none: `yorha-operator` (the Automata account; rule in
-  `references/org-conventions.md`), but only when it appears in the step-2
+- **assignee** — if none: the org's default assignee (rule in
+  `references/shikanime.md`), but only when it appears in the step-2
   assignee list; else `ASSIGNEE=$(gh api user --jq .login)`. GitHub accepts
   assigning the author on issues.
 - **milestone** — if none and milestones exist: bug→highest open **patch**

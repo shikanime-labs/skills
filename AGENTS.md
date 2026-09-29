@@ -17,7 +17,7 @@ One doctrine — the lifecycle is **discussion → issue → issue comments → 
 The issue body is the problem statement with acceptance criteria as a
 command-decidable tasklist (the gate ledger); the PR proves it. Skill bodies
 are org-neutral; organization-specific conventions load on demand from
-per-skill references (`references/org-conventions.md` for shikanime,
+per-skill references (`references/shikanime.md` for shikanime,
 `references/cloud-pi-native.md` for cloud-pi-native console work).
 
 ## Version Control

@@ -27,6 +27,8 @@ platforms:
 # Issue Workflow
 
 Thin orchestrator over `sks-issue` → `sks-issue-refine` → `sks-issue-triage`.
+When operating in cloud-pi-native/console, read
+`references/cloud-pi-native.md` for the org overrides of each step.
 
 ## When to Use
 

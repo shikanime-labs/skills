@@ -30,7 +30,7 @@ GraphQL-only triage for the target org's repos. Triage metadata =
 **category** + lifecycle only (English). Inputs `N` (number), `R`
 (`OWNER/REPO`).
 
-For shikanime-org specifics, read `references/org-conventions.md` when
+For shikanime-org specifics, read `references/shikanime.md` when
 operating in shikanime repos. For cloud-pi-native specifics (console repo
 default, French artifacts, category routing Ideas/General/Q&A), read
 `references/cloud-pi-native.md` when working in the cloud-pi-native/console
@@ -62,7 +62,8 @@ Fetch: `references/fetch-query.md` (GraphQL).
 - **Mark answered** (Q&A only):
   `markDiscussionCommentAsAnswer(input:{id:<commentNodeId>})`.
 - **Close** (post rationale comment first, never silently):
-  `closeDiscussion(input:{discussionId:$id, reason:RESOLVED|DUPLICATE|OUTDATED})`.
+  `closeDiscussion(input:{discussionId:$id,
+  reason:RESOLVED|DUPLICATE|OUTDATED})`.
 
 ## Pitfalls
 

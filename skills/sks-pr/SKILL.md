@@ -27,7 +27,7 @@ platforms:
 
 # PR Creation
 
-Open PRs against the org repos (scope per `references/org-conventions.md`):
+Open PRs against the org repos (scope per `references/shikanime.md`):
 push to `origin`, open with `--head <org>:<branch>`, base `main`, plain-English
 (or `doc:`) title, issue linkage. Repo enforcement (branch protection, CI,
 hooks) is detected per repo.
@@ -43,7 +43,7 @@ hooks) is detected per repo.
 
 All PRs open from `origin` (the cloned org repo). Push the branch to `origin`
 and open with `--head <org>:<branch>`. Where the local clone path and the gh
-remote disagree on owner spelling (see `references/org-conventions.md`), trust
+remote disagree on owner spelling (see `references/shikanime.md`), trust
 the gh remote as canonical.
 
 ## Prerequisites
@@ -85,8 +85,8 @@ squashing or when diagnosing a squash/force-push/rebase failure.
    - Use full URLs — never bare `#XXXX` / `owner/repo#XXXX` (broken):
      `Related: https://github.com/<org>/<repo>/issues/N` (same repo) or
      `Related: https://github.com/owner/repo/issues/N` (cross-repo). List each
-     URL on its own line. Repo-enforced shape (e.g. `manifests` `AGENTS` file:
-     `Related:` + `Signed-off-by`) overrides — follow the repo.
+     URL on its own line. Repo-enforced shape (e.g. a repo's `AGENTS` file
+     requiring `Related:` + `Signed-off-by`) overrides — follow the repo.
    - **Templates: detect, then conform.** Probe for a repo PR template
      before writing the body — candidates:
      `.github/pull_request_template.md`,
@@ -151,15 +151,15 @@ gh pr merge <M> --repo <org>/<repo> --squash --admin \
   -b "$(cat <<'EOF'
 <body: one coherent change, no jj * bullets / --------- separators;
 trailers only: Related: [url], Signed-off-by: [user], required co-author
-trailer (see references/org-conventions.md)>
+trailer (see references/shikanime.md)>
 
-<required trailer lines — see references/org-conventions.md>
+<required trailer lines — see references/shikanime.md>
 EOF
 )"                                     # --admin bypasses self-approval protection
 ```
 
 - Branch protection blocks self-approval on some repos (see
-  `references/org-conventions.md`); a verbal `lgtm` satisfies the gate — land
+  `references/shikanime.md`); a verbal `lgtm` satisfies the gate — land
   with `--squash --admin`.
 - **Conflict check** before merge:
   `gh pr view <N> --json mergeable,mergeStateStatus` (existing PR) or
@@ -172,7 +172,7 @@ EOF
 ### 1. Branch + commit
 
 - Feature branch off `main` (e.g. `fix/rwx-nfs-v4.0`). `main` is protected on
-  some repos (see `references/org-conventions.md`) — never commit directly to
+  some repos (see `references/shikanime.md`) — never commit directly to
   `main`.
 - Commits per `sks-commit` (plain English / `doc:`; repo hook policy wins).
 
@@ -225,7 +225,7 @@ EOF
 ```
 
 PRs submitted from a separate jj workspace request the default reviewer (see
-`references/org-conventions.md`) at submission time:
+`references/shikanime.md`) at submission time:
 
 ```bash
 gh pr edit <N> --repo "$ORG/<repo>" --add-reviewer <default-reviewer>
@@ -264,7 +264,7 @@ re-derive here.
 
 ## Post-steps
 
-- **Protected `main`** (repos listed in `references/org-conventions.md`): a
+- **Protected `main`** (repos listed in `references/shikanime.md`): a
   separate approving review may be mandatory; don't self-merge if blocked.
 - **Merging**: on self-approval-blocked repos, use
   `gh pr merge --squash --admin -b "<clean body>"` (admin required; no `-m` on

@@ -34,8 +34,8 @@ Create a NEW skill for the catalog: distill a real execution into a grounded
 loop. This is the authoring counterpart to `sks-curate` (which reworks an
 existing skill).
 
-Read `references/org-conventions.md` when authoring for the shikanime
-catalog (`shikanime-labs/skills`); which skill families ship lives there.
+Read `references/shikanime.md` when authoring for the shikanime
+skills catalog; which skill families ship lives there.
 
 ## When to Use
 
@@ -56,7 +56,7 @@ Climb in order; stop at the first rung that holds:
    overlapping trigger. A near-duplicate means extend the existing skill, not
    create a narrow sibling.
 2. **Does it belong here?** The catalog ships only its own families — see
-   `references/org-conventions.md` for the family list. Anything else
+   `references/shikanime.md` for the family list. Anything else
    is user-local, full stop.
 3. **Is it grounded?** The body must be distilled from a real execution you
    ran: the steps that worked, corrections made, exact commands, the
@@ -94,6 +94,8 @@ fails before review.
      `## Verification`, `## See also`.
    - One default tool per decision; alternatives are an escape hatch, not a
      menu.
+   - Headings state scope conditions, never paraphrase the title or a
+     sibling heading; a restated title adds noise and MD024 duplicates.
    - Commands exactly as run, in fenced blocks. Reference sibling skills by
      name instead of re-teaching them.
    - Push detail past ~5,000 tokens into `references/<topic>.md` with an

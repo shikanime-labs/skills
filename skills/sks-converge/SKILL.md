@@ -35,8 +35,8 @@ rebase; any skill may call this loop directly. Exit condition for both:
 pushable, i.e. `conflicts()` and `divergent()` empty and bookmarks
 unconflicted.
 
-For shikanime-org specifics, read `references/org-conventions.md` when
-operating in shikanime repos.
+For org specifics, read `references/shikanime.md` when operating in
+shikanime repos.
 
 ## When to Use
 
@@ -157,8 +157,10 @@ jj log -r 'divergent()' --no-graph    # empty
 jj git push --remote origin -b <branch>
 ```
 
-On this host push with `--config signing.behavior=drop --config
-git.sign-on-push=false`; GitHub squash-merge re-signs server-side.
+Where the org's host setup requires it (see
+`references/shikanime.md` when operating in shikanime repos), push
+with `--config signing.behavior=drop --config git.sign-on-push=false`;
+GitHub squash-merge re-signs server-side.
 
 ## Pitfalls
 

@@ -34,16 +34,15 @@ Reconcile a PR: enumerate review
 conversations, check the linked issue DoD ledger, report approval/CI. **Never
 lands the PR** — that is `sks-land`.
 
-Read `references/org-conventions.md` when working in a shikanime org repo
-(`shikanime-labs/*`/`shikanime-studio/*`); the org's branch-protection
-self-approval quirks live there.
+Read `references/shikanime.md` when operating in a shikanime org; the
+org repo scope and branch-protection self-approval quirks live there.
 
 ## When to Use
 
 - "Resolve the suggestions on PR #M", "clear the review threads on #M".
 - "Is PR #M ready to land?" — reconcile and report, no merge.
 - Pre-landing cleanup before handing off to `sks-land`.
-- "Resolve review threads on a shikanime PR."
+- "Resolve review threads on an org PR."
 - "Check if a PR is ready to land (reconcile + report)."
 
 Not for opening (`sks-pr`), reviewing (`sks-pr-review`), merging (`sks-land`).
@@ -56,7 +55,7 @@ Criteria = the `- [ ]` tasklist in the linked issue body (see `sks-issue`);
 verify each against diff/CI.
 
 ```bash
-gh issue view <N> --repo <org>/<repo> --json body --jq .body   # read the tasklist
+gh issue view <N> --repo <org>/<repo> --json body --jq .body  # read tasklist
 gh pr view <M> --repo <org>/<repo> --json body,state --jq .body
 ```
 
@@ -74,7 +73,7 @@ if new commits landed after the last review. Check approval via the query in
 `references/resolve.md`.
 
 - Where branch protection blocks self-approval, a verbal `lgtm` from the
-  user satisfies this gate (see `references/org-conventions.md`) — merge
+  user satisfies this gate (see `references/shikanime.md`) — merge
   stays in `sks-land` (`gh pr merge --squash --admin`).
 - CI: `gh pr checks <M> --repo <org>/<repo>`.
 
@@ -120,7 +119,7 @@ merge, but e2e validation driven on the branch:
    - FAIL → block the landing, report the failure + logs; do not check boxes
      or resolve threads silently.
 
-Workflow id and impact rules per org: `references/org-conventions.md` /
+Workflow id and impact rules per org: `references/shikanime.md` /
 `references/cloud-pi-native.md` as applicable.
 
 ## Output
@@ -129,7 +128,7 @@ Readiness verdict:
 
 - Ledger: N of N satisfied, listing open items.
 - Approval: `sks-pr-review` approval on current head (or verbal `lgtm` per
-  `references/org-conventions.md`).
+  `references/shikanime.md`).
 - Conversations: every thread resolved with one-line rationale, or list needing
   author decision.
 - CI: green / pending / failing.
@@ -149,7 +148,7 @@ Then stop — merging is `sks-land`'s job.
 ## Verification
 
 ```bash
-# readiness verdict re-checked: ledger N/N, approval present, every thread resolved
+# readiness verdict re-checked: ledger N/N, approval present, threads resolved
 gh pr view "$N" --repo "$R" --json reviewDecision,state
 gh api repos/"$R"/pulls/"$N"/comments --jq '.[].isResolved' 2>/dev/null || true
 ```

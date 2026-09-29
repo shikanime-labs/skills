@@ -33,7 +33,7 @@ French). A literal `@` (config keys, `@Inject(x)`, decorators) must be wrapped
 in a code span to avoid a stray GitHub mention.
 
 For shikanime-org specifics (discussion surfaces), read
-`references/org-conventions.md` when operating in shikanime repos. For
+`references/shikanime.md` when operating in shikanime repos. For
 cloud-pi-native specifics (console repo: Issues disabled/Discussions active,
 French house structure, General/Ideas categories), read
 `references/cloud-pi-native.md` when working in the cloud-pi-native/console
@@ -53,14 +53,14 @@ can be stated yet.
 ## Surface state
 
 Discussions are disabled on most repos; the org-level `.github` repo has them
-enabled (shikanime orgs: `shikanime-studio/.github`). Probe first:
+enabled (org surface per `references/shikanime.md`). Probe first:
 
 ```bash
 gh api repos/<org>/<repo> --jq .has_discussions
 ```
 
-- Cross-repo / org-level RFC → `shikanime-studio/.github` (only enabled
-  surface).
+- Cross-repo / org-level RFC → the org-level `.github` repo (only enabled
+  surface, per `references/shikanime.md`).
 - Repo-specific RFC → ask user, or if administering: verify
   `gh api repos/<org>/<repo> --jq .viewerCanAdminister` first, then
   `gh api -X PATCH repos/<org>/<repo> -f has_discussions=true`.

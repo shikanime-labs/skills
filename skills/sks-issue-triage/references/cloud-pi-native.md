@@ -11,5 +11,5 @@ generic procedure in SKILL.md is unchanged; these are the org overrides.
   `gh label list`.
 - Org projects: `gh project list --owner cloud-pi-native` (Projects v2).
 - Fallback assignee is the same `yorha-operator` account (see the generic
-  `org-conventions.md`), still only when it appears in the repo's assignee
+  `shikanime.md`), still only when it appears in the repo's assignee
   list.

@@ -73,7 +73,7 @@ duplicating.
 
 ### 1. Locate or seed the docs source
 
-Repo scoping rule: read `references/org-conventions.md` when scoping the
+Repo scoping rule: read `references/shikanime.md` when scoping the
 target repo — it names the orgs and the validation rule. Validate repo `R`
 (`OWNER/REPO`) there, then confirm the in-repo source:
 

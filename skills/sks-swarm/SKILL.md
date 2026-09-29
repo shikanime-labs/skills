@@ -37,7 +37,7 @@ each unit by the capability it needs, the machine it should run on, and the live
 resource pressure on the runner — then optionally run the whole swarm inside a
 disposable `sks-adversarial` sandbox so a misroute costs nothing.
 
-Read `references/org-conventions.md` when working in a shikanime org repo;
+Read `references/shikanime.md` when working in a shikanime org repo;
 linked-issue conventions live there. Read `references/cloud-pi-native.md`
 when working in the cloud-pi-native/console repository (reconciliation repo,
 French issue language, no-swarm-for-siblings rule).

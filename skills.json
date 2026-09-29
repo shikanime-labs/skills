@@ -51,7 +51,7 @@
     },
     {
       "name": "sks-discussion-triage",
-      "description": "Use when triaging an existing shikanime org discussion: category, body shape, Q&A answer, and conversion to an issue.",
+      "description": "Use when triaging an existing shikanime org discussion: category, body shape, Q\u0026A answer, and conversion to an issue.",
       "path": "skills/shikanime-studio/sks-discussion-triage"
     },
     {
@@ -131,7 +131,7 @@
     },
     {
       "name": "cpn-release-patch",
-      "description": "Use when backporting the commits between two release tags onto a hotfix branch in <org>/<repo>: find the patch milestone and duplicate those commits onto the tag with jj.",
+      "description": "Use when backporting the commits between two release tags onto a hotfix branch in \u003corg\u003e/\u003crepo\u003e: find the patch milestone and duplicate those commits onto the tag with jj.",
       "path": "skills/cpn-release-patch"
     },
     {

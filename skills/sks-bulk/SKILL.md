@@ -35,7 +35,7 @@ Audit or change many repos at once. This is the N-repo shape: one repo is
 
 For org specifics — target orgs, canonical checkout paths, branch and PR
 policy, commit envelope, and the ruleset-approval resolution — read
-`references/org-conventions.md` when operating in a shikanime repo.
+`references/shikanime.md` when operating in a shikanime org.
 
 ## When to Use
 
@@ -121,7 +121,7 @@ Not for: a single repo (`sks-dev-workflow`), or parallel units inside one repo
   the ruleset JSON to a file and check for `require_last_push_approval` before
   guessing. Unasked-for bypass attempts stay forbidden — surface the gate,
   execute only on explicit go-ahead. Resolution recipe:
-  `references/org-conventions.md`.
+  `references/shikanime.md`.
 - **Run bulk mutation scripts through `terminal`**, not a code-kernel loop
   over `gh api` — per-repo subprocess batches blow the kernel timeout and lose
   all progress state, while a shell script resumable from the plan file
@@ -167,4 +167,4 @@ with its reason.
 - `sks-commit` — commit envelope the batch commits must carry.
 - `sks-pr-workflow`, `sks-issue-workflow` — per-repo PR and issue sides.
 - Org specifics (orgs, checkout paths, commit envelope, ruleset gate):
-  `references/org-conventions.md`.
+  `references/shikanime.md`.

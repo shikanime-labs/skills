@@ -74,7 +74,7 @@ command-decidable tasklist (the gate ledger), the PR proves it. Skill bodies
 are org-neutral; organization-specific conventions load on demand from
 per-skill references:
 
-- `references/org-conventions.md` — shikanime defaults (plain-English
+- `references/shikanime.md` — shikanime defaults (plain-English
   commits, Automata co-author trailer, plain `gh pr` landing).
 - `references/cloud-pi-native.md` — cloud-pi-native overrides (French
   artifacts, conventional commits, Release Please, console specifics).

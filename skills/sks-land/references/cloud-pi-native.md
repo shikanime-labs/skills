@@ -11,7 +11,7 @@ console; base `main`).
 - Quality Gate CI: SonarQube must show 0 new issues / Quality Gate passed,
   visible via `gh pr checks`.
 - Gate 2 approver is the same `yorha-operator` account (see
-  `org-conventions.md`); GitHub refuses auto-approval when the active
+  `shikanime.md`); GitHub refuses auto-approval when the active
   identity is the author — the approval must come from the `yorha-operator`
   account itself.
 - Post-merge issue close uses the French rationale, after ledger N/N +
