@@ -122,6 +122,12 @@ org examples per `references/shikanime.md`).
    devenv tasks run devlib:github:workflows:install
    ```
 
+   Assert the landed Update workflow keeps issues open: the `stale` job in
+   `.github/workflows/update.yaml` must carry `days-before-issue-close: -1`
+   (the timer labels stale issues and closes stale pull requests, but never
+   closes issues — they close deliberately). When the file is copied from
+   the donor instead of generated, apply the override before staging.
+
 5. **Land via PR (never direct to main).** Branch `feat/<slug>` (branch-naming
    ruleset), commit with the org co-author trailer + `Signed-off-by` (values per
    `references/shikanime.md`), push, open PR with
