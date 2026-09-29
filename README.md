@@ -111,7 +111,7 @@ specification, compatible with the
 | `sks-bulk` | Use when auditing or bulk-changing many shikanime-labs / shikanime-studio repos at once: enumerate targets, drive ... |
 | `sks-commit` | Use when committing in shikanime-labs or shikanime-studio repos: plain-English imperative titles and repo-enforced... |
 | `sks-converge` | Use when jj conflicts or divergent changes block a shikanime repo after a tree move: resolve conflicted revisions a... |
-| `sks-curate` | Use when updating, improving, compressing, or token-optimizing a skill in the shikanime-labs/skills catalog: rework... |
+| `sks-curate` | Use when updating, improving, compressing, or token-optimizing a skill or profile in the shikanime-labs/skills catalog: rework... |
 | `sks-delegate` | Use when isolating one unit of shikanime work in a fresh jj workspace so concurrent editors / WIP never get folded... |
 | `sks-dev-workflow` | Use when running the shikanime local dev loop: branching, push-to-origin, jj bookmark tracking, and landing via pla... |
 | `sks-discussion` | Use when opening an RFC Discussion in a shikanime org as the pre-issue stage: converge on the problem, then derive... |
@@ -136,12 +136,12 @@ specification, compatible with the
 | `sks-restack` | Use when rebasing a shikanime jj stack onto moved main leaves conflicts: restack, then resolve each conflicted revi... |
 | `sks-nix-authoring` | Use when authoring or editing Nix in a shikanime repo: nixfmt-sorted style, single-use let bindings, no explanatory comments, YAGNI on new options |
 | `sks-sops-secrets-authoring` | Use when editing sops-encrypted files in a shikanime repo: decrypt-and-edit workflow, re-encryption guards, and sops-nix secret plumbing |
-| `sks-skill-authoring` | Use when creating a brand-new skill for the shikanime-labs/skills catalog: grounded body, evals, manifests, and shi... |
+| `sks-skill-authoring` | Use when creating a brand-new skill or profile for the shikanime-labs/skills catalog: grounded body, evals, manifests, and shi... |
 | `sks-swarm` | Use when distributing one task across a cluster of agents over A2A — route by capability need, machine resource, an... |
 | `sks-ts-authoring` | Use when writing or reviewing TypeScript: parse-don't-validate boundaries, cast-free explicit types, linear single-purpose functions, and schema-first inputs. |
 | `sks-repo` | Use when creating a new shikanime org repo: apply the 5-ruleset protection template, bootstrap the devlib devenv scaffold, and tag v0.1.0. |
 | `sks-triage` | Use when triaging a shikanime org, repo, issue, or PR: sweep the scope for untriaged items, then assign every empty,... |
-| `sks-update` | Use when updating skills in the shikanime-labs/skills catalog: curate every skill by default (or named ones only),... |
+| `sks-update` | Use when updating skills or profiles in the shikanime-labs/skills catalog: curate every skill by default (or named ones only), land through the dev workflow, and resync to local... |
 
 ### Agent profiles
 

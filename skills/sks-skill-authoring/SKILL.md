@@ -1,8 +1,9 @@
 ---
 name: sks-skill-authoring
 description:
-  "Use when creating a brand-new skill for the shikanime-labs/skills catalog:
-  grounded body, evals, manifests, and ship through the dev workflow."
+  "Use when creating a brand-new skill or profile for the
+  shikanime-labs/skills catalog: grounded body, evals, manifests, and ship
+  through the dev workflow."
 version: 0.1.0
 author: Hermes Agent
 license: Apache-2.0
@@ -32,7 +33,9 @@ platforms:
 Create a NEW skill for the catalog: distill a real execution into a grounded
 `SKILL.md`, give it honest evals, register it, and ship it through the dev
 loop. This is the authoring counterpart to `sks-curate` (which reworks an
-existing skill).
+existing skill). New profile distributions under `profiles/<name>/` are
+authored the same way; registration goes in the README's Agent profiles
+section.
 
 Read `references/shikanime.md` when authoring for the shikanime
 skills catalog; which skill families ship lives there.
@@ -87,13 +90,14 @@ fails before review.
 
 1. **Run the procedure for real.** Capture commands as executed and every
    correction ("this flag was wrong", "wait for X before Y"). Those
-   corrections become the Gotchas section.
+   corrections become the `## Pitfalls` section.
 2. **Isolate.** Open a fresh workspace per `sks-delegate`, pinned to
    `main@origin`; never author in a dirty checkout.
 3. **Write `SKILL.md`.**
    - Section order: `## When to Use`, `## Procedure` (numbered, each step
-     with a checkable completion criterion), `## Gotchas` or `## Pitfalls`,
-     `## Verification`, `## See also`.
+     with a checkable completion criterion), `## Pitfalls`,
+     `## Verification`, `## See also`. The heading is always `## Pitfalls`;
+     `## Gotchas` is never used.
    - One default tool per decision; alternatives are an escape hatch, not a
      menu.
    - Headings state scope conditions, never paraphrase the title or a

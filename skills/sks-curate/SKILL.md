@@ -1,9 +1,9 @@
 ---
 name: sks-curate
 description:
-  "Use when updating, improving, compressing, or token-optimizing a skill in
-  the shikanime-labs/skills catalog: rework the body, tighten it, refresh
-  evals, and keep it loadable."
+  "Use when updating, improving, compressing, or token-optimizing a skill or
+  profile in the shikanime-labs/skills catalog: rework the body, tighten it,
+  refresh evals, and keep it loadable."
 version: 0.2.0
 author: Hermes Agent
 license: Apache-2.0
@@ -32,8 +32,10 @@ platforms:
 
 # Skill Curation
 
-Refine an existing skill in the catalog: improve its guidance, compress it to
-a lean token budget, and keep its evals honest. Curation is a rework pass, not
+Refine an existing skill or profile in the catalog: improve its guidance,
+compress it to a lean token budget, and keep its evals honest. Profiles evolve
+alongside skills: for `profiles/<name>/` the target is `distribution.yaml`,
+`SOUL.md`, and `cron/` instead of `SKILL.md`. Curation is a rework pass, not
 a rewrite from scratch — the skill already encodes proven procedure; your job
 is to make that procedure sharper and cheaper to load.
 
@@ -72,7 +74,7 @@ place. Four properties decide whether a body is worth its weight:
    Record a baseline: `wc -l SKILL.md`, a token estimate, and the evals
    assertion list. You cannot judge compression without a number to beat.
 2. **Decide the operation.** From the baseline and the trigger, pick one:
-   - **Improve** — the procedure is right but guidance is thin: add gotchas,
+   - **Improve** — the procedure is right but guidance is thin: add pitfalls,
      exact commands, a template, a checklist. Expect the body to grow, then
      re-compress the rest to hold the budget.
    - **Compress** — the body is over budget, wordy, or padded with what the

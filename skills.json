@@ -31,7 +31,7 @@
     },
     {
       "name": "sks-curate",
-      "description": "Use when updating, improving, compressing, or token-optimizing a skill in the shikanime-labs/skills catalog: rework the body, tighten it, refresh evals, and keep it loadable.",
+      "description": "Use when updating, improving, compressing, or token-optimizing a skill or profile in the shikanime-labs/skills catalog: rework the body, tighten it, refresh evals, and keep it loadable.",
       "path": "skills/sks-curate"
     },
     {
@@ -151,7 +151,7 @@
     },
     {
       "name": "sks-skill-authoring",
-      "description": "Use when creating a brand-new skill for the shikanime-labs/skills catalog: grounded body, evals, manifests, and ship through the dev workflow.",
+      "description": "Use when creating a brand-new skill or profile for the shikanime-labs/skills catalog: grounded body, evals, manifests, and ship through the dev workflow.",
       "path": "skills/sks-skill-authoring"
     },
     {
@@ -181,7 +181,7 @@
     },
     {
       "name": "sks-update",
-      "description": "Use when updating skills in the shikanime-labs/skills catalog: curate every skill by default (or named ones only), land through the dev workflow, and resync to local Hermes agents.",
+      "description": "Use when updating skills or profiles in the shikanime-labs/skills catalog: curate every skill by default (or named ones only), land through the dev workflow, and resync to local Hermes agents.",
       "path": "skills/sks-update"
     }
   ]

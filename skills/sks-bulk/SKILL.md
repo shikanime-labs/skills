@@ -103,7 +103,7 @@ Not for: a single repo (`sks-dev-workflow`), or parallel units inside one repo
    and a bad default branch name have different remediations, so track the
    reason per repo. A push command's own success line proves nothing.
 
-## Gotchas
+## Pitfalls
 
 - **The probe's output format must match the query.** Emit plain paths
   (`--jq '.tree[].path'`), never the JSON-array form (`'[.tree[].path]'`):
