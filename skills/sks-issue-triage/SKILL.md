@@ -70,7 +70,7 @@ gh api repos/"$R"/issues/"$N" \
   # type/parent (not exposed by `gh issue view`)
 ```
 
-### 2. Discover available metadata (source of truth)
+### 2. Discover available metadata
 
 Run from the skill directory — `scripts/` resolves against the skill dir,
 not the target repo:

@@ -205,6 +205,12 @@ uvx rumdl check .             # markdown lint over SKILL.md + references/ (MD032
 Done when the body is within budget, evals pass and match the body, the
 description still triggers, and the before/after delta is stated in numbers.
 
+## Repo-specific curation notes
+
+- Shikanime-org specifics (commit trailers and envelope in the org's
+  `skills` repo): read `references/org-conventions.md` when operating in
+  shikanime repos.
+
 ## See also
 
 - `sks-update` — orchestrates curation → dev-workflow → local resync.
@@ -215,9 +221,3 @@ description still triggers, and the before/after delta is stated in numbers.
 - `ponytail-review` — over-engineering-only pass over a diff.
 - `ponytail-audit` — same lens, whole repo; template for the structural
   audit step.
-
-## Repo-specific curation notes (verified)
-
-- Shikanime-org specifics (commit trailers and envelope in the org's
-  `skills` repo): read `references/org-conventions.md` when operating in
-  shikanime repos.

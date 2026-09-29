@@ -26,7 +26,7 @@ platforms:
   - windows
 ---
 
-# Shikanime Org PR Workflow
+# PR Workflow
 
 Orchestrator over `sks-issue`/`sks-pr`/`sks-pr-triage`: issue → PR → triage.
 
@@ -50,7 +50,7 @@ PR complete; org-specific gate ids live in the org reference.
 
 ## Procedure
 
-### 0. Pre-submit isolation & conflict gate (mandatory)
+### 0. Pre-submit isolation & conflict gate
 
 Every PR carries ONLY its own change set. Before opening (step 2), verify:
 
@@ -90,7 +90,7 @@ Load `sks-pr`. Push to `origin` (org repo), open `--head <org>:<branch>`, base
 Load `sks-pr-triage`; apply metadata now. Apply only empty/determinable fields;
 never invent a value the repo lacks.
 
-## Gate
+## Verification
 
 Done when opened from `origin`, links issue, triage set, and the isolation gate
 passed. Verify:
@@ -105,7 +105,7 @@ gh pr diff <N> --repo <org>/<repo> --name-only
 git diff --stat "$(gh pr view <N> --repo <org>/<repo> --json baseRefOid -q .baseRefOid)"..HEAD
 ```
 
-## Verification
+## Gate
 
 ```bash
 gh pr view <N> --repo <org>/<repo> --json title,baseRefName,body

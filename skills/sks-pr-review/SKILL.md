@@ -30,7 +30,7 @@ platforms:
   - windows
 ---
 
-# PR Review (sks-pr-review)
+# PR Review
 
 Review local diffs and GitHub PRs through the `ponytail`/YAGNI lens
 (`ponytail` plugin skills; `ponytail-review` is the over-engineering-only

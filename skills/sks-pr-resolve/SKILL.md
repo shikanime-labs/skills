@@ -28,7 +28,7 @@ platforms:
   - windows
 ---
 
-# Shikanime Org PR Resolution (no merge)
+# PR Resolution
 
 Reconcile a PR: enumerate review
 conversations, check the linked issue DoD ledger, report approval/CI. **Never
@@ -123,7 +123,7 @@ merge, but e2e validation driven on the branch:
 Workflow id and impact rules per org: `references/org-conventions.md` /
 `references/cloud-pi-native.md` as applicable.
 
-## Output (hand back)
+## Output
 
 Readiness verdict:
 

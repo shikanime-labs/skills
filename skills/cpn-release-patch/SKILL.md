@@ -26,7 +26,7 @@ metadata:
       - sks-commit
 ---
 
-# Release Patch (tag → hotfix branch)
+# Release Patch
 
 Backport the gap between two release tags onto a `hotfix/<milestone>` branch so
 release-please opens the patch release PR. The authoritative backport set is the
@@ -71,7 +71,7 @@ base.
 
 ## Procedure
 
-### 0. Preconditions (verify, block if unmet)
+### 0. Preconditions
 
 ```bash
 jj status                       # .jj/ present, no surprise working-copy churn
@@ -191,20 +191,6 @@ Return the pushed branch (`hotfix/$NEXT`), the duplicate commit count, and the
 commit range (`BASE_TAG..hotfix/$NEXT`). Tell the user release-please will open
 a `chore: Release v$NEXT` PR against `hotfix/$NEXT` with `always-bump-patch`.
 
-## Verification (release-please mechanics — why this works)
-
-Console release-please specifics (cloud-pi-native; `references/org-conventions.md`):
-
-- `release-please-config.json`: `release-type: node`, single package `.` =
-  `console`; next version comes from `.release-please-manifest.json` (currently
-  `9.24.4`).
-- `.github/workflows/job-release-please.yml`: on a `hotfix/*` branch it uses
-  `versioning-strategy: always-bump-patch`, so the manifest `9.24.4` becomes
-  `9.24.5` — the milestone `NEXT` derived in Step 1. The branch name
-  `hotfix/<x.y.z>` is the only trigger; no tag needed.
-- Therefore: name the branch `hotfix/$NEXT`, push it, let release-please open
-  the release PR. Do not hand-cut `v$NEXT`.
-
 ## Pitfalls
 
 - **The backport set is the MILESTONE, not `BASE_TAG..main`.** A `v9.24.4..main`
@@ -258,6 +244,20 @@ Console release-please specifics (cloud-pi-native; `references/org-conventions.m
 - **Branch already exists on origin** (`hotfix/$NEXT`): the patch was already
   started. `jj git fetch`, rebase your duplicate onto the existing bookmark, and
   push — do not force a second branch.
+
+## Verification
+
+Console release-please specifics (cloud-pi-native; `references/org-conventions.md`):
+
+- `release-please-config.json`: `release-type: node`, single package `.` =
+  `console`; next version comes from `.release-please-manifest.json` (currently
+  `9.24.4`).
+- `.github/workflows/job-release-please.yml`: on a `hotfix/*` branch it uses
+  `versioning-strategy: always-bump-patch`, so the manifest `9.24.4` becomes
+  `9.24.5` — the milestone `NEXT` derived in Step 1. The branch name
+  `hotfix/<x.y.z>` is the only trigger; no tag needed.
+- Therefore: name the branch `hotfix/$NEXT`, push it, let release-please open
+  the release PR. Do not hand-cut `v$NEXT`.
 
 ## See also
 

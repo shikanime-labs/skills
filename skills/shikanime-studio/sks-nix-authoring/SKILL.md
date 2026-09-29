@@ -26,7 +26,7 @@ platforms:
   - windows
 ---
 
-# Shikanime Nix Authoring
+# Nix Authoring
 
 Write Nix in a shikanime repo (`machines`, `manifests`, and any other
 flake-parts / nixpkgs consumer) the way the fleet already reads it: sorted,
@@ -69,19 +69,22 @@ the default stack does not already cover it:
 
 The rule of thumb: if the default already does it, do not add a layer.
 
-## Style checklist (what the reviewer actually checks)
+## Style checklist
 
 1. **Run `nix fmt` on the files you touched.** One scope at a time for nix
    repos that carry non-Nix files — a whole-tree `nix fmt` rewrites unrelated
    files and can corrupt `.enc.*` in manifests. Scope it:
+
    ```bash
    nix fmt apps/<app>          # nix files only in that tree
    ```
+
    For a single-file edit in a repo that is all-Nix (e.g. a profile module),
    `nix fmt <file>` is fine.
 2. **Keys sorted in any record you write or extend.** If two or more keys share
    a parent, use a record literal with keys sorted; a single leaf under a shared
    parent uses dotted assignment. Pattern from machines:
+
    ```nix
    # single leaf under parent `foo`
    foo.bar = v;
@@ -92,6 +95,7 @@ The rule of thumb: if the default already does it, do not add a layer.
      baz = v2;
    };
    ```
+
    Do not mix the two styles inside the same parent haphazardly — pick the style
    that matches how many keys actually live under that parent.
 3. **Inline single-use let bindings.** If a `let` binds exactly one use, inline
@@ -101,24 +105,27 @@ The rule of thumb: if the default already does it, do not add a layer.
 4. **No explanatory comments. Name the intermediate instead.** A comment that
    exists only to label a chunk of a list or expression is a symptom that the
    chunk should be named. Prefer:
+
    ```nix
    let
      svcAccountResources = [ sa.yaml rbac.yaml ];
      probeResources = [ liveness.yaml readyness.yaml ];
    in  svcAccountResources ++ probeResources
    ```
+
    over a commented concatenation:
+
    ```nix
    # few stuffs related sa a b c
    [ sa.yaml rbac.yaml ]
    # other stuffs related probes y i
    ++ [ liveness.yaml readyness.yaml ]
    ```
+
    The name `svcAccountResources` carries what the comment would have said, and a
    reader does not have to match a comment to the lines beneath it. Comments that
    survive this refactoring — a name cannot capture a non-obvious WHY — are the
    rare justified ones; the rest are deleted.
-
 5. **Single-responsibility functions and values.** When a derivation, function,
    or let-binding does two things that could be described with two names, split
    it. A value named for what it *is* (e.g. `baseImage`, `extraArgs`,
@@ -126,10 +133,10 @@ The rule of thumb: if the default already does it, do not add a layer.
    *used* (e.g. `finalImage` with a body that also adds args). Split until each
    name answers "what is this?" in one breath; if the answer reads "this is X and
    also Y", it is two values.
-5. **One logical change per commit.** A Nix refactor that also renames ten attrs
+6. **One logical change per commit.** A Nix refactor that also renames ten attrs
    and adds a new option and retires an old one is four changes. Split so the
    diff reads as one decision each.
-6. **New option = real consumer.** Before adding an option, argument, or config
+7. **New option = real consumer.** Before adding an option, argument, or config
    knob, ask: is there a consumer that will use a non-default value here? If the
    answer is "maybe later", the option is premature. Default it, do not expose
    it.
@@ -168,22 +175,6 @@ The style is the same; the surface differs.
   territory. Do not hand-edit the generated YAML to "fix" sorting — fix the Nix
   that produces it, then re-render.
 
-## Verification
-
-```bash
-# Nix files you touched are fmt-clean
-nix fmt -- --check   # or scoped: nix fmt <path>
-
-# no explanatory comments left on the lines you added
-grep -nE '^\s*# ' <file>.nix      # review the survivors; delete the obvious ones
-
-# new option has a real consumer
-grep -rn "<new-option>" .          # at least one non-default consumer, or drop it
-
-# staged diff is only the Nix you intended
-jj diff --git | grep -E '^diff --git a/.*\.nix'
-```
-
 ## Pitfalls
 
 - **`nix fmt` is whole-tree by default in these flakes.** A bare `nix fmt` in a
@@ -201,6 +192,22 @@ jj diff --git | grep -E '^diff --git a/.*\.nix'
   contract: someone must document it, someone must test it, and someone must
   retire it if it becomes wrong. Only add it when a non-default value is actually
   in flight.
+
+## Verification
+
+```bash
+# Nix files you touched are fmt-clean
+nix fmt -- --check   # or scoped: nix fmt <path>
+
+# no explanatory comments left on the lines you added
+grep -nE '^\s*# ' <file>.nix      # review the survivors; delete the obvious ones
+
+# new option has a real consumer
+grep -rn "<new-option>" .          # at least one non-default consumer, or drop it
+
+# staged diff is only the Nix you intended
+jj diff --git | grep -E '^diff --git a/.*\.nix'
+```
 
 ## See also
 

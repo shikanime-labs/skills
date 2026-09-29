@@ -28,7 +28,7 @@ platforms:
   - windows
 ---
 
-# Shikanime Org jj Restack + Conflict Resolution
+# jj Restack + Conflict Resolution
 
 Rebase a jj stack (bookmarked commits above `main`) onto a moved trunk, then
 resolve every conflict the move produced. `jj restack` in these environments is

@@ -146,7 +146,7 @@ streams may fan out (`sks-async`) while the blocker is surfaced.
 - `manifests` commits: gitlint CC1 rejects any commit without `Signed-off-by`
   (full envelope: `references/manifests-git-commit-pitfalls.md`).
 
-## Rebuilding a branch whose bookmark is immutable (already pushed)
+## Rebuilding a branch whose bookmark is immutable
 
 A pushed bookmark is immutable — `jj rebase -d main -r <branch>` fails with
 "Commit ... is immutable". Recovery (verified pattern):

@@ -48,7 +48,7 @@ leave on disk. Destructive — always dry-run first.
 - "Clean up my dangling branches / orphan jj workspaces."
 - Periodic hygiene on a repo worked across many parallel streams.
 
-## Hard rules (do not skip)
+## Hard rules
 
 - **Dry-run first.** Print every candidate; never `forget`/`rm` on the same pass
   that discovers it. Require an explicit apply step after review.
