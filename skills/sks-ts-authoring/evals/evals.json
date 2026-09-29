@@ -1,0 +1,45 @@
+{
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Add a new service that reads GitLab settings from env, and fix the `as any` the previous patch left in the spec.",
+      "expected_output": "Env config via a schema parsed once at the edge, types derived with z.infer, the `as any` replaced by typing the fixture against the real shape, and no re-validation of already-typed values inward.",
+      "files": [],
+      "assertions": [
+        "Frontmatter parses as valid YAML.",
+        "Frontmatter 'name' field equals 'sks-ts-authoring'.",
+        "Frontmatter 'license' field equals 'Apache-2.0'.",
+        "The body teaches parse-don't-validate: unknown data is parsed into domain types once at the edge, never re-checked inward.",
+        "The body prohibits `as` casts and confines `unknown` to edge parsers.",
+        "The body derives types from schemas instead of hand-written interfaces."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Review this diff before we request merge — it touches three NestJS modules and their specs.",
+      "expected_output": "Review applies the universal rules (no casts, edge parsing, explicit exported types, linear single-purpose functions) and loads the library-specific NestJS and vitest rules from their per-library references, then restores any format drift outside the diff.",
+      "files": [],
+      "assertions": [
+        "The body routes library-specific rules to per-library references (NestJS, vitest, zod), each behind an explicit load condition.",
+        "The body requires functions to read linearly top to bottom with guard clauses first and one responsibility each.",
+        "The body requires explicit return types on exported functions and constants.",
+        "The body prohibits comments unless the code cannot explain itself via naming or sub-function extraction.",
+        "The body requires at least 80 percent coverage on business-critical paths and rejects excessive testing as a YAGNI violation.",
+        "The body restricts tests to the module's own responsibility, stubbing dependencies at the boundary instead of testing their behavior.",
+        "The body mandates e2e tests against real or containerized external systems instead of additional mock layers.",
+        "The body instructs restoring format and lint changes outside the intended files instead of committing them."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Open a PR for the jj workspace rebase I just did in the machines repo.",
+      "expected_output": "Routes to the jj dev workflow: TypeScript authoring rules do not apply to a Nix/jj change with no TypeScript diff.",
+      "files": [],
+      "assertions": [
+        "The body scopes the skill to TypeScript code and test authoring or review.",
+        "The body does not teach jj workspace or Nix procedures."
+      ]
+    }
+  ],
+  "skill_name": "sks-ts-authoring"
+}

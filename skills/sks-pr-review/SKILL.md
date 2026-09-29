@@ -155,3 +155,4 @@ Related: `requesting-code-review`, `github-code-review`.
 ## See also
 
 - `sks-investigate` — root-cause research before any fix.
+- `sks-ts-authoring` — the TypeScript conventions these findings enforce.

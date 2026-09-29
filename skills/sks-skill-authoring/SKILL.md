@@ -52,9 +52,11 @@ user-local in `~/.hermes/skills/` and never ship in this repo).
 
 Climb in order; stop at the first rung that holds:
 
-1. **Does it exist?** Search the catalog and `~/.hermes/skills/` for an
-   overlapping trigger. A near-duplicate means extend the existing skill, not
-   create a narrow sibling.
+1. **Does it exist?** Search the catalog, `~/.hermes/skills/`, AND session
+   memory (`honcho_search`, `session_search`) for an overlapping trigger or
+   prior art. A near-duplicate means extend the existing skill, not create a
+   narrow sibling; memory also holds the grounded executions step 3 distills
+   into the body.
 2. **Does it belong here?** The catalog ships only its own families — see
    `references/shikanime.md` for the family list. Anything else
    is user-local, full stop.
