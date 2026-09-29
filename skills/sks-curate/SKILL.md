@@ -124,6 +124,8 @@ Delete or rewrite anything that matches:
   standard acronyms (DB/API/HTTP); keep the full word otherwise.
 - **Causal arrows** — a `→` is its own token and saves nothing; write the
   plain words.
+- **Paraphrasing parentheticals** — a parenthesis that merely restates
+  nearby text; keep it only when it justifies or qualifies the statement.
 - **Long compound sentences** — one idea per sentence, target ≤ 20 words,
   active voice. Same term for the same thing, no synonym rotation.
 - **Negation flips** — never drop `not`/`never`/`no`/`only`/`except` to save a

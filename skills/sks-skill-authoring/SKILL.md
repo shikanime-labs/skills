@@ -96,6 +96,10 @@ fails before review.
      menu.
    - Headings state scope conditions, never paraphrase the title or a
      sibling heading; a restated title adds noise and MD024 duplicates.
+   - Paraphrasing parentheticals (excessive parentheses) are prohibited
+     unless they justify or qualify the statement — scope conditions,
+     command rules, short IDs. A parenthesis that merely restates nearby
+     text is deleted.
    - Commands exactly as run, in fenced blocks. Reference sibling skills by
      name instead of re-teaching them.
    - Push detail past ~5,000 tokens into `references/<topic>.md` with an
