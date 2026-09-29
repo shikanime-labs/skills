@@ -11,7 +11,7 @@
         "Frontmatter license field is 'Apache-2.0'",
         "Body contains at least one '##' heading",
         "Body states repo-enforced hooks/formatters must not touch .enc files",
-        "Body shows a 'sops' edit path (sops <file> or -e/-d pipeline), not a plain-editor edit of the .enc file",
+        "Body shows a 'sops' edit path (sops \u003cfile\u003e or -e/-d pipeline), not a plain-editor edit of the .enc file",
         "Body requires verifying the file still decrypts after the edit with sops --decrypt",
         "Body checks the sops recipient set (sops_age / sops_pgp / sops_kms) after editing",
         "Body treats .enc.env and .enc.conf files as distinct from .enc.yaml and warns against editing them like YAML",

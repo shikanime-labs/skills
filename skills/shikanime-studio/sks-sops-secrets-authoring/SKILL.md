@@ -180,19 +180,23 @@ In the machines repo, hosts consume secrets through `sops-nix`:
 - Some hosts additionally use `sops.templates.*` to materialize decrypted config
   fragments into the store. When you add a new secret a template wants to
   reference, the template and the secret file must be added in the same unit of
-  work — a secret with no template is dead storage, a template with no secret is a
-  deploy-time failure.
+  work — a secret with no template is dead storage, a template with no secret is
+  a deploy-time failure.
 
 ### 6. Commit and verify
 
 1. Verify the file still decrypts after the edit:
+
    ```bash
    sops --decrypt secrets/<host>.enc.yaml >/dev/null && echo ok
    ```
+
 2. Confirm the recipient set you expect is present:
+
    ```bash
    sops secrets/<host>.enc.yaml | grep -A2 '^sops:'
    ```
+
 3. Commit per `sks-commit` with the Automata co-author trailer. A secret edit
    often pairs with a module edit (`sopsFile` path, template, systemd unit that
    reads the decrypted path) — keep them in the same commit when they are one
