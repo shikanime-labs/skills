@@ -3,7 +3,7 @@ name: sks-sops-secrets-authoring
 description:
   "Use when editing sops-encrypted files in a shikanime repo: decrypt-and-edit
   workflow, re-encryption guards, and sops-nix secret plumbing."
-version: 0.1.0
+version: 0.2.0
 author: Hermes Agent
 license: Apache-2.0
 metadata:
@@ -67,7 +67,7 @@ side differ. Concrete org repos and recipient key names live in
 The generic edit flow below covers both. The fleet render layer — exact
 recipient keys, the devenv `sops` wrapper trap, INI store rules, the
 `formatForPath` binary-store trap, and the `;` corruption — lives in
-`sks-dev-workflow/references/sops-manifests.md`; read it when the target is
+`references/sops-manifests.md`; read it when the target is
 the render repo or the file is `*.enc.env` / `*.enc.conf`.
 
 ## Prerequisites
@@ -81,7 +81,7 @@ the render repo or the file is `*.enc.env` / `*.enc.conf`.
   `references/shikanime.md`) and the unwrapped
   `/nix/store/*-sops-*/bin/sops` binary — the devenv `sops` alias is
   wrapped and forces a single recipient, breaking Flux. Full recipe in
-  `sks-dev-workflow/references/sops-manifests.md`.
+  `references/sops-manifests.md`.
 
 ## The object
 
@@ -157,7 +157,7 @@ recipient list must include a key that host/operator holds.
 
 For fleet render files specifically: use the unwrapped sops binary and the
 comma-joined fleet age recipients exactly as in
-`sks-dev-workflow/references/sops-manifests.md` — the devenv wrapper and the
+`references/sops-manifests.md` — the devenv wrapper and the
 wrong-recipient path break Flux.
 
 ### 4. `.enc.env` and `.enc.conf` are not YAML
@@ -171,7 +171,7 @@ Treating them like YAML leads to brittle rewrites.
 - For INI files (`*.enc.conf`): pass `--input-type ini --output-type ini` on
   encrypt AND decrypt — the flags are symmetric; one-sided flags silently
   round-trip through the JSON store. Full detail in
-  `sks-dev-workflow/references/sops-manifests.md`.
+  `references/sops-manifests.md`.
 - Deleting a key from an `.enc.env` is not complete until you have checked every
   consumer that reads that variable — a consumer that still references the now-
   missing variable gets an empty string or a mount error, not a loud failure.
@@ -246,7 +246,7 @@ In the fleet-config repo, hosts consume secrets through `sops-nix`:
 - **fleet render: the devenv `sops` wrapper forces a single recipient.**
   Always locate and use the unwrapped `/nix/store/*-sops-*/bin/sops`
   binary and pass the fleet age recipients exactly once. See
-  `sks-dev-workflow/references/sops-manifests.md`.
+  `references/sops-manifests.md`.
 
 ## Verification
 
@@ -267,8 +267,10 @@ jj diff --git | grep -E '^diff --git a/.*\.enc'
 ## See also
 
 - `sks-commit` — commit style with the org co-author trailer.
-- `sks-dev-workflow` — branch / push / landing discipline; carries
-  `references/sops-manifests.md` for the fleet render layer.
+- `sks-dev-workflow` — branch / push / landing discipline.
+- `references/sops-manifests.md` — the fleet render layer: recipient
+  keys, devenv wrapper trap, INI store rules, the `formatForPath`
+  binary-store trap, and the `;` corruption.
 - `sks-pr` — open the PR from the pushed bookmark.
 - `sks-pr-review` — review a secret-swap PR before approving.
 - `sks-delegate` — isolate this unit in a fresh jj workspace before editing.

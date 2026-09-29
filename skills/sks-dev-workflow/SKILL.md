@@ -314,9 +314,9 @@ Deep recipes live in `references/`; read the file when its condition fires:
 - `references/pitfalls.md` — dual-clone discipline (`.hermes/skills` vs the
   org repo root), dirty working copies, kustomize generator-not-found,
   two `patches:` blocks, alias-in-prose, body wrapping.
-- `references/sops-manifests.md` — decrypt-editing sops files for Flux:
-  recipient set, unwrapped binary, INI store traps, extension-driven
-  format, live-config seeding.
+- `sks-sops-secrets-authoring/references/sops-manifests.md` —
+  decrypt-editing sops files for Flux: recipient set, unwrapped binary,
+  INI store traps, extension-driven format, live-config seeding.
 - `references/route-audit.md` — auditing Gateway routes: hostname dupes,
   nishir/nishir-tailnet split, forbidden annotations.
 - `references/lws-router-mode.md` — llama.cpp router mode, LWS capacity on

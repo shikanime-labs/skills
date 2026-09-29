@@ -46,7 +46,7 @@
         "Body contains at least one '##' heading",
         "Body states the Nix side (formatting, sorting, YAGNI) is this skill and the generated YAML/kube structure side is a different skill",
         "Body states the generated YAML should not be hand-edited to fix sorting; the Nix that produces it should be fixed and re-rendered",
-        "Body refers to sks-manifest-authoring for the kube/manifest structure side"
+        "Body points the kube/manifest structure side to a separate skill"
       ]
     },
     {

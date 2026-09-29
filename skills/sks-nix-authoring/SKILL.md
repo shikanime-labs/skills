@@ -3,7 +3,7 @@ name: sks-nix-authoring
 description:
   "Use when authoring or editing Nix in a shikanime repo: nixfmt-sorted style,
   single-use let bindings, no explanatory comments, YAGNI on new options."
-version: 0.1.0
+version: 0.2.0
 author: Hermes Agent
 license: Apache-2.0
 metadata:
@@ -44,8 +44,8 @@ defaults already handle.
 - Applying `nix fmt` and verifying the result did not corrupt a non-Nix file.
 
 Don't use for: editing the YAML/Kubernetes side of a manifests app — that is
-`sks-manifest-authoring`. Don't use for sops-encrypted secret files — that is
-`sops-authoring` (and `nix fmt` must not touch `.enc.*`).
+the manifests skill. Don't use for sops-encrypted secret files — that is
+`sks-sops-secrets-authoring` (and `nix fmt` must not touch `.enc.*`).
 
 ## The defaults that already cover most things
 
@@ -56,7 +56,7 @@ the default stack does not already cover it:
 - **Formatting** — `nix fmt` (treefmt) owns formatting. Do not hand-align, do not
   hand-sort keys, do not invent a custom style on top of it. If a file you touch
   is Nix, `nix fmt` it. If a file is not Nix, do not run `nix fmt` across it —
-  see the gotcha about `.enc.*` and the broader `nix fmt` whole-tree cave in
+  see the gotcha about `.enc.*` and the broader `nix fmt` whole-tree caveat in
   `sks-dev-workflow`.
 - **Sorting** — sorted keys are the house style, enforced by `nix fmt`/treefmt
   where configured and by reviewer otherwise. Write sorted; do not write
@@ -67,7 +67,7 @@ the default stack does not already cover it:
   records WHY a non-obvious choice was made can earn its place, but prefer
   naming and structure over prose first. If the code is clear, the comment goes.
 - **New options / new attrs** — add only when a real consumer needs a distinct
-  knob. A option that duplicates a default, wraps another option with no added
+  knob. An option that duplicates a default, wraps another option with no added
   behavior, or exists "in case we need it" is tech debt, not insurance.
 
 The rule of thumb: if the default already does it, do not add a layer.
@@ -174,8 +174,8 @@ The style is the same; the surface differs. (Concrete org repos behind the
   flake-parts + the shared lib): the flake carries sops-nix, per-host
   `secrets/<host>.enc.yaml`, and the shared modules under `modules/`. When
   you touch sops-nix wiring, the sops side (recipients, templates,
-  `sopsFile`) is a secret edit — involve `sops-authoring` for the `.enc.*`
-  part. The Nix part is this skill.
+  `sopsFile`) is a secret edit — involve `sks-sops-secrets-authoring`
+  for the `.enc.*` part. The Nix part is this skill.
 - **manifests-class flakes** (kustomize / Flux render, kustomization YAML as
   Nix output): the Nix here generates YAML. Sorting and formatting still
   apply to the Nix; the generated YAML sorting and structure are the
@@ -222,5 +222,4 @@ jj diff --git | grep -E '^diff --git a/.*\.nix'
 - `sks-commit` — commit shape with the org co-author trailer.
 - `sks-dev-workflow` — branch / push / landing; carries the
   `nix fmt` whole-tree caveat.
-- `sks-manifest-authoring` — the YAML/kube side when the Nix generates manifests.
 - `sks-pr-review` — the reviewer lens that enforces YAGNI on the PR.
