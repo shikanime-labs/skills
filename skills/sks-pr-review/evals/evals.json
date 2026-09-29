@@ -106,6 +106,23 @@
       "assertions": [
         "YAML frontmatter parses and 'name' equals 'sks-pr-review'"
       ]
+    },
+    {
+      "id": 10,
+      "expected_output": "Searches the repo's issues and PRs related to the diff before the verdict, verifies a recurring bug's fix against the issue's root cause, and consults memory only when the search finds nothing.",
+      "files": [],
+      "prompt": "Review my uncommitted changes in shikanime-studio/console; there was a related bug report about this area recently.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-pr-review'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Body contains at least one '##' heading",
+        "Body instructs to 'search the repo's issues and PRs related to the diff' before the verdict",
+        "Body instructs to 'verify a recurring bug's fix against the issue's root cause, not the symptom it names'",
+        "Body instructs to 'not re-flag a tradeoff a closed issue already accepted'",
+        "Body instructs to 'cite an open issue that covers the same change'",
+        "Body instructs to consult memory 'for known pitfalls first' only when the search finds nothing",
+        "Body instructs to 'never skip the search' on the assumption memory covers the area"
+      ]
     }
   ],
   "skill_name": "sks-pr-review"
