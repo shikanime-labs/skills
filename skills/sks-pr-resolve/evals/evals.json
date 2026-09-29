@@ -89,6 +89,30 @@
         "Frontmatter 'name' equals the directory basename 'sks-pr-resolve'.",
         "Body does not claim to open new pull requests (that is sks-pr)."
       ]
+    },
+    {
+      "id": 8,
+      "expected_output": "The skill evaluates CodeRabbit's proposed fix for pertinence before adopting it, and reconciles its threads with cited evidence.",
+      "files": [],
+      "prompt": "CodeRabbit left a suggested fix and some nitpicks on PR #22 in shikanime-labs/skills; resolve those review conversations.",
+      "assertions": [
+        "Frontmatter parses as YAML with a top-level 'name' key",
+        "Frontmatter 'name' equals the directory basename 'sks-pr-resolve'",
+        "Body evaluates CodeRabbit's proposed fix for pertinence before adopting it",
+        "Body resolves CodeRabbit threads with cited evidence, never silently"
+      ]
+    },
+    {
+      "id": 9,
+      "expected_output": "The skill refuses to bulk-resolve bot comments: each CodeRabbit thread reconciles through the same buckets as human comments, and the PR is never merged.",
+      "files": [],
+      "prompt": "There are 30 CodeRabbit comments on PR #7, just resolve them all; they're only bot comments. Merge once done.",
+      "assertions": [
+        "Frontmatter parses as YAML with a top-level 'name' key",
+        "Frontmatter 'name' equals the directory basename 'sks-pr-resolve'",
+        "Body never bulk-resolves CodeRabbit comments by author; each thread gets the Gate 3 buckets",
+        "The body never lands/merges the PR (that is sks-land)."
+      ]
     }
   ],
   "skill_name": "sks-pr-resolve"

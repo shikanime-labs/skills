@@ -127,7 +127,7 @@ specification, compatible with the
 | `sks-fastlane` | Use when a hotfix, small update, or insignificant chore is too trivial for the full gate train: merge its PR without human review once CI is green. |
 | `nixpkgs-pr-review` | Use when reviewing an upstream NixOS/nixpkgs pull request: build the changed packages with nixpkgs-review and check... |
 | `sks-pr` | Use when opening a PR in shikanime-labs or shikanime-studio: push to origin, --head org:branch, plain-English title... |
-| `sks-pr-resolve` | Use when resolving a shikanime PR's review conversations, checking the DoD ledger, and reconciling before merge (no... |
+| `sks-pr-resolve` | Use when resolving a shikanime PR's review conversations, including CodeRabbit review comments, checking the DoD le... |
 | `sks-pr-review` | Use when reviewing shikanime code: enforce YAGNI, root-cause fixes, and project conventions before approval. |
 | `sks-pr-triage` | Use when triaging an existing shikanime org PR: labels, assignee, milestone, and reviewers. |
 | `sks-pr-workflow` | Use when you need the single entry point for the shikanime PR side: ensure the issue exists, open, triage, and land... |
