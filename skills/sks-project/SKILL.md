@@ -1,10 +1,9 @@
 ---
 name: sks-project
 description:
-  "Use when tracking issue/PR advancement on an org board (Skills, Shikanime
-  Studio, Cloud Pi Native, OSS): resolve the board from context or provision
-  one, set Status to the real phase, audit drift."
-version: 0.1.0
+  "Use when tracking issue/PR advancement on an org board: resolve the board
+  from context or provision one, set Status to the real phase, audit drift."
+version: 0.2.0
 author: Hermes Agent
 license: Apache-2.0
 metadata:
@@ -13,8 +12,6 @@ metadata:
       - github
       - projects-v2
       - board
-      - shikanime-labs
-      - shikanime-studio
     related_skills:
       - sks-issue-triage
       - sks-pr-triage
@@ -29,8 +26,9 @@ platforms:
 
 # Board Tracking
 
-Track issues and PRs on the family's Projects V2 boards (owner: user
-`shikanime`). `sks-project` owns a dedicated board per catalog — reuse a
+Track issues and PRs on the org's Projects V2 boards (the board owner is an
+org fact — for shikanime, read `references/shikanime.md`). `sks-project`
+owns a dedicated board per catalog — reuse a
 pertinent existing board when one covers the context, provision a new one
 when none does. Status is the real phase of the work: advanced once per
 transition, reset on reversal, never guessed from stale output — re-read the
@@ -44,17 +42,11 @@ before other work proceeds.
 
 ## Board resolution (from context)
 
-Pick the board from the unit's family, never by habit:
+Pick the board from the unit's family, never by habit. The board-per-family
+table is an org fact (read `references/shikanime.md`).
 
-| Context signal                          | Board                     | Number |
-| --------------------------------------- | ------------------------- | ------ |
-| this catalog: skill authoring, curation | Skills                    | 9      |
-| `sks-*` ops (machines, manifests)       | Shikanime Studio          | 6      |
-| `cpn-*` / cloud-pi-native console       | Cloud Pi Native           | 7      |
-| upstream OSS (nixpkgs PRs and allies)   | Open Source Contributions | 3      |
-
-Ambiguous context: `gh project list --owner shikanime`, read the titles, and
-ask the user once if still unresolved. A unit lives on exactly one board.
+Ambiguous context: `gh project list --owner <board-owner>`, read the titles,
+and ask the user once if still unresolved. A unit lives on exactly one board.
 No pertinent board exists: provision one (below), never misfile a unit onto
 an unrelated board.
 
@@ -80,22 +72,23 @@ card.
 
 ## Provisioning a board
 
-When no pertinent board exists, clone the template board — project 6,
-"Shikanime Studio". The copy inherits its five views with real kanban
+When no pertinent board exists, clone the org's template board (which one,
+per `references/shikanime.md`). The copy inherits the template's views with
+real kanban
 grouping (the API cannot set `verticalGroupByFields` on a fresh project),
 the Priority/Size fields, and the lifecycle Status vocabulary:
 
 ```bash
 gh api graphql -f query='{ viewer { id } }'   # ownerId
 gh api graphql -f query='mutation{ copyProjectV2(input:{
-  projectId:"PVT_kwHOAVFzJM4BNT_b"
+  projectId:"<template-project-node-id>"
   ownerId:"<viewer-id>"
   title:"<family>" }){
   projectV2 { id number } } }'
 ```
 
 The copy carries the template's Status option ids verbatim. No template
-board in the context: `gh project create --owner shikanime --title
+board in the context: `gh project create --owner <board-owner> --title
 "<family>"` and reshape the default `Todo`/`In Progress`/`Done` options
 with `updateProjectV2Field` (the field itself cannot be deleted;
 `description` is required per option). Either path, resolve the vocabulary
@@ -107,7 +100,7 @@ Status field id and column option ids are **per board** — never hardcode
 them. Resolve before every edit:
 
 ```bash
-gh project field-list <number> --owner shikanime --format json \
+gh project field-list <number> --owner <board-owner> --format json \
   --jq '.fields[] | select(.name == "Status")'
 ```
 
@@ -132,7 +125,7 @@ call covers every repo the board tracks. **Always pass `--limit 200`** — the
 default 30 truncates and returns "no item" for real cards:
 
 ```bash
-gh project item-list <number> --owner shikanime --limit 200 --format json \
+gh project item-list <number> --owner <board-owner> --limit 200 --format json \
   --jq '.items[] | select(.content.number == <N>) | {id, status, title}'
 ```
 
@@ -141,7 +134,7 @@ A missing hit means the card is not onboarded — add it in step 2.
 ### 2. Onboard if absent
 
 ```bash
-gh project item-add <number> --owner shikanime \
+gh project item-add <number> --owner <board-owner> \
   --url https://github.com/<org>/<repo>/issues/<N>
 # PRs: same command with the PR URL; content.type tells them apart
 ```
@@ -164,7 +157,7 @@ the last command you ran. `gh pr view <N> --json state,mergedAt` decides
 ### 4. Verify
 
 ```bash
-gh project item-list <number> --owner shikanime --limit 200 --format json \
+gh project item-list <number> --owner <board-owner> --limit 200 --format json \
   --jq '.items[] | select(.content.number == <N>) | .status'
 ```
 
@@ -172,9 +165,10 @@ The printed status equals the intended column, or the move did not happen.
 
 ## Pitfalls
 
-- **`gh project list --org` is not a flag** — the boards belong to user
-  `shikanime`; pass `--owner shikanime`. The orgs themselves own no boards.
-- **Board must match the unit's family.** An `sks-*` card on Cloud Pi Native
+- **`gh project list --org` is not a flag** — the boards belong to the org's
+  board-owner user (an org fact, per `references/shikanime.md`); pass
+  `--owner <board-owner>`. The orgs themselves own no boards.
+- **Board must match the unit's family.** A card on another family's board
   is misfiled: resolve again, then `item-delete` + re-add if wrong.
 - **Item ids are scoped per project.** Never reuse an id resolved on one
   board against another.
@@ -197,7 +191,7 @@ Drift check over a whole board — cards whose Status disagrees with live
 GitHub state:
 
 ```bash
-gh project item-list <number> --owner shikanime --limit 200 --format json \
+gh project item-list <number> --owner <board-owner> --limit 200 --format json \
   --jq '.items[] | select(.status != null) |
         {n: .content.number, url: .content.url, status}'
 ```
@@ -208,7 +202,7 @@ with step 3. Merged PRs sitting outside `done` are the common offender.
 ## Verification
 
 ```bash
-gh project item-list <number> --owner shikanime --limit 200 --format json \
+gh project item-list <number> --owner <board-owner> --limit 200 --format json \
   --jq '.items[] | select(.content.number == <N>) | .status'
 ```
 

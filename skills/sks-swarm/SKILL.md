@@ -4,7 +4,7 @@ description:
   Use when distributing a task across a cluster of agents over A2A — route by
   capability need, machine resource, and runner pressure, optionally in a
   disposable sks-adversarial sandbox.
-version: 0.1.1
+version: 0.2.0
 author: Hermes Agent
 license: Apache-2.0
 metadata:
@@ -16,8 +16,6 @@ metadata:
       - fan-out
       - delegation
       - resource-aware
-      - shikanime-labs
-      - shikanime-studio
     related_skills:
       - sks-adversarial
       - sks-async

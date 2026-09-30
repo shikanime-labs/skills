@@ -2,7 +2,7 @@
   "evals": [
     {
       "id": 1,
-      "expected_output": "Writes a plain-English capitalized imperative title with the Automata co-author trailer.",
+      "expected_output": "Writes a plain-English capitalized imperative title with the org co-author trailer.",
       "files": [],
       "prompt": "Commit my StorageClass fix in shikanime-studio/manifests with the right message style.",
       "assertions": [
@@ -10,7 +10,7 @@
         "Frontmatter description starts with 'Use when' and is at most 200 characters",
         "Frontmatter license field is 'Apache-2.0'",
         "Body contains at least one '##' heading",
-        "Body specifies a 'Co-authored-by: Automata \u003cautomata@shikanime.studio\u003e' trailer",
+        "Body requires an org co-author trailer whose value lives in references/shikanime.md",
         "Body requires a plain-English capitalized imperative title with no conventional prefix",
         "Body shows a 'jj describe' command with two -m blocks"
       ]
@@ -26,7 +26,7 @@
         "Frontmatter license field is 'Apache-2.0'",
         "Body contains at least one '##' heading",
         "Body says to strip '*' bullet lines and '---------' separators from squashed messages",
-        "Body allows exactly one Automata Co-authored-by trailer",
+        "Body allows exactly one org Co-authored-by trailer",
         "Body limits Signed-off-by to repos whose hook requires DCO"
       ]
     },
@@ -57,7 +57,7 @@
     },
     {
       "id": 5,
-      "expected_output": "The skill does not claim to be the cloud-pi-native sks-commit twin; it stays scoped to shikanime commit style.",
+      "expected_output": "The skill does not claim to be the cloud-pi-native sks-commit twin; it stays scoped to the target org's commit style.",
       "files": [],
       "prompt": "Use sks-commit to open and commit a PR in the cloud-pi-native console repo following its conventions.",
       "assertions": [
@@ -76,7 +76,7 @@
     },
     {
       "id": 7,
-      "expected_output": "The skill does not claim to be the sks-commit twin or absorb sks-pr; it stays scoped to shikanime commit style (plain-English title, no conventional prefix).",
+      "expected_output": "The skill does not claim to be the sks-commit twin or absorb sks-pr; it stays scoped to the target org's commit style (plain-English title, no conventional prefix).",
       "files": [],
       "prompt": "Open and commit a PR in the cloud-pi-native console repo with French artifacts with a conventional commit prefix.",
       "assertions": [

@@ -16,8 +16,6 @@ metadata:
       - gh-stack
       - delegation
       - github
-      - shikanime-labs
-      - shikanime-studio
     related_skills:
       - sks-dev-workflow
       - sks-pr
@@ -35,7 +33,7 @@ onto jj's commit DAG as plain `gh pr` merges. Core splitting component of
 `sks-dev-workflow`.
 
 For shikanime-org specifics (co-author trailer, remote split), read
-`references/shikanime.md` when operating in shikanime repos. For
+`references/shikanime.md` when operating in a shikanime org. For
 cloud-pi-native specifics (French artifacts, co-author trailer, draft PRs with
 `Refs #N`), read `references/cloud-pi-native.md` when working in the
 cloud-pi-native/console repository.

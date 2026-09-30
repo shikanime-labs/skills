@@ -2,9 +2,9 @@
   "evals": [
     {
       "id": 1,
-      "expected_output": "The skill is the single entry point for the shikanime issue side, orchestrating sks-issue then sks-issue-refine then sks-issue-triage.",
+      "expected_output": "The skill is the single entry point for the issue side, orchestrating sks-issue then sks-issue-refine then sks-issue-triage.",
       "files": [],
-      "prompt": "Open and set up an issue on shikanime-studio/actions for the rwx nfs v4.0 bug before any PR.",
+      "prompt": "Open and set up an issue on my org's actions repo for the rwx nfs v4.0 bug before any PR.",
       "assertions": [
         "Frontmatter parses as YAML with a top-level 'name' key",
         "Frontmatter 'name' equals the directory basename 'sks-issue-workflow'",
@@ -33,7 +33,7 @@
       "id": 3,
       "expected_output": "The skill exposes a '## Procedure' section routing through the three issue sub-skills.",
       "files": [],
-      "prompt": "What's the entry point for handling an issue on the shikanime side?",
+      "prompt": "What's the entry point for handling an issue in my org's repos?",
       "assertions": [
         "Frontmatter parses as YAML with a top-level 'name' key",
         "Frontmatter 'name' equals the directory basename 'sks-issue-workflow'",
@@ -47,7 +47,7 @@
       "id": 4,
       "expected_output": "Skill remains loadable and scoped to the issue orchestration; it does not overreach into merging PRs.",
       "files": [],
-      "prompt": "Open an issue on shikanime-studio/actions and also merge the resulting PR for me once it's ready.",
+      "prompt": "Open an issue on my org's actions repo and also merge the resulting PR for me once it's ready.",
       "assertions": [
         "Frontmatter parses as YAML with a top-level 'name' key",
         "Frontmatter 'name' equals the directory basename 'sks-issue-workflow'",

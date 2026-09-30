@@ -4,7 +4,7 @@
       "id": 1,
       "expected_output": "Searches the catalog and local skills for an overlapping trigger first; extends an existing skill rather than creating a narrow sibling.",
       "files": [],
-      "prompt": "We keep re-running the same release-notes procedure for shikanime repos. Make it a skill.",
+      "prompt": "We keep re-running the same release-notes procedure for our org repos. Make it a skill.",
       "assertions": [
         "YAML frontmatter parses and 'name' equals 'sks-skill-authoring'.",
         "Frontmatter description starts with 'Use when' and is at most 200 characters.",

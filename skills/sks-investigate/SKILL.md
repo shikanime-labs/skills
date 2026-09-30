@@ -2,8 +2,8 @@
 name: sks-investigate
 description:
   Use when investigating a bug, test failure, build break, or unexpected
-  behavior in a shikanime repo — find root cause, form a hypothesis, and propose
-  a solution, never apply the fix itself.
+  behavior — find root cause, form a hypothesis, and propose a solution,
+  never apply the fix itself.
 version: 0.3.0
 author: Hermes Agent
 license: Apache-2.0
@@ -16,8 +16,6 @@ metadata:
       - reproduce
       - hypothesis
       - typescript
-      - shikanime-labs
-      - shikanime-studio
     related_skills:
       - sks-pr-review
       - sks-async
@@ -36,7 +34,7 @@ platforms:
 One discipline, stated plainly: never propose a change you cannot explain.
 Research the defect's origin, prove it with a command, form a hypothesis, and
 _propose_ the solution — then hand the actual change to the fix skills. This
-skill consolidates the org's debugging practice — the four-phase root-cause
+skill consolidates the debugging practice — the four-phase root-cause
 cycle, isolated repro, and component-attribution fan-out — into a single
 critical method, and flags where each step is commonly misapplied.
 

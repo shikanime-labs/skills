@@ -44,7 +44,7 @@
     },
     {
       "id": 4,
-      "expected_output": "The skill stays scoped to the shikanime family; it does not absorb the cloud-pi-native twin.",
+      "expected_output": "The skill stays scoped to the generic curation procedure; org conventions load from references. It does not absorb the cloud-pi-native twin.",
       "files": [],
       "prompt": "Curate my console module skill the cpn way with French artifacts.",
       "assertions": [

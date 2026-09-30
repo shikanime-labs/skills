@@ -17,7 +17,7 @@
     },
     {
       "id": 2,
-      "expected_output": "Probes has_discussions and routes org-level RFCs to shikanime-studio/.github.",
+      "expected_output": "Probes has_discussions and routes org-level RFCs to the org-level .github repo.",
       "files": [],
       "prompt": "Can I open a discussion on shikanime-studio/machines, or is there another place for it?",
       "assertions": [
@@ -26,7 +26,7 @@
         "Frontmatter license field is 'Apache-2.0'",
         "Body contains at least one '##' heading",
         "Body probes 'has_discussions' via gh api before creating",
-        "Body routes cross-repo RFCs to 'shikanime-studio/.github'",
+        "Body routes cross-repo RFCs to the org-level '.github' repo",
         "Body forbids faking a discussion as an issue"
       ]
     },
@@ -109,7 +109,7 @@
       "assertions": [
         "YAML frontmatter parses and 'name' equals 'sks-discussion'",
         "Frontmatter description does not contain substring 'sks-discussion'",
-        "Body does not contain substring 'sks-discussion'"
+        "Body does not contain substring 'console discussion conventions'"
       ]
     }
   ],

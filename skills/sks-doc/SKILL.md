@@ -1,7 +1,7 @@
 ---
 name: sks-doc
 description:
-  Use when documenting a shikanime project in the repo's docs/ directory after a
+  Use when documenting a project in the repo's docs/ directory after a
   behavior-changing PR.
 version: 0.3.0
 author: Hermes Agent
@@ -12,8 +12,6 @@ metadata:
       - github
       - documentation
       - docs
-      - shikanime-labs
-      - shikanime-studio
     related_skills:
       - sks-pr
       - sks-land

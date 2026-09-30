@@ -1,7 +1,7 @@
 ---
 name: sks-gc
 description:
-  Use when reclaiming resources leaked by shikanime jj workflows — dangling
+  Use when reclaiming resources leaked by jj-based agent workflows — dangling
   bookmarks, skill-created jj workspaces, and leftover working-copy dirs from
   sks-async/sks-dev-workflow.
 version: 0.2.0
@@ -15,8 +15,6 @@ metadata:
       - cleanup
       - workspaces
       - bookmarks
-      - shikanime-labs
-      - shikanime-studio
     related_skills:
       - sks-async
       - sks-dev-workflow

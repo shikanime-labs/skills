@@ -61,7 +61,7 @@
     },
     {
       "id": 6,
-      "expected_output": "The skill stays scoped to the shikanime family and does not absorb the cloud-pi-native twin.",
+      "expected_output": "The skill stays scoped to the generic swarm procedure; org conventions load from references. It does not absorb the cloud-pi-native twin.",
       "files": [],
       "prompt": "Use sks-swarm the cpn way to fan out my console module migration across agents.",
       "assertions": [

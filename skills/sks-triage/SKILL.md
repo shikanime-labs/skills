@@ -1,7 +1,7 @@
 ---
 name: sks-triage
 description:
-  "Use when triaging a shikanime org, repo, issue, or PR: sweep the scope for
+  "Use when triaging a target org, repo, issue, or PR: sweep the scope for
   untriaged items, then assign every empty, context-derivable field — type,
   labels, assignee, fields."
 version: 0.1.0
@@ -15,8 +15,6 @@ metadata:
       - issues
       - pull-requests
       - metadata
-      - shikanime-labs
-      - shikanime-studio
     related_skills:
       - sks-issue-triage
       - sks-pr-triage
@@ -71,7 +69,7 @@ defect (`sks-investigate`).
 ## Prerequisites
 
 - `gh` authenticated against the target repo; target it directly.
-- Outside the catalog orgs, confirm the target with the user first
+- Outside the org's own repos, confirm the target with the user first
   (`references/shikanime.md` names them).
 
 ## Inputs

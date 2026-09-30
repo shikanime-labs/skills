@@ -1,8 +1,8 @@
 ---
 name: sks-pr-workflow
 description:
-  "Use when you need the single entry point for the shikanime PR side: ensure
-  the issue exists, open, and triage the PR. Land separately via sks-land."
+  "Use when you need the single entry point for the org PR side: ensure the
+  issue exists, open, and triage the PR. Land separately via sks-land."
 version: 0.1.1
 author: Hermes Agent
 license: Apache-2.0
@@ -11,8 +11,6 @@ metadata:
     tags:
       - github
       - pull-requests
-      - shikanime-labs
-      - shikanime-studio
       - workflow
     related_skills:
       - sks-pr

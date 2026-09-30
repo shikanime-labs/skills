@@ -1,7 +1,7 @@
 ---
 name: sks-issue-triage
 description:
-  "Use when triaging an existing shikanime org issue: assign type, labels,
+  "Use when triaging an existing org issue: assign type, labels,
   assignee, milestone, project, relationships, and fields; close with rationale
   if not workable."
 version: 0.3.0
@@ -13,8 +13,6 @@ metadata:
       - github
       - triage
       - issues
-      - shikanime-labs
-      - shikanime-studio
     related_skills:
       - sks-issue
       - sks-issue-workflow
@@ -28,8 +26,8 @@ platforms:
 # Issue Triage
 
 Triage an issue in an org repo (see `references/shikanime.md` for the
-scoping and default-assignee rules): fill fields **empty
-on the issue** and **derivable from its content**. English; never invent a
+scoping, default-assignee, and artifact-language rules): fill fields
+**empty on the issue** and **derivable from its content**; never invent a
 repo-lacking value.
 
 ## Available script
@@ -166,4 +164,4 @@ gh api repos/"$R"/issues/"$N" \
 
 ## See also
 
-- `sks-issue` — creation conventions (English).
+- `sks-issue` — creation conventions.

@@ -8,5 +8,5 @@ Generic single-unit isolation; shikanime-org specifics:
 - Commit trailer on every commit:
   `Co-authored-by: Automata <automata@shikanime.studio>` (two `-m` blocks,
   per `sks-commit`).
-- PRs open with `--head <org>:<branch>`; base `main`; `Related:` full issue
-  URL.
+- PRs open with `--head <org>:<branch>`; base `main` (protected across the
+  org); `Related:` full issue URL.

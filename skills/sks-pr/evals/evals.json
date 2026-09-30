@@ -2,7 +2,7 @@
   "evals": [
     {
       "id": 1,
-      "expected_output": "The skill opens a PR in shikanime-labs or shikanime-studio, pushing to origin with --head org:branch and linking the issue.",
+      "expected_output": "The skill opens a PR against the target org's repos, pushing to origin with --head org:branch and linking the issue.",
       "files": [],
       "prompt": "Open a PR in shikanime-labs/skills for my fix/rwx-nfs-v4.0 branch.",
       "assertions": [
@@ -11,7 +11,7 @@
         "Description starts with 'Use when' and is \u003c= 200 characters",
         "license field is 'Apache-2.0'",
         "Body contains at least one '##' heading",
-        "Body opens a PR in shikanime-labs or shikanime-studio",
+        "Body opens a PR against the target org's repos",
         "Body pushes to origin and opens with --head \u003corg\u003e:\u003cbranch\u003e"
       ]
     },

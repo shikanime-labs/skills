@@ -11,3 +11,8 @@ for `OWNER/REPO`.
 With no review requests on the PR, request `yorha-operator` (the Automata
 account) unless they authored the PR; then another collaborator/team member;
 skip if none works.
+
+## Artifact language
+
+Triage artifacts (reworded titles/bodies, rationale comments) are written
+in English; label/assignee/milestone values stay repo-existing only.

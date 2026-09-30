@@ -36,7 +36,7 @@
         "Body enumerates repos with archived and empty repos filtered out",
         "Body scans each repo for untriaged items before mutating",
         "Body bounds the org run and reports the remainder",
-        "Body keeps scope to the shikanime orgs unless the user confirms another target"
+        "Body keeps scope to the target org's repos unless the user confirms another target"
       ]
     },
     {

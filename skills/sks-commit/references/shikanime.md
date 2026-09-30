@@ -11,3 +11,6 @@ Shikanime-org specifics for `sks-commit`:
   `Co-authored-by: Automata <automata@shikanime.studio>`; DCO
   `Signed-off-by` only where a hook/ruleset requires it (`manifests` —
   gitlint CC1, plus a required body; full URLs in `Related:`).
+- Gitlint-strict repo example: `manifests` enforces a required **body** (B6
+  "body message is missing") and a `Signed-off-by` (CC1); a commit with both
+  and a full-URL `Related:` passes.

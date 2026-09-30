@@ -1,7 +1,7 @@
 ---
 name: sks-land
 description:
-  Use when landing a shikanime org PR after reconciliation (sks-pr-resolve) and
+  Use when landing a target-org PR after reconciliation (sks-pr-resolve) and
   review approval gates pass; closes the linked issue deliberately.
 version: 0.3.1
 author: Hermes Agent
@@ -12,8 +12,6 @@ metadata:
       - github
       - pull-requests
       - merge
-      - shikanime-labs
-      - shikanime-studio
     related_skills:
       - sks-pr-resolve
       - sks-pr
@@ -133,9 +131,9 @@ deciding.
 
 ## Merge procedure
 
-Land with plain `gh pr merge`. `gh stack` (extension) is available for
-creating and maintaining stacks; landing itself stays plain `gh pr merge`. For
-a lone PR use
+Land with plain `gh pr merge`. A `gh stack` extension, where installed, may
+create and maintain stacks; landing itself stays plain `gh pr merge` (org
+tooling state in `references/shikanime.md`). For a lone PR use
 `gh pr merge --squash [--admin]`; never `gh pr merge` on a stacked PR — but
 stacked PRs are landed the same way now (one squash-merge per PR, base `main`).
 Never force-push. **Watch and merge are two separate steps — never one
@@ -187,15 +185,16 @@ EOF
 - Lone, self-approval blocked (after verbal lgtm): use `--squash --admin`.
 - Stacked (multiple PRs off `main`): land each with
   `gh pr merge <PR_NUMBER> --squash --admin` in dependency order (base first).
-- Branch protection needs linear history + signed commits; squash only.
+- Branch protection may require linear history + signed commits (org example
+  in `references/shikanime.md`); squash-merge satisfies both.
 
 ## Post-merge
 
 1. Verify: `gh pr view <M> --repo <org>/<repo> --json state`.
 2. **Run the acceptance gate (deployment gate).** A merged PR is a claim, not a
    verified outcome — the gate runs, it is not assumed. Deploy first: resync
-   for agent/skill repos, apply for infra (Flux reconcile /
-   `nixos-rebuild switch` for machine-config repos). Then surface the deployed
+   for agent/skill repos, apply for infra (the repo's deploy step — org
+   examples in `references/shikanime.md`). Then surface the deployed
    state and ask the user to validate it behaves as asked. Do NOT close the
    issue or report the landing complete on merge alone; only the user confirms
    the running change. If the user rejects, treat it as a reported defect: fix

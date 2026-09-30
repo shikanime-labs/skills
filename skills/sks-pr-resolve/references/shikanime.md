@@ -1,5 +1,8 @@
 # Shikanime org conventions
 
+Load when operating in a shikanime org (shikanime-labs / shikanime-studio):
+repo scope, self-approval quirks, and merge-queue workflow details.
+
 ## Repo scope
 
 PRs reconciled by this skill live under `shikanime-labs/*` or
@@ -11,3 +14,8 @@ Where branch protection blocks self-approval (e.g. `shikanime-labs/skills`,
 `nix-containers`), a verbal `lgtm` from the user satisfies the approval gate
 (Gate 2) — the merge itself stays in `sks-land`
 (`gh pr merge --squash --admin`).
+
+## Manual merge queue
+
+Workflow id and impact rules per org repo live in
+`references/cloud-pi-native.md` where applicable.

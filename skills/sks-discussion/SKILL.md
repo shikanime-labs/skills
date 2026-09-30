@@ -1,8 +1,8 @@
 ---
 name: sks-discussion
 description:
-  "Use when opening an RFC Discussion in a shikanime org as the pre-issue stage:
-  converge on the problem, then derive the issue."
+  "Use when opening an RFC Discussion in the target org as the pre-issue
+  stage: converge on the problem, then derive the issue."
 version: 0.2.0
 author: Hermes Agent
 license: Apache-2.0
@@ -11,8 +11,6 @@ metadata:
     tags:
       - github
       - discussions
-      - shikanime-labs
-      - shikanime-studio
       - rfc
     related_skills:
       - sks-discussion-triage
@@ -32,7 +30,7 @@ Pre-issue RFC (lifecycle **discussion → issue → issue comments → PR**, see
 only, `@` escaping, no-wrap) are owned by `sks-github-text-authoring`.
 
 For shikanime-org specifics (discussion surfaces), read
-`references/shikanime.md` when operating in shikanime repos. For
+`references/shikanime.md` when operating in a shikanime org. For
 cloud-pi-native specifics (console repo: Issues disabled/Discussions active,
 French house structure, General/Ideas categories), read
 `references/cloud-pi-native.md` when working in the cloud-pi-native/console
@@ -51,15 +49,16 @@ can be stated yet.
 
 ## Surface state
 
-Discussions are disabled on most repos; the org-level `.github` repo has them
-enabled (org surface per `references/shikanime.md`). Probe first:
+Which repos have Discussions enabled is an org fact (for the shikanime
+surface, read `references/shikanime.md` when operating in a shikanime
+org). Probe before assuming:
 
 ```bash
 gh api repos/<org>/<repo> --jq .has_discussions
 ```
 
-- Cross-repo / org-level RFC → the org-level `.github` repo (only enabled
-  surface, per `references/shikanime.md`).
+- Cross-repo / org-level RFC → the org-level `.github` repo (the only
+  enabled surface in the shikanime org — per `references/shikanime.md`).
 - Repo-specific RFC → ask user, or if administering: verify
   `gh api repos/<org>/<repo> --jq .viewerCanAdminister` first, then
   `gh api -X PATCH repos/<org>/<repo> -f has_discussions=true`.
@@ -101,5 +100,5 @@ Confirm title/body/category + body stays context + open questions.
 - `sks-github-text-authoring` — prose rules this skill delegates.
 - `sks-issue` — derive the issue once converged.
 - `sks-discussion-triage` — triage, lifecycle routing, closure.
-- `sks-discussion` — the English discussion skill; the French console twin is
-  out of family scope.
+- `sks-discussion` — the English discussion skill (the French console twin
+  is out of family scope; per `references/shikanime.md`).

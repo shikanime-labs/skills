@@ -15,8 +15,6 @@ metadata:
       - probe
       - validation
       - jj
-      - shikanime-labs
-      - shikanime-studio
     related_skills:
       - sks-delegate
       - sks-async
@@ -31,10 +29,10 @@ platforms:
 
 # Adversarial Probing
 
-Try a change where failure costs nothing. This skill builds a disposable sandbox
-around an uncertain result and promotes only what survives. It composes
-`sks-delegate`, `sks-async`, and `sks-investigate`; it adds only the sandbox shape
-and the promote-or-discard decision. It does NOT replace those skills.
+Try a change where failure costs nothing. This skill builds a disposable
+sandbox around an uncertain result and promotes only what survives. It composes
+`sks-delegate`, `sks-async`, and `sks-investigate`; it adds only the sandbox
+shape and the promote-or-discard decision. It does NOT replace those skills.
 
 For org specifics, read
 `references/shikanime.md` when operating in shikanime repos.

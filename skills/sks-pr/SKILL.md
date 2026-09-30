@@ -1,7 +1,7 @@
 ---
 name: sks-pr
 description:
-  "Use when opening a PR in shikanime-labs or shikanime-studio: push to origin,
+  "Use when opening a PR in a target-org repo: push to origin,
   --head org:branch, plain-English title, issue linkage, parity with commit."
 version: 0.2.0
 author: Hermes Agent
@@ -11,8 +11,6 @@ metadata:
     tags:
       - github
       - pull-requests
-      - shikanime-labs
-      - shikanime-studio
     related_skills:
       - sks-commit
       - sks-sudo
@@ -35,7 +33,7 @@ hooks) is detected per repo.
 
 ## When to Use
 
-- "Open a PR in a shikanime org repo."
+- "Open a PR in a target-org repo."
 - "Ensure issue linkage before creating a PR."
 - "Push to origin and land via plain `gh pr` (`gh stack` for stacking, plain
   `gh pr merge` for landing)."
@@ -112,10 +110,11 @@ grep -rilE "commitlint|release-please|@commitlint" . \
 
 ## Landing via plain `gh pr`
 
-Stacks: use the `gh stack` extension to create, rebase, and submit stacks of
-branches; land each PR with plain `gh pr merge` (see
+Stacks: where the `gh stack` extension is installed, use it to create, rebase,
+and submit stacks of branches; land each PR with plain `gh pr merge` (see
 `sks-land`). Squash-merge keeps a linear history and preserves PR↔commit parity
-(title = commit subject, body = commit message).
+(title = commit subject, body = commit message). The extension is removed in
+the shikanime org — `references/shikanime.md`.
 
 ```bash
 jj rebase -d main                      # ALWAYS rebase onto trunk before landing

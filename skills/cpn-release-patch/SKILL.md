@@ -80,6 +80,9 @@ git rev-parse -q --verify BASE_TAG   # tag must exist; replace BASE_TAG
 jj git fetch                    # sync remote tags + bookmarks
 ```
 
+For `<org>/<repo>` values (checkouts, identity, review policy) read
+`references/cloud-pi-native.md` when operating in the target org.
+
 If `BASE_TAG` is missing or you lack write: report `BLOCKED: <requirement> —
 <evidence> — <recovery>`, do not proceed.
 
@@ -227,13 +230,14 @@ a `chore: Release v$NEXT` PR against `hotfix/$NEXT` with `always-bump-patch`.
 - **`A..B` in jj = set difference**, not git's "exclusive range with merge
   base". `BASE_TAG..main` names the commits, but content overlap / next-minor
   leakage makes it wrong as a backport source — hence the milestone in Step 2.
-- **Tag is not an ancestor of main**: expected for this org's release tags
-  (they carry hotfix-only commits). Do not try to branch from `main`; branch
-  from the tag.
-- **Verify by tree, not count**: after duplicate, `git diff --name-only <tip>
-  main` should show only `package.json` / `CHANGELOG.md` /
-  `.release-please-manifest.json`. Any other differing file means a milestone
-  commit was missed or mis-ordered — re-run Step 2, do not push.
+- **Tag is not an ancestor of the default branch**: expected for release
+  tags (they carry hotfix-only commits). Do not try to branch from the
+  default branch; branch from the tag.
+- **Verify by tree, not count**: after duplicate, `git diff --name-only <tip>`
+  against the default branch should show only `package.json` /
+  `CHANGELOG.md` / `.release-please-manifest.json`. Any other differing
+  file means a milestone commit was missed or mis-ordered — re-run Step 2,
+  do not push.
 - **No `jj git tag` in 0.43**: tags are git objects synced through colocation.
   Create branches with `jj bookmark create`/`set`, not tags.
 - **`jj op undo` does not exist** in this jj version — to roll back a dry run
@@ -250,8 +254,9 @@ a `chore: Release v$NEXT` PR against `hotfix/$NEXT` with `always-bump-patch`.
 
 ## Verification
 
-Org release-please specifics — when operating in cloud-pi-native/console,
-read `references/cloud-pi-native.md` for the repo's exact config:
+Release-please specifics for the target repo — when operating in
+cloud-pi-native/console, read `references/cloud-pi-native.md` for the
+repo's exact config.
 
 - `release-please-config.json`: `release-type: node`, single package `.`;
   next version comes from `.release-please-manifest.json`.

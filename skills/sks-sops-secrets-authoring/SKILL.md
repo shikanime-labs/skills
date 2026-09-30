@@ -1,8 +1,8 @@
 ---
 name: sks-sops-secrets-authoring
 description:
-  "Use when editing sops-encrypted files in a shikanime repo: decrypt-and-edit
-  workflow, re-encryption guards, and sops-nix secret plumbing."
+  "Use when editing sops-encrypted files: decrypt-and-edit workflow,
+  re-encryption guards, and sops-nix secret plumbing."
 version: 0.2.0
 author: Hermes Agent
 license: Apache-2.0
@@ -13,8 +13,6 @@ metadata:
       - sops-nix
       - secrets
       - encrypted-yaml
-      - shikanime-labs
-      - machines
     related_skills:
       - sks-commit
       - sks-dev-workflow
@@ -27,19 +25,18 @@ platforms:
   - windows
 ---
 
-# Shikanime Repo sops Editing
+# sops Secret Editing
 
-When editing sops-encrypted files in a shikanime repo, read
-`references/shikanime.md` for the concrete repo names, file shapes,
-and recipient specifics.
-
-Edit sops-encrypted files (`*.enc.yaml`, `*.enc.env`, `*.enc.conf`) in an
+Edit sops-encrypted files (`*.enc.yaml`, `*.enc.env`, `*.enc.conf`) in the
 org repo without losing encryption coverage or corrupting the wire format
 so `sops-nix` / Flux can still consume it on the target.
 
+For org-specific conventions (repo names, recipient keys, commit trailers),
+read `references/shikanime.md` when operating in a shikanime org.
+
 ## When to Use
 
-- A task reaches for a `secrets/*.enc.*` or any `.enc.*` file in an org
+- A task reaches for a `secrets/*.enc.*` or any `.enc.*` file in the org
   repo — most often the fleet-config repo (per-host
   `secrets/<host>.enc.yaml`) or the render repo (fleet `*.enc.env` /
   `*.enc.conf`). Concrete repos: `references/shikanime.md`.
@@ -204,7 +201,8 @@ In the fleet-config repo, hosts consume secrets through `sops-nix`:
    sops secrets/<host>.enc.yaml | grep -A2 '^sops:'
    ```
 
-3. Commit per `sks-commit` with the org co-author trailer. A secret edit
+3. Commit per `sks-commit` with the org co-author trailer (org value in
+   `references/shikanime.md`). A secret edit
    often pairs with a module edit (`sopsFile` path, template, systemd unit that
    reads the decrypted path) — keep them in the same commit when they are one
    logical change, not a secret commit followed by a plumbing commit that lands
@@ -266,7 +264,8 @@ jj diff --git | grep -E '^diff --git a/.*\.enc'
 
 ## See also
 
-- `sks-commit` — commit style with the org co-author trailer.
+- `sks-commit` — commit style with the org co-author trailer (org
+  value in `references/shikanime.md`).
 - `sks-dev-workflow` — branch / push / landing discipline.
 - `references/sops-manifests.md` — the fleet render layer: recipient
   keys, devenv wrapper trap, INI store rules, the `formatForPath`

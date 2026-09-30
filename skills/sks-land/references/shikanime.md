@@ -18,3 +18,5 @@
   only.
 - Infra deploy step for machine-config repos: `nixos-rebuild switch`
   (Flux reconcile for manifest repos).
+- The `gh stack` extension is removed in the org; plain `gh pr` for stacking
+  and landing alike.

@@ -1,8 +1,8 @@
 ---
 name: sks-repo
 description:
-  "Use when creating a new shikanime org repo: apply the 5-ruleset protection
-  template, bootstrap the devlib devenv scaffold, and tag v0.1.0."
+  "Use when creating a new org repo: apply the 5-ruleset protection template,
+  bootstrap the devlib devenv scaffold, and tag v0.1.0."
 version: 0.1.0
 author: Hermes Agent
 license: Apache-2.0
@@ -12,8 +12,6 @@ metadata:
       - repo-bootstrap
       - rulesets
       - devlib
-      - shikanime-labs
-      - shikanime-studio
     related_skills:
       - sks-dev-workflow
       - github-workflow-generation
@@ -24,17 +22,17 @@ platforms:
 
 # Repo Bootstrap
 
+For org-specific conventions (template repo, scaffold donors, commit
+trailer values), read `references/shikanime.md` when operating in a
+shikanime org.
+
 Create a new org repo end to end: GitHub repo with the standard 5-ruleset
 protection template, devlib-based devenv scaffold, generated CI, and an
-initial semver tag. Distilled from a live bootstrap (empty repo to merged PR;
-org examples per `references/shikanime.md`).
+initial semver tag.
 
 ## When to Use
 
 - "Create a repo in the org" / "bootstrap a new repo with rulesets."
-- When operating in a shikanime org, read
-  `references/shikanime.md` for template repo and scaffold-donor
-  examples.
 - An org repo exists but is empty and needs the standard scaffold.
 
 ## Prerequisites (probe first, report blockers)
@@ -50,7 +48,8 @@ org examples per `references/shikanime.md`).
 ## Procedure
 
 1. **Apply the 5-ruleset template.** The canonical payloads live on any
-   already-protected repo (org examples in
+   already-protected repo in the org
+   (org examples in
    `references/shikanime.md`). Fetch each ruleset
    by id (the list endpoint OMITS `rules` — always fetch
    `repos/<org>/<repo>/rulesets/<id>`), strip server fields (`id`, `node_id`,
@@ -79,8 +78,9 @@ org examples per `references/shikanime.md`).
    Verify by re-fetching each id and byte-comparing
    `enforcement`/`conditions`/`rules`/`bypass_actors` against the template.
 
-2. **Scaffold the repo content.** Copy from the most minimal devlib consumer
-   (the most minimal devlib consumer in the org): `flake.nix` (devlib inputs,
+2. **Scaffold the repo content.** Copy from the org's most minimal devlib
+   consumer (donor example in
+   `references/shikanime.md`): `flake.nix` (devlib inputs,
    flake-parts,
    `devenv.shells.default` importing `devlib.devenvModules.git`, `.nix`,
    `.shell`, org-specific modules), `.envrc` (`use flake .`), plus org-standard

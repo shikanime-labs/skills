@@ -1,10 +1,9 @@
 ---
 name: sks-skill-authoring
 description:
-  "Use when creating a brand-new skill or profile for the
-  shikanime-labs/skills catalog: grounded body, evals, manifests, and ship
-  through the dev workflow."
-version: 0.1.0
+  "Use when creating a brand-new skill or profile for a skills
+  catalog: grounded body, evals, manifests, and ship through the dev workflow."
+version: 0.2.0
 author: Hermes Agent
 license: Apache-2.0
 metadata:
@@ -13,8 +12,6 @@ metadata:
       - skill-authoring
       - catalog
       - evals
-      - shikanime-labs
-      - shikanime-studio
     related_skills:
       - sks-curate
       - sks-update

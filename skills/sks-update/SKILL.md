@@ -1,10 +1,10 @@
 ---
 name: sks-update
 description:
-  "Use when updating skills or profiles in the shikanime-labs/skills catalog:
+  "Use when updating skills or profiles in a skills catalog:
   curate every skill by default (or named ones only), land through the dev
   workflow, and resync to local Hermes agents."
-version: 0.2.0
+version: 0.3.0
 author: Hermes Agent
 license: Apache-2.0
 metadata:
@@ -13,8 +13,6 @@ metadata:
       - skill-update
       - curation
       - resync
-      - shikanime-labs
-      - shikanime-studio
       - workflow
     related_skills:
       - sks-curate

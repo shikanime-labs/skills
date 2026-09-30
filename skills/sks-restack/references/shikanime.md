@@ -1,5 +1,8 @@
 # Shikanime org conventions
 
+Load when operating in a shikanime org (shikanime-labs / shikanime-studio):
+local checkout layout and push signing.
+
 ## Local checkouts
 
 Org repos are cloned under `~/Source/Repos/github.com/<org>/<repo>`; jj

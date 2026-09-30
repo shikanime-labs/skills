@@ -13,8 +13,6 @@ metadata:
       - moderation
       - github
       - graphql
-      - shikanime-labs
-      - shikanime-studio
     related_skills:
       - sks-pr-resolve
       - sks-pr-triage
