@@ -71,6 +71,11 @@ Escalation is one-way: `sks-delegate` → `sks-async` → `sks-swarm`. Never
 implement in the cloned checkout; never spin a swarm for one unit; never fan
 out before the issue ledger is settled.
 
+Before picking up any unit, read the Shikanime Studio board
+(`sks-project`) and take the next card from the rightmost active column —
+the board is the tactical plan; this ladder only picks the coordination
+tool for the unit you already have.
+
 ## Lifecycle (ordered phases; gates in **bold**)
 
 | #   | Phase                                        | Owner                | Gate                  |

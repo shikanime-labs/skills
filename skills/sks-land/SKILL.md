@@ -262,6 +262,8 @@ EOF
       (lone or stacked — one squash-merge per PR, base `main`).
 - [ ] Issue closed deliberately with rationale.
 - [ ] Landing bookmark removed locally and reconciled on origin.
+- [ ] Board card flipped to `Done` (`sks-project`) after `mergedAt`
+      is confirmed live.
 - [ ] User accepted the deployed change (manual acceptance gate, post-merge
       step 2) — merge alone is not the end state.
 
