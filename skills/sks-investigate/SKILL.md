@@ -21,7 +21,7 @@ metadata:
       - sks-async
       - sks-delegate
       - sks-issue
-      - sks-dev-workflow
+      - sks-dev
       - ponytail-audit
 platforms:
   - linux
@@ -54,7 +54,7 @@ The deliverable is a root-cause finding plus a proposed solution, recorded in
 the linked issue's comments (issue-first). Containment that stops active damage
 is a separate, explicitly-labeled act owned by the fix skills — never folded
 silently into an investigation. Hand off the change to `sks-issue` /
-`sks-dev-workflow` / `sks-pr` once the proposal is approved.
+`sks-dev` / `sks-pr` once the proposal is approved.
 
 ## The cycle is a fiction you keep anyway
 
@@ -200,5 +200,5 @@ echo "investigation complete: root cause + hypothesis + proposed fix" \
 - `sks-delegate` — canonical single-workspace isolation recipe before a fix.
 - `ponytail-audit` — when the defect's root cause is accidental complexity, its
   ranked simplification list seeds the proposal.
-- `sks-issue` / `sks-dev-workflow` / `sks-pr` — receive the proposed solution
+- `sks-issue` / `sks-dev` / `sks-pr` — receive the proposed solution
   and apply it as a reviewed change.

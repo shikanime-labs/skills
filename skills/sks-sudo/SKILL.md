@@ -13,7 +13,7 @@ metadata:
       - gh-cli
       - identity
     related_skills:
-      - sks-dev-workflow
+      - sks-dev
       - sks-pr
       - sks-land
       - sks-skill-authoring
@@ -109,4 +109,4 @@ gh auth status --hostname github.com   # active account is the expected one
 - `sks-land` — Gate 2 approver posting; the canonical switch consumer.
 - `sks-pr` — push identity rules; pushes go to `origin` under the agent
   identity.
-- `sks-dev-workflow` — the dev loop that scopes when a switch is warranted.
+- `sks-dev` — the dev loop that scopes when a switch is warranted.

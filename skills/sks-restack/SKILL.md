@@ -15,7 +15,7 @@ metadata:
       - restack
     related_skills:
       - sks-converge
-      - sks-dev-workflow
+      - sks-dev
       - sks-delegate
       - sks-async
       - sks-gc
@@ -130,7 +130,7 @@ jj git push --remote origin -b <branch>      # accepted, no conflict rejection
 
 - `sks-converge` — the reusable conflict/divergence resolution loop this
   skill hands off to after the rebase.
-- `sks-dev-workflow` — the landing gates this feeds; never force-push stack
+- `sks-dev` — the landing gates this feeds; never force-push stack
   branches.
 - `sks-delegate` — isolate before resolving when the main checkout is crowded.
 - `sks-async` — multi-link stacks whose streams each need this loop.

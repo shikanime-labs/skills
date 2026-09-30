@@ -15,7 +15,7 @@ metadata:
     related_skills:
       - sks-curate
       - sks-update
-      - sks-dev-workflow
+      - sks-dev
       - sks-adversarial
       - sks-commit
       - sks-pr-workflow
@@ -153,5 +153,5 @@ skill appears in all three registration surfaces, and fmt/rumdl are clean.
 
 - `sks-curate` — rework pass for an existing skill.
 - `sks-update` — whole-catalog loop this skill plugs into.
-- `sks-dev-workflow` — the shipping loop; authoring is its Phase 3 content.
+- `sks-dev` — the shipping loop; authoring is its Phase 3 content.
 - `sks-adversarial` — sandbox to ground the procedure in before writing.

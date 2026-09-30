@@ -1,6 +1,6 @@
 # Manifests repo: git commit and PR pitfalls
 
-The `manifests` repo uses plain `git` (not jj). The `sks-dev-workflow` skill's
+The `manifests` repo uses plain `git` (not jj). The `sks-dev` skill's
 jj recipes don't apply — use these git-specific rules.
 
 ## Detached HEAD → create branch before push

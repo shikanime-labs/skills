@@ -17,7 +17,7 @@ metadata:
     related_skills:
       - sks-delegate
       - sks-commit
-      - sks-dev-workflow
+      - sks-dev
       - sks-nix-authoring
       - sks-sops-secrets-authoring
       - sks-pr-review
@@ -56,7 +56,7 @@ Don't use for: the Nix side of a render flake — that is
 `sks-sops-secrets-authoring`. Workspace, commit, and PR mechanics —
 `sks-delegate` / `sks-commit` / `sks-pr-workflow`. Deep recipes for Gateway
 route audits, image digest pinning, and infrastructure migrations live in
-`sks-dev-workflow`'s `references/` behind explicit load conditions.
+`sks-dev`'s `references/` behind explicit load conditions.
 
 ## Procedure
 
@@ -189,7 +189,7 @@ interact with live state — the live cross-check passed
 - `sks-nix-authoring` — the Nix side of a render flake; the generated-YAML
   surface is this skill.
 - `sks-sops-secrets-authoring` — decrypt-editing the `.enc.*` sources.
-- `sks-dev-workflow` — branch/push/land loop; carries the route-audit,
+- `sks-dev` — branch/push/land loop; carries the route-audit,
   image-pinning, and migration references.
 - `sks-commit` / `sks-pr-workflow` — commit shape and PR envelope.
 - `sks-pr-review` — reviewer lens before merge.

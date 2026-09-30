@@ -17,7 +17,7 @@ metadata:
     related_skills:
       - sks-update
       - sks-skill-authoring
-      - sks-dev-workflow
+      - sks-dev
       - sks-pr-review
       - caveman-compress
       - ponytail-review
@@ -206,7 +206,7 @@ Flip the curating PR's board card to `Done` (`sks-project`).
 - `sks-update` — orchestrates curation → dev-workflow → local resync.
 - `sks-skill-authoring` — authoring a new skill (curation starts from an
   existing one).
-- `sks-dev-workflow` — the loop curation changes ship through.
+- `sks-dev` — the loop curation changes ship through.
 - `sks-pr-review` — review lens that often flags skills worth curating.
 - `ponytail-review` — over-engineering-only pass over a diff.
 - `ponytail-audit` — same lens, whole repo; template for the structural

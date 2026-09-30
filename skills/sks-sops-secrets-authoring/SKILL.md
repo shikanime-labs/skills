@@ -15,7 +15,7 @@ metadata:
       - encrypted-yaml
     related_skills:
       - sks-commit
-      - sks-dev-workflow
+      - sks-dev
       - sks-pr
       - sks-pr-review
       - sks-delegate
@@ -47,7 +47,7 @@ read `references/shikanime.md` when operating in a shikanime org.
 
 Don't use for: editing the Nix module or kustomization that *references* a secret
 path (`sopsFile = ...`, `secretGenerator` key) — that is ordinary Nix / YAML, no
-sops toolchain involved. Use `sks-dev-workflow` for the surrounding PR/landing
+sops toolchain involved. Use `sks-dev` for the surrounding PR/landing
 lifecycle.
 
 ## What changes between repos
@@ -266,7 +266,7 @@ jj diff --git | grep -E '^diff --git a/.*\.enc'
 
 - `sks-commit` — commit style with the org co-author trailer (org
   value in `references/shikanime.md`).
-- `sks-dev-workflow` — branch / push / landing discipline.
+- `sks-dev` — branch / push / landing discipline.
 - `references/sops-manifests.md` — the fleet render layer: recipient
   keys, devenv wrapper trap, INI store rules, the `formatForPath`
   binary-store trap, and the `;` corruption.

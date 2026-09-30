@@ -1,7 +1,7 @@
 # sks-env — shikanime org environment facts
 
 Environment facts for running the dev loop in shikanime repos (loaded by
-`sks-dev-workflow` when operating in shikanime repos):
+`sks-dev` when operating in shikanime repos):
 
 - Org identity: `shikanime-labs` and `shikanime-studio` GitHub orgs.
 - Repo paths: `~/Source/Repos/github.com/<org>/<repo>`; dual-clone

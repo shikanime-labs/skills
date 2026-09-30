@@ -1,5 +1,5 @@
 ---
-name: sks-dev-workflow
+name: sks-dev
 description:
   "Use when running the local dev loop in a target org's repos: branching in a
   fresh jj workspace, push-to-origin, jj bookmark tracking, and landing via

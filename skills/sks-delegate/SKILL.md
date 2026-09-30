@@ -14,7 +14,7 @@ metadata:
       - workspace
       - isolation
     related_skills:
-      - sks-dev-workflow
+      - sks-dev
       - sks-async
       - sks-commit
       - sks-pr-workflow
@@ -32,7 +32,7 @@ implementation unit** — not only when WIP is present — so an in-flight worki
 folder (full of other editors' WIP you must not touch) never folds your change
 into the wrong commit, and so the working surface is always isolated and
 reproducible. This is the single-stream primitive behind `sks-async`'s per-unit
-fan-out and the isolation lane of `sks-dev-workflow`.
+fan-out and the isolation lane of `sks-dev`.
 
 For shikanime-org specifics (repo layout, co-author trailer), read
 `references/shikanime.md` when operating in a shikanime org. For
@@ -43,7 +43,7 @@ the cloud-pi-native/console repository.
 ## Mandatory
 
 Every implementation unit runs in a fresh `jj` workspace created by this skill —
-never in the cloned checkout. `sks-dev-workflow` inherits this requirement; the
+never in the cloned checkout. `sks-dev` inherits this requirement; the
 checkout is a read-only reference surface. A unit that skips `sks-delegate`
 has not entered the dev loop.
 
@@ -52,7 +52,7 @@ has not entered the dev loop.
 - Every implementation unit of the target org — even on a clean checkout. This
   is not an
   isolation escape hatch for WIP; it is the default working surface (Phase 3 of
-  `sks-dev-workflow`). The cloned checkout is never where edits are made.
+  `sks-dev`). The cloned checkout is never where edits are made.
 - A checkout holding concurrent uncommitted WIP you must not lose or mix.
 - One unit only — for N parallel units, use `sks-async`.
 
@@ -118,7 +118,7 @@ gh pr view <N> --repo <org>/<repo> --json state,headRefName   # after PR step
 
 ## See also
 
-- `sks-dev-workflow` — full loop; this skill is its stack isolation lane.
+- `sks-dev` — full loop; this skill is its stack isolation lane.
 - `sks-async` — fan-out; each stream uses this same workspace recipe.
 - `sks-adversarial` — disposable sandbox; composes this skill + `sks-async`.
 - `sks-investigate` — root-cause discipline; use before isolating a fix.

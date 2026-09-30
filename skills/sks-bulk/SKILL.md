@@ -17,7 +17,7 @@ metadata:
     related_skills:
       - sks-commit
       - sks-delegate
-      - sks-dev-workflow
+      - sks-dev
       - sks-issue-workflow
       - sks-pr-workflow
 platforms:
@@ -31,7 +31,7 @@ platforms:
 Apply one instruction to N targets. A target is whatever the instruction
 names: every repo in an org, every open issue matching a filter, every PR
 touching a path, or any other enumerable agentic target. This is the
-N-target shape: one target is `sks-dev-workflow`, and one unit that must not
+N-target shape: one target is `sks-dev`, and one unit that must not
 fold in foreign WIP is `sks-delegate`.
 
 For org specifics — target orgs, canonical checkout paths, branch and PR
@@ -47,7 +47,7 @@ policy, commit envelope, and the ruleset-approval resolution — read
 - One PR per repo derived from a single census.
 - Any other single instruction with an enumerable target set.
 
-Not for: a single target (`sks-dev-workflow`), or parallel units inside one
+Not for: a single target (`sks-dev`), or parallel units inside one
 repo (`sks-async`).
 
 ## Procedure
@@ -178,7 +178,7 @@ named with its reason.
 
 ## See also
 
-- `sks-dev-workflow` — the one-repo loop this scales out.
+- `sks-dev` — the one-repo loop this scales out.
 - `sks-delegate` — isolation workspace for the change itself.
 - `sks-commit` — commit envelope the batch commits must carry.
 - `sks-pr-workflow`, `sks-issue-workflow` — per-repo PR and issue sides.

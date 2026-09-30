@@ -103,7 +103,7 @@ For each **unresolved** thread:
 
 When closing a thread with a fix, cite the concrete evidence in the comment —
 the exact `- old` → `+ new` diff lines or the command/CI output proving it, not
-a prose summary. (See the family message invariants in `sks-dev-workflow`;
+a prose summary. (See the family message invariants in `sks-dev`;
 `references/example-comment.md` for a filled example.)
 
 Outdated (`isOutdated`) uncontested threads may be resolved without code change;

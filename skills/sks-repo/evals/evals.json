@@ -34,7 +34,7 @@
       "files": [],
       "prompt": "Add a CI fix to shikanime-labs/colemak.",
       "assertions": [
-        "Body routes routine feature work to sks-dev-workflow instead of running a bootstrap",
+        "Body routes routine feature work to sks-dev instead of running a bootstrap",
         "Body does not re-apply rulesets to an already-protected repo for this request"
       ]
     }

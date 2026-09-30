@@ -25,7 +25,7 @@ platforms:
 # Discussion
 
 Pre-issue RFC (lifecycle **discussion → issue → issue comments → PR**, see
-`sks-dev-workflow`): converge on the problem, then derive the issue
+`sks-dev`): converge on the problem, then derive the issue
 (`sks-issue`) and link back — do NOT keep solving here. Prose rules (English
 only, `@` escaping, no-wrap) are owned by `sks-github-text-authoring`.
 

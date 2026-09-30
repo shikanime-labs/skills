@@ -17,7 +17,7 @@ metadata:
       - delegation
       - github
     related_skills:
-      - sks-dev-workflow
+      - sks-dev
       - sks-pr
 platforms:
   - linux
@@ -30,7 +30,7 @@ platforms:
 Decompose a multi-unit change into parallel, isolated streams; land each as an
 independent PR or stacked chain. Distills unlazy depth-tree delegation fan-out
 onto jj's commit DAG as plain `gh pr` merges. Core splitting component of
-`sks-dev-workflow`.
+`sks-dev`.
 
 For shikanime-org specifics (co-author trailer, remote split), read
 `references/shikanime.md` when operating in a shikanime org. For
@@ -67,7 +67,7 @@ cloud-pi-native/console repository.
    ```
 
 4. **Land** (push to `origin`, PRs with `--head <org>:<branch>`; see
-   `sks-dev-workflow`):
+   `sks-dev`):
    - Independent unit → own bookmark + standalone PR (or single-member stack).
 
 - Dependent chain → one bookmark per link; land links in dependency order
@@ -120,7 +120,7 @@ has in-workspace evidence.
 
 ## See also
 
-- `sks-dev-workflow` — parent; run its assumption-validation gate BEFORE
+- `sks-dev` — parent; run its assumption-validation gate BEFORE
   fan-out.
 - `sks-commit` / `sks-pr` — commit shape (co-author trailer) and PR linkage.
 - Cloud-pi-native specifics (French artifacts, co-author trailer, draft PRs

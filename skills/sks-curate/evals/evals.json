@@ -4,7 +4,7 @@
       "id": 1,
       "expected_output": "Compresses the skill body to a lean token budget, keeps the safety and gate steps, and refreshes the evals to match the new body.",
       "files": [],
-      "prompt": "Compress sks-dev-workflow so it loads leaner without dropping the gate steps.",
+      "prompt": "Compress sks-dev so it loads leaner without dropping the gate steps.",
       "assertions": [
         "YAML frontmatter parses and 'name' equals 'sks-curate'",
         "Frontmatter description starts with 'Use when' and is at most 200 characters",

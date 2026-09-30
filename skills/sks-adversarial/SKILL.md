@@ -75,7 +75,7 @@ For org specifics, read
 4. **Decide: promote or discard.**
 
    - **Promote** — the trial produced a result worth keeping: hand it to
-     `sks-dev-workflow` (issue → commit → PR). Treat the sandbox commit as a
+     `sks-dev` (issue → commit → PR). Treat the sandbox commit as a
      seed, not the deliverable; open a proper change with its own ledger.
    - **Discard** — the trial was inconclusive or wrong: drop it. Reclaim the
      workspace and bookmark with `sks-gc`. Never merge a sandbox into a real

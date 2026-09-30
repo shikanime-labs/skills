@@ -55,9 +55,9 @@
         "path": "skills/sks-delegate"
       },
       {
-        "name": "sks-dev-workflow",
+        "name": "sks-dev",
         "description": "Use when running the local dev loop in a target org's repos: branching in a fresh jj workspace, push-to-origin, jj bookmark tracking, and landing via plain gh pr merge or direct push.",
-        "path": "skills/sks-dev-workflow"
+        "path": "skills/sks-dev"
       },
       {
         "name": "sks-discussion",
@@ -86,7 +86,7 @@
       },
       {
         "name": "sks-gc",
-        "description": "Use when reclaiming resources leaked by jj-based agent workflows — dangling bookmarks, skill-created jj workspaces, and leftover working-copy dirs from sks-async/sks-dev-workflow.",
+        "description": "Use when reclaiming resources leaked by jj-based agent workflows — dangling bookmarks, skill-created jj workspaces, and leftover working-copy dirs from sks-async/sks-dev.",
         "path": "skills/sks-gc"
       },
       {
