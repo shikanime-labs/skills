@@ -3,7 +3,7 @@ name: sks-sudo
 description:
   "Use when a gh operation must run under a different org identity: lock,
   switch to the agent account, confirm the flip, restore the operator."
-version: 0.2.0
+version: 0.3.0
 author: Hermes Agent
 license: Apache-2.0
 metadata:
@@ -12,8 +12,6 @@ metadata:
       - github
       - gh-cli
       - identity
-      - shikanime-labs
-      - shikanime-studio
     related_skills:
       - sks-dev-workflow
       - sks-pr

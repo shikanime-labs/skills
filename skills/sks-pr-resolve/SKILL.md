@@ -1,9 +1,9 @@
 ---
 name: sks-pr-resolve
 description:
-  Use when resolving a shikanime PR's review conversations, including
-  CodeRabbit review comments, checking the DoD ledger, and reconciling
-  before merge (no merge itself).
+  Use when resolving a PR's review conversations, including CodeRabbit
+  review comments, checking the DoD ledger, and reconciling before merge
+  (no merge itself).
 version: 0.1.2
 author: Hermes Agent
 license: Apache-2.0
@@ -14,8 +14,6 @@ metadata:
       - pull-requests
       - review-threads
       - reconcile
-      - shikanime-labs
-      - shikanime-studio
     related_skills:
       - sks-pr-review
       - sks-pr
@@ -35,8 +33,9 @@ Reconcile a PR: enumerate review
 conversations, check the linked issue DoD ledger, report approval/CI. **Never
 lands the PR** — that is `sks-land`.
 
-Read `references/shikanime.md` when operating in a shikanime org; the
-org repo scope and branch-protection self-approval quirks live there.
+For org-specific conventions (repo scope, self-approval quirks, merge-queue
+workflow ids), read `references/shikanime.md` when operating in a shikanime
+org.
 
 ## When to Use
 

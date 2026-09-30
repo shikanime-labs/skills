@@ -1,7 +1,7 @@
 ---
 name: sks-issue
 description:
-  "Use when opening an issue in shikanime-labs or shikanime-studio: body is the
+  "Use when opening an issue in an org repo: body is the
   problem statement, acceptance criteria as a command-decidable tasklist."
 version: 0.2.0
 author: Hermes Agent
@@ -11,8 +11,6 @@ metadata:
     tags:
       - github
       - issues
-      - shikanime-labs
-      - shikanime-studio
     related_skills:
       - sks-doc
       - sks-issue-refine

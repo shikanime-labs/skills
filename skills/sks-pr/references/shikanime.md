@@ -14,3 +14,5 @@
   <automata@shikanime.studio>`.
 - Repo-enforced PR body shape: the org's `manifests` repo requires
   `Related:` + `Signed-off-by` via its `AGENTS` file — follow the repo.
+- The `gh stack` extension is removed in the org; plain `gh pr` for stacking
+  and landing alike.

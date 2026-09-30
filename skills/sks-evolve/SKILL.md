@@ -15,8 +15,6 @@ metadata:
       - skill-maintenance
       - profile-maintenance
       - token-efficiency
-      - shikanime-labs
-      - shikanime-studio
     related_skills:
       - sks-update
       - sks-curate

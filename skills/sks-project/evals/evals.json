@@ -2,12 +2,12 @@
   "evals": [
     {
       "id": 1,
-      "expected_output": "Resolves this catalog's work to the dedicated Skills board (project 9), discovers the Status vocabulary at runtime, onboards the issue, sets the ready-phase column, verifies via item-list.",
+      "expected_output": "Resolves this catalog's work to the dedicated board for its family via the org reference, discovers the Status vocabulary at runtime, onboards the issue, sets the ready-phase column, verifies via item-list.",
       "files": [],
       "prompt": "Issue #42 in shikanime-labs/skills just finished triage. Put it on the right board in the right column.",
       "assertions": [
         "YAML frontmatter parses and 'name' equals 'sks-project'",
-        "Body's board-resolution table maps this catalog's skill authoring and curation work to the Skills board, project 9",
+        "Body delegates board-per-family resolution to references/shikanime.md (an org fact) and probes `gh project list --owner <board-owner>` when context is ambiguous",
         "Body resolves the Status field and column option ids at runtime via gh project field-list with select(.name==\"Status\"), stating ids are per board and must never be hardcoded",
         "Body's phase map maps triage completion to the ready phase and instructs setting the matching column option",
         "Body instructs verifying the move by re-reading gh project item-list"
@@ -15,15 +15,15 @@
     },
     {
       "id": 2,
-      "expected_output": "Finds no pertinent board for the new family, clones the template board (Shikanime Studio, project 6) via copyProjectV2 so the copy inherits the five kanban views and lifecycle vocabulary, and keeps create-plus-reshape only as the no-template fallback.",
+      "expected_output": "Finds no pertinent board for the new family, clones the org's template board via copyProjectV2 so the copy inherits the kanban views and lifecycle vocabulary, and keeps create-plus-reshape only as the no-template fallback.",
       "files": [],
       "prompt": "We're starting a new agent-workflow family with no board yet. Give it the same planning surface the other families have.",
       "assertions": [
         "YAML frontmatter parses and 'name' equals 'sks-project'",
-        "Body states a missing pertinent board is provisioned by cloning the template board (project 6) via copyProjectV2, which inherits five views with real kanban grouping the API cannot set on a fresh project",
+        "Body states a missing pertinent board is provisioned by cloning the org's template board (identified in references/shikanime.md) via copyProjectV2, which inherits views with real kanban grouping the API cannot set on a fresh project",
         "Body states a copyProjectV2 clone carries the template's Status option ids verbatim",
         "Body keeps gh project create plus an updateProjectV2Field option reshape as the fallback only when no template board exists, noting the default Status field cannot be deleted",
-        "Body's board-resolution table maps cpn-* / cloud-pi-native context to the Cloud Pi Native board, project 7"
+        "Body's board-resolution step and the template-board identity both point at references/shikanime.md as the org fact"
       ]
     },
     {

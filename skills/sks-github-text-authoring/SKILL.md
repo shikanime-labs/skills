@@ -1,10 +1,10 @@
 ---
 name: sks-github-text-authoring
 description:
-  "Use when writing any GitHub text in shikanime repos — commit message, issue
-  or PR body, discussion RFC, review or issue comment. Owns all shared prose
-  rules; surface skills handle procedure."
-version: 0.1.0
+  "Use when writing any GitHub text in the target org's repos — commit message,
+  issue or PR body, discussion RFC, review or issue comment. Owns all shared
+  prose rules; surface skills handle procedure."
+version: 0.2.0
 author: Hermes Agent
 license: Apache-2.0
 metadata:
@@ -12,8 +12,6 @@ metadata:
     tags:
       - github
       - prose
-      - shikanime-labs
-      - shikanime-studio
     related_skills:
       - sks-commit
       - sks-issue
@@ -43,13 +41,14 @@ rules to this skill instead of restating them.
 
 ## Universal prose rules (every surface, every repo)
 
-- **Language**: English across the family, including commit titles. The
-  cloud-pi-native console repo is the French twin — out of family scope.
+- **Language**: per the org's convention; org specifics (the shikanime
+  family's English-everywhere rule and the French console twin) live in
+  `references/shikanime.md`.
 - **Free text, never wrapped**: GitHub bodies and messages render as-is.
   Never insert hard line breaks at a column width; write natural paragraphs,
   a blank line separates them. NEVER run `nix fmt` / `mdformat` over a body
   or message — those tools enforce an 80-column wrap that does not apply to
-  GitHub text. Exception: `manifests`-class repos require an 80-col wrapped
+  GitHub text. Exception: some orgs' repos require an 80-col wrapped
   commit body — a repo-enforced override, see below.
 - **Mention escaping**: a bare `@name` in prose pings that user/team. Wrap
   any literal `@` — NestJS `@Inject(x)`, decorators, config keys — in a code
@@ -114,14 +113,16 @@ default shape.
   the diff, discard non-pertinent ones with a one-line comment, never
   silently.
 
-## Org envelope (shikanime family)
+## Org envelope
 
-- English everywhere; French artifacts belong to the cpn family only.
-- Agent-assisted commits and squash merges carry exactly ONE
-  `Co-authored-by: Automata <automata@shikanime.studio>`; never a self
-  `Co-authored-by:`, never a duplicate `Signed-off-by:`.
+- Language per the org's convention; org-specific language rules live in
+  `references/shikanime.md`.
+- Agent-assisted commits and squash merges carry exactly ONE org co-author
+  trailer (the value is an org fact — for shikanime, read
+  `references/shikanime.md`); never a self `Co-authored-by:`, never a
+  duplicate `Signed-off-by:`.
 - `Signed-off-by: <user>` only where a hook/ruleset requires DCO — detect
-  per repo (gitlint CC1 on `manifests` and `skills`); hooks always win.
+  per repo; hooks always win.
 - Repo-enforced overrides (gitlint, commitlint, PR templates) beat every
   default above. Detect first:
 

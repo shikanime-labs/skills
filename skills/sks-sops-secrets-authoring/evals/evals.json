@@ -2,7 +2,7 @@
   "evals": [
     {
       "id": 1,
-      "expected_output": "Edits a sops-encrypted file through sops and verifies it still decrypts and carries the right recipients; routes manifests vs machines correctly.",
+      "expected_output": "Edits a sops-encrypted file through sops and verifies it still decrypts and carries the right recipients; routes the render and fleet-config repo classes correctly.",
       "files": [],
       "prompt": "I need to change a secret value in machines/secrets/telsha.enc.yaml — what's the right way to edit it so the file stays valid and the target host can still read it?",
       "assertions": [
@@ -49,7 +49,7 @@
         "Body warns that removing a recipient from a file still in use by another host is an availability bug, not cleanup",
         "Body mentions age recipients (AGE-SECRET-KEY public keys / sops_age metadata) as the mechanism",
         "Body checks the recipient set after the edit with sops and grep on sops_age or sops_*",
-        "Body distinguishes the machines per-host recipient model from the manifests three-fleet-recipient model"
+        "Body distinguishes the fleet-config per-host recipient model from the render multi-fleet-recipient model"
       ]
     },
     {
@@ -78,7 +78,7 @@
       "files": [],
       "prompt": "Use sks-sops-secrets-authoring to commit and land my secret edit with the full PR workflow, gitlint hooks, and squash merge.",
       "assertions": [
-        "Body refers to sks-commit for commit style (or mentions the Automata co-author trailer)",
+        "Body refers to sks-commit for commit style (or mentions the org co-author trailer)",
         "Body states it does not itself cover the full PR/landing lifecycle and points to sks-dev-workflow, sks-pr, or sks-delegate for that",
         "Frontmatter parses as YAML with a top-level 'name' key",
         "Frontmatter 'name' equals the directory basename 'sks-sops-secrets-authoring'"

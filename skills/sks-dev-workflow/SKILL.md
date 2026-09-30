@@ -1,9 +1,9 @@
 ---
 name: sks-dev-workflow
 description:
-  "Use when running the shikanime local dev loop: branching in a fresh jj
-  workspace, push-to-origin, jj bookmark tracking, and landing via plain gh pr
-  merge or direct push."
+  "Use when running the local dev loop in a target org's repos: branching in a
+  fresh jj workspace, push-to-origin, jj bookmark tracking, and landing via
+  plain gh pr merge or direct push."
 version: 0.10.0
 author: Hermes Agent
 license: Apache-2.0
@@ -12,8 +12,6 @@ metadata:
     tags:
       - jj
       - workflow
-      - shikanime-labs
-      - shikanime-studio
     related_skills:
       - sks-pr-review
       - sks-async
@@ -122,7 +120,8 @@ silent scope change:
 
 - gh identity: `gh api user --jq .login`
 - push right: `gh api repos/<org>/<repo> --jq .permissions.push` (needs
-  `true`; `.viewerPermission` returns empty on this org — do not rely on it)
+  `true`; some orgs return an empty `.viewerPermission` — org quirks per
+  `references/shikanime.md`)
 - jj repo: `.jj/` / `jj status` → `jj bookmark track` before push
 - issue exists (issue-first) — else `sks-issue-workflow`
 - NixOS repo: `nix` available (build-verify gate)
@@ -137,9 +136,8 @@ streams may fan out (`sks-async`) while the blocker is surfaced.
   PR.
 - **Detect protection via RULESETS, not classic branch protection.** The
   classic endpoint `gh api repos/<org>/<repo>/branches/main/protection`
-  returns 404 on ruleset-backed repos (e.g. a manifests-class repo), which
-  misleadingly
-  reads as "not protected". Fetch each ruleset id — the list endpoint omits
+  returns 404 on ruleset-backed repos, which misleadingly reads as
+  "not protected". Fetch each ruleset id — the list endpoint omits
   the rules:
 
   ```bash
@@ -150,8 +148,11 @@ streams may fan out (`sks-async`) while the blocker is surfaced.
 - A `pull_request` rule with `require_code_owner_review` (an org
   "Landing protections" ruleset — org examples in `references/sks-env.md`)
   blocks self-approval — that is what forces
-  `gh pr merge --squash --admin` after a verbal lgtm.
-- Manifests-class repo commits: gitlint CC1 rejects any commit without
+  `gh pr merge --squash --admin` once approval is given (org approval
+  practice: read `references/shikanime.md` when operating in a shikanime
+  org).
+- Gitlint-enforced repos (org classes: read `references/shikanime.md`
+  when operating in a shikanime org): CC1 rejects any commit without
   `Signed-off-by` (full envelope:
   `references/manifests-git-commit-pitfalls.md`).
 
@@ -222,8 +223,9 @@ anchor can get duplicated — remove the stray copy before pushing.
 - **Direct push to `main`:** ONLY when the user explicitly says "push to
   main" / "land it".
 - **Merge:** some org repos require `gh pr merge --squash --admin` when
-  the user says "merge the PRs" (org examples in
-  `references/shikanime.md`). A red required check or protection
+  the user says "merge the PRs" (org examples: read
+  `references/shikanime.md` when operating in a shikanime org). A red
+  required check or protection
   rejection is a gate doing its job — surface it, never `--admin` past it
   unasked.
 - **Watch is not merge.** A CI watch/poll phase (foreground shell or
@@ -278,12 +280,12 @@ output:
 
 | Signal                                     | Implication                                                      |
 | ------------------------------------------ | ---------------------------------------------------------------- |
-| `AGENTS.md` with `Related:` URL            | follow it (e.g. a manifests-class repo)                          |
+| `AGENTS.md` with `Related:` URL            | follow it                                                        |
 | `doc:` prefix convention                   | doc repo → `doc:` titles                                         |
 | branch protection on `main`                | PR mandatory                                                     |
 | jj repo (`.jj/`)                           | `jj bookmark track <branch> --remote=origin` before push         |
-| NixOS/infra (org examples per               | `nix eval`/`nix build` before switch; control-plane needs quorum |
-|                                            | `references/shikanime.md`)                                 |
+| NixOS/infra (org examples: read             | `nix eval`/`nix build` before switch; control-plane needs quorum |
+| `references/shikanime.md`)                  |                                                                  |
 
 ## Formatting: nix fmt + markdown
 

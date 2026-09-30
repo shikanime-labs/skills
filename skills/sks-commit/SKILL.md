@@ -1,8 +1,8 @@
 ---
 name: sks-commit
 description:
-  "Use when committing in shikanime-labs or shikanime-studio repos:
-  plain-English imperative titles and repo-enforced hooks (gitlint, DCO) win."
+  "Use when committing in a target-org repo: plain-English imperative titles
+  and repo-enforced hooks (gitlint, DCO) win."
 version: 0.3.0
 author: Hermes Agent
 license: Apache-2.0
@@ -11,8 +11,6 @@ metadata:
     tags:
       - jj
       - commit
-      - shikanime-labs
-      - shikanime-studio
     related_skills:
       - sks-pr-review
       - sks-dev-workflow
@@ -31,12 +29,12 @@ repo, never assume.
 
 ## When to Use
 
-- Any commit in a target-org repo. For the shikanime remote split
-  (local path vs gh remote may disagree) and protected-main repos, read
-  `references/shikanime.md` when operating in shikanime repos. For
-  cloud-pi-native commitlint rules (French-org, conventional English commits
-  with `body-leading-blank`), read `references/cloud-pi-native.md` when
-  committing in the cloud-pi-native/console repository.
+- Any commit in a target-org repo. For shikanime-org conventions (the remote
+  split between local path and gh remote, protected-main repos, the co-author
+  trailer value), read `references/shikanime.md` when operating in a
+  shikanime org. For cloud-pi-native commitlint rules (French org,
+  conventional English commits with `body-leading-blank`), read
+  `references/cloud-pi-native.md` when committing in that org.
 
 ## Prerequisites
 
@@ -53,8 +51,8 @@ one clean trailer block, no formatter runs) are owned by
 `sks-github-text-authoring`. This skill owns the commit-specific shape:
 
 - **Code repos**: plain English, imperative, capitalized title, **no prefix, no
-  body**. One trailer ALWAYS:
-  `Co-authored-by: Automata <automata@shikanime.studio>`. One logical fix per
+  body**. One trailer ALWAYS: the org co-author trailer (value in
+  `references/shikanime.md`). One logical fix per
   commit.
   - Good: `Force NFS v4.0 on RWX StorageClasses` + trailer.
   - Bad: `fix: force nfs v4.0` (conventional prefix not used here).
@@ -91,10 +89,9 @@ ls .gitlint .commitlintrc* commitlint.config.* 2>/dev/null
 grep -rl "Signed-off-by" .github/ 2>/dev/null
 ```
 
-- A gitlint-enforced manifests-class repo (org examples per
-  `references/shikanime.md`) enforces a **body** (B6 "body message is
-  missing") and a `Signed-off-by` (CC1). A commit with both + no `Related:`
-  passes. See `references/example-commit.md` for a filled example.
+- A gitlint-enforced repo enforces a **body** (B6 "body message is missing")
+  and a `Signed-off-by` (CC1). A commit with both + no `Related:` passes. See
+  `references/example-commit.md` for a filled example.
 - PR↔commit parity: the PR title equals the commit subject and the PR body
   restates the commit message; author the commit to carry full rationale.
 - Any repo with `commitlint`: follow its config.

@@ -4,7 +4,7 @@
       "id": 1,
       "expected_output": "Locates conflicted revisions via the conflicts() revset and resolves them oldest-first via jj edit + hand-merge or :ours/:theirs.",
       "files": [],
-      "prompt": "After rebasing my shikanime jj stack there are still conflicted revisions — resolve them without redoing the rebase.",
+      "prompt": "After rebasing my jj stack there are still conflicted revisions — resolve them without redoing the rebase.",
       "assertions": [
         "YAML frontmatter parses and 'name' equals 'sks-converge'",
         "Frontmatter description starts with 'Use when' and is at most 200 characters",

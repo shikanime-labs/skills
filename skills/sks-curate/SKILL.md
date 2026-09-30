@@ -2,8 +2,8 @@
 name: sks-curate
 description:
   "Use when updating, improving, compressing, or token-optimizing a skill or
-  profile in the shikanime-labs/skills catalog: rework the body, tighten it,
-  refresh evals, and keep it loadable."
+  profile in a skills catalog: rework the body, tighten it, refresh evals,
+  and keep it loadable."
 version: 0.2.0
 author: Hermes Agent
 license: Apache-2.0
@@ -14,8 +14,6 @@ metadata:
       - compression
       - token-efficiency
       - distillation
-      - shikanime-labs
-      - shikanime-studio
     related_skills:
       - sks-update
       - sks-skill-authoring
@@ -175,19 +173,6 @@ naming the ceiling and the upgrade path.
   CLONES first and consolidate
   the mirror's learnings into the repo (body or `references/`); otherwise the
   next `hermes skills update` silently deletes them.
-- **Mirror catalog lives untracked; syncs can cull it silently.** Verified
-  2026-09-08: `origin/main` tracks only a subset of the operational catalog
-  (~196 `SKILL.md` dirs on disk); whole categories (`apple/`, `media/`,
-  `productivity/`, most `devops/` books) exist only as untracked mirror
-  files. An `export from jj` sync left the mirror HEAD on a stale tree and
-  the untracked layer was gone from disk. Recover from the newest mirror
-  commit that still carries the catalog: list additions via
-  `git diff --name-only --diff-filter=A origin/main <sha> > <list>`, then
-  `git restore --source=<sha> --worktree --pathspec-from-file=<list>`.
-  Keep the recovery untracked — repo doctrine ships only the org's curated
-  skill families. After
-  any mirror reset or `hermes skills update`, spot-check a local-only skill
-  (e.g. a `devops/` book skill) before trusting the catalog.
 - **Curate in a workspace, never `cp` over it.** When the user's tree is dirty,
   check the PR commit out in a fresh `jj workspace add ../<name> -r <rev>` (git
   checkouts: `git worktree`) and edit there. Never copy the user's on-disk
@@ -213,8 +198,8 @@ Flip the curating PR's board card to `Done` (`sks-project`).
 ## Repo-specific curation notes
 
 - Shikanime-org specifics (commit trailers and envelope in the org's
-  `skills` repo): read `references/shikanime.md` when operating in
-  shikanime repos.
+  `skills` repo, mirror-catalog recovery): read `references/shikanime.md`
+  when operating in shikanime repos.
 
 ## See also
 

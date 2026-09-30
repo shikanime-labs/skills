@@ -4,4 +4,6 @@ Generic discussion triage; shikanime-org specifics:
 
 - Surfaces: `shikanime-labs/*` / `shikanime-studio/*`; org-level RFCs live in
   `shikanime-studio/.github` (the only repo with discussions enabled).
+- Artifact language: triage comments and close rationales are written in
+  English.
 - Opening new discussions is `sks-discussion`'s job, never this skill's.

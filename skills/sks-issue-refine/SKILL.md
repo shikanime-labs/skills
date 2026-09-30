@@ -14,8 +14,6 @@ metadata:
       - research
       - problem-framing
       - workflow
-      - shikanime-labs
-      - shikanime-studio
     related_skills:
       - sks-issue
       - sks-issue-workflow

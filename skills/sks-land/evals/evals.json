@@ -2,7 +2,7 @@
   "evals": [
     {
       "id": 1,
-      "expected_output": "The skill lands a shikanime PR only after sks-pr-resolve reconciled it and review approval gates pass, then closes the linked issue deliberately.",
+      "expected_output": "The skill lands a PR only after sks-pr-resolve reconciled it and review approval gates pass, then closes the linked issue deliberately.",
       "files": [],
       "prompt": "Land PR #42 on shikanime-labs/skills now that reviews and CI are green.",
       "assertions": [
@@ -76,7 +76,7 @@
     },
     {
       "id": 7,
-      "expected_output": "The skill does not claim to be the sks-async fan-out/landing sibling or absorb sks-pr; it stays scoped to landing already-reconciled shikanime PRs.",
+      "expected_output": "The skill does not claim to be the sks-async fan-out/landing sibling or absorb sks-pr; it stays scoped to landing already-reconciled PRs.",
       "files": [],
       "prompt": "Fan out my landing into parallel workspaces and land each the sks-async way, committing the merge the sks-commit way.",
       "assertions": [

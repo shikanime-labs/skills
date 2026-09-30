@@ -1,7 +1,7 @@
 ---
 name: sks-nix-authoring
 description:
-  "Use when authoring or editing Nix in a shikanime repo: nixfmt-sorted style,
+  "Use when authoring or editing Nix in an org repo: nixfmt-sorted style,
   single-use let bindings, no explanatory comments, YAGNI on new options."
 version: 0.2.0
 author: Hermes Agent
@@ -14,7 +14,6 @@ metadata:
       - nix-darwin
       - style
       - sorting
-      - shikanime-labs
     related_skills:
       - sks-delegate
       - sks-commit
@@ -28,13 +27,13 @@ platforms:
 
 # Nix Authoring
 
-When editing Nix in a shikanime repo, read `references/shikanime.md`
+When editing Nix in an org repo, read `references/shikanime.md`
 for the concrete repo names, paths, and shapes.
 
-Write Nix in an org repo (the fleet-config and render repos, and any other
-flake-parts / nixpkgs consumer) the way the fleet already reads it: sorted,
-minimal, no prose in the source, no option surface that only covers a case the
-defaults already handle.
+Write Nix in an org repo (the machines- and manifests-class repos, and any
+other flake-parts / nixpkgs consumer) the way the repo already reads it:
+sorted, minimal, no prose in the source, no option surface that only covers a
+case the defaults already handle.
 
 ## When to Use
 
@@ -53,8 +52,9 @@ The repo norm is boring on purpose: the tooling enforces the mechanical pieces
 and the reviewer enforces the YAGNI piece. Before you add anything, check that
 the default stack does not already cover it:
 
-- **Formatting** — `nix fmt` (treefmt) owns formatting. Do not hand-align, do not
-  hand-sort keys, do not invent a custom style on top of it. If a file you touch
+- **Formatting** — `nix fmt` (treefmt) owns formatting. Do not hand-align,
+  do not hand-sort keys, do not invent a custom style on top of it. If a
+  file you touch
   is Nix, `nix fmt` it. If a file is not Nix, do not run `nix fmt` across it —
   see the gotcha about `.enc.*` and the broader `nix fmt` whole-tree caveat in
   `sks-dev-workflow`.
@@ -62,7 +62,7 @@ the default stack does not already cover it:
   where configured and by reviewer otherwise. Write sorted; do not write
   unsorted and promise to "sort later".
 - **Comments** — explanatory comments inside `.nix` are out of fashion in these
-  repos. The fleet convention is "no explanatory comments in `.nix` files".
+  repos. The house convention is "no explanatory comments in `.nix` files".
   A comment that restates what the line does is noise; a comment that
   records WHY a non-obvious choice was made can earn its place, but prefer
   naming and structure over prose first. If the code is clear, the comment goes.
@@ -86,7 +86,7 @@ The rule of thumb: if the default already does it, do not add a layer.
    `nix fmt <file>` is fine.
 2. **Keys sorted in any record you write or extend.** If two or more keys share
    a parent, use a record literal with keys sorted; a single leaf under a shared
-   parent uses dotted assignment. Fleet pattern:
+   parent uses dotted assignment. Pattern:
 
    ```nix
    # single leaf under parent `foo`
@@ -126,17 +126,16 @@ The rule of thumb: if the default already does it, do not add a layer.
    ```
 
    The name `svcAccountResources` carries what the comment would have said,
-   and a
-   reader does not have to match a comment to the lines beneath it. Comments that
-   survive this refactoring — a name cannot capture a non-obvious WHY — are the
-   rare justified ones; the rest are deleted.
+   and a reader does not have to match a comment to the lines beneath it.
+   Comments that survive this refactoring — a name cannot capture a
+   non-obvious WHY — are the rare justified ones; the rest are deleted.
 5. **Single-responsibility functions and values.** When a derivation, function,
    or let-binding does two things that could be described with two names, split
    it. A value named for what it *is* (e.g. `baseImage`, `extraArgs`,
    `monitoringResources`) is cheaper to review than a value named for how it is
-   *used* (e.g. `finalImage` with a body that also adds args). Split until each
-   name answers "what is this?" in one breath; if the answer reads "this is X and
-   also Y", it is two values.
+   *used* (e.g. `finalImage` with a body that also adds args). Split until
+   each name answers "what is this?" in one breath; if the answer reads
+   "this is X and also Y", it is two values.
 6. **One logical change per commit.** A Nix refactor that also renames ten attrs
    and adds a new option and retires an old one is four changes. Split so the
    diff reads as one decision each.
@@ -157,9 +156,10 @@ yourself doing one, stop and ask whether the default already covers it.
 - **A `let` that binds a value used once and exists only to shorten a line.**
   Inline it unless the name carries meaning the expression lacks.
 - **A comment that restates the code.** Delete it.
-- **A `with` import used to shave a few keystrokes across a wide scope.** Explicit
-  is better than implicit here; `with` obscures where names come from. Prefer
-  explicit references unless the scope is genuinely small and obvious.
+- **A `with` import used to shave a few keystrokes across a wide scope.**
+  Explicit is better than implicit here; `with` obscures where names come
+  from. Prefer explicit references unless the scope is genuinely small and
+  obvious.
 - **A default that mirrors upstream default.** If the Nixpkgs default is already
   what you want, do not restate it as a local default — that is a future drift
   source.
@@ -189,16 +189,16 @@ The style is the same; the surface differs. (Concrete org repos behind the
   corrupt `.enc.*`. Scope it to the Nix trees you touched. See
   `sks-dev-workflow` "Formatting: nix fmt + markdown".
 - **`nix fmt` does not sort the way a human would sort a mixed record.** If
-  treefmt's nix formatter is configured, it owns sorting; do not hand-sort around
-  it. If it is not configured for a given repo, sorting is a reviewer check, and
-  the written file should already be sorted.
-- **A comment that survives `nix fmt` is not automatically a justified comment.**
-  The formatter keeps it; the reviewer still asks why it exists. If the answer is
-  "it explains the line", delete it.
+  treefmt's nix formatter is configured, it owns sorting; do not hand-sort
+  around it. If it is not configured for a given repo, sorting is a reviewer
+  check, and the written file should already be sorted.
+- **A comment that survives `nix fmt` is not automatically a justified
+  comment.** The formatter keeps it; the reviewer still asks why it exists.
+  If the answer is "it explains the line", delete it.
 - **Adding an option is cheap now and expensive later.** Every option is a
   contract: someone must document it, someone must test it, and someone must
-  retire it if it becomes wrong. Only add it when a non-default value is actually
-  in flight.
+  retire it if it becomes wrong. Only add it when a non-default value is
+  actually in flight.
 
 ## Verification
 

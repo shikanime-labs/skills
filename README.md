@@ -106,47 +106,47 @@ specification, compatible with the
 
 | Skill | Description |
 | --- | --- |
-| `sks-adversarial` | Use when probing uncertain results in a disposable sandbox — large investigation, development, debugging, testing,... |
-| `sks-async` | Use when splitting multi-unit work into parallel, isolated jj workspaces (depth-tree fan-out) and landing as indepe... |
-| `sks-bulk` | Use when auditing or bulk-changing many shikanime-labs / shikanime-studio repos at once: enumerate targets, drive ... |
-| `sks-commit` | Use when committing in shikanime-labs or shikanime-studio repos: plain-English imperative titles and repo-enforced... |
-| `sks-converge` | Use when jj conflicts or divergent changes block a shikanime repo after a tree move: resolve conflicted revisions a... |
-| `sks-curate` | Use when updating, improving, compressing, or token-optimizing a skill or profile in the shikanime-labs/skills catalog: rework... |
-| `sks-delegate` | Use when isolating one unit of shikanime work in a fresh jj workspace so concurrent editors / WIP never get folded... |
-| `sks-dev-workflow` | Use when running the shikanime local dev loop: branching, push-to-origin, jj bookmark tracking, and landing via pla... |
-| `sks-discussion` | Use when opening an RFC Discussion in a shikanime org as the pre-issue stage: converge on the problem, then derive... |
-| `sks-discussion-triage` | Use when triaging an existing shikanime org discussion: category, body shape, Q&A answer, and conversion to an issue. |
-| `sks-doc` | Use when documenting a shikanime project in the repo's docs/ directory after a behavior-changing PR. |
+| `sks-adversarial` | Use when probing uncertain results in a disposable sandbox — large investigation, development, debugging, testing, UAT, white-room, or data validation before promoting a change. |
+| `sks-async` | Use when splitting multi-unit work into parallel, isolated jj workspaces (depth-tree fan-out) and landing as independent plain `gh pr` merges. |
+| `sks-bulk` | Use when applying one instruction to many targets — repos, issues, PRs, orgs, or any enumerable agentic batch: enumerate targets, drive the batch from a plan file, and verify every result. |
+| `sks-commit` | Use when committing in a target-org repo: plain-English imperative titles and repo-enforced hooks (gitlint, DCO) win. |
+| `sks-converge` | Use when jj conflicts or divergent changes block a jj repo after a tree move — resolve conflicted revisions and divergent twins until pushable. |
+| `sks-curate` | Use when updating, improving, compressing, or token-optimizing a skill or profile in a skills catalog: rework the body, tighten it, refresh evals, and keep it loadable. |
+| `sks-delegate` | Use when isolating one unit of work in a fresh jj workspace — the mandatory entry to implementation for every unit, so concurrent WIP never folds in and bookmarks/pushes stay scoped. |
+| `sks-dev-workflow` | Use when running the local dev loop in a target org's repos: branching in a fresh jj workspace, push-to-origin, jj bookmark tracking, and landing via plain gh pr merge or direct push. |
+| `sks-discussion` | Use when opening an RFC Discussion in the target org as the pre-issue stage: converge on the problem, then derive the issue. |
+| `sks-discussion-triage` | Use when triaging an existing org discussion: category, body shape, Q&A answer, and conversion to an issue. |
+| `sks-doc` | Use when documenting a project in the repo's docs/ directory after a behavior-changing PR. |
 | `sks-evolve` | Use when evolving the agent substrate without a hand-named target: mine experience for signals, evolve skills, profiles, memory, conventions, cron, or config, and repeat the fitness loop. |
-| `sks-gc` | Use when reclaiming resources leaked by shikanime jj workflows: dangling bookmarks, skill-created jj workspaces, an... |
-| `sks-github-text-authoring` | Use when writing any GitHub text in shikanime repos — commit message, issue or PR body, discussion RFC, review or issue comment. Owns the shared prose rules. |
-| `sks-investigate` | Use when investigating a bug, test failure, build break, or unexpected behavior in a shikanime repo: find root caus... |
-| `sks-issue` | Use when opening an issue in shikanime-labs or shikanime-studio: body is the problem statement, acceptance criteria... |
+| `sks-gc` | Use when reclaiming resources leaked by jj-based agent workflows — dangling bookmarks, skill-created jj workspaces, and leftover working-copy dirs from sks-async/sks-dev-workflow. |
+| `sks-github-text-authoring` | Use when writing any GitHub text in the target org's repos — commit message, issue or PR body, discussion RFC, review or issue comment. Owns all shared prose rules; surface skills handle procedure. |
+| `sks-investigate` | Use when investigating a bug, test failure, build break, or unexpected behavior — find root cause, form a hypothesis, and propose a solution, never apply the fix itself. |
+| `sks-issue` | Use when opening an issue in an org repo: body is the problem statement, acceptance criteria as a command-decidable tasklist. |
 | `sks-issue-refine` | Use when iterating a problem to convergence inside its GitHub issue via research and comments before deriving the PR. |
-| `sks-issue-triage` | Use when triaging an existing shikanime org issue: assign labels, assignee, milestone, and project; close with rati... |
-| `sks-issue-workflow` | Use when you need the single entry point for the shikanime issue side: create, refine, and triage the issue before... |
-| `sks-land` | Use when landing a shikanime org PR after reconciliation (sks-pr-resolve) and review approval gates pass; closes th... |
+| `sks-issue-triage` | Use when triaging an existing org issue: assign type, labels, assignee, milestone, project, relationships, and fields; close with rationale if not workable. |
+| `sks-issue-workflow` | Use when you need the single entry point for the issue side: create, refine, and triage the issue before any PR. |
+| `sks-land` | Use when landing a target-org PR after reconciliation (sks-pr-resolve) and review approval gates pass; closes the linked issue deliberately. |
 | `sks-fastlane` | Use when a hotfix, small update, or insignificant chore is too trivial for the full gate train: merge its PR without human review once CI is green. |
-| `nixpkgs-pr-review` | Use when reviewing an upstream NixOS/nixpkgs pull request: build the changed packages with nixpkgs-review and check... |
-| `sks-moderation` | Use when hiding, unhiding, or moderating comments on GitHub issues, PRs, or discussions with the Hide feature. |
-| `sks-pr` | Use when opening a PR in shikanime-labs or shikanime-studio: push to origin, --head org:branch, plain-English title... |
-| `sks-pr-resolve` | Use when resolving a shikanime PR's review conversations, including CodeRabbit review comments, checking the DoD le... |
-| `sks-pr-review` | Use when reviewing shikanime code: enforce YAGNI, root-cause fixes, and project conventions before approval. |
-| `sks-pr-triage` | Use when triaging an existing shikanime org PR: labels, assignee, milestone, and reviewers. |
-| `sks-pr-workflow` | Use when you need the single entry point for the shikanime PR side: ensure the issue exists, open, triage, and land... |
-| `sks-project` | Use when tracking issue/PR advancement on an org board (Skills, Shikanime Studio, Cloud Pi Native, OSS): resolve the board from context or provision one, set Status to the real phase, audit drift. |
-| `cpn-release-patch` | Use when backporting the commits between two release tags onto a hotfix branch in <org>/<repo>: find the patch mile... |
-| `sks-restack` | Use when rebasing a shikanime jj stack onto moved main leaves conflicts: restack, then resolve each conflicted revi... |
-| `sks-kubernetes-manifests-authoring` | Use when authoring or editing Kubernetes manifests or kustomize overlays in a shikanime manifests repo: placement, patches, generators, labels, probes, and live-cluster cross-checks. |
-| `sks-nix-authoring` | Use when authoring or editing Nix in a shikanime repo: nixfmt-sorted style, single-use let bindings, no explanatory comments, YAGNI on new options |
-| `sks-sops-secrets-authoring` | Use when editing sops-encrypted files in a shikanime repo: decrypt-and-edit workflow, re-encryption guards, and sops-nix secret plumbing |
-| `sks-skill-authoring` | Use when creating a brand-new skill or profile for the shikanime-labs/skills catalog: grounded body, evals, manifests, and shi... |
+| `nixpkgs-pr-review` | Use when reviewing an upstream NixOS/nixpkgs pull request: build the changed packages with nixpkgs-review and check the diff against nixpkgs conventions. |
+| `sks-moderation` | Use when hiding, unhiding, or moderating comments on GitHub issues, PRs, or discussions with the Hide feature: classifier choice, GraphQL mutations, verification. |
+| `sks-pr` | Use when opening a PR in a target-org repo: push to origin, --head org:branch, plain-English title, issue linkage, parity with commit. |
+| `sks-pr-resolve` | Use when resolving a PR's review conversations, including CodeRabbit review comments, checking the DoD ledger, and reconciling before merge (no merge itself). |
+| `sks-pr-review` | Use when reviewing code in an org repo: cross-check related issues, enforce YAGNI, root-cause fixes, and project conventions before approval. |
+| `sks-pr-triage` | Use when triaging an existing org PR: labels, assignee, milestone, and reviewers. |
+| `sks-pr-workflow` | Use when you need the single entry point for the org PR side: ensure the issue exists, open, and triage the PR. Land separately via sks-land. |
+| `sks-project` | Use when tracking issue/PR advancement on an org board: resolve the board from context or provision one, set Status to the real phase, audit drift. |
+| `cpn-release-patch` | Use when backporting the commits between two release tags onto a hotfix branch in <org>/<repo>: find the patch milestone and duplicate those commits onto the tag with jj. |
+| `sks-restack` | Use when rebasing a jj stack onto moved main leaves conflicts — restack, then resolve each conflicted revision with edit/resolve until pushable. |
+| `sks-kubernetes-manifests-authoring` | Use when authoring or editing Kubernetes manifests or kustomize overlays in a GitOps repo: placement, patches, generators, labels, probes, and live-cluster cross-checks. |
+| `sks-nix-authoring` | Use when authoring or editing Nix in an org repo: nixfmt-sorted style, single-use let bindings, no explanatory comments, YAGNI on new options. |
+| `sks-sops-secrets-authoring` | Use when editing sops-encrypted files: decrypt-and-edit workflow, re-encryption guards, and sops-nix secret plumbing. |
+| `sks-skill-authoring` | Use when creating a brand-new skill or profile for a skills catalog: grounded body, evals, manifests, and ship through the dev workflow. |
 | `sks-sudo` | Use when a gh operation must run under a different org identity: lock, switch to the agent account, confirm the flip, restore the operator. |
-| `sks-swarm` | Use when distributing one task across a cluster of agents over A2A — route by capability need, machine resource, an... |
+| `sks-swarm` | Use when distributing a task across a cluster of agents over A2A — route by capability need, machine resource, and runner pressure, optionally in a disposable sks-adversarial sandbox. |
 | `sks-ts-authoring` | Use when writing or reviewing TypeScript: parse-don't-validate boundaries, cast-free explicit types, linear single-purpose functions, and schema-first inputs. |
-| `sks-repo` | Use when creating a new shikanime org repo: apply the 5-ruleset protection template, bootstrap the devlib devenv scaffold, and tag v0.1.0. |
-| `sks-triage` | Use when triaging a shikanime org, repo, issue, or PR: sweep the scope for untriaged items, then assign every empty,... |
-| `sks-update` | Use when updating skills or profiles in the shikanime-labs/skills catalog: curate every skill by default (or named ones only), land through the dev workflow, and resync to local... |
+| `sks-repo` | Use when creating a new org repo: apply the 5-ruleset protection template, bootstrap the devlib devenv scaffold, and tag v0.1.0. |
+| `sks-triage` | Use when triaging a target org, repo, issue, or PR: sweep the scope for untriaged items, then assign every empty, context-derivable field — type, labels, assignee, fields. |
+| `sks-update` | Use when updating skills or profiles in a skills catalog: curate every skill by default (or named ones only), land through the dev workflow, and resync to local Hermes agents. |
 
 ### Agent profiles
 

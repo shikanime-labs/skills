@@ -13,8 +13,6 @@ metadata:
       - fastlane
       - merge
       - hotfix
-      - shikanime-labs
-      - shikanime-studio
     related_skills:
       - sks-land
       - sks-pr-workflow
@@ -26,13 +24,17 @@ platforms:
   - windows
 ---
 
-# Shikanime Fastlane Merge
+# Fastlane Merge
 
 Self-merge a trivial PR without human review. This is a **mutator** of
 `sks-land`: it exists to state exactly which gates drop and which never
 do. The full gate train (`sks-pr-review` → approval → `sks-land`) stays
 the default; fastlane is the exception that must justify itself against
 the eligibility gate, line by line.
+
+For org-specific conventions (branch protection on `main`, the approval
+fastlane replaces), read `references/shikanime.md` when operating in a
+shikanime org.
 
 ## When to Use
 
@@ -99,7 +101,7 @@ PR to `sks-land` and say which criterion failed.
    gh pr merge "$M" --repo "$R" --squash --admin --match-head-commit "$HEAD"
    ```
 
-   `--admin` clears the 1-approval protection on `main`;
+   `--admin` bypasses the branch protection on `main`;
    `--match-head-commit` binds the merge to the exact head whose CI was
    verified — a push landing between check and merge cannot hijack it.
 5. **Leave the receipt.** The PR comment is the audit trail proving a

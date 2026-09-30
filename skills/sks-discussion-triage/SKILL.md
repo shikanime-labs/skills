@@ -1,7 +1,7 @@
 ---
 name: sks-discussion-triage
 description:
-  "Use when triaging an existing shikanime org discussion: category, body shape,
+  "Use when triaging an existing org discussion: category, body shape,
   Q&A answer, and conversion to an issue."
 version: 0.1.1
 author: Hermes Agent
@@ -13,8 +13,6 @@ metadata:
       - triage
       - discussions
       - graphql
-      - shikanime-labs
-      - shikanime-studio
     related_skills:
       - sks-discussion
       - sks-issue
@@ -27,12 +25,12 @@ platforms:
 # Discussion Triage
 
 GraphQL-only triage for the target org's repos. Triage metadata =
-**category** + lifecycle only (English). Inputs `N` (number), `R`
-(`OWNER/REPO`).
+**category** + lifecycle only. Inputs `N` (number), `R` (`OWNER/REPO`).
 
-For shikanime-org specifics, read `references/shikanime.md` when
-operating in shikanime repos. For cloud-pi-native specifics (console repo
-default, French artifacts, category routing Ideas/General/Q&A), read
+For shikanime-org specifics (repo scope, artifact language), read
+`references/shikanime.md` when operating in shikanime repos. For
+cloud-pi-native specifics (console repo default, French artifacts,
+category routing Ideas/General/Q&A), read
 `references/cloud-pi-native.md` when working in the cloud-pi-native/console
 repository.
 

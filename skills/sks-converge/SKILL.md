@@ -1,9 +1,9 @@
 ---
 name: sks-converge
 description:
-  Use when jj conflicts or divergent changes block a shikanime repo after a
+  Use when jj conflicts or divergent changes block a jj repo after a
   tree move — resolve conflicted revisions and divergent twins until pushable.
-version: 0.1.0
+version: 0.2.0
 author: Hermes Agent
 license: Apache-2.0
 metadata:
@@ -13,8 +13,6 @@ metadata:
       - conflicts
       - divergence
       - recovery
-      - shikanime-labs
-      - shikanime-studio
     related_skills:
       - sks-restack
       - sks-dev-workflow
@@ -28,10 +26,10 @@ platforms:
 
 # jj Convergence
 
-Resolve the two states that block a jj repo of the target org after the tree
-moves (rebase, restack, remote rewrite): **conflicted revisions** and **divergent
-changes**. Reusable standalone — `sks-restack` hands off here after its
-rebase; any skill may call this loop directly. Exit condition for both:
+Resolve the two states that block a jj repo of the target org after the
+tree moves (rebase, restack, remote rewrite): **conflicted revisions** and
+**divergent changes**. Reusable standalone — `sks-restack` hands off
+here after its rebase; any skill may call this loop directly. Exit condition:
 pushable, i.e. `conflicts()` and `divergent()` empty and bookmarks
 unconflicted.
 
@@ -157,10 +155,9 @@ jj log -r 'divergent()' --no-graph    # empty
 jj git push --remote origin -b <branch>
 ```
 
-Where the org's host setup requires it (see
-`references/shikanime.md` when operating in shikanime repos), push
-with `--config signing.behavior=drop --config git.sign-on-push=false`;
-GitHub squash-merge re-signs server-side.
+Where the org's host setup requires it, push with the org's push-signing
+overrides — read `references/shikanime.md` when operating in shikanime
+repos for the exact flags; the host re-signs server-side on squash-merge.
 
 ## Pitfalls
 

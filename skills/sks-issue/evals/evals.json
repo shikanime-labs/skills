@@ -4,7 +4,7 @@
       "id": 1,
       "expected_output": "An issue opened with a problem-statement body, a command-decidable acceptance-criteria tasklist, and a References section.",
       "files": [],
-      "prompt": "Open an issue in shikanime-studio/sk-async for the flaky retry loop, with clear acceptance criteria and no root-cause dumping in the body.",
+      "prompt": "Open an issue in our studio's async library repo for the flaky retry loop, with clear acceptance criteria and no root-cause dumping in the body.",
       "assertions": [
         "Frontmatter parses as valid YAML.",
         "The 'name' field equals 'sks-issue'.",
@@ -20,7 +20,7 @@
       "id": 2,
       "expected_output": "An issue whose body stays stable for triage while research findings go to comments, then handed to sks-issue-triage.",
       "files": [],
-      "prompt": "File a bug in shikanime-labs/devlib with reproduction steps and a References section, and make sure I don't leak investigation notes into the issue body.",
+      "prompt": "File a bug in our org's devlib repo with reproduction steps and a References section, and make sure I don't leak investigation notes into the issue body.",
       "assertions": [
         "Frontmatter parses as valid YAML.",
         "The 'name' field equals 'sks-issue'.",
@@ -73,7 +73,7 @@
       "id": 7,
       "expected_output": "The issue body conforms to the repo's .github/ISSUE_TEMPLATE sections verbatim instead of the default shape, with the form's labels cross-checked.",
       "files": [],
-      "prompt": "Open a bug issue in shikanime-labs/dotfiles for the chezmoi apply hook failing, and make sure the issue respects whatever template that repo defines.",
+      "prompt": "Open a bug issue in my dotfiles repo for the chezmoi apply hook failing, and make sure the issue respects whatever template that repo defines.",
       "assertions": [
         "Frontmatter parses as valid YAML.",
         "Frontmatter 'name' equals the directory basename 'sks-issue'",

@@ -1,9 +1,9 @@
 ---
 name: sks-issue-workflow
 description:
-  "Use when you need the single entry point for the shikanime issue side:
+  "Use when you need the single entry point for the issue side:
   create, refine, and triage the issue before any PR."
-version: 0.1.1
+version: 0.2.0
 author: Hermes Agent
 license: Apache-2.0
 metadata:
@@ -11,8 +11,6 @@ metadata:
     tags:
       - github
       - issues
-      - shikanime-labs
-      - shikanime-studio
       - workflow
     related_skills:
       - sks-issue

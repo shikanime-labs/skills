@@ -1,20 +1,19 @@
 ---
 name: sks-bulk
 description:
-  "Use when auditing or bulk-changing many shikanime-labs / shikanime-studio
-  repos at once: enumerate targets, drive the batch from a plan file, and
-  verify every result."
-version: 0.1.0
+  "Use when applying one instruction to many targets — repos, issues, PRs,
+  orgs, or any enumerable agentic batch: enumerate targets, drive the batch
+  from a plan file, and verify every result."
+version: 0.2.0
 author: Hermes Agent
 license: Apache-2.0
 metadata:
   hermes:
     tags:
-      - github
       - bulk-ops
+      - fan-out
       - audit
-      - shikanime-labs
-      - shikanime-studio
+      - github
     related_skills:
       - sks-commit
       - sks-delegate
@@ -27,11 +26,13 @@ platforms:
   - windows
 ---
 
-# Bulk Repo Ops
+# Bulk Ops
 
-Audit or change many repos at once. This is the N-repo shape: one repo is
-`sks-dev-workflow`, and one repo that must not fold in foreign WIP is
-`sks-delegate`.
+Apply one instruction to N targets. A target is whatever the instruction
+names: every repo in an org, every open issue matching a filter, every PR
+touching a path, or any other enumerable agentic target. This is the
+N-target shape: one target is `sks-dev-workflow`, and one unit that must not
+fold in foreign WIP is `sks-delegate`.
 
 For org specifics — target orgs, canonical checkout paths, branch and PR
 policy, commit envelope, and the ruleset-approval resolution — read
@@ -39,29 +40,39 @@ policy, commit envelope, and the ruleset-approval resolution — read
 
 ## When to Use
 
-- "Which of our repos miss X?" — an org-wide audit.
-- "Add X to every repo" / "backport Y across the org" — a batch mutation.
+- "Which targets miss X?" — an audit across the set.
+- "Add X to every target" / "backport Y across the org" — a batch mutation.
 - "This same fix has to land in N repos."
+- "Label / close / reassign every issue matching Q."
 - One PR per repo derived from a single census.
+- Any other single instruction with an enumerable target set.
 
-Not for: a single repo (`sks-dev-workflow`), or parallel units inside one repo
-(`sks-async`).
+Not for: a single target (`sks-dev-workflow`), or parallel units inside one
+repo (`sks-async`).
 
 ## Procedure
 
-1. **Filter in the query, not afterwards.** Empty repos carry no default
-   branch, so every later branch or commit step fails on them:
+1. **Enumerate and filter targets in the query, not afterwards.** Empty
+   repos carry no default branch, so every later branch or commit step fails
+   on them:
 
    ```bash
+   # repos in an org
    gh repo list <org> --limit 200 --json name,isArchived,defaultBranchRef
+   # issues matching a filter
+   gh issue list -R <org>/<repo> --search "<query>" --json number,title
+   # PRs matching a filter
+   gh pr list -R <org>/<repo> --json number,headRefName
+   # any other target kind: emit one row per target into the plan file
    ```
 
    Done when the target list drops archived and empty repos; record its size
    as N.
 
-2. **Detect gaps from the Contents API tree**, never from the community
-   profile endpoint — that endpoint serves a stale cache, reporting files that
-   exist as missing and health percentages that contradict the tree:
+2. **Detect gaps from ground truth per target**, never from a cached summary
+   endpoint — the community-profile endpoint serves a stale cache, reporting
+   files that exist as missing and health percentages that contradict the
+   tree:
 
    ```bash
    gh api repos/<org>/<repo>/contents --jq '.[].name'
@@ -69,22 +80,23 @@ Not for: a single repo (`sks-dev-workflow`), or parallel units inside one repo
 
    Done when the probe agrees with one real clone.
 
-3. **Source canonical content from a repo that already has it** rather than
-   inventing boilerplate per repo:
+3. **Source canonical content from a target that already has it** rather
+   than inventing boilerplate per target:
 
    ```bash
    gh api repos/<org>/<repo>/contents/<file> --jq .content | base64 -d
    ```
 
-4. **Drive the loop from a tab-separated plan file**, one row per repo, read
-   with `while IFS=$'\t' read` — `xargs` splits on whitespace, so a multiword
-   argument list (file names per repo) flattens into garbage invocations that
-   no-op silently. Keep the script re-entrant — `[ -d "$d/.git" ] || git
-   clone …` with fresh unique clone dirs, never an `rm -rf` preamble, which
-   trips an approval prompt and stalls an unattended batch on a non-essential
-   step.
+4. **Drive the loop from a tab-separated plan file**, one row per target,
+   read with `while IFS=$'\t' read` — `xargs` splits on whitespace, so a
+   multiword argument list (file names per target) flattens into garbage
+   invocations that no-op silently. Keep the script re-entrant —
+   `[ -d "$d/.git" ] || git clone …` with fresh unique clone dirs, never an
+   `rm -rf` preamble, which trips an approval prompt and stalls an
+   unattended batch on a non-essential step.
 
-5. **Mutate in a throwaway clone per repo.** Never push to the default branch:
+5. **Mutate per target kind; never push to the default branch.** Repo
+   targets mutate in a throwaway clone:
 
    ```bash
    git init "$d" && cd "$d"
@@ -94,14 +106,18 @@ Not for: a single repo (`sks-dev-workflow`), or parallel units inside one repo
    git push origin "HEAD:refs/heads/$branch"
    ```
 
-   Branches await user review; open a PR per repo (`sks-pr-workflow`) only on
-   explicit go-ahead, from `--head <org>:<branch>`. Done when the plan file
-   records a branch per repo.
+   Issue and PR targets bypass the clone: apply the mutation via `gh api`
+   inside the same plan-file loop, then read each one back to confirm the
+   write. Branches await user review; open a PR per repo
+   (`sks-pr-workflow`) only on explicit go-ahead, from
+   `--head <org>:<branch>`. Done when the plan file records the applied
+   state per row.
 
-6. **Verify after the batch**: re-query the branch or file for every target and
-   report N/M success plus the named failures — an empty repo, a denied push,
-   and a bad default branch name have different remediations, so track the
-   reason per repo. A push command's own success line proves nothing.
+6. **Verify after the batch**: re-query every target for the expected state
+   and report N/M success plus the named failures — an empty target, a
+   denied push, and a bad default branch name have different remediations,
+   so track the reason per row. A push command's own success line proves
+   nothing.
 
 ## Pitfalls
 
@@ -110,34 +126,34 @@ Not for: a single repo (`sks-dev-workflow`), or parallel units inside one repo
   grepping quoted names against plain patterns (or the reverse) yields
   silently inverted yes/no columns. Verify the probe against one real clone
   before driving any mutation off it.
-- **Check per-repo applicability inside the batch loop**, not only in the
-  probe: grep the target file for the topic first (skip already-documented
-  repos) and confirm the feature the section describes actually exists (no
+- **Check per-target applicability inside the batch loop**, not only in the
+  probe: grep the target file for the topic first (skip already-converged
+  targets) and confirm the feature the change describes actually exists (no
   `.envrc` means no direnv section). A uniform census column is not proof —
-  one false-positive cell ships a false PR to every repo that shares it.
+  one false-positive cell ships a false PR to every target that shares it.
 - **`gh pr merge` reports failures that look like successes** (near-empty
   output). Verify every merge by re-querying `gh pr view <n> --json
-  state,mergedAt`, and treat a ruleset rejection as a gate doing its job: read
-  the ruleset JSON to a file and check for `require_last_push_approval` before
-  guessing. Unasked-for bypass attempts stay forbidden — surface the gate,
-  execute only on explicit go-ahead. Resolution recipe:
+  state,mergedAt`, and treat a ruleset rejection as a gate doing its job:
+  read the ruleset JSON to a file and check for `require_last_push_approval`
+  before guessing. Unasked-for bypass attempts stay forbidden — surface the
+  gate, execute only on explicit go-ahead. Resolution recipe:
   `references/shikanime.md`.
 - **Run bulk mutation scripts through `terminal`**, not a code-kernel loop
-  over `gh api` — per-repo subprocess batches blow the kernel timeout and lose
-  all progress state, while a shell script resumable from the plan file
+  over `gh api` — per-target subprocess batches blow the kernel timeout and
+  lose all progress state, while a shell script resumable from the plan file
   survives.
 - **The Contents API serves a stale cached blob for minutes after a merge.**
   Diff the clone against the fetched blob before pushing, and treat "no-op
   after transform" as a staleness signal rather than a success.
 - **Re-running a partially completed bulk push:** fetch the existing branch,
-  not the default branch, or the push rejects non-fast-forward ("fetch first")
-  even though the first run's work is already fine on the remote.
-- **Backporting a workflow-parse fix revives dead workflows:** CI then runs for
-  the first time in weeks and fails on pre-existing drift (stale nixpkgs
-  against flake-checker's 30-day limit, broken composite inputs). Before
-  landing, classify branch-run reds against the default branch's run history —
-  pre-existing red is not introduced by the backport, but merging with red
-  needs an explicit operator call and a follow-up fix wave.
+  not the default branch, or the push rejects non-fast-forward ("fetch
+  first") even though the first run's work is already fine on the remote.
+- **Backporting a workflow-parse fix revives dead workflows:** CI then runs
+  for the first time in weeks and fails on pre-existing drift (stale
+  nixpkgs against flake-checker's 30-day limit, broken composite inputs).
+  Before landing, classify branch-run reds against the default branch's run
+  history — pre-existing red is not introduced by the backport, but merging
+  with red needs an explicit operator call and a follow-up fix wave.
 - **Dependabot warnings on push** (vulnerability alerts) are noted in the
   report, not treated as push failures and not auto-fixed.
 
@@ -157,8 +173,8 @@ done < plan.tsv
 gh pr view <n> -R <org>/<repo> --json state,mergedAt --jq '.state, .mergedAt'
 ```
 
-Done when every plan row reports its expected state and each failure is named
-with its reason.
+Done when every plan row reports its expected state and each failure is
+named with its reason.
 
 ## See also
 

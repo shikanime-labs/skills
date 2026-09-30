@@ -1,9 +1,8 @@
 ---
 name: sks-restack
 description:
-  Use when rebasing a shikanime jj stack onto moved main leaves conflicts —
-  restack, then resolve each conflicted revision with edit/resolve until
-  pushable.
+  Use when rebasing a jj stack onto moved main leaves conflicts — restack,
+  then resolve each conflicted revision with edit/resolve until pushable.
 version: 0.2.0
 author: Hermes Agent
 license: Apache-2.0
@@ -14,8 +13,6 @@ metadata:
       - rebase
       - conflicts
       - restack
-      - shikanime-labs
-      - shikanime-studio
     related_skills:
       - sks-converge
       - sks-dev-workflow
@@ -39,8 +36,8 @@ an alias — `jj config get aliases` shows
 the scoped equivalent is `jj rebase -b <branch> --onto main@origin` per
 bookmark. This skill covers the full loop: restack → resolve → push.
 
-Read `references/shikanime.md` when operating in a shikanime org;
-local checkout layout lives there.
+For org-specific conventions (local checkout layout, push signing), read
+`references/shikanime.md` when operating in a shikanime org.
 
 ## When to Use
 
@@ -62,7 +59,7 @@ local checkout layout lives there.
 1. **Baseline.**
 
    ```bash
-   cd <local checkout>   # org layout: references/shikanime.md
+   cd <local checkout>
    jj git fetch --remote origin
    jj bookmark list && jj log -r 'trunk()..mutable()' --limit 15
    ```
@@ -97,10 +94,9 @@ local checkout layout lives there.
 
    A restacked bookmark already on origin is rewritten non-FF: the push output
    reads `[move sideways from <old> to <new>]` — expected shape, not an error.
-   GitHub-hosted repos: push with
-   `--config signing.behavior=drop --config git.sign-on-push=false` when the
-   org's host setup requires it (`references/shikanime.md` when
-   operating in shikanime repos; key in no agent); GitHub squash-merge
+   Where the org's host setup requires it, push with
+   `--config signing.behavior=drop --config git.sign-on-push=false` (org
+   signing setup in `references/shikanime.md`); GitHub squash-merge
    re-signs server-side.
 
 6. **Hand off.** Rewritten stack PRs land via `sks-land` / `sks-pr-workflow`;

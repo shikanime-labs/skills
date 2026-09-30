@@ -5,3 +5,5 @@
 - Default assignee: `yorha-operator` (the Automata bot account). Prefer it
   when it appears in the repo's eligible assignee list; otherwise fall back
   to the current user (`gh api user --jq .login`).
+- Artifact language: triage artifacts (titles, bodies, close comments) are
+  written in English.

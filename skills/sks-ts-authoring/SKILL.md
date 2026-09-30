@@ -13,8 +13,6 @@ metadata:
       - typescript
       - conventions
       - code-review
-      - shikanime-labs
-      - shikanime-studio
     related_skills:
       - sks-pr-review
       - sks-dev-workflow

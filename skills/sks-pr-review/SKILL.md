@@ -1,7 +1,7 @@
 ---
 name: sks-pr-review
 description:
-  "Use when reviewing shikanime code: cross-check related issues, enforce
+  "Use when reviewing code in an org repo: cross-check related issues, enforce
   YAGNI, root-cause fixes, and project conventions before approval."
 version: 0.4.0
 author: Hermes Agent
@@ -15,8 +15,6 @@ metadata:
       - security
       - github
       - pull-requests
-      - shikanime-labs
-      - shikanime-studio
     related_skills:
       - sks-pr-resolve
       - sks-land

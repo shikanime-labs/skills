@@ -1,7 +1,7 @@
 ---
 name: sks-pr-triage
 description:
-  "Use when triaging an existing shikanime org PR: labels, assignee, milestone,
+  "Use when triaging an existing org PR: labels, assignee, milestone,
   and reviewers."
 version: 0.1.1
 author: Hermes Agent
@@ -12,8 +12,6 @@ metadata:
       - github
       - triage
       - pull-requests
-      - shikanime-labs
-      - shikanime-studio
     related_skills:
       - sks-pr
       - sks-pr-workflow
@@ -27,11 +25,11 @@ platforms:
 # PR Triage
 
 Triage a PR: fill every metadata
-field **empty on the PR** and **derivable from its own content**. English; never
+field **empty on the PR** and **derivable from its own content**; never
 invent a missing repo value; triage never closes PRs.
 
 Read `references/shikanime.md` when operating in a shikanime org; repo
-scope and the default reviewer live there.
+scope, the default reviewer, and artifact language live there.
 
 ## When to Use
 
