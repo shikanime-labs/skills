@@ -17,7 +17,7 @@ metadata:
       - sks-issue
       - sks-pr
       - sks-discussion
-      - sks-dev-workflow
+      - sks-dev
 platforms:
   - linux
   - macos
@@ -159,4 +159,4 @@ trailer, template headings verbatim.
 ## See also
 
 `sks-commit`, `sks-issue`, `sks-pr`, `sks-discussion` — surface owners.
-`sks-dev-workflow` — drafting invariants (lifecycle-level).
+`sks-dev` — drafting invariants (lifecycle-level).

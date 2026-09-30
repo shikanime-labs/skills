@@ -15,7 +15,7 @@ metadata:
       - recovery
     related_skills:
       - sks-restack
-      - sks-dev-workflow
+      - sks-dev
       - sks-delegate
       - sks-gc
 platforms:
@@ -189,7 +189,7 @@ jj status                            # @ restored
 ## See also
 
 - `sks-restack` — the rebase step that precedes this skill.
-- `sks-dev-workflow` — landing gates; never force-push stack branches.
+- `sks-dev` — landing gates; never force-push stack branches.
 - `sks-delegate` — mandatory fresh-workspace isolation for every
   implementation unit.
 - `sks-gc` — reclaim empty revs and stale workspaces afterwards.

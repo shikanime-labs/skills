@@ -21,7 +21,7 @@ metadata:
       - hotfix
       - backport
     related_skills:
-      - sks-dev-workflow
+      - sks-dev
       - sks-pr
       - sks-commit
 ---
@@ -269,7 +269,7 @@ repo's exact config.
 
 ## See also
 
-- `sks-dev-workflow` — the org repo's contribution workflow, jj conventions,
+- `sks-dev` — the org repo's contribution workflow, jj conventions,
   PR rules.
 - `sks-pr` — open the release PR if release-please does not auto-open.
 - `sks-commit` — commit message shape (conventional, SSH-signed).

@@ -25,7 +25,7 @@ npx skills add shikanime-labs/skills --list
 npx skills add shikanime-labs/skills -g -y
 
 # Install a specific skill
-npx skills add shikanime-labs/skills --skill sks-dev-workflow -g
+npx skills add shikanime-labs/skills --skill sks-dev -g
 
 # Install all skills for specific agents
 npx skills add shikanime-labs/skills -g -a claude-code -a cursor -y
@@ -47,10 +47,10 @@ hermes skills list
 
 ```bash
 # Install a single skill from the tap
-hermes skills install shikanime-labs/skills/sks-dev-workflow
+hermes skills install shikanime-labs/skills/sks-dev
 
 # Or copy manually
-cp -r skills/sks-dev-workflow ~/.hermes/skills/sks-dev-workflow
+cp -r skills/sks-dev ~/.hermes/skills/sks-dev
 ```
 
 ### Install via npm
@@ -113,12 +113,12 @@ specification, compatible with the
 | `sks-converge` | Use when jj conflicts or divergent changes block a jj repo after a tree move — resolve conflicted revisions and divergent twins until pushable. |
 | `sks-curate` | Use when updating, improving, compressing, or token-optimizing a skill or profile in a skills catalog: rework the body, tighten it, refresh evals, and keep it loadable. |
 | `sks-delegate` | Use when isolating one unit of work in a fresh jj workspace — the mandatory entry to implementation for every unit, so concurrent WIP never folds in and bookmarks/pushes stay scoped. |
-| `sks-dev-workflow` | Use when running the local dev loop in a target org's repos: branching in a fresh jj workspace, push-to-origin, jj bookmark tracking, and landing via plain gh pr merge or direct push. |
+| `sks-dev` | Use when running the local dev loop in a target org's repos: branching in a fresh jj workspace, push-to-origin, jj bookmark tracking, and landing via plain gh pr merge or direct push. |
 | `sks-discussion` | Use when opening an RFC Discussion in the target org as the pre-issue stage: converge on the problem, then derive the issue. |
 | `sks-discussion-triage` | Use when triaging an existing org discussion: category, body shape, Q&A answer, and conversion to an issue. |
 | `sks-doc` | Use when documenting a project in the repo's docs/ directory after a behavior-changing PR. |
 | `sks-evolve` | Use when evolving the agent substrate without a hand-named target: mine experience for signals, evolve skills, profiles, memory, conventions, cron, or config, and repeat the fitness loop. |
-| `sks-gc` | Use when reclaiming resources leaked by jj-based agent workflows — dangling bookmarks, skill-created jj workspaces, and leftover working-copy dirs from sks-async/sks-dev-workflow. |
+| `sks-gc` | Use when reclaiming resources leaked by jj-based agent workflows — dangling bookmarks, skill-created jj workspaces, and leftover working-copy dirs from sks-async/sks-dev. |
 | `sks-github-text-authoring` | Use when writing any GitHub text in the target org's repos — commit message, issue or PR body, discussion RFC, review or issue comment. Owns all shared prose rules; surface skills handle procedure. |
 | `sks-investigate` | Use when investigating a bug, test failure, build break, or unexpected behavior — find root cause, form a hypothesis, and propose a solution, never apply the fix itself. |
 | `sks-issue` | Use when opening an issue in an org repo: body is the problem statement, acceptance criteria as a command-decidable tasklist. |

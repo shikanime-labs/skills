@@ -17,7 +17,7 @@ metadata:
     related_skills:
       - sks-delegate
       - sks-commit
-      - sks-dev-workflow
+      - sks-dev
       - sks-pr-review
 platforms:
   - linux
@@ -57,7 +57,7 @@ the default stack does not already cover it:
   file you touch
   is Nix, `nix fmt` it. If a file is not Nix, do not run `nix fmt` across it —
   see the gotcha about `.enc.*` and the broader `nix fmt` whole-tree caveat in
-  `sks-dev-workflow`.
+  `sks-dev`.
 - **Sorting** — sorted keys are the house style, enforced by `nix fmt`/treefmt
   where configured and by reviewer otherwise. Write sorted; do not write
   unsorted and promise to "sort later".
@@ -187,7 +187,7 @@ The style is the same; the surface differs. (Concrete org repos behind the
 - **`nix fmt` is whole-tree by default in these flakes.** A bare `nix fmt` in a
   repo that also carries non-Nix files rewrites everything treefmt owns and can
   corrupt `.enc.*`. Scope it to the Nix trees you touched. See
-  `sks-dev-workflow` "Formatting: nix fmt + markdown".
+  `sks-dev` "Formatting: nix fmt + markdown".
 - **`nix fmt` does not sort the way a human would sort a mixed record.** If
   treefmt's nix formatter is configured, it owns sorting; do not hand-sort
   around it. If it is not configured for a given repo, sorting is a reviewer
@@ -220,6 +220,6 @@ jj diff --git | grep -E '^diff --git a/.*\.nix'
 
 - `sks-delegate` — isolate this unit in a fresh jj workspace before editing.
 - `sks-commit` — commit shape with the org co-author trailer.
-- `sks-dev-workflow` — branch / push / landing; carries the
+- `sks-dev` — branch / push / landing; carries the
   `nix fmt` whole-tree caveat.
 - `sks-pr-review` — the reviewer lens that enforces YAGNI on the PR.

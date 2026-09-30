@@ -16,7 +16,7 @@ metadata:
       - workflow
     related_skills:
       - sks-curate
-      - sks-dev-workflow
+      - sks-dev
       - sks-delegate
       - sks-commit
       - sks-pr-workflow
@@ -79,7 +79,7 @@ when the user named one.
    update to each audited defect, and refresh its `evals/evals.json`. Record
    the baseline and before/after delta for each. Do not ship un-curated edits;
    the curation pass is what keeps the catalog lean.
-4. **Ship through the dev workflow** — Follow `sks-dev-workflow` for the
+4. **Ship through the dev workflow** — Follow `sks-dev` for the
    branch/commit/PR/land path:
    - Isolate in a fresh workspace at `main@origin` (`sks-delegate`) so foreign
      WIP is never folded in.
@@ -91,7 +91,7 @@ when the user named one.
      split into stacked PRs only when the change set grows past a comfortable
      review size.
    - Run `sks-pr-review` before requesting merge, then land per `sks-land`
-     (or `sks-dev-workflow` landing rules). Verify the merge:
+     (or `sks-dev` landing rules). Verify the merge:
      `gh pr view <N> --json state,url`.
 5. **Resync to local Hermes agents** — After the change lands on `main`, pull
    every updated skill into local agents so future sessions load the new body:
@@ -166,7 +166,7 @@ silently skip. After a curation wave lands, run the board audit once
 ## See also
 
 - `sks-curate` — the per-skill curation pass (step 3).
-- `sks-dev-workflow` — the shipping loop (step 4).
+- `sks-dev` — the shipping loop (step 4).
 - `sks-delegate`, `sks-commit`, `sks-pr-workflow`, `sks-land` — the pieces of
   step 4.
 - `hermes-agent` — local agent configuration and skills management.

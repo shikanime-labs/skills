@@ -15,7 +15,7 @@ metadata:
       - code-review
     related_skills:
       - sks-pr-review
-      - sks-dev-workflow
+      - sks-dev
 platforms:
   - linux
   - macos
@@ -126,4 +126,4 @@ npx tsc --noEmit                                      # no new errors vs trunk
 ## See also
 
 - `sks-pr-review` — applies these rules as findings during review.
-- `sks-dev-workflow` — the shipping loop this content plugs into.
+- `sks-dev` — the shipping loop this content plugs into.

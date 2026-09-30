@@ -78,7 +78,7 @@ acceptance criteria converge (wayfinder's fog cycle on the thread).
    resolution per comment, no nested parentheticals, asides become sentences.
 6. **Convergence test** — stop when: no item reads "build the X"; fog clears;
    body is a clean problem statement + decidable `- [ ]` ledger.
-7. **Hand off** — route to `sks-pr`/branch phase (`sks-dev-workflow` phase 3+).
+7. **Hand off** — route to `sks-pr`/branch phase (`sks-dev` phase 3+).
    Never carry implementation into this loop.
 
 ## Pitfalls

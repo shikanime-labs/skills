@@ -74,12 +74,12 @@
     },
     {
       "id": 6,
-      "expected_output": "The skill does not absorb the full PR/landing lifecycle; it stays scoped to sops editing and refers to sks-commit/sks-dev-workflow/sks-pr/sks-delegate for the rest.",
+      "expected_output": "The skill does not absorb the full PR/landing lifecycle; it stays scoped to sops editing and refers to sks-commit/sks-dev/sks-pr/sks-delegate for the rest.",
       "files": [],
       "prompt": "Use sks-sops-secrets-authoring to commit and land my secret edit with the full PR workflow, gitlint hooks, and squash merge.",
       "assertions": [
         "Body refers to sks-commit for commit style (or mentions the org co-author trailer)",
-        "Body states it does not itself cover the full PR/landing lifecycle and points to sks-dev-workflow, sks-pr, or sks-delegate for that",
+        "Body states it does not itself cover the full PR/landing lifecycle and points to sks-dev, sks-pr, or sks-delegate for that",
         "Frontmatter parses as YAML with a top-level 'name' key",
         "Frontmatter 'name' equals the directory basename 'sks-sops-secrets-authoring'"
       ]

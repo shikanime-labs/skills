@@ -39,7 +39,7 @@ Before adopting any part of a suggested change, on the current head:
 3. Scope — the suggestion must serve this PR's ledger. Larger cleanups
    become a follow-up issue, not a ride-along commit.
 4. Convention — repo and org conventions win (repo AGENTS.md, the message
-   invariants in `sks-dev-workflow`). A patch that fights them is not
+   invariants in `sks-dev`). A patch that fights them is not
    pertinent as-is; adapt it or reject citing the convention.
 
 ## Applying an accepted suggestion

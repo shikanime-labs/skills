@@ -1,4 +1,4 @@
-# sks-dev-workflow — Pitfalls
+# sks-dev — Pitfalls
 
 ## Dual-clone discipline (`.hermes/skills` vs `~/Source/Repos`)
 
@@ -175,7 +175,7 @@ The user corrected a recurring defect: agents wrapped issue/PR body text at
 ~80 columns (hard line breaks every N chars), producing awkward GitHub bodies.
 
 Root cause: the global "wrap Markdown at 80 columns" rule in `AGENTS.md` and
-the `sks-dev-workflow` Formatting section reads as applying to ALL markdown,
+the `sks-dev` Formatting section reads as applying to ALL markdown,
 including GitHub bodies. It does NOT — committed repo Markdown (SKILL.md, docs,
 README) wraps at 80; GitHub issue/PR bodies are free text.
 

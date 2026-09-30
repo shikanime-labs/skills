@@ -82,7 +82,7 @@ squashing or when diagnosing a squash/force-push/rebase failure.
    - Linkage is **many-to-many** (discussion → issue → comments → PR): a PR
      always solves an issue. Default `Related: <issue URL>`; otherwise close
      deliberately after final merge (verify N-of-N, then `gh issue close`).
-     deliberate close (see `sks-dev-workflow`).
+     deliberate close (see `sks-dev`).
 4. **Head** — `--head <org>:<branch>`; push to `origin` only.
 5. **Parity** — PR title MUST equal commit subject; PR body MUST restate the
    commit message; no added rationale (see `sks-commit`). When a repo PR
@@ -157,7 +157,7 @@ jj rebase -d main
   fix), then `jj squash` / `jj resolve`. Never push conflict markers.
 - `jj rebase` rewrites commits and drops signatures (jj auto-sign does not fire)
   — re-sign with `jj sign -r @` and re-point the bookmark
-  (`jj bookmark set <branch> -r @`) before pushing (see `sks-dev-workflow`).
+  (`jj bookmark set <branch> -r @`) before pushing (see `sks-dev`).
 
 ### 2b. Duplicate / stack check (MANDATORY before `gh pr create`)
 

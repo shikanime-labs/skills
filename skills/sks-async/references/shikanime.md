@@ -8,4 +8,4 @@ Generic fan-out procedure; shikanime-org specifics:
 - Workspace naming `<repo-name>.<unit>` and the org remote split
   (`git@github.com:shikanime-labs/<repo>.git` vs the https gh remote —
   e.g. `nix-containers`, where the gh remote is canonical).
-- Landing gates and duplicate/stack checks: `sks-dev-workflow`, `sks-pr`.
+- Landing gates and duplicate/stack checks: `sks-dev`, `sks-pr`.

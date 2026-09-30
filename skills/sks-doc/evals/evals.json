@@ -91,14 +91,14 @@
     },
     {
       "id": 8,
-      "expected_output": "Skill stays scoped to authoring docs/ pages and does not claim to run the dev loop (sks-dev-workflow's job).",
+      "expected_output": "Skill stays scoped to authoring docs/ pages and does not claim to run the dev loop (sks-dev's job).",
       "files": [],
       "prompt": "Walk me through the shikanime-studio/machines dev loop from issue to merged fix.",
       "assertions": [
         "Frontmatter parses as valid YAML.",
         "The 'name' field equals 'sks-doc'.",
-        "The description does not contain substring 'sks-dev-workflow'.",
-        "Body does not contain substring 'sks-dev-workflow'."
+        "The description does not contain substring 'sks-dev'.",
+        "Body does not contain substring 'sks-dev'."
       ]
     }
   ],

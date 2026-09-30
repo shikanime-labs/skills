@@ -25,7 +25,7 @@ applies a fix. The full method and known cycles live in `SKILL.md`.
   - Record root cause + hypothesis + evidence in the linked issue.
   - Sketch the fix at the source where all callers route through; note the
     regression test that locks it shut.
-  - Hand the proposal to the fix skills (`sks-issue` / `sks-dev-workflow` /
+  - Hand the proposal to the fix skills (`sks-issue` / `sks-dev` /
     `sks-pr`).
 
 ## Anti-patterns this tree prevents

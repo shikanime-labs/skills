@@ -15,7 +15,7 @@
         "Body states single-use let bindings should be inlined unless the name carries meaning the expression lacks",
         "Body states explanatory comments inside .nix are out of fashion and a comment restating the code should be deleted",
         "Body states a new option should only be added when a real non-default consumer exists, and defaults that mirror upstream should not be restated",
-        "Body refers to sks-dev-workflow for the nix fmt whole-tree caveat (do not run bare nix fmt across non-Nix files / .enc.*)"
+        "Body refers to sks-dev for the nix fmt whole-tree caveat (do not run bare nix fmt across non-Nix files / .enc.*)"
       ]
     },
     {

@@ -13,7 +13,7 @@ metadata:
       - commit
     related_skills:
       - sks-pr-review
-      - sks-dev-workflow
+      - sks-dev
       - sks-pr
 platforms:
   - linux
@@ -134,6 +134,6 @@ jj log -1 --no-graph -T 'description' && jj status
 
 - `sks-github-text-authoring` — prose mechanics this skill delegates.
 - `sks-pr` — PR title/body derived from this commit (source of truth).
-- `sks-dev-workflow` — branch discipline this feeds into.
+- `sks-dev` — branch discipline this feeds into.
 - cloud-pi-native commitlint rules (English conventional commits,
   `body-leading-blank`, no DCO): `references/cloud-pi-native.md`.

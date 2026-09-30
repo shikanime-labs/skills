@@ -16,7 +16,7 @@
     },
     {
       "id": 2,
-      "expected_output": "White-room tests the fix in an isolated sandbox, then hands a surviving change to sks-dev-workflow rather than merging directly.",
+      "expected_output": "White-room tests the fix in an isolated sandbox, then hands a surviving change to sks-dev rather than merging directly.",
       "files": [],
       "prompt": "White-room test this fix in isolation before promoting it to the real branch.",
       "assertions": [
@@ -24,7 +24,7 @@
         "Frontmatter license field is 'Apache-2.0'",
         "Body contains at least one '##' heading",
         "Body mentions 'UAT' or 'white-room'",
-        "Body hands a promoted change to 'sks-dev-workflow'",
+        "Body hands a promoted change to 'sks-dev'",
         "Body forbids merging a sandbox un-reviewed"
       ]
     },
@@ -61,7 +61,7 @@
       "assertions": [
         "YAML frontmatter parses and 'name' equals 'sks-adversarial'",
         "Body forbids merging a sandbox into a real branch un-reviewed",
-        "Body routes promotion through 'sks-dev-workflow'"
+        "Body routes promotion through 'sks-dev'"
       ]
     },
     {
