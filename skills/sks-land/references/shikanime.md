@@ -5,7 +5,8 @@
   a second `gh` account — `gh auth switch -h github.com -u yorha-automata`
   posts as `yorha-operator`; switch back to `shikanime` immediately after and
   confirm with `gh auth status --hostname github.com`. Request the review with
-  `gh pr edit <M> -R "$R" --add-reviewer yorha-operator`.
+  `gh pr edit <M> -R "$R" --add-reviewer yorha-operator`. The
+  switch-verify-restore sequence follows `sks-sudo`.
 - Self-approval is blocked by branch protection on e.g.
   `shikanime-labs/skills` and `nix-containers`; there, a verbal `lgtm` from
   the operator (the user who owns the approver account) satisfies Gate 2,

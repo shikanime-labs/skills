@@ -3,7 +3,7 @@ name: sks-pr
 description:
   "Use when opening a PR in shikanime-labs or shikanime-studio: push to origin,
   --head org:branch, plain-English title, issue linkage, parity with commit."
-version: 0.1.2
+version: 0.1.3
 author: Hermes Agent
 license: Apache-2.0
 metadata:
@@ -15,6 +15,7 @@ metadata:
       - shikanime-studio
     related_skills:
       - sks-commit
+      - sks-sudo
       - sks-pr-resolve
       - sks-land
       - sks-pr-workflow
@@ -49,7 +50,8 @@ the gh remote as canonical.
 ## Prerequisites
 
 - `gh` authenticated; active identity is a collaborator with push right. Do NOT
-  `gh auth switch`; push to `origin` directly.
+  `gh auth switch`; push to `origin` directly — `sks-sudo` owns identity
+  switches when one is genuinely required.
 - Linked issue exists (see `sks-issue`); verify it matches the change
   (`jj file annotate` / `jj show <commit>` if unsure).
 - Branch pushed to `origin` before opening.

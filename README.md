@@ -138,6 +138,7 @@ specification, compatible with the
 | `sks-nix-authoring` | Use when authoring or editing Nix in a shikanime repo: nixfmt-sorted style, single-use let bindings, no explanatory comments, YAGNI on new options |
 | `sks-sops-secrets-authoring` | Use when editing sops-encrypted files in a shikanime repo: decrypt-and-edit workflow, re-encryption guards, and sops-nix secret plumbing |
 | `sks-skill-authoring` | Use when creating a brand-new skill or profile for the shikanime-labs/skills catalog: grounded body, evals, manifests, and shi... |
+| `sks-sudo` | Use when a gh operation must run under a different org identity: lock, switch to the agent account, confirm the flip, restore the operator. |
 | `sks-swarm` | Use when distributing one task across a cluster of agents over A2A — route by capability need, machine resource, an... |
 | `sks-ts-authoring` | Use when writing or reviewing TypeScript: parse-don't-validate boundaries, cast-free explicit types, linear single-purpose functions, and schema-first inputs. |
 | `sks-repo` | Use when creating a new shikanime org repo: apply the 5-ruleset protection template, bootstrap the devlib devenv scaffold, and tag v0.1.0. |

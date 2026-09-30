@@ -170,6 +170,11 @@
       "path": "skills/sks-swarm"
     },
     {
+      "name": "sks-sudo",
+      "description": "Use when a gh operation must run under a different org identity: lock, switch to the agent account, confirm the flip, restore the operator.",
+      "path": "skills/sks-sudo"
+    },
+    {
       "name": "sks-ts-authoring",
       "description": "Use when writing or reviewing TypeScript: parse-don't-validate boundaries, cast-free explicit types, linear single-purpose functions, and schema-first inputs.",
       "path": "skills/sks-ts-authoring"

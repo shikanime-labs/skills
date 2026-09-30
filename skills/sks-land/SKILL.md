@@ -3,7 +3,7 @@ name: sks-land
 description:
   Use when landing a shikanime org PR after reconciliation (sks-pr-resolve) and
   review approval gates pass; closes the linked issue deliberately.
-version: 0.3.0
+version: 0.3.1
 author: Hermes Agent
 license: Apache-2.0
 metadata:
@@ -17,6 +17,7 @@ metadata:
     related_skills:
       - sks-pr-resolve
       - sks-pr
+      - sks-sudo
       - sks-issue
       - sks-pr-review
       - sks-doc
@@ -64,6 +65,9 @@ gh api "repos/$R/pulls/$M/reviews" --paginate \
   --jq 'map(select(.user.login == "'"$APPROVER"'" and .state == "APPROVED"
                  and .commit_id == "'"$HEAD"'")) | length > 0'
 ```
+
+The approval post runs under the approver account — locked identity switch
+via `sks-sudo` — then re-run this gate's verification against the head SHA.
 
 `False` → `BLOCKED: <approver> approval required` — request it
 (`gh pr edit <M> -R "$R" --add-reviewer "$APPROVER"`) or obtain it verbally,
