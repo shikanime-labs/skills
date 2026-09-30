@@ -127,3 +127,4 @@ Load when working in the cloud-pi-native/console repository.
   before reporting done.
 - Push 403 = wrong gh account: git's HTTPS helper uses the ACTIVE gh account
   (`gh auth switch --user <user>` first); `GH_ACCOUNT=` does not affect it.
+  Locked switch: `sks-sudo`.
