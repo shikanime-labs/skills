@@ -48,7 +48,8 @@ When operating in cloud-pi-native/console, read
    criteria change. Skip only if already converged at creation (rare).
 3. **Triage** — Load `sks-issue-triage`; apply labels, assignee, milestone,
    project now. Only empty/determinable fields — **never invent a label the repo
-   lacks**.
+   lacks**. Then set the card's board Status to `Ready` (`sks-project`);
+   `Backlog` only with a parked rationale.
 
 ## Verification
 

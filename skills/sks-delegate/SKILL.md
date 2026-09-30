@@ -83,6 +83,9 @@ has not entered the dev loop.
    jj describe -m "<subject>" -m "<co-author trailer>"
    ```
 
+   Isolation created = the unit is being worked: set the issue's board card
+   to `In progress` (`sks-project`) right after this step.
+
 3. **Bookmark + push** (jj does not auto-track — `track` is mandatory):
 
    ```bash

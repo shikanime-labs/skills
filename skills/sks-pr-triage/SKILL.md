@@ -71,7 +71,9 @@ gh api repos/"$R"/assignees --jq '.[].login'
 - **milestone**: bug→highest open **patch** on current minor (max `Z`);
   enhancement→next minor/major.
 - **project**: if repo boards and PR unboarded, `--add-project <number>`; skip
-  if ambiguous.
+  if ambiguous. After onboarding, set Status to the real phase — a freshly
+  opened PR with review requests is `In review`
+  (`gh project item-edit`, ids in `sks-project`).
 - **reviewers**: if no review requests, request the org default reviewer
   (`references/shikanime.md`) unless they authored the PR — GitHub
   rejects author review requests (422); then another collaborator/team

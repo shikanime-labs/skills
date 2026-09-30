@@ -133,6 +133,7 @@ specification, compatible with the
 | `sks-pr-review` | Use when reviewing shikanime code: enforce YAGNI, root-cause fixes, and project conventions before approval. |
 | `sks-pr-triage` | Use when triaging an existing shikanime org PR: labels, assignee, milestone, and reviewers. |
 | `sks-pr-workflow` | Use when you need the single entry point for the shikanime PR side: ensure the issue exists, open, triage, and land... |
+| `sks-project` | Use when tracking issue/PR advancement on an org board (Skills, Shikanime Studio, Cloud Pi Native, OSS): resolve the board from context or provision one, set Status to the real phase, audit drift. |
 | `cpn-release-patch` | Use when backporting the commits between two release tags onto a hotfix branch in <org>/<repo>: find the patch mile... |
 | `sks-restack` | Use when rebasing a shikanime jj stack onto moved main leaves conflicts: restack, then resolve each conflicted revi... |
 | `sks-kubernetes-manifests-authoring` | Use when authoring or editing Kubernetes manifests or kustomize overlays in a shikanime manifests repo: placement, patches, generators, labels, probes, and live-cluster cross-checks. |

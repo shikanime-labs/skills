@@ -162,7 +162,8 @@ local agents
 load the new bodies (`hermes skills list` + content check), **and the user has
 explicitly accepted the deployed change** (manual acceptance, step 6). Any
 unmet step is a blocker — say `BLOCKED:` with evidence and recovery, never
-silently skip.
+silently skip. After a curation wave lands, run the board audit once
+(`sks-project`): every merged card reads `Done`, stragglers get corrected.
 
 ## See also
 

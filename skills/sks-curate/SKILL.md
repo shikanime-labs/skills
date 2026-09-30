@@ -208,6 +208,7 @@ uvx rumdl check .             # markdown lint over SKILL.md + references/ (MD032
 
 Done when the body is within budget, evals pass and match the body, the
 description still triggers, and the before/after delta is stated in numbers.
+Flip the curating PR's board card to `Done` (`sks-project`).
 
 ## Repo-specific curation notes
 

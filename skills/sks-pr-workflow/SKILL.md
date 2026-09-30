@@ -87,7 +87,8 @@ Load `sks-pr`. Push to `origin` (org repo), open `--head <org>:<branch>`, base
 ### 3. Triage immediately
 
 Load `sks-pr-triage`; apply metadata now. Apply only empty/determinable fields;
-never invent a value the repo lacks.
+never invent a value the repo lacks. Then flip the PR's board card: `In
+progress` while CI runs, `In review` once review is requested (`sks-project`).
 
 ## Verification
 

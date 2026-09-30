@@ -100,6 +100,9 @@ mean those fields stay empty.
   on current minor (max `Z`); enhancement→next minor/major.
 - **project** — if a Projects V2 board exists and this is unboarded:
   `--add-project "<title>"` (title, not number). Skip if ambiguous.
+  After onboarding set Status `Ready` on the card (ids in `sks-project`)
+  when triage is complete; leave it in `Backlog` only with a parked
+  rationale.
 - **relationships** — set only when derivable from content/links, never
   invent:
   - parent: `--parent <number>` if the issue is clearly a child of `#M`.

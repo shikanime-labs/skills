@@ -145,7 +145,9 @@ org examples per `references/shikanime.md`).
    exception, temporarily delete + recreate the Landing ruleset with review
    requirements off (PATCH on rulesets 404s for classic PATs — use
    DELETE+POST), merge, then restore the exact template ruleset and
-   byte-verify.
+   byte-verify. After `mergedAt` confirms live, flip the bootstrap PR's
+   board card to `Done` (`sks-project`) — the new repo's issues and PRs
+   board on Shikanime Studio from here on.
 
 7. **Tag.** On merged main, push a signed annotated tag via git — jj tag
    pushes get declined by the rules (pre_receive violations):

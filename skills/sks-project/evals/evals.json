@@ -1,0 +1,44 @@
+{
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "Resolves this catalog's work to the dedicated Skills board (project 9), discovers the Status vocabulary at runtime, onboards the issue, sets the ready-phase column, verifies via item-list.",
+      "files": [],
+      "prompt": "Issue #42 in shikanime-labs/skills just finished triage. Put it on the right board in the right column.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-project'",
+        "Body's board-resolution table maps this catalog's skill authoring and curation work to the Skills board, project 9",
+        "Body resolves the Status field and column option ids at runtime via gh project field-list with select(.name==\"Status\"), stating ids are per board and must never be hardcoded",
+        "Body's phase map maps triage completion to the ready phase and instructs setting the matching column option",
+        "Body instructs verifying the move by re-reading gh project item-list"
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "Finds no pertinent board for the new family, clones the template board (Shikanime Studio, project 6) via copyProjectV2 so the copy inherits the five kanban views and lifecycle vocabulary, and keeps create-plus-reshape only as the no-template fallback.",
+      "files": [],
+      "prompt": "We're starting a new agent-workflow family with no board yet. Give it the same planning surface the other families have.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-project'",
+        "Body states a missing pertinent board is provisioned by cloning the template board (project 6) via copyProjectV2, which inherits five views with real kanban grouping the API cannot set on a fresh project",
+        "Body states a copyProjectV2 clone carries the template's Status option ids verbatim",
+        "Body keeps gh project create plus an updateProjectV2Field option reshape as the fallback only when no template board exists, noting the default Status field cannot be deleted",
+        "Body's board-resolution table maps cpn-* / cloud-pi-native context to the Cloud Pi Native board, project 7"
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "Flips the merged PR's card to the done phase after confirming mergedAt from live state, resolving the item id with --limit 200.",
+      "files": [],
+      "prompt": "PR #99 was squash-merged into main a minute ago. Update the board.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-project'",
+        "Body's phase map maps a merged PR to the done phase",
+        "Body states done is set only after gh pr view confirms state/mergedAt, never from the merge command's own success output",
+        "Body resolves the item id via gh project item-list with --limit 200, warning the default 30 truncates and hides real cards",
+        "Body warns item ids are project-scoped and must never be reused across boards"
+      ]
+    }
+  ],
+  "skill_name": "sks-project"
+}

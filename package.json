@@ -160,6 +160,11 @@
         "path": "skills/sks-pr-workflow"
       },
       {
+        "name": "sks-project",
+        "description": "Use when tracking issue/PR advancement on an org board (Skills, Shikanime Studio, Cloud Pi Native, OSS): resolve the board from context or provision one, set Status to the real phase, audit drift.",
+        "path": "skills/sks-project"
+      },
+      {
         "name": "cpn-release-patch",
         "description": "Use when backporting the commits between two release tags onto a hotfix branch in <org>/<repo>: find the patch milestone and duplicate those commits onto the tag with jj.",
         "path": "skills/cpn-release-patch"
