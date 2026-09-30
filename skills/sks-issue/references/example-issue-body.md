@@ -6,10 +6,10 @@ move to comments, never into the tasklist.
 ## Canonical (sections + `- [ ]` ledger)
 
 ```markdown
-## Problem
+# Problem
 
 `gh pr create` seeds the PR title/body from the top commit, but the skill's
-documented `## Why`/`## What`/`## References` sections are not produced by the
+documented `# Why`/`## What`/`## References` sections are not produced by the
 command, so agents write divergent prose.
 
 ## References
@@ -23,10 +23,10 @@ command, so agents write divergent prose.
 - [ ] sks-pr body template matches what the PR renders
 ```
 
-## Variant (`## Problem` / `## Acceptance`, no separate References)
+## Variant (`# Problem` / `## Acceptance`, no separate References)
 
 ```markdown
-## Problem
+# Problem
 
 Same drift as above: the sks-pr body rule is not what the PR seeds.
 

@@ -243,14 +243,16 @@ Exact shapes live in the owning skills:
 - **Comment** — findings/proofs in comments; cite concrete evidence (diff
   lines, command output). Terse: one finding per comment, code spans for
   commands, no nested parentheticals.
-- **PR** → `sks-pr` — title = commit subject; body `## Why`/`## What`/
+- **PR** → `sks-pr` — title = commit subject; body `# Why`/`## What`/
   `## References` restating the commit; `Related: <full URL>`.
 
-Cross-cutting: a ledger item is command-decidable and done only once its
-check ran; close the linked issue deliberately after N-of-N verified.
-NEVER pass bodies inline via `--body "..."` — shell expansion mangles
-backticks/`$` (bodies silently truncated or empty). Write to a file, pass
-`--body-file`, then re-read the stored body.
+Cross-cutting: prose mechanics (no-wrap, `@` escaping, full URLs, evidence
+style, template detection) are owned by `sks-github-text-authoring` — load it
+when drafting any of the above. A ledger item is command-decidable and done
+only once its check ran; close the linked issue deliberately after N-of-N
+verified. NEVER pass bodies inline via `--body "..."` — shell expansion
+mangles backticks/`$` (bodies silently truncated or empty). Write to a file,
+pass `--body-file`, then re-read the stored body.
 
 ## Done is proven, not asserted
 

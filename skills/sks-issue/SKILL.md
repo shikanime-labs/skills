@@ -3,7 +3,7 @@ name: sks-issue
 description:
   "Use when opening an issue in shikanime-labs or shikanime-studio: body is the
   problem statement, acceptance criteria as a command-decidable tasklist."
-version: 0.1.2
+version: 0.2.0
 author: Hermes Agent
 license: Apache-2.0
 metadata:
@@ -63,15 +63,12 @@ gh issue create --repo <org>/<repo> --title "<summary>" --label <type> --body ".
 
 ### 2. Body = problem statement only
 
-GitHub issue body is free text — never wrap lines and never insert hard line
-breaks at a column width. Write natural paragraphs; a blank line separates
-paragraphs and everything else renders as-is. Never run `nix fmt` / `mdformat`
-over an issue body; those tools enforce an 80-column wrap that does not apply
-to GitHub bodies.
+Prose rules (free text, no wrapping, no formatter runs, `@` escaping,
+evidence style, comment etiquette) come from `sks-github-text-authoring` —
+load it for any body or comment writing; they are not restated here.
 
-- A bare `@name` in prose pings that user/team — wrap any literal `@` (NestJS
-  `@Inject(x)`, decorators, config keys) in a code span or fenced block; only
-  code disables mention parsing.
+- A bare `@name` in prose pings that user/team — wrap any literal `@` in a
+  code span (rule owned by `sks-github-text-authoring`).
 
 Body = clean problem statement (Description, reproduction steps, affected
 version, impact). Post root-cause / investigation findings as a **comment**
@@ -81,29 +78,28 @@ notebook: concluded findings + open questions only, never raw reasoning/status
 chatter; interim comments deletable after convergence.
 
 Encourage a Mermaid diagram (e.g. `flowchart TD`) in the body when a visual
-aids the reader — GitHub renders Mermaid inline in issue bodies. The diagram is
-optional reinforcement, never a substitute for the prose.
+aids the reader — rendered inline by GitHub (rule owned by
+`sks-github-text-authoring`); the diagram is optional reinforcement, never a
+substitute for the prose.
 
 Acceptance criteria: a `- [ ]` tasklist, each item phrased so a command can
 decide it. An item is done only once its check ran, never from memory; an
 impossible criterion is struck with a comment, never dropped. Candidate
 solutions belong in comments, not tasklist/body.
 
-Comments follow the same prose rules as the body (free text, no wrapping) and
-stay terse: lead with the conclusion, back it with the cited evidence, stop.
-One subject per comment — split unrelated findings into separate comments.
-Never nest parentheticals; an aside becomes its own sentence. Run command
-output through a fenced block instead of narrating it inline.
+Comments follow the prose rules in `sks-github-text-authoring`: lead with the
+conclusion, cite evidence, stop. One subject per comment — split unrelated
+findings into separate comments.
 
-Observed variant (see `references/example-issue-body.md`): `## Problem` /
+Observed variant (see `references/example-issue-body.md`): `# Problem` /
 `## Acceptance` with no separate References block — same content, fewer
 headings; either shape is acceptable. Keep the body stable; post
 findings/root-cause as `gh issue comment` and cite concrete evidence (the exact
 `- old` → `+ new` diff lines, or command output), not prose summaries. Interim
 comments may be deleted after convergence.
 
-The issue template (`## Problem` / `## Acceptance`) is issue-only. The PR body
-must not reuse it — the PR side uses the `## Why` / `## What` / `## References`
+The issue template (`# Problem` / `## Acceptance`) is issue-only. The PR body
+must not reuse it — the PR side uses the `# Why` / `## What` / `## References`
 shape from `sks-pr`.
 
 **Templates: detect, then conform.** Probe for repo issue templates before
@@ -144,5 +140,6 @@ Confirm title + label set; issue in org repo.
 
 ## See also
 
-`sks-discussion`, `sks-pr` (links back via `Related:`), `sks-issue-refine`,
-`sks-issue-triage` (run after creation), `sks-doc`.
+`sks-github-text-authoring` (prose rules), `sks-discussion`, `sks-pr` (links
+back via `Related:`), `sks-issue-refine`, `sks-issue-triage` (run after
+creation), `sks-doc`.

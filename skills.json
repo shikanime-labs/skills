@@ -75,6 +75,11 @@
       "path": "skills/sks-gc"
     },
     {
+      "name": "sks-github-text-authoring",
+      "description": "Use when writing any GitHub text in shikanime repos — commit message, issue or PR body, discussion RFC, review or issue comment. Owns the shared prose rules; surface skills own their shapes.",
+      "path": "skills/sks-github-text-authoring"
+    },
+    {
       "name": "sks-investigate",
       "description": "Use when investigating a bug, test failure, build break, or unexpected behavior in a shikanime repo: find root cause before any fix, minimal repro, and proven verification.",
       "path": "skills/sks-investigate"

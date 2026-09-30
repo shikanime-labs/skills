@@ -1,7 +1,7 @@
 # Example PR body (restates the commit)
 
 ```markdown
-## Why
+# Why
 
 The body three-section rule drifted from what actually gets seeded from the
 commit, so stacked PRs carried divergent prose. Closing that gap keeps PR↔commit
