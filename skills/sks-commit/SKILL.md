@@ -3,7 +3,7 @@ name: sks-commit
 description:
   "Use when committing in shikanime-labs or shikanime-studio repos:
   plain-English imperative titles and repo-enforced hooks (gitlint, DCO) win."
-version: 0.2.0
+version: 0.3.0
 author: Hermes Agent
 license: Apache-2.0
 metadata:
@@ -48,10 +48,14 @@ repo, never assume.
 
 ## Commit style (when no hook enforces otherwise)
 
+Prose mechanics for the message (free-text body, full URLs in `Related:`,
+one clean trailer block, no formatter runs) are owned by
+`sks-github-text-authoring`. This skill owns the commit-specific shape:
+
 - **Code repos**: plain English, imperative, capitalized title, **no prefix, no
-  body**. One trailer ALWAYS: the org
-  co-author trailer (value per `references/shikanime.md`). One logical
-  fix per commit.
+  body**. One trailer ALWAYS:
+  `Co-authored-by: Automata <automata@shikanime.studio>`. One logical fix per
+  commit.
   - Good: `Force NFS v4.0 on RWX StorageClasses` + trailer.
   - Bad: `fix: force nfs v4.0` (conventional prefix not used here).
 - **Doc repos**: `doc:` prefix, else same shape. No `(...)` in titles/labels.
@@ -90,11 +94,7 @@ grep -rl "Signed-off-by" .github/ 2>/dev/null
 - A gitlint-enforced manifests-class repo (org examples per
   `references/shikanime.md`) enforces a **body** (B6 "body message is
   missing") and a `Signed-off-by` (CC1). A commit with both + no `Related:`
-  passes. Use full issue URLs — never bare `#N` / `owner/repo#N` (broken on
-  GitHub):
-  `Related: https://github.com/<org>/<repo>/issues/N`. 80-col wrap. Capitalized
-  plain title, no prefix. See `references/example-commit.md` for a filled
-  example.
+  passes. See `references/example-commit.md` for a filled example.
 - PR↔commit parity: the PR title equals the commit subject and the PR body
   restates the commit message; author the commit to carry full rationale.
 - Any repo with `commitlint`: follow its config.
@@ -135,6 +135,7 @@ jj log -1 --no-graph -T 'description' && jj status
 
 ## See also
 
+- `sks-github-text-authoring` — prose mechanics this skill delegates.
 - `sks-pr` — PR title/body derived from this commit (source of truth).
 - `sks-dev-workflow` — branch discipline this feeds into.
 - cloud-pi-native commitlint rules (English conventional commits,

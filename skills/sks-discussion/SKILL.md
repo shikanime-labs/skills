@@ -3,7 +3,7 @@ name: sks-discussion
 description:
   "Use when opening an RFC Discussion in a shikanime org as the pre-issue stage:
   converge on the problem, then derive the issue."
-version: 0.1.1
+version: 0.2.0
 author: Hermes Agent
 license: Apache-2.0
 metadata:
@@ -28,9 +28,8 @@ platforms:
 
 Pre-issue RFC (lifecycle **discussion → issue → issue comments → PR**, see
 `sks-dev-workflow`): converge on the problem, then derive the issue
-(`sks-issue`) and link back — do NOT keep solving here. English bodies only (no
-French). A literal `@` (config keys, `@Inject(x)`, decorators) must be wrapped
-in a code span to avoid a stray GitHub mention.
+(`sks-issue`) and link back — do NOT keep solving here. Prose rules (English
+only, `@` escaping, no-wrap) are owned by `sks-github-text-authoring`.
 
 For shikanime-org specifics (discussion surfaces), read
 `references/shikanime.md` when operating in shikanime repos. For
@@ -99,6 +98,7 @@ Confirm title/body/category + body stays context + open questions.
 
 ## See also
 
+- `sks-github-text-authoring` — prose rules this skill delegates.
 - `sks-issue` — derive the issue once converged.
 - `sks-discussion-triage` — triage, lifecycle routing, closure.
 - `sks-discussion` — the English discussion skill; the French console twin is

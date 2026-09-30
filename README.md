@@ -85,8 +85,8 @@ Shared doctrine:
    comments.
 2. **Repo templates override the defaults.** When a repo ships
    `.github/ISSUE_TEMPLATE` or a PR template, bodies conform to its sections
-   verbatim; without one the `## Problem`/`## Acceptance` (issue) and
-   `## Why`/`## What`/`## References` (PR) shapes apply.
+   verbatim; without one the `# Problem`/`## Acceptance` (issue) and
+   `# Why`/`## What`/`## References` (PR) shapes apply.
 3. **Done is proven, not asserted** — every landing claim is verified against
    real command output; a red check is surfaced, never `--admin`'d past.
 4. **Validate assumptions before work** — probe identity, push rights,
@@ -119,6 +119,7 @@ specification, compatible with the
 | `sks-doc` | Use when documenting a shikanime project in the repo's docs/ directory after a behavior-changing PR. |
 | `sks-evolve` | Use when evolving the agent substrate without a hand-named target: mine experience for signals, evolve skills, profiles, memory, conventions, cron, or config, and repeat the fitness loop. |
 | `sks-gc` | Use when reclaiming resources leaked by shikanime jj workflows: dangling bookmarks, skill-created jj workspaces, an... |
+| `sks-github-text-authoring` | Use when writing any GitHub text in shikanime repos — commit message, issue or PR body, discussion RFC, review or issue comment. Owns the shared prose rules. |
 | `sks-investigate` | Use when investigating a bug, test failure, build break, or unexpected behavior in a shikanime repo: find root caus... |
 | `sks-issue` | Use when opening an issue in shikanime-labs or shikanime-studio: body is the problem statement, acceptance criteria... |
 | `sks-issue-refine` | Use when iterating a problem to convergence inside its GitHub issue via research and comments before deriving the PR. |

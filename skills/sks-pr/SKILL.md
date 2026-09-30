@@ -3,7 +3,7 @@ name: sks-pr
 description:
   "Use when opening a PR in shikanime-labs or shikanime-studio: push to origin,
   --head org:branch, plain-English title, issue linkage, parity with commit."
-version: 0.1.3
+version: 0.2.0
 author: Hermes Agent
 license: Apache-2.0
 metadata:
@@ -67,53 +67,23 @@ squashing or when diagnosing a squash/force-push/rebase failure.
    parity with commit.
 3. **Body** — restates the commit body as three fixed sections (commit is the
    source of truth; restate, do NOT invent new rationale):
-   - `## Why` — why now: the drift/risk/pain this closes (one short paragraph).
+   - `# Why` — why now: the drift/risk/pain this closes (one short paragraph).
    - `## What` — one-line summary + bullet scope (what this PR delivers).
    - `## References` — `Related: <full issue URL>` (mandatory) plus any
      commits/specs/changelogs proving the solution.
    - See `references/example-pr-body.md` for a filled example.
-   - GitHub PR body is free text — never wrap lines and never insert hard line
-     breaks at a column width. Write natural paragraphs; a blank line
-     separates paragraphs, everything else renders as-is. Never run `nix fmt`
-     / `mdformat` over a PR body; those tools enforce an 80-column wrap that
-     does not apply to GitHub bodies.
-   - Encourage a Mermaid diagram (e.g. `flowchart TD`) in the body when a visual
-     aids the reader — GitHub renders Mermaid inline in PR bodies. The diagram
-     is optional reinforcement, never a substitute for the `## Why` / `## What`
-     / `## References` structure.
-   - A bare `@name` in prose pings that user/team — wrap any literal `@` (NestJS
-     `@Inject(x)`, decorators, config keys) in a code span or fenced block; only
-     code disables mention parsing.
-   - Use full URLs — never bare `#XXXX` / `owner/repo#XXXX` (broken):
-     `Related: https://github.com/<org>/<repo>/issues/N` (same repo) or
-     `Related: https://github.com/owner/repo/issues/N` (cross-repo). List each
-     URL on its own line. Repo-enforced shape (e.g. a repo's `AGENTS` file
-     requiring `Related:` + `Signed-off-by`) overrides — follow the repo.
-   - **Templates: detect, then conform.** Probe for a repo PR template
-     before writing the body — candidates:
-     `.github/pull_request_template.md`,
-     `.github/PULL_REQUEST_TEMPLATE.md`, `.github/PULL_REQUEST_TEMPLATE/`.
-
-     ```bash
-     gh api repos/<org>/<repo>/contents/.github \
-       --jq '.[].name' | grep -i 'pull_request_template'   # empty = no template
-     ```
-
-     Fetch the matched path's content (`gh api
-     repos/<org>/<repo>/contents/.github/<name>` + `base64 -d`) before
-     writing the body — the listing covers both file casings and the
-     template directory. No template → the `## Why` / `## What` /
-     `## References` shape above.
-     Template → fill every section it defines, keep its headings verbatim,
-     and leave checklist boxes unchecked (`- [ ]`) for the human author.
-     The `## References` rules (full URLs, no bare `#N`) still apply inside
-     whichever section carries the links. NEVER copy the issue template's
-     shape (`## Problem` / `## Acceptance`) into a PR body — a body that
-     leaks a bare `#N` or invents a field (e.g. `Stacks on:`) is a defect;
-     reject and rewrite before opening.
+   - All prose rules for the body — free text no-wrap, no formatter runs,
+     `@` escaping, full URLs over bare `#N`, Mermaid — are owned by
+     `sks-github-text-authoring`; load it when writing the body.
+   - **Templates: detect, then conform.** Detection and fetch are owned by
+     `sks-github-text-authoring`. Template → fill every section it defines,
+     keep its headings verbatim, and leave checklist boxes unchecked (`- [ ]`)
+     for the human author. NEVER copy the issue template's shape
+     (`# Problem` / `## Acceptance`) into a PR body — that leak is a
+     defect; reject and rewrite before opening.
    - Linkage is **many-to-many** (discussion → issue → comments → PR): a PR
      always solves an issue. Default `Related: <issue URL>`; otherwise close
-     deliberately after final merge (verify N-of-N, then `gh issue close`). Same
+     deliberately after final merge (verify N-of-N, then `gh issue close`).
      deliberate close (see `sks-dev-workflow`).
 4. **Head** — `--head <org>:<branch>`; push to `origin` only.
 5. **Parity** — PR title MUST equal commit subject; PR body MUST restate the
@@ -217,7 +187,7 @@ jj bookmark track <branch> --remote=origin
 jj git push --remote origin
 gh pr create --repo "$ORG/<repo>" --base main --head "$ORG:<branch>" \
   --title "TITLE" --body "$(cat <<'EOF'
-## Why
+# Why
 ## What
 ## References
 <linked issues/PRs, commits, changelogs, specs proving the solution>
@@ -288,5 +258,6 @@ links the correct issue, and `mergeable="MERGEABLE"` (step 2d).
 
 ## See also
 
-- `sks-commit` (parity rule) · `sks-issue-refine` (converged issue) ·
+- `sks-github-text-authoring` (prose rules) · `sks-commit` (parity rule) ·
+  `sks-issue-refine` (converged issue) ·
   `sks-async` (stacked PRs) · `sks-pr-triage` (metadata).
