@@ -110,6 +110,11 @@
       "path": "skills/nixpkgs-pr-review"
     },
     {
+      "name": "sks-kubernetes-manifests-authoring",
+      "description": "Use when authoring or editing Kubernetes manifests or kustomize overlays in a shikanime manifests repo: placement, patches, generators, labels, probes, and live-cluster cross-checks.",
+      "path": "skills/sks-kubernetes-manifests-authoring"
+    },
+    {
       "name": "sks-moderation",
       "description": "Use when hiding, unhiding, or moderating comments on GitHub issues, PRs, or discussions with the Hide feature: classifier choice, GraphQL mutations, verification.",
       "path": "skills/sks-moderation"

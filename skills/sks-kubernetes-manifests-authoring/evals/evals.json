@@ -1,0 +1,66 @@
+{
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "Authors the overlay the shikanime way: unique hostname per flavor, sorted per-kind files, monitoring shipped with the workload, render proven before pushing.",
+      "files": [],
+      "prompt": "Add a tailnet overlay for the copyparty app: a new ts.net hostname and Prometheus alerts. Write the manifests the shikanime way.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-kubernetes-manifests-authoring'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body states hostnames never duplicate across flavors and assigns *.i.shikanime.studio to the cluster overlay and *.taila659a.ts.net to the tailnet overlay",
+        "Body states every app exposing a signal ships a vmrule keyed on a signal the app actually reports, with severity labels and summary annotations on alerts",
+        "Body states kustomize build (render) must succeed before shipping"
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "Diagnoses the generator-not-found failure: find the overlay Flux actually reconciles and generate or re-reference there, not in a parent.",
+      "files": [],
+      "prompt": "My pod fails with MountVolume.SetUp failed: configmap \"app-config\" not found, but the configMapGenerator exists in the repo. Fix the manifests.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-kubernetes-manifests-authoring'",
+        "Body states generators in a parent overlay are invisible to a child overlay because rendered names carry a hash suffix",
+        "Body instructs diagnosing which path Flux reconciles via the Kustomization's path (ks.yaml)",
+        "Body instructs generating in the overlay that consumes the config or rewriting the reference via patch",
+        "Body mentions the configmap not found failure string"
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "Refuses the partial VCT patch, keeps storage classes in base, sizes from measured live usage, and routes the live storage-class flip to the cross-check reference.",
+      "files": [],
+      "prompt": "The database statefulset needs more disk and a different storage class on nishir — patch the volumeClaimTemplates in the tailnet overlay.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-kubernetes-manifests-authoring'",
+        "Body states a kustomize overlay patch to volumeClaimTemplates must restate every field because kustomize replaces list entries",
+        "Body states storage classes stay in base and overlays never patch the storage class",
+        "Body states sizes grow to the next power of two above measured live usage, verified with df or du in-cluster",
+        "Body points to references/live-cross-check.md for the live storage-class flip and sizing recipes"
+      ]
+    },
+    {
+      "id": 4,
+      "expected_output": "Routes the request to the Nix side: hand-editing generated YAML is wrong, fix the generating Nix and re-render (sks-nix-authoring).",
+      "files": [],
+      "prompt": "The kustomization.yaml my flake renders has an unsorted resources list — I'll just edit the rendered YAML and sort it.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-kubernetes-manifests-authoring'",
+        "Body states generated YAML must not be hand-edited; fix the generating Nix and re-render",
+        "Body refers to sks-nix-authoring for the Nix side"
+      ]
+    },
+    {
+      "id": 5,
+      "expected_output": "The skill stays loadable and self-identifies as sks-kubernetes-manifests-authoring; the incoherent request is out of scope.",
+      "files": [],
+      "prompt": "asdfgh !!#$% write me the kubes yaml thingy for the cluster pls now",
+      "assertions": [
+        "Frontmatter parses as YAML with a top-level 'name' key",
+        "Frontmatter 'name' equals the directory basename 'sks-kubernetes-manifests-authoring'"
+      ]
+    }
+  ],
+  "skill_name": "sks-kubernetes-manifests-authoring"
+}
