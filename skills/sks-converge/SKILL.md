@@ -176,6 +176,16 @@ repos for the exact flags; the host re-signs server-side on squash-merge.
   real sides live under `%%%%%%%` / `+++++++`.
 - **Push rejection is the gate.** `Won't push ... conflicts` /
   `Bookmark <name> is conflicted` mean converge more; never bypass.
+- **Twin churn is the failure mode of hand-resolving on the wrong rev.**
+  Resolving in a non-child `@` (or a merge of the twins) makes `jj squash`
+  fork parallel resolved copies — change ids end up divergent with CONFLICT
+  twins, and every `jj abandon` of the working copy re-seeds a new merge
+  child. Guard rails: (1) always `jj edit` INTO the conflicted change before
+  editing files; (2) `jj squash --from @ --into <rev>` only when `<rev>` is
+  `@-` (the parent) or `@` itself; (3) after any abandon, never reference the
+  abandoned id again — find survivors via description search
+  (`jj log -r 'description("...")'`), not by old ids. `jj new <hidden-twin>
+  -d <other>` creates a MERGE, not a revival — use `jj rebase -s` instead.
 
 ## Verification
 

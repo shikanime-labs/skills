@@ -1,36 +1,44 @@
 {
-  "version": 1,
-  "skill_name": "sks-github-text-authoring",
-  "cases": [
+  "evals": [
     {
       "id": "routes-all-github-prose",
-      "expected_output": "Routes the prose rules (no wrapping, full URLs, no bare #N, @ escaping, body-file discipline) to this skill while the PR body shape (# Why / ## What / ## References) comes from sks-pr.",
+      "expected_output": "Routes the prose rules (no wrapping, #N refs, @ escaping, body-file discipline) to this skill while the PR body shape (# Why / ## What / ## References) comes from sks-pr.",
       "notes": "Universal prose rules are stated as owned here, with structure delegated to surface skills.",
+      "files": [],
       "prompt": "Draft the body for a PR in shikanime-labs/machines.",
       "assertions": [
         "The 'name' field equals 'sks-github-text-authoring'.",
-        "The skill owns the universal prose rules: free-text no-wrap, mention escaping, full URLs, terse conclusion-first, evidence in fenced blocks."
+        "The skill owns the universal prose rules: free-text no-wrap, mention escaping, terse conclusion-first, evidence in fenced blocks.",
+        "The skill states standalone refs prefer #N rich links over a full URL.",
+        "The PR body shape (# Why / ## What / ## References) is attributed to sks-pr, not restated as owned here."
       ]
     },
     {
       "id": "no-shape-merging",
       "expected_output": "The skill refuses to merge shapes: the issue body uses the # Problem / ## Acceptance structure from sks-issue; prose rules still apply.",
       "notes": "Shape leakage between surfaces is explicitly a defect.",
+      "files": [],
       "prompt": "Use sks-github-text-authoring to write an issue body with a # Why / ## What / ## References structure.",
       "assertions": [
         "The 'name' field equals 'sks-github-text-authoring'.",
-        "The body never mixes the issue shape (# Problem/## Acceptance) with the PR shape (# Why/## What/## References)."
+        "The body never mixes the issue shape (# Problem/## Acceptance) with the PR shape (# Why/## What/## References).",
+        "The skill states shape leakage between surfaces is a defect.",
+        "A repo template replaces the default shape and its headings are kept verbatim."
       ]
     },
     {
       "id": "repo-hook-override",
       "expected_output": "Repo-enforced overrides (gitlint, commitlint) beat the free-text no-wrap default; the commit carries Signed-off-by and a wrapped body with full URLs in Related:.",
       "notes": "Override precedence is the edge case the skill must not get backwards.",
+      "files": [],
       "prompt": "Write a commit message for shikanime-labs/manifests, which enforces gitlint CC1 and an 80-column body.",
       "assertions": [
         "The 'name' field equals 'sks-github-text-authoring'.",
-        "The skill states repo hooks and rulesets override the universal defaults."
+        "The skill states repo hooks and rulesets override the universal defaults.",
+        "The skill notes the 80-column wrapped commit body as a repo-enforced exception to the no-wrap rule.",
+        "Bodies are never passed inline via --body; write to a file and pass --body-file."
       ]
     }
-  ]
+  ],
+  "skill_name": "sks-github-text-authoring"
 }
