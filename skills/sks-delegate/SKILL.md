@@ -107,6 +107,16 @@ has not entered the dev loop.
   `sks-gc` reclaims it after landing.
 - Don't `rm -rf` the isolation dir while it holds uncommitted work — that is WIP
   loss. Retire via `sks-gc`.
+- `gh pr create` failing with "a pull request already exists" on your head
+  bookmark is not an error to work around: your push already stacked onto that
+  PR. Verify `gh pr view <branch> --json headRefOid` equals local `@`, then
+  document the delta in a PR comment instead of opening a duplicate.
+- `git show`/`git ls-remote <remote>` fail in jj workspaces (git CLI does not
+  see jj remotes or the shared store). Use `jj file show -r <commit> <path>`
+  for file content and `git ls-remote <repo-url>` for push verification.
+- Validate GitHub issue-form YAML with the repo's own toolchain instead of
+  hunting for a Python yaml module: `node -e` + `require.resolve('js-yaml',
+  { paths: ['./node_modules/.pnpm/node_modules'] })` in a pnpm monorepo.
 
 ## Verification
 
