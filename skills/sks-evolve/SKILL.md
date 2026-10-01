@@ -19,7 +19,6 @@ metadata:
       - sks-update
       - sks-curate
       - sks-skill-authoring
-      - sks-profile-authoring
       - sks-delegate
       - sks-async
       - sks-swarm
@@ -68,7 +67,7 @@ graph LR
 2. **Decide** — select the next evolution autonomously. One signal maps to
    one action: author a new skill (`sks-skill-authoring`), curate an existing
    skill or profile (`sks-curate`), run a batch catalog/profile refresh
-   (`sks-update`), author a profile distribution (`sks-profile-authoring`),
+   (`sks-update`), author a profile distribution (`sks-curate`),
    update memory, conventions (`AGENTS.md`), cron, harness, or config by
    their own update rules, or fan out independent targets (`sks-delegate`,
    `sks-async`, `sks-swarm`).
@@ -127,5 +126,6 @@ and the issue ledger is discharged N of N.
 
 - `sks-update` / `sks-curate` — the batch shell and the rework pass; both
   cover profiles alongside skills.
-- `sks-skill-authoring` / `sks-profile-authoring` — authoring targets.
+- `sks-skill-authoring` — skill authoring; profiles are authored and curated
+  through `sks-curate`.
 - `sks-delegate` / `sks-async` / `sks-swarm` — divide-and-conquer fan-out.

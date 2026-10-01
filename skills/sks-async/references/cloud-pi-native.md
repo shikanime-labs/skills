@@ -15,7 +15,7 @@ Load when working in the cloud-pi-native/console repository.
 ## Fan-out deltas vs the generic procedure
 
 - Landing uses **draft PRs**; before opening each PR run the duplicate/stack
-  check (`cpn-pr` step 1b): an open PR already covering the unit means push to
+  check (`sks-pr` step 2b): an open PR already covering the unit means push to
   it or stack on it — never a second PR for the same change.
 - PR↔issue linkage: `Refs #N` by default (not `Related:`).
 - Dispatch example (one task per leaf, French goal, trailer in the contract):

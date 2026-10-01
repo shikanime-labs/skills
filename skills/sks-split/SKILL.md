@@ -111,7 +111,7 @@ already know is single (`sks-delegate`).
 - Template revsets like `description("x")` silently match nothing when the
   description differs; resolve change ids from `jj log` first.
 - A pushed bookmark is immutable — split BEFORE pushing, or follow the
-  rebase-into-fresh-commit recovery in `sks-dev-workflow`.
+  rebase-into-fresh-commit recovery in `sks-dev`'s landing procedure.
 - Splitting one dirty change twice: the second `jj split` operates on the
   remainder child, not the original — re-run `jj diff -r @ --stat` before
   each split.
