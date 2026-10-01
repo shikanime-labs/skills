@@ -72,9 +72,9 @@ when the user named one.
      it.
    - Body within budget (~500 lines / ~5,000 tokens).
    - Profile in scope: `distribution.yaml` parses and `SOUL.md` is present.
-     Curate `SOUL.md` with the body: persona prose is agent-facing guidance,
-     so long directive lines stay exempt from MD013, but stale persona and
-     token bloat are curated out the same as a skill body.
+     Curate `SOUL.md` with the body: persona prose follows the same MD013
+     wrap as every other file; stale persona and token bloat are curated out
+     the same as a skill body.
 3. **Curate per skill.** Load `sks-curate`; apply improvement/compression/
    update to each audited defect, and refresh its `evals/evals.json`. Record
    the baseline and before/after delta for each. Do not ship un-curated edits;

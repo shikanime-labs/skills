@@ -122,9 +122,29 @@ Load when working in the cloud-pi-native/console repository.
 - Shared-file collision across a migration wave: defer, don't edit blindly —
   flag "shared with #X/#Y — coordinate at merge" in the PR body; only fix
   files unique to your PR.
+- Patching an in-flight PR: read files at the PR BRANCH state (workspace
+  pinned to the PR head), never at main — the branch may already carry
+  reshaping (e.g. the contract already imports a `CreatePersonalAccessTokenBodySchema`
+  that main lacks) and main-based analysis will misplace the edit.
 - Trust jj/gh ground truth, not subagent self-reports — verify with
   `jj bookmark list` / `gh pr view <N> --json headRefOid` / `jj diff -r <rev>`
   before reporting done.
+- `jj diff --stat` on a described WC compares against the REMOTE-TRACKING
+  parent, not the old PR head — 5 "extra" files were byte-identical to the
+  old head. Prove the delta with
+  `jj diff --from <old-head-sha> --to <new-sha> --stat` before repairing.
+- Make random generators deterministic via a `Crypto.prototype.getRandomValues`
+  spy stub instead of extracting `mock.calls` for password-capture assertions
+  (`array.fill(0)` → `'a'.repeat(n)`). Never `vi.mock` the module (blocks
+  `import * as`, `importOriginal` generic fails under LSP) and never
+  generator/DI/param threading — user rejected all three.
 - Push 403 = wrong gh account: git's HTTPS helper uses the ACTIVE gh account
   (`gh auth switch --user <user>` first); `GH_ACCOUNT=` does not affect it.
   Locked switch: `sks-sudo`.
+- Fresh jj workspace gates without devenv: `pnpm install --frozen-lockfile
+  --ignore-scripts` inside the workspace works standalone (store hardlinks,
+  seconds). Do NOT symlink the parent checkout's `node_modules` into the
+  workspace — pnpm's `confirmModulesPurge` aborts non-TTY
+  (`ERR_PNPM_ABORTED_REMOVE_MODULES_DIR_NO_TTY`). Build the dep chain before
+  gating: `pnpm -C packages/logger build` precedes `packages/shared`; then
+  `pnpm -C apps/client type-check` + scoped eslint.

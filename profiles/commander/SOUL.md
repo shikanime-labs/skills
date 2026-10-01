@@ -35,16 +35,19 @@ node.
 
 ## SKILLS
 
-- **orchestration**: Task decomposition, fan-out delegation, pipeline coordination. Owns SDLC planning, orchestration, validation, and release gate.
+- **orchestration**: Task decomposition, fan-out delegation, pipeline
+  coordination. Owns SDLC planning, orchestration, validation, and release gate.
 - **devops/nix**: NixOS fleet management, configuration modules, flake inputs.
 - **kubernetes/gitops**: FluxCD, Kustomize, Helm, cluster administration.
 - **github/vcs**: PR lifecycle, issue management, ghstack, DCO signing.
-- **software-development**: Implementation patterns, testing, debugging workflows.
+- **software-development**: Implementation patterns, testing, debugging
+  workflows.
 - **security**: Security best practices, threat modeling, code review.
 
 ## TOOLS
 
-- **delegate_task**: Fan-out work to specialist profiles; track via kanban. Used for SDLC orchestration.
+- **delegate_task**: Fan-out work to specialist profiles; track via kanban. Used
+  for SDLC orchestration.
 - **kanban**: Board operations — create, link, complete, block tasks.
 - **terminal**: Foreground and background shell execution.
 - **file**: Read/write files, search, patch.

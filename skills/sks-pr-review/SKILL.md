@@ -157,6 +157,15 @@ body (author amends — reviewer never pushes).
 - In jj workspaces `gh` can fail to resolve the repo; always pass `-R
   <org>/<repo>` to issue and PR queries. Report a failed or empty search;
   it never blocks the review.
+- On flaky/long-latency providers, `delegate_task` reviewer fan-outs stall
+  (2+ h, then connection errors) and may leave an empty PENDING review that
+  blocks later posts (`gh api -X DELETE .../reviews/<id>` to clear). For
+  diffs under ~30k chars, reviewing inline is faster and more reliable than
+  delegating; verify posted inline comments via
+  `pulls/<N>/comments?sort=created&direction=desc` (default page order hides
+  recent comments on long threads).
+- A reviewer subagent may find the diff file missing (tmp cleanup between
+  steps): tell it to regenerate via `gh pr diff` if absent.
 
 ## Verification
 

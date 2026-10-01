@@ -116,6 +116,15 @@ For org-specific conventions (local checkout layout, push signing), read
 - **Shared working copy.** The alias's `roots(trunk()..) & mutable()` restacks
   every mutable root, including other sessions' WIP; with concurrent editors,
   prefer the scoped `jj rebase -b <branch> --onto main@origin`.
+- **Immutable PR-internal history.** A long-lived PR stack can carry commits
+  older than `trunk()` that jj marks immutable (pushed via an earlier remote
+  bookmark position or covered by `tags()`/`untracked_remote_bookmarks()`);
+  `jj rebase -s <root> -d main` then fails `N immutable commits`. Rebasing
+  only the bookmark-visible top commits silently orphans the rest — the PR
+  push then lands a truncated stack missing schema/module commits. Diagnose
+  with `jj log -r '::@ & mutable()'` vs the original depth, then rebase the
+  true root with `jj rebase --ignore-immutable` (this repo's own PR branch —
+  never shared history).
 
 ## Verification
 
