@@ -136,9 +136,11 @@ grep -rl "Signed-off-by" .github/ 2>/dev/null
 
 - A body pasted through a formatter arrives hard-wrapped — reflow before
   posting; GitHub renders the breaks literally.
-- `gh pr merge` `-m` flags concatenate, they don't replace: a squash-merge
-  message must be passed as ONE clean block (subject + body + trailers) or
-  jj `*` bullets and `---------` separators leak into the landed commit.
+- `gh pr merge` message flags are `-t <subject>` / `-b <body>`; `-m` is the
+  `--merge` strategy boolean. Two `-m "text"` flags fail with "accepts at
+  most 1 arg(s)". Pass the squash-merge message as ONE clean block (subject
+  via `-t`, body + trailers via `-b`) or jj `*` bullets and `---------`
+  separators leak into the landed commit.
 - Mention pings fire on edit too — escaping `@` after posting is too late
   for the notification, only for the rendered text.
 - Auto-generated blocks (CodeRabbit release notes) appended to a body are

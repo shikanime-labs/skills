@@ -74,14 +74,17 @@ commit/merge:
 
 ```bash
 gh pr merge <M> --repo <org>/<repo> --squash \
-  -m "<plain-English subject>" \
-  -m "$(cat <<'EOF'
+  -t "<plain-English subject>" \
+  -b "$(cat <<'EOF'
 <coherent body; no * bullets, no --------->
 
 Co-authored-by: <the org co-author trailer>
 EOF
 )"
 ```
+
+`-m` is the `--merge` strategy boolean, not a message flag —
+`gh pr merge -m "subject" -m "body"` fails with "accepts at most 1 arg(s)".
 
 ## Repo-enforced overrides
 
