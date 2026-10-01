@@ -1,0 +1,43 @@
+{
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "My working copy has one dirty change with the new exporter module, its tests, and an unrelated README typo fix mixed in. Split it so each lands separately.",
+      "expected_output": "Enumerates two units (exporter+tests vs README fix), dependency-tests them as independent (disjoint files, no shared contract), runs jj split --parallel -m for the first unit then describes the remainder, bookmarks each unit separately for independent PRs.",
+      "files": [],
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-split'",
+        "Body's dependency-test table maps disjoint files with no shared contract to parallel siblings",
+        "Body's split commands carry -m with the unit subject and never a bare jj split <paths> without -m",
+        "Body maps tests bundled with the code they test to the same unit, not a separate one",
+        "Body instructs one bookmark per unit landing as independent PRs"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "This jj chain has three commits but commit 2 doesn't actually depend on commit 1 — they touch different modules. Make them land independently.",
+      "expected_output": "Reads change ids from jj log over main@origin..@, breaks the wrongly stacked pair into siblings via jj parallelize with explicit change ids, warns a description-range revset silently resolves empty and parallelize then no-ops with exit 0.",
+      "files": [],
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-split'",
+        "Body uses jj parallelize with explicit change ids resolved from jj log",
+        "Body warns that a description-range revset can resolve empty making parallelize report Nothing changed with exit 0",
+        "Body verifies the resulting graph shape with jj log before bookmarking",
+        "Body states siblings land in any order while a true stack lands base first"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "I need to open three parallel workspaces for three new features we scoped in the issue ledger.",
+      "expected_output": "Routes to sks-async: units are already known before work exists, nothing to split. sks-split only restructures changes that already grew mixed.",
+      "files": [],
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-split'",
+        "Body's When to Use section routes choosing units before work exists to sks-async",
+        "Body's When to Use section routes moving an existing stack onto a moved base to sks-restack",
+        "Body's When to Use section routes isolating one already-single unit to sks-delegate"
+      ]
+    }
+  ],
+  "skill_name": "sks-split"
+}
