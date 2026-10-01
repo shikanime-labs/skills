@@ -12,7 +12,7 @@
         "Body contains at least one '##' heading",
         "Body presents the loop as sense -> decide -> act -> measure",
         "Body mines memory or session history as the signal source",
-        "Body delegates execution to sks-curate, sks-update, sks-skill-authoring, or sks-profile-authoring",
+        "Body delegates execution to sks-curate, sks-update, or sks-skill-authoring",
         "Body never merges or lands its own PR"
       ]
     },
@@ -39,7 +39,7 @@
         "YAML frontmatter parses and 'name' equals 'sks-evolve'",
         "Body contains at least one '##' heading",
         "Body states profiles evolve alongside skills",
-        "Body routes profile work through sks-curate, sks-update, or sks-profile-authoring",
+        "Body routes profile work through sks-curate or sks-update",
         "Body names agent conventions or AGENTS.md as an evolution target",
         "Body names cron or configuration as an evolution target",
         "Body names agent harness configs as an evolution target",

@@ -32,8 +32,8 @@ platforms:
 End-to-end local dev loop for the target org's repos: branching, pushing to
 `origin`, jj bookmark tracking, landing (PR vs direct push). Environment facts
 (org identity, repo paths, toolchain, branch protection, push policy, pre-work
-probes) live in the `sks-env` reference — read
-`references/sks-env.md` when operating in shikanime repos. Cloud-pi-native
+probes) live in `references/sks-env.md` — read it when operating in shikanime
+repos. Cloud-pi-native
 console repo facts (checkout path, layout, French artifacts, toolchain,
 migration parity, jj/git desync recipes) live in
 `references/cloud-pi-native.md` — read it when working in the
