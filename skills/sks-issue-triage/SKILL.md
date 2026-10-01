@@ -64,8 +64,9 @@ repo-lacking value.
 ```bash
 gh issue view "$N" --repo "$R" --json number,title,body,labels,assignees,milestone,projectCards,blockedBy,blocking
 gh api repos/"$R"/issues/"$N" \
-  --jq '{type: (.type // ""), parent: (.parent_issue.number // null)}' \
-  # type/parent (not exposed by `gh issue view`)
+  --jq '{type: (.type.name // ""), parent: (.parent_issue.number // null)}' \
+  # type/parent (not exposed by `gh issue view`); `.type` is an OBJECT —
+  # `.type // ""` returns the raw object and breaks @tsv formatting
 ```
 
 ### 2. Discover available metadata
@@ -132,7 +133,8 @@ gh issue edit "$N" --repo "$R" \
   --add-label "bug" --add-label "area/..."
 # --add-label, never --label
 gh issue edit "$N" --repo "$R" --add-assignee "$ASSIGNEE"
-gh issue edit "$N" --repo "$R" --milestone <num>
+gh issue edit "$N" --repo "$R" --milestone "<title>"
+# milestone by TITLE, not number — '37' fails with "'37' not found"
 gh issue edit "$N" --repo "$R" --add-project "Roadmap"        # title, not number
 gh issue edit "$N" --repo "$R" --parent <number>             # only if derivable
 gh issue edit "$N" --repo "$R" --add-blocked-by <n> --add-sub-issue <n>,<n>

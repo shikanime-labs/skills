@@ -95,6 +95,12 @@ repo (`sks-async`).
    `rm -rf` preamble, which trips an approval prompt and stalls an
    unattended batch on a non-essential step.
 
+   Full-command plan lines beat argument-list columns: `$args` word-splitting
+   shatters quoted multiword values (`--add-label "technical debt"` arrives as
+   two garbage args), and `gh issue/pr edit --milestone` takes the milestone
+   TITLE, not its number — a numeric column fails "'37' not found" minutes
+   into a batch.
+
 5. **Mutate per target kind; never push to the default branch.** Repo
    targets mutate in a throwaway clone:
 
