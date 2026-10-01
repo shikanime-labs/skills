@@ -102,13 +102,17 @@ and the check accepts it.
 R=<org>/<repo>; M=<PR>
 gh pr view "$M" -R "$R" --json commits,title,body -q '
   .commits[0].messageHeadline as $s
+  # The commits payload truncates messageHeadline (~70 chars + "…") for long
+  # subjects; accept a truncated headline when it prefixes the PR title.
+  | ($s == .title
+     or (($s | endswith("…")) and (.title | startswith(($s | sub(" ?…$"; "")))))) as $parity
   | if ($s | test("^(fix|feat|chore|docs|refactor|test|build|ci|perf|"
                   + "renovate)(\\([^)]*\\))?!?: "))
     then error("BLOCKED: conventional prefix: " + $s)
     elif ($s | test("^[a-z]") and ($s | startswith("doc: ") | not))
     then error("BLOCKED: lowercase subject: " + $s)
     elif ($s | endswith(".")) then error("BLOCKED: trailing period: " + $s)
-    elif ($s != .title)
+    elif ($parity | not)
     then error("BLOCKED: PR title differs from commit subject")
     else "OK: commit conventions pass" end'
 ```
