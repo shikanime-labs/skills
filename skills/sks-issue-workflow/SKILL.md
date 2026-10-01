@@ -52,18 +52,30 @@ When operating in cloud-pi-native/console, read
 ## Verification
 
 Complete when body is a stable problem statement with a converged `- [ ]` ledger
-and triage metadata is set. Verify:
+and triage metadata is set. Triage set = labels non-empty, assignee present,
+a project card with Status set and custom Fields populated where the board
+has them (Priority/Size etc. — `gh project item-list` shows them; `item-edit`
+to fix) — verify, don't assume. Verify:
 
 ```bash
-gh issue view <N> --repo <org>/<repo> --json number,title,labels
+gh issue view <N> --repo <org>/<repo> \
+  --json number,title,labels,assignees,milestone,projectItems
 ```
 
 ## Gate
 
 ```bash
-gh issue view <N> --repo <org>/<repo> --json number,title,labels \
+gh issue view <N> --repo <org>/<repo> \
+  --json number,title,labels,assignees,milestone,projectItems \
   # body + ledger + triage set
 ```
+
+Gate fails if `labels` is empty, `assignees` is `[]`, or the board card is
+missing or its Fields unset — the authoritative check is
+`gh project item-list <board> --owner <owner> --format json` filtered to the
+issue number (shows Status + custom Fields). `milestone` may be null when
+the repo genuinely lacks a value — but null must be a seen decision, not an
+unread field.
 
 ## See also
 
