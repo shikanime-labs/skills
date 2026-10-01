@@ -93,6 +93,10 @@ PR to `sks-land` and say which criterion failed.
      --jq '.commits[0].messageHeadline, .title'
    ```
 
+   `messageHeadline` arrives truncated (~70 chars + `…`) for long subjects;
+   a truncated headline that prefixes the title is parity, not a mismatch.
+   Run the mechanical check via `sks-land`'s Gate 4 block, which accepts it.
+
 4. **Merge pinned to the verified head:**
 
    ```bash
