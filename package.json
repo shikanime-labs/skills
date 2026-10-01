@@ -180,6 +180,11 @@
         "path": "skills/sks-restack"
       },
       {
+        "name": "sks-split",
+        "description": "Use when one jj commit or in-flight stack has grown multiple responsibilities and must be split into parallel sibling units or a parent/child stack, decided per unit pair by dependency.",
+        "path": "skills/sks-split"
+      },
+      {
         "name": "sks-nix-authoring",
         "description": "Use when authoring or editing Nix in an org repo: nixfmt-sorted style, single-use let bindings, no explanatory comments, YAGNI on new options.",
         "path": "skills/sks-nix-authoring"
