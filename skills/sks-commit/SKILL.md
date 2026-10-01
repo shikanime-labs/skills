@@ -3,7 +3,7 @@ name: sks-commit
 description:
   "Use when committing in a target-org repo: plain-English imperative titles
   and repo-enforced hooks (gitlint, DCO) win."
-version: 0.3.0
+version: 0.3.1
 author: Hermes Agent
 license: Apache-2.0
 metadata:
@@ -30,11 +30,11 @@ repo, never assume.
 ## When to Use
 
 - Any commit in a target-org repo. For shikanime-org conventions (the remote
-  split between local path and gh remote, protected-main repos, the co-author
-  trailer value), read `references/shikanime.md` when operating in a
-  shikanime org. For cloud-pi-native commitlint rules (French org,
-  conventional English commits with `body-leading-blank`), read
-  `references/cloud-pi-native.md` when committing in that org.
+  split between local path and gh remote, protected-main repos), read
+  `references/shikanime.md` when operating in a shikanime org. For
+  cloud-pi-native commitlint rules (French org, conventional English commits
+  with `body-leading-blank`), read `references/cloud-pi-native.md` when
+  committing in that org.
 
 ## Prerequisites
 
@@ -51,8 +51,8 @@ one clean trailer block, no formatter runs) are owned by
 `sks-github-text-authoring`. This skill owns the commit-specific shape:
 
 - **Code repos**: plain English, imperative, capitalized title, **no prefix, no
-  body**. One trailer ALWAYS: the org co-author trailer (value in
-  `references/shikanime.md`). One logical fix per
+  body**. One trailer ALWAYS, by default:
+  `Co-authored-by: Automata <automata@shikanime.studio>`. One logical fix per
   commit. Subject ≤ 72 chars — GitHub's `messageHeadline` truncates the first
   line at 72 bytes with `…`, breaking title-parity checks downstream.
   - Good: `Force NFS v4.0 on RWX StorageClasses` + trailer.
@@ -67,8 +67,10 @@ commit/merge:
 - `*` bullet lines separating former descriptions.
 - `---------` separators where descriptions overlapped. Final message = exactly
   one plain-English subject + the correct trailers:
-- Exactly ONE org co-author trailer when agent-assisted. Never a self
-  `Co-authored-by:` or repeated `Signed-off-by:`.
+- Exactly ONE Automata co-author trailer
+  (`Co-authored-by: Automata <automata@shikanime.studio>`), always — this is
+  the default, not conditional on the org. Never a self `Co-authored-by:` or
+  repeated `Signed-off-by:`.
 - `Signed-off-by: <user>` only where a hook/ruleset requires DCO.
 - Never rely on GitHub's auto-concatenation of branch commits — pass it clean:
 
@@ -78,7 +80,7 @@ gh pr merge <M> --repo <org>/<repo> --squash \
   -b "$(cat <<'EOF'
 <coherent body; no * bullets, no --------->
 
-Co-authored-by: <the org co-author trailer>
+Co-authored-by: Automata <automata@shikanime.studio>
 EOF
 )"
 ```
@@ -108,7 +110,8 @@ grep -rl "Signed-off-by" .github/ 2>/dev/null
 2. Commit; two `-m` blocks = subject + trailer paragraph:
 
 ```bash
-jj describe -m "<subject>" -m "<the org co-author trailer>"
+jj describe -m "<subject>" \
+  -m "Co-authored-by: Automata <automata@shikanime.studio>"
 ```
 
 3. Confirm the hook accepted it: `jj log -1`.

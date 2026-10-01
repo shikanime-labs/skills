@@ -6,8 +6,8 @@ Load when committing in the cloud-pi-native/console repository.
 
 - Commits in **English** (even doc-only changes); scope and review rules
   unchanged. Issues/discussions/PR bodies are French.
-- Attribution trailer ALWAYS (operator instruction), as a second `-m` block:
-  `Co-authored-by: Automata <automata@shikanime.studio>` — even on bodyless
+- Attribution trailer ALWAYS as a second `-m` block — the default Automata
+  co-author trailer from SKILL.md's Commit style — even on bodyless
   commits. Do NOT add other trailers (`Signed-off-by`, DCO) unless asked —
   console needs no DCO. Existing `Signed-off-by` + `Change-Id` footers from
   prior history are kept, not stripped.

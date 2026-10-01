@@ -10,7 +10,7 @@
         "Frontmatter description starts with 'Use when' and is at most 200 characters",
         "Frontmatter license field is 'Apache-2.0'",
         "Body contains at least one '##' heading",
-        "Body requires an org co-author trailer whose value lives in references/shikanime.md",
+        "Body requires the unconditional default co-author trailer 'Co-authored-by: Automata <automata@shikanime.studio>' in the body itself, not only in a reference",
         "Body requires a plain-English capitalized imperative title with no conventional prefix",
         "Body shows a 'jj describe' command with two -m blocks"
       ]
