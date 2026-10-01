@@ -154,6 +154,10 @@ repo (`sks-async`).
 - **Re-running a partially completed bulk push:** fetch the existing branch,
   not the default branch, or the push rejects non-fast-forward ("fetch
   first") even though the first run's work is already fine on the remote.
+- **`gh api --jq .name` on a missing path prints the 404 error JSON to
+  stdout**, not stderr: a `[ -z "$low" ]` emptiness check inverts and reports
+  every row as failed. Capture the expected exact name and compare
+  (`[ "$low" = "expected" ]`), or pipe through `grep -qx <name>`.
 - **Backporting a workflow-parse fix revives dead workflows:** CI then runs
   for the first time in weeks and fails on pre-existing drift (stale
   nixpkgs against flake-checker's 30-day limit, broken composite inputs).
