@@ -92,9 +92,15 @@ reconciled, skip.
 **Gate 4 — `sks-commit` + `sks-pr` conventions (verified, never eyeballed).**
 Commit subject is plain-English imperative (no `fix:`/`feat:`/`chore:`
 conventional prefix), capitalized, no trailing period. PR title equals the
-commit subject; PR body restates the rationale. ALWAYS run the shape check
+commit subject unless the repo's own conventions say otherwise (template,
+semantic-release / PR-title linting — the repo wins, see `sks-pr`); PR body
+follows the repo's PR template when one exists (see `sks-pr`), else restates
+the rationale. ALWAYS run the shape check
 before merging — on every landing, not only when a violation is suspected; a
-`BLOCKED` line is the gate working, not a tooling failure. A doc-repo commit
+`BLOCKED` line is the gate working, not a tooling failure. When the repo's
+conventions legitimately diverge the title (semantic-release, template), the
+title-parity `BLOCKED` is waivable — document why in the landing notes. A
+doc-repo commit
 may carry a `doc:` prefix — that is the `sks-commit` override for doc repos,
 and the check accepts it.
 
@@ -256,6 +262,10 @@ EOF
       `references/shikanime.md`); `sks-pr-review`
       approval; human review where protection requires.
 - [ ] All conversations reconciled (`sks-pr-resolve`).
+- [ ] PR history clean AND relevant: every commit a logical unit with an
+      imperative ≤ 72-char subject, no `fixup`/`wip`/jj artifacts; restructure
+      (`jj squash`/`split`/`rebase`) before landing if not (`sks-pr-resolve`
+      pre-gate).
 - [ ] `sks-commit` + `sks-pr` conventions verified (subject imperative, PR title
       parity).
 - [ ] CI green.
