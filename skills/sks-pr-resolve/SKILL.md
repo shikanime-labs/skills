@@ -84,6 +84,16 @@ if new commits landed after the last review. Check approval via the query in
 Every inline review thread must be reconciled. Enumerate threads and resolve
 them with the GraphQL in `references/resolve.md`.
 
+**History cleanliness (pre-gate).** Verify the PR's commit history is clean
+before reconciling: `gh pr view <M> --json commits` — every commit subject
+passes `sks-commit` shape, no fixup/wip/rebase artifacts. Stacked PRs
+legitimately carry multiple commits, but each must be **relevant** — a logical
+unit of the PR's change, not stray WIP. Squash noise into their logical
+parent, split mixed units (`jj split`), reorder if the narrative is
+incoherent, drop empty commits. When in doubt about the structure, restructure
+before Gate 1–3 run; a dirty or incoherent history makes every downstream
+verification ambiguous.
+
 For each **unresolved** thread:
 
 - **Pertinent + in ledger** — verify diff/CI addresses it; resolve, else flag

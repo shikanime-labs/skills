@@ -53,7 +53,8 @@ one clean trailer block, no formatter runs) are owned by
 - **Code repos**: plain English, imperative, capitalized title, **no prefix, no
   body**. One trailer ALWAYS: the org co-author trailer (value in
   `references/shikanime.md`). One logical fix per
-  commit.
+  commit. Subject ≤ 72 chars — GitHub's `messageHeadline` truncates the first
+  line at 72 bytes with `…`, breaking title-parity checks downstream.
   - Good: `Force NFS v4.0 on RWX StorageClasses` + trailer.
   - Bad: `fix: force nfs v4.0` (conventional prefix not used here).
 - **Doc repos**: `doc:` prefix, else same shape. No `(...)` in titles/labels.
@@ -93,7 +94,9 @@ grep -rl "Signed-off-by" .github/ 2>/dev/null
   and a `Signed-off-by` (CC1). A commit with both + no `Related:` passes. See
   `references/example-commit.md` for a filled example.
 - PR↔commit parity: the PR title equals the commit subject and the PR body
-  restates the commit message; author the commit to carry full rationale.
+  restates the commit message — unless the repo's own conventions (PR template,
+  semantic-PR-title checks, commitlint rules) say otherwise, which then wins
+  (see `sks-pr`).
 - Any repo with `commitlint`: follow its config.
 
 ## Procedure
@@ -128,6 +131,7 @@ jj describe -m "<subject>" -m "<the org co-author trailer>"
 
 ```bash
 jj log -1 --no-graph -T 'description' && jj status
+test "$(jj log -r @- --no-graph -T 'description.first_line().len()')" -le 72
 ```
 
 ## See also
