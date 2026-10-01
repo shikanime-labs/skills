@@ -67,11 +67,11 @@ squashing or when diagnosing a squash/force-push/rebase failure.
    source of truth; restate, do NOT invent new rationale):
    - `# Why` — why now: the drift/risk/pain this closes (one short paragraph).
    - `## What` — one-line summary + bullet scope (what this PR delivers).
-   - `## References` — `Related: <full issue URL>` (mandatory) plus any
+   - `## References` — `Related: #N` (mandatory) plus any
      commits/specs/changelogs proving the solution.
    - See `references/example-pr-body.md` for a filled example.
    - All prose rules for the body — free text no-wrap, no formatter runs,
-     `@` escaping, full URLs over bare `#N`, Mermaid — are owned by
+     `@` escaping, `#N` for standalone refs, Mermaid — are owned by
      `sks-github-text-authoring`; load it when writing the body.
    - **Templates: detect, then conform.** Detection and fetch are owned by
      `sks-github-text-authoring`. Template → fill every section it defines,

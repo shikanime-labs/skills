@@ -236,7 +236,7 @@ anchor can get duplicated — remove the stray copy before pushing.
 
 ## Drafting GitHub messages (family invariants)
 
-English across the family; full URLs over `#N` shorthand; commit↔PR parity.
+English across the family; `#N` for standalone refs; commit↔PR parity.
 Exact shapes live in the owning skills:
 
 - **Commit** → `sks-commit` — plain capitalized title, labeled body

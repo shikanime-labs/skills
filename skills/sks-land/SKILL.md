@@ -105,7 +105,8 @@ gh pr view "$M" -R "$R" --json commits,title,body -q '
   # The commits payload truncates messageHeadline (~70 chars + "…") for long
   # subjects; accept a truncated headline when it prefixes the PR title.
   | ($s == .title
-     or (($s | endswith("…")) and (.title | startswith(($s | sub(" ?…$"; "")))))) as $parity
+     or (($s | endswith("…"))
+         and (.title | startswith(($s | sub(" ?…$"; "")))))) as $parity
   | if ($s | test("^(fix|feat|chore|docs|refactor|test|build|ci|perf|"
                   + "renovate)(\\([^)]*\\))?!?: "))
     then error("BLOCKED: conventional prefix: " + $s)
