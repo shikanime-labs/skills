@@ -80,21 +80,32 @@ create first. A PR never opens without an issue. Verify match via
 ### 2. Open the org-repo PR
 
 Load `sks-pr`. Push to `origin` (org repo), open `--head <org>:<branch>`, base
-`main`; link `Related: <full issue URL>`.
+`main`, **`--draft`**; link `Related: <full issue URL>`. Every PR opens as a
+draft; mark ready (`gh pr ready <N>`) only once CI is green on the verified
+head.
 
 ### 3. Triage immediately
 
 Load `sks-pr-triage`; apply metadata now. Apply only empty/determinable fields;
 never invent a value the repo lacks. Then flip the PR's board card: `In
 progress` while CI runs, `In review` once review is requested (`sks-project`).
+Triage covers every metadata surface — labels, assignee, milestone,
+reviewers, **project board card** (`sks-project` item-add + Status), and the
+GitHub **Development** link to the issue (`Related:` in the body creates it;
+verify it took: `gh pr view <N> --json closingIssuesReferences`).
 
 ## Verification
 
-Done when opened from `origin`, links issue, triage set, and the isolation gate
-passed. Verify:
+Done when opened from `origin` as a draft, links issue, triage set, and the
+isolation gate passed. Triage set = labels non-empty, assignee present, a
+board card with Status set (`sks-project`), card custom Fields set where the
+board has them (`gh project item-list` shows them; `item-edit` to fix), and
+the Development link resolved (`closingIssuesReferences` non-empty) — verify,
+don't assume. Verify:
 
 ```bash
-gh pr view <N> --repo <org>/<repo> --json title,baseRefName,body
+gh pr view <N> --repo <org>/<repo> \
+  --json title,isDraft,baseRefName,body,labels,assignees,milestone,reviewRequests
 ```
 
 ```bash
@@ -106,10 +117,19 @@ git diff --stat "$(gh pr view <N> --repo <org>/<repo> --json baseRefOid -q .base
 ## Gate
 
 ```bash
-gh pr view <N> --repo <org>/<repo> --json title,baseRefName,body
+gh pr view <N> --repo <org>/<repo> \
+  --json title,isDraft,baseRefName,body,labels,assignees,milestone,reviewRequests,projectItems,closingIssuesReferences
 gh pr diff <N> --repo <org>/<repo> --name-only \
   # isolation: exactly the intended files
 ```
+
+Gate fails if `labels` is empty, `assignees` is `[]`, or the board card is
+missing or its Fields unset — the authoritative check is
+`gh project item-list <board> --owner <owner> --format json` filtered to the
+issue number (shows Status + custom Fields). `closingIssuesReferences`-style
+Development link: re-run the `sks-pr-triage` step 3, not the PR opening.
+`milestone` may be null when the repo genuinely lacks a value — but null
+must be a seen decision, not an unread field.
 
 ## See also
 

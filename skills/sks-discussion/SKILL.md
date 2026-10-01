@@ -88,12 +88,16 @@ see `references/create.md`.
 ```bash
 gh api graphql -f query='query {
   repository(owner: "<org>", name: "<repo>") {
-    discussion(number: N) { title body category { name } }
+    discussion(number: N) {
+      title body labels(first:10){ nodes { name } } category { name }
+    }
   }
 }'
 ```
 
-Confirm title/body/category + body stays context + open questions.
+Confirm title/body/category + body stays context + open questions. Label
+coverage mirrors `sks-discussion-triage`; a discussion has no assignee,
+milestone, or project surface — labels + category are the whole metadata set.
 
 ## See also
 
