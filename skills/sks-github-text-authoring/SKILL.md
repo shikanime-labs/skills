@@ -53,10 +53,11 @@ rules to this skill instead of restating them.
 - **Mention escaping**: a bare `@name` in prose pings that user/team. Wrap
   any literal `@` — NestJS `@Inject(x)`, decorators, config keys — in a code
   span or fenced block; only code disables mention parsing.
-- **Full URLs, never `#N`**: bare `#XXXX` and `owner/repo#XXXX` are broken
-  on GitHub. Write `https://github.com/<org>/<repo>/issues/N`; cross-repo
-  links carry their own owner. One URL per line. A body that leaks a bare
-  `#N` is a defect — reject and rewrite before posting.
+- **Standalone refs use `#N`**: when a reference stands alone (own line,
+  list item, or `Related:` field), `#N` renders as a rich link — the
+  interface expands it to show the issue title text. Prefer it over a URL.
+  Cross-repo refs carry their owner: full URL or `owner/repo#N`. Mid-sentence
+  `#N` only highlights, which is fine — leave it.
 - **Terse, conclusion first**: lead with the conclusion, back it with cited
   evidence, stop. No nested parentheticals — an aside becomes its own
   sentence. Asides that recur become sections; asides that don't, get cut.
@@ -153,8 +154,8 @@ gh pr view <N> --repo <org>/<repo> --json body -q .body
 jj log -r @ --no-graph -T description
 ```
 
-Confirm: no hard wraps, no bare `#N`, no unescaped `@`, one co-author
-trailer, template headings verbatim.
+Confirm: no hard wraps, standalone refs use `#N` (cross-repo full URL),
+no unescaped `@`, one co-author trailer, template headings verbatim.
 
 ## See also
 

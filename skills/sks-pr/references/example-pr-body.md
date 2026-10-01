@@ -14,8 +14,8 @@ parity without hand-editing every stacked PR.
 
 ## References
 
-Related: https://github.com/shikanime-labs/skills/issues/123
+Related: #123
 ```
 
 Title = commit subject (no conventional prefix). `## References` carries
-`Related: <full URL>`; close deliberately after final merge (verify N-of-N).
+`Related: #N`; close deliberately after final merge (verify N-of-N).
