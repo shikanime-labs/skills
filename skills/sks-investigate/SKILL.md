@@ -200,5 +200,7 @@ echo "investigation complete: root cause + hypothesis + proposed fix" \
 - `sks-delegate` — canonical single-workspace isolation recipe before a fix.
 - `ponytail-audit` — when the defect's root cause is accidental complexity, its
   ranked simplification list seeds the proposal.
+- `sks-gist` — publish a verified probe script or recovery sequence for reuse
+  instead of letting it die in the transcript.
 - `sks-issue` / `sks-dev` / `sks-pr` — receive the proposed solution
   and apply it as a reviewed change.

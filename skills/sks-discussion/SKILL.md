@@ -106,3 +106,5 @@ milestone, or project surface — labels + category are the whole metadata set.
 - `sks-discussion-triage` — triage, lifecycle routing, closure.
 - `sks-discussion` — the English discussion skill (the French console twin
   is out of family scope; per `references/shikanime.md`).
+- `sks-gist` — host RFC evidence artifacts too long for the discussion body
+  at a stable URL.

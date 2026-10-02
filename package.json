@@ -90,6 +90,11 @@
         "path": "skills/sks-gc"
       },
       {
+        "name": "sks-gist",
+        "description": "Use when a verified command, script, config, or output would be retyped or re-derived later — publish it as a gist for DRY reuse and link it from the artifact that motivated it.",
+        "path": "skills/sks-gist"
+      },
+      {
         "name": "sks-github-text-authoring",
         "description": "Use when writing any GitHub text in the target org's repos — commit message, issue or PR body, discussion RFC, review or issue comment. Owns all shared prose rules; surface skills handle procedure.",
         "path": "skills/sks-github-text-authoring"
