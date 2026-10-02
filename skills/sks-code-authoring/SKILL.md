@@ -30,8 +30,6 @@ factories and types follow one pattern, services and controllers each own one
 shape, and test fixtures reuse shared makes instead of inlining literals.
 
 Org-specific applications live in `references/`, loaded on demand: read
-`references/cloud-pi-native-console.md` when working in the
-cloud-pi-native/console repository.
 
 ## When to Use
 

@@ -20,7 +20,7 @@
       "files": [],
       "prompt": "Realign all open PRs to the naming consensus the codebase has settled on.",
       "assertions": [
-        "The body or its console reference describes the realignment survey: export names across branches, aggregate, adopt the majority.",
+        "The body prescribes the realignment method: survey export names across branches, aggregate, adopt the majority, rename outliers.",
         "The body scopes realignment to PR-introduced code (diff vs main), leaving main-inherited names alone.",
         "The body requires targeted module tests after renames.",
         "The body treats import aliases as a smell fixed at the source."
