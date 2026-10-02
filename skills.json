@@ -5,8 +5,18 @@
   "license": "Apache-2.0",
   "skills": [
     {
+      "name": "cpn-release-patch",
+      "description": "Use when backporting the commits between two release tags onto a hotfix branch in <org>/<repo>: find the patch milestone and duplicate those commits onto the tag with jj.",
+      "path": "skills/cpn-release-patch"
+    },
+    {
+      "name": "nixpkgs-pr-review",
+      "description": "Use when reviewing an upstream NixOS/nixpkgs pull request: build the changed packages with nixpkgs-review and check the diff against nixpkgs conventions.",
+      "path": "skills/nixpkgs-pr-review"
+    },
+    {
       "name": "sks-adversarial",
-      "description": "Use when probing uncertain results in a disposable sandbox — large investigation, development, debugging, testing, UAT, white-room, or data validation before promoting a change.",
+      "description": "Use when probing uncertain results in a disposable sandbox \u2014 large investigation, development, debugging, testing, UAT, white-room, or data validation before promoting a change.",
       "path": "skills/sks-adversarial"
     },
     {
@@ -16,8 +26,13 @@
     },
     {
       "name": "sks-bulk",
-      "description": "Use when applying one instruction to many targets — repos, issues, PRs, orgs, or any enumerable agentic batch: enumerate targets, drive the batch from a plan file, and verify every result.",
+      "description": "Use when applying one instruction to many targets \u2014 repos, issues, PRs, orgs, or any enumerable agentic batch: enumerate targets, drive the batch from a plan file, and verify every result.",
       "path": "skills/sks-bulk"
+    },
+    {
+      "name": "sks-code-authoring",
+      "description": "Use when writing or reviewing domain code in an org repo: naming consensus (make/Record/With-suffix factories), layer discipline (raw records in, mappers out), and fixture reuse over inline literals.",
+      "path": "skills/sks-code-authoring"
     },
     {
       "name": "sks-commit",
@@ -26,7 +41,7 @@
     },
     {
       "name": "sks-converge",
-      "description": "Use when jj conflicts or divergent changes block a jj repo after a tree move — resolve conflicted revisions and divergent twins until pushable.",
+      "description": "Use when jj conflicts or divergent changes block a jj repo after a tree move \u2014 resolve conflicted revisions and divergent twins until pushable.",
       "path": "skills/sks-converge"
     },
     {
@@ -36,7 +51,7 @@
     },
     {
       "name": "sks-delegate",
-      "description": "Use when isolating one unit of work in a fresh jj workspace — the mandatory entry to implementation for every unit, so concurrent WIP never folds in and bookmarks/pushes stay scoped.",
+      "description": "Use when isolating one unit of work in a fresh jj workspace \u2014 the mandatory entry to implementation for every unit, so concurrent WIP never folds in and bookmarks/pushes stay scoped.",
       "path": "skills/sks-delegate"
     },
     {
@@ -70,23 +85,28 @@
       "path": "skills/sks-fastlane"
     },
     {
+      "name": "sks-fleet",
+      "description": "Use when maintaining many open stacked PRs on one org repo: git stack restacks, fleet-wide review sweeps, history rewrites, and CI polling.",
+      "path": "skills/sks-fleet"
+    },
+    {
       "name": "sks-gc",
-      "description": "Use when reclaiming resources leaked by jj-based agent workflows — dangling bookmarks, skill-created jj workspaces, and leftover working-copy dirs from sks-async/sks-dev.",
+      "description": "Use when reclaiming resources leaked by jj-based agent workflows \u2014 dangling bookmarks, skill-created jj workspaces, and leftover working-copy dirs from sks-async/sks-dev.",
       "path": "skills/sks-gc"
     },
     {
       "name": "sks-gist",
-      "description": "Use when a verified command, script, config, or output would be retyped or re-derived later — publish it as a gist for DRY reuse and link it from the artifact that motivated it.",
+      "description": "Use when a verified command, script, config, or output would be retyped or re-derived later \u2014 publish it as a gist for DRY reuse and link it from the artifact that motivated it.",
       "path": "skills/sks-gist"
     },
     {
       "name": "sks-github-text-authoring",
-      "description": "Use when writing any GitHub text in the target org's repos — commit message, issue or PR body, discussion RFC, review or issue comment. Owns all shared prose rules; surface skills handle procedure.",
+      "description": "Use when writing any GitHub text in the target org's repos \u2014 commit message, issue or PR body, discussion RFC, review or issue comment. Owns all shared prose rules; surface skills handle procedure.",
       "path": "skills/sks-github-text-authoring"
     },
     {
       "name": "sks-investigate",
-      "description": "Use when investigating a bug, test failure, build break, or unexpected behavior — find root cause, form a hypothesis, and propose a solution, never apply the fix itself.",
+      "description": "Use when investigating a bug, test failure, build break, or unexpected behavior \u2014 find root cause, form a hypothesis, and propose a solution, never apply the fix itself.",
       "path": "skills/sks-investigate"
     },
     {
@@ -110,24 +130,24 @@
       "path": "skills/sks-issue-workflow"
     },
     {
-      "name": "sks-land",
-      "description": "Use when landing a target-org PR after reconciliation (sks-pr-resolve) and review approval gates pass; closes the linked issue deliberately.",
-      "path": "skills/sks-land"
-    },
-    {
-      "name": "nixpkgs-pr-review",
-      "description": "Use when reviewing an upstream NixOS/nixpkgs pull request: build the changed packages with nixpkgs-review and check the diff against nixpkgs conventions.",
-      "path": "skills/nixpkgs-pr-review"
-    },
-    {
       "name": "sks-kubernetes-manifests-authoring",
       "description": "Use when authoring or editing Kubernetes manifests or kustomize overlays in a GitOps repo: placement, patches, generators, labels, probes, and live-cluster cross-checks.",
       "path": "skills/sks-kubernetes-manifests-authoring"
     },
     {
+      "name": "sks-land",
+      "description": "Use when landing a target-org PR after reconciliation (sks-pr-resolve) and review approval gates pass; closes the linked issue deliberately.",
+      "path": "skills/sks-land"
+    },
+    {
       "name": "sks-moderation",
       "description": "Use when hiding, unhiding, or moderating comments on GitHub issues, PRs, or discussions with the Hide feature: classifier choice, GraphQL mutations, verification.",
       "path": "skills/sks-moderation"
+    },
+    {
+      "name": "sks-nix-authoring",
+      "description": "Use when authoring or editing Nix in an org repo: nixfmt-sorted style, single-use let bindings, no explanatory comments, YAGNI on new options.",
+      "path": "skills/sks-nix-authoring"
     },
     {
       "name": "sks-pr",
@@ -160,24 +180,14 @@
       "path": "skills/sks-project"
     },
     {
-      "name": "cpn-release-patch",
-      "description": "Use when backporting the commits between two release tags onto a hotfix branch in <org>/<repo>: find the patch milestone and duplicate those commits onto the tag with jj.",
-      "path": "skills/cpn-release-patch"
+      "name": "sks-repo",
+      "description": "Use when creating a new org repo: apply the 5-ruleset protection template, bootstrap the devlib devenv scaffold, and tag v0.1.0.",
+      "path": "skills/sks-repo"
     },
     {
       "name": "sks-restack",
-      "description": "Use when rebasing a jj stack onto moved main leaves conflicts — restack, then resolve each conflicted revision with edit/resolve until pushable.",
+      "description": "Use when rebasing a jj stack onto moved main leaves conflicts \u2014 restack, then resolve each conflicted revision with edit/resolve until pushable.",
       "path": "skills/sks-restack"
-    },
-    {
-      "name": "sks-split",
-      "description": "Use when one jj commit or in-flight stack has grown multiple responsibilities and must be split into parallel sibling units or a parent/child stack, decided per unit pair by dependency.",
-      "path": "skills/sks-split"
-    },
-    {
-      "name": "sks-nix-authoring",
-      "description": "Use when authoring or editing Nix in an org repo: nixfmt-sorted style, single-use let bindings, no explanatory comments, YAGNI on new options.",
-      "path": "skills/sks-nix-authoring"
     },
     {
       "name": "sks-skill-authoring",
@@ -190,9 +200,9 @@
       "path": "skills/sks-sops-secrets-authoring"
     },
     {
-      "name": "sks-swarm",
-      "description": "Use when distributing a task across a cluster of agents over A2A — route by capability need, machine resource, and runner pressure, optionally in a disposable sks-adversarial sandbox.",
-      "path": "skills/sks-swarm"
+      "name": "sks-split",
+      "description": "Use when one jj commit or in-flight stack has grown multiple responsibilities and must be split into parallel sibling units or a parent/child stack, decided per unit pair by dependency.",
+      "path": "skills/sks-split"
     },
     {
       "name": "sks-sudo",
@@ -200,29 +210,24 @@
       "path": "skills/sks-sudo"
     },
     {
+      "name": "sks-swarm",
+      "description": "Use when distributing a task across a cluster of agents over A2A \u2014 route by capability need, machine resource, and runner pressure, optionally in a disposable sks-adversarial sandbox.",
+      "path": "skills/sks-swarm"
+    },
+    {
+      "name": "sks-triage",
+      "description": "Use when triaging a target org, repo, issue, or PR: sweep the scope for untriaged items, then assign every empty, context-derivable field \u2014 type, labels, assignee, fields.",
+      "path": "skills/sks-triage"
+    },
+    {
       "name": "sks-ts-authoring",
       "description": "Use when writing or reviewing TypeScript: parse-don't-validate boundaries, cast-free explicit types, linear single-purpose functions, and schema-first inputs.",
       "path": "skills/sks-ts-authoring"
     },
     {
-      "name": "sks-repo",
-      "description": "Use when creating a new org repo: apply the 5-ruleset protection template, bootstrap the devlib devenv scaffold, and tag v0.1.0.",
-      "path": "skills/sks-repo"
-    },
-    {
-      "name": "sks-triage",
-      "description": "Use when triaging a target org, repo, issue, or PR: sweep the scope for untriaged items, then assign every empty, context-derivable field — type, labels, assignee, fields.",
-      "path": "skills/sks-triage"
-    },
-    {
       "name": "sks-update",
       "description": "Use when updating skills or profiles in a skills catalog: curate every skill by default (or named ones only), land through the dev workflow, and resync to local Hermes agents.",
       "path": "skills/sks-update"
-    },
-    {
-      "name": "sks-code-authoring",
-      "description": "Use when writing or reviewing domain code in an org repo: naming consensus (make/Record/With-suffix factories), layer discipline (raw records in, mappers out), and fixture reuse over inline literals.",
-      "path": "skills/sks-code-authoring"
     }
   ]
 }

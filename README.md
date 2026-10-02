@@ -118,6 +118,7 @@ specification, compatible with the
 | `sks-discussion-triage` | Use when triaging an existing org discussion: category, body shape, Q&A answer, and conversion to an issue. |
 | `sks-doc` | Use when documenting a project in the repo's docs/ directory after a behavior-changing PR. |
 | `sks-evolve` | Use when evolving the agent substrate without a hand-named target: mine experience for signals, evolve skills, profiles, memory, conventions, cron, or config, and repeat the fitness loop. |
+| `sks-fleet` | Use when maintaining many open stacked PRs on one org repo: git stack restacks, fleet-wide review sweeps, history rewrites, and CI polling. |
 | `sks-gc` | Use when reclaiming resources leaked by jj-based agent workflows — dangling bookmarks, skill-created jj workspaces, and leftover working-copy dirs from sks-async/sks-dev. |
 | `sks-gist` | Use when a verified command, script, config, or output would be retyped or re-derived later — publish it as a gist for DRY reuse and link it from the artifact that motivated it. |
 | `sks-github-text-authoring` | Use when writing any GitHub text in the target org's repos — commit message, issue or PR body, discussion RFC, review or issue comment. Owns all shared prose rules; surface skills handle procedure. |

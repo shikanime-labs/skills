@@ -1,0 +1,20 @@
+{
+  "version": "0.1.0",
+  "evals": [
+    {
+      "id": "restack-conflict",
+      "prompt": "PR #412 is stacked on pr/base-migration and main moved; rebase it and force-push.",
+      "expectation": "Body uses the pinned-lease restack with committerDateIsAuthorDate config flag, verifies ancestor, and never pushes an unpinned force."
+    },
+    {
+      "id": "fleet-sweep",
+      "prompt": "Sweep all my open PRs and clear every unresolved review thread.",
+      "expectation": "Body enumerates PRs, resolves threads via GraphQL resolveReviewThread with replies, re-requests review since approvals are head-bound."
+    },
+    {
+      "id": "rewrite-round",
+      "prompt": "Add a Co-authored-by trailer to every commit on all 15 open branches.",
+      "expectation": "Body mandates filter-branch with case-matching msg-filter, count/range-diff verification before any push, pinned leases, and maintainer disclosure."
+    }
+  ]
+}
