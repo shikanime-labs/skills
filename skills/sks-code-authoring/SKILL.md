@@ -64,7 +64,11 @@ cloud-pi-native/console repository.
 6. **Aliases are a smell.** An import renamed at the import site (`x as y`)
    means the source export is misnamed or colliding — fix the source, don't
    alias.
-7. **Verify with the targeted tests** for the touched module, not the full
+7. **Fix at the shared source.** A defect fixed by a guard duplicated in
+   every caller is a second bug; repair the one place all callers route
+   through.
+8. **Helpers return new objects**; inputs are never mutated in place.
+9. **Verify with the targeted tests** for the touched module, not the full
    suite, before reporting done.
 
 ## Pitfalls

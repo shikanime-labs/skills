@@ -57,3 +57,10 @@ severity markers `[🔴 Bloquant][🟠 Important][🟡 Nit][⚪ Suggestion]
 own PR: post `event=COMMENT` reviews with the 🔴 marker instead. Blocking
 threads that are fixed and answered are resolved via the GraphQL
 `resolveReviewThread` mutation.
+
+## Testing details (moved from AGENTS.md)
+
+- Deterministic tests: a faker draw must never be able to cross a branch
+  threshold (pin the draw window), otherwise CI flakes.
+- Always prefer `mockDeep` for mocks (type safety over plain `vi.fn()` or
+  hand-rolled doubles); no describe-scope calls.
