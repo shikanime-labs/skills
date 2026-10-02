@@ -99,3 +99,20 @@ GitOps source; restart converges the PVC to Git, so rotations land via the
 repo, never via the WebUI. Verify the pull byte-for-byte after Qt-quote
 normalization (strip surrounding `"`): a diff of quoted vs unquoted strings
 is normal; a length mismatch minus the quotes is real drift.
+
+## Whole-config envelope trap (prowlarr/seerr, PR #2736)
+
+Config-sync seeds (`config.xml`, `settings.json`) encrypt the RAW config
+file — `sops -e raw.xml > config.enc.yaml` — NOT a `{data: <raw>}` YAML
+envelope. `sops -e -i` (and stdin encrypt) of non-YAML input silently
+YAML-wraps it into `data: |`. Prove the shape against the live cluster:
+`kubectl get secret <gen> -o jsonpath='{.data.<key>}' | base64 -d` shows raw
+bytes (qbittorrent/bazarr) — Flux sops-decrypts BEFORE kustomize builds the
+Secret, so the Secret key holds plaintext config directly.
+
+And byte-compare with explicit output types: `sops -d file` emits YAML on
+stdout by default even for json/binary plaintext — verify with
+`sops -d --output-type binary` (or `json`) or every `cmp` fails spuriously.
+Never `sops -e -i /tmp/pulled.json` in place: a later re-encrypt of the same
+path then fails with "contains a top-level entry called 'sops'" and the
+/tmp plaintext is gone — keep a pristine pull.

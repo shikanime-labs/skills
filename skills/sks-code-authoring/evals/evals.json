@@ -1,0 +1,42 @@
+{
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "A nested factory delegates to the shared make when one produces the exact select shape, extracts a new util only when none does, and overrides stay Partial<Thing>.",
+      "files": [],
+      "prompt": "This factory builds a ten-field nested owner object inline. Extract it, and also this overrides signature looks convoluted: Partial<Omit<Thing,'owner'>> & { owner?: Thing['owner'] }.",
+      "assertions": [
+        "Frontmatter parses as valid YAML.",
+        "Frontmatter 'name' field equals 'sks-code-authoring'.",
+        "The body requires surveying existing exported names before naming a new one.",
+        "The body prescribes make<Thing>Record only where a <Thing>Record type exists and With-suffixes for enriched shapes.",
+        "The body requires nested factories to reuse the shared make of the exact select shape before extracting a new util.",
+        "The body simplifies overrides to Partial<Thing> unless the field needs a genuinely different type."
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "A fleet-wide grep survey of exported names per branch, majority pattern adopted, lone outliers renamed, PR-introduced scope only.",
+      "files": [],
+      "prompt": "Realign all open PRs to the naming consensus the codebase has settled on.",
+      "assertions": [
+        "The body prescribes the realignment method: survey export names across branches, aggregate, adopt the majority, rename outliers.",
+        "The body scopes realignment to PR-introduced code (diff vs main), leaving main-inherited names alone.",
+        "The body requires targeted module tests after renames.",
+        "The body treats import aliases as a smell fixed at the source."
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "Language-level typing strictness routes to sks-ts-authoring; this skill covers naming consensus and layering, not TS type rules.",
+      "files": [],
+      "prompt": "Remove the as-any casts and set up zod parsing at the controller boundary.",
+      "assertions": [
+        "The skill defers language-level strictness (casts, edge parsing) to sks-ts-authoring via See also or related skills.",
+        "The body's layer rule keeps services returning raw records with controllers mapping to contract shapes.",
+        "The prompt does not match the skill's When to Use triggers without a naming or layering component."
+      ]
+    }
+  ],
+  "skill_name": "sks-code-authoring"
+}

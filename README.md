@@ -146,6 +146,7 @@ specification, compatible with the
 | `sks-sudo` | Use when a gh operation must run under a different org identity: lock, switch to the agent account, confirm the flip, restore the operator. |
 | `sks-swarm` | Use when distributing a task across a cluster of agents over A2A — route by capability need, machine resource, and runner pressure, optionally in a disposable sks-adversarial sandbox. |
 | `sks-ts-authoring` | Use when writing or reviewing TypeScript: parse-don't-validate boundaries, cast-free explicit types, linear single-purpose functions, and schema-first inputs. |
+| `sks-code-authoring` | Use when writing or reviewing domain code in an org repo: naming consensus (make/Record/With-suffix factories), layer discipline (raw records in, mappers out), and fixture reuse over inline literals. |
 | `sks-repo` | Use when creating a new org repo: apply the 5-ruleset protection template, bootstrap the devlib devenv scaffold, and tag v0.1.0. |
 | `sks-triage` | Use when triaging a target org, repo, issue, or PR: sweep the scope for untriaged items, then assign every empty, context-derivable field — type, labels, assignee, fields. |
 | `sks-update` | Use when updating skills or profiles in a skills catalog: curate every skill by default (or named ones only), land through the dev workflow, and resync to local Hermes agents. |
