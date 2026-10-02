@@ -1,0 +1,3 @@
+# Scanner: exclude eval fixtures from skill scanning.
+# SKILL.md is always scanned and cannot be ignored.
+evals/

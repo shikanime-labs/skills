@@ -161,7 +161,7 @@
     },
     {
       "name": "cpn-release-patch",
-      "description": "Use when backporting the commits between two release tags onto a hotfix branch in \u003corg\u003e/\u003crepo\u003e: find the patch milestone and duplicate those commits onto the tag with jj.",
+      "description": "Use when backporting the commits between two release tags onto a hotfix branch in <org>/<repo>: find the patch milestone and duplicate those commits onto the tag with jj.",
       "path": "skills/cpn-release-patch"
     },
     {
@@ -218,6 +218,11 @@
       "name": "sks-update",
       "description": "Use when updating skills or profiles in a skills catalog: curate every skill by default (or named ones only), land through the dev workflow, and resync to local Hermes agents.",
       "path": "skills/sks-update"
+    },
+    {
+      "name": "sks-code-authoring",
+      "description": "Use when writing or reviewing domain code in an org repo: naming consensus (make/Record/With-suffix factories), layer discipline (raw records in, mappers out), and fixture reuse over inline literals.",
+      "path": "skills/sks-code-authoring"
     }
   ]
 }
