@@ -68,8 +68,9 @@ the default stack does not already cover it:
   naming and structure over prose first. If the code is clear, the comment goes.
 - **JSON output** — when a module needs to emit JSON, bind the format once
   at the top of the file (`let json = pkgs.formats.json { };`) and reference
-  `json.generate` — not an inline `pkgs.formats.json { }` at each use site.
-  One binding, one name, same rule as any other single shared value.
+  `json.generate` — never an inline `pkgs.formats.json { }` at each use site
+  and never a `(pkgs.formats.json { }).generate` parenthesized-access chain;
+  the repo style is `let ... in`, even for a single use site.
 - **New options / new attrs** — add only when a real consumer needs a distinct
   knob. An option that duplicates a default, wraps another option with no added
   behavior, or exists "in case we need it" is tech debt, not insurance.
@@ -112,10 +113,11 @@ The rule of thumb: if the default already does it, do not add a layer.
    literal, keep the merged record even if you are only touching one leaf:
    always merge into the attrset rather than splitting a record into dotted
    single-leaf assignments.
-3. **Inline single-use let bindings.** If a `let` binds exactly one use, inline
-   it unless naming it makes the expression genuinely clearer. A binding that
-   exists only to avoid repeating a long expression once is sometimes worth it;
-   a binding that exists "to be tidy" for a single use is YAGNI.
+3. **`let ... in` over parenthesized access.** Never write an
+   `(expr).attr` access chain (e.g. `(pkgs.formats.json { }).generate`);
+   bind the expression to a name in a `let` and select on the name, even
+   for a single use site. The binding site is where a reader looks for what
+   the value is.
 4. **No explanatory comments. Name the intermediate instead.** A comment that
    exists only to label a chunk of a list or expression is a symptom that the
    chunk should be named. Prefer:
@@ -164,8 +166,8 @@ yourself doing one, stop and ask whether the default already covers it.
   default.** That is one line that adds surface and zero behavior. Remove it.
 - **A package wrap that only sets the default flags the upstream wrapper already
   sets.** If the upstream already builds what you want, use it directly.
-- **A `let` that binds a value used once and exists only to shorten a line.**
-  Inline it unless the name carries meaning the expression lacks.
+- **An `(expr).attr` access chain.** Bind with `let ... in` and select on the
+  name, single use site or not.
 - **A comment that restates the code.** Delete it.
 - **A `with` import used to shave a few keystrokes across a wide scope.**
   Explicit is better than implicit here; `with` obscures where names come

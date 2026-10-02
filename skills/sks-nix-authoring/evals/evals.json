@@ -2,7 +2,7 @@
   "evals": [
     {
       "id": 1,
-      "expected_output": "Author Nix with sorted keys, inline single-use let bindings, no explanatory comments, and nix fmt applied — and skips adding an option the defaults already cover.",
+      "expected_output": "Author Nix with sorted keys, let ... in bindings over parenthesized access, no explanatory comments, and nix fmt applied — and skips adding an option the defaults already cover.",
       "files": [],
       "prompt": "I need to add a new option to a machines profile module and wire it into the flake. Write it the shikanime way.",
       "assertions": [
@@ -12,7 +12,8 @@
         "Body contains at least one '##' heading",
         "Body states nix fmt owns formatting and the file must be fmt-checked after editing",
         "Body states sorted keys / record-literal style is the house norm (dotted assignment for one leaf, record literal with sorted keys for two or more)",
-        "Body states single-use let bindings should be inlined unless the name carries meaning the expression lacks",
+        "Body states (expr).attr parenthesized access chains are avoided in favor of let ... in bindings, even for a single use site",
+        "Body states JSON output binds the format once with let (e.g. let json = pkgs.formats.json { };) and references json.generate",
         "Body states explanatory comments inside .nix are out of fashion and a comment restating the code should be deleted",
         "Body states a new option should only be added when a real non-default consumer exists, and defaults that mirror upstream should not be restated",
         "Body refers to sks-dev for the nix fmt whole-tree caveat (do not run bare nix fmt across non-Nix files / .enc.*)"
