@@ -88,26 +88,30 @@ The rule of thumb: if the default already does it, do not add a layer.
 
    For a single-file edit in a repo that is all-Nix (e.g. a profile module),
    `nix fmt <file>` is fine.
-2. **Keys sorted in any record you write or extend.** If two or more keys share
-   a parent, use a record literal with keys sorted; a single leaf under a shared
-   parent uses dotted assignment. Pattern:
+2. **Every attrset in a `.nix` file is key-sorted, and dotted assignments
+   fuse at their common ancestor.** Sorting is systematic: any record in a
+   file you touch is sorted, including pre-existing ones you did not author —
+   sort them in the same change rather than leaving them for later. Dot
+   notation is reserved for a path with no sibling: the moment two or more
+   assignments share an ancestor path, they fuse into one record literal at
+   that ancestor (keys sorted). Pattern:
 
    ```nix
-   # single leaf under parent `foo`
+   # `foo.bar` has no sibling — dotted stays
    foo.bar = v;
 
-   # two or more keys under `foo` → record literal, keys sorted
-   foo = {
-     bar = v1;
-     baz = v2;
+   # two entries share ancestor `foo.bar` — fuse there, keys sorted
+   foo.bar = {
+     baz = v1;
+     qux = v2;
    };
    ```
 
-   Do not mix the two styles inside the same parent haphazardly — pick the style
-   that matches how many keys actually live under that parent. When editing an
-   existing parent that already uses a record literal, keep the merged record
-   even if you are only touching one leaf: always merge the attrset rather
-   than splitting a record into dotted single-leaf assignments.
+   The ancestor is the longest path the entries share; fuse at that depth,
+   not higher. When editing an existing parent that already uses a record
+   literal, keep the merged record even if you are only touching one leaf:
+   always merge into the attrset rather than splitting a record into dotted
+   single-leaf assignments.
 3. **Inline single-use let bindings.** If a `let` binds exactly one use, inline
    it unless naming it makes the expression genuinely clearer. A binding that
    exists only to avoid repeating a long expression once is sometimes worth it;
