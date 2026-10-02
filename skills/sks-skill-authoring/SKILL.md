@@ -155,3 +155,5 @@ skill appears in all three registration surfaces, and fmt/rumdl are clean.
 - `sks-update` — whole-catalog loop this skill plugs into.
 - `sks-dev` — the shipping loop; authoring is its Phase 3 content.
 - `sks-adversarial` — sandbox to ground the procedure in before writing.
+- `sks-gist` — the snippet-level sibling: gist a verified one-off, promote to
+  a catalog skill when reuse recurs.

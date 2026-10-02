@@ -119,6 +119,7 @@ specification, compatible with the
 | `sks-doc` | Use when documenting a project in the repo's docs/ directory after a behavior-changing PR. |
 | `sks-evolve` | Use when evolving the agent substrate without a hand-named target: mine experience for signals, evolve skills, profiles, memory, conventions, cron, or config, and repeat the fitness loop. |
 | `sks-gc` | Use when reclaiming resources leaked by jj-based agent workflows — dangling bookmarks, skill-created jj workspaces, and leftover working-copy dirs from sks-async/sks-dev. |
+| `sks-gist` | Use when a verified command, script, config, or output would be retyped or re-derived later — publish it as a gist for DRY reuse and link it from the artifact that motivated it. |
 | `sks-github-text-authoring` | Use when writing any GitHub text in the target org's repos — commit message, issue or PR body, discussion RFC, review or issue comment. Owns all shared prose rules; surface skills handle procedure. |
 | `sks-investigate` | Use when investigating a bug, test failure, build break, or unexpected behavior — find root cause, form a hypothesis, and propose a solution, never apply the fix itself. |
 | `sks-issue` | Use when opening an issue in an org repo: body is the problem statement, acceptance criteria as a command-decidable tasklist. |

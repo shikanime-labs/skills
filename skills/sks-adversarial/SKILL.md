@@ -115,3 +115,4 @@ jj status && jj log -r @ -T 'bookmarks'
 - `sks-investigate` — root-cause discipline; use before isolating a fix.
 - `sks-pr-review` — the review gate a promoted change must still pass.
 - `sks-gc` — reclaim the sandbox once the trial is done.
+- `sks-gist` — publish a probe that survived as a reusable artifact.

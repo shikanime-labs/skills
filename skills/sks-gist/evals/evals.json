@@ -1,0 +1,42 @@
+{
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "Publishes the verified sequence as a secret gist, links the full URL from the issue, and does not author a catalog skill for a snippet.",
+      "files": [],
+      "prompt": "My investigation produced a recovery sequence that works. Save it somewhere reusable and link it from the issue.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-gist'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body instructs creating the gist with 'gh gist create' and linking the full URL where the motivation lives",
+        "Body states gists are secret by default and secret means unlisted, not private"
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "Updates the existing gist in place with edit -a and a refreshed description; never re-creates.",
+      "files": [],
+      "prompt": "The fix script changed since we published it — refresh the published copy without breaking the link in the issue.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-gist'",
+        "Body instructs 'gh gist edit' for updates, noting the URL is stable",
+        "Body warns that 'edit -a' renames the file when the name differs",
+        "Body forbids putting tokens or credentials in gists"
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "Routes to sks-skill-authoring instead: the reusable unit is a procedure, not a snippet, so it belongs in the catalog.",
+      "files": [],
+      "prompt": "I keep re-running the same five-step hotfix dance every month. Should I gist it again?",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-gist'",
+        "Body routes recurring multi-step procedures to catalog skills via 'sks-skill-authoring'",
+        "Body defines a recurrence threshold of three or more sessions"
+      ]
+    }
+  ],
+  "skill_name": "sks-gist"
+}

@@ -140,4 +140,4 @@ Confirm title + label set; issue in org repo.
 
 `sks-github-text-authoring` (prose rules), `sks-discussion`, `sks-pr` (links
 back via `Related:`), `sks-issue-refine`, `sks-issue-triage` (run after
-creation), `sks-doc`.
+creation), `sks-gist` (verified snippets too long for a comment), `sks-doc`.

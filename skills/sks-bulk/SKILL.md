@@ -192,5 +192,7 @@ named with its reason.
 - `sks-delegate` — isolation workspace for the change itself.
 - `sks-commit` — commit envelope the batch commits must carry.
 - `sks-pr-workflow`, `sks-issue-workflow` — per-repo PR and issue sides.
+- `sks-gist` — host a shared helper script at a stable URL when the batch
+  spans repos or sessions.
 - Org specifics (orgs, checkout paths, commit envelope, ruleset gate):
   `references/shikanime.md`.
