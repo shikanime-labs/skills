@@ -86,7 +86,22 @@ cloud-pi-native/console repository.
    transforms yields the INPUT type from infer-request helpers — alias the
    post-transform value with `z.infer<typeof XxxSchema>`.
    Check: no hand-written interface duplicates a schema's output shape.
-6. **Test business-critical paths, nothing more.** Name the critical paths
+6. **No import aliases; fix the source instead.** An aliased import
+   (`import { X as Y }`, or a path alias like `@/utils` re-pointed at a
+   local name) hides where a value actually comes from and usually papers
+   over a real defect: a name collision means two things share one concept
+   (rename one), an awkwardly long qualified name means the export is
+   misnamed (rename the export at its module), a re-export shim means a
+   dependency points the wrong way (import from the owning module).
+   First search for a shape that needs no alias — importing the module
+   namespace, de-`export`ing an internal, or merging duplicate
+   declarations. When a genuine, unfixable collision remains (generated
+   types, a third-party name you cannot rename), alias narrowly with a
+   comment naming the collision — that exception note is the structural
+   why comments are reserved for.
+   Check: changed files contain no `import ... as` and no ad-hoc path
+   aliasing; every remaining alias names its collision in a comment.
+7. **Test business-critical paths, nothing more.** Name the critical paths
    first — data integrity, auth, sync correctness, anything that costs
    money or loses data — and hold them at ≥80% coverage. Skip tests that
    re-assert types, getters, or framework wiring; excessive testing is its
@@ -100,7 +115,7 @@ cloud-pi-native/console repository.
    library, framework wiring) is tested where it lives — here only the
    interaction contract is asserted, with the dependency stubbed at the
    boundary.
-7. **Contain format and lint drift.** Fix-mode lint and format mutate
+8. **Contain format and lint drift.** Fix-mode lint and format mutate
    unrelated files. After every run, diff your scope and restore everything
    outside it; pre-existing errors in untouched files are trunk drift —
    report them, never fix them inside your PR.
@@ -111,6 +126,11 @@ cloud-pi-native/console repository.
 - A reviewed regex can be correct-but-scary; `new URL().href` plus a
   literal `.replace(/\/+$/, '')` keeps the behavior and kills the
   backtracking class. No super-linear regex on untrusted input.
+- An import alias is a code smell, not a convenience: when a change seems
+  to need `import { X as Y }`, first find the shape that avoids it —
+  rename the colliding export, import the module namespace, or un-export
+  the internal — and only alias a genuinely unfixable third-party
+  collision, with a comment naming it.
 - Renaming or reshaping a shared type silently breaks consumers: grep the
   callers first (`graft callers` where the graph is indexed).
 
@@ -119,6 +139,7 @@ cloud-pi-native/console repository.
 ```bash
 grep -rnE '\bas\s+(any|never|[A-Z])' <changed dirs>  # no casts
 grep -rn ': unknown' <changed dirs>                   # edge parsers only
+grep -rnE 'import\s+\{[^}]*\bas\b' <changed dirs>     # no import aliases
 jj diff -r 'main@origin..@' --stat                    # only intended files
 npx tsc --noEmit                                      # no new errors vs trunk
 ```
