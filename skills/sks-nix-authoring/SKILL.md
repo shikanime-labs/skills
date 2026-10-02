@@ -66,6 +66,10 @@ the default stack does not already cover it:
   A comment that restates what the line does is noise; a comment that
   records WHY a non-obvious choice was made can earn its place, but prefer
   naming and structure over prose first. If the code is clear, the comment goes.
+- **JSON output** — when a module needs to emit JSON, bind the format once
+  at the top of the file (`let json = pkgs.formats.json { };`) and reference
+  `json.generate` — not an inline `pkgs.formats.json { }` at each use site.
+  One binding, one name, same rule as any other single shared value.
 - **New options / new attrs** — add only when a real consumer needs a distinct
   knob. An option that duplicates a default, wraps another option with no added
   behavior, or exists "in case we need it" is tech debt, not insurance.
@@ -100,7 +104,10 @@ The rule of thumb: if the default already does it, do not add a layer.
    ```
 
    Do not mix the two styles inside the same parent haphazardly — pick the style
-   that matches how many keys actually live under that parent.
+   that matches how many keys actually live under that parent. When editing an
+   existing parent that already uses a record literal, keep the merged record
+   even if you are only touching one leaf: always merge the attrset rather
+   than splitting a record into dotted single-leaf assignments.
 3. **Inline single-use let bindings.** If a `let` binds exactly one use, inline
    it unless naming it makes the expression genuinely clearer. A binding that
    exists only to avoid repeating a long expression once is sometimes worth it;
