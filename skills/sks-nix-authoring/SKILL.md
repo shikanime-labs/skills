@@ -71,6 +71,11 @@ the default stack does not already cover it:
   `json.generate` — never an inline `pkgs.formats.json { }` at each use site
   and never a `(pkgs.formats.json { }).generate` parenthesized-access chain;
   the repo style is `let ... in`, even for a single use site.
+- **Module/function header** — the top-level parameter is `{ ... }:` when
+  anything is bound (ellipsis catch-all, not `_:`), and when a file's
+  top-level lambda binds nothing the header is dropped entirely:
+  `_: ...body` becomes just the body. An unused `_:` is a defect, not a
+  placeholder.
 - **New options / new attrs** — add only when a real consumer needs a distinct
   knob. An option that duplicates a default, wraps another option with no added
   behavior, or exists "in case we need it" is tech debt, not insurance.
