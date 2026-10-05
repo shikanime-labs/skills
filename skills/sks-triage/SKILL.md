@@ -187,6 +187,10 @@ closure is deliberate (`sks-issue-triage`).
   the endpoint technically accepts a PR's issue object, but org PRs stay
   empty — never set fields on a PR.
 - **Enumeration needs `--paginate`** — without it, items above 100 vanish.
+- **Empty TSV columns collapse under `read -r`** — trailing/adjacent empty
+  fields shift columns left, so an item with all-empty fields can parse as
+  complete and be silently skipped. Emit a literal `none` sentinel from jq for
+  any column the gap-check treats as emptiness.
 - **Sweeps are bounded.** More than CAP items → touch CAP, report the rest;
   never let an unattended run scale with the backlog.
 - **Do not diagnose, close, or reword here.** Those are `sks-investigate` /

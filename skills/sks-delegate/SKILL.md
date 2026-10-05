@@ -114,6 +114,11 @@ has not entered the dev loop.
 - `git show`/`git ls-remote <remote>` fail in jj workspaces (git CLI does not
   see jj remotes or the shared store). Use `jj file show -r <commit> <path>`
   for file content and `git ls-remote <repo-url>` for push verification.
+- Unit targeting an in-flight PR (not a fresh branch): pin the workspace to
+  the PR's bookmark (`jj workspace add ../<repo>.<unit> -r <pr-branch>`),
+  commit on top, then `jj bookmark move <pr-branch> --to @-` + push — a
+  fast-forward ride on the existing PR; never open a duplicate PR. Read
+  target files at the PR head (they may diverge from main).
 - Validate GitHub issue-form YAML with the repo's own toolchain instead of
   hunting for a Python yaml module: `node -e` + `require.resolve('js-yaml',
   { paths: ['./node_modules/.pnpm/node_modules'] })` in a pnpm monorepo.
