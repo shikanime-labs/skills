@@ -21,6 +21,21 @@ Load when working in the cloud-pi-native/console repository.
   fini` ledger) → issue comments → PR. Discussion RFC first when the problem
   is unconverged.
 
+## Board tracking
+
+- Console cards live on the org-owned board "Socle" (project 2, owner
+  `cloud-pi-native` — this org owns its own boards, unlike the shikanime
+  owner-user convention). Status options: Backlog / To do / In progress /
+  To review / Ready for test HP / Done. Status and Priority are per-card
+  Projects V2 fields, never auto-filled at issue creation — set them
+  explicitly (`gh project item-edit --id <itemID>`; there is no `--item-id`).
+  Sprint boards: 13 Backlog-PI18,
+  14 PI-18- exploit', 15 Exploit - PI18.
+- The sidebar "Fields" (Priority, Effort) are org-level issue fields, a
+  separate system from board fields; the REST org-fields endpoint 404s for
+  non-admin org members, and nothing populates them on `gh issue create`.
+  An empty sidebar Fields section is normal, not a sync failure.
+
 ## Checkout et layout
 
 - Checkout local : `~/Source/Repos/github.com/cloud-pi-native` ; dépôt
@@ -146,5 +161,10 @@ Load when working in the cloud-pi-native/console repository.
   seconds). Do NOT symlink the parent checkout's `node_modules` into the
   workspace — pnpm's `confirmModulesPurge` aborts non-TTY
   (`ERR_PNPM_ABORTED_REMOVE_MODULES_DIR_NO_TTY`). Build the dep chain before
-  gating: `pnpm -C packages/logger build` precedes `packages/shared`; then
-  `pnpm -C apps/client type-check` + scoped eslint.
+  gating: `pnpm -C packages/logger build` precedes `packages/shared`, plus
+  `packages/hooks`; then `pnpm -C apps/server-nestjs run db:generate`
+  (postinstall is skipped by --ignore-scripts, so the first server build
+  fails with hundreds of TS2305 'no exported member' errors until the
+  Prisma client is generated), then `pnpm -C apps/server-nestjs build`
+  (no type-check script; build IS the tsc gate) + scoped eslint
+  (`eslint --fix` — perfectionist collation guesses fail by hand).

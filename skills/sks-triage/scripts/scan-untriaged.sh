@@ -28,7 +28,8 @@ gh api --paginate "repos/$REPO/issues?state=open&per_page=100" --jq '.[] |
    (.type.name // "-"),
    ([.labels[].name] | join(",")),
    ([.assignees[].login] | join(",")),
-   ([.issue_field_values[].issue_field_name] | join(",")),
+   (if ([.issue_field_values[].issue_field_name] | length) == 0 then "none"
+    else [.issue_field_values[].issue_field_name] | join(",") end),
    (.milestone.title // "-")] | @tsv' |
   while IFS=$'\t' read -r n kind type labels assignees fields milestone; do
     gaps=""
@@ -44,7 +45,7 @@ gh api --paginate "repos/$REPO/issues?state=open&per_page=100" --jq '.[] |
     if [[ $MILESTONES -gt 0 && $milestone == "-" ]]; then
       gaps+="milestone,"
     fi
-    if [[ $kind == issue && $FIELDS -gt 0 && -z $fields ]]; then
+    if [[ $kind == issue && $FIELDS -gt 0 && $fields == "none" ]]; then
       gaps+="fields,"
     fi
     if [[ -n $gaps ]]; then
