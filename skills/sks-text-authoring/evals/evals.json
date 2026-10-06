@@ -6,7 +6,7 @@
       "files": [],
       "prompt": "Rewrite this runbook section in plain English — sentences are way too long and every other line uses a different word for the same thing.",
       "assertions": [
-        "YAML frontmatter parses and 'name' equals 'sks-plain-english'",
+        "YAML frontmatter parses and 'name' equals 'sks-text-authoring'",
         "Frontmatter description starts with 'Use when' and is at most 200 characters",
         "Frontmatter license field is 'Apache-2.0'",
         "Body contains at least one '##' heading",
@@ -22,7 +22,7 @@
       "files": [],
       "prompt": "Check this incident report against ASD-STE100 and tell me everything that breaks the standard.",
       "assertions": [
-        "YAML frontmatter parses and 'name' equals 'sks-plain-english'",
+        "YAML frontmatter parses and 'name' equals 'sks-text-authoring'",
         "Frontmatter license field is 'Apache-2.0'",
         "Body states the semicolon is forbidden and two sentences are written instead",
         "Body leaves code, commands, flags, and quoted errors byte-identical to the source",
@@ -36,11 +36,11 @@
       "files": [],
       "prompt": "Apply Simplified Technical English to our landing page hero copy to make it punchy for the product launch.",
       "assertions": [
-        "YAML frontmatter parses and 'name' equals 'sks-plain-english'",
+        "YAML frontmatter parses and 'name' equals 'sks-text-authoring'",
         "Frontmatter description starts with 'Use when' and is at most 200 characters",
         "Body states the skill does not apply to marketing copy, blog voice, or brand writing"
       ]
     }
   ],
-  "skill_name": "sks-plain-english"
+  "skill_name": "sks-text-authoring"
 }

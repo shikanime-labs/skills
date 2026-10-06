@@ -1,5 +1,5 @@
 ---
-name: sks-plain-english
+name: sks-text-authoring
 description:
   "Use when writing or revising technical English — docs, runbooks, commits,
   PR and issue bodies, error messages — under ASD-STE100 Simplified Technical

@@ -141,7 +141,7 @@ specification, compatible with the
 | `sks-split` | Use when one jj commit or in-flight stack has grown multiple responsibilities and must be split into parallel sibling units or a parent/child stack, decided per unit pair by dependency. |
 | `sks-kubernetes-manifests-authoring` | Use when authoring or editing Kubernetes manifests or kustomize overlays in a GitOps repo: placement, patches, generators, labels, probes, and live-cluster cross-checks. |
 | `sks-nix-authoring` | Use when authoring or editing Nix in an org repo: nixfmt-sorted style, single-use let bindings, no explanatory comments, YAGNI on new options. |
-| `sks-plain-english` | Use when writing or revising technical English — docs, runbooks, commits, PR and issue bodies, error messages — under ASD-STE100 Simplified Technical English rules. |
+| `sks-text-authoring` | Use when writing or revising technical English — docs, runbooks, commits, PR and issue bodies, error messages — under ASD-STE100 Simplified Technical English rules. |
 | `sks-sops-secrets-authoring` | Use when editing sops-encrypted files: decrypt-and-edit workflow, re-encryption guards, and sops-nix secret plumbing. |
 | `sks-skill-authoring` | Use when creating a brand-new skill or profile for a skills catalog: grounded body, evals, manifests, and ship through the dev workflow. |
 | `sks-sudo` | Use when a gh operation must run under a different org identity: lock, switch to the agent account, confirm the flip, restore the operator. |
