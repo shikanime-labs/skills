@@ -7,7 +7,7 @@
       "prompt": "Issue #42 in shikanime-labs/skills just finished triage. Put it on the right board in the right column.",
       "assertions": [
         "YAML frontmatter parses and 'name' equals 'sks-project'",
-        "Body delegates board-per-family resolution to references/shikanime.md (an org fact) and probes `gh project list --owner <board-owner>` when context is ambiguous",
+        "Body delegates board-per-family resolution to references/shikanime.md (an org fact) and probes `gh project list --owner \u003cboard-owner\u003e` when context is ambiguous",
         "Body resolves the Status field and column option ids at runtime via gh project field-list with select(.name==\"Status\"), stating ids are per board and must never be hardcoded",
         "Body's phase map maps triage completion to the ready phase and instructs setting the matching column option",
         "Body instructs verifying the move by re-reading gh project item-list"
