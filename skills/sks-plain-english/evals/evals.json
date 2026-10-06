@@ -1,0 +1,46 @@
+{
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "Rewrites the text under STE structural rules: imperative procedures, conditions before commands, 20-word sentences, one word per concept.",
+      "files": [],
+      "prompt": "Rewrite this runbook section in plain English — sentences are way too long and every other line uses a different word for the same thing.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-plain-english'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body classifies each passage as procedural or descriptive before applying rules",
+        "Body caps procedural sentences at 20 words and descriptive sentences at 25",
+        "Body requires one word per concept and forbids synonym rotation",
+        "Body puts conditions before their commands, divided by a comma"
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "Runs a compliance check and reports each violation as the offending text plus a compliant rewrite, without inventing rule numbers.",
+      "files": [],
+      "prompt": "Check this incident report against ASD-STE100 and tell me everything that breaks the standard.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-plain-english'",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body states the semicolon is forbidden and two sentences are written instead",
+        "Body leaves code, commands, flags, and quoted errors byte-identical to the source",
+        "Body forbids citing rule numbers from memory; violations are reported as offending text plus a compliant rewrite",
+        "Body bans present perfect forms such as 'has completed' in favor of simple tenses"
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "The skill declines marketing copy by design and offers STE for the docs instead; the skill stays loadable and self-identifies.",
+      "files": [],
+      "prompt": "Apply Simplified Technical English to our landing page hero copy to make it punchy for the product launch.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-plain-english'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Body states the skill does not apply to marketing copy, blog voice, or brand writing"
+      ]
+    }
+  ],
+  "skill_name": "sks-plain-english"
+}
