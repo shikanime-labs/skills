@@ -3,8 +3,8 @@
     {
       "id": "routes-all-github-prose",
       "expected_output": "Routes the prose rules (no wrapping, #N refs, @ escaping, body-file discipline) to this skill while the PR body shape (# Why / ## What / ## References) comes from sks-pr.",
-      "notes": "Universal prose rules are stated as owned here, with structure delegated to surface skills.",
       "files": [],
+      "notes": "Universal prose rules are stated as owned here, with structure delegated to surface skills.",
       "prompt": "Draft the body for a PR in shikanime-labs/machines.",
       "assertions": [
         "The 'name' field equals 'sks-github-text-authoring'.",
@@ -16,8 +16,8 @@
     {
       "id": "no-shape-merging",
       "expected_output": "The skill refuses to merge shapes: the issue body uses the # Problem / ## Acceptance structure from sks-issue; prose rules still apply.",
-      "notes": "Shape leakage between surfaces is explicitly a defect.",
       "files": [],
+      "notes": "Shape leakage between surfaces is explicitly a defect.",
       "prompt": "Use sks-github-text-authoring to write an issue body with a # Why / ## What / ## References structure.",
       "assertions": [
         "The 'name' field equals 'sks-github-text-authoring'.",
@@ -29,8 +29,8 @@
     {
       "id": "repo-hook-override",
       "expected_output": "Repo-enforced overrides (gitlint, commitlint) beat the free-text no-wrap default; the commit carries Signed-off-by and a wrapped body with full URLs in Related:.",
-      "notes": "Override precedence is the edge case the skill must not get backwards.",
       "files": [],
+      "notes": "Override precedence is the edge case the skill must not get backwards.",
       "prompt": "Write a commit message for shikanime-labs/manifests, which enforces gitlint CC1 and an 80-column body.",
       "assertions": [
         "The 'name' field equals 'sks-github-text-authoring'.",

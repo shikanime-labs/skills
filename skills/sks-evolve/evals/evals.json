@@ -10,7 +10,7 @@
         "Frontmatter description starts with 'Use when' and is at most 200 characters",
         "Frontmatter license field is 'Apache-2.0'",
         "Body contains at least one '##' heading",
-        "Body presents the loop as sense -> decide -> act -> measure",
+        "Body presents the loop as sense -\u003e decide -\u003e act -\u003e measure",
         "Body mines memory or session history as the signal source",
         "Body delegates execution to sks-curate, sks-update, or sks-skill-authoring",
         "Body never merges or lands its own PR"
