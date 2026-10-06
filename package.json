@@ -195,6 +195,11 @@
         "path": "skills/sks-nix-authoring"
       },
       {
+        "name": "sks-plain-english",
+        "description": "Use when writing or revising technical English — docs, runbooks, commits, PR and issue bodies, error messages — under ASD-STE100 Simplified Technical English rules.",
+        "path": "skills/sks-plain-english"
+      },
+      {
         "name": "sks-skill-authoring",
         "description": "Use when creating a brand-new skill or profile for a skills catalog: grounded body, evals, manifests, and ship through the dev workflow.",
         "path": "skills/sks-skill-authoring"
