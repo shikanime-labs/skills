@@ -86,7 +86,7 @@
     },
     {
       "name": "sks-investigate",
-      "description": "Use when investigating a bug, test failure, build break, or unexpected behavior — find root cause, form a hypothesis, and propose a solution, never apply the fix itself.",
+      "description": "Use when investigating a bug, test failure, build break, or unexpected behavior — find root cause, propose the solution without applying it, and set up the linked issue the proposal lives in.",
       "path": "skills/sks-investigate"
     },
     {
@@ -103,11 +103,6 @@
       "name": "sks-issue-triage",
       "description": "Use when triaging an existing org issue: assign type, labels, assignee, milestone, project, relationships, and fields; close with rationale if not workable.",
       "path": "skills/sks-issue-triage"
-    },
-    {
-      "name": "sks-issue-workflow",
-      "description": "Use when you need the single entry point for the issue side: create, refine, and triage the issue before any PR.",
-      "path": "skills/sks-issue-workflow"
     },
     {
       "name": "sks-land",

@@ -17,7 +17,7 @@ metadata:
       - sks-pr-triage
       - sks-land
       - sks-pr-resolve
-      - sks-issue-workflow
+      - sks-investigate
 platforms:
   - linux
   - macos
@@ -73,7 +73,7 @@ Do NOT open the PR until both checks pass.
 
 ### 1. Ensure linked issue exists
 
-If `#N` not provided/converged, load `sks-issue` (or `sks-issue-workflow`) and
+If `#N` not provided/converged, load `sks-issue` (or `sks-investigate`) and
 create first. A PR never opens without an issue. Verify match via
 `jj show <commit>` before linking.
 
@@ -133,6 +133,6 @@ must be a seen decision, not an unread field.
 
 ## See also
 
-- `sks-issue`/`sks-issue-workflow` — issue to solve.
+- `sks-issue`/`sks-investigate` — issue to solve.
 - `sks-pr` — create step.
 - `sks-pr-triage` — metadata step.

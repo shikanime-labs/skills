@@ -88,6 +88,94 @@
         "Body tells you to read back and verify the file write landed",
         "Body says to split host reachability from workload/pod reachability for the add-on failure"
       ]
+    },
+    {
+      "id": 8,
+      "expected_output": "The absorbed issue-setup procedure applies: research root cause, create the linked issue with a converged ledger, refine, triage, and propose the fix without applying it.",
+      "files": [],
+      "prompt": "Open and set up an issue on my org's actions repo for the rwx nfs v4.0 bug before any PR.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-investigate'",
+        "Body contains the absorbed issue-setup procedure (create via sks-issue, refine via sks-issue-refine, triage via sks-issue-triage)",
+        "Body keeps the research-only Iron Law (propose, never apply the fix)"
+      ]
+    },
+    {
+      "id": 9,
+      "expected_output": "The absorbed issue-setup procedure applies: research root cause, create the linked issue with a converged ledger, refine, triage, and propose the fix without applying it.",
+      "files": [],
+      "prompt": "Take this problem through to a fully triaged issue before I open a PR.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-investigate'",
+        "Body contains the absorbed issue-setup procedure (create via sks-issue, refine via sks-issue-refine, triage via sks-issue-triage)",
+        "Body keeps the research-only Iron Law (propose, never apply the fix)"
+      ]
+    },
+    {
+      "id": 10,
+      "expected_output": "The absorbed issue-setup procedure applies: research root cause, create the linked issue with a converged ledger, refine, triage, and propose the fix without applying it.",
+      "files": [],
+      "prompt": "What's the entry point for handling an issue in my org's repos?",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-investigate'",
+        "Body contains the absorbed issue-setup procedure (create via sks-issue, refine via sks-issue-refine, triage via sks-issue-triage)",
+        "Body keeps the research-only Iron Law (propose, never apply the fix)"
+      ]
+    },
+    {
+      "id": 11,
+      "expected_output": "The absorbed issue-setup procedure applies: research root cause, create the linked issue with a converged ledger, refine, triage, and propose the fix without applying it.",
+      "files": [],
+      "prompt": "Open an issue on my org's actions repo and also merge the resulting PR for me once it's ready.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-investigate'",
+        "Body contains the absorbed issue-setup procedure (create via sks-issue, refine via sks-issue-refine, triage via sks-issue-triage)",
+        "Body keeps the research-only Iron Law (propose, never apply the fix)"
+      ]
+    },
+    {
+      "id": 12,
+      "expected_output": "The absorbed issue-setup procedure applies: research root cause, create the linked issue with a converged ledger, refine, triage, and propose the fix without applying it.",
+      "files": [],
+      "prompt": "Set up the issue side in cloud-pi-native/console: open and triage the issue for this root cause before any PR.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-investigate'",
+        "Body contains the absorbed issue-setup procedure (create via sks-issue, refine via sks-issue-refine, triage via sks-issue-triage)",
+        "Body keeps the research-only Iron Law (propose, never apply the fix)"
+      ]
+    },
+    {
+      "id": 13,
+      "expected_output": "The absorbed issue-setup procedure applies: research root cause, create the linked issue with a converged ledger, refine, triage, and propose the fix without applying it.",
+      "files": [],
+      "prompt": "set up the issue for me",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-investigate'",
+        "Body contains the absorbed issue-setup procedure (create via sks-issue, refine via sks-issue-refine, triage via sks-issue-triage)",
+        "Body keeps the research-only Iron Law (propose, never apply the fix)"
+      ]
+    },
+    {
+      "id": 14,
+      "expected_output": "The absorbed issue-setup procedure applies: research root cause, create the linked issue with a converged ledger, refine, triage, and propose the fix without applying it.",
+      "files": [],
+      "prompt": "Use sks-issue to open and triage an issue in cloud-pi-native/console before any PR.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-investigate'",
+        "Body contains the absorbed issue-setup procedure (create via sks-issue, refine via sks-issue-refine, triage via sks-issue-triage)",
+        "Body keeps the research-only Iron Law (propose, never apply the fix)"
+      ]
+    },
+    {
+      "id": 15,
+      "expected_output": "The absorbed issue-setup procedure applies: research root cause, create the linked issue with a converged ledger, refine, triage, and propose the fix without applying it.",
+      "files": [],
+      "prompt": "Mène ce problème jusqu'à une issue convergée et triée sur le dépôt console.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-investigate'",
+        "Body contains the absorbed issue-setup procedure (create via sks-issue, refine via sks-issue-refine, triage via sks-issue-triage)",
+        "Body keeps the research-only Iron Law (propose, never apply the fix)"
+      ]
     }
   ],
   "skill_name": "sks-investigate"

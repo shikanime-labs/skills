@@ -79,7 +79,7 @@ tool for the unit you already have.
 | #   | Phase                                        | Owner                | Gate                  |
 | --- | -------------------------------------------- | -------------------- | --------------------- |
 | 0   | Discussion (RFC) if unconverged              | `sks-discussion`     | entry                 |
-| 1–2 | Issue: create → refine → triage              | `sks-issue-workflow` | **ledger settled**    |
+| 1–2 | Issue: create → refine → triage              | `sks-investigate` | **ledger settled**    |
 | 3   | Branch + implement (fresh jj workspace)      | `sks-delegate`          | **workspace created** |
 | 4   | Commit (plain-English + org trailer)         | `sks-commit`         | **commit shape**      |
 | 5   | Adversarial code review                      | `sks-pr-review`      | **review gate**       |
@@ -123,7 +123,7 @@ silent scope change:
   `true`; some orgs return an empty `.viewerPermission` — org quirks per
   `references/shikanime.md`)
 - jj repo: `.jj/` / `jj status` → `jj bookmark track` before push
-- issue exists (issue-first) — else `sks-issue-workflow`
+- issue exists (issue-first) — else `sks-investigate`
 - NixOS repo: `nix` available (build-verify gate)
 
 Report `BLOCKED: <req> — <evidence> — <recovery>`. Independent unblocked
@@ -364,7 +364,7 @@ jj status && jj log -r @ -T 'bookmarks ++ " "'
 
 ## See also
 
-`sks-issue-workflow` / `sks-pr-workflow` (issue & PR sides), `sks-commit`,
+`sks-investigate` / `sks-pr-workflow` (issue & PR sides), `sks-commit`,
 `sks-delegate` (isolation), `sks-async` (stacked PRs), `sks-swarm` (agent
 cluster), `sks-pr-review` (phase 5), `ponytail-review` (over-engineering
 lens). Authoring-convention skills apply during the write phase:

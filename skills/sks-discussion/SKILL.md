@@ -15,7 +15,7 @@ metadata:
     related_skills:
       - sks-discussion-triage
       - sks-issue
-      - sks-issue-workflow
+      - sks-investigate
 platforms:
   - linux
   - macos

@@ -46,7 +46,7 @@
       "id": 4,
       "expected_output": "The skill applies its generic procedure; org-specific conventions load from references.",
       "files": [],
-      "prompt": "Use sks-issue-workflow to open and triage an issue in cloud-pi-native/console before any PR.",
+      "prompt": "Use sks-investigate to open and triage an issue in cloud-pi-native/console before any PR.",
       "assertions": [
         "Frontmatter parses as valid YAML.",
         "The 'name' field equals 'sks-issue-refine'."

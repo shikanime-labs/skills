@@ -18,7 +18,7 @@ metadata:
       - sks-commit
       - sks-delegate
       - sks-dev
-      - sks-issue-workflow
+      - sks-investigate
       - sks-pr-workflow
 platforms:
   - linux
@@ -191,7 +191,7 @@ named with its reason.
 - `sks-dev` — the one-repo loop this scales out.
 - `sks-delegate` — isolation workspace for the change itself.
 - `sks-commit` — commit envelope the batch commits must carry.
-- `sks-pr-workflow`, `sks-issue-workflow` — per-repo PR and issue sides.
+- `sks-pr-workflow`, `sks-investigate` — per-repo PR and issue sides.
 - `sks-gist` — host a shared helper script at a stable URL when the batch
   spans repos or sessions.
 - Org specifics (orgs, checkout paths, commit envelope, ruleset gate):

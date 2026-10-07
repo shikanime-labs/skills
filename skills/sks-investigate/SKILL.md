@@ -2,8 +2,8 @@
 name: sks-investigate
 description:
   Use when investigating a bug, test failure, build break, or unexpected
-  behavior — find root cause, form a hypothesis, and propose a solution,
-  never apply the fix itself.
+  behavior — find root cause, propose the solution without applying it,
+  and set up the linked issue the proposal lives in.
 version: 0.3.0
 author: Hermes Agent
 license: Apache-2.0
@@ -21,6 +21,8 @@ metadata:
       - sks-async
       - sks-delegate
       - sks-issue
+      - sks-issue-refine
+      - sks-issue-triage
       - sks-dev
       - ponytail-audit
 platforms:
@@ -43,6 +45,8 @@ critical method, and flags where each step is commonly misapplied.
 - A test fails, build breaks, prod misbehaves, or behavior is unexpected.
 - "Why does X fail" / "trace this error" / "something regressed".
 - Especially under time pressure — guessing then is the most expensive path.
+- The investigation has a root cause but the linked issue does not exist yet
+  — "open and set up the issue for this root cause".
 
 ## Iron Law
 
@@ -55,6 +59,30 @@ the linked issue's comments (issue-first). Containment that stops active damage
 is a separate, explicitly-labeled act owned by the fix skills — never folded
 silently into an investigation. Hand off the change to `sks-issue` /
 `sks-dev` / `sks-pr` once the proposal is approved.
+
+## Issue setup (create → refine → triage)
+
+Setting up the linked issue is part of proposing — the issue is where the
+proposal lives — not applying a fix. This skill owns the order; each step's
+logic stays in its owning skill. When operating in cloud-pi-native/console,
+read `references/cloud-pi-native.md` for the org overrides of each step.
+
+1. **Create** — load `sks-issue`. Body = problem statement + `- [ ]` gate
+   ledger (command-decidable acceptance criteria); findings go in comments,
+   not the body. Result: issue `#N`.
+2. **Refine** — load `sks-issue-refine`; iterate the problem inside the
+   issue until acceptance criteria converge. Update the body's tasklist
+   only when criteria change. Skip only if already converged at creation
+   (rare).
+3. **Triage** — load `sks-issue-triage`; apply labels, assignee, milestone,
+   project now. Only empty/determinable fields — never invent a label the
+   repo lacks. Then set the card's board Status to `Ready` (`sks-project`);
+   `Backlog` only with a parked rationale.
+
+The issue-setup gate: converged `- [ ]` ledger and triage metadata set —
+labels non-empty, assignee present, a board card with Status set
+(`gh project item-list` is the authoritative check; `milestone` null must
+be a seen decision, not an unread field).
 
 ## The cycle is a fiction you keep anyway
 
@@ -115,9 +143,10 @@ step that would have shown the failure is in the network layer, not the handler.
   flexibility, reinvented stdlib — run `ponytail-review` (diff) or
   `ponytail-audit` (whole repo) on the failing component; its ranked
   delete/simplify list doubles as the fix plan.
-- Record it in the linked issue. The proposal is verified when the repro
-  confirms the theory and the proposed change addresses the source — not when
-  code is merged. Hand off the application.
+- Record it in the linked issue — create it via the issue-setup procedure
+  when absent. The proposal is verified when the repro confirms the theory
+  and the proposed change addresses the source — not when code is merged.
+  Hand off the application.
 
 ## Per-language minimal repro
 
@@ -200,6 +229,8 @@ echo "investigation complete: root cause + hypothesis + proposed fix" \
 - `sks-delegate` — canonical single-workspace isolation recipe before a fix.
 - `ponytail-audit` — when the defect's root cause is accidental complexity, its
   ranked simplification list seeds the proposal.
+- `sks-issue-refine` / `sks-issue-triage` — the refine and triage steps of
+  the absorbed issue setup.
 - `sks-gist` — publish a verified probe script or recovery sequence for reuse
   instead of letting it die in the transcript.
 - `sks-issue` / `sks-dev` / `sks-pr` — receive the proposed solution

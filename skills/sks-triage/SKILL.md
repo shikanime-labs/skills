@@ -19,7 +19,7 @@ metadata:
       - sks-issue-triage
       - sks-pr-triage
       - sks-discussion-triage
-      - sks-issue-workflow
+      - sks-investigate
       - sks-pr-workflow
       - sks-bulk
 platforms:
@@ -213,5 +213,5 @@ gh api "repos/$R/issues/$N" --jq '{type: (.type.name // "-"),
 - `sks-issue-triage` — deep single-issue flow, closure, transfer.
 - `sks-pr-triage` — deep single-PR flow, body↔diff reconciliation.
 - `sks-discussion-triage` — discussions.
-- `sks-issue-workflow` / `sks-pr-workflow` — run triage right after creating.
+- `sks-investigate` / `sks-pr-workflow` — run triage right after creating.
 - `sks-bulk` — N-repo mutations beyond triage.

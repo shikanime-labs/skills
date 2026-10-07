@@ -15,7 +15,6 @@ metadata:
       - issues
     related_skills:
       - sks-issue
-      - sks-issue-workflow
       - sks-investigate
 platforms:
   - linux

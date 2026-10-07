@@ -121,11 +121,10 @@ specification, compatible with the
 | `sks-gc` | Use when reclaiming resources leaked by jj-based agent workflows — dangling bookmarks, skill-created jj workspaces, and leftover working-copy dirs from sks-async/sks-dev. |
 | `sks-gist` | Use when a verified command, script, config, or output would be retyped or re-derived later — publish it as a gist for DRY reuse and link it from the artifact that motivated it. |
 | `sks-github-text-authoring` | Use when writing any GitHub text in the target org's repos — commit message, issue or PR body, discussion RFC, review or issue comment. Owns all shared prose rules; surface skills handle procedure. |
-| `sks-investigate` | Use when investigating a bug, test failure, build break, or unexpected behavior — find root cause, form a hypothesis, and propose a solution, never apply the fix itself. |
+| `sks-investigate` | Use when investigating a bug, test failure, build break, or unexpected behavior — find root cause, propose the solution without applying it, and set up the linked issue the proposal lives in. |
 | `sks-issue` | Use when opening an issue in an org repo: body is the problem statement, acceptance criteria as a command-decidable tasklist. |
 | `sks-issue-refine` | Use when iterating a problem to convergence inside its GitHub issue via research and comments before deriving the PR. |
 | `sks-issue-triage` | Use when triaging an existing org issue: assign type, labels, assignee, milestone, project, relationships, and fields; close with rationale if not workable. |
-| `sks-issue-workflow` | Use when you need the single entry point for the issue side: create, refine, and triage the issue before any PR. |
 | `sks-land` | Use when landing a target-org PR after reconciliation (sks-pr-resolve) and review approval gates pass; closes the linked issue deliberately. |
 | `sks-fastlane` | Use when a hotfix, small update, or insignificant chore is too trivial for the full gate train: merge its PR without human review once CI is green. |
 | `nixpkgs-pr-review` | Use when reviewing an upstream NixOS/nixpkgs pull request: build the changed packages with nixpkgs-review and check the diff against nixpkgs conventions. |
