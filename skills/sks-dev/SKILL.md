@@ -79,11 +79,12 @@ tool for the unit you already have.
 | #   | Phase                                        | Owner                | Gate                  |
 | --- | -------------------------------------------- | -------------------- | --------------------- |
 | 0   | Discussion (RFC) if unconverged              | `sks-discussion`     | entry                 |
-| 1–2 | Issue: create → refine → triage              | `sks-issue-workflow` | **ledger settled**    |
+| 1   | Issue: create → triage                       | `sks-issue`          | —                     |
+| 2   | Refine issue to convergence                  | `sks-issue-refine`   | **ledger settled**    |
 | 3   | Branch + implement (fresh jj workspace)      | `sks-delegate`          | **workspace created** |
 | 4   | Commit (plain-English + org trailer)         | `sks-commit`         | **commit shape**      |
 | 5   | Adversarial code review                      | `sks-pr-review`      | **review gate**       |
-| 6   | PR: ensure issue → open → triage             | `sks-pr-workflow`    | —                     |
+| 6   | PR: ensure issue → open → triage             | `sks-pr`    | —                     |
 | 7   | Land (`gh pr merge --squash`)                | this / `sks-land`    | **branch protection** |
 | 8   | Close issue deliberately (N of N)            | `sks-issue`          | **ledger discharged** |
 
@@ -123,7 +124,7 @@ silent scope change:
   `true`; some orgs return an empty `.viewerPermission` — org quirks per
   `references/shikanime.md`)
 - jj repo: `.jj/` / `jj status` → `jj bookmark track` before push
-- issue exists (issue-first) — else `sks-issue-workflow`
+- issue exists (issue-first) — else `sks-issue`
 - NixOS repo: `nix` available (build-verify gate)
 
 Report `BLOCKED: <req> — <evidence> — <recovery>`. Independent unblocked
@@ -207,7 +208,7 @@ anchor can get duplicated — remove the stray copy before pushing.
 
 ## Landing
 
-- **PR (default):** `sks-pr-workflow` → push `origin`, create PR
+- **PR (default):** `sks-pr` → push `origin`, create PR
   `--head <org>:<branch>` (`<org>` is the repo OWNER, not the gh login), base
   `main`. Run the `sks-pr` duplicate/stack check first: no new PR if an open
   one already delivers the change; stack on that PR's branch when your change
@@ -365,7 +366,7 @@ jj status && jj log -r @ -T 'bookmarks ++ " "'
 
 ## See also
 
-`sks-issue-workflow` / `sks-pr-workflow` (issue & PR sides), `sks-commit`,
+`sks-issue` / `sks-pr` (issue & PR sides), `sks-commit`,
 `sks-delegate` (isolation), `sks-async` (stacked PRs), `sks-swarm` (agent
 cluster), `sks-pr-review` (phase 5), `ponytail-review` (over-engineering
 lens). Authoring-convention skills apply during the write phase:

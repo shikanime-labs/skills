@@ -126,7 +126,6 @@ specification, compatible with the
 | `sks-issue` | Use when opening an issue in an org repo: body is the problem statement, acceptance criteria as a command-decidable tasklist. |
 | `sks-issue-refine` | Use when iterating a problem to convergence inside its GitHub issue via research and comments before deriving the PR. |
 | `sks-issue-triage` | Use when triaging an existing org issue: assign type, labels, assignee, milestone, project, relationships, and fields; close with rationale if not workable. |
-| `sks-issue-workflow` | Use when you need the single entry point for the issue side: create, refine, and triage the issue before any PR. |
 | `sks-land` | Use when landing a target-org PR after reconciliation (sks-pr-resolve) and review approval gates pass; closes the linked issue deliberately. |
 | `sks-fastlane` | Use when a hotfix, small update, or insignificant chore is too trivial for the full gate train: merge its PR without human review once CI is green. |
 | `nixpkgs-pr-review` | Use when reviewing an upstream NixOS/nixpkgs pull request: build the changed packages with nixpkgs-review and check the diff against nixpkgs conventions. |
@@ -135,7 +134,6 @@ specification, compatible with the
 | `sks-pr-resolve` | Use when resolving a PR's review conversations, including CodeRabbit review comments, checking the DoD ledger, and reconciling before merge (no merge itself). |
 | `sks-pr-review` | Use when reviewing code in an org repo: cross-check related issues, enforce YAGNI, root-cause fixes, and project conventions before approval. |
 | `sks-pr-triage` | Use when triaging an existing org PR: labels, assignee, milestone, and reviewers. |
-| `sks-pr-workflow` | Use when you need the single entry point for the org PR side: ensure the issue exists, open, and triage the PR. Land separately via sks-land. |
 | `sks-project` | Use when tracking issue/PR advancement on an org board: resolve the board from context or provision one, set Status to the real phase, audit drift. |
 | `sks-report` | Use when ending any agent work loop — investigation, dev unit, batch, or delegation fan-out: emit the fixed report block so status, evidence, and handoff stay uniform across parallel tasks. |
 | `cpn-release-patch` | Use when backporting the commits between two release tags onto a hotfix branch in <org>/<repo>: find the patch milestone and duplicate those commits onto the tag with jj. |

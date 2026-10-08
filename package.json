@@ -120,11 +120,6 @@
         "path": "skills/sks-issue-triage"
       },
       {
-        "name": "sks-issue-workflow",
-        "description": "Use when you need the single entry point for the issue side: create, refine, and triage the issue before any PR.",
-        "path": "skills/sks-issue-workflow"
-      },
-      {
         "name": "sks-land",
         "description": "Use when landing a target-org PR after reconciliation (sks-pr-resolve) and review approval gates pass; closes the linked issue deliberately.",
         "path": "skills/sks-land"
@@ -163,11 +158,6 @@
         "name": "sks-pr-triage",
         "description": "Use when triaging an existing org PR: labels, assignee, milestone, and reviewers.",
         "path": "skills/sks-pr-triage"
-      },
-      {
-        "name": "sks-pr-workflow",
-        "description": "Use when you need the single entry point for the org PR side: ensure the issue exists, open, and triage the PR. Land separately via sks-land.",
-        "path": "skills/sks-pr-workflow"
       },
       {
         "name": "sks-project",

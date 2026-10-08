@@ -17,7 +17,7 @@ metadata:
       - sks-dev
       - sks-async
       - sks-commit
-      - sks-pr-workflow
+      - sks-pr
       - sks-gc
 platforms:
   - linux
@@ -92,7 +92,7 @@ has not entered the dev loop.
    jj git push --remote origin -b <branch>
    ```
 
-4. **Hand off to `sks-pr-workflow`** to open the PR (`--head <org>:<branch>`,
+4. **Hand off to `sks-pr`** to open the PR (`--head <org>:<branch>`,
    base `main`; the issue link is Development metadata added at triage, not a
    body line; run its step 2b duplicate/stack check
    first — skip the PR if one already exists, stack if yours must sit on top).
@@ -138,5 +138,5 @@ gh pr view <N> --repo <org>/<repo> --json state,headRefName   # after PR step
 - `sks-async` — fan-out; each stream uses this same workspace recipe.
 - `sks-adversarial` — disposable sandbox; composes this skill + `sks-async`.
 - `sks-investigate` — root-cause discipline; use before isolating a fix.
-- `sks-pr-workflow` — open the PR from the pushed bookmark.
+- `sks-pr` — open the PR from the pushed bookmark.
 - `sks-gc` — reclaim the workspace/bookmark once landed.

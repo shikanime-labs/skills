@@ -72,7 +72,7 @@
     },
     {
       "id": 7,
-      "expected_output": "The skill does not absorb landing or merging scope; it hands off to sks-land / sks-pr-workflow.",
+      "expected_output": "The skill does not absorb landing or merging scope; it hands off to sks-land / sks-pr.",
       "files": [],
       "prompt": "Restack my stack, resolve conflicts, then merge the PRs and gc the workspaces.",
       "assertions": [

@@ -99,7 +99,7 @@ For org-specific conventions (local checkout layout, push signing), read
    signing setup in `references/shikanime.md`); GitHub squash-merge
    re-signs server-side.
 
-6. **Hand off.** Rewritten stack PRs land via `sks-land` / `sks-pr-workflow`;
+6. **Hand off.** Rewritten stack PRs land via `sks-land` / `sks-pr`;
    leftover `(empty)` revs and stale workspaces are `sks-gc` territory.
 
 ## Pitfalls

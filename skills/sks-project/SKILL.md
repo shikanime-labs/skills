@@ -15,8 +15,8 @@ metadata:
     related_skills:
       - sks-issue-triage
       - sks-pr-triage
-      - sks-issue-workflow
-      - sks-pr-workflow
+      - sks-issue
+      - sks-pr
       - sks-land
 platforms:
   - linux
@@ -210,6 +210,6 @@ gh project item-list <number> --owner <board-owner> --limit 200 --format json \
 
 - `sks-issue-triage` — boards a fresh issue; this skill sets its Status.
 - `sks-pr-triage` — PR metadata; `--add-project` before Status here.
-- `sks-issue-workflow` / `sks-pr-workflow` — the phases Status mirrors.
+- `sks-issue` / `sks-pr` — the phases Status mirrors.
 - `sks-land` — the merge gate that fires `done`.
 - `sks-bulk` — batch shape if a drift audit grows beyond one board.

@@ -2,7 +2,8 @@
 name: sks-issue
 description:
   "Use when opening an issue in an org repo: body is the
-  problem statement, acceptance criteria as a command-decidable tasklist."
+  problem statement, acceptance criteria as a command-decidable tasklist;
+  owns the create → triage order."
 version: 0.2.0
 author: Hermes Agent
 license: Apache-2.0
@@ -25,7 +26,10 @@ platforms:
 
 Open issues in the org repos; language and repo scoping rules live in
 `references/shikanime.md` (load it when working in an org repo). Open
-the issue before the PR, link it via `sks-pr`.
+the issue before the PR, link it via `sks-pr`. This skill owns the issue
+order — create (procedure below) → triage (step 3). Refinement to
+convergence is a separate loop, `sks-issue-refine`, run on demand; it is
+not part of this procedure.
 
 Prereqs: `gh` authenticated to the target repo; target it directly.
 `gh auth status` clean.
@@ -35,6 +39,10 @@ Prereqs: `gh` authenticated to the target repo; target it directly.
 - "Create a new org issue."
 - "Track and manage a GitHub issue."
 - "Verify issue exists before opening a PR (issue-first policy)."
+- "Open and set up an issue" / "take this problem through to a triaged
+  issue" — create → triage, this skill.
+- "Refine the issue to convergence" — that is `sks-issue-refine`, a
+  separate loop outside this procedure.
 
 ## Procedure
 
@@ -131,10 +139,19 @@ labels, assignee, milestone, project); rules live there.
 ## Verification
 
 ```bash
-gh issue view <N> --repo <org>/<repo> --json number,title,labels
+gh issue view <N> --repo <org>/<repo> \
+  --json number,title,labels,assignees,milestone,projectItems
 ```
 
-Confirm title + label set; issue in org repo.
+Confirm title + label set; issue in org repo. Set-up is complete when
+the body is a stable problem statement with a converged `- [ ]` ledger
+and triage metadata is set: labels non-empty, assignee present, and a
+board card with Status `Ready` (`Backlog` only with a parked rationale)
+— the authoritative check is `gh project item-list <board> --owner
+<owner> --format json` filtered to the issue number (shows Status +
+custom Fields; `item-edit` to fix). `milestone` may be null when the
+repo genuinely lacks a value — but null must be a seen decision, not an
+unread field.
 
 ## See also
 

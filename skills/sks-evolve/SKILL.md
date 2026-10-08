@@ -87,13 +87,13 @@ graph LR
 2. **Rank by expected fitness gain** — frequency x cost of the friction vs.
    size of the change. Take the top of the backlog.
 3. **Pick the action** per the Decide mapping; open the issue
-   (`sks-issue-workflow`) unless one exists.
+   (`sks-issue`) unless one exists.
 4. **Execute** through the delegated skill in a fresh jj workspace
    (`sks-delegate`); fan out only when targets are provably independent.
 5. **Record fitness** — measure before/after (line/token counts of the
    changed skill, eval pass rate, failure recurrence) and post the numbers as
    an issue comment. The numbers, not the intent, decide keep vs. revert.
-6. **Hand off** to `sks-pr-workflow`. Stop: the loop never merges.
+6. **Hand off** to `sks-pr`. Stop: the loop never merges.
 
 ## Pitfalls
 
