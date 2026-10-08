@@ -33,7 +33,11 @@ flakiness and NOT a service outage — the envoy pod serves 200s to mTLS clients
 ## Get the test client cert
 
 A ready-made client identity lives in `Secret/inference-test-client-tls`
-(ns `shikanime`, type `kubernetes.io/tls`):
+(ns `shikanime`, type `kubernetes.io/tls`; mountable, has `ca.crt`).
+Client API keys are NOT in a stable `inference-gateway-apikey` secret — they
+live in generated `Secret/inference-key-*` (Opaque, one key file per identity,
+e.g. `guest`, `telsha-hermes-agent`; pick the newest generation and read the
+key file directly as the Bearer token).
 
 ```bash
 kubectl --context nishir-k8s-operator.taila659a.ts.net -n shikanime \
@@ -43,6 +47,24 @@ kubectl --context nishir-k8s-operator.taila659a.ts.net -n shikanime \
   get secret inference-test-client-tls -o jsonpath='{.data.tls\.key}' \
   | base64 -d > /tmp/inf-client.key
 ```
+
+Two more requirements the 2026-10-06 probes proved:
+
+- **Send the real hostname.** The Gateway routes on hostnames
+  (`inference.i.shikanime.studio`); a probe with `localhost` as `:authority`
+  gets `404 route_not_found` in milliseconds regardless of keys/certs.
+- **Route selection is the `x-ai-eg-model` header**, not the body's `model`
+  field (`AIGatewayRoute` matches on that header) — a body-only request is
+  also `route_not_found`.
+- Port-forwards from the Mac drop after minutes; prefer the in-cluster probe:
+  an ephemeral `curlimages/curl` pod in ns `shikanime` mounting
+  `inference-test-client-tls` + the `inference-key-*` secret, curling the
+  Gateway's ClusterIP with `--resolve inference.i.shikanime.studio:443:<ip>`.
+  Delete the pod afterwards.
+
+Verified 2026-10-06 end-to-end: cert + `guest` key + `x-ai-eg-model:
+qwen/qwen3-embedding-8b` → `POST /v1/embeddings` → 200 with embedding vector,
+served by llama-cpp priority 0 (log-proven, not failover).
 
 ## Probe recipe (Mac → localhost via port-forward)
 

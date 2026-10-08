@@ -101,3 +101,24 @@ The stack refs `gh/shikanime/N/{base,head,orig}` exist except `orig` →
 work as a plain PR with `--base gh/shikanime/<tip#>/base`; GitHub retargets
 it to main automatically as lower PRs land. Landing a stacked PR into its
 stack base with `gh pr merge --squash --admin` works fine.
+
+## Inline review comments (verified 2026-10-07, PR #2807)
+
+`comments` MUST arrive as a JSON array. `gh api -F 'comments=@file.ndjson'`
+sends the file's text as a string (422 "is not an array" even for a valid
+array file). Compose the whole payload with jq and pass `--input`:
+
+```bash
+jq -n --arg commit "$COMMIT" --rawfile body body.md \
+  --slurpfile comments comments.json \
+  '{commit_id:$commit,event:"COMMENT",body:$body,comments:$comments[0]}' \
+  > payload.json
+gh api repos/<org>/<repo>/pulls/<n>/reviews --input payload.json
+```
+
+`REQUEST_CHANGES` is rejected with `422 "Review Can not request changes on
+your own pull request"` when the gh account authored the PR. Fallback:
+`event=COMMENT` and carry the verdict via severity labels in each inline
+body (`**bloquant**`/`**important**`/`**nit**`). Verify anchors on the
+PULL-level endpoint (`pulls/<n>/comments`) — the reviews-list endpoint
+omits `line`/`side`.

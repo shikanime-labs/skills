@@ -4,7 +4,7 @@ description:
   "Use when running the local dev loop in a target org's repos: branching in a
   fresh jj workspace, push-to-origin, jj bookmark tracking, and landing via
   plain gh pr merge or direct push."
-version: 0.10.0
+version: 0.10.1
 author: Hermes Agent
 license: Apache-2.0
 metadata:
@@ -321,7 +321,11 @@ Deep recipes live in `references/`; read the file when its condition fires:
   staging only your hunks.
 - `references/gh-cli-gaps.md` — a `gh` flag errors or a PR verifies wrong:
   no `--json` on create, no `--head-ref`, head-branch immutability,
-  credential-helper account split, `-R` inside jj workspaces.
+  credential-helper account split, `-R` inside jj workspaces, inline review
+  comment payloads.
+- `references/cloud-pi-native-core.md` — working in
+  `shikanime-labs/cloud-pi-native-core` (Alchemy v2 library; NOT the
+  cloud-pi-native/console repo): commit envelope, gates, Renovate shape.
 - `references/pitfalls.md` — dual-clone discipline (`.hermes/skills` vs the
   org repo root), dirty working copies, kustomize generator-not-found,
   two `patches:` blocks, alias-in-prose, body wrapping.

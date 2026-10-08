@@ -12,7 +12,7 @@
         "Body contains at least one '##' heading",
         "Body mentions 'conflicts()' as the locator revset",
         "Body mentions 'jj edit'",
-        "Body mentions 'jj resolve --tool :theirs' or ':ours'"
+        "Body delegates conflict-marker mechanics to sks-converge instead of re-teaching them"
       ]
     },
     {

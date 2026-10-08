@@ -25,7 +25,7 @@
         "Frontmatter description starts with 'Use when' and is at most 200 characters",
         "Frontmatter license field is 'Apache-2.0'",
         "Body contains at least one '##' heading",
-        "Body mentions 'jj git fetch --prune'",
+        "Body shows pruning remote-tracking bookmarks via `jj git fetch` (the `--prune` flag is gone in jj >= 0.43; plain fetch auto-prunes)",
         "Body states bookmarks with an open PR must not be dropped"
       ]
     },

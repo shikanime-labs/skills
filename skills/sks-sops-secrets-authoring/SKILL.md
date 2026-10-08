@@ -3,7 +3,7 @@ name: sks-sops-secrets-authoring
 description:
   "Use when editing sops-encrypted files: decrypt-and-edit workflow,
   re-encryption guards, and sops-nix secret plumbing."
-version: 0.2.0
+version: 0.3.0
 author: Hermes Agent
 license: Apache-2.0
 metadata:
@@ -133,6 +133,14 @@ sops -d secrets/<host>.enc.yaml | \
 
 - Decrypt → transform → re-encrypt in one pipeline. Never write the decrypted
   intermediate to disk.
+- Machine-driven structural merges (adding a whole resource pulled from
+  elsewhere, e.g. a live k8s object) cannot stay in one pipe. The validated
+  shape: decrypt to a /tmp intermediate with `--output-type json`, merge with
+  `jq`, encrypt with `--input-type json --output-type yaml`, then validate by
+  decrypting the NEW file with explicit `--input-type yaml --output-type json`
+  and `cmp` against the sorted JSON of the intended plaintext (sorted
+  canonical form keeps key order from masking real diffs). Purge the
+  intermediates immediately — see the purge pitfall below.
 - `-i` writes back in place; omit it to preview encrypted output on stdout.
 
 ### 3. Re-encryption recipients
@@ -245,12 +253,36 @@ In the fleet-config repo, hosts consume secrets through `sops-nix`:
   Always locate and use the unwrapped `/nix/store/*-sops-*/bin/sops`
   binary and pass the fleet age recipients exactly once. See
   `references/sops-manifests.md`.
+- **Renamed/extension-less files defeat sops format sniffing.** Decrypting
+  `file.enc.yaml.new` (any non-canonical extension) with format flags
+  omitted yields EMPTY output with exit 0 — a validation that silently
+  "passes" on garbage. Pass `--input-type`/`--output-type` explicitly on
+  every decrypt/encrypt of a renamed intermediate, and never suppress
+  stderr on a validation decrypt: a pipe's rc comes from its LAST command,
+  so `sops -d f | jq` reports success even when sops emitted nothing.
+- **Keep the plaintext purge a standalone command.** Batching
+  copy+verify+`rm` of plaintext intermediates into one shell line gets
+  approval-blocked as one unit — a denial then strands every artifact AND
+  blocks the harmless copy. Copy and verify in their own call; issue the
+  `rm` of the named /tmp files alone; on denial, halt and enumerate the
+  stranded artifacts for the user instead of retrying.
 
 ## Verification
 
 ```bash
 # decrypts cleanly
 sops --decrypt secrets/<host>.enc.yaml >/dev/null && echo ok
+
+# recipient coverage audit for a SHARED file: derive each consumer host's
+# age recipient from its ssh host key and diff against the ciphertext's
+# own recipient list (offline host: its known_hosts entry works too)
+for h in <hosts>; do
+  ssh-keyscan -t ed25519 "$h" 2>/dev/null | grep -v '^#' \
+    | ssh-to-age
+done | sort -u > /tmp/want
+grep -o 'recipient: age1[0-9a-z]*' secrets/<shared>.enc.yaml \
+  | awk '{print $2}' | sort -u > /tmp/got
+diff /tmp/want /tmp/got   # empty = every consumer can decrypt
 
 # recipient set matches expectation (age example)
 sops secrets/<host>.enc.yaml | grep -E '^sops_age' | sort

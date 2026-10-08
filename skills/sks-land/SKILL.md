@@ -3,7 +3,7 @@ name: sks-land
 description:
   Use when landing a target-org PR after reconciliation (sks-pr-resolve) and
   review approval gates pass; closes the linked issue deliberately.
-version: 0.3.1
+version: 0.4.0
 author: Hermes Agent
 license: Apache-2.0
 metadata:
@@ -241,6 +241,27 @@ EOF
 
 ## Pitfalls
 
+- Stacked PRs (GitHub stack feature, Oct 2026+): legacy `gh pr merge`, the
+  GraphQL mutation, and `--auto` all refuse with "part of a stack and must be
+  merged using the asynchronous merge REST API". Use
+  `PUT /repos/{o}/{r}/pulls/<n>/merge-async` body
+  `{merge_method, merge_action:"direct_merge", commit_message, sha,
+  bypass_rules}` then poll `GET .../merge-async/<uuid>` until status !=
+  `pending`. `bypass_rules` is the async API's `--admin`.
+- Mid-stack async merges can land the squash onto the stack-LINK base branch
+  instead of `main` (empirical: merged status, commit on the child base).
+  After every stacked merge, verify `main` actually advanced
+  (`ls-remote` + commit log); if not, abandon re-merging children and open
+  ONE stack-free PR (base `main`) with the remaining delta — watch its real
+  CI, merge legacy.
+- Repos whose cleanup workflow deletes PR head branches on close: a stacked
+  child's BASE is the PR below's head branch, so every merge deletes the next
+  PR's base → DIRTY / "Base branch no longer exists". Preempt: re-push the
+  exact base SHA (raw git from the colocated checkout; jj no-ops on stale
+  tracking), re-check `mergeStateStatus`, then merge.
+- A `jj git fetch` after remote branch deletion abandons the local commits +
+  bookmark ("no longer reachable"); `jj undo` restores them. Never fetch
+  between a merge and the next push of the stack.
 - Unchecked criterion — discharge or escalate, don't merge.
 - Merging a dependent stacked PR before its base lands — go in dependency order,
   base first.
