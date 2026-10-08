@@ -210,6 +210,11 @@
       "path": "skills/sks-ts-authoring"
     },
     {
+      "name": "sks-report",
+      "description": "Use when ending any agent work loop — investigation, dev unit, batch, or delegation fan-out: emit the fixed report block so status, evidence, and handoff stay uniform across parallel tasks.",
+      "path": "skills/sks-report"
+    },
+    {
       "name": "sks-repo",
       "description": "Use when creating a new org repo: apply the 5-ruleset protection template, bootstrap the devlib devenv scaffold, and tag v0.1.0.",
       "path": "skills/sks-repo"

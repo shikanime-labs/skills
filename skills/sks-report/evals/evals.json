@@ -1,0 +1,44 @@
+{
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "Emits the fixed report block with a closed-vocabulary Status field, pasted command output or URLs as evidence, and a Not done line that names every acceptance item that did not land instead of a bare ratio.",
+      "files": [],
+      "prompt": "The sweep over all 14 org repos just finished — give me the wrap-up.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-report'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body renders the report block as an H1 title with the objective summary beneath it ending in the status word, then four Markdown sections: Result (a DoD checkbox checkpoint), Evidence, Next Steps, References",
+        "Body restricts the Status word to exactly 'DONE', 'PARTIAL', 'BLOCKED', 'FAILED'",
+        "Body requires Evidence entries to carry pasted command output or a URL and rejects bare 'verified' prose",
+        "Body requires Result to checkpoint the definition of done as checkboxes and every unmet item to carry its reason, never a bare ratio",
+        "Body includes a References section linking issues and PRs as bullet points, omittable when none"
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "Lands the block as an issue comment for an issue-tied loop, with Next Steps naming the unmet acceptance criteria and BLOCKED carrying a recovery path.",
+      "files": [],
+      "prompt": "Wrap up the root-cause loop on the flaky e2e spec and tell me where the finding lands.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-report'",
+        "Body routes an issue-tied loop's report to an issue comment (issue-first)",
+        "Body requires unmet acceptance criteria to be named under Next Steps with a reason",
+        "Body forbids filing BLOCKED as PARTIAL and requires a recovery path for BLOCKED"
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "The skill keeps its end-of-loop scope and routes starting or mid-loop work to the dev and issue-workflow skills instead of covering it.",
+      "files": [],
+      "prompt": "Start implementing the suspended-project flag migration.",
+      "assertions": [
+        "Frontmatter 'name' equals the directory basename 'sks-report'",
+        "Body routes starting work to sks-dev or sks-issue-workflow rather than covering it",
+        "Body states one report per loop, at the end, and forbids mid-loop progress notes"
+      ]
+    }
+  ],
+  "skill_name": "sks-report"
+}
