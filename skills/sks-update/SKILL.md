@@ -19,7 +19,7 @@ metadata:
       - sks-dev
       - sks-delegate
       - sks-commit
-      - sks-pr-workflow
+      - sks-pr
       - sks-land
 platforms:
   - linux
@@ -85,7 +85,7 @@ when the user named one.
      WIP is never folded in.
    - Commit per `sks-commit` (plain-English title, org co-author trailer,
      `Signed-off-by:`; AGENTS.md repos add labeled `Design:`/`Related:` body).
-   - Push to origin, open the PR per `sks-pr-workflow` (`--head <org>:<branch>`,
+   - Push to origin, open the PR per `sks-pr` (`--head <org>:<branch>`,
      base `main`; Development link per `sks-pr-triage` step 5). A full pass is
      one atomic PR
      carrying the whole curated set (one objective, reviewed in one sitting);
@@ -168,6 +168,6 @@ silently skip. After a curation wave lands, run the board audit once
 
 - `sks-curate` — the per-skill curation pass (step 3).
 - `sks-dev` — the shipping loop (step 4).
-- `sks-delegate`, `sks-commit`, `sks-pr-workflow`, `sks-land` — the pieces of
+- `sks-delegate`, `sks-commit`, `sks-pr`, `sks-land` — the pieces of
   step 4.
 - `hermes-agent` — local agent configuration and skills management.

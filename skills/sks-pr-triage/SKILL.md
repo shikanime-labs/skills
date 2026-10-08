@@ -14,7 +14,6 @@ metadata:
       - pull-requests
     related_skills:
       - sks-pr
-      - sks-pr-workflow
       - sks-investigate
 platforms:
   - linux

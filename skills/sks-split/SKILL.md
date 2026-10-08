@@ -20,7 +20,7 @@ metadata:
       - sks-delegate
       - sks-async
       - sks-commit
-      - sks-pr-workflow
+      - sks-pr
       - sks-restack
 platforms:
   - linux
@@ -98,7 +98,7 @@ already know is single (`sks-delegate`).
    then reports "Nothing changed" with exit 0 — a silent no-op.
 
 5. **Bookmark per unit, push, land.** One bookmark per unit; each unit gets
-   its own PR per `sks-pr-workflow`. Siblings land in any order; a stack
+   its own PR per `sks-pr`. Siblings land in any order; a stack
    lands base first (`sks-land`). Commit descriptions follow `sks-commit`.
 
 ## Pitfalls

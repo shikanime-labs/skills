@@ -54,7 +54,7 @@ CRDs), read `references/shikanime.md` when operating in a shikanime org.
 Don't use for: the Nix side of a render flake — that is
 `sks-nix-authoring`. sops-encrypted `.enc.*` files — that is
 `sks-sops-secrets-authoring`. Workspace, commit, and PR mechanics —
-`sks-delegate` / `sks-commit` / `sks-pr-workflow`. Deep recipes for Gateway
+`sks-delegate` / `sks-commit` / `sks-pr`. Deep recipes for Gateway
 route audits, image digest pinning, and infrastructure migrations live in
 `sks-dev`'s `references/` behind explicit load conditions.
 
@@ -191,5 +191,5 @@ interact with live state — the live cross-check passed
 - `sks-sops-secrets-authoring` — decrypt-editing the `.enc.*` sources.
 - `sks-dev` — branch/push/land loop; carries the route-audit,
   image-pinning, and migration references.
-- `sks-commit` / `sks-pr-workflow` — commit shape and PR envelope.
+- `sks-commit` / `sks-pr` — commit shape and PR envelope.
 - `sks-pr-review` — reviewer lens before merge.

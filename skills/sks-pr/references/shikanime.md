@@ -3,7 +3,9 @@
 - Scope: `shikanime-labs/*` / `shikanime-studio/*`. The canonical owner is the
   gh remote's, even when the local clone path spells the other org (e.g.
   `nix-containers` checks out as `shikanime-labs` while the remote is
-  `shikanime-studio`).
+  `shikanime-studio`). Checkouts live at
+  `~/Source/Repos/github.com/<org>/<repo>`; jj workspaces for a repo sit as
+  siblings of its checkout.
 - Mandatory reviewer: `yorha-operator` (the Automata bot account); request it
   at submission (`gh pr edit --add-reviewer yorha-operator`) unless it is the
   PR author.

@@ -2,7 +2,8 @@
 name: sks-pr
 description:
   "Use when opening a PR in a target-org repo: push to origin,
-  --head org:branch, plain-English title, issue linkage, parity with commit."
+  --head org:branch, plain-English title, issue linkage, parity with commit,
+  pre-submit isolation gate, opens as a draft."
 version: 0.2.0
 author: Hermes Agent
 license: Apache-2.0
@@ -16,7 +17,6 @@ metadata:
       - sks-sudo
       - sks-pr-resolve
       - sks-land
-      - sks-pr-workflow
       - sks-doc
 platforms:
   - linux
@@ -149,7 +149,20 @@ EOF
   `main`.
 - Commits per `sks-commit` (plain English / `doc:`; repo hook policy wins).
 
-### 2. Rebase onto `main` + resolve conflicts (MANDATORY before any push)
+### 2. Rebase onto `main` + isolation gate (MANDATORY before any push)
+
+Every PR carries ONLY its own change set. Before pushing, verify both:
+
+1. **Isolation** — the change set is exactly the intended files, no
+   foreign/dangling files from parallel agents or interrupted sessions.
+   - jj: `jj diff -r @ --stat` and `jj file list -r @`; anything outside
+     scope stays in `@` or a separate commit, never in this PR.
+   - jj dirty check: `jj log -r @ --no-graph -T 'if(empty, "", "dirty\n")'`
+     plus `jj diff -r 'main@origin..@' --stat` (git checkouts:
+     `git status --porcelain --untracked-files=all` and
+     `git diff --stat origin/main..HEAD`).
+2. **Conflict-free base** — the branch descends from the PR base with no
+   conflict markers.
 
 ```bash
 jj rebase -d main
@@ -157,6 +170,9 @@ jj rebase -d main
 
 - Conflict or `<<<<<<<` markers: STOP. Resolve (keep `main`'s additions AND the
   fix), then `jj squash` / `jj resolve`. Never push conflict markers.
+  Remote cross-check: `gh pr view <N> --json mergeable,mergeStateStatus` —
+  `CONFLICTING`/`DIRTY` = real conflict; `BLOCKED` = pending CI, not
+  conflict.
 - `jj rebase` rewrites commits and drops signatures (jj auto-sign does not fire)
   — re-sign with `jj sign -r @` and re-point the bookmark
   (`jj bookmark set <branch> -r @`) before pushing (see `sks-dev`).
@@ -209,7 +225,10 @@ be requested from pull request author"). When the agent submits under that
 same account, it IS the author — skip the request; the approving review must
 come from the operator.
 
-Use `--draft` when checks aren't green yet.
+Use `--draft` at creation — every PR opens as a draft; mark ready
+(`gh pr ready <N>`) only once CI is green on the verified head. When the
+repo's gate includes code-quality checks (e.g. SonarQube Quality Gate,
+0 new issues), verify via `gh pr checks <N>` before marking ready.
 
 ### 2d. Verify mergeable after submit
 

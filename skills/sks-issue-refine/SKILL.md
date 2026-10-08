@@ -16,7 +16,6 @@ metadata:
       - workflow
     related_skills:
       - sks-issue
-      - sks-issue-workflow
       - sks-issue-triage
       - sks-investigate
 platforms:

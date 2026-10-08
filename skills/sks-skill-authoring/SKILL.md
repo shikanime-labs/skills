@@ -18,7 +18,7 @@ metadata:
       - sks-dev
       - sks-adversarial
       - sks-commit
-      - sks-pr-workflow
+      - sks-pr
 platforms:
   - linux
   - macos
@@ -116,7 +116,7 @@ fails before review.
    - `skills.json` — `{"name", "description", "path"}` entry.
    - `package.json` — `agents.skills` entry with the same three fields.
 6. **Validate locally** (see Verification), then commit per `sks-commit` and
-   open the PR per `sks-pr-workflow`.
+   open the PR per `sks-pr`.
 
 ## Pitfalls
 

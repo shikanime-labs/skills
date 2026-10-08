@@ -15,7 +15,7 @@ metadata:
       - hotfix
     related_skills:
       - sks-land
-      - sks-pr-workflow
+      - sks-pr
       - sks-commit
       - sks-delegate
 platforms:
@@ -42,7 +42,7 @@ shikanime org.
 - A hotfix, small update, or insignificant chore the user does not want
   to sit through the review train for.
 - Not for feature work, refactors, or anything the user did not frame
-  as trivial — that is `sks-pr-workflow` + `sks-land`.
+  as trivial — that is `sks-pr` + `sks-land`.
 
 ## Eligibility gate (all must hold; any fail → full gates)
 
@@ -82,7 +82,7 @@ PR to `sks-land` and say which criterion failed.
 
 1. **PR exists and is pushed.** Fastlane merges; it does not build. No
    PR yet means ship the unit first (`sks-delegate` → `sks-commit` →
-   `sks-pr-workflow`), then come back.
+   `sks-pr`), then come back.
 2. **Run the eligibility gate.** Any fail → `sks-land` (full gates).
 3. **Keep the conventions gate** (`sks-land` Gate 4): commit subject
    plain-English imperative, no conventional prefix, PR title equals
@@ -147,6 +147,6 @@ gh pr view "$M" --repo "$R" --json comments \
 ## See also
 
 - `sks-land` — the full-gate landing this skill mutates.
-- `sks-pr-workflow` — ship the PR fastlane then merges.
+- `sks-pr` — ship the PR fastlane then merges.
 - `sks-commit` — conventions kept under fastlane.
 - `sks-delegate` — isolation workspace for the change itself.
