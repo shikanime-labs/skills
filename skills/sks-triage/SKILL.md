@@ -4,7 +4,7 @@ description:
   "Use when triaging a target org, repo, issue, or PR: sweep the scope for
   untriaged items, then assign every empty, context-derivable field — type,
   labels, assignee, fields."
-version: 0.1.0
+version: 0.1.1
 author: Hermes Agent
 license: Apache-2.0
 metadata:

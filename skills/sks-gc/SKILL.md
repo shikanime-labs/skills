@@ -4,7 +4,7 @@ description:
   Use when reclaiming resources leaked by jj-based agent workflows — dangling
   bookmarks, skill-created jj workspaces, and leftover working-copy dirs from
   sks-async/sks-dev.
-version: 0.2.0
+version: 0.2.1
 author: Hermes Agent
 license: Apache-2.0
 metadata:
@@ -86,8 +86,11 @@ leave on disk. Destructive — always dry-run first.
 3. **Prune remote-tracking bookmarks no longer on origin** (safe, built-in):
 
    ```bash
-   jj git fetch --prune --remote origin
+   jj git fetch --remote origin
    ```
+
+   Note: jj >= 0.43 removed `--prune`; deleted remote branches auto-prune on
+   plain fetch (older builds keep `--prune`).
 
 4. **Verify.**
 
