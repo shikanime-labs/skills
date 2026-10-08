@@ -140,9 +140,9 @@
         "path": "skills/sks-kubernetes-manifests-authoring"
       },
       {
-        "name": "sks-moderation",
+        "name": "sks-moderate",
         "description": "Use when hiding, unhiding, or moderating comments on GitHub issues, PRs, or discussions with the Hide feature: classifier choice, GraphQL mutations, verification.",
-        "path": "skills/sks-moderation"
+        "path": "skills/sks-moderate"
       },
       {
         "name": "sks-pr",

@@ -6,7 +6,7 @@
       "files": [],
       "prompt": "Hide that spammy comment on issue #42 in shikanime-labs/skills — the advertising one from @someuser.",
       "assertions": [
-        "YAML frontmatter parses and 'name' equals 'sks-moderation'",
+        "YAML frontmatter parses and 'name' equals 'sks-moderate'",
         "Frontmatter description starts with 'Use when' and is at most 200 characters",
         "Frontmatter license field is 'Apache-2.0'",
         "Body contains at least one '##' heading",
@@ -23,7 +23,7 @@
       "files": [],
       "prompt": "The off-topic flag on discussion #7 was wrong — unhide that comment.",
       "assertions": [
-        "YAML frontmatter parses and 'name' equals 'sks-moderation'",
+        "YAML frontmatter parses and 'name' equals 'sks-moderate'",
         "Frontmatter description starts with 'Use when' and is at most 200 characters",
         "Frontmatter license field is 'Apache-2.0'",
         "Body contains at least one '##' heading",
@@ -38,7 +38,7 @@
       "files": [],
       "prompt": "Delete the abusive comments on PR #12 and lock the issue so nobody can comment again.",
       "assertions": [
-        "YAML frontmatter parses and 'name' equals 'sks-moderation'",
+        "YAML frontmatter parses and 'name' equals 'sks-moderate'",
         "Frontmatter description starts with 'Use when' and is at most 200 characters",
         "Frontmatter license field is 'Apache-2.0'",
         "Body states Hide never deletes and never edits the comment",
@@ -47,5 +47,5 @@
       ]
     }
   ],
-  "skill_name": "sks-moderation"
+  "skill_name": "sks-moderate"
 }
