@@ -14,8 +14,10 @@ parity without hand-editing every stacked PR.
 
 ## References
 
-Related: #123
+- Commits: abc1234 (body seed mapping), def5678 (template alignment)
 ```
 
 Title = commit subject (no conventional prefix). `## References` carries
-`Related: #N`; close deliberately after final merge (verify N-of-N).
+proof refs only — the issue link is Development metadata created by
+`addCloseIssueReferences` (`sks-pr-triage` step 5), never a body keyword.
+Close deliberately after final merge (verify N-of-N).

@@ -119,7 +119,7 @@ References only; convergence passes before `sks-pr` handoff.
 
 - `sks-issue` — opens the iterated issue.
 - `sks-discussion` — RFC/edge; use before problem is statable.
-- `sks-pr` — solver; links back via `Related:`.
+- `sks-pr` — solver; links back via Development metadata.
 - `sks-async` — isolation for parallel `research` fan-out.
 - `sks-issue-triage` — assign metadata once converged.
 - `sks-investigate` — defect root-cause research; use it when the issue is a

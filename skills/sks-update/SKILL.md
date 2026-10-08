@@ -86,7 +86,8 @@ when the user named one.
    - Commit per `sks-commit` (plain-English title, org co-author trailer,
      `Signed-off-by:`; AGENTS.md repos add labeled `Design:`/`Related:` body).
    - Push to origin, open the PR per `sks-pr-workflow` (`--head <org>:<branch>`,
-     base `main`, `Related:` full issue URL). A full pass is one atomic PR
+     base `main`; Development link per `sks-pr-triage` step 5). A full pass is
+     one atomic PR
      carrying the whole curated set (one objective, reviewed in one sitting);
      split into stacked PRs only when the change set grows past a comfortable
      review size.

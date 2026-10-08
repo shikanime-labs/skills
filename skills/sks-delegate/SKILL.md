@@ -93,7 +93,8 @@ has not entered the dev loop.
    ```
 
 4. **Hand off to `sks-pr-workflow`** to open the PR (`--head <org>:<branch>`,
-   base `main`, `Related:` full issue URL; run its step 2b duplicate/stack check
+   base `main`; the issue link is Development metadata added at triage, not a
+   body line; run its step 2b duplicate/stack check
    first — skip the PR if one already exists, stack if yours must sit on top).
    Do NOT merge here.
 

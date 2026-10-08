@@ -8,4 +8,5 @@
 
 ## References
 
-Related: <!-- full issue URL, e.g. https://github.com/<org>/<repo>/issues/N -->
+<!-- commits/specs/changelogs proving the solution; the issue link lives in
+the Development section (addCloseIssueReferences), not here -->

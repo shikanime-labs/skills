@@ -248,8 +248,10 @@ EOF
 - Joining the CI watch and the merge with a shell conjunction in one
   background terminal — the merge fires unattended while gates move. Watch
   reports; merge is a separate deliberate step on a re-verified head.
-- Auto-close via `Closes #N`/`Fixes #N` at merge — fires before the ledger is
-  verified; close deliberately after N-of-N.
+- The Development link is metadata (`addCloseIssueReferences`), not a body
+  keyword; with repo auto-close off (#301) merging leaves the issue open —
+  close deliberately after N-of-N. Where auto-close is still on, discharge
+  the ledger before merging.
 - Closing the issue before the user accepts the deployed change — merge is a
   claim; wait for manual acceptance of the running/deployed state before
   discharging the ledger.

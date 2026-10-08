@@ -53,6 +53,9 @@ rules to this skill instead of restating them.
 - **Mention escaping**: a bare `@name` in prose pings that user/team. Wrap
   any literal `@` — NestJS `@Inject(x)`, decorators, config keys — in a code
   span or fenced block; only code disables mention parsing.
+- **Labeled fields are comma-separated under one label**: when a line carries
+  multiple values (`Design:`, `Related:`, `Issue:`), write `Xxx: yyy, zzz` —
+  never repeat the label (`Xxx: yyy` + `Xxx: zzz` is a defect).
 - **Standalone refs use `#N`**: when a reference stands alone (own line,
   list item, or `Related:` field), `#N` renders as a rich link — the
   interface expands it to show the issue title text. Prefer it over a URL.
@@ -106,6 +109,10 @@ default shape.
 
 ## Comment etiquette (issues and PRs)
 
+- Comments address the human reviewer/coder: findings, blockers, and
+  decisions they must act on. No agent bookkeeping — status narration, CI
+  play-by-play, notes-to-self; the durable record lives in the body and the
+  commit message.
 - One subject per comment; split unrelated findings into separate comments.
 - The body stays stable: issue bodies hold the problem statement; findings,
   root-cause, and candidate solutions go in comments. Interim comments are

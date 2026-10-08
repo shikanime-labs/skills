@@ -86,12 +86,13 @@ gh pr create --repo <org>/<repo> --base main --head "<org>:<next>" \
 
 ## References
 
-Related: <issue URL>
+<commits/specs proving the solution>
 EOF
 )"
 ```
 
-- PR↔issue linkage per `sks-pr`: `Related: <issue URL>` by default.
+- PR↔issue linkage per `sks-pr`: Development metadata
+  (`addCloseIssueReferences`, `sks-pr-triage` step 5) — no body keyword.
 - Before opening each PR, run the `sks-pr` step 2b duplicate/stack check — an
   existing open PR covering the unit means push to it or stack on it, never a
   second PR for the same change.

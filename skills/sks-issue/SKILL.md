@@ -139,5 +139,5 @@ Confirm title + label set; issue in org repo.
 ## See also
 
 `sks-github-text-authoring` (prose rules), `sks-discussion`, `sks-pr` (links
-back via `Related:`), `sks-issue-refine`, `sks-issue-triage` (run after
+back via Development metadata), `sks-issue-refine`, `sks-issue-triage` (run after
 creation), `sks-gist` (verified snippets too long for a comment), `sks-doc`.
