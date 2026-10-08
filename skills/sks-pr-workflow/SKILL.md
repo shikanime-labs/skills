@@ -80,9 +80,10 @@ create first. A PR never opens without an issue. Verify match via
 ### 2. Open the org-repo PR
 
 Load `sks-pr`. Push to `origin` (org repo), open `--head <org>:<branch>`, base
-`main`, **`--draft`**; link `Related: <full issue URL>`. Every PR opens as a
+`main`, **`--draft`**. Every PR opens as a
 draft; mark ready (`gh pr ready <N>`) only once CI is green on the verified
-head.
+head. The issue link is Development metadata added at triage (step 3) — no
+closing keyword in the body.
 
 ### 3. Triage immediately
 
@@ -91,8 +92,9 @@ never invent a value the repo lacks. Then flip the PR's board card: `In
 progress` while CI runs, `In review` once review is requested (`sks-project`).
 Triage covers every metadata surface — labels, assignee, milestone,
 reviewers, **project board card** (`sks-project` item-add + Status), and the
-GitHub **Development** link to the issue (`Related:` in the body creates it;
-verify it took: `gh pr view <N> --json closingIssuesReferences`).
+GitHub **Development** link to the issue (created by `addCloseIssueReferences`
+— `sks-pr-triage` step 5; verify it took:
+`gh pr view <N> --json closingIssuesReferences`).
 
 ## Verification
 

@@ -95,8 +95,9 @@ Shared doctrine:
 5. **Parallelize in a graph** — `sks-async` splits multi-unit work into jj
    workspaces (fan-out), joins with multi-parent commits, lands as independent
    PRs or stacked chains.
-6. **Many-to-many linkage** — link PRs with `Related:`; avoid auto-close
-   keywords; close deliberately after verifying the ledger.
+6. **Many-to-many linkage** — link PRs to issues via Development metadata
+   (`addCloseIssueReferences`), never a closing keyword in the body; close
+   deliberately after verifying the ledger.
 
 ## What's Here
 

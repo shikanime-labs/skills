@@ -86,10 +86,24 @@ gh pr edit "$N" --repo "$R" --milestone <num>
 gh pr edit "$N" --repo "$R" --add-reviewer <login>
 ```
 
-### 5. Link issue ↔ PR
+### 5. Link issue ↔ PR (Development metadata)
 
-If title/body cites `#M` (open, unlinked issue), ensure body has `Related: #M`
-(prepend if absent).
+If the PR's Development section lacks its issue
+(`gh pr view "$N" --json closingIssuesReferences` empty), create the link
+server-side — never a closing keyword in the body:
+
+```bash
+ORG=<org>; REPO=<repo>; N=<PR>; M=<issue>
+IDS=$(gh api graphql -f query='{ repository(owner:"'"$ORG"'", name:"'"$REPO"'")
+  { i: issue(number: '"$M"') { id } p: pullRequest(number: '"$N"') { id } } }')
+IID=$(jq -r .data.repository.i.id <<<"$IDS")
+PID=$(jq -r .data.repository.p.id <<<"$IDS")
+gh api graphql -f query='mutation { addCloseIssueReferences(input:
+  {issueId: "'"$IID"'", pullRequestIds: ["'"$PID"'"]}) { issue { number } } }'
+```
+
+Verify `closingIssuesReferences` is non-empty afterward. Multiple PRs link by
+passing several ids in `pullRequestIds`; `removeCloseIssueReferences` unlinks.
 
 ### 6. Verify
 
@@ -123,7 +137,7 @@ Detail and a worked trap: `references/pr-body-reconciliation.md`.
 ```bash
 gh pr view "$N" --repo "$R" --json number,title,labels,assignees,\
 milestone,reviewRequests
-# title/body cites an open issue via Related: #M if applicable
+# Development link to the issue present (closingIssuesReferences non-empty)
 ```
 
 ## See also

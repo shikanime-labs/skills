@@ -240,7 +240,7 @@ English across the family; `#N` for standalone refs; commit↔PR parity.
 Exact shapes live in the owning skills:
 
 - **Commit** → `sks-commit` — plain capitalized title, labeled body
-  (`Design:` / `Related:` / `Closes #N` per repo AGENTS.md),
+  (`Design:` / `Related:` / `Issue:` per repo AGENTS.md),
   the org `Co-authored-by` trailer plus repo-mandated `Signed-off-by`
   (gitlint CC1 rejects its absence — org examples in
   `references/sks-env.md`).
@@ -251,7 +251,8 @@ Exact shapes live in the owning skills:
   lines, command output). Terse: one finding per comment, code spans for
   commands, no nested parentheticals.
 - **PR** → `sks-pr` — title = commit subject; body `# Why`/`## What`/
-  `## References` restating the commit; `Related: <full URL>`.
+  `## References` restating the commit; issue link = Development metadata
+  (`addCloseIssueReferences`).
 
 Cross-cutting: prose mechanics (no-wrap, `@` escaping, full URLs, evidence
 style, template detection) are owned by `sks-github-text-authoring` — load it

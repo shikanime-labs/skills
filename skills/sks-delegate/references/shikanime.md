@@ -9,4 +9,5 @@ Generic single-unit isolation; shikanime-org specifics:
   `Co-authored-by: Automata <automata@shikanime.studio>` (two `-m` blocks,
   per `sks-commit`).
 - PRs open with `--head <org>:<branch>`; base `main` (protected across the
-  org); `Related:` full issue URL.
+  org); the issue link is Development metadata
+  (`addCloseIssueReferences`), never a body keyword.

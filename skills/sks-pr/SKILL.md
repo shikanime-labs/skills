@@ -67,8 +67,9 @@ squashing or when diagnosing a squash/force-push/rebase failure.
    source of truth; restate, do NOT invent new rationale):
    - `# Why` — why now: the drift/risk/pain this closes (one short paragraph).
    - `## What` — one-line summary + bullet scope (what this PR delivers).
-   - `## References` — `Related: #N` (mandatory) plus any
-     commits/specs/changelogs proving the solution.
+   - `## References` — commits/specs/changelogs proving the solution. The
+     issue link is NOT a body line: it is Development metadata created by the
+     `addCloseIssueReferences` GraphQL mutation (`sks-pr-triage` step 5).
    - See `references/example-pr-body.md` for a filled example.
    - All prose rules for the body — free text no-wrap, no formatter runs,
      `@` escaping, `#N` for standalone refs, Mermaid — are owned by
@@ -80,9 +81,10 @@ squashing or when diagnosing a squash/force-push/rebase failure.
      (`# Problem` / `## Acceptance`) into a PR body — that leak is a
      defect; reject and rewrite before opening.
    - Linkage is **many-to-many** (discussion → issue → comments → PR): a PR
-     always solves an issue. Default `Related: <issue URL>`; otherwise close
-     deliberately after final merge (verify N-of-N, then `gh issue close`).
-     deliberate close (see `sks-dev`).
+     always solves an issue. After opening, create the Development link via
+     `addCloseIssueReferences` (`sks-pr-triage` step 5) — no closing keyword
+     in the body. Auto-close is off (#301); close deliberately after final
+     merge (verify N-of-N, then `gh issue close`) (see `sks-dev`).
 4. **Head** — `--head <org>:<branch>`; push to `origin` only.
 5. **Parity** — PR title MUST equal commit subject; PR body MUST restate the
    commit message; no added rationale (see `sks-commit`). When a repo PR
@@ -174,7 +176,7 @@ gh pr list --repo "$ORG/<repo>" --state open --json number,title,headRefName \
 - **Stack required** — an open PR touches the same area and your change depends
   on it (or conflicts without it): base your branch ON that PR's head branch,
   not `main`. Open yours `--base <their-branch>` (re-base to `main` after theirs
-  lands). Record both PR URLs in `Related:`.
+  lands). Record both PR URLs in `## References`.
 - **Neither** — proceed with `--base main`.
 
 ### 2c. Push to origin + open PR
@@ -189,8 +191,8 @@ gh pr create --repo "$ORG/<repo>" --base main --head "$ORG:<branch>" \
 # Why
 ## What
 ## References
-<linked issues/PRs, commits, changelogs, specs proving the solution>
-Related: https://github.com/<org>/<repo>/issues/N
+<commits, changelogs, specs proving the solution — the issue link is
+Development metadata, added at triage>
 EOF
 )"
 ```
