@@ -1,5 +1,5 @@
 ---
-name: sks-moderation
+name: sks-moderate
 description:
   "Use when hiding, unhiding, or moderating comments on GitHub issues, PRs,
   or discussions with the Hide feature: classifier choice, GraphQL
