@@ -45,9 +45,9 @@ read `references/shikanime.md` when operating in a shikanime org.
 - You must verify the file still decrypts and still carries the right recipient
   set after the edit.
 
-Don't use for: editing the Nix module or kustomization that *references* a secret
-path (`sopsFile = ...`, `secretGenerator` key) — that is ordinary Nix / YAML, no
-sops toolchain involved. Use `sks-dev` for the surrounding PR/landing
+Don't use for: editing the Nix module or kustomization that *references* a
+secret path (`sopsFile = ...`, `secretGenerator` key) — that is ordinary Nix /
+YAML, no sops toolchain involved. Use `sks-dev` for the surrounding PR/landing
 lifecycle.
 
 ## What changes between repos
@@ -82,8 +82,9 @@ the render repo or the file is `*.enc.env` / `*.enc.conf`.
 
 ## The object
 
-A sops-encrypted file is **not a plain YAML/env file that happens to look garbled**.
-The encrypted bytes are wrapped inside the file, and two classes of edits exist:
+A sops-encrypted file is **not a plain YAML/env file that happens to look
+garbled**. The encrypted bytes are wrapped inside the file, and two classes of
+edits exist:
 
 - **Structure-visible edits** — adding/removing a top-level key, changing a
   non-secret value, reordering — where you read cleartext and the ciphertext
@@ -92,11 +93,11 @@ The encrypted bytes are wrapped inside the file, and two classes of edits exist:
   re-encrypt that subtree so the consuming side still sees valid encrypted
   material at the expected path.
 
-Treat the file as an opaque encrypted blob you open only through `sops`, never as
-a plaintext file you edit in an ordinary editor. The two failure modes that burn
-are (1) editing plaintext and committing it, and (2) rewriting the file in a way
-that drops or relocates the `sops` metadata block so the decrypt side no longer
-knows which key covers which subtree.
+Treat the file as an opaque encrypted blob you open only through `sops`, never
+as a plaintext file you edit in an ordinary editor. The two failure modes that
+burn are (1) editing plaintext and committing it, and (2) rewriting the file in
+a way that drops or relocates the `sops` metadata block so the decrypt side no
+longer knows which key covers which subtree.
 
 ## Workflow
 
@@ -119,9 +120,9 @@ sops secrets/<host>.enc.yaml | head -40          # metadata + cleartext head
 sops secrets/<host>.enc.yaml
 ```
 
-`sops` opens the decrypted content in `$EDITOR`; on save it re-encrypts using the
-file's existing recipient set unless you override it. This is the normal path for
-structural or value edits.
+`sops` opens the decrypted content in `$EDITOR`; on save it re-encrypts using
+the file's existing recipient set unless you override it. This is the normal
+path for structural or value edits.
 
 For non-interactive edits where an editor is not appropriate:
 
@@ -151,14 +152,14 @@ recipient list must include a key that host/operator holds.
 - An `age` recipient is an `AGE-SECRET-KEY-…` public key derived from the
   holder's secret key. Machines per-host files carry `sops_age__*-*` entries for
   that host's key; shared secrets carry every consuming party's recipient.
-- Adding a recipient without removing the old one is the safe direction. Removing
-  a recipient from a file still in use by another host is an availability bug, not
-  cleanup.
+- Adding a recipient without removing the old one is the safe direction.
+  Removing a recipient from a file still in use by another host is an
+  availability bug, not cleanup.
 - When you rewrite an `.enc.*` from a decrypted stream, explicitly carry the
-  recipient set forward. The safe default is *not* to override recipients and let
-  `sops` re-encrypt against the file's existing metadata; override only when you
-  have verified the new recipient set is a superset of the old one for every live
-  consumer.
+  recipient set forward. The safe default is *not* to override recipients and
+  let `sops` re-encrypt against the file's existing metadata; override only when
+  you have verified the new recipient set is a superset of the old one for every
+  live consumer.
 
 For fleet render files specifically: use the unwrapped sops binary and the
 comma-joined fleet age recipients exactly as in
@@ -171,29 +172,30 @@ These carry flat env-var-style or INI-style secrets, not YAML structure.
 Treating them like YAML leads to brittle rewrites.
 
 - Decrypt to verify: `sops -d secrets/<name>.enc.env`.
-- Edit with `sops -e -i` only after you have confirmed the cleartext line set and
-  the recipient list.
+- Edit with `sops -e -i` only after you have confirmed the cleartext line set
+  and the recipient list.
 - For INI files (`*.enc.conf`): pass `--input-type ini --output-type ini` on
   encrypt AND decrypt — the flags are symmetric; one-sided flags silently
   round-trip through the JSON store. Full detail in
   `references/sops-manifests.md`.
 - Deleting a key from an `.enc.env` is not complete until you have checked every
-  consumer that reads that variable — a consumer that still references the now-
-  missing variable gets an empty string or a mount error, not a loud failure.
+  consumer that reads that variable — a consumer that still references the
+  now-missing variable gets an empty string or a mount error, not a loud
+  failure.
 
 ### 5. sops-nix plumbing (fleet-config repo)
 
 In the fleet-config repo, hosts consume secrets through `sops-nix`:
 
 - Each host's flake config points `sops.defaultSopsFile` at its own
-  `secrets/<host>.enc.yaml`. There is no repo-owned single `.sops.yaml` governing
-  all hosts — each host file carries its own sops metadata, and `sops` resolves
-  recipients from that metadata at edit/decrypt time.
+  `secrets/<host>.enc.yaml`. There is no repo-owned single `.sops.yaml`
+  governing all hosts — each host file carries its own sops metadata, and `sops`
+  resolves recipients from that metadata at edit/decrypt time.
 - Some hosts additionally use `sops.templates.*` to materialize decrypted config
   fragments into the store. When you add a new secret a template wants to
-  reference, the template and the secret file must be added in the same unit
-  of work — a secret with no template is dead storage, a template with no
-  secret is a deploy-time failure.
+  reference, the template and the secret file must be added in the same unit of
+  work — a secret with no template is dead storage, a template with no secret is
+  a deploy-time failure.
 
 ### 6. Commit and verify
 
@@ -231,41 +233,40 @@ In the fleet-config repo, hosts consume secrets through `sops-nix`:
   `sops` so the only on-disk artifact is the encrypted file.
 - **Adding a recipient is safe; removing one is not, unless you verified no live
   consumer needs it.** A host whose key you removed from a shared secret can no
-  longer decrypt it after the next rollout — and that host may be the one you are
-  on, with no backup key.
+  longer decrypt it after the next rollout — and that host may be the one you
+  are on, with no backup key.
 - **A file that decrypts locally can still fail on the target.** Local `sops -d`
   can succeed with a key you hold while the target host, which holds a different
   key, fails — because the `sops` metadata block doesn't list the target's
   recipient. Check the recipient set, not just local decrypt.
 - **`.enc.env` deletion is a consumer-side change, not just a file edit.** The
-  secret file dropping a key does not remove the key from the units that reference
-  it; those units must be updated in the same unit of work.
+  secret file dropping a key does not remove the key from the units that
+  reference it; those units must be updated in the same unit of work.
 - **sops cannot always decrypt from stdin in every configuration.** When a
   consumer expects a path and you hand it a stream, the plumbing breaks. Prefer
   path-based edits and let `sops-nix` materialize the decrypted path; don't
   refactor a `sopsFile` consumer to read from stdin without testing the target.
 - **Direnv flakes and sops creation rules don't mix trivially.** If the repo's
   `.envrc` or a flake-driven dev shell tries to set up sops creation rules, the
-  encrypted file's own metadata governs re-encryption — not the dev-shell wiring.
-  Don't assume a dev-shell setup step re-encrypts correctly; verify with
+  encrypted file's own metadata governs re-encryption — not the dev-shell
+  wiring. Don't assume a dev-shell setup step re-encrypts correctly; verify with
   `sops -d` after.
-- **fleet render: the devenv `sops` wrapper forces a single recipient.**
-  Always locate and use the unwrapped `/nix/store/*-sops-*/bin/sops`
-  binary and pass the fleet age recipients exactly once. See
-  `references/sops-manifests.md`.
+- **fleet render: the devenv `sops` wrapper forces a single recipient.** Always
+  locate and use the unwrapped `/nix/store/*-sops-*/bin/sops` binary and pass
+  the fleet age recipients exactly once. See `references/sops-manifests.md`.
 - **Renamed/extension-less files defeat sops format sniffing.** Decrypting
-  `file.enc.yaml.new` (any non-canonical extension) with format flags
-  omitted yields EMPTY output with exit 0 — a validation that silently
-  "passes" on garbage. Pass `--input-type`/`--output-type` explicitly on
-  every decrypt/encrypt of a renamed intermediate, and never suppress
-  stderr on a validation decrypt: a pipe's rc comes from its LAST command,
-  so `sops -d f | jq` reports success even when sops emitted nothing.
-- **Keep the plaintext purge a standalone command.** Batching
-  copy+verify+`rm` of plaintext intermediates into one shell line gets
-  approval-blocked as one unit — a denial then strands every artifact AND
-  blocks the harmless copy. Copy and verify in their own call; issue the
-  `rm` of the named /tmp files alone; on denial, halt and enumerate the
-  stranded artifacts for the user instead of retrying.
+  `file.enc.yaml.new` (any non-canonical extension) with format flags omitted
+  yields EMPTY output with exit 0 — a validation that silently "passes" on
+  garbage. Pass `--input-type`/`--output-type` explicitly on every
+  decrypt/encrypt of a renamed intermediate, and never suppress stderr on a
+  validation decrypt: a pipe's rc comes from its LAST command, so `sops -d f |
+  jq` reports success even when sops emitted nothing.
+- **Keep the plaintext purge a standalone command.** Batching copy+verify+`rm`
+  of plaintext intermediates into one shell line gets approval-blocked as one
+  unit — a denial then strands every artifact AND blocks the harmless copy. Copy
+  and verify in their own call; issue the `rm` of the named /tmp files alone; on
+  denial, halt and enumerate the stranded artifacts for the user instead of
+  retrying.
 
 ## Verification
 

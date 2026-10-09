@@ -156,5 +156,6 @@ unread field.
 ## See also
 
 `sks-github-text-authoring` (prose rules), `sks-discussion`, `sks-pr` (links
-back via Development metadata), `sks-issue-refine`, `sks-issue-triage` (run after
-creation), `sks-gist` (verified snippets too long for a comment), `sks-doc`.
+back via Development metadata), `sks-issue-refine`, `sks-issue-triage` (run
+after creation), `sks-gist` (verified snippets too long for a comment),
+`sks-doc`.
