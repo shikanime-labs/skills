@@ -21,7 +21,8 @@
         "YAML frontmatter parses and 'name' equals 'sks-skill-authoring'.",
         "Body isolates the work in a fresh jj workspace per sks-delegate.",
         "Body lists evals/evals.json with objective assertions as required anatomy.",
-        "Body registers the skill in all three surfaces: README.md, skills.json, and package.json."
+        "Body registers the skill in all three surfaces: README.md, skills.json, and package.json.",
+        "Body requires running the same prompt without the skill (or on the previous version) and with the candidate, then comparing before an iteration counts as successful."
       ]
     },
     {

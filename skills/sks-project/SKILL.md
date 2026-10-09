@@ -3,7 +3,7 @@ name: sks-project
 description:
   "Use when tracking issue/PR advancement on an org board: resolve the board
   from context or provision one, set Status to the real phase, audit drift."
-version: 0.2.0
+version: 0.3.0
 author: Hermes Agent
 license: Apache-2.0
 metadata:
@@ -198,6 +198,19 @@ gh project item-list <number> --owner <board-owner> --limit 200 --format json \
 
 For each row, compare against the live issue/PR state and correct offenders
 with step 3. Merged PRs sitting outside `done` are the common offender.
+
+## Bulk mutation gate
+
+A batch of Projects V2 writes (iteration moves, drift corrections) is
+gated, not fired. Before any batch edit, present the full change table —
+item, field, current value, target value — and wait for explicit approval
+of that table. "Move them all" or "fix the anomalies" is not approval; a
+correction to a closed item must appear in the approved table individually.
+Write only the approved fields, then re-read each target (step 4) and
+report residual drift. A mid-batch API error stops the phase: report the
+confirmed mutations, re-request approval for the rest — never replay the
+whole batch blindly. A timed-out or failed write may still have committed
+server-side; re-read the item before re-proposing it.
 
 ## Verification
 
