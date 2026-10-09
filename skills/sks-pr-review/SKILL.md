@@ -4,7 +4,7 @@ description:
   "Use when reviewing code in an org repo: cross-check related issues, enforce
   YAGNI, root-cause fixes, and project conventions before approval."
 version: 0.4.0
-author: Hermes Agent
+author: Automata
 license: Apache-2.0
 metadata:
   hermes:
@@ -95,8 +95,9 @@ match = `blocking`. Covers hard-coded secrets, shell/SQL injection,
 trust-boundary checks for the repo's stack (org-stack specifics:
 `references/conventions.md`).
 
-**4 — Independent verdict.** Self-review checklist + a `delegate_task` reviewer
-with only the diff (no shared context, fail-closed on non-JSON):
+**4 — Independent verdict.** Self-review checklist + a delegated reviewer
+agent (mapping: `sks-async/references/harness-delegation.md`) with only the
+diff (no shared context, fail-closed on non-JSON):
 `references/review-doctrine.md`. `passed` false on any security/logic finding.
 
 **5 — Line-by-line.** Correctness (edge/error paths), maintainability
@@ -151,13 +152,13 @@ body (author amends — reviewer never pushes).
 
 - Empty diff → check `jj status`, tell user nothing to verify.
 - Large diff (>15k chars) → split by file, review each.
-- `delegate_task` non-JSON → treat as FAIL (fail-closed).
+- Delegated reviewer non-JSON → treat as FAIL (fail-closed).
 - False positives → note intentional patterns, don't block.
 - Lint/test tools absent → skip that check silently; verdict still runs.
 - In jj workspaces `gh` can fail to resolve the repo; always pass `-R
   <org>/<repo>` to issue and PR queries. Report a failed or empty search;
   it never blocks the review.
-- On flaky/long-latency providers, `delegate_task` reviewer fan-outs stall
+- On flaky/long-latency providers, delegated reviewer fan-outs stall
   (2+ h, then connection errors) and may leave an empty PENDING review that
   blocks later posts (`gh api -X DELETE .../reviews/<id>` to clear). For
   diffs under ~30k chars, reviewing inline is faster and more reliable than

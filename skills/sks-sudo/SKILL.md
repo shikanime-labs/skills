@@ -4,7 +4,7 @@ description:
   "Use when a gh operation must run under a different org identity: lock,
   switch to the agent account, confirm the flip, restore the operator."
 version: 0.3.0
-author: Hermes Agent
+author: Automata
 license: Apache-2.0
 metadata:
   hermes:

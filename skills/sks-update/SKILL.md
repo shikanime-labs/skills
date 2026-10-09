@@ -5,7 +5,7 @@ description:
   curate every skill by default (or named ones only), land through the dev
   workflow, and resync to local Hermes agents."
 version: 0.3.0
-author: Hermes Agent
+author: Automata
 license: Apache-2.0
 metadata:
   hermes:
@@ -31,7 +31,7 @@ platforms:
 
 End-to-end update of the catalog: curate each skill and profile
 (`sks-curate`), ship the improvements through the dev loop, and resync the
-landed skills to local Hermes agents. This is the orchestration shell —
+landed skills to local agents. This is the orchestration shell —
 curation and shipping delegate to their owning skills.
 
 Read `references/shikanime.md` when operating in a shikanime org
@@ -94,61 +94,36 @@ when the user named one.
    - Run `sks-pr-review` before requesting merge, then land per `sks-land`
      (or `sks-dev` landing rules). Verify the merge:
      `gh pr view <N> --json state,url`.
-5. **Resync to local Hermes agents** — After the change lands on `main`, pull
+5. **Resync to local agents** — After the change lands on `main`, pull
    every updated skill into local agents so future sessions load the new body:
 
-   - Default (tap): ensure the repo is tapped, then update:
+   - Use your harness's skill-manager update. Standard registry path:
+     `npx skills add shikanime-labs/skills -g`. Harness-specific tap, manual
+     copy, and profile installs (Hermes): `references/hermes-resync.md`.
 
-     ```bash
-     hermes skills tap add <catalog-tap> 2>/dev/null || true
-     hermes skills update <catalog-tap>
-     ```
-
-     `hermes skills update` refreshes installed hub/tap skills; `--help`
-     lists the flags. Update the tap as a whole for a full pass, or name the
-     skill path to update one.
-
-   - Fallback (manual copy from a local checkout):
-
-     ```bash
-     cp -r skills/<skill> ~/.hermes/skills/
-     ```
-
-     Repeat per updated skill. Resolve the real home from `$HERMES_HOME` when a
-     profile is active (`~/.hermes/profiles/<name>/skills/...`), never hardcode
-     `~/.hermes`.
-
-   - Profiles resync the same way: install the distribution with
-     `hermes profile install --name <name> --force profiles/<name>`.
-
-   - Verify the resync: `hermes skills list` shows each updated skill and
-     `hermes skills diff <skill>` (or reading the file) shows the new body.
+   - Verify the resync: list the installed skills and diff one against the
+     repo (or read the stored file) to confirm the new body landed.
 
 6. **Manual user acceptance (deployment gate).** A green merge plus a
    successful resync is a claim, not a verified outcome. After the resync
-   lands in local agents, surface the deployed change for inspection —
-   `hermes skills diff <skill>` (or a file read) for each updated skill — and
-   ask the user to validate it behaves as asked. Do NOT report the update
-   complete on merge/resync alone; only the user can confirm the deployed
-   behavior. If the user rejects, treat it as a reported defect and loop back
-   to step 3 (curate) or step 4 (re-ship), then re-deploy and re-request
-   acceptance.
+   lands in local agents, surface the deployed change for inspection — the
+   stored body of each updated skill (a diff or file read) — and ask the user
+   to validate it behaves as asked. Do NOT report the update complete on
+   merge/resync alone; only the user can confirm the deployed behavior. If
+   the user rejects, treat it as a reported defect and loop back to step 3
+   (curate) or step 4 (re-ship), then re-deploy and re-request acceptance.
 
 ## Resync pitfalls
 
-- **Bundled vs hub-installed skills.** If a skill is bundled with Hermes, a
-  manual `cp` marks it `user-modified`, which blocks future `hermes update`
-  refreshes; `hermes skills reset` clears that and lets updates flow again.
-  Prefer the tap/update path for bundled skills.
-- **Profile-aware paths.** Local agents may run under a profile; resolve
-  `$HERMES_HOME` instead of assuming `~/.hermes`.
-- **Resync is only meaningful after landing.** Copying a branch's skill into
-  `~/.hermes/skills` before the PR merges loads un-reviewed content. Land
+- **Harness-specific traps** (bundled vs hub-installed skills, profile-aware
+  paths): `references/hermes-resync.md`.
+- **Resync is only meaningful after landing.** Installing a branch's skill
+  into local agents before the PR merges loads un-reviewed content. Land
   first, resync second.
 - **Manual acceptance after deployment.** Green merge + successful resync is
-  not the end state. Surface the deployed change (`hermes skills diff
-  <skill>`) and wait for explicit user acceptance before reporting the update
-  complete; automated gates cannot confirm the change behaves as asked.
+  not the end state. Surface the deployed change (the stored body) and wait
+  for explicit user acceptance before reporting the update complete;
+  automated gates cannot confirm the change behaves as asked.
 - **Audit drives the pass, not taste.** Curate what the audit flags; leave
   healthy skills untouched so the full pass stays a small, reviewable diff
   rather than a rewrite of everything.
@@ -158,7 +133,7 @@ when the user named one.
 Complete when every in-scope skill or profile is curated (delta reported
 per skill), merged to `main` (`gh pr view <N> --json state` = `MERGED`),
 local agents
-load the new bodies (`hermes skills list` + content check), **and the user has
+load the new bodies (installed-skill list + content check), **and the user has
 explicitly accepted the deployed change** (manual acceptance, step 6). Any
 unmet step is a blocker — say `BLOCKED:` with evidence and recovery, never
 silently skip. After a curation wave lands, run the board audit once

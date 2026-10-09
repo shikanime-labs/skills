@@ -4,7 +4,7 @@ description:
   Use when jj conflicts or divergent changes block a jj repo after a
   tree move — resolve conflicted revisions and divergent twins until pushable.
 version: 0.2.0
-author: Hermes Agent
+author: Automata
 license: Apache-2.0
 metadata:
   hermes:

@@ -4,7 +4,7 @@ description:
   "Use when opening an RFC Discussion in the target org as the pre-issue
   stage: converge on the problem, then derive the issue."
 version: 0.2.0
-author: Hermes Agent
+author: Automata
 license: Apache-2.0
 metadata:
   hermes:

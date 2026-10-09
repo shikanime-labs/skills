@@ -4,7 +4,7 @@ description:
   Use when documenting a project in the repo's docs/ directory after a
   behavior-changing PR.
 version: 0.3.0
-author: Hermes Agent
+author: Automata
 license: Apache-2.0
 metadata:
   hermes:

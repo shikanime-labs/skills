@@ -4,7 +4,7 @@ description:
   "Use when creating a new org repo: apply the 5-ruleset protection template,
   bootstrap the devlib devenv scaffold, and tag v0.1.0."
 version: 0.1.0
-author: Hermes Agent
+author: Automata
 license: Apache-2.0
 metadata:
   hermes:

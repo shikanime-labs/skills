@@ -1,7 +1,9 @@
-# delegate_task research fan-out (sks-issue-refine)
+# Delegation research fan-out (sks-issue-refine)
 
 Offloaded from SKILL.md step 4. The `research` question kind fans out AFK: one
-`delegate_task` child per independent fact. Each child is read-only and never
+delegation child per independent fact (`delegate_task` on Hermes; harness
+mapping: `sks-async/references/harness-delegation.md`). Each child is
+read-only and never
 edits product code; it posts only the conclusion as an issue comment — no
 finding dumps or reference lists. Durable References move to the body.
 

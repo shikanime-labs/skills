@@ -5,7 +5,7 @@ description:
   bookmarks, skill-created jj workspaces, and leftover working-copy dirs from
   sks-async/sks-dev.
 version: 0.2.1
-author: Hermes Agent
+author: Automata
 license: Apache-2.0
 metadata:
   hermes:

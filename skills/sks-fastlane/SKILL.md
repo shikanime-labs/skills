@@ -5,7 +5,7 @@ description:
   for the full gate train: merge its PR without human review once CI is
   green."
 version: 0.1.0
-author: Hermes Agent
+author: Automata
 license: Apache-2.0
 metadata:
   hermes:

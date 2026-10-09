@@ -4,7 +4,7 @@ description:
   Use when rebasing a jj stack onto moved main leaves conflicts — restack,
   then resolve each conflicted revision with edit/resolve until pushable.
 version: 0.2.0
-author: Hermes Agent
+author: Automata
 license: Apache-2.0
 metadata:
   hermes:

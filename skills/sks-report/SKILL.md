@@ -5,7 +5,7 @@ description:
   delegation fan-out: emit the fixed report block so status, evidence, and
   handoff stay uniform across parallel tasks."
 version: 0.4.0
-author: Hermes Agent
+author: Automata
 license: Apache-2.0
 metadata:
   hermes:

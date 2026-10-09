@@ -16,7 +16,7 @@
     },
     {
       "id": 2,
-      "expected_output": "Records the dependency tree first, then dispatches one delegate_task per leaf with fixed gates.",
+      "expected_output": "Records the dependency tree first, then dispatches one delegated child per leaf with fixed gates.",
       "files": [],
       "prompt": "Task B depends on task A and task C needs both — how do I fan this out to parallel agents in our jj repo and land it?",
       "assertions": [
@@ -25,7 +25,7 @@
         "Frontmatter license field is 'Apache-2.0'",
         "Body contains at least one '##' heading",
         "Body says to record the tree before fan-out",
-        "Body states one delegate_task per leaf and never bundles leaves",
+        "Body states one delegated child per leaf and never bundles leaves",
         "Body mentions 'jj workspace forget' to retire workspaces"
       ]
     },

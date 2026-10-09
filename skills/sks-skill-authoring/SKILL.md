@@ -4,7 +4,7 @@ description:
   "Use when creating a brand-new skill or profile for a skills
   catalog: grounded body, evals, manifests, and ship through the dev workflow."
 version: 0.3.0
-author: Hermes Agent
+author: Automata
 license: Apache-2.0
 metadata:
   hermes:
@@ -46,14 +46,14 @@ skills catalog; which skill families ship lives there.
 
 Don't use for: improving an existing skill (`sks-curate`), the whole-catalog
 pass (`sks-update`), or skills outside the catalog families (those stay
-user-local in `~/.hermes/skills/` and never ship in this repo).
+user-local in the harness skill mirror and never ship in this repo).
 
 ## Before You Write
 
 Climb in order; stop at the first rung that holds:
 
-1. **Does it exist?** Search the catalog, `~/.hermes/skills/`, AND session
-   memory (`honcho_search`, `session_search`) for an overlapping trigger or
+1. **Does it exist?** Search the catalog, the local skill mirror, AND memory
+   (`honcho_search`) and session history for an overlapping trigger or
    prior art. A near-duplicate means extend the existing skill, not create a
    narrow sibling; memory also holds the grounded executions step 3 distills
    into the body.
@@ -138,7 +138,7 @@ fails before review.
 - **Unregistered skill = invisible skill.** A missing `skills.json` or
   `package.json` entry ships a skill the installer never installs; grep all
   three manifests for the name before pushing.
-- **`name` must equal the directory**, or `hermes skills` tooling cannot
+- **`name` must equal the directory**, or skill-manager tooling cannot
   resolve it.
 
 ## Verification

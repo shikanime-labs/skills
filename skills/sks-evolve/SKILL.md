@@ -5,7 +5,7 @@ description:
   experience for signals, evolve skills, profiles, memory, conventions, cron,
   or config, and repeat the fitness loop."
 version: 0.1.0
-author: Hermes Agent
+author: Automata
 license: Apache-2.0
 metadata:
   hermes:

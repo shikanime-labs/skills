@@ -4,7 +4,7 @@ description:
   "Use when committing in a target-org repo: plain-English imperative titles
   and repo-enforced hooks (gitlint, DCO) win."
 version: 0.3.1
-author: Hermes Agent
+author: Automata
 license: Apache-2.0
 metadata:
   hermes:

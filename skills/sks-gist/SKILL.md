@@ -5,7 +5,7 @@ description:
   re-derived later — publish it as a gist for DRY reuse and link it from the
   artifact that motivated it.
 version: 0.1.0
-author: Hermes Agent
+author: Automata
 license: Apache-2.0
 metadata:
   hermes:
