@@ -5,7 +5,7 @@ description:
   untriaged items, then assign every empty, context-derivable field — type,
   labels, assignee, fields."
 version: 0.1.1
-author: Hermes Agent
+author: Automata
 license: Apache-2.0
 metadata:
   hermes:

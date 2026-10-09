@@ -5,7 +5,7 @@ description:
   or discussions with the Hide feature: classifier choice, GraphQL
   mutations, verification."
 version: 0.1.0
-author: Hermes Agent
+author: Automata
 license: Apache-2.0
 metadata:
   hermes:

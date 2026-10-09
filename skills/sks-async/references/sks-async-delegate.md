@@ -2,7 +2,8 @@
 
 Lazy-loaded detail for `SKILL.md` (not loaded at default skill load). Documents
 the DAG model, pitfalls, and the exact `delegate_task` payload shape for
-parallel fan-out.
+parallel fan-out (Hermes primitive; other harnesses:
+`harness-delegation.md`).
 
 ## Model: work is a DAG, jj executes it
 

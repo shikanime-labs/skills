@@ -5,7 +5,7 @@ description:
   responsibilities and must be split into parallel sibling units or a
   parent/child stack, decided per unit pair by dependency."
 version: 0.1.0
-author: Hermes Agent
+author: Automata
 license: Apache-2.0
 metadata:
   hermes:

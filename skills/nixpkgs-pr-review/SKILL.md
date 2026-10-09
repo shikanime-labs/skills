@@ -4,7 +4,7 @@ description:
   "Use when reviewing an upstream NixOS/nixpkgs pull request: build the changed
   packages with nixpkgs-review and check the diff against nixpkgs conventions."
 version: 0.1.0
-author: Hermes Agent
+author: Automata
 license: Apache-2.0
 metadata:
   hermes:

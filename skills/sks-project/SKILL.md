@@ -4,7 +4,7 @@ description:
   "Use when tracking issue/PR advancement on an org board: resolve the board
   from context or provision one, set Status to the real phase, audit drift."
 version: 0.3.0
-author: Hermes Agent
+author: Automata
 license: Apache-2.0
 metadata:
   hermes:

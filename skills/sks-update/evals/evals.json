@@ -2,7 +2,7 @@
   "evals": [
     {
       "id": 1,
-      "expected_output": "Defaults to updating every skill in the catalog, curating each, shipping the full curated set as one atomic PR, and resyncing all updated skills to local Hermes agents.",
+      "expected_output": "Defaults to updating every skill in the catalog, curating each, shipping the full curated set as one atomic PR, and resyncing all updated skills to local agents.",
       "files": [],
       "prompt": "Update the skills catalog and sync everything into my local Hermes agents.",
       "assertions": [
@@ -31,15 +31,15 @@
     },
     {
       "id": 3,
-      "expected_output": "Resyncs a landed skill into local Hermes agents via the tap/update path (or manual copy), resolving the real home from $HERMES_HOME when a profile is active.",
+      "expected_output": "Resyncs a landed skill into local agents via the harness's skill-manager update, routing Hermes-specific tap, copy, and profile paths to references/hermes-resync.md.",
       "files": [],
       "prompt": "Resync the skills I just merged into my local Hermes setup.",
       "assertions": [
         "YAML frontmatter parses and 'name' equals 'sks-update'",
         "Frontmatter license field is 'Apache-2.0'",
         "Body contains at least one '##' heading",
-        "Body mentions 'hermes skills'",
-        "Body mentions 'HERMES_HOME'",
+        "Body routes harness-specific resync to references/hermes-resync.md",
+        "Body verifies the resync against the installed skill list",
         "Body gates resync after the change lands on 'main'"
       ]
     },

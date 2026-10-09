@@ -5,7 +5,7 @@ description:
   PR and issue bodies, error messages — under ASD-STE100 Simplified Technical
   English rules."
 version: 0.1.0
-author: Hermes Agent
+author: Automata
 license: Apache-2.0
 metadata:
   hermes:

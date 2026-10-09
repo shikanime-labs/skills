@@ -4,7 +4,7 @@ description:
   Use when iterating a problem to convergence inside its GitHub issue via
   research and comments before deriving the PR.
 version: 0.1.1
-author: Hermes Agent
+author: Automata
 license: Apache-2.0
 metadata:
   hermes:
@@ -51,7 +51,7 @@ acceptance criteria converge (wayfinder's fog cycle on the thread).
 
   | Kind        | Mode   | Use when                                                      | Resolved by                                                    |
   | ----------- | ------ | ------------------------------------------------------------- | -------------------------------------------------------------- |
-  | `research`  | AFK    | A fact outside the working dir blocks a decision.             | A `delegate_task` agent; findings posted as a comment.         |
+  | `research`  | AFK    | A fact outside the working dir blocks a decision.             | A delegated research agent; findings posted as a comment.      |
   | `prototype` | HITL   | "How should this look/behave" — talk can't settle it.         | A cheap artifact (linked); **selection stays with the human**. |
   | `grilling`  | HITL   | The default — settleable by talking it through.               | Precise one-at-a-time questions, _why_ attached.               |
   | `task`      | Either | No decision, but manual work (access, data shape) blocks one. | A precise checklist — never product code.                      |
@@ -63,7 +63,7 @@ acceptance criteria converge (wayfinder's fog cycle on the thread).
 2. **Enumerate the fog** — one line per open question in your in-agent
    scratchpad (never post raw).
 3. **Classify** each question into one of the four kinds.
-4. **Resolve AFK in parallel** — `research` fans out via `delegate_task` (one
+4. **Resolve AFK in parallel** — `research` fans out via delegation (one
    child per independent fact; isolate on `research/<name>` per `sks-async` if
    it touches the repo; read-only, never edits product code — see
    `references/delegate-research.md`). `grilling`/`prototype` engage the human
@@ -111,7 +111,7 @@ References only; convergence passes before `sks-pr` handoff.
 
 - `references/wayfinder-distillation.md` — wayfinder distillation (four kinds,
   plan-don't-build, failure modes).
-- `references/delegate-research.md` — `delegate_task` fan-out snippet +
+- `references/delegate-research.md` — delegation fan-out snippet +
   read-only/report contract.
 
 ## See also

@@ -5,7 +5,7 @@ description:
   branch in <org>/<repo>: find the patch milestone and duplicate
   those commits onto the tag with jj."
 version: 0.4.0
-author: Hermes Agent
+author: Automata
 license: Apache-2.0
 platforms:
   - linux

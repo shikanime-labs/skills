@@ -5,8 +5,10 @@ The reviewer never verifies its own work. Two layers, both fail-closed:
 1. **Self-review checklist** (the agent that wrote the diff) — a fast pre-scan
    before an independent pass. Caught issues are fixed by the author, not the
    reviewer.
-2. **Independent reviewer subagent** — `delegate_task` with ONLY the diff + scan
-   results. No shared context. Returns JSON; unparseable = FAIL.
+2. **Independent reviewer subagent** — a delegation child (`delegate_task` on
+   Hermes; harness mapping: `sks-async/references/harness-delegation.md`)
+   with ONLY the diff + scan results. No shared context. Returns JSON;
+   unparseable = FAIL.
 
 ## Self-review checklist
 

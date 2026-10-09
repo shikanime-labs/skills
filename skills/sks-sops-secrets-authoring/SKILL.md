@@ -4,7 +4,7 @@ description:
   "Use when editing sops-encrypted files: decrypt-and-edit workflow,
   re-encryption guards, and sops-nix secret plumbing."
 version: 0.3.0
-author: Hermes Agent
+author: Automata
 license: Apache-2.0
 metadata:
   hermes:
