@@ -3,7 +3,7 @@ name: sks-skill-authoring
 description:
   "Use when creating a brand-new skill or profile for a skills
   catalog: grounded body, evals, manifests, and ship through the dev workflow."
-version: 0.2.0
+version: 0.3.0
 author: Hermes Agent
 license: Apache-2.0
 metadata:
@@ -111,6 +111,12 @@ fails before review.
    trigger, one edge case (adjacent task that should route elsewhere).
    Assertions check the body, not trivia: scope routing, pinned flags, gate
    steps. Never assert the absence of a string that legitimately appears.
+   Passing assertions is necessary, not sufficient: run the same prompt in
+   isolated contexts, without the skill (or on the previous version's
+   snapshot) and with the candidate, then compare. An iteration succeeds
+   only when the candidate demonstrates its assertions AND the comparison
+   shows no significant regression; a re-read alone never substitutes for
+   the comparison.
 5. **Register the skill** in all three places:
    - `README.md` catalog table — one row.
    - `skills.json` — `{"name", "description", "path"}` entry.
