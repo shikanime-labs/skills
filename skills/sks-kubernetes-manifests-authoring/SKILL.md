@@ -5,7 +5,7 @@ description:
   a GitOps repo: placement, patches, generators, labels, probes, and
   live-cluster cross-checks."
 version: 0.2.0
-author: Hermes Agent
+author: Automata
 license: Apache-2.0
 metadata:
   hermes:

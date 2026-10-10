@@ -5,7 +5,7 @@ description:
   investigation, development, debugging, testing, UAT, white-room, or data
   validation before promoting a change.
 version: 0.1.0
-author: Hermes Agent
+author: Automata
 license: Apache-2.0
 metadata:
   hermes:

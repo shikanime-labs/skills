@@ -4,7 +4,7 @@ description:
   Use when splitting multi-unit work into parallel, isolated jj workspaces
   (depth-tree fan-out) and landing as independent plain `gh pr` merges.
 version: 0.1.1
-author: Hermes Agent
+author: Automata
 license: Apache-2.0
 metadata:
   hermes:
@@ -41,7 +41,7 @@ cloud-pi-native/console repository.
 ## When to Use
 
 - Several units, some independent.
-- Parallel agents (delegate_task fan-out) must not share a working copy.
+- Parallel agents (delegation fan-out) must not share a working copy.
 - Shape: B needs A → depth (stack); C needs A AND B → join.
 
 ## Procedure
@@ -101,13 +101,14 @@ EOF
    re-runs them (subagent self-reports aren't evidence). Retire with
    `jj workspace forget <name>`; refresh idle with `jj workspace update-stale`.
 
-## Fan-out via delegate_task
+## Fan-out via delegation
 
 Each child: workspace path, unit gates, commit shape (plain English + the org
 co-author trailer). Parent re-verifies every gate via `terminal` in each
-workspace before reporting done. Dispatch `delegate_task(tasks=[])`: **one task
-per leaf**, `goal` carries the contract; never bundle two leaves (defeats
-isolation). Skeleton: `references/sks-async-delegate.md`.
+workspace before reporting done. Dispatch the harness delegation primitive
+(mapping: `references/harness-delegation.md`): **one task per leaf**, the
+goal carries the contract; never bundle two leaves (defeats isolation).
+Skeleton: `references/sks-async-delegate.md`.
 
 ## Verification
 

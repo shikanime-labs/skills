@@ -83,7 +83,7 @@
         "Frontmatter parses as valid YAML.",
         "Frontmatter 'name' equals 'sks-issue-refine'.",
         "A 'references/cloud-pi-native.md' file exists and requires French-only artifacts when refining in cloud-pi-native/console.",
-        "That references file keeps the research fan-out to one independent fact per delegate_task goal.",
+        "That references file keeps the research fan-out to one independent fact per delegation goal.",
         "The body still posts findings as comments and never writes product code in this loop."
       ]
     }

@@ -4,7 +4,7 @@ description:
   Use when landing a target-org PR after reconciliation (sks-pr-resolve) and
   review approval gates pass; closes the linked issue deliberately.
 version: 0.4.0
-author: Hermes Agent
+author: Automata
 license: Apache-2.0
 metadata:
   hermes:

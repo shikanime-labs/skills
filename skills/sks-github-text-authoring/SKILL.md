@@ -5,7 +5,7 @@ description:
   issue or PR body, discussion RFC, review or issue comment. Owns all shared
   prose rules; surface skills handle procedure."
 version: 0.2.0
-author: Hermes Agent
+author: Automata
 license: Apache-2.0
 metadata:
   hermes:

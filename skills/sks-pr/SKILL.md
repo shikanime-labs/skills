@@ -5,7 +5,7 @@ description:
   --head org:branch, plain-English title, issue linkage, parity with commit,
   pre-submit isolation gate, opens as a draft."
 version: 0.2.0
-author: Hermes Agent
+author: Automata
 license: Apache-2.0
 metadata:
   hermes:

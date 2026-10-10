@@ -5,7 +5,7 @@ description:
   review comments, checking the DoD ledger, and reconciling before merge
   (no merge itself).
 version: 0.1.2
-author: Hermes Agent
+author: Automata
 license: Apache-2.0
 metadata:
   hermes:

@@ -5,7 +5,7 @@ description:
   profile in a skills catalog: rework the body, tighten it, refresh evals,
   and keep it loadable."
 version: 0.2.0
-author: Hermes Agent
+author: Automata
 license: Apache-2.0
 metadata:
   hermes:
@@ -167,12 +167,13 @@ naming the ceiling and the upgrade path.
   prose. `ponytail-review` finds the bloat; this skill removes it.
   For a whole-repo bloat pass, `ponytail-audit` is the analog of this
   skill's structural audit.
-- **The local `.hermes/skills` mirror drifts ahead of the repo.** The mirror
+- **The local skill mirror drifts ahead of the repo.** The operational clone
   routinely runs hundreds of lines ahead of its repo twin — months of session
   learnings accumulated only in the operational clone. When curating, DIFF BOTH
   CLONES first and consolidate
   the mirror's learnings into the repo (body or `references/`); otherwise the
-  next `hermes skills update` silently deletes them.
+  next harness sync silently deletes them (Hermes mirror specifics:
+  `sks-update/references/hermes-resync.md`).
 - **Curate in a workspace, never `cp` over it.** When the user's tree is dirty,
   check the PR commit out in a fresh `jj workspace add ../<name> -r <rev>` (git
   checkouts: `git worktree`) and edit there. Never copy the user's on-disk
