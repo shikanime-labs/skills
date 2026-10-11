@@ -5,7 +5,7 @@ description:
   orgs, or any enumerable agentic batch: enumerate targets, drive the batch
   from a plan file, and verify every result."
 version: 0.2.0
-author: Hermes Agent
+author: Automata
 license: Apache-2.0
 metadata:
   hermes:

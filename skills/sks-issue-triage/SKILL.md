@@ -5,7 +5,7 @@ description:
   assignee, milestone, project, relationships, and fields; close with rationale
   if not workable."
 version: 0.3.0
-author: Hermes Agent
+author: Automata
 license: Apache-2.0
 metadata:
   hermes:

@@ -4,7 +4,7 @@ description:
   "Use when triaging an existing org PR: labels, assignee, milestone,
   and reviewers."
 version: 0.1.1
-author: Hermes Agent
+author: Automata
 license: Apache-2.0
 metadata:
   hermes:

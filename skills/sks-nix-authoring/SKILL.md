@@ -4,7 +4,7 @@ description:
   "Use when authoring or editing Nix in an org repo: nixfmt-sorted style,
   single-use let bindings, no explanatory comments, YAGNI on new options."
 version: 0.2.0
-author: Hermes Agent
+author: Automata
 license: Apache-2.0
 metadata:
   hermes:

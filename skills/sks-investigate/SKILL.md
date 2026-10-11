@@ -5,7 +5,7 @@ description:
   behavior — find root cause, form a hypothesis, and propose a solution,
   never apply the fix itself.
 version: 0.3.0
-author: Hermes Agent
+author: Automata
 license: Apache-2.0
 metadata:
   hermes:
@@ -142,9 +142,11 @@ wrong tool — capture the live trace and isolate from there.
 
 ## Multi-component attribution
 
-For a system with several moving parts, dispatch one `delegate_task` per
-_component boundary_ (carrying the Phase-1 contract: observed vs expected, the
-exact failure) and converge on the failing component. Same isolation discipline
+For a system with several moving parts, dispatch one delegated agent per
+_component boundary_ (delegation mapping:
+`sks-async/references/harness-delegation.md`; carrying the Phase-1 contract:
+observed vs expected, the exact failure) and converge on the failing
+component. Same isolation discipline
 as the parallel-implementation skills, applied to a trace instead of parallel
 work. Stop fanning out the moment one component is implicated — then switch to
 single-threaded hypothesis testing inside it.

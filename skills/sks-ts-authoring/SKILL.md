@@ -5,7 +5,7 @@ description:
   cast-free explicit types, linear single-purpose functions, and schema-first
   inputs."
 version: 0.1.0
-author: Hermes Agent
+author: Automata
 license: Apache-2.0
 metadata:
   hermes:

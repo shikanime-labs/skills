@@ -5,7 +5,7 @@ description:
   entry to implementation for every unit, so concurrent WIP never folds in
   and bookmarks/pushes stay scoped.
 version: 0.3.0
-author: Hermes Agent
+author: Automata
 license: Apache-2.0
 metadata:
   hermes:

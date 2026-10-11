@@ -5,7 +5,7 @@ description:
   problem statement, acceptance criteria as a command-decidable tasklist;
   owns the create → triage order."
 version: 0.2.0
-author: Hermes Agent
+author: Automata
 license: Apache-2.0
 metadata:
   hermes:

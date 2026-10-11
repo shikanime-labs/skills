@@ -5,7 +5,7 @@ description:
   fresh jj workspace, push-to-origin, jj bookmark tracking, and landing via
   plain gh pr merge or direct push."
 version: 0.10.1
-author: Hermes Agent
+author: Automata
 license: Apache-2.0
 metadata:
   hermes:
@@ -326,7 +326,7 @@ Deep recipes live in `references/`; read the file when its condition fires:
 - `references/cloud-pi-native-core.md` — working in
   `shikanime-labs/cloud-pi-native-core` (Alchemy v2 library; NOT the
   cloud-pi-native/console repo): commit envelope, gates, Renovate shape.
-- `references/pitfalls.md` — dual-clone discipline (`.hermes/skills` vs the
+- `references/pitfalls.md` — dual-clone discipline (skill mirror vs the
   org repo root), dirty working copies, kustomize generator-not-found,
   two `patches:` blocks, alias-in-prose, body wrapping.
 - `sks-sops-secrets-authoring/references/sops-manifests.md` —
