@@ -73,8 +73,8 @@ subject keyphrase (`gh issue list -R <org>/<repo> --state all --search
 issue's root cause, not the symptom it names. Do not re-flag a tradeoff a
 closed issue already accepted. Cite an open issue that covers the same
 change. If the search finds nothing and the diff touches a
-domain-specific area (infra, auth, storage), consult memory
-(`honcho_search`) for known pitfalls first. Never skip the search on the
+domain-specific area (infra, auth, storage), consult agent memory
+for known pitfalls first. Never skip the search on the
 assumption memory already covers the area.
 
 **2 — High-level (Ponytail ladder).** Per change:
