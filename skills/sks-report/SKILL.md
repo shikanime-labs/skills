@@ -4,7 +4,7 @@ description:
   "Use when ending any agent work loop — investigation, dev unit, batch, or
   delegation fan-out: emit the fixed report block so status, evidence, and
   handoff stay uniform across parallel tasks."
-version: 0.4.0
+version: 0.5.0
 author: Automata
 license: Apache-2.0
 metadata:
@@ -21,6 +21,9 @@ metadata:
       - sks-issue
       - sks-dev
       - sks-github-text-authoring
+      - sks-swarm
+      - sks-land
+      - sks-gist
 platforms:
   - linux
   - macos
@@ -107,9 +110,24 @@ grep -nE 'Status: (DONE|PARTIAL|BLOCKED|FAILED)' <report.md>
 
 One match per block.
 
+The contract is bidirectional: every skill listed under `related_skills`
+above references this skill back. After editing either side, re-run:
+
+```bash
+for s in $(awk '/^    related_skills:/{f=1;next} f&&/^      - /{print $2; next}
+  f{exit}' skills/sks-report/SKILL.md); do
+  grep -q sks-report "skills/$s/SKILL.md" || echo "missing back-link: $s"
+done
+```
+
+Empty output — every listing links back.
+
 ## See also
 
 - `sks-async` — fan-out; the child contract returns this block.
 - `sks-investigate` — the finding plus proposal fills the block.
 - `sks-bulk` — N/M batch reporting; the aggregation rule.
+- `sks-swarm` — one block per unit at reconcile.
+- `sks-land` — the landing report, after user confirmation.
+- `sks-gist` — stable URL for evidence too long to paste.
 - `sks-github-text-authoring` — prose rules inside the sections.
