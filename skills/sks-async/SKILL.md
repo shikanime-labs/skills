@@ -125,6 +125,8 @@ has in-workspace evidence.
 - `sks-dev` — parent; run its assumption-validation gate BEFORE
   fan-out.
 - `sks-commit` / `sks-pr` — commit shape (co-author trailer) and PR linkage.
+- `sks-report` — the end-of-loop block each child returns and the parent
+  re-emits per unit.
 - Cloud-pi-native specifics (French artifacts, co-author trailer, draft PRs
   with `Refs #N`): `references/cloud-pi-native.md`.
 - Model, pitfalls, dispatch skeleton: `references/sks-async-delegate.md`.
