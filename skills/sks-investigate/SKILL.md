@@ -204,5 +204,6 @@ echo "investigation complete: root cause + hypothesis + proposed fix" \
   ranked simplification list seeds the proposal.
 - `sks-gist` — publish a verified probe script or recovery sequence for reuse
   instead of letting it die in the transcript.
+- `sks-report` — the end-of-loop block the finding and proposal fill.
 - `sks-issue` / `sks-dev` / `sks-pr` — receive the proposed solution
   and apply it as a reviewed change.

@@ -194,5 +194,6 @@ named with its reason.
 - `sks-pr`, `sks-issue` — per-repo PR and issue sides.
 - `sks-gist` — host a shared helper script at a stable URL when the batch
   spans repos or sessions.
+- `sks-report` — the N/M batch report block that closes the run.
 - Org specifics (orgs, checkout paths, commit envelope, ruleset gate):
   `references/shikanime.md`.

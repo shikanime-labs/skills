@@ -101,4 +101,6 @@ gh gist view <id> --files      # file list matches what you published
 - `sks-investigate` — common producer of reusable artifacts.
 - `sks-issue` / `sks-discussion` — where gists get linked.
 - `sks-bulk` — batch runs consuming a gist-hosted helper.
+- `sks-report` — a stable destination to link a gist from when the loop
+  closes.
 - `sks-adversarial` — sandbox probes; publish only what survives.
