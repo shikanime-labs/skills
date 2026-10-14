@@ -1,5 +1,5 @@
 ---
-name: sks-report
+name: sks-summary
 description:
   "Use when ending any agent work loop — investigation, dev unit, batch, or
   delegation fan-out: emit the fixed report block so status, evidence, and

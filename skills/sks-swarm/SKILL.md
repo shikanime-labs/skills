@@ -134,4 +134,4 @@ debugging A2A delivery.
 - `sks-async` — in-repo parallel streams when no agent cluster is needed.
 - `sks-investigate` — root-cause discipline before executing a swarm.
 - `sks-gc` — reclaim idle agents / workspaces after reconcile.
-- `sks-report` — one block per swarm unit at reconcile.
+- `sks-summary` — one block per swarm unit at reconcile.

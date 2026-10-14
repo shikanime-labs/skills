@@ -315,4 +315,4 @@ gh pr checks "$N" --repo "$R"   # all green before merge; bookmark absent after
 
 - `sks-investigate` — root-cause research before any fix.
 - `sks-commit`, `sks-pr` — the conventions Gate 4 enforces before merge.
-- `sks-report` — the landing report block, after user confirmation.
+- `sks-summary` — the landing report block, after user confirmation.
