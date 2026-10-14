@@ -60,6 +60,8 @@
     }:
     flake-parts.lib.mkFlake { inherit inputs; } {
       imports = [
+        ./modules/flake/nixos.nix
+        ./modules/flake/home.nix
         devenv.flakeModule
         devlib.flakeModule
         git-hooks.flakeModule
