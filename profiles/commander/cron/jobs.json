@@ -4,8 +4,21 @@
       "name": "weekly-veille-technologique",
       "enabled": false,
       "id": "e853fc6b7c7a",
-      "prompt": "Weekly technology watch + skill consolidation.\n\n1. Read your memories/MEMORY.md and USER.md. Scan recent session history (session_search) for recurring problems, corrections, and new tooling discovered since the last run.\n2. Use honcho memory: honcho_profile for the peer card and honcho_search for recent durable facts about the user; write back any new stable conclusion via honcho_conclude.\n3. Veille technologique: web_search for notable updates in the domains this profile works in (infer them from its skills). Max ~5 searches. Report only actionable or surprising findings.\n4. Skill consolidation: compare the shikanime-labs/skills catalog against this profile's skills; adopt valuable missing shared skills via `hermes skills install`, and suggest upstream edits rather than local forks. Never edit user-owned skills (created_by=None); note them instead.\n5. Output: short digest — (a) tech-watch highlights (\u003c=5 bullets), (b) skill actions taken or skipped, (c) cross-profile suggestions. Keep under 40 lines. Do not fabricate: if a source fails, say so.",
-      "schedule": { "kind": "cron", "expr": "30 6 * * 1" }
+      "prompt": "Weekly technology watch + skill consolidation.\n\n1. Read your memories/MEMORY.md and USER.md. Scan recent session history (session_search) for recurring problems, corrections, and new tooling discovered since the last run.\n2. Use honcho memory: honcho_profile for the peer card and honcho_search for recent durable facts about the user; write back any new stable conclusion via honcho_conclude.\n3. Veille technologique: web_search for notable updates in the domains this profile works in (infer them from its skills). Max ~5 searches. Report only actionable or surprising findings.\n4. Skill consolidation: compare the shikanime-labs/skills catalog against this profile's skills; adopt valuable missing shared skills via `hermes skills install`, and suggest upstream edits rather than local forks. Never edit user-owned skills (created_by=None); note them instead.\n5. Output: short digest — (a) tech-watch highlights (<=5 bullets), (b) skill actions taken or skipped, (c) cross-profile suggestions. Keep under 40 lines. Do not fabricate: if a source fails, say so.",
+      "schedule": {
+        "kind": "cron",
+        "expr": "30 6 * * 1"
+      }
+    },
+    {
+      "name": "weekly-a2a-cluster-efficiency",
+      "enabled": false,
+      "id": "43b5760021bf",
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 9 * * 1"
+      },
+      "prompt": "Weekly cluster-efficiency brainstorm with the A2A fleet.\n\n1. Discover peers with a2a_list (hub: automata). Every reachable peer participates; note unreachable ones and continue.\n2. One a2a_call per peer: 'From your vantage point, what is the single highest-leverage efficiency improvement in the catbox cluster right now (compute, storage, cost, redundancy)?' Each answer must state: observation, evidence, proposed change, expected saving.\n3. Aggregate: dedup overlapping proposals, rank by leverage / effort. Drop proposals already filed or rejected (check open + recently closed issues in shikanime-labs/manifests and prior run output).\n4. File the top proposals (max 3) as issues in shikanime-labs/manifests, one per proposal, crediting the contributing agents in the body, Co-authored-by: Automata <automata@shikanime.studio> on any follow-up commits. Proposals only — no PRs from this job.\n\nOutput: participants, ranked proposals with expected savings, issues opened."
     }
   ]
 }

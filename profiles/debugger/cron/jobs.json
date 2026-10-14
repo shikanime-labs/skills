@@ -4,8 +4,41 @@
       "name": "weekly-veille-technologique",
       "enabled": false,
       "id": "e853fc6b7c7a",
-      "prompt": "Weekly technology watch + skill consolidation.\n\n1. Read your memories/MEMORY.md and USER.md. Scan recent session history (session_search) for recurring problems, corrections, and new tooling discovered since the last run.\n2. Use honcho memory: honcho_profile for the peer card and honcho_search for recent durable facts about the user; write back any new stable conclusion via honcho_conclude.\n3. Veille technologique: web_search for notable updates in the domains this profile works in (infer them from its skills). Max ~5 searches. Report only actionable or surprising findings.\n4. Skill consolidation: compare the shikanime-labs/skills catalog against this profile's skills; adopt valuable missing shared skills via `hermes skills install`, and suggest upstream edits rather than local forks. Never edit user-owned skills (created_by=None); note them instead.\n5. Output: short digest — (a) tech-watch highlights (\u003c=5 bullets), (b) skill actions taken or skipped, (c) cross-profile suggestions. Keep under 40 lines. Do not fabricate: if a source fails, say so.",
-      "schedule": { "kind": "cron", "expr": "30 6 * * 1" }
+      "prompt": "Weekly technology watch + skill consolidation.\n\n1. Read your memories/MEMORY.md and USER.md. Scan recent session history (session_search) for recurring problems, corrections, and new tooling discovered since the last run.\n2. Use honcho memory: honcho_profile for the peer card and honcho_search for recent durable facts about the user; write back any new stable conclusion via honcho_conclude.\n3. Veille technologique: web_search for notable updates in the domains this profile works in (infer them from its skills). Max ~5 searches. Report only actionable or surprising findings.\n4. Skill consolidation: compare the shikanime-labs/skills catalog against this profile's skills; adopt valuable missing shared skills via `hermes skills install`, and suggest upstream edits rather than local forks. Never edit user-owned skills (created_by=None); note them instead.\n5. Output: short digest — (a) tech-watch highlights (<=5 bullets), (b) skill actions taken or skipped, (c) cross-profile suggestions. Keep under 40 lines. Do not fabricate: if a source fails, say so.",
+      "schedule": {
+        "kind": "cron",
+        "expr": "30 6 * * 1"
+      }
+    },
+    {
+      "name": "daily-grafana-alert-triage",
+      "enabled": false,
+      "id": "7dba2903db1d",
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 8 * * *"
+      },
+      "prompt": "Daily Grafana alert triage for the catbox fleet.\n\n1. Enumerate firing alerts from the fleet monitoring stack (Grafana/API on the tailnet; kube-prometheus-stack in cluster). List alert name, severity, labels, annotations, since.\n2. Dedup: cross-check each alert against open issues in shikanime-labs/manifests (gh issue list -R shikanime-labs/manifests). Already-tracked alerts are listed, never re-filed.\n3. New alert: open one issue per alert in shikanime-labs/manifests — title = alert name, body = labels, annotations, affected object, dashboard link, first-seen. Assign yorha-operator if eligible.\n4. Fastlane path — only when the fix is a small manifest patch (values bump, threshold, image pin) in ~/Source/Repos/github.com/shikanime-labs/manifests AND ALL of: trivial framing; <=5 files and <=100 changed lines; no trust boundary (nothing matching lock|secret|.enc.|auth|iam|cert|token); no schema/API change; CI green on the exact head. Ship: branch, commit (gitlint: body required + Signed-off-by: Shikanime Deva <william.phetsinorath@shikanime.studio> + 'Related: <full issue URL>'), push, PR with Co-authored-by: Automata <automata@shikanime.studio>, request reviewer yorha-operator, then gh pr merge --squash --admin --match-head-commit $(head sha), and leave the receipt comment 'Fastlane: merged without human review (CI green, eligibility passed). Revert freely if not trivial.' Any eligibility fail: PR stays open for human review. Max 3 fastlanes per run; beyond that, issues only.\n5. Alerts resolved since the last run: note them; close nothing automatically.\n\nOutput: table (new / tracked / fixed), issues opened, PRs opened or fastlaned, skips."
+    },
+    {
+      "name": "daily-flux-triage",
+      "enabled": false,
+      "id": "885f82dd5a9d",
+      "schedule": {
+        "kind": "cron",
+        "expr": "15 8 * * *"
+      },
+      "prompt": "Daily Flux health triage for the catbox fleet.\n\n1. Enumerate unhealthy Flux objects (kubectl get kustomizations,helmreleases -A): not Ready, with Ready=False message and source revision. Deliberately suspended objects are listed separately; never touch them.\n2. Dedup against open issues in shikanime-labs/manifests and prior run output: tracked failures are listed, never re-filed.\n3. New failure without an open issue: one issue per failure in shikanime-labs/manifests — object, namespace, Ready=False message, source revision, first-seen. Assign yorha-operator if eligible.\n4. Fastlane path — only for small manifest patches in ~/Source/Repos/github.com/shikanime-labs/manifests (each overlay has its own Flux KS; rendered manifests exclude certs) AND ALL eligibility: trivial framing; <=5 files and <=100 changed lines; no trust boundary (lock|secret|.enc.|auth|iam|cert|token); no schema/API change; CI green on the exact head. Ship: branch, commit (gitlint: body required + Signed-off-by: Shikanime Deva <william.phetsinorath@shikanime.studio> + 'Related: <full issue URL>'), push, PR with Co-authored-by: Automata <automata@shikanime.studio>, reviewer yorha-operator, merge --squash --admin --match-head-commit pinned to the verified head, receipt comment on the PR. kubectl suspend/resume break with -n: patch the Kustomization and annotate requestedAt instead. Any eligibility fail: PR stays open. Max 3 per run.\n5. Cluster-level failures (node down, Longhorn recovery, storage): issue only — human review.\n\nOutput: table (new / tracked / fixed), issues opened, PRs opened or fastlaned."
+    },
+    {
+      "name": "daily-github-actions-failure-sweep",
+      "enabled": false,
+      "id": "d980d1e5497b",
+      "schedule": {
+        "kind": "cron",
+        "expr": "30 8 * * *"
+      },
+      "prompt": "Daily CI failure sweep for shikanime-labs and shikanime-studio.\n\n1. Enumerate failed workflow runs in the last 24h: gh run list --status failure across both orgs' active repos. Ignore renovate PRs, draft-PR CI skips, and flakes that passed on rerun.\n2. Dedup against open issues in the failing repo and prior run output.\n3. New failure: one issue per repo+workflow in the repo where it failed — run URL, failing job, first error lines, head sha. Assign yorha-operator if eligible.\n4. Fastlane path — only for trivial fixes (CI yaml fix, action pin, typo) AND ALL eligibility: trivial framing; <=5 files and <=100 changed lines; no trust boundary (lock|secret|.enc.|auth|iam|cert|token — an action-pin in CI yaml qualifies as trivial, a lockfile never does); no schema/API change; CI green on the exact head. Ship: branch in ~/Source/Repos/github.com/<org>/<repo>, plain-English imperative commit subject + body + Co-authored-by: Automata <automata@shikanime.studio>, push, PR, reviewer yorha-operator, merge --squash --admin --match-head-commit pinned to the verified head, receipt comment. Eligibility fail: PR stays open. Max 3 per run.\n5. Console quirk: apps/server-only push branches run no CI — re-arm with gh workflow run workflow-continuous-integration.yml --ref <branch>.\n\nOutput: failures table (new / tracked / fixed), issues opened, PRs fastlaned."
     }
   ]
 }
