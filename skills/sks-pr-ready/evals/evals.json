@@ -1,0 +1,64 @@
+{
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "The skill validates the draft PR gates in order and flips with gh pr ready only when all pass.",
+      "files": [],
+      "prompt": "CI just went green on PR #42 in shikanime-labs/skills, take it out of draft for review.",
+      "assertions": [
+        "Frontmatter parses as YAML with a top-level 'name' key",
+        "Frontmatter 'name' equals the directory basename 'sks-pr-ready'",
+        "Description starts with 'Use when' and is <= 200 characters",
+        "license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body pins the PR head via headRefOid before any other gate",
+        "Body requires CI green via gh pr checks before the flip",
+        "Body requires the first review done with no unresolved blocking finding",
+        "Body flips the draft via gh pr ready",
+        "Body states the skill never merges"
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "The skill reconciles the PR body with the current diff on every push or update before the flip.",
+      "files": [],
+      "prompt": "I pushed a new commit to my draft PR, update it and make it ready for human review.",
+      "assertions": [
+        "Frontmatter parses as YAML with a top-level 'name' key",
+        "Frontmatter 'name' equals the directory basename 'sks-pr-ready'",
+        "Description starts with 'Use when' and is <= 200 characters",
+        "license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body reconciles the body with the diff on every push or update",
+        "Body deletes claims absent from the current diff",
+        "Body restarts the gate train at step 1 after any push"
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "The skill routes merging away; landing belongs to sks-land after human approval.",
+      "files": [],
+      "prompt": "Merge my ready PR now that the checks pass.",
+      "assertions": [
+        "Frontmatter parses as YAML with a top-level 'name' key",
+        "Frontmatter 'name' equals the directory basename 'sks-pr-ready'",
+        "Description starts with 'Use when' and is <= 200 characters",
+        "license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body delegates landing/merging to sks-land",
+        "Body never merges itself"
+      ]
+    },
+    {
+      "id": 4,
+      "expected_output": "The skill stays loadable and self-identifies as sks-pr-ready; writing a poem is out of scope.",
+      "files": [],
+      "prompt": "Write a sonnet about draft pull requests and post it to my personal blog.",
+      "assertions": [
+        "Frontmatter parses as YAML with a top-level 'name' key",
+        "Frontmatter 'name' equals the directory basename 'sks-pr-ready'"
+      ]
+    }
+  ],
+  "skill_name": "sks-pr-ready"
+}

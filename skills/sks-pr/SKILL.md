@@ -16,6 +16,7 @@ metadata:
       - sks-commit
       - sks-sudo
       - sks-pr-resolve
+      - sks-pr-ready
       - sks-land
       - sks-doc
 platforms:
@@ -225,10 +226,12 @@ be requested from pull request author"). When the agent submits under that
 same account, it IS the author — skip the request; the approving review must
 come from the operator.
 
-Use `--draft` at creation — every PR opens as a draft; mark ready
-(`gh pr ready <N>`) only once CI is green on the verified head. When the
-repo's gate includes code-quality checks (e.g. SonarQube Quality Gate,
-0 new issues), verify via `gh pr checks <N>` before marking ready.
+Use `--draft` at creation — every PR opens as a draft. Flip it to ready
+(`sks-pr-ready`) only after its full gate train passes: CI green on the
+verified head, first review done, triage complete, body reconciled with
+the diff, mergeable — then `gh pr ready`. Code-quality gates like the
+SonarQube Quality Gate (0 new issues) count as CI there; verify via
+`gh pr checks <N>` before the flip.
 
 ### 2d. Verify mergeable after submit
 

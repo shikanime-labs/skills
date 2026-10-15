@@ -139,4 +139,5 @@ gh pr view <N> --repo <org>/<repo> --json state,headRefName   # after PR step
 - `sks-adversarial` — disposable sandbox; composes this skill + `sks-async`.
 - `sks-investigate` — root-cause discipline; use before isolating a fix.
 - `sks-pr` — open the PR from the pushed bookmark.
+- `sks-pr-ready` — flip that PR from draft to ready once its gates pass.
 - `sks-gc` — reclaim the workspace/bookmark once landed.
