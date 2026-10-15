@@ -3,7 +3,7 @@ name: sks-project
 description:
   "Use when tracking issue/PR advancement on an org board: resolve the board
   from context or provision one, set Status to the real phase, audit drift."
-version: 0.3.0
+version: 0.4.0
 author: Automata
 license: Apache-2.0
 metadata:
@@ -26,8 +26,9 @@ platforms:
 
 # Board Tracking
 
-Track issues and PRs on the org's Projects V2 boards (the board owner is an
-org fact — for shikanime, read `references/shikanime.md`). `sks-project`
+Track issues and PRs on the org's Projects V2 boards (the board owner —
+user, org, or team — is an org fact; for shikanime, read
+`references/shikanime.md`). `sks-project`
 owns a dedicated board per catalog — reuse a
 pertinent existing board when one covers the context, provision a new one
 when none does. Status is the real phase of the work: advanced once per
@@ -43,7 +44,8 @@ before other work proceeds.
 ## Board resolution (from context)
 
 Pick the board from the unit's family, never by habit. The board-per-family
-table is an org fact (read `references/shikanime.md`).
+table — and the per-team default each org falls back to when no family
+matches — are org facts (read `references/shikanime.md`).
 
 Ambiguous context: `gh project list --owner <board-owner>`, read the titles,
 and ask the user once if still unresolved. A unit lives on exactly one board.
@@ -79,11 +81,12 @@ grouping (the API cannot set `verticalGroupByFields` on a fresh project),
 the Priority/Size fields, and the lifecycle Status vocabulary:
 
 ```bash
-gh api graphql -f query='{ viewer { id } }'   # ownerId
+# ownerId = the destination owner's node id: the ORG node for a per-team
+# board, the user id for a family board (per references/shikanime.md)
 gh api graphql -f query='mutation{ copyProjectV2(input:{
   projectId:"<template-project-node-id>"
-  ownerId:"<viewer-id>"
-  title:"<family>" }){
+  ownerId:"<owner-node-id>"
+  title:"<team-or-family>" }){
   projectV2 { id number } } }'
 ```
 

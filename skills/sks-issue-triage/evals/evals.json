@@ -105,7 +105,7 @@
       "assertions": [
         "Frontmatter parses as valid YAML.",
         "Frontmatter 'name' equals 'sks-issue-triage'.",
-        "Body derives the milestone: bug → highest open patch on the current minor; enhancement → next minor/major.",
+        "Body routes the milestone derivation to an org fact in references (shikanime.md) instead of hardcoding a semver scheme",
         "Body filters labels against the discovered repo metadata (gh label list / discover script) and never invents a value."
       ]
     }

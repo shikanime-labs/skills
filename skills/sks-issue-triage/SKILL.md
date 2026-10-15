@@ -4,7 +4,7 @@ description:
   "Use when triaging an existing org issue: assign type, labels,
   assignee, milestone, project, relationships, and fields; close with rationale
   if not workable."
-version: 0.3.0
+version: 0.4.0
 author: Automata
 license: Apache-2.0
 metadata:
@@ -94,8 +94,8 @@ mean those fields stay empty.
   `references/shikanime.md`), but only when it appears in the step-2
   assignee list; else `ASSIGNEE=$(gh api user --jq .login)`. GitHub accepts
   assigning the author on issues.
-- **milestone** — if none and milestones exist: bug→highest open **patch**
-  on current minor (max `Z`); enhancement→next minor/major.
+- **milestone** — if none and milestones exist: which convention applies is an
+  org fact (`references/shikanime.md`); apply it, never a hardcoded scheme.
 - **project** — if a Projects V2 board exists and this is unboarded:
   `--add-project "<title>"` (title, not number). Skip if ambiguous.
   After onboarding set Status `Ready` on the card (ids in `sks-project`)
