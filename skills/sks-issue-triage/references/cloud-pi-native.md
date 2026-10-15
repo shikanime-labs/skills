@@ -11,9 +11,19 @@ generic procedure in SKILL.md is unchanged; these are the org overrides.
   `gh label list`.
 - Org projects: `gh project list --owner cloud-pi-native` (Projects v2).
   The main board is `Socle` (project 2); its Status has no `Ready` option —
-  the ready equivalent is `To do`. Custom single-selects worth setting:
-  Priority (low/medium/high) and Epic (e.g. `Migration NestJS`); mirror the
-  Epic of the closest benchmark card. New console issues may auto-land on a
+  the ready equivalent is `To do`. Custom fields worth setting: Epic
+  (single-select; e.g. `Migration NestJS`) and two ITERATION fields — `PI`
+  (sprints `PI18-2`…) for active cards, `PI-Backlog` (iteration
+  `PI-Backlog 18`) for Status=`Backlog` cards. Iterations are set via
+  `iterationId` in `updateProjectV2ItemFieldValue`, never
+  singleSelectOptionId. Priority (low/medium/high) exists but has no
+  derivable default — skip unless asked. When Epic is empty and the title
+  carries a clear signal, derive by keyword, most-specific match wins
+  (server-nestjs → `Migration NestJS`; rôles/droits/RBAC → `Droits Fins`;
+  Grafana/SonarQube → `Observabilité`; OpenCDS → `OpenCDS`;
+  test/e2e/recette → `QA`; CI/commitlint/release → `CI/CD`;
+  ArgoCD/déploiement → `Gestion des déploiements`); no signal → leave
+  empty, never invent. New console issues may auto-land on a
   PI-exploit board in `Backlog` — that card is not the triage target; check
   `gh issue view --json projectItems`, it shows every card.
 - Fallback assignee is the same `yorha-operator` account (see the generic
