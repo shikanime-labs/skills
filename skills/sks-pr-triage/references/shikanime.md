@@ -1,18 +1,14 @@
 # Shikanime org conventions
 
-## Repo scope
-
-PRs live under `shikanime-labs/*` or `shikanime-studio/*`; target the
-canonical org repo directly. If cwd `origin` is not under one of them, ask
-for `OWNER/REPO`.
-
-## Default reviewer
-
-With no review requests on the PR, request `yorha-operator` (the Automata
-account) unless they authored the PR; then another collaborator/team member;
-skip if none works.
-
-## Artifact language
-
-Triage artifacts (reworded titles/bodies, rationale comments) are written
-in English; label/assignee/milestone values stay repo-existing only.
+- Scope: triage runs against `shikanime-labs/*` / `shikanime-studio/*` repos
+  only; outside both, confirm the target repo with the user first.
+- Default assignee: `yorha-operator` (the Automata bot account). Prefer it
+  when it appears in the repo's eligible assignee list; otherwise fall back
+  to the current user (`gh api user --jq .login`).
+- Milestone convention: Nix repos (root a `flake.nix`) follow
+  `sks-milestone` — assign the current nixpkgs release milestone when the
+  issue moves the nixpkgs baseline; unrelated work stays milestone-less.
+  Repos with open semver milestones but no release plane: bug→highest open
+  patch on current minor (max `Z`); enhancement→next minor/major.
+- Artifact language: triage artifacts (titles, bodies, close comments) are
+  written in English.

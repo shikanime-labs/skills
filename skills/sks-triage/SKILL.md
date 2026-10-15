@@ -3,8 +3,8 @@ name: sks-triage
 description:
   "Use when triaging a target org, repo, issue, or PR: sweep the scope for
   untriaged items, then assign every empty, context-derivable field — type,
-  labels, assignee, fields."
-version: 0.1.1
+  labels, assignee, fields, project card fields."
+version: 0.2.0
 author: Automata
 license: Apache-2.0
 metadata:
@@ -34,7 +34,8 @@ Scope-level entry point for triage: given an **org**, **repo**, **issue**, or
 **PR**, find what lacks metadata and assign every empty, context-derivable
 field — never inventing a value the repo does not offer. Per-kind deep flows
 live in `sks-issue-triage` / `sks-pr-triage`; this skill owns the scopes they
-cannot reach — repo and org — and the org issue fields they predate.
+cannot reach — repo and org — and the org issue fields and project card
+fields they predate.
 
 Org specifics — target orgs, default assignee, default reviewer — live in
 `references/shikanime.md`; the issue-field mechanics in
@@ -59,7 +60,7 @@ directory, not the target repo.
 - "Triage this repo" / "triage the org backlog" — sweep every open item
   missing metadata, then assign what each one is missing.
 - "Triage issue #N / PR #N" — assign all empty, derivable fields on one item.
-- "Assign metadata (type, labels, assignee, fields) to #N."
+- "Assign metadata (type, labels, assignee, fields, card fields) to #N."
 - Zero untriaged items found → report that and change nothing.
 
 Not for: discussions (`sks-discussion-triage`), closing unworkable issues
@@ -145,6 +146,13 @@ context**; nothing else:
   (blocking severity→Priority, scope/risk→Effort); add dates only when the
   context signals them. Mechanics in `references/issue-fields.md` — the
   write **replaces** all values, so read, merge, write.
+- **project card fields** — only on the orgs whose reference enables them
+  (the org set and owner facts live in `references/shikanime.md`): when the
+  item already sits on a
+  Projects V2 board and a card field is empty, mirror the same
+  Priority/Effort derivation onto the card via `sks-project` mechanics —
+  onboarding a card is `sks-project`'s job, never here. Resolve the board,
+  field, and option ids per board at runtime; ids are never portable.
 - **reviewers (PR only)** — none requested → the org default reviewer
   (`references/shikanime.md`) unless they authored the PR (GitHub
   422); then another collaborator; skip if none works.

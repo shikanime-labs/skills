@@ -16,6 +16,11 @@ and shared tooling.
   another collaborator; skip if none works.
 - Issue fields on both orgs: Priority, Effort, Start date, Target date — fetch
   ids and option names live (`references/issue-fields.md`); never hardcode.
+- Project card fields — shikanime orgs only — never on any other org: when
+  an item already sits on a Projects V2 board, mirror the same
+  Priority/Effort derivation onto the card. Resolve the board, field, and
+  option ids per board via `sks-project` (`gh project field-list`); ids are
+  never portable across boards.
 
 ## Language
 

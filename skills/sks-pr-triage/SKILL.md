@@ -3,7 +3,7 @@ name: sks-pr-triage
 description:
   "Use when triaging an existing org PR: labels, assignee, milestone,
   and reviewers."
-version: 0.1.1
+version: 0.2.0
 author: Automata
 license: Apache-2.0
 metadata:
@@ -65,8 +65,8 @@ gh api repos/"$R"/assignees --jq '.[].login'
   capability→`enhancement`, docs→`documentation`); add area label from touched
   paths only if it exists. Never invent; drop anything absent from the list.
 - **assignee**: if none, `ASSIGNEE=$(gh api user --jq .login)`.
-- **milestone**: bug→highest open **patch** on current minor (max `Z`);
-  enhancement→next minor/major.
+- **milestone**: which convention applies is an org fact
+  (`references/shikanime.md`); apply it, never a hardcoded scheme.
 - **project**: if repo boards and PR unboarded, `--add-project <number>`; skip
   if ambiguous. After onboarding, set Status to the real phase — a freshly
   opened PR with review requests is `In review`
@@ -81,7 +81,8 @@ gh api repos/"$R"/assignees --jq '.[].login'
 ```bash
 gh pr edit "$N" --repo "$R" --add-label "bug" --add-label "area/..."
 gh pr edit "$N" --repo "$R" --add-assignee "$ASSIGNEE"
-gh pr edit "$N" --repo "$R" --milestone <num>
+gh pr edit "$N" --repo "$R" --milestone "<title>"
+# milestone by TITLE, not number — the flag matches by name
 gh pr edit "$N" --repo "$R" --add-reviewer <login>
 ```
 

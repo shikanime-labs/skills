@@ -61,6 +61,18 @@
         "Body states closure is not part of a sweep and routes it to 'sks-issue-triage'",
         "Body does not instruct closing items during a sweep"
       ]
+    },
+    {
+      "id": 6,
+      "expected_output": "On an already-boarded shikanime item, mirrors the Priority/Effort derivation onto the project card via sks-project mechanics with per-board ids resolved at runtime; skips unboarded items and non-shikanime orgs.",
+      "files": [],
+      "prompt": "Issue #300 in shikanime-labs/machines is on the board with Priority unset on the card. Fill the card fields while triaging.",
+      "assertions": [
+        "Body assigns project card fields only when the item already sits on a Projects V2 board, routing onboarding itself to sks-project",
+        "Body guards card-field assignment to the orgs named in references/shikanime.md (the org set is a reference fact, not body content)",
+        "Body mirrors the org issue-field derivation (Priority from blocking severity, Effort from scope) onto the card rather than inventing values",
+        "Body resolves field and option ids per board at runtime (gh project field-list / sks-project), never hardcoding ids"
+      ]
     }
   ],
   "skill_name": "sks-triage"
