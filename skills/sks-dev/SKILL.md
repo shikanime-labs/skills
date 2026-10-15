@@ -4,7 +4,7 @@ description:
   "Use when running the local dev loop in a target org's repos: branching in a
   fresh jj workspace, push-to-origin, jj bookmark tracking, and landing via
   plain gh pr merge or direct push."
-version: 0.10.1
+version: 0.10.2
 author: Automata
 license: Apache-2.0
 metadata:
@@ -90,6 +90,19 @@ tool for the unit you already have.
 
 Never skip triage (ledger unsettled), review, or the draft→ready flip
 (`sks-pr-ready`).
+
+## Pre-existing defects found mid-unit
+
+Implementation sometimes reveals a defect that predates the unit (broken
+anchor, dead reference, wrong command). The unit never absorbs it silently
+and never works around it:
+
+1. File an upstream issue (`sks-issue`) with the evidence.
+2. Fix it as its own stacked link (`sks-delegate` → `sks-pr`) — same stack
+   as the current unit when the unit depends on it, otherwise the next link
+   off `main`; never a hidden hunk inside the current PR's diff.
+3. Do not leave it behind: an issue recorded without the stacked fix is an
+   open loop, not a disposition.
 
 ## Core rule: push to the org repo
 
