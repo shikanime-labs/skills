@@ -145,6 +145,11 @@
         "path": "skills/sks-pr"
       },
       {
+        "name": "sks-pr-ready",
+        "description": "Use when switching an org PR from draft to ready for human review: verify CI green on the pushed head, first review done, triage complete, body reconciled with the diff, then gh pr ready.",
+        "path": "skills/sks-pr-ready"
+      },
+      {
         "name": "sks-pr-resolve",
         "description": "Use when resolving a PR's review conversations, including CodeRabbit review comments, checking the DoD ledger, and reconciling before merge (no merge itself).",
         "path": "skills/sks-pr-resolve"

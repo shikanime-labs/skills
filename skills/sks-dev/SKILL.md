@@ -88,7 +88,8 @@ tool for the unit you already have.
 | 7   | Land (`gh pr merge --squash`)                | this / `sks-land`    | **branch protection** |
 | 8   | Close issue deliberately (N of N)            | `sks-issue`          | **ledger discharged** |
 
-Never skip triage (ledger unsettled) or review (PR not ready).
+Never skip triage (ledger unsettled), review, or the draft→ready flip
+(`sks-pr-ready`).
 
 ## Core rule: push to the org repo
 
@@ -372,7 +373,8 @@ jj status && jj log -r @ -T 'bookmarks ++ " "'
 
 `sks-issue` / `sks-pr` (issue & PR sides), `sks-commit`,
 `sks-delegate` (isolation), `sks-async` (stacked PRs), `sks-swarm` (agent
-cluster), `sks-pr-review` (phase 5), `ponytail-review` (over-engineering
+cluster), `sks-pr-review` (phase 5), `sks-pr-ready` (draft→ready flip
+before landing), `ponytail-review` (over-engineering
 lens), `sks-summary` (end-of-loop block closes the loop).
 Authoring-convention skills apply during the write phase:
 `sks-ts-authoring` (TypeScript), `sks-nix-authoring` (Nix),

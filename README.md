@@ -131,6 +131,7 @@ specification, compatible with the
 | `nixpkgs-pr-review` | Use when reviewing an upstream NixOS/nixpkgs pull request: build the changed packages with nixpkgs-review and check the diff against nixpkgs conventions. |
 | `sks-moderate` | Use when hiding, unhiding, or moderating comments on GitHub issues, PRs, or discussions with the Hide feature: classifier choice, GraphQL mutations, verification. |
 | `sks-pr` | Use when opening a PR in a target-org repo: push to origin, --head org:branch, plain-English title, issue linkage, parity with commit. |
+| `sks-pr-ready` | Use when switching an org PR from draft to ready for human review: verify CI green on the pushed head, first review done, triage complete, body reconciled with the diff, then gh pr ready. |
 | `sks-pr-resolve` | Use when resolving a PR's review conversations, including CodeRabbit review comments, checking the DoD ledger, and reconciling before merge (no merge itself). |
 | `sks-pr-review` | Use when reviewing code in an org repo: cross-check related issues, enforce YAGNI, root-cause fixes, and project conventions before approval. |
 | `sks-pr-triage` | Use when triaging an existing org PR: labels, assignee, milestone, and reviewers. |

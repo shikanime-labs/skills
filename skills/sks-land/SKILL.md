@@ -15,6 +15,7 @@ metadata:
     related_skills:
       - sks-pr-resolve
       - sks-pr
+      - sks-pr-ready
       - sks-sudo
       - sks-issue
       - sks-pr-review
@@ -30,7 +31,8 @@ platforms:
 Land an org PR only after `sks-pr-resolve` **reconciled** it and a human
 approving review is in place — protect `main`. Scope:
 `references/shikanime.md`. Not for opening (`sks-pr`), review
-(`sks-pr-review`), reconciling (`sks-pr-resolve`), or direct "push to main".
+(`sks-pr-review`), the draft→ready flip (`sks-pr-ready`), reconciling
+(`sks-pr-resolve`), or direct "push to main".
 This skill only lands.
 
 ## When to Use
@@ -315,4 +317,5 @@ gh pr checks "$N" --repo "$R"   # all green before merge; bookmark absent after
 
 - `sks-investigate` — root-cause research before any fix.
 - `sks-commit`, `sks-pr` — the conventions Gate 4 enforces before merge.
+- `sks-pr-ready` — the draft→ready flip that precedes the human approval.
 - `sks-summary` — the landing report block, after user confirmation.
