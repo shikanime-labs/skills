@@ -4,7 +4,7 @@ description:
   "Use when provisioning nixpkgs-release-aligned milestones across the org's
   Nix repos: discover the flake roster, create per-release milestones, assign
   issues and PRs, audit drift."
-version: 0.1.0
+version: 0.2.0
 author: Automata
 license: Apache-2.0
 metadata:
@@ -92,7 +92,8 @@ Idempotent per repo — create only when the title is absent:
 gh api repos/<org>/<repo>/milestones --input payload.json
 # payload.json: {"title": "26.11", "state": "open",
 #                "description": "26.11 (Zokor)",
-#                "due_on": "2026-11-23T00:00:00Z"}
+#                "due_on": "2026-11-23T12:00:00Z"}   # midday UTC — midnight
+#                anchors a day early in western timezones (date-only storage)
 gh api repos/<org>/<repo>/milestones --jq '.[].title'   # read back
 ```
 

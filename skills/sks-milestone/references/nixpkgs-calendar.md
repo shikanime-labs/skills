@@ -18,7 +18,9 @@ Release Critical packages (2026-10-12); all breaking changes restricted from
 
 ## Reading the cycle
 
-- Milestone `due_on` = the release date (26.11 → `2026-11-23T00:00:00Z`).
+- Milestone `due_on` = the release date (26.11 → `2026-11-23T12:00:00Z` —
+  midday UTC anchor; midnight anchors a day early in western timezones,
+  GitHub keeps the date only).
   Work that must ride the release lands before branch-off — treat branch-off
   as the real freeze for module-carrying repos (machines, manifests).
 - Cadence: two releases a year (`YY.05` / `YY.11`), named release managers
