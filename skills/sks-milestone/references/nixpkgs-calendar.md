@@ -2,7 +2,7 @@
 
 Live source of truth — re-read every cycle, dates move:
 
-- NixOS 26.11 release schedule: https://github.com/NixOS/nixpkgs/issues/567567
+- NixOS 26.11 release schedule: <https://github.com/NixOS/nixpkgs/issues/567567>
 
 ## Snapshots
 
