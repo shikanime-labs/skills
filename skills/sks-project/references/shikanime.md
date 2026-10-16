@@ -24,8 +24,10 @@ cloud-pi-native console work always resolves to the org-owned "Socle" board
 
 ## Provisioning
 
-Template board: project 6, "Shikanime Studio" (`copyProjectV2` id
-`PVT_kwHOAVFzJM4BNT_b`). Clone it with `ownerId` = the destination owner's
+Template board: project 6, "Shikanime Studio". Clone it with `copyProjectV2`,
+template project id resolved at runtime by number (`gh project list --owner
+shikanime --format json --jq '.projects[] | select(.number==6) | .id'`) and
+`ownerId` = the destination owner's
 node id — the org node for a per-team board, the `shikanime` user id
 otherwise. The copy inherits its five views with real kanban grouping (the
 API cannot set `verticalGroupByFields` on a fresh project), the

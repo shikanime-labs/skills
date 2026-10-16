@@ -16,7 +16,9 @@ gh api orgs/<org>/issue-fields \
 ```
 
 Never hardcode field ids — they differ per org. Single-select values are set
-by exact option name.
+by exact option name; **fetch field ids live at runtime** (the write payload
+keys are `field_id` + `value`, resolved from this listing — never from memory
+or stale examples, ids are org-scoped numerals).
 
 ## Derive
 
@@ -32,9 +34,15 @@ by exact option name.
 ## Read, merge, write
 
 The `PUT` write replaces **all** field values, so never send only the new
-one:
+one. The endpoint demands a literal field-id numeral in `field_id` and the
+option **name** (string) in `value` — an id in `value` or an option id in a
+`single_select_option_id` key is a 422:
 
 ```bash
+# 0. resolve field ids by name (single source of truth)
+FIELDS=$(gh api "orgs/$ORG/issue-fields" \
+  --jq '[.[] | {id, name}] | from_entries? // {}')  # jq map name→id
+
 # 1. read current values as {field_id, value} pairs
 gh api "repos/$R/issues/$N" \
   --jq '.issue_field_values[] | {field_id: .issue_field_id,
@@ -42,9 +50,11 @@ gh api "repos/$R/issues/$N" \
 
 # 2. write the merged payload from a file (current values + new ones)
 gh api -X PUT "repos/$R/issues/$N/issue-field-values" --input payload.json
-# payload.json: {"issue_field_values": [{"field_id": 123, "value": "High"}]}
+# payload.json: {"issue_field_values": [
+#   {"field_id": <id from step 0>, "value": "High"}]}
 
 # adding without replacing: POST to the same path, with the new values only
+# (same payload shape — a bare array or {"values": ...} is also a 422)
 ```
 
 Dates take ISO `YYYY-MM-DD`; single-select takes the option name.
@@ -55,3 +65,19 @@ Issue shikanime-labs/skills#292 — a requested catalog addition, no blocker,
 work picked up the same day: Priority `Medium`, Effort `Medium`, Start date
 `2026-09-29`, Target date `2026-09-30`. The `PUT` echoed all four values back
 with their `single_select_option` names.
+
+## Runtime id resolution (no stored numerals)
+
+Org field ids and option ids are opaque org-scoped numerals — never paste one
+read earlier into a payload or a doc. Resolve at runtime, by name:
+
+```bash
+# field id by name
+gh api orgs/$ORG/issue-fields --jq '.[] | select(.name=="Priority") | .id'
+# option validity check (names, not ids, go in the payload)
+gh api orgs/$ORG/issue-fields \
+  --jq '.[] | select(.name=="Priority") | [.options[].name]'
+```
+
+The read-back (`issue-field-values`) names the field and option — verify
+against names, never numerals.
