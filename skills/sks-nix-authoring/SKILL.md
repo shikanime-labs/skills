@@ -82,6 +82,44 @@ the default stack does not already cover it:
 
 The rule of thumb: if the default already does it, do not add a layer.
 
+## The highest available abstraction first
+
+Before writing any custom machinery — a oneshot unit, a tmpfiles copy
+rule, a refresh timer, a wrapper script — enumerate the declarative
+surfaces that may already solve it, top down:
+
+1. **The NixOS module option tree** — `users.groups.<name>.gid`,
+   `users.users.<name>.extraGroups`, `fileSystems`,
+   `systemd.services.<name>.*` options, `systemd.tmpfiles.rules`. Most "make the
+   system do X" asks are one option assignment. When a tmpfiles rule IS the
+   right tool, it goes through `systemd.tmpfiles.rules` — the option wired into
+   `systemd-tmpfiles-setup.service` — not a hand-dropped
+   `environment.etc."tmpfiles.d/*.conf".text`.
+2. **Options beyond the ones already known** — search before inventing:
+   `nix eval .#nixosConfigurations.<host>.options`, or grep the nixpkgs
+   module sources for the resource about to be hand-rolled.
+3. **Hand-written units, scripts, and copy logic** — last resort, only
+   when no option composes what is needed.
+
+Every copy of a credential is a rotation hazard and a second thing that
+can break; reading in place usually deletes the whole problem.
+
+Real example: a service user cannot read a projected token at mode `640`
+`root:107` — the guest lacks gid 107. Discarded drafts: a oneshot copy
+unit; a tmpfiles `C+` rule plus a refresh timer (`C+` does not overwrite
+an existing file, so rotation handling is fragile). The fix is two lines,
+no copy, no timer, no rotation handling, because the file is read in
+place:
+
+```nix
+users.groups.kubernetes-token.gid = 107;
+users.users.hermes.extraGroups = [ "kubernetes-token" ];
+```
+
+Rule: a file-permission denial for a service user is almost always a
+missing group declaration (right gid) plus an `extraGroups` membership —
+not copy/sync machinery.
+
 ## Style checklist
 
 1. **Run `nix fmt` on the files you touched.** One scope at a time for nix
