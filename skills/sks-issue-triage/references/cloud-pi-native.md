@@ -26,6 +26,10 @@ generic procedure in SKILL.md is unchanged; these are the org overrides.
   empty, never invent. New console issues may auto-land on a
   PI-exploit board in `Backlog` — that card is not the triage target; check
   `gh issue view --json projectItems`, it shows every card.
+- A Socle card is a REQUIRED output of issue triage in this org, never a
+  skip: when `projectItems` shows no Socle card, add one
+  (`gh project item-add`); the generic "skip when ambiguous" exemption does
+  not apply — Socle is the unambiguous default board.
 - Fallback assignee is the same `yorha-operator` account (see the generic
   `shikanime.md`), still only when it appears in the repo's assignee
   list.
