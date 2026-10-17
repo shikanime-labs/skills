@@ -22,6 +22,7 @@ metadata:
       - sks-delegate
       - sks-async
       - sks-swarm
+      - sks-adversarial
 platforms:
   - linux
   - macos
@@ -79,6 +80,15 @@ graph LR
 4. **Measure** — score fitness: token cost delta, failure-rate delta, eval
    deltas. Selection keeps what measurably improved; the fitness results
    re-rank the signal backlog for the next cycle.
+   For judgment-laden changes (wording, structure, curations), optionally
+   widen the judge: fan out one `sks-adversarial` sandbox per (agent CLI,
+   model) pair via `sks-async` — claude-code, codex, and hermes hosting
+   different vendors' models (Opus, GPT, GLM, DeepSeek, Qwen) — each
+   returning an independent keep/revert verdict on the same diff.
+   Diversity must be vendor- or harness-deep: N instances of one model
+   are one judge, not a panel. Record the verdicts (majority + strongest
+   dissent) in the issue comment beside the numbers; a majority revert
+   overrides favorable self-measurement.
 
 ## Procedure (one cycle = one PR)
 
@@ -108,6 +118,10 @@ graph LR
   fitness; "-38% SKILL.md tokens, evals 4/4" is. Revert when numbers disagree.
 - **Fan-out is not default.** Independent targets only (`sks-async`);
   interdependent targets go in one cycle, sequenced.
+- **A panel of clones is theater.** Two CLIs serving the same underlying
+  model agree for free; diversity counts only across vendors or model
+  families. With one model available, skip the panel and judge by
+  measurements alone.
 - **Token efficiency cuts both ways.** Evolving must not cost more than it
   saves; skip a cycle whose harvest exceeds its expected gain.
 
@@ -129,3 +143,4 @@ and the issue ledger is discharged N of N.
 - `sks-skill-authoring` — skill authoring; profiles are authored and curated
   through `sks-curate`.
 - `sks-delegate` / `sks-async` / `sks-swarm` — divide-and-conquer fan-out.
+- `sks-adversarial` — the sandbox primitive the Measure panel fans out.
