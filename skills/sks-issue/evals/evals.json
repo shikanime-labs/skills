@@ -13,7 +13,8 @@
         "The body contains at least one '##' heading.",
         "Body enforces issue-first workflow with acceptance criteria tasklist.",
         "Body keeps the issue body a clean problem statement and posts findings as comments, not in the body.",
-        "Body probes for repo issue templates and conforms to their sections when present."
+        "Body probes for repo issue templates and conforms to their sections when present.",
+        "Body carries an explicit load condition to read references/cloud-pi-native.md when working in cloud-pi-native repos"
       ]
     },
     {

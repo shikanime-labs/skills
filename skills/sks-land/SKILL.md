@@ -313,6 +313,11 @@ gh pr view "$N" --repo "$R" --json state,mergeCommit,baseRefName
 gh pr checks "$N" --repo "$R"   # all green before merge; bookmark absent after
 ```
 
+## Repo-specific notes
+
+Read `references/cloud-pi-native.md` when landing in a cloud-pi-native
+repo (Gate 4 flips, SonarQube gate, French post-merge rationale).
+
 ## See also
 
 - `sks-investigate` — root-cause research before any fix.

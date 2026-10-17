@@ -61,7 +61,8 @@
       "files": [],
       "prompt": "Land my cloud-pi-native console PR in cloud-pi-native/console, following that repo's merge gates.",
       "assertions": [
-        "Frontmatter 'name' equals the directory basename 'sks-land'"
+        "Frontmatter 'name' equals the directory basename 'sks-land'",
+        "Body carries an explicit load condition to read references/cloud-pi-native.md when landing in a cloud-pi-native repo"
       ]
     },
     {

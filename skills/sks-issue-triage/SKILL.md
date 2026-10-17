@@ -163,6 +163,11 @@ gh api repos/"$R"/issues/"$N" \
   --jq '{type: (.type // ""), parent: (.parent_issue.number // null)}'
 ```
 
+## Repo-specific notes
+
+Read `references/cloud-pi-native.md` when triaging issues in a
+cloud-pi-native repo (French close rationales, per-repo labels).
+
 ## See also
 
 - `sks-issue` — creation conventions.

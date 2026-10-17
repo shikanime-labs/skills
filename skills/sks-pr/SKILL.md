@@ -279,6 +279,11 @@ gh pr view <N> --repo <org>/<repo> --json title,baseRefName,body
 Confirm base is `main` (or repo default), title is plain-English/`doc:`, body
 links the correct issue, and `mergeable="MERGEABLE"` (step 2d).
 
+## Repo-specific notes
+
+Read `references/cloud-pi-native.md` when opening a PR in a
+cloud-pi-native repo (origin-only pushes, French title/body, `Refs` block).
+
 ## See also
 
 - `sks-github-text-authoring` (prose rules) · `sks-commit` (parity rule) ·

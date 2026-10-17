@@ -172,6 +172,9 @@ propose the known resolution; do not re-debug from zero:
   then "element not found" on the detail heading. Wait for a stable data row and
   visibility before clicking; keep the fix scoped to the shared root cause.
 
+Route each phase decision through the compact tree in
+`references/investigation-decision.md` before improvising.
+
 ## Pitfalls
 
 - Exit code 137 (OOM) looks like a build error but is a resource ceiling — raise

@@ -49,7 +49,8 @@
       "prompt": "Use sks-issue to open and triage an issue in cloud-pi-native/console before any PR.",
       "assertions": [
         "Frontmatter parses as valid YAML.",
-        "The 'name' field equals 'sks-issue-refine'."
+        "The 'name' field equals 'sks-issue-refine'.",
+        "Body carries an explicit load condition to read references/cloud-pi-native.md when refining in a cloud-pi-native repo"
       ]
     },
     {
