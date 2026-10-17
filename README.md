@@ -151,7 +151,7 @@ specification, compatible with the
 | `sks-ts-authoring` | Use when writing or reviewing TypeScript: parse-don't-validate boundaries, cast-free explicit types, linear single-purpose functions, and schema-first inputs. |
 | `sks-repo` | Use when creating a new org repo: apply the 5-ruleset protection template, bootstrap the devlib devenv scaffold, and tag v0.1.0. |
 | `sks-triage` | Use when triaging a target org, repo, issue, or PR: sweep the scope for untriaged items, then assign every empty, context-derivable field — type, labels, assignee, fields. |
-| `sks-update` | Use when updating skills or profiles in a skills catalog: curate every skill by default (or named ones only), land through the dev workflow, and resync to local Hermes agents. |
+| `sks-selfupdate` | Use when updating skills or profiles in a skills catalog: curate every skill by default (or named ones only), land through the dev workflow, and resync to local Hermes agents. |
 
 ### Agent profiles
 

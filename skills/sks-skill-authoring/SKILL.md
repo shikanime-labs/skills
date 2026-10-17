@@ -14,7 +14,7 @@ metadata:
       - evals
     related_skills:
       - sks-curate
-      - sks-update
+      - sks-selfupdate
       - sks-dev
       - sks-adversarial
       - sks-commit
@@ -45,7 +45,7 @@ skills catalog; which skill families ship lives there.
   skill worth promoting.
 
 Don't use for: improving an existing skill (`sks-curate`), the whole-catalog
-pass (`sks-update`), or skills outside the catalog families (those stay
+pass (`sks-selfupdate`), or skills outside the catalog families (those stay
 user-local in the harness skill mirror and never ship in this repo).
 
 ## Before You Write
@@ -68,7 +68,7 @@ Climb in order; stop at the first rung that holds:
 
 ## Anatomy of a Catalog Skill
 
-The audit gate in `sks-update` enforces every item below; a skill missing one
+The audit gate in `sks-selfupdate` enforces every item below; a skill missing one
 fails before review.
 
 - `skills/<family>/<name>/SKILL.md` — frontmatter `name` equals the directory.
@@ -158,7 +158,7 @@ skill appears in all three registration surfaces, and fmt/rumdl are clean.
 ## See also
 
 - `sks-curate` — rework pass for an existing skill.
-- `sks-update` — whole-catalog loop this skill plugs into.
+- `sks-selfupdate` — whole-catalog loop this skill plugs into.
 - `sks-dev` — the shipping loop; authoring is its Phase 3 content.
 - `sks-adversarial` — sandbox to ground the procedure in before writing.
 - `sks-gist` — the snippet-level sibling: gist a verified one-off, promote to

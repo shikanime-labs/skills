@@ -15,7 +15,7 @@ metadata:
       - token-efficiency
       - distillation
     related_skills:
-      - sks-update
+      - sks-selfupdate
       - sks-skill-authoring
       - sks-dev
       - sks-pr-review
@@ -173,7 +173,7 @@ naming the ceiling and the upgrade path.
   CLONES first and consolidate
   the mirror's learnings into the repo (body or `references/`); otherwise the
   next harness sync silently deletes them (Hermes mirror specifics:
-  `sks-update/references/hermes-resync.md`).
+  `sks-selfupdate/references/hermes-resync.md`).
 - **Curate in a workspace, never `cp` over it.** When the user's tree is dirty,
   check the PR commit out in a fresh `jj workspace add ../<name> -r <rev>` (git
   checkouts: `git worktree`) and edit there. Never copy the user's on-disk
@@ -204,7 +204,7 @@ Flip the curating PR's board card to `Done` (`sks-project`).
 
 ## See also
 
-- `sks-update` — orchestrates curation → dev-workflow → local resync.
+- `sks-selfupdate` — orchestrates curation → dev-workflow → local resync.
 - `sks-skill-authoring` — authoring a new skill (curation starts from an
   existing one).
 - `sks-dev` — the loop curation changes ship through.
