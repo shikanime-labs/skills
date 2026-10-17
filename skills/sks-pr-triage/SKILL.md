@@ -70,7 +70,11 @@ gh api repos/"$R"/assignees --jq '.[].login'
 - **project**: if repo boards and PR unboarded, `--add-project <number>`; skip
   if ambiguous. After onboarding, set Status to the real phase — a freshly
   opened PR with review requests is `In review`
-  (`gh project item-edit`, ids in `sks-project`).
+  (`gh project item-edit`, ids in `sks-project`). Then decide EVERY board
+  custom field from `gh project field-list <number> --owner <board-owner>`:
+  fill when derivable from the PR's content, skip with a named reason when
+  human-owned (Size, Estimate, Target date) — decided, never silently
+  dropped.
 - **reviewers**: if no review requests, request the org default reviewer
   (`references/shikanime.md`) unless they authored the PR — GitHub
   rejects author review requests (422); then another collaborator/team
@@ -138,6 +142,10 @@ Detail and a worked trap: `references/pr-body-reconciliation.md`.
 gh pr view "$N" --repo "$R" --json number,title,labels,assignees,\
 milestone,reviewRequests
 # Development link to the issue present (closingIssuesReferences non-empty)
+gh project item-list <number> --owner <board-owner> --limit 200 --format json \
+  --jq '.items[] | select(.content.number == <N>)'
+# board read-back: every custom field on the card is decided — set, or
+# skip recorded with its reason; unset-and-unnamed fails triage
 ```
 
 ## Repo-specific notes
