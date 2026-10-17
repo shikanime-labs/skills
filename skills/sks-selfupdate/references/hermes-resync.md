@@ -1,4 +1,4 @@
-# Hermes resync (sks-update companion)
+# Hermes resync (sks-selfupdate companion)
 
 Harness-specific resync paths for Hermes agents. The neutral flow lives in
 `SKILL.md` step 5; read this when the target agents run Hermes.

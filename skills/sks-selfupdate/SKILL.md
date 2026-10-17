@@ -1,5 +1,5 @@
 ---
-name: sks-update
+name: sks-selfupdate
 description:
   "Use when updating skills or profiles in a skills catalog:
   curate every skill by default (or named ones only), land through the dev

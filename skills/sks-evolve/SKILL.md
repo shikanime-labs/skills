@@ -16,7 +16,7 @@ metadata:
       - profile-maintenance
       - token-efficiency
     related_skills:
-      - sks-update
+      - sks-selfupdate
       - sks-curate
       - sks-skill-authoring
       - sks-delegate
@@ -52,7 +52,7 @@ papers), not mutation of internals alone.
 - Recurring friction was re-solved manually more than once.
 - A skill drifted from how work is actually done.
 - Profile-level pain has no owner (token waste, stale persona, dead cron).
-- NOT for a named, one-off fix — run `sks-curate` / `sks-update` directly.
+- NOT for a named, one-off fix — run `sks-curate` / `sks-selfupdate` directly.
 
 ## The loop
 
@@ -68,7 +68,7 @@ graph LR
 2. **Decide** — select the next evolution autonomously. One signal maps to
    one action: author a new skill (`sks-skill-authoring`), curate an existing
    skill or profile (`sks-curate`), run a batch catalog/profile refresh
-   (`sks-update`), author a profile distribution (`sks-curate`),
+   (`sks-selfupdate`), author a profile distribution (`sks-curate`),
    update memory, conventions (`AGENTS.md`), cron, harness, or config by
    their own update rules, or fan out independent targets (`sks-delegate`,
    `sks-async`, `sks-swarm`).
@@ -138,7 +138,7 @@ and the issue ledger is discharged N of N.
 
 ## See also
 
-- `sks-update` / `sks-curate` — the batch shell and the rework pass; both
+- `sks-selfupdate` / `sks-curate` — the batch shell and the rework pass; both
   cover profiles alongside skills.
 - `sks-skill-authoring` — skill authoring; profiles are authored and curated
   through `sks-curate`.
