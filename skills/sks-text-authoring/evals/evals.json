@@ -13,7 +13,8 @@
         "Body classifies each passage as procedural or descriptive before applying rules",
         "Body caps procedural sentences at 20 words and descriptive sentences at 25",
         "Body requires one word per concept and forbids synonym rotation",
-        "Body puts conditions before their commands, divided by a comma"
+        "Body puts conditions before their commands, divided by a comma",
+        "Body forbids parentheses in authored prose; an aside becomes its own sentence"
       ]
     },
     {

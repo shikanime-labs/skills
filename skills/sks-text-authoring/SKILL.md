@@ -107,6 +107,10 @@ In strict mode, state that full compliance needs the official dictionary.
    - A noun cluster is at most three words. Break longer chains with of,
      on, in, or for.
    - No semicolons. Write two sentences.
+   - No parentheses in authored prose. An aside becomes its own sentence,
+     before or after the statement it qualifies. Parentheses stay legal
+     inside code spans and fenced blocks, and inside quoted text quoted
+     verbatim.
    - One topic per paragraph, at most six sentences. Use a vertical list
      for sequences, conditions, and enumerations.
    - Warnings lead: risk-level word first, then the command, then the
@@ -154,7 +158,8 @@ the self-check findings fixed.
 
 - Every procedure sentence is imperative, at most 20 words, and leads
   conditions first.
-- No semicolons, no contractions, no present perfect in the final text.
+- No semicolons, no contractions, no present perfect, no parentheses in
+  the final text.
 - One word per concept across the whole document.
 - Code, commands, and quoted errors are byte-identical to the source.
 
