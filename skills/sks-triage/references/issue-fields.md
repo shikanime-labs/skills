@@ -16,9 +16,9 @@ gh api orgs/<org>/issue-fields \
 ```
 
 Never hardcode field ids — they differ per org. Single-select values are set
-by exact option name; **fetch field ids live at runtime** (the write payload
+by exact option name. **Fetch field ids live at runtime**: the write payload
 keys are `field_id` + `value`, resolved from this listing — never from memory
-or stale examples, ids are org-scoped numerals).
+or stale examples, ids are org-scoped numerals.
 
 ## Derive
 
@@ -34,8 +34,8 @@ or stale examples, ids are org-scoped numerals).
 ## Read, merge, write
 
 The `PUT` write replaces **all** field values, so never send only the new
-one. The endpoint demands a literal field-id numeral in `field_id` and the
-option **name** (string) in `value` — an id in `value` or an option id in a
+one. The endpoint demands a literal field-id numeral in `field_id` and the option
+**name** as a string in `value` — an id in `value` or an option id in a
 `single_select_option_id` key is a 422:
 
 ```bash
@@ -66,7 +66,7 @@ work picked up the same day: Priority `Medium`, Effort `Medium`, Start date
 `2026-09-29`, Target date `2026-09-30`. The `PUT` echoed all four values back
 with their `single_select_option` names.
 
-## Runtime id resolution (no stored numerals)
+## Runtime id resolution
 
 Org field ids and option ids are opaque org-scoped numerals — never paste one
 read earlier into a payload or a doc. Resolve at runtime, by name:
