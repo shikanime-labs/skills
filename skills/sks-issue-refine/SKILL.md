@@ -114,6 +114,11 @@ References only; convergence passes before `sks-pr` handoff.
 - `references/delegate-research.md` — delegation fan-out snippet +
   read-only/report contract.
 
+## Repo-specific notes
+
+Read `references/cloud-pi-native.md` when refining an issue in a
+cloud-pi-native repo (French refinement comments, ledger wording).
+
 ## See also
 
 - `sks-issue` — opens the iterated issue.

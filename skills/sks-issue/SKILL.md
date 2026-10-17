@@ -153,6 +153,12 @@ custom Fields; `item-edit` to fix). `milestone` may be null when the
 repo genuinely lacks a value — but null must be a seen decision, not an
 unread field.
 
+## Repo-specific notes
+
+Read `references/cloud-pi-native.md` when opening or refining
+issues in cloud-pi-native repos (French artifacts, `Refs` linking, per-repo
+gates).
+
 ## See also
 
 `sks-github-text-authoring` (prose rules), `sks-discussion`, `sks-pr` (links

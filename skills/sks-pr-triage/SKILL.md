@@ -140,6 +140,11 @@ milestone,reviewRequests
 # Development link to the issue present (closingIssuesReferences non-empty)
 ```
 
+## Repo-specific notes
+
+Read `references/cloud-pi-native.md` when triaging a PR in a
+cloud-pi-native repo (French triage output, quality-gate checks).
+
 ## See also
 
 - `sks-investigate` — root-cause research before any fix.

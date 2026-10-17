@@ -11,7 +11,8 @@
         "Frontmatter license field is 'Apache-2.0'",
         "Body contains at least one '##' heading",
         "Body contains the Iron Law substring 'NO FIXES WITHOUT ROOT CAUSE'",
-        "Body says to read the full error and reproduce before fixing"
+        "Body says to read the full error and reproduce before fixing",
+        "Body routes phase decisions through references/investigation-decision.md"
       ]
     },
     {
