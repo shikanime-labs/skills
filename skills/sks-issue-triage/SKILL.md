@@ -107,11 +107,14 @@ mean those fields stay empty.
   - sub-issues: `--add-sub-issue <n>,<n>` for explicitly listed children.
   - blockers: `--add-blocked-by <n>` / `--add-blocking <n>` only when the body
     or a linked issue states the dependency. Empty + no textual signal → skip.
-- **fields** — custom fields live on the _project item_, not the issue. After
-  adding to a project, set them via `gh project item-edit` / GraphQL
-  (`updateProjectV2ItemFieldValue`) — see ceiling below. Skip when the repo
-  has no project board or no custom fields (step-2 output says "no repo-level
-  fields").
+- **fields** — custom fields live on the _project item_, not the issue; the
+  step-2 repo probe cannot see them. After adding to a project, take the
+  inventory from the board itself — `gh project field-list <number>
+  --owner <board-owner>` — and decide EVERY field: fill when derivable from
+  content, skip with a named reason when human-owned (Size, Estimate, Target
+  date). Decided is the bar, not filled — a silent skip is the defect. Set
+  via `gh project item-edit` / GraphQL (`updateProjectV2ItemFieldValue`);
+  org-level issue fields follow `sks-triage/references/issue-fields.md`.
 - **transfer** — if the issue clearly belongs in another org repo (wrong
   repo, not merely a wrong label), move it rather than triaging in place.
   Transfer preserves comments, labels, and the cross-link:
@@ -161,6 +164,10 @@ guess or reuse a generic string. Post a comment first, then close.
 gh issue view "$N" --repo "$R" --json number,title,labels,assignees,milestone,projectCards,blockedBy,blocking
 gh api repos/"$R"/issues/"$N" \
   --jq '{type: (.type // ""), parent: (.parent_issue.number // null)}'
+gh project item-list <number> --owner <board-owner> --limit 200 --format json \
+  --jq '.items[] | select(.content.number == <N>)'
+# board read-back: every custom field on the card is decided — set, or
+# skip recorded with its reason; unset-and-unnamed fails triage
 ```
 
 ## Repo-specific notes
