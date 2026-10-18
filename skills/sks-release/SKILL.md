@@ -31,6 +31,10 @@ Cut a release of this catalog: gate on green main, bump the manifest version,
 tag signed, publish notes. An RC pre-release covers the case where main is
 ahead but validation is still wanted before the final cut.
 
+Org facts — the release repo, the signed-tag convention's origin, previous
+cuts — live in `references/shikanime.md`; read it when operating in the
+shikanime org.
+
 ## When to Use
 
 - "Cut a release" / "ship v2.1.0" — main is ahead of the last tag and green.
@@ -79,15 +83,43 @@ git tag -s vX.Y.Z -m "Release vX.Y.Z"
 git push origin vX.Y.Z
 ```
 
-jj trips `pre_receive` on signed annotated tags (AGENTS.md Version Control)
-— plain git from the main checkout, never jj and never the isolation
+jj trips `pre_receive` on signed annotated tags (a repo-level convention —
+see `references/shikanime.md` when operating in the shikanime org) — plain
+git from the main checkout, never jj and never the isolation
 workspace, which has no git remote.
 
 ### 5. Publish the release with notes from the range
 
-Notes are mandatory: v2.0.0 shipped an empty body — that is the defect this
-step exists to prevent. Group the mined log by user-visible theme (new
-skills, fixes, chores), never a raw 150-line commit dump:
+Notes are mandatory: v2.0.0 shipped an empty body — that is the defect
+this step exists to prevent. Never a raw 150-line commit dump — distill the
+mined log into the changelog template (shape after Longhorn/Kubernetes
+release notes: highlights up front, themed groups, linked refs):
+
+```markdown
+## What's new
+
+<one-paragraph summary of the release theme>
+
+### Highlights
+
+- <user-visible change> (#PR)
+
+### New skills
+
+- `sks-<name>` — <one-line trigger> (#PR)
+
+### Enhancements
+
+- <change> (#PR)
+
+### Fixes
+
+- <fix> (#PR)
+
+### Deprecations
+
+<only when something was removed or renamed — else drop the section>
+```
 
 ```bash
 gh release create vX.Y.Z -R <org>/skills \
