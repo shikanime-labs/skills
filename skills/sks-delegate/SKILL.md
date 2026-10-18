@@ -74,10 +74,13 @@ has not entered the dev loop.
    `jj restore`/`jj split` to peel subsets — those can drop the sibling WIP.
 
 2. **Copy in ONLY your change files**, then commit per `sks-commit` (org
-   co-author trailer — value per `references/shikanime.md`):
+   co-author trailer — value per `references/shikanime.md`). Current jj has
+   no `add` subcommand: edited files already tracked in the parent
+   auto-snapshot into `@`; `jj file track <path>` for brand-new files
+   (`references/jj-recovery.md`). Name the change:
 
    ```bash
-   jj add <change files>
+   jj file track <new files>   # only if not already tracked
    jj describe -m "<subject>" -m "<co-author trailer>"
    ```
 
