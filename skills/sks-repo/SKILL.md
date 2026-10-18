@@ -126,8 +126,11 @@ initial semver tag.
    merged linked pull requests** under Settings → General → Issues. It
    defaults on, and a merged linked pull request would then close its issue
    before the ledger is verified — issues here close deliberately. No API
-   covers the setting (REST, GraphQL, and the CLI all omit it), so disable
-   it in the UI during the bootstrap and record it as a manual step.
+   covers the setting (REST, GraphQL, and the CLI all omit it), so the
+   checkbox is the only read/write path: click it in the UI, or drive the
+   settings page over CDP when the browser exposes a debug port (full
+   procedure: `references/autoclose-cdp.md`). The same recipe covers
+   backfill sweeps over existing repos — #301's org-wide pass ran on it.
 
 5. **Land via PR (never direct to main).** Branch `feat/<slug>` (branch-naming
    ruleset), commit with the org co-author trailer + `Signed-off-by` (values per
@@ -206,6 +209,13 @@ initial semver tag.
   `DEVENV_ROOT` correctly.
 - **Deleting a branch that has an open PR auto-closes the PR** — reopen by
   creating a new PR; the old one stays CLOSED.
+- **The auto-close setting is UI-only — drive the checkbox via CDP.** No REST,
+  GraphQL, or CLI field exists; the settings checkbox (id `issues_auto_close`)
+  is the only read/write path. When the operator's browser exposes a debug
+  port, the full shell recipe — tab discovery, `suppress_origin=True` WS
+  connect, label-regex locate, `scrollIntoView` + `Input.dispatchMouseEvent`,
+  fresh-navigation verify, backfill sweep shape — lives in
+  `references/autoclose-cdp.md`. Plain `curl` cannot read the state.
 
 ## Verification
 
