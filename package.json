@@ -135,6 +135,11 @@
         "path": "skills/nixpkgs-pr-review"
       },
       {
+        "name": "sks-iterate",
+        "description": "Use when running a board-driven work loop across cards: pull the next card, apply the coordination ladder per card, stop on empty column, BLOCKED parking, or budget exhaustion.",
+        "path": "skills/sks-iterate"
+      },
+      {
         "name": "sks-kubernetes-manifests-authoring",
         "description": "Use when authoring or editing Kubernetes manifests or kustomize overlays in a GitOps repo: placement, patches, generators, labels, probes, and live-cluster cross-checks.",
         "path": "skills/sks-kubernetes-manifests-authoring"

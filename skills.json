@@ -120,6 +120,11 @@
       "path": "skills/nixpkgs-pr-review"
     },
     {
+      "name": "sks-iterate",
+      "description": "Use when running a board-driven work loop across cards: pull the next card, apply the coordination ladder per card, stop on empty column, BLOCKED parking, or budget exhaustion.",
+      "path": "skills/sks-iterate"
+    },
+    {
       "name": "sks-kubernetes-manifests-authoring",
       "description": "Use when authoring or editing Kubernetes manifests or kustomize overlays in a GitOps repo: placement, patches, generators, labels, probes, and live-cluster cross-checks.",
       "path": "skills/sks-kubernetes-manifests-authoring"
@@ -166,7 +171,7 @@
     },
     {
       "name": "cpn-release-patch",
-      "description": "Use when backporting the commits between two release tags onto a hotfix branch in \u003corg\u003e/\u003crepo\u003e: find the patch milestone and duplicate those commits onto the tag with jj.",
+      "description": "Use when backporting the commits between two release tags onto a hotfix branch in <org>/<repo>: find the patch milestone and duplicate those commits onto the tag with jj.",
       "path": "skills/cpn-release-patch"
     },
     {
