@@ -160,6 +160,11 @@
       "path": "skills/sks-project"
     },
     {
+      "name": "sks-release",
+      "description": "Use when cutting a release of the skills catalog: verify green main, bump manifest versions, signed tag, published notes, RC pre-release when unproven.",
+      "path": "skills/sks-release"
+    },
+    {
       "name": "cpn-release-patch",
       "description": "Use when backporting the commits between two release tags onto a hotfix branch in \u003corg\u003e/\u003crepo\u003e: find the patch milestone and duplicate those commits onto the tag with jj.",
       "path": "skills/cpn-release-patch"
