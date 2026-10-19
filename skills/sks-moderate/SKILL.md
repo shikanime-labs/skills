@@ -153,6 +153,10 @@ what a reader gains:
   observed live; the failed mutation changed nothing.
 - **Hiding never collapses the review thread.** `isCollapsed` responds
   to thread resolution only.
+- **Well-known bots are exempt.** Never flag or hide comments from
+  recognized automation (`renovate`, `dependabot`, `github-actions`,
+  deploy/status bots); their output is signal, not noise. Detection on
+  REST reads: `.user.type == "Bot"` — no name list to maintain.
 - **Discussions must be enabled** on the repo. Check with
   `gh api repos/<org>/<repo> --jq .has_discussions`; the rest works
   on any repo you can moderate.
