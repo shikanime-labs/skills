@@ -87,6 +87,8 @@ Source: agentskills.io best practices (`skill-creation/best-practices`,
   When a skill needs delegation, spawning, or multi-agent coordination, point
   at the `hermes-agent` skill (its spawning-additional-hermes-instances
   section) instead of restating `delegate_task` call shapes or spawn commands.
+  See
+  <https://hermes-agent.nousresearch.com/docs/user-guide/skills/bundled/autonomous-ai-agents/autonomous-ai-agents-hermes-agent#spawning-additional-hermes-instances>.
 - **Defaults, not menus.** Pick one default tool/approach per decision; mention
   alternatives only as an escape hatch.
 - **Procedures over declarations.** Teach how to approach a class of problems,
