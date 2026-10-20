@@ -25,6 +25,28 @@ and some failures are silent or misleading. Verified on this machine.
   Same for any `gh` subcommand that infers the remote locally.
 - `gh pr create` stdout can be EMPTY on success (or print only a URL without
   the number). If `gh pr list` confirms creation, do not retry.
+- GraphQL can be rate-locked (point budget: `gh api graphql` returns
+  `RATE_LIMIT "API rate limit already exceeded"`) while REST still has
+  quota (`gh api rate_limit` shows healthy `.resources.core` but near-zero
+  graphql remaining). Every `gh pr` subcommand fails through GraphQL's
+  "check for existing pull request" preflight. Verified 2026-10-20 on
+  skills #433. Recovery: create via REST —
+  `gh api repos/<org>/<repo>/pulls -X POST --input payload.json` with
+  `{"title", "head", "base", "body", "draft"}` (`head` = the plain branch
+  name when the branch lives on the org repo itself; `shikanime:<branch>`
+  422s with "invalid head"). The same GraphQL lock also blocks
+  `gh pr ready` (draft flip is GraphQL-only; REST PATCH on the PR echoes
+  `draft` back unchanged — even with healthy quota (verified 2026-10-20 on
+  skills #434); only the CLI `gh pr ready <n>` (GraphQL) flips it, and CI
+  jobs that skip draft PRs arm only after the flip lands.
+- `gh issue create` fails through the same GraphQL preflight with the same
+  "API rate limit already exceeded" while REST create still works:
+  `gh api repos/<org>/<repo>/issues -X POST --input payload.json` with
+  `{"title", "body"}`. Verified 2026-10-20 on skills #432.
+- `gh pr view --json draft` → `Unknown JSON field: "draft"`. The field is
+  `isDraft` (`gh pr view <n> --json isDraft`); the REST field stays `draft`
+  (`gh api repos/<org>/<repo>/pulls/<n> --jq .draft`). Verified
+  2026-10-20 on skills #434.
 
 ## Body envelopes
 
