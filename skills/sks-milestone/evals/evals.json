@@ -7,10 +7,10 @@
       "prompt": "nixpkgs 26.11 ships November 23. Create the 26.11 milestones across our Nix repos.",
       "assertions": [
         "YAML frontmatter parses and 'name' equals 'sks-milestone'",
-        "Body discovers the roster live: gh repo list filtered to non-archived, probed for a root flake.nix via repos/<org>/<repo>/contents/flake.nix — never acting on the snapshot alone",
-        "Body states the milestone shape: title YY.MM, due_on as full ISO UTC timestamp from references/nixpkgs-calendar.md, description '<release> (<code name>)'",
+        "Body discovers the roster live: gh repo list filtered to non-archived, probed for a root flake.nix via repos/\u003corg\u003e/\u003crepo\u003e/contents/flake.nix — never acting on the snapshot alone",
+        "Body states the milestone shape: title YY.MM, due_on as full ISO UTC timestamp from references/nixpkgs-calendar.md, description '\u003crelease\u003e (\u003ccode name\u003e)'",
         "Body makes provisioning idempotent (create only when the title is absent) and full-roster rolls a gated sks-bulk batch table",
-        "Body instructs reading back repos/<org>/<repo>/milestones to verify the plane"
+        "Body instructs reading back repos/\u003corg\u003e/\u003crepo\u003e/milestones to verify the plane"
       ]
     },
     {

@@ -166,6 +166,23 @@ repo (`sks-async`).
   with red needs an explicit operator call and a follow-up fix wave.
 - **Dependabot warnings on push** (vulnerability alerts) are noted in the
   report, not treated as push failures and not auto-fixed.
+- **Operator-authorized ruleset bypass:** `bypass_mode_actors` PUTs are
+  silently dropped on repo rulesets — instead snapshot the ruleset
+  (`gh api repos/<o>/<r>/rulesets/<id>`), PUT a body that flips the gating
+  parameters (`require_code_owner_review`, `require_last_push_approval`,
+  `require_extra_approval_for_unattributed_changes`, and drop the
+  `required_status_checks` rule) to open, `gh pr merge --squash --admin`,
+  then PUT the snapshot's `{name,target,enforcement,conditions,rules}`
+  back and re-read the ruleset to confirm restoration. Gates re-arm
+  instantly on the restore PUT.
+- **`gh api --input -` is mandatory for stdin bodies.** Newer `gh api` ignores
+  a piped body without it: every POST in a delete+recreate loop lands as
+  `422 data cannot be null` while every DELETE succeeds — half the mutation
+  applied, silently. Test the body path on one target before the batch runs.
+- **`RepositoryRole` `actor_id` values are undocumented and non-sequential:**
+  maintain=2, write=4, admin=5 (github/rest-api-description#4406, #7111).
+  A ruleset granting `RepositoryRole:2` bypasses for maintainers, not admins —
+  read the numeric id, never assume ordering.
 
 ## Verification
 

@@ -74,3 +74,14 @@ lineage before assuming the source is wrong.
 
 `rm .devenv/state/tasks.db*` after lockfile changes — the cache is keyed on
 the lockfile hash and a stale cache makes `pnpm install` skip needed deps.
+
+## Whole-tree `nix fmt` stalls for many minutes on SQL (websites)
+
+`nix fmt` in this repo treefmt-formats the WHOLE tree including
+`apps/reiya/migrations/*.sql` via sqlfluff, which can run 10+ minutes.
+For a docs/markdown-only change, skip `nix fmt` entirely — no markdown
+formatter is wired into this flake (rumdl/prettier absent); the 80-col
+wrap rule is author-enforced. If a whole-tree run was started and
+dirties unrelated files, `pkill -9 -f sqlfluff`, then
+`jj restore --from @- <unrelated files>` — a whole-tree stage collapses
+the PR (GitHub auto-closes the zero-diff head).

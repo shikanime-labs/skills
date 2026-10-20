@@ -1,3 +1,1 @@
-{
-  services.hermes-agent.settings.skills.external_dirs = [ ../../skills ];
-}
+{ services.hermes-agent.settings.skills.external_dirs = [ ../../skills ]; }
