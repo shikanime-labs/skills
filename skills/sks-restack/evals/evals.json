@@ -19,7 +19,7 @@
       "id": 2,
       "expected_output": "Directs the agent to load sks-converge for the conflict-marker dialect instead of explaining marker sides inline.",
       "files": [],
-      "prompt": "My restacked jj rev has weird %%%%%%% diff from markers instead of <<<<<<< >>>>>>> — what are these and how do I fix the file?",
+      "prompt": "My restacked jj rev has weird %%%%%%% diff from markers instead of \u003c\u003c\u003c\u003c\u003c\u003c\u003c \u003e\u003e\u003e\u003e\u003e\u003e\u003e — what are these and how do I fix the file?",
       "assertions": [
         "YAML frontmatter parses and 'name' equals 'sks-restack'",
         "Body directs loading sks-converge for conflict-marker dialect mechanics",
@@ -46,7 +46,7 @@
       "prompt": "I want to restack my bookmarked jj work onto latest main but 'jj restack' isn't a real command on this box — what's the equivalent?",
       "assertions": [
         "YAML frontmatter parses and 'name' equals 'sks-restack'",
-        "Body mentions the alias form (rebase --onto trunk() --source roots(trunk()..) & mutable()) or its scoped equivalent 'jj rebase -b <branch> --onto main@origin'"
+        "Body mentions the alias form (rebase --onto trunk() --source roots(trunk()..) \u0026 mutable()) or its scoped equivalent 'jj rebase -b \u003cbranch\u003e --onto main@origin'"
       ]
     },
     {

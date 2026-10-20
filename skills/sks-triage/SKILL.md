@@ -205,6 +205,16 @@ closure is deliberate (`sks-issue-triage`).
   `sks-issue-triage` / `sks-pr-triage` jobs.
 - Payloads and bodies go through files (`--body-file`, `--input`), never
   inline shell arguments.
+- **`gh project item-list` truncates around 1000 rows** on large boards —
+  absence in its output proves nothing. Cross-check `gh project view N --owner
+  ORG --format json | .items.totalCount` and enumerate via GraphQL paging
+  (`organization.projectV2.items(first:100, after:$cursor)`, Int vars with `-F`,
+  cursor with `-f`).
+- **Skill scripts may ship non-executable** (`Permission denied`) — invoke as
+  `bash <skill-dir>/scripts/foo.sh`.
+- **`repos/<R>/releases` and `/tags` can 404 on private org repos** even with
+  repo scope — derive the current minor from `git ls-remote --tags
+  --sort=-v:refname` instead.
 
 ## Verification
 

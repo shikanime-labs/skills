@@ -17,7 +17,7 @@
     },
     {
       "id": 2,
-      "expected_output": "A plan to enable the wiki, create Home once in the UI, then seed pages by pushing to <repo>.wiki.git.",
+      "expected_output": "A plan to enable the wiki, create Home once in the UI, then seed pages by pushing to \u003crepo\u003e.wiki.git.",
       "files": [],
       "prompt": "Set up the wiki for shikanime-labs/devlib from scratch so technical pages are rendered, searchable, and pushed over git.",
       "assertions": [
@@ -27,7 +27,7 @@
         "The license field is 'Apache-2.0'.",
         "The body contains at least one '##' heading.",
         "Body makes Home the index that is updated when pages move.",
-        "Body pushes pages to <repo>.wiki.git after the first page exists."
+        "Body pushes pages to \u003crepo\u003e.wiki.git after the first page exists."
       ]
     },
     {
