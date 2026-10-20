@@ -180,6 +180,11 @@
         "path": "skills/sks-milestone"
       },
       {
+        "name": "sks-plan",
+        "description": "Use when planning a milestone from a goal: converge direction, decompose into dependency-ordered units, fill the milestone with triaged, boarded issues ready for sks-iterate.",
+        "path": "skills/sks-plan"
+      },
+      {
         "name": "sks-moderate",
         "description": "Use when hiding, unhiding, or moderating comments on GitHub issues, PRs, or discussions with the Hide feature: classifier choice, GraphQL mutations, verification.",
         "path": "skills/sks-moderate"

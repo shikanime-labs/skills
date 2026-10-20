@@ -1,0 +1,44 @@
+{
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Plan the SSO milestone — console and fleet gateways, one coherent rollout. Break it into issues we can iterate.",
+      "expected_output": "Converges the goal (RFC gate if unconverged), decomposes into single-pass units with dependencies and fan-out groups, cuts speculative units, presents the unit table for approval before opening anything, then opens and triages issues via sks-issue/sks-issue-triage with seeded ledgers and relationship-recorded dependencies, boards every card Ready via sks-project, closes with the sks-summary block handing off to sks-iterate.",
+      "files": [],
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-plan'",
+        "Body routes unconverged goals to sks-discussion before decomposition",
+        "Body presents the unit table for approval before opening issues (gated batch)",
+        "Body seeds command-decidable ledgers at issue creation and records dependencies as issue relationships at triage",
+        "Body fills the milestone: attaches the named one or creates it titled after the goal, never inventing a due date",
+        "Body boards every unit Ready via sks-project and hands execution to sks-iterate"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "The multitenancy RFC just closed as agreed. Turn it into a plan we can work.",
+      "expected_output": "Treats the closed RFC as converged input, decomposes it into units with dependency order and fan-out groups, cuts the set to what the goal requires, runs the gated approval, emits triaged boarded issues, closes with the report block.",
+      "files": [],
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-plan'",
+        "Body treats a closed RFC as converged input and decomposes it into units",
+        "Body drops units not required to reach the goal (cut step)",
+        "Body restates no child procedure: no issue template, no triage field list, no board commands",
+        "Body closes the planning loop with the sks-summary report block"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Create the 26.11 milestones across our Nix repos, and also plan this one feature ticket #415.",
+      "expected_output": "Routes elsewhere: nixpkgs-release milestone provisioning is sks-milestone's plane, and a single ticket is sks-dev straight — sks-plan only decomposes multi-unit goals into boarded issue sets.",
+      "files": [],
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-plan'",
+        "When to Use excludes release-milestone provisioning and assigns it to sks-milestone",
+        "When to Use excludes single units and assigns them to sks-dev",
+        "Body distinguishes work planning from the release milestone plane"
+      ]
+    }
+  ],
+  "skill_name": "sks-plan"
+}
