@@ -13,6 +13,7 @@
         "Body contains the word 'compress'",
         "Body mentions a token budget",
         "Body requires refreshing evals",
+        "Body requires a contrastive probe over the unchanged assertion set",
         "Body keeps safety and gate steps during compression"
       ]
     },
