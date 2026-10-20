@@ -84,6 +84,9 @@ Source: agentskills.io best practices (`skill-creation/best-practices`,
 - **Spend context wisely.** Add what the agent lacks (project conventions,
   non-obvious edge cases, exact APIs); omit what it already knows. Aim for
   moderate detail — concise stepwise guidance beats exhaustive coverage.
+  When a skill needs delegation, spawning, or multi-agent coordination, point
+  at the `hermes-agent` skill (its spawning-additional-hermes-instances
+  section) instead of restating `delegate_task` call shapes or spawn commands.
 - **Defaults, not menus.** Pick one default tool/approach per decision; mention
   alternatives only as an escape hatch.
 - **Procedures over declarations.** Teach how to approach a class of problems,
