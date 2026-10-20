@@ -84,7 +84,7 @@ PR to `sks-land` and say which criterion failed.
    PR yet means ship the unit first (`sks-delegate` → `sks-commit` →
    `sks-pr`), then come back.
 2. **Run the eligibility gate.** Any fail → `sks-land` (full gates).
-3. **Keep the conventions gate** (`sks-land` Gate 4): commit subject
+3. **Keep the conventions gate** (`sks-land` Gate 5): commit subject
    plain-English imperative, no conventional prefix, PR title equals
    the commit subject. Verify before merging:
 
@@ -95,7 +95,7 @@ PR to `sks-land` and say which criterion failed.
 
    `messageHeadline` arrives truncated (~70 chars + `…`) for long subjects;
    a truncated headline that prefixes the title is parity, not a mismatch.
-   Run the mechanical check via `sks-land`'s Gate 4 block, which accepts it.
+   Run the mechanical check via `sks-land`'s Gate 5 block, which accepts it.
 4. **Merge pinned to the verified head:**
 
    ```bash

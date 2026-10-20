@@ -36,7 +36,7 @@ and the default identity live in `references/shikanime.md`.
 
 - A push, PR post, comment, review, or API read must land under the agent
   identity while the operator identity is active — or the reverse.
-- A workflow skill instructs an identity switch, e.g. `sks-land` Gate 2.
+- A workflow skill instructs an identity switch, e.g. `sks-land` Gate 3.
 
 Not for git/jj commit identity — `gh auth switch` does not touch
 `user.email` or signing config. Token-only reads use
@@ -106,7 +106,7 @@ gh auth status --hostname github.com   # active account is the expected one
 
 ## See also
 
-- `sks-land` — Gate 2 approver posting; the canonical switch consumer.
+- `sks-land` — Gate 3 approver posting; the canonical switch consumer.
 - `sks-pr` — push identity rules; pushes go to `origin` under the agent
   identity.
 - `sks-dev` — the dev loop that scopes when a switch is warranted.
