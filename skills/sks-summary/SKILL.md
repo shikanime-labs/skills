@@ -71,8 +71,9 @@ issue and PR templates.
 
 - The summary under the title states the loop's objective and ends with the
   status word. `Status` is one of four words. `DONE` means the evidence
-  below proves it. Stopped work is `BLOCKED` and its recovery path is the
-  first Next Step; the loop itself failing is `FAILED`.
+  below proves it. `PARTIAL` means some acceptance items landed and the
+  unmet ones are named, none a blocker. Stopped work is `BLOCKED` and its
+  recovery path is the first Next Step; the loop itself failing is `FAILED`.
 - `Result` is a checkpoint of the definition of done, one checkbox per item.
   Unchecked items carry the reason. Never report "8/10 done" without naming
   the two.
