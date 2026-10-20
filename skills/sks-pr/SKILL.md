@@ -51,7 +51,9 @@ the gh remote as canonical.
 - `gh` authenticated; active identity is a collaborator with push right. Do NOT
   `gh auth switch`; push to `origin` directly — `sks-sudo` owns identity
   switches when one is genuinely required.
-- Linked issue exists (see `sks-issue`); verify it matches the change
+- Linked issue exists and is triaged (entry gates owned by `sks-issue` →
+  `sks-issue-triage`; an untriaged issue routes there before this skill
+  proceeds); verify it matches the change
   (`jj file annotate` / `jj show <commit>` if unsure).
 - Branch pushed to `origin` before opening.
 Deep detail (squash/author/sign a finalized commit, content verification, and
