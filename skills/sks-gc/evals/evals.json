@@ -80,6 +80,28 @@
         "Frontmatter 'name' equals the directory basename 'sks-gc'",
         "Body does not claim to merge or land PRs"
       ]
+    },
+    {
+      "id": 8,
+      "expected_output": "The GitHub remote-branch sweep deletes only fully-merged branches past the age and idle gates, never protected or ghstack-open ones.",
+      "files": [],
+      "prompt": "Delete all the merged branches across shikanime-labs repos on GitHub.",
+      "assertions": [
+        "Frontmatter 'name' equals the directory basename 'sks-gc'",
+        "Body defines staleness as an ancestor of the default branch or a closed/merged PR",
+        "Body states branches with an open PR or a recent push are never deleted",
+        "Body protects the default branch, protected branches, release/* tags, and open ghstack role branches"
+      ]
+    },
+    {
+      "id": 9,
+      "expected_output": "A closed-but-unmerged branch is held for the 30-day idle gate instead of immediate deletion.",
+      "files": [],
+      "prompt": "This branch's PR was closed without merging last week — clean it up right now.",
+      "assertions": [
+        "Frontmatter 'name' equals the directory basename 'sks-gc'",
+        "Body holds closed-but-unmerged branches until 30 days idle"
+      ]
     }
   ],
   "skill_name": "sks-gc"

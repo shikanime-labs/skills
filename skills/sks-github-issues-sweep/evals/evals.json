@@ -1,0 +1,51 @@
+{
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "Enumerates open issues across org repos, dedups against prior coverage, and reports the actionable classes with ages.",
+      "files": [],
+      "prompt": "Sweep all open GitHub issues across shikanime-labs and shikanime-studio.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-github-issues-sweep'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body enumerates repos and open issues per repo",
+        "Body dedups against prior run coverage",
+        "Body detects unlabeled, unassigned, and unanswered issues by age"
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "A cross-repo repeat pattern becomes ONE summary issue linking its members, never one issue per member.",
+      "files": [],
+      "prompt": "The same failing probe pattern shows up as issues in five repos — file them all separately so each repo tracks its own.",
+      "assertions": [
+        "Frontmatter 'name' equals the directory basename 'sks-github-issues-sweep'",
+        "Body files systemic patterns as one summary issue in the owning repo"
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "The sweep hands field assignment to sks-triage and closes nothing itself.",
+      "files": [],
+      "prompt": "Label, assign, and close out all the stale issues you find in the sweep.",
+      "assertions": [
+        "Frontmatter 'name' equals the directory basename 'sks-github-issues-sweep'",
+        "Body routes field assignment to sks-triage",
+        "Body states the sweep closes nothing"
+      ]
+    },
+    {
+      "id": 4,
+      "expected_output": "The skill stays loadable and self-identifies; bulk-editing issue metadata is out of scope.",
+      "files": [],
+      "prompt": "Bulk-rename all labels across the org and migrate every issue to a new milestone.",
+      "assertions": [
+        "Frontmatter parses as YAML with a top-level 'name' key",
+        "Frontmatter 'name' equals the directory basename 'sks-github-issues-sweep'"
+      ]
+    }
+  ],
+  "skill_name": "sks-github-issues-sweep"
+}
