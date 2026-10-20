@@ -43,14 +43,19 @@ This skill only lands.
 
 ## Pre-landing gates (must already hold)
 
-**Gate 1 — DoD discharged.** Issue criteria (`- [ ]`, `sks-issue`) all checked;
+**Gate 1 — issue and PR triaged.** Both sides carry complete triage
+metadata (`sks-issue-triage` / `sks-pr-triage`): labels, assignee,
+milestone, board card. Normally delivered by the `sks-pr-ready` train;
+an untriaged side routes back to its triage skill before any merge.
+
+**Gate 2 — DoD discharged.** Issue criteria (`- [ ]`, `sks-issue`) all checked;
 re-read the ledger (unchecked box blocks merge):
 
 ```bash
 gh issue view <N> --repo <org>/<repo> --json body --jq .body
 ```
 
-**Gate 2 — mandatory approver approval (non-bypassable).** The org designates
+**Gate 3 — mandatory approver approval (non-bypassable).** The org designates
 one approver account (`references/shikanime.md`); before any other
 review consideration, the merge is blocked until that account has an APPROVED
 review on the current head commit — a stale approval after a new push does not
@@ -83,15 +88,15 @@ gh pr view <M> --repo <org>/<repo> --json reviews,headRefOid \
 Agent review is pre-flight; **a human approving review is the gate.** Where
 branch protection blocks self-approval (repos listed in
 `references/shikanime.md`), a verbal `lgtm` from the operator (the human
-who owns the approver account) satisfies Gate 2 — land via
+who owns the approver account) satisfies Gate 3 — land via
 `gh pr merge --squash --admin` (see Merge procedure). `--admin` is what
 bypasses the protection; no separate human review is then required.
 
-**Gate 3 — Conversations reconciled.** Every inline thread resolved
+**Gate 4 — Conversations reconciled.** Every inline thread resolved
 (`sks-pr-resolve`'s output). If not run, do so now; if it already reported all
 reconciled, skip.
 
-**Gate 4 — `sks-commit` + `sks-pr` conventions (verified, never eyeballed).**
+**Gate 5 — `sks-commit` + `sks-pr` conventions (verified, never eyeballed).**
 Commit subject is plain-English imperative (no `fix:`/`feat:`/`chore:`
 conventional prefix), capitalized, no trailing period. PR title equals the
 commit subject unless the repo's own conventions say otherwise (template,
@@ -139,7 +144,7 @@ jj describe -m "<plain-English subject>" \
 then force-push and re-run the check. Required trailers (e.g. a bot co-author
 line) are org-specific — see `references/shikanime.md`. The recurring
 failure mode is skipping the check: a landing merged without the required
-trailer because Gate 4 dumped the commit message for eyeball review instead of
+trailer because Gate 5 dumped the commit message for eyeball review instead of
 deciding.
 
 ## Merge procedure
@@ -316,11 +321,11 @@ gh pr checks "$N" --repo "$R"   # all green before merge; bookmark absent after
 ## Repo-specific notes
 
 Read `references/cloud-pi-native.md` when landing in a cloud-pi-native
-repo (Gate 4 flips, SonarQube gate, French post-merge rationale).
+repo (Gate 5 flips, SonarQube gate, French post-merge rationale).
 
 ## See also
 
 - `sks-investigate` — root-cause research before any fix.
-- `sks-commit`, `sks-pr` — the conventions Gate 4 enforces before merge.
+- `sks-commit`, `sks-pr` — the conventions Gate 5 enforces before merge.
 - `sks-pr-ready` — the draft→ready flip that precedes the human approval.
 - `sks-tldr` — the landing report block, after user confirmation.

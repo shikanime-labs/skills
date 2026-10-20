@@ -138,7 +138,8 @@ silent scope change:
   `true`; some orgs return an empty `.viewerPermission` — org quirks per
   `references/shikanime.md`)
 - jj repo: `.jj/` / `jj status` → `jj bookmark track` before push
-- issue exists (issue-first) — else `sks-issue`
+- issue exists and is triaged (issue-first) — else `sks-issue` then
+  `sks-issue-triage`; an untriaged issue routes there before implementation
 - NixOS repo: `nix` available (build-verify gate)
 
 Report `BLOCKED: <req> — <evidence> — <recovery>`. Independent unblocked
