@@ -15,6 +15,7 @@ metadata:
     related_skills:
       - sks-discussion-triage
       - sks-issue
+      - sks-plan
 platforms:
   - linux
   - macos
@@ -103,6 +104,7 @@ milestone, or project surface — labels + category are the whole metadata set.
 - `sks-github-text-authoring` — prose rules this skill delegates.
 - `sks-issue` — derive the issue once converged.
 - `sks-discussion-triage` — triage, lifecycle routing, closure.
+- `sks-plan` — decomposes the converged direction into a milestone.
 - `sks-discussion` — the English discussion skill (the French console twin
   is out of family scope; per `references/shikanime.md`).
 - `sks-gist` — host RFC evidence artifacts too long for the discussion body

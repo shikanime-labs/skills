@@ -14,6 +14,7 @@ metadata:
       - loop
       - board
     related_skills:
+      - sks-plan
       - sks-project
       - sks-delegate
       - sks-async
@@ -99,6 +100,8 @@ the budget expired with the standing report stating which.
 ## See also
 
 - `sks-project` — the board this loop reads.
+- `sks-plan` — the strategy plane upstream of this loop; an empty board
+  with an unconverged backlog routes back there.
 - `sks-dev` — the unit lifecycle each card runs.
 - `sks-delegate` / `sks-async` — the ladder rungs.
 - `sks-investigate` — defect routing before the ladder.

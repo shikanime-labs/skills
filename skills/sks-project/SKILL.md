@@ -18,6 +18,7 @@ metadata:
       - sks-issue
       - sks-pr
       - sks-land
+      - sks-plan
 platforms:
   - linux
   - macos
@@ -35,7 +36,8 @@ when none does. Status is the real phase of the work: advanced once per
 transition, reset on reversal, never guessed from stale output — re-read the
 live item before acting.
 
-The board is the single strategic/tactical planning surface. Before any
+The board is the tactical surface where the works of teams are organized;
+strategy is `sks-plan`'s plane. Before any
 `jj workspace add`, read the Status column of the board your work belongs to
 and take the next card from the rightmost active column. Re-scoping or a new
 priority signal updates the card immediately — the board reflects reality
@@ -228,4 +230,6 @@ gh project item-list <number> --owner <board-owner> --limit 200 --format json \
 - `sks-pr-triage` — PR metadata; `--add-project` before Status here.
 - `sks-issue` / `sks-pr` — the phases Status mirrors.
 - `sks-land` — the merge gate that fires `done`.
+- `sks-plan` — the strategy plane whose approved unit sets this board
+  carries.
 - `sks-bulk` — batch shape if a drift audit grows beyond one board.

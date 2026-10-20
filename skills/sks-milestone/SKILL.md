@@ -19,6 +19,7 @@ metadata:
       - sks-issue-triage
       - sks-pr-triage
       - sks-project
+      - sks-plan
       - sks-bulk
 platforms:
   - linux
@@ -152,4 +153,6 @@ gh api repos/<R>/issues/<N> --jq .milestone.title       # assignment landed
   during sweeps; this skill is the provisioning plane behind them.
 - `sks-project` — the board plane (cards and Status); milestones track
   releases, boards track work.
+- `sks-plan` — fills a work milestone with planned units; provisioning the
+  release plane stays here.
 - `sks-bulk` — the gated batch shape for a full-roster roll.
