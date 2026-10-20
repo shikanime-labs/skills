@@ -19,7 +19,7 @@ metadata:
       - sks-sudo
       - sks-issue
       - sks-pr-review
-      - sks-doc
+      - sks-wiki
 platforms:
   - linux
   - macos
@@ -217,8 +217,8 @@ EOF
    <PR URL>"`.
 4. Rebase downstream: if other PRs sit on top of the merged branch, rebase them
    onto the new `main` (`jj rebase -d main`).
-5. **Sync docs** if ops/arch/runbooks changed — edit `docs/` per `sks-doc`; skip
-   if purely internal.
+5. **Sync docs** if ops/arch/runbooks changed — sync the repo wiki per
+   `sks-wiki`; skip if purely internal.
 6. **Teardown the landing bookmark.** GitHub drops the remote branch on merge,
    but the local `jj` bookmark and its `origin` tracking ref linger and clutter
    the workspace. Remove both:

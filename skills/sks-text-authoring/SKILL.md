@@ -17,7 +17,7 @@ metadata:
       - sks-github-text-authoring
       - sks-commit
       - sks-pr
-      - sks-doc
+      - sks-wiki
       - sks-issue
 platforms:
   - linux
@@ -167,4 +167,4 @@ the self-check findings fixed.
 
 - `sks-github-text-authoring` — prose mechanics for GitHub text.
 - `sks-commit`, `sks-pr`, `sks-issue` — the surfaces this style feeds.
-- `sks-doc` — docs-directory workflow that carries the final text.
+- `sks-wiki` — repo-wiki workflow that carries the final text.
