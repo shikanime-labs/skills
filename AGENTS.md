@@ -7,8 +7,9 @@ agents. Each skill lives in its own directory with a `SKILL.md`.
 
 ## Structure
 
-- `skills/` — every catalog skill (org-neutral bodies, org specifics in
-  per-skill `references/`)
+- `skills/<category>/<skill>/` — every catalog skill grouped by family
+  category (`lifecycle`, `forge`, `authoring`, `catalog`, `audit`;
+  org-neutral bodies, org specifics in per-skill `references/`)
 - `README.md` — Installation and usage documentation
 
 ## Workflow
@@ -121,7 +122,8 @@ Source: agentskills.io best practices (`skill-creation/best-practices`,
 
 ## Skill Categories
 
-One flat catalog in `skills/`. Bodies are generic; org specifics live in
+Skills live in category folders under `skills/`: `lifecycle`, `forge`,
+`authoring`, `catalog`, `audit`. Bodies are generic; org specifics live in
 per-skill references loaded on demand.
 
 _Each skill must include a valid `SKILL.md` with YAML frontmatter. Test against

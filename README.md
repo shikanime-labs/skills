@@ -47,10 +47,10 @@ hermes skills list
 
 ```bash
 # Install a single skill from the tap
-hermes skills install shikanime-labs/skills/sks-dev
+hermes skills install shikanime-labs/skills/lifecycle/sks-dev
 
 # Or copy manually
-cp -r skills/sks-dev ~/.hermes/skills/sks-dev
+cp -r skills/lifecycle/sks-dev ~/.hermes/skills/sks-dev
 ```
 
 ### Install via npm

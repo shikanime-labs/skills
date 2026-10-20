@@ -1,0 +1,41 @@
+{
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "Discovers the live Nix repo roster (repo list ∩ flake.nix probe), cross-checks the snapshot reference, and provisions a 26.11 milestone idempotently on each roster repo with due_on 2026-11-23T00:00:00Z, behind a gated batch table.",
+      "files": [],
+      "prompt": "nixpkgs 26.11 ships November 23. Create the 26.11 milestones across our Nix repos.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-milestone'",
+        "Body discovers the roster live: gh repo list filtered to non-archived, probed for a root flake.nix via repos/\u003corg\u003e/\u003crepo\u003e/contents/flake.nix — never acting on the snapshot alone",
+        "Body states the milestone shape: title YY.MM, due_on as full ISO UTC timestamp from references/nixpkgs-calendar.md, description '\u003crelease\u003e (\u003ccode name\u003e)'",
+        "Body makes provisioning idempotent (create only when the title is absent) and full-roster rolls a gated sks-bulk batch table",
+        "Body instructs reading back repos/\u003corg\u003e/\u003crepo\u003e/milestones to verify the plane"
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "Assigns the milestone by title to an item whose diff moves flake.lock or touches nixpkgs-derived code, and leaves unrelated items milestone-less.",
+      "files": [],
+      "prompt": "PR #120 in shikanime-labs/machines bumps flake.lock to nixpkgs 26.11. Put it on the release milestone.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-milestone'",
+        "Body assigns via gh pr edit --milestone with the TITLE (26.11), warning the number form fails with \"'12' not found\"",
+        "Body's assignability rule ties the milestone to diffs moving flake.lock or touching nixpkgs-derived packages/modules",
+        "Body states unrelated work stays milestone-less — an empty milestone is honest, a wrong one is noise"
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "Refuses release-alignment on a cloud-pi-native repo: redirects to the Socle project and semver milestones instead of creating a 26.11 milestone.",
+      "files": [],
+      "prompt": "Also create the 26.11 milestone on cloud-pi-native/documentation.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-milestone'",
+        "Body (or its cloud-pi-native reference) states cloud-pi-native repos never take release milestones — semver per repo, tracking the org-owned Socle project",
+        "Body routes the cloud-pi-native exception through references/cloud-pi-native.md with an explicit load condition in the intro"
+      ]
+    }
+  ],
+  "skill_name": "sks-milestone"
+}
