@@ -36,6 +36,10 @@ loop, its stop conditions, and the per-card ladder application. The unit
 lifecycle is `sks-dev`'s; the board is `sks-project`'s; neither is restated
 here.
 
+Entry gate: `sks-plan` ran to done — the loop consumes a planned, boarded
+milestone. An empty board or an unplanned backlog routes back to `sks-plan`,
+never into improvised card pulls.
+
 ## When to Use
 
 - "Keep working the board" / "take the next cards" — run the loop.

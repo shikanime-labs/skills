@@ -134,7 +134,9 @@ gh project item-list <number> --owner <board-owner> --limit 200 --format json \
   --jq '.items[] | select(.content.number == <N>) | {id, status, title}'
 ```
 
-A missing hit means the card is not onboarded — add it in step 2.
+A missing hit means the card is not onboarded — add it in step 2. Entry
+gate: the issue is triaged (`sks-issue-triage`) before it boards — Status
+mirrors the triaged phase, and an untriaged card has no phase to mirror.
 
 ### 2. Onboard if absent
 
