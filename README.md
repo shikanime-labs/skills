@@ -147,7 +147,7 @@ specification, compatible with the
 | `sks-redteam` | Use when probing a fleet's perimeter for exposed surface: read-only checks of TLS posture, security headers, auth on dashboards, and anonymous API access. |
 | `sks-security-audit` | Use when auditing an org's GitHub security surface: code-scanning, secret-scanning, and dependabot alerts, filing new alerts as issues, fastlaning small remediations. |
 | `sks-k8s-audit` | Use when auditing Kubernetes warning events: grouping and noise-filtering events, filing new findings as issues, fastlaning small manifest fixes. |
-| `sks-summary` | Use when ending any agent work loop — investigation, dev unit, batch, or delegation fan-out: emit the fixed report block so status, evidence, and handoff stay uniform across parallel tasks. |
+| `sks-tldr` | Use when ending any agent work loop — investigation, dev unit, batch, or delegation fan-out: emit the fixed report block so status, evidence, and handoff stay uniform across parallel tasks. |
 | `cpn-release-patch` | Use when backporting the commits between two release tags onto a hotfix branch in <org>/<repo>: find the patch milestone and duplicate those commits onto the tag with jj. |
 | `sks-restack` | Use when rebasing a jj stack onto moved main leaves conflicts — restack, then resolve each conflicted revision with edit/resolve until pushable. |
 | `sks-split` | Use when one jj commit or in-flight stack has grown multiple responsibilities and must be split into parallel sibling units or a parent/child stack, decided per unit pair by dependency. |

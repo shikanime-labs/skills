@@ -164,4 +164,4 @@ gates).
 `sks-github-text-authoring` (prose rules), `sks-discussion`, `sks-pr` (links
 back via Development metadata), `sks-issue-refine`, `sks-issue-triage` (run
 after creation), `sks-gist` (verified snippets too long for a comment),
-`sks-summary` (status word closes the issue's ledger), `sks-wiki`.
+`sks-tldr` (status word closes the issue's ledger), `sks-wiki`.

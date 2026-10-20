@@ -170,4 +170,4 @@ no unescaped `@`, one co-author trailer, template headings verbatim.
 
 `sks-commit`, `sks-issue`, `sks-pr`, `sks-discussion` — surface owners.
 `sks-dev` — drafting invariants (lifecycle-level).
-`sks-summary` — prose style inside the report sections lives here, not there.
+`sks-tldr` — prose style inside the report sections lives here, not there.
