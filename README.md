@@ -117,7 +117,7 @@ specification, compatible with the
 | `sks-dev` | Use when running the local dev loop in a target org's repos: branching in a fresh jj workspace, push-to-origin, jj bookmark tracking, and landing via plain gh pr merge or direct push. |
 | `sks-discussion` | Use when opening an RFC Discussion in the target org as the pre-issue stage: converge on the problem, then derive the issue. |
 | `sks-discussion-triage` | Use when triaging an existing org discussion: category, body shape, Q&A answer, and conversion to an issue. |
-| `sks-doc` | Use when documenting a project in the repo's docs/ directory after a behavior-changing PR. |
+| `sks-wiki` | Use when documenting a project's technical knowledge in its GitHub wiki: enabling the wiki, seeding or syncing pages after a behavior-changing PR, and backfilling per-repo technical documentation. |
 | `sks-evolve` | Use when evolving the agent substrate without a hand-named target: mine experience for signals, evolve skills, profiles, memory, conventions, cron, or config, and repeat the fitness loop. |
 | `sks-gc` | Use when reclaiming resources leaked by agent workflows: dangling jj bookmarks, skill-created workspaces, leftover working-copy dirs, and stale merged branches on GitHub remotes. |
 | `sks-github-actions-audit` | Use when auditing CI health across an org's GitHub repos: failed workflow runs in the last 24h, filing new failures as issues, fastlaning trivial CI fixes. |

@@ -65,9 +65,9 @@
       "path": "skills/sks-discussion-triage"
     },
     {
-      "name": "sks-doc",
-      "description": "Use when documenting a project in the repo's docs/ directory after a behavior-changing PR.",
-      "path": "skills/sks-doc"
+      "name": "sks-wiki",
+      "description": "Use when documenting a project's technical knowledge in its GitHub wiki: enabling the wiki, seeding or syncing pages after a behavior-changing PR, and backfilling per-repo technical documentation.",
+      "path": "skills/sks-wiki"
     },
     {
       "name": "sks-evolve",

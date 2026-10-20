@@ -80,13 +80,13 @@
     },
     {
       "id": 7,
-      "expected_output": "Skill stays scoped to code review and does not claim to author docs/ pages (sks-doc's job).",
+      "expected_output": "Skill stays scoped to code review and does not claim to author wiki pages (sks-wiki's job).",
       "files": [],
-      "prompt": "Write the architecture and runbook docs for shikanime-studio/machines in its docs/ folder.",
+      "prompt": "Write the architecture and runbook pages for the wiki of shikanime-studio/machines.",
       "assertions": [
         "YAML frontmatter parses and 'name' equals 'sks-pr-review'",
-        "Frontmatter description does not contain substring 'sks-doc'",
-        "Body does not contain substring 'sks-doc'"
+        "Frontmatter description does not contain substring 'sks-wiki'",
+        "Body does not contain substring 'sks-wiki'"
       ]
     },
     {
