@@ -20,6 +20,16 @@
   "agents": {
     "skills": [
       {
+        "name": "cpn-release-patch",
+        "description": "Use when backporting the commits between two release tags onto a hotfix branch in <org>/<repo>: find the patch milestone and duplicate those commits onto the tag with jj.",
+        "path": "skills/cpn-release-patch"
+      },
+      {
+        "name": "nixpkgs-pr-review",
+        "description": "Use when reviewing an upstream NixOS/nixpkgs pull request: build the changed packages with nixpkgs-review and check the diff against nixpkgs conventions.",
+        "path": "skills/nixpkgs-pr-review"
+      },
+      {
         "name": "sks-adversarial",
         "description": "Use when probing uncertain results in a disposable sandbox — large investigation, development, debugging, testing, UAT, white-room, or data validation before promoting a change.",
         "path": "skills/sks-adversarial"
@@ -85,9 +95,19 @@
         "path": "skills/sks-fastlane"
       },
       {
+        "name": "sks-flux-audit",
+        "description": "Use when auditing GitOps fleet health: Flux kustomization and HelmRelease readiness, filing failures as issues, and fastlaning small manifest fixes.",
+        "path": "skills/sks-flux-audit"
+      },
+      {
         "name": "sks-gc",
         "description": "Use when reclaiming resources leaked by jj-based agent workflows — dangling bookmarks, skill-created jj workspaces, and leftover working-copy dirs from sks-async/sks-dev.",
         "path": "skills/sks-gc"
+      },
+      {
+        "name": "sks-github-actions-audit",
+        "description": "Use when auditing CI health across an org's GitHub repos: failed workflow runs in the last 24h, filing new failures as issues, fastlaning trivial CI fixes.",
+        "path": "skills/sks-github-actions-audit"
       },
       {
         "name": "sks-gist",
@@ -95,9 +115,24 @@
         "path": "skills/sks-gist"
       },
       {
+        "name": "sks-github-issues-sweep",
+        "description": "Use when sweeping GitHub issues across an org's repos: enumerate open issues, dedup against prior coverage, surface stale or silent ones, and file summary issues for systemic patterns.",
+        "path": "skills/sks-github-issues-sweep"
+      },
+      {
+        "name": "sks-github-notif-sweep",
+        "description": "Use when sweeping unread GitHub notifications: filter noise, act on the answerable, mark processed threads read, never re-report a thread.",
+        "path": "skills/sks-github-notif-sweep"
+      },
+      {
         "name": "sks-github-text-authoring",
         "description": "Use when writing any GitHub text in the target org's repos — commit message, issue or PR body, discussion RFC, review or issue comment. Owns all shared prose rules; surface skills handle procedure.",
         "path": "skills/sks-github-text-authoring"
+      },
+      {
+        "name": "sks-grafana-audit",
+        "description": "Use when auditing fleet alerting health: firing alertmanager alerts, filing new alerts as issues, and fastlaning small monitoring-config fixes.",
+        "path": "skills/sks-grafana-audit"
       },
       {
         "name": "sks-investigate",
@@ -120,6 +155,21 @@
         "path": "skills/sks-issue-triage"
       },
       {
+        "name": "sks-iterate",
+        "description": "Use when running a board-driven work loop across cards: pull the next card, apply the coordination ladder per card, stop on empty column, BLOCKED parking, or budget exhaustion.",
+        "path": "skills/sks-iterate"
+      },
+      {
+        "name": "sks-k8s-audit",
+        "description": "Use when auditing Kubernetes warning events: grouping and noise-filtering events, filing new findings as issues, fastlaning small manifest fixes.",
+        "path": "skills/sks-k8s-audit"
+      },
+      {
+        "name": "sks-kubernetes-manifests-authoring",
+        "description": "Use when authoring or editing Kubernetes manifests or kustomize overlays in a GitOps repo: placement, patches, generators, labels, probes, and live-cluster cross-checks.",
+        "path": "skills/sks-kubernetes-manifests-authoring"
+      },
+      {
         "name": "sks-land",
         "description": "Use when landing a target-org PR after reconciliation (sks-pr-resolve) and review approval gates pass; closes the linked issue deliberately.",
         "path": "skills/sks-land"
@@ -130,24 +180,14 @@
         "path": "skills/sks-milestone"
       },
       {
-        "name": "nixpkgs-pr-review",
-        "description": "Use when reviewing an upstream NixOS/nixpkgs pull request: build the changed packages with nixpkgs-review and check the diff against nixpkgs conventions.",
-        "path": "skills/nixpkgs-pr-review"
-      },
-      {
-        "name": "sks-iterate",
-        "description": "Use when running a board-driven work loop across cards: pull the next card, apply the coordination ladder per card, stop on empty column, BLOCKED parking, or budget exhaustion.",
-        "path": "skills/sks-iterate"
-      },
-      {
-        "name": "sks-kubernetes-manifests-authoring",
-        "description": "Use when authoring or editing Kubernetes manifests or kustomize overlays in a GitOps repo: placement, patches, generators, labels, probes, and live-cluster cross-checks.",
-        "path": "skills/sks-kubernetes-manifests-authoring"
-      },
-      {
         "name": "sks-moderate",
         "description": "Use when hiding, unhiding, or moderating comments on GitHub issues, PRs, or discussions with the Hide feature: classifier choice, GraphQL mutations, verification.",
         "path": "skills/sks-moderate"
+      },
+      {
+        "name": "sks-nix-authoring",
+        "description": "Use when authoring or editing Nix in an org repo: nixfmt-sorted style, single-use let bindings, no explanatory comments, YAGNI on new options.",
+        "path": "skills/sks-nix-authoring"
       },
       {
         "name": "sks-pr",
@@ -180,14 +220,24 @@
         "path": "skills/sks-project"
       },
       {
+        "name": "sks-redteam",
+        "description": "Use when probing a fleet's perimeter for exposed surface: read-only checks of TLS posture, security headers, auth on dashboards, and anonymous API access.",
+        "path": "skills/sks-redteam"
+      },
+      {
         "name": "sks-release",
         "description": "Use when cutting a release of the skills catalog: verify green main, bump manifest versions, signed tag, published notes, RC pre-release when unproven.",
         "path": "skills/sks-release"
       },
       {
-        "name": "cpn-release-patch",
-        "description": "Use when backporting the commits between two release tags onto a hotfix branch in <org>/<repo>: find the patch milestone and duplicate those commits onto the tag with jj.",
-        "path": "skills/cpn-release-patch"
+        "name": "sks-renovate-sweep",
+        "description": "Use when landing or triaging open renovate PRs across an org's repos: check green on the exact head, land eligible ones, report the rest.",
+        "path": "skills/sks-renovate-sweep"
+      },
+      {
+        "name": "sks-repo",
+        "description": "Use when creating a new org repo: apply the 5-ruleset protection template, bootstrap the devlib devenv scaffold, and tag v0.1.0.",
+        "path": "skills/sks-repo"
       },
       {
         "name": "sks-restack",
@@ -195,19 +245,14 @@
         "path": "skills/sks-restack"
       },
       {
-        "name": "sks-split",
-        "description": "Use when one jj commit or in-flight stack has grown multiple responsibilities and must be split into parallel sibling units or a parent/child stack, decided per unit pair by dependency.",
-        "path": "skills/sks-split"
+        "name": "sks-security-audit",
+        "description": "Use when auditing an org's GitHub security surface: code-scanning, secret-scanning, and dependabot alerts, filing new alerts as issues, fastlaning small remediations.",
+        "path": "skills/sks-security-audit"
       },
       {
-        "name": "sks-nix-authoring",
-        "description": "Use when authoring or editing Nix in an org repo: nixfmt-sorted style, single-use let bindings, no explanatory comments, YAGNI on new options.",
-        "path": "skills/sks-nix-authoring"
-      },
-      {
-        "name": "sks-text-authoring",
-        "description": "Use when writing or revising technical English — docs, runbooks, commits, PR and issue bodies, error messages — under ASD-STE100 Simplified Technical English rules.",
-        "path": "skills/sks-text-authoring"
+        "name": "sks-selfupdate",
+        "description": "Use when updating skills or profiles in a skills catalog: curate every skill by default (or named ones only), land through the dev workflow, and resync to local Hermes agents.",
+        "path": "skills/sks-selfupdate"
       },
       {
         "name": "sks-skill-authoring",
@@ -220,18 +265,13 @@
         "path": "skills/sks-sops-secrets-authoring"
       },
       {
-        "name": "sks-swarm",
-        "description": "Use when distributing a task across a cluster of agents over A2A — route by capability need, machine resource, and runner pressure, optionally in a disposable sks-adversarial sandbox.",
-        "path": "skills/sks-swarm"
+        "name": "sks-split",
+        "description": "Use when one jj commit or in-flight stack has grown multiple responsibilities and must be split into parallel sibling units or a parent/child stack, decided per unit pair by dependency.",
+        "path": "skills/sks-split"
       },
       {
         "name": "sks-sudo",
         "path": "skills/sks-sudo"
-      },
-      {
-        "name": "sks-ts-authoring",
-        "description": "Use when writing or reviewing TypeScript: parse-don't-validate boundaries, cast-free explicit types, linear single-purpose functions, and schema-first inputs.",
-        "path": "skills/sks-ts-authoring"
       },
       {
         "name": "sks-summary",
@@ -239,9 +279,14 @@
         "path": "skills/sks-summary"
       },
       {
-        "name": "sks-repo",
-        "description": "Use when creating a new org repo: apply the 5-ruleset protection template, bootstrap the devlib devenv scaffold, and tag v0.1.0.",
-        "path": "skills/sks-repo"
+        "name": "sks-swarm",
+        "description": "Use when distributing a task across a cluster of agents over A2A — route by capability need, machine resource, and runner pressure, optionally in a disposable sks-adversarial sandbox.",
+        "path": "skills/sks-swarm"
+      },
+      {
+        "name": "sks-text-authoring",
+        "description": "Use when writing or revising technical English — docs, runbooks, commits, PR and issue bodies, error messages — under ASD-STE100 Simplified Technical English rules.",
+        "path": "skills/sks-text-authoring"
       },
       {
         "name": "sks-triage",
@@ -249,9 +294,9 @@
         "path": "skills/sks-triage"
       },
       {
-        "name": "sks-selfupdate",
-        "description": "Use when updating skills or profiles in a skills catalog: curate every skill by default (or named ones only), land through the dev workflow, and resync to local Hermes agents.",
-        "path": "skills/sks-selfupdate"
+        "name": "sks-ts-authoring",
+        "description": "Use when writing or reviewing TypeScript: parse-don't-validate boundaries, cast-free explicit types, linear single-purpose functions, and schema-first inputs.",
+        "path": "skills/sks-ts-authoring"
       }
     ]
   }

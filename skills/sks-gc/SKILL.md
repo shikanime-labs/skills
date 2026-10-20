@@ -1,10 +1,10 @@
 ---
 name: sks-gc
 description:
-  Use when reclaiming resources leaked by jj-based agent workflows — dangling
-  bookmarks, skill-created jj workspaces, and leftover working-copy dirs from
-  sks-async/sks-dev.
-version: 0.2.1
+  "Use when reclaiming resources leaked by agent workflows: dangling jj
+  bookmarks, skill-created workspaces, leftover working-copy dirs, and stale
+  merged branches on GitHub remotes."
+version: 0.3.0
 author: Automata
 license: Apache-2.0
 metadata:
@@ -15,10 +15,13 @@ metadata:
       - cleanup
       - workspaces
       - bookmarks
+      - github
+      - branches
     related_skills:
       - sks-async
       - sks-dev
       - sks-land
+      - sks-github-notif-sweep
 platforms:
   - linux
   - macos
@@ -27,10 +30,11 @@ platforms:
 
 # Workspace Garbage Collection
 
-Reclaim resources leaked by the parallel/migration skills: `jj` bookmarks with
-no open PR and not on `main`, `jj` workspaces the skills created
-(`<repo>.<unit>`, `<repo>.fix`), and the sibling working-copy directories they
-leave on disk. Destructive — always dry-run first.
+Reclaim resources leaked by agent workflows: `jj` bookmarks with no open PR
+and not on `main`, `jj` workspaces the skills created (`<repo>.<unit>`,
+`<repo>.fix`), the sibling working-copy directories they leave on disk, and
+stale fully-merged branches on GitHub remotes. Destructive — always dry-run
+first.
 
 ## Available script
 
@@ -44,6 +48,7 @@ leave on disk. Destructive — always dry-run first.
 - After a finished or stalled `sks-async` fan-out or `sks-dev`
   isolation pass: workspaces and bookmarks pile up.
 - "Clean up my dangling branches / orphan jj workspaces."
+- "Delete the merged branches on GitHub" — the org-wide remote-branch sweep.
 - Periodic hygiene on a repo worked across many parallel streams.
 
 ## Hard rules
@@ -53,6 +58,9 @@ leave on disk. Destructive — always dry-run first.
 - **Never drop `main` / `trunk` / `master`** or a bookmark with an OPEN PR.
 - **Never forget a workspace with uncommitted changes.** Skip it and report —
   losing WIP is data loss.
+- **Never delete a remote branch with an open PR, a recent push (< 7 days),
+  or protected status.** Blocked candidates are listed and re-checked next
+  run, never forced.
 - Operate in the repo root — when operating in an org repo, read
   `references/shikanime.md` for the canonical checkout location. The
   canonical workspace (named after the repo, no unit suffix) is NEVER a
@@ -99,6 +107,28 @@ leave on disk. Destructive — always dry-run first.
    gh pr list --state open
    ```
 
+5. **GitHub remote-branch sweep** (when the target is merged remote branches,
+   not local jj state):
+
+   ```bash
+   gh api repos/<repo>/branches --paginate
+   ```
+
+   A branch is stale when its head is an ancestor of the default branch
+   (`gh api repos/<repo>/compare/<default>...<branch>` with
+   `status=="identical"` or `behind`) or its PR is closed/merged. Never touch
+   the default branch, protected branches, `release/*` tags, or ghstack role
+   branches (`<prefix>/base|head|orig`) of OPEN ghstack stacks — only
+   fully-landed ones. Delete stale branches older than 7 days:
+
+   ```bash
+   gh api -X DELETE repos/<repo>/git/refs/heads/<branch>
+   # or, after a depth-1 clone:
+   git push origin --delete <branch>
+   ```
+
+   Branches of closed-but-unmerged PRs are deleted only after 30 days idle.
+
 ## What "resources from other skills" covers
 
 - `sks-async` → one `jj workspace add ../<repo>.<unit>` per stream and a
@@ -126,12 +156,20 @@ leave on disk. Destructive — always dry-run first.
   trailing colons and `@origin` noise. `discover.sh` templates the exact fields
   (`-T 'name ++ "\t" ++ root'` for workspaces, `-T 'name ++ "\n"'` for
   bookmarks); don't revert to awk on the default output.
+- **Remote-branch staleness is per-repo.** The default branch name varies
+  (`main`, `master`, `trunk`); read it per repo
+  (`gh repo view --json defaultBranchRef`) instead of assuming — comparing
+  against a hardcoded name marks everything stale on the wrong base.
+- The GitHub compare API caps at 250 commits per side; a very long-lived
+  branch reports `ahead` even when fully merged — cross-check with the PR
+  state (`gh pr list --head <branch> --state merged`) before deleting.
 
 ## Verification
 
 ```bash
 jj workspace list && jj bookmark list
 gh pr list --state open   # confirm no protected bm forgotten, canonical wc untouched
+gh api repos/<repo>/branches --paginate --jq '.[].name'   # deleted branches absent
 ```
 
 ## See also
@@ -141,3 +179,4 @@ gh pr list --state open   # confirm no protected bm forgotten, canonical wc unto
 - `sks-dev` — isolation workspace pattern (`../<repo>.fix`).
 - `sks-land` — lands PRs (this skill only reclaims after landing, never
   merges).
+- `sks-github-notif-sweep` — the companion org-wide GitHub hygiene sweep.
