@@ -10,7 +10,7 @@
         "Frontmatter 'name' field equals 'cpn-release-patch'.",
         "Frontmatter 'license' field equals 'Apache-2.0'.",
         "SKILL.md body contains at least one Markdown '##' heading.",
-        "The body derives NEXT from BASE_TAG via scripts/next-milestone.sh.",
+        "The body derives NEXT from BASE_TAG via scripts/next-milestone.py.",
         "The body resolves the patch milestone from the base tag."
       ]
     },

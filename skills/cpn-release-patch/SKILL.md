@@ -43,14 +43,14 @@ branch name, not a tag — see Verification.
 Run from the skill directory; each validates its args and exits non-zero with a
 message on bad input.
 
-- `scripts/next-milestone.sh BASE_TAG` → next patch milestone
+- `scripts/next-milestone.py BASE_TAG` → next patch milestone
   (`vX.Y.Z` → `X.Y.Z+1`).
-- `scripts/milestone-number.sh REPO MILESTONE_TITLE` → milestone number, or
+- `scripts/milestone-number.py REPO MILESTONE_TITLE` → milestone number, or
   exit 1 when absent/closed.
-- `scripts/fetch-backport-set.sh REPO MILE_NUM [OUTFILE]` → ordered
+- `scripts/fetch-backport-set.py REPO MILE_NUM [OUTFILE]` → ordered
   merge-commit SHAs of the milestone's merged PRs (default
   `/tmp/sks_ms_ids.txt`).
-- `scripts/verify-backport.sh BASE_TAG TIP EXPECTED_COUNT` → count /
+- `scripts/verify-backport.py BASE_TAG TIP EXPECTED_COUNT` → count /
   conflict / tree-parity check, exit 0 when clean.
 
 ## When to Use
@@ -92,8 +92,8 @@ If `BASE_TAG` is missing or you lack write: report `BLOCKED: <requirement> —
 guess:
 
 ```bash
-NEXT=$(bash scripts/next-milestone.sh "$BASE_TAG")
-MILE_NUM=$(bash scripts/milestone-number.sh <org>/<repo> "$NEXT")
+NEXT=$(scripts/next-milestone.py "$BASE_TAG")
+MILE_NUM=$(scripts/milestone-number.py <org>/<repo> "$NEXT")
 ```
 
 If the milestone is absent or already closed, the script exits non-zero —
@@ -111,7 +111,7 @@ had **16** commits while a `BASE_TAG..main` patch-id diff returned **35**
 precise source of truth.
 
 ```bash
-bash scripts/fetch-backport-set.sh <org>/<repo> "$MILE_NUM"
+scripts/fetch-backport-set.py <org>/<repo> "$MILE_NUM"
 wc -l /tmp/sks_ms_ids.txt   # expect the milestone size
 ```
 
@@ -155,7 +155,7 @@ jj abandon <empty_commit_id>
 ### 4. Verify the backport is complete and clean
 
 ```bash
-bash scripts/verify-backport.sh "$BASE_TAG" "$TIP" \
+scripts/verify-backport.py "$BASE_TAG" "$TIP" \
   "$(wc -l < /tmp/sks_ms_ids.txt)"
 ```
 
@@ -205,7 +205,7 @@ a `chore: Release v$NEXT` PR against `hotfix/$NEXT` with `always-bump-patch`.
   source the set from the milestone's merged PRs (Step 2).
 - **The issues API hides merge_commit_sha.** `repos/R/issues?milestone=N`
   returns `pull_request.merge_commit_sha: null`; only the pulls endpoint
-  (`repos/R/pulls/<n>`) exposes the real SHA. `fetch-backport-set.sh` fetches
+  (`repos/R/pulls/<n>`) exposes the real SHA. `fetch-backport-set.py` fetches
   PR numbers from issues, then SHAs from pulls — never write `null` SHAs into
   the duplicate list.
 - **NEVER `jj new BASE_TAG -m "..."` as the duplicate base.** It creates an

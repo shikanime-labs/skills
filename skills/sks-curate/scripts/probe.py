@@ -1,4 +1,5 @@
-#!/usr/bin/env python3
+#!/usr/bin/env nix-shell
+#!nix-shell -i python3 -p python3
 """Contrastive probe: grade an old and a new skill body over the SAME
 assertion set and diff the pass/fail flips.
 
