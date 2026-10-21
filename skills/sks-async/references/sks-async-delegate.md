@@ -30,14 +30,19 @@ independent units into separate tasks — never bundle two leaves into one `goal
 that defeats isolation:
 
 ```python
-delegate_task(tasks=[
-    {"goal": "Implement <repo>.<unit>: <contract>. Workspace: "
-             "../<repo>.<unit>. Gates: <N>. Commit plain-English + "
-             "'Co-authored-by: Automata <automata@shikanime.studio>' trailer.",
-     "context": "shikanime repo <org>/<repo>; rooted at trunk; one workspace "
-                "per unit per sks-async.",
-     "toolsets": ["terminal", "file"]},
-])
+delegate_task(
+    tasks=[
+        {
+            "goal": "Implement <repo>.<unit>: <contract>. Workspace: "
+            "../<repo>.<unit>. Gates: <N>. Commit plain-English + "
+            "'Co-authored-by: Automata <automata@shikanime.studio>' trailer.",
+            "context": "shikanime repo <org>/<repo>; rooted at trunk; "
+            "one workspace "
+            "per unit per sks-async.",
+            "toolsets": ["terminal", "file"],
+        },
+    ]
+)
 ```
 
 ## Pitfalls

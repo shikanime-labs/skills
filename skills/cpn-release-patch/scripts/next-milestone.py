@@ -1,5 +1,5 @@
 #!/usr/bin/env nix-shell
-#!nix-shell -i python3 -p python3
+#! nix-shell -i python3 -p python3
 """Print the next patch milestone for a base tag: v9.24.4 -> 9.24.5.
 
 Pure derivation — no network. The hotfix/<milestone> branch name derives

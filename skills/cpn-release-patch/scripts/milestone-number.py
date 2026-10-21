@@ -1,5 +1,5 @@
 #!/usr/bin/env nix-shell
-#!nix-shell -i python3 -p python3 gh jujutsu
+#! nix-shell -i python3 -p python3 gh jujutsu
 """Print the milestone number for the given title on REPO (OWNER/REPO),
 or exit non-zero when the milestone is absent or closed. The number feeds
 fetch-backport-set.py and the issue query in Step 2.

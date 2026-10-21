@@ -16,12 +16,17 @@ Contract for every child:
 - `toolsets: ["web", "terminal"]`.
 
 ```python
-delegate_task(tasks=[
-    {"goal": "Research <fact>: find authoritative source for <question>. "
-             "Read-only; post only the conclusion as a comment (no finding "
-             "dumps, no reference lists); do NOT edit code.",
-     "context": "Issue <N> in <org>/<repo>; isolate on research/<name> "
-                "branch per sks-async if touching repo.",
-     "toolsets": ["web", "terminal"]},
-])
+delegate_task(
+    tasks=[
+        {
+            "goal": "Research <fact>: find authoritative source "
+            "for <question>. "
+            "Read-only; post only the conclusion as a comment (no finding "
+            "dumps, no reference lists); do NOT edit code.",
+            "context": "Issue <N> in <org>/<repo>; isolate on research/<name> "
+            "branch per sks-async if touching repo.",
+            "toolsets": ["web", "terminal"],
+        },
+    ]
+)
 ```

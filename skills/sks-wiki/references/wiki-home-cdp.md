@@ -34,6 +34,7 @@ for one repo at bootstrap or a backfill sweep over many.
 
    ```python
    import websocket
+
    ws = websocket.create_connection(ws_url, timeout=30, suppress_origin=True)
    ```
 
