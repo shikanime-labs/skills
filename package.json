@@ -65,6 +65,11 @@
         "path": "skills/sks-delegate"
       },
       {
+        "name": "sks-design",
+        "description": "Use when designing or redesigning an interface — landing page, app screen, dashboard, deck, or report — with a taste anchor, a real component system, and screenshot verification.",
+        "path": "skills/sks-design"
+      },
+      {
         "name": "sks-dev",
         "description": "Use when running the local dev loop in a target org's repos: branching in a fresh jj workspace, push-to-origin, jj bookmark tracking, and landing via plain gh pr merge or direct push.",
         "path": "skills/sks-dev"
