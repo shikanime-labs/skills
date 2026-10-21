@@ -122,12 +122,22 @@ git ls-remote git@github.com:OWNER/REPO.wiki.git HEAD
   Deliberate trade-off — do not use the wiki for content that needs review.
 - **Duplicating in-repo `docs/`** — if the repo already keeps `docs/`
   (in-repo, PR-reviewed), either keep that canonical and link it from
-  `Home`, or migrate deliberately and delete the source. Never fork both.
+  `Home`, or migrate deliberately and delete the source in the same
+  sweep. Never fork both.
 - **Stale `Home` index** — a page added but missing from `Home.md` is
   unreachable. Update the index on every add/move.
 - **Unowned pages** — add the owner/zone/purpose comment or the page rots.
 - **Fresh clone before first page** — the remote only materializes after
   step 2; script around it, do not hand-wave the 404.
+- **REST flag flip can silently no-op.** `gh repo edit --enable-wiki` (and
+  the REST `PATCH has_wiki`) returned success while `has_wiki` stayed false;
+  the GraphQL `updateRepository(hasWikiEnabled: true)` mutation set it. The
+  `/wiki/_new` render is ground truth either way: a redirect carrying the
+  "Upgrade to GitHub Team" warning means the repo is plan-gated (private +
+  free org plan), not mis-flagged — exclude it, the wiki cannot exist.
+- **`git ls-remote` inside a `while read` loop returns empty.** The ssh
+  transport consumes the loop's stdin. Guard each invocation with
+  `</dev/null`, or verify with direct per-repo commands.
 
 ## Verification
 
