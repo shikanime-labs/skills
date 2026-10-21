@@ -4,8 +4,8 @@ description:
   "Use when triaging a target org, repo, issue, or PR: sweep the scope for
   untriaged items, assign every empty, context-derivable field, and
   requalify items whose evidence moved after triage — type, labels,
-  assignee, fields, project card fields."
-version: 0.3.0
+  assignee, fields, links, project card fields."
+version: 0.4.0
 author: Automata
 license: Apache-2.0
 metadata:
@@ -195,6 +195,11 @@ Two rules distinguish it from fill:
   same trail comment, then the close. On an explicitly requested
   requalification this executes; during a sweep it is reported as a
   closure candidate for `sks-issue-triage`, never auto-closed.
+- **Links move too.** The issue↔PR Development link is metadata like the
+  rest: requalification re-derives it from the current evidence — stale
+  link removed (`removeCloseIssueReferences`), missing link added
+  (`addCloseIssueReferences`), trail comment old → new. Mechanics in
+  `sks-pr-triage` step 5.
 - **Report old → new.** Step 5 lists each requalified field with both
   values and the evidence; items whose evidence did not move are reported
   as untouched no-ops.

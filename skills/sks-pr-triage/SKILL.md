@@ -2,8 +2,9 @@
 name: sks-pr-triage
 description:
   "Use when triaging an existing org PR: labels, assignee, milestone,
-  and reviewers; requalify after new commits move the diff."
-version: 0.3.0
+  and reviewers; requalify after new commits move the diff; relink the
+  Development link when the evidence moved it."
+version: 0.4.0
 author: Automata
 license: Apache-2.0
 metadata:
@@ -94,9 +95,9 @@ gh pr edit "$N" --repo "$R" --add-reviewer <login>
 
 ### 5. Link issue ↔ PR (Development metadata)
 
-If the PR's Development section lacks its issue
-(`gh pr view "$N" --json closingIssuesReferences` empty), create the link
-server-side — never a closing keyword in the body:
+Derive the issue set from the PR's evidence (body, comments, diff) and make
+the Development section hold exactly that set — never a closing keyword in
+the body:
 
 ```bash
 ORG=<org>; REPO=<repo>; N=<PR>; M=<issue>
@@ -108,8 +109,20 @@ gh api graphql -f query='mutation { addCloseIssueReferences(input:
   {issueId: "'"$IID"'", pullRequestIds: ["'"$PID"'"]}) { issue { number } } }'
 ```
 
-Verify `closingIssuesReferences` is non-empty afterward. Multiple PRs link by
-passing several ids in `pullRequestIds`; `removeCloseIssueReferences` unlinks.
+Verify afterward that `closingIssuesReferences` equals the derived set —
+not merely non-empty. Several issues link by passing several issue ids in
+one `addCloseIssueReferences` call; a link that no longer holds (the PR was
+requalified onto another issue, or duplicates one already covered) unlinks
+with the same input shape:
+
+```bash
+gh api graphql -f query='mutation { removeCloseIssueReferences(input:
+  {issueId: "'"$IID"'", pullRequestIds: ["'"$PID"'"]}) { issue { number } } }'
+```
+
+Requalification treats the link as metadata like any other: a changed link
+set posts a trail comment on the PR — old → new issue set and the evidence
+that forced it; relinking without one is a silent metadata edit.
 
 ### 6. Verify
 
@@ -143,8 +156,10 @@ Detail and a worked trap: `references/pr-body-reconciliation.md`.
 New commits void more than review — they can void the metadata. After a
 force-push or scope change, re-run steps 2–6 over the new diff: a diff that
 outgrew `documentation` takes the label its paths now justify, an area
-label follows the moved files, and the step-7 reconciliation feeds label
-derivation the same way the original triage did. Changed fields post a
+label follows the moved files, the step-7 reconciliation feeds label
+derivation the same way the original triage did, and the step-5 link is
+re-derived when the evidence moved it — stale unlinked, current added,
+same trail-comment rule. Changed fields post a
 trail comment on the PR — field, old → new, and the commit or diff hunk
 that forced it; a requalification without the comment is a silent
 metadata edit.
