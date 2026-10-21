@@ -21,6 +21,7 @@ metadata:
       - sks-investigate
       - sks-pr-review
       - sks-gc
+      - sks-context
 platforms:
   - linux
   - macos

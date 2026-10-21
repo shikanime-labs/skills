@@ -19,6 +19,7 @@ metadata:
       - sks-commit
       - sks-dev
       - sks-pr-review
+      - sks-context
 platforms:
   - linux
   - macos

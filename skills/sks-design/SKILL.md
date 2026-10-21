@@ -21,6 +21,7 @@ metadata:
       - sks-skill-authoring
       - sks-curate
       - sks-dev
+      - sks-context
 platforms:
   - linux
   - macos

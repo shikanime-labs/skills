@@ -19,6 +19,7 @@ metadata:
       - sks-pr
       - sks-land
       - sks-plan
+      - sks-context
 platforms:
   - linux
   - macos

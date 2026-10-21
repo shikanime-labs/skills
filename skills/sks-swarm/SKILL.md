@@ -21,6 +21,7 @@ metadata:
       - sks-async
       - sks-investigate
       - sks-gc
+      - sks-context
 platforms:
   - linux
   - macos

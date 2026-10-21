@@ -18,6 +18,7 @@ metadata:
       - sks-pr
       - sks-commit
       - sks-delegate
+      - sks-context
 platforms:
   - linux
   - macos

@@ -23,6 +23,7 @@ metadata:
       - requesting-code-review
       - caveman-review
       - ponytail-review
+      - sks-context
 platforms:
   - linux
   - macos

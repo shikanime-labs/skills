@@ -21,6 +21,7 @@ metadata:
       - sks-nix-authoring
       - sks-sops-secrets-authoring
       - sks-pr-review
+      - sks-context
 platforms:
   - linux
   - macos

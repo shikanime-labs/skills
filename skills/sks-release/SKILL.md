@@ -19,6 +19,7 @@ metadata:
       - sks-land
       - sks-milestone
       - sks-github-text-authoring
+      - sks-context
 platforms:
   - linux
   - macos

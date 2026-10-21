@@ -21,6 +21,7 @@ metadata:
       - sks-pr
       - sks-land
       - ponytail-review
+      - sks-context
 platforms:
   - linux
   - macos
@@ -32,8 +33,8 @@ platforms:
 End-to-end local dev loop for the target org's repos: branching, pushing to
 `origin`, jj bookmark tracking, landing (PR vs direct push). Environment facts
 (org identity, repo paths, toolchain, branch protection, push policy, pre-work
-probes) live in `references/sks-env.md` — read it when operating in shikanime
-repos. Cloud-pi-native console repo facts live in
+probes) live in `sks-context` and its org references — read it when
+operating in any target-org repo. Cloud-pi-native console repo facts live in
 `references/cloud-pi-native.md` — read it when working in the
 cloud-pi-native/console repository. Deep recovery recipes live in
 `references/` behind the load conditions in "Pitfall index".
@@ -107,11 +108,11 @@ and never works around it:
 Push working branches to `origin` — the cloned org repo. The gh remote is
 canonical even when the local path says otherwise (the org remote split).
 Operate at the org's standard repo checkout root (org path layout per
-`references/sks-env.md`).
+`sks-context`, org references).
 
 **Agent mode:** agent gh account holds org membership, pushes to `origin`,
 opens PRs `--head <org>:<branch>`, commits carry the org co-author trailer
-(org value in `references/sks-env.md`; `sks-commit`).
+(org value in `sks-context`'s org references; `sks-commit`).
 
 ## Workspace (every unit) + post-push verification
 
@@ -147,7 +148,7 @@ surfaced.
 ## Branch discipline
 
 - Branch off `main`: `fix/<slug>`, `feat/...`. Some repos protect `main`
-  (org examples in `references/sks-env.md`) — never commit there; land via
+  (org examples: `sks-context`) — never commit there; land via
   PR.
 - **Detect protection via RULESETS, not classic branch protection** — the
   classic endpoint 404s on ruleset-backed repos and misleadingly reads as

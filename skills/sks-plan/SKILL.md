@@ -22,6 +22,7 @@ metadata:
       - sks-iterate
       - sks-dev
       - sks-summary
+      - sks-context
 platforms:
   - linux
   - macos

@@ -23,6 +23,7 @@ metadata:
       - sks-issue
       - sks-dev
       - ponytail-audit
+      - sks-context
 platforms:
   - linux
   - macos

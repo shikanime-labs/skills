@@ -18,6 +18,7 @@ metadata:
       - sks-land
       - sks-repo
       - sks-async
+      - sks-context
 platforms:
   - linux
   - macos

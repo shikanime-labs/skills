@@ -19,6 +19,7 @@ metadata:
       - sks-pr
       - sks-pr-review
       - sks-delegate
+      - sks-context
 platforms:
   - linux
   - macos

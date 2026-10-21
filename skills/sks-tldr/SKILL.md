@@ -21,6 +21,7 @@ metadata:
       - sks-issue
       - sks-dev
       - sks-github-text-authoring
+      - sks-context
 platforms:
   - linux
   - macos

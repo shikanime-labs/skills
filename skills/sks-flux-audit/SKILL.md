@@ -19,6 +19,7 @@ metadata:
       - sks-fastlane
       - sks-kubernetes-manifests-authoring
       - sks-grafana-audit
+      - sks-context
 platforms:
   - linux
   - macos

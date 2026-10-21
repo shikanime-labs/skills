@@ -15,8 +15,8 @@ merge is rejected by protection:
   ```
 
 - A `pull_request` rule with `require_code_owner_review` (an org
-  "Landing protections" ruleset — org examples in
-  `references/sks-env.md`) blocks self-approval — that is what forces
+  "Landing protections" ruleset — org examples: `sks-context`) blocks
+  self-approval — that is what forces
   `gh pr merge --squash --admin` once approval is given (org approval
   practice: `references/shikanime.md` when operating in a shikanime org).
 - Gitlint-enforced repos (org classes: `references/shikanime.md` when

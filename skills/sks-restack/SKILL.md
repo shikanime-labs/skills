@@ -19,6 +19,7 @@ metadata:
       - sks-delegate
       - sks-async
       - sks-gc
+      - sks-context
 platforms:
   - linux
   - macos

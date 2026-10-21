@@ -16,6 +16,7 @@ metadata:
       - sks-triage
       - sks-issue
       - sks-github-text-authoring
+      - sks-context
 platforms:
   - linux
   - macos

@@ -22,6 +22,7 @@ metadata:
       - caveman-compress
       - ponytail-review
       - ponytail-audit
+      - sks-context
 platforms:
   - linux
   - macos

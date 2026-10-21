@@ -20,6 +20,7 @@ metadata:
       - sks-issue-triage
       - sks-discussion-triage
       - sks-commit
+      - sks-context
 platforms:
   - linux
   - macos

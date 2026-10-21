@@ -17,6 +17,7 @@ metadata:
       - sks-land
       - sks-issue
       - sks-github-actions-audit
+      - sks-context
 platforms:
   - linux
   - macos

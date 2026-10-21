@@ -22,6 +22,7 @@ metadata:
       - sks-dev
       - sks-land
       - sks-github-notif-sweep
+      - sks-context
 platforms:
   - linux
   - macos

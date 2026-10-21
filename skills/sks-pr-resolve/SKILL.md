@@ -21,6 +21,7 @@ metadata:
       - sks-wiki
       - sks-issue
       - sks-investigate
+      - sks-context
 platforms:
   - linux
   - macos

@@ -19,6 +19,7 @@ metadata:
       - sks-pr-ready
       - sks-land
       - sks-wiki
+      - sks-context
 platforms:
   - linux
   - macos
