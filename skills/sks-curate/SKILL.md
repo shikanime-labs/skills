@@ -99,7 +99,7 @@ place. Four properties decide whether a body is worth its weight:
    of a string that legitimately appears (a skill's own name, its
    `related_skills`). Update `expected_output` for any prompt whose behavior
    you changed.
-   Contrastive probe (harness2): run the UNCHANGED assertion set over the old
+   Contrastive probe: run the UNCHANGED assertion set over the old
    body (`jj file show -r @- skills/<skill>/SKILL.md`) and the new body, then
    diff the pass/fail flips. A true-to-false flip is a regression — fix the
    body before shipping; false-to-true flips are the measured gain.
