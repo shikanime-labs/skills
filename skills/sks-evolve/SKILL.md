@@ -63,9 +63,9 @@ graph LR
 
 1. **Sense** — mine recorded experience for evolution signals: memory
    entries, session history, correction traces, repeated pitfalls, token-cost
-   observations, eval failures — and, equally (harness2's open-system
-   stance), external sources: an upstream release or fix, a paper's model, a
-   sibling catalog's convention. Signals are the mutation source. Read-only:
+   observations, eval failures — and, equally, external sources: an upstream
+   release or fix, a paper's model, a sibling catalog's convention. Signals
+   are the mutation source. Read-only:
    never edit memories or sessions to make a signal go away.
 2. **Decide** — select the next evolution autonomously. One signal maps to
    one action: author a new skill (`sks-skill-authoring`), curate an existing
@@ -86,8 +86,8 @@ graph LR
 4. **Measure** — score fitness: token cost delta, failure-rate delta, eval
    deltas. Selection keeps what measurably improved; the fitness results
    re-rank the signal backlog for the next cycle.
-   Judge parity (harness2: judge, report, and run share bench, executor, k,
-   mode, and seed): baseline and candidate are graded under identical
+   Judge parity (judge, report, and run share executor, model, and
+   seed): baseline and candidate are graded under identical
    conditions — same assertion set, same model, same harness — or the delta
    is void. Post the flip diff, not just the totals; a true-to-false flip
    is a regression.
