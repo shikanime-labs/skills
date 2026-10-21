@@ -1,5 +1,6 @@
 agent:
   clarify_timeout: 600
+  coding_context: focus
   disabled_toolsets:
     - computer_use
     - homeassistant
@@ -62,7 +63,7 @@ memory:
   flush_min_turns: 6
   provider: honcho
 model:
-  default: z-ai/glm-5.3-flash
+  default: z-ai/glm-5.3
   provider: custom:shikanime-anthropic
 platform_toolsets:
   cli:

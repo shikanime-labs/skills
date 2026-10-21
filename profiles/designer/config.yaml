@@ -4,6 +4,7 @@ agent:
     - spotify
     - x_search
   max_turns: 150
+  verify_on_stop: true
 browser:
   cloud_provider: nous
   use_gateway: false
