@@ -1,7 +1,7 @@
 # Shikanime org conventions
 
-Facts extracted from the SKILL.md body (environment facts live in
-`references/sks-env.md`):
+Facts extracted from the SKILL.md body (environment facts live in the
+`sks-context` skill):
 
 - Ruleset-backed repo example: `manifests` reads as unprotected via the
   classic branch-protection endpoint — detect via rulesets (body, Branch

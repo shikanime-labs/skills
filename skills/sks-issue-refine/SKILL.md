@@ -18,6 +18,7 @@ metadata:
       - sks-issue
       - sks-issue-triage
       - sks-investigate
+      - sks-context
 platforms:
   - linux
   - macos

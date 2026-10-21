@@ -19,6 +19,7 @@ metadata:
       - sks-issue
       - sks-github-notif-sweep
       - sks-github-actions-audit
+      - sks-context
 platforms:
   - linux
   - macos

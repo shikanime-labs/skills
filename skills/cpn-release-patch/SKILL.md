@@ -24,6 +24,7 @@ metadata:
       - sks-dev
       - sks-pr
       - sks-commit
+      - sks-context
 ---
 
 # Release Patch

@@ -23,6 +23,7 @@ metadata:
       - sks-async
       - sks-swarm
       - sks-adversarial
+      - sks-context
 platforms:
   - linux
   - macos

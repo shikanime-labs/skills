@@ -16,6 +16,7 @@ metadata:
       - sks-wiki
       - sks-issue-refine
       - sks-pr
+      - sks-context
 platforms:
   - linux
   - macos

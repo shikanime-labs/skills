@@ -55,6 +55,11 @@
         "path": "skills/sks-commit"
       },
       {
+                "name": "sks-context",
+                "description": "Use when working in a target org's repos: the ecosystem map, environment facts, and shared assumptions every workflow skill builds on.",
+                "path": "skills/sks-context"
+        },
+      {
         "name": "sks-converge",
         "description": "Use when jj conflicts or divergent changes block a jj repo after a tree move — resolve conflicted revisions and divergent twins until pushable.",
         "path": "skills/sks-converge"

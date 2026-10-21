@@ -20,6 +20,7 @@ metadata:
       - sks-fastlane
       - sks-triage
       - sks-renovate-sweep
+      - sks-context
 platforms:
   - linux
   - macos

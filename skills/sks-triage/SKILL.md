@@ -23,6 +23,7 @@ metadata:
       - sks-issue
       - sks-pr
       - sks-bulk
+      - sks-context
 platforms:
   - linux
   - macos

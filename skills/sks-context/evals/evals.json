@@ -1,0 +1,46 @@
+{
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "Surfaces the shared doctrine, the environment assumptions to probe, and routes org specifics to the org reference.",
+      "files": [],
+      "prompt": "What conventions and environment assumptions apply before I start work in a shikanime repo?",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-context'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body states the discussion, issue, issue comments, PR lifecycle",
+        "Body probes gh identity and push permission before work",
+        "Body routes unmet assumptions to 'BLOCKED' reporting",
+        "Body points org specifics at references/shikanime.md"
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "Reads the family map: isolation is sks-delegate, landing is sks-land, and the coordination ladder picks the minimum rung.",
+      "files": [],
+      "prompt": "Which skill isolates a unit and which one lands PRs in this workflow family?",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-context'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Body contains at least one '##' heading",
+        "Body maps concerns to sibling skills in a table",
+        "Body lists the one-way coordination ladder with a minimum rung",
+        "Body does not restate the PR opening procedure with 'gh pr create'"
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "Skill stays scoped to shared context and does not claim conflict resolution (sks-converge's job).",
+      "files": [],
+      "prompt": "Resolve the jj conflicts blocking this repo after the tree move.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-context'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter description does not contain substring 'sks-converge'",
+        "Body does not contain substring 'sks-converge'"
+      ]
+    }
+  ],
+  "skill_name": "sks-context"
+}

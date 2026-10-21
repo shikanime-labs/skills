@@ -21,6 +21,7 @@ metadata:
       - sks-project
       - sks-plan
       - sks-bulk
+      - sks-context
 platforms:
   - linux
   - macos

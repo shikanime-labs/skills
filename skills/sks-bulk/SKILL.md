@@ -20,6 +20,7 @@ metadata:
       - sks-dev
       - sks-issue
       - sks-pr
+      - sks-context
 platforms:
   - linux
   - macos

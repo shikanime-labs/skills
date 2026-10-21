@@ -22,6 +22,7 @@ metadata:
       - sks-commit
       - sks-pr
       - sks-restack
+      - sks-context
 platforms:
   - linux
   - macos

@@ -18,6 +18,7 @@ metadata:
       - sks-fastlane
       - sks-flux-audit
       - sks-grafana-audit
+      - sks-context
 platforms:
   - linux
   - macos

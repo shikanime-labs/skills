@@ -18,6 +18,7 @@ metadata:
       - sks-discussion
       - sks-issue
       - sks-triage
+      - sks-context
 platforms:
   - linux
   - macos

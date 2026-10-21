@@ -19,6 +19,7 @@ metadata:
     related_skills:
       - sks-dev
       - sks-pr
+      - sks-context
 platforms:
   - linux
   - macos

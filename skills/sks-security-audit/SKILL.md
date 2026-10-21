@@ -20,6 +20,7 @@ metadata:
       - sks-fastlane
       - sks-redteam
       - sks-github-actions-audit
+      - sks-context
 platforms:
   - linux
   - macos

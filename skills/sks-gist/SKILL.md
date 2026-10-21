@@ -20,6 +20,7 @@ metadata:
       - sks-bulk
       - sks-adversarial
       - sks-skill-authoring
+      - sks-context
 platforms:
   - linux
   - macos

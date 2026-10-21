@@ -18,6 +18,7 @@ metadata:
       - sks-dev
       - sks-delegate
       - sks-gc
+      - sks-context
 platforms:
   - linux
   - macos

@@ -19,6 +19,7 @@ metadata:
       - sks-adversarial
       - sks-commit
       - sks-pr
+      - sks-context
 platforms:
   - linux
   - macos

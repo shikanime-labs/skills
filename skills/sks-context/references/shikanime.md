@@ -1,7 +1,7 @@
-# sks-env — shikanime org environment facts
+# Shikanime org environment facts
 
-Environment facts for running the dev loop in shikanime repos (loaded by
-`sks-dev` when operating in shikanime repos):
+Environment facts for running the workflow family in shikanime repos
+(loaded by `sks-context` when operating in shikanime repos):
 
 - Org identity: `shikanime-labs` and `shikanime-studio` GitHub orgs.
 - Repo paths: `~/Source/Repos/github.com/<org>/<repo>`; dual-clone
@@ -10,7 +10,7 @@ Environment facts for running the dev loop in shikanime repos (loaded by
   `shikanime-studio` (nix-containers) — the gh remote is canonical.
 - Protected-main repos (land via PR only): `shikanime-studio/actions`.
   Rulesets-backed repos (e.g. `manifests`) read as unprotected via the
-  classic endpoint — detect via rulesets (body, Branch discipline).
+  classic endpoint — detect via rulesets.
 - Commit trailers: `Co-authored-by: Automata
   <automata@shikanime.studio>` (all agent-assisted commits) plus
   repo-mandated `Signed-off-by` (gitlint CC1 on `manifests` and `skills`).

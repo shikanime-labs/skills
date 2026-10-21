@@ -15,6 +15,7 @@ metadata:
     related_skills:
       - sks-dev
       - github-workflow-generation
+      - sks-context
 platforms:
   - linux
   - macos
