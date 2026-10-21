@@ -2,8 +2,8 @@
 name: sks-pr-triage
 description:
   "Use when triaging an existing org PR: labels, assignee, milestone,
-  and reviewers."
-version: 0.2.0
+  and reviewers; requalify after new commits move the diff."
+version: 0.3.0
 author: Automata
 license: Apache-2.0
 metadata:
@@ -35,6 +35,8 @@ scope, the default reviewer, and artifact language live there.
 - "Triage an existing org PR."
 - "Assign metadata (labels, assignee, milestone, project, reviewers)."
 - "Link issue ↔ PR."
+- "Requalify PR metadata" — new commits or a reconciliation moved the diff
+  since triage; re-derive the labels (step 8).
 - A bug-labelled PR's fix cites no root cause → flag for `sks-investigate`
   before approving.
 
@@ -135,6 +137,17 @@ touch-ups: it drifts from the code.
 4. `gh pr edit "$N" --repo "$R" --title "..." --body-file /tmp/pr_body.md`.
 
 Detail and a worked trap: `references/pr-body-reconciliation.md`.
+
+### 8. Requalify after new commits
+
+New commits void more than review — they can void the metadata. After a
+force-push or scope change, re-run steps 2–6 over the new diff: a diff that
+outgrew `documentation` takes the label its paths now justify, an area
+label follows the moved files, and the step-7 reconciliation feeds label
+derivation the same way the original triage did. Changed fields post a
+trail comment on the PR — field, old → new, and the commit or diff hunk
+that forced it; a requalification without the comment is a silent
+metadata edit.
 
 ## Verification
 

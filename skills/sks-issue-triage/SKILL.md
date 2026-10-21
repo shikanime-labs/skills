@@ -2,9 +2,9 @@
 name: sks-issue-triage
 description:
   "Use when triaging an existing org issue: assign type, labels,
-  assignee, milestone, project, relationships, and fields; close with rationale
-  if not workable."
-version: 0.4.0
+  assignee, milestone, project, relationships, and fields; requalify when
+  the evidence moved after triage; close with rationale if not workable."
+version: 0.5.0
 author: Automata
 license: Apache-2.0
 metadata:
@@ -41,6 +41,8 @@ repo-lacking value.
 - "Triage an existing org issue."
 - "Assign metadata (type, labels, assignee, milestone, project, relationships,
   fields)."
+- "Requalify issue #N" — the issue is triaged but its body, comments, or
+  linked PR moved the evidence since; re-derive the fields (step 7).
 - "Close an issue with a rationale if it will not be worked."
 - A triaged defect needs root-cause diagnosis → hand off to `sks-investigate`
   (research-only); do not diagnose inline during triage.
@@ -169,6 +171,24 @@ gh project item-list <number> --owner <board-owner> --limit 200 --format json \
 # board read-back: every custom field on the card is decided — set, or
 # skip recorded with its reason; unset-and-unnamed fails triage
 ```
+
+### 7. Requalify from moved evidence
+
+A triaged issue re-enters triage when its evidence moved after the fields
+were set: the body edited (problem statement or scope changed), a comment
+stating a fact the metadata predates, or a linked PR landing a diff that
+outgrew the labels. Re-run steps 2–5 over the current evidence, changing
+only fields whose derivation changed — same discover-first guard, same
+meaning-match, never invented values. Every changed field posts a trail
+comment on the issue — field, old → new, and the evidence that forced it
+(`gh issue comment --body-file`). A requalification with no trail comment
+is a silent metadata edit: the defect this step exists to prevent.
+
+State is one of those fields: when the evidence shows the issue already
+landed (linked merged PR), is invalid, or is a duplicate, the outcome is
+the state move — trail comment first (old → new state plus evidence),
+then close as `completed` or `not planned`
+(`references/close.md`); never close silently.
 
 ## Repo-specific notes
 
