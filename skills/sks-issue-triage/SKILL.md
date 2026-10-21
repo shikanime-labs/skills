@@ -15,6 +15,7 @@ metadata:
       - issues
     related_skills:
       - sks-issue
+      - sks-triage
       - sks-investigate
 platforms:
   - linux
@@ -197,4 +198,5 @@ cloud-pi-native repo (French close rationales, per-repo labels).
 
 ## See also
 
+- `sks-triage` — the scope-level umbrella: org/repo sweeps.
 - `sks-issue` — creation conventions.
