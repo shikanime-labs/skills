@@ -13,8 +13,9 @@ Detects, across all gateway route/annotation YAML:
 import re, subprocess, collections
 
 REPO = "."  # manifests repo root
-out = subprocess.run(["git", "ls-files"], capture_output=True, text=True,
-                     cwd=REPO).stdout.splitlines()
+out = subprocess.run(
+    ["git", "ls-files"], capture_output=True, text=True, cwd=REPO
+).stdout.splitlines()
 problems = []
 for f in out:
     if not f.endswith(".yaml"):
@@ -31,7 +32,9 @@ for f in out:
     for i, doc in enumerate(text.split("\n---")):
         hosts = re.findall(
             r"^\s+- ([\w.-]+\.(?:taila659a\.ts\.net|i\.shikanime\.studio))\s*$",
-            doc, re.M)
+            doc,
+            re.M,
+        )
         dupes = [h for h, c in collections.Counter(hosts).items() if c > 1]
         if dupes:
             problems.append(f"{f} doc{i}: duplicate hostnames {dupes}")
@@ -56,7 +59,10 @@ hostname lines into one:
 
 ```python
 import re, subprocess
-out = subprocess.run(["git", "ls-files"], capture_output=True, text=True).stdout.splitlines()
+
+out = subprocess.run(
+    ["git", "ls-files"], capture_output=True, text=True
+).stdout.splitlines()
 pat = re.compile(r"^(    - [\w.-]+\.taila659a\.ts\.net)\n\1\n", re.M)
 for f in out:
     if f.endswith("patch-httproute.yaml") and "nishir-tailnet" in f:

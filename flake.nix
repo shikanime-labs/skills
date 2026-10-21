@@ -71,6 +71,7 @@
         devenv.shells.default.imports = [
           devlib.devenvModules.git
           devlib.devenvModules.nix
+          devlib.devenvModules.python
           devlib.devenvModules.shell
           devlib.devenvModules.shikanime-studio
         ];

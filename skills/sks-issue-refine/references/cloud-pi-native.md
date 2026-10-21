@@ -14,14 +14,19 @@ generic loop in SKILL.md is unchanged; these are the org overrides.
 - Suggested fan-out shape (French):
 
 ```python
-delegate_task(tasks=[
-    {"goal": "Rechercher <fait> : source autoritative pour <question>. "
-             "Read-only ; poster la conclusion en commentaire (pas de "
-             "trouvaille ni de liste de Références) ; n'éditer aucun code.",
-     "context": "Issue <N> dans cloud-pi-native/console ; isole sur branche "
-                "research/<name> si dépôt touché.",
-     "toolsets": ["web", "terminal"]},
-])
+delegate_task(
+    tasks=[
+        {
+            "goal": "Rechercher <fait> : source autoritative pour <question>. "
+            "Read-only ; poster la conclusion en commentaire (pas de "
+            "trouvaille ni de liste de Références) ; n'éditer aucun code.",
+            "context": "Issue <N> dans cloud-pi-native/console ; "
+            "isole sur branche "
+            "research/<name> si dépôt touché.",
+            "toolsets": ["web", "terminal"],
+        },
+    ]
+)
 ```
 
 - Routing: open with `sks-issue`, RFC surface `sks-discussion` (before the

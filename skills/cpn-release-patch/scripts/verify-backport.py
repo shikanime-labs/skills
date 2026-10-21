@@ -1,5 +1,5 @@
 #!/usr/bin/env nix-shell
-#!nix-shell -i python3 -p python3 jujutsu git
+#! nix-shell -i python3 -p python3 jujutsu git
 """Verify a rebuilt hotfix chain: exact commit count, zero conflict markers,
 and a tree that reconstructs main's source (release-please files may
 differ). Exit 0 when clean; exit 1 and print what failed otherwise.
@@ -24,19 +24,38 @@ def sh(*cmd: str) -> str:
 
 def verify(base_tag: str, tip: str, expected: int) -> int:
     rng = f"{base_tag}..{tip}"
-    commits = [c for c in sh("jj", "log", "-r", rng, "--no-graph",
-                             "-T", "commit_id").splitlines() if c]
-    conflicts = [c for c in sh("jj", "log", "-r", rng, "--no-graph",
-                               "-T",
-                               'if(conflict, description.first_line(), "")'
-                               ).splitlines() if c]
-    diff = [f for f in sh("git", "diff", "--name-only", tip, "main"
-                          ).splitlines() if f and not RELEASE_FILES.search(f)]
+    commits = [
+        c
+        for c in sh(
+            "jj", "log", "-r", rng, "--no-graph", "-T", "commit_id"
+        ).splitlines()
+        if c
+    ]
+    conflicts = [
+        c
+        for c in sh(
+            "jj",
+            "log",
+            "-r",
+            rng,
+            "--no-graph",
+            "-T",
+            'if(conflict, description.first_line(), "")',
+        ).splitlines()
+        if c
+    ]
+    diff = [
+        f
+        for f in sh("git", "diff", "--name-only", tip, "main").splitlines()
+        if f and not RELEASE_FILES.search(f)
+    ]
 
     fail = 0
     if len(commits) != expected:
-        print(f"FAIL: chain has {len(commits)} commits, expected {expected}",
-              file=sys.stderr)
+        print(
+            f"FAIL: chain has {len(commits)} commits, expected {expected}",
+            file=sys.stderr,
+        )
         fail = 1
     if conflicts:
         print(f"FAIL: {len(conflicts)} conflict markers in {rng}", file=sys.stderr)

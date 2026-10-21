@@ -21,14 +21,19 @@ Load when working in the cloud-pi-native/console repository.
 - Dispatch example (one task per leaf, French goal, trailer in the contract):
 
 ```python
-delegate_task(tasks=[
-    {"goal": "Implémenter <repo>.<unit>: <contrat>. Workspace: "
-             "../<repo>.<unit>. Gates: <N>. Commit conventionnel + "
-             "trailer Automata.",
-     "context": "dépôt cloud-pi-native/<repo> ; racine trunk ; un workspace "
-                "par unité.",
-     "toolsets": ["terminal", "file"]},
-])
+delegate_task(
+    tasks=[
+        {
+            "goal": "Implémenter <repo>.<unit>: <contrat>. Workspace: "
+            "../<repo>.<unit>. Gates: <N>. Commit conventionnel + "
+            "trailer Automata.",
+            "context": "dépôt cloud-pi-native/<repo> ; racine trunk ; "
+            "un workspace "
+            "par unité.",
+            "toolsets": ["terminal", "file"],
+        },
+    ]
+)
 ```
 
 - The parent re-verifies each leaf's gate via `terminal` in its workspace

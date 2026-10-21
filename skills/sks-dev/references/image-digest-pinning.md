@@ -45,13 +45,22 @@ python stdlib only):
 
 ```python
 import json, urllib.request, hashlib
-token = json.load(urllib.request.urlopen(
-    "https://auth.docker.io/token?service=registry.docker.io&scope=repository:<repo>:pull"))["token"]
-hdr = {"Authorization": f"Bearer {token}",
-       "Accept": "application/vnd.oci.image.index.v1+json, application/vnd.docker.distribution.manifest.list.v2+json"}
-body = urllib.request.urlopen(urllib.request.Request(
-    "https://registry-1.docker.io/v2/<repo>/manifests/<TAG>", headers=hdr)).read()
-print("sha256:" + hashlib.sha256(body).hexdigest())   # the INDEX digest to pin
+
+token = json.load(
+    urllib.request.urlopen(
+        "https://auth.docker.io/token?service=registry.docker.io&scope=repository:<repo>:pull"
+    )
+)["token"]
+hdr = {
+    "Authorization": f"Bearer {token}",
+    "Accept": "application/vnd.oci.image.index.v1+json, application/vnd.docker.distribution.manifest.list.v2+json",
+}
+body = urllib.request.urlopen(
+    urllib.request.Request(
+        "https://registry-1.docker.io/v2/<repo>/manifests/<TAG>", headers=hdr
+    )
+).read()
+print("sha256:" + hashlib.sha256(body).hexdigest())  # the INDEX digest to pin
 # verify both arches are members:
 for m in json.loads(body)["manifests"]:
     print(m.get("platform"), m["digest"])

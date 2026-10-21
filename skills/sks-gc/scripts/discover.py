@@ -1,5 +1,5 @@
 #!/usr/bin/env nix-shell
-#!nix-shell -i python3 -p python3 gh jujutsu
+#! nix-shell -i python3 -p python3 gh jujutsu
 """Discover GC candidates in a shikanime jj repo: dangling bookmarks (not on
 trunk, no open PR) and skill-created workspaces (<repo>.<unit> or
 <repo>-fix), with the dirty working-copy guard. Dry-run only — never forgets
@@ -29,8 +29,19 @@ def discover(repo_dir: str) -> None:
     open_prs = {
         p["headRefName"]
         for p in json.loads(
-            sh("gh", "pr", "list", "--state", "open", "--limit", "200",
-               "--json", "headRefName", cwd=str(repo)) or "[]"
+            sh(
+                "gh",
+                "pr",
+                "list",
+                "--state",
+                "open",
+                "--limit",
+                "200",
+                "--json",
+                "headRefName",
+                cwd=str(repo),
+            )
+            or "[]"
         )
     }
 
@@ -38,8 +49,16 @@ def discover(repo_dir: str) -> None:
     # jj 0.43: template the name alone and dedupe; trunk() resolves the
     # configured trunk so the revset works beyond main-named repos.
     bookmarks = sh(
-        "jj", "bookmark", "list", "-r", "bookmarks() & ~::trunk()",
-        "--color", "never", "-T", 'name ++ "\\n"', cwd=str(repo),
+        "jj",
+        "bookmark",
+        "list",
+        "-r",
+        "bookmarks() & ~::trunk()",
+        "--color",
+        "never",
+        "-T",
+        'name ++ "\\n"',
+        cwd=str(repo),
     ).split()
     for bm in sorted(set(bookmarks) - set(TRUNK_NAMES) - open_prs):
         print(bm)
@@ -47,13 +66,19 @@ def discover(repo_dir: str) -> None:
     print("== skill workspaces (<repo>.<unit> or <repo>.fix) ==")
     # jj 0.43: default `workspace list` has no path column — template it
     repo_name = repo.name
-    for line in sh("jj", "workspace", "list", "--color", "never",
-                   "-T", 'name ++ "\\t" ++ root ++ "\\n"',
-                   cwd=str(repo)).splitlines():
+    for line in sh(
+        "jj",
+        "workspace",
+        "list",
+        "--color",
+        "never",
+        "-T",
+        'name ++ "\\t" ++ root ++ "\\n"',
+        cwd=str(repo),
+    ).splitlines():
         name, _, path = line.partition("\t")
         # skill workspaces are <repo>.<unit> or <repo>-fix (dash: fix only)
-        if not (name.startswith(f"{repo_name}.")
-                or name.startswith(f"{repo_name}-fix")):
+        if not name.startswith((f"{repo_name}.", f"{repo_name}-fix")):
             continue
         # canonical repo-named workspace is never a candidate
         status = sh("jj", "-R", path, "status", "--color", "never")
@@ -66,7 +91,9 @@ def discover(repo_dir: str) -> None:
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument(
-        "repo_dir", nargs="?", default=".",
+        "repo_dir",
+        nargs="?",
+        default=".",
         help="jj repo root (default: current directory)",
     )
     args = ap.parse_args()

@@ -1,5 +1,5 @@
 #!/usr/bin/env nix-shell
-#!nix-shell -i python3 -p python3 gh jujutsu
+#! nix-shell -i python3 -p python3 gh jujutsu
 """Print (or write to OUTFILE, default /tmp/sks_ms_ids.txt) the ordered
 (oldest->newest) merge commit SHAs of a milestone's merged PRs. One SHA per
 line. The milestone is the authoritative backport set — NOT a BASE_TAG..main

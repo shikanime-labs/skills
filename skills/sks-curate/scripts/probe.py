@@ -1,5 +1,5 @@
 #!/usr/bin/env nix-shell
-#!nix-shell -i python3 -p python3
+#! nix-shell -i python3 -p python3
 """Contrastive probe: grade an old and a new skill body over the SAME
 assertion set and diff the pass/fail flips.
 
@@ -20,18 +20,84 @@ import sys
 # assertion metalanguage: verbs and connectives that describe the body but
 # never appear in it; content words are what remains after stripping these
 _STOP = {
-    "body", "frontmatter", "mentions", "contains", "word", "requires",
-    "keeps", "yaml", "parses", "heading", "starts", "characters",
-    "description", "license", "field", "equals", "least", "during",
-    "still", "also", "must", "should", "every", "only", "never",
-    "presents", "mines", "delegates", "merges", "lands", "ranks",
-    "treats", "names", "states", "routes", "frames", "forbids",
-    "distinguishes", "restricts", "refreshing", "reporting",
-    "along", "into", "using", "same", "other", "first", "last",
-    "more", "most", "less", "much", "many", "some", "will", "would",
-    "than", "then", "when", "while", "where", "which", "them",
-    "they", "their", "there", "those", "these", "have", "has",
-    "been", "being", "were", "with", "that", "this", "from", "over",
+    "body",
+    "frontmatter",
+    "mentions",
+    "contains",
+    "word",
+    "requires",
+    "keeps",
+    "yaml",
+    "parses",
+    "heading",
+    "starts",
+    "characters",
+    "description",
+    "license",
+    "field",
+    "equals",
+    "least",
+    "during",
+    "still",
+    "also",
+    "must",
+    "should",
+    "every",
+    "only",
+    "never",
+    "presents",
+    "mines",
+    "delegates",
+    "merges",
+    "lands",
+    "ranks",
+    "treats",
+    "names",
+    "states",
+    "routes",
+    "frames",
+    "forbids",
+    "distinguishes",
+    "restricts",
+    "refreshing",
+    "reporting",
+    "along",
+    "into",
+    "using",
+    "same",
+    "other",
+    "first",
+    "last",
+    "more",
+    "most",
+    "less",
+    "much",
+    "many",
+    "some",
+    "will",
+    "would",
+    "than",
+    "then",
+    "when",
+    "while",
+    "where",
+    "which",
+    "them",
+    "they",
+    "their",
+    "there",
+    "those",
+    "these",
+    "have",
+    "has",
+    "been",
+    "being",
+    "were",
+    "with",
+    "that",
+    "this",
+    "from",
+    "over",
 }
 
 
@@ -56,7 +122,9 @@ def grade(body: str, assertion: str) -> bool | None:
     if "frontmatter" in a and "license" in a:
         return "license:" in _frontmatter(body).lower()
     if "description" in a and "characters" in a:
-        d = re.search(r"^description:\s*'?(.*?)'?\s*$", _frontmatter(body), re.MULTILINE)
+        d = re.search(
+            r"^description:\s*'?(.*?)'?\s*$", _frontmatter(body), re.MULTILINE
+        )
         limit = re.search(r"(\d+)", a)
         return bool(d) and bool(limit) and len(d.group(1)) <= int(limit.group(1))
     lits = re.findall(r"'([^']+)'", assertion)
@@ -109,7 +177,10 @@ def probe(old: str, new: str, assertions: list[str]) -> dict:
 
 def _self_check() -> None:
     g = grade
-    assert g("judges are provenance-blind", "Body requires 'provenance-blind' judges") is True
+    assert (
+        g("judges are provenance-blind", "Body requires 'provenance-blind' judges")
+        is True
+    )
     assert g("no blindness here", "Body requires 'provenance-blind' judges") is False
     assert g("whatever", "Body") is None
     old = "keep step one and the safety gate here"
@@ -128,9 +199,12 @@ def main(argv: list[str]) -> int:
     if len(argv) != 4:
         print(__doc__)
         return 2
-    old = open(argv[1]).read()
-    new = open(argv[2]).read()
-    ev = json.load(open(argv[3]))
+    with open(argv[1]) as f:
+        old = f.read()
+    with open(argv[2]) as f:
+        new = f.read()
+    with open(argv[3]) as f:
+        ev = json.load(f)
     assertions = [a for e in ev["evals"] for a in e["assertions"]]
     r = probe(old, new, assertions)
     print(
