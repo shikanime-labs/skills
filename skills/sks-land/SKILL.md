@@ -222,8 +222,17 @@ EOF
    <PR URL>"`.
 4. Rebase downstream: if other PRs sit on top of the merged branch, rebase them
    onto the new `main` (`jj rebase -d main`).
-5. **Sync docs** if ops/arch/runbooks changed — sync the repo wiki per
-   `sks-wiki`; skip if purely internal.
+5. **Sync the wiki (shikanime org: mandatory when the change has a wiki
+   surface).** The repo wiki is the canonical home of technical docs —
+   in-repo `docs/` was migrated away (machines/manifests/tailnet); never
+   recreate it. If the merged PR changed anything a wiki page documents
+   (architecture, ops runbooks, process, reference pages), update those
+   pages in the same landing sweep: clone `<repo>.wiki.git`, edit, ONE
+   commit with the org co-author trailer, push, verify local HEAD sha ==
+   `git ls-remote` HEAD (guard stdin with `</dev/null`; wiki remotes
+   default to `master`). Wiki pushes bypass review — accepted trade-off.
+   Skip only when the change is purely internal to what the wiki does not
+   cover. Full mechanics: `sks-wiki`.
 6. **Teardown the landing bookmark.** GitHub drops the remote branch on merge,
    but the local `jj` bookmark and its `origin` tracking ref linger and clutter
    the workspace. Remove both:
@@ -310,6 +319,8 @@ EOF
       is confirmed live.
 - [ ] User accepted the deployed change (manual acceptance gate, post-merge
       step 2) — merge alone is not the end state.
+- [ ] Wiki pages synced when the change touched documented behavior
+      (post-merge step 5, shikanime org).
 
 ## Verification
 
