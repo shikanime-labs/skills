@@ -246,6 +246,23 @@ NEVER pass bodies inline via `--body "..."` — shell expansion mangles
 backticks/`$`. Write to a file, pass `--body-file`, then re-read the stored
 body.
 
+## Authoring-skill identification (write phase)
+
+When the unit writes code or docs, first identify the authoring skill that
+matches the files being edited. See `sks-edit` for the match table and the
+no-double-apply rules; load the matched family skill for detail. The families:
+
+- `sks-ts-authoring` (TypeScript)
+- `sks-nix-authoring` (Nix)
+- `sks-skill-authoring` (new skill / profile creation)
+- `sks-sops-secrets-authoring` (sops secrets)
+- `sks-kubernetes-manifests-authoring` (Kubernetes manifests / kustomize)
+- `sks-text-authoring` (Plain English / STE prose)
+- `sks-wiki` (GitHub wiki)
+
+`sks-edit` is the fused umbrella for all of these and carries the
+identification logic (match table, when to match, no-double-apply rules).
+
 ## Done is proven, not asserted
 
 "`pushed` / `landed` / `merged`" are claims until verified against real
@@ -351,7 +368,11 @@ jj status && jj log -r @ -T 'bookmarks ++ " "'
 cluster), `sks-pr-review` (phase 5), `sks-pr-ready` (draft→ready flip
 before landing), `ponytail-review` (over-engineering
 lens), `sks-tldr` (end-of-loop block closes the loop).
-Authoring-convention skills apply during the write phase:
-`sks-ts-authoring` (TypeScript), `sks-nix-authoring` (Nix),
-`sks-skill-authoring` (skills), `sks-sops-secrets-authoring` (sops
-secrets).
+Authoring-convention skills apply during the write phase. `sks-edit` is the
+fused umbrella that identifies which family applies and references the detail
+families:
+
+`sks-edit` (identification; ranges `sks-ts-authoring` TypeScript,
+`sks-nix-authoring` Nix, `sks-skill-authoring` skills, `sks-sops-secrets-authoring`
+sops secrets, `sks-kubernetes-manifests-authoring` manifests, `sks-text-authoring`
+STE plain English, `sks-wiki` GitHub wiki).

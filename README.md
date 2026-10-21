@@ -122,6 +122,7 @@ specification, compatible with the
 | `sks-discussion-triage` | Use when triaging an existing org discussion: category, body shape, Q&A answer, and conversion to an issue. |
 | `sks-wiki` | Use when documenting a project's technical knowledge in its GitHub wiki: enabling the wiki, seeding or syncing pages after a behavior-changing PR, and backfilling per-repo technical documentation. |
 | `sks-evolve` | Use when evolving the agent substrate without a hand-named target: mine experience for signals, evolve skills, profiles, memory, conventions, cron, or config, and repeat the fitness loop. |
+| `sks-edit` | Use when a write-phase change needs an authoring skill: identify which authoring convention applies to the files being edited, then apply the matched family skill for detail. |
 | `sks-gc` | Use when reclaiming resources leaked by agent workflows: dangling jj bookmarks, skill-created workspaces, leftover working-copy dirs, and stale merged branches on GitHub remotes. |
 | `sks-github-actions-audit` | Use when auditing CI health across an org's GitHub repos: failed workflow runs in the last 24h, filing new failures as issues, fastlaning trivial CI fixes. |
 | `sks-gist` | Use when a verified command, script, config, or output would be retyped or re-derived later — publish it as a gist for DRY reuse and link it from the artifact that motivated it. |

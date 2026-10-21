@@ -1,0 +1,20 @@
+{
+  "evals": [
+    {
+      "id": "route-typescript",
+      "prompt": "I'm writing a new service in apps/server-nestjs. Which authoring skill applies?",
+      "expected_output": "sks-ts-authoring (TypeScript). Match: .ts/.tsx under apps/ shared package."
+    },
+    {
+      "id": "route-nix",
+      "prompt": "I'm adding a devshell and a module option to shikanime-labs/machines. Which authoring skill applies?",
+      "expected_output": "sks-nix-authoring (Nix). Match: .nix in a flake / module."
+    },
+    {
+      "id": "route-edge-no-double-apply",
+      "prompt": "A .nix module emits YAML via sopsFile. Does it also need the manifests skill for the generated file?",
+      "expected_output": "No double-apply. The .nix is sks-nix-authoring; the generated YAML surface is sks-kubernetes-manifests-authoring, but they are different files — the Nix side is Nix-only."
+    }
+  ],
+  "skill_name": "sks-edit"
+}
