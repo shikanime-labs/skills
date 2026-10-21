@@ -34,11 +34,10 @@ into the wrong commit, and so the working surface is always isolated and
 reproducible. This is the single-stream primitive behind `sks-async`'s per-unit
 fan-out and the isolation lane of `sks-dev`.
 
-For shikanime-org specifics (repo layout, co-author trailer), read
-`references/shikanime.md` when operating in a shikanime org. For
-cloud-pi-native specifics (console checkout path, the default reviewer, French
-artifacts, `Refs #N`), read `references/cloud-pi-native.md` when working in
-the cloud-pi-native/console repository.
+Org specifics live in `references/`: `references/shikanime.md` when operating
+in a shikanime org (repo layout, co-author trailer);
+`references/cloud-pi-native.md` when working in the cloud-pi-native/console
+repository (checkout path, default reviewer, French artifacts, `Refs #N`).
 
 ## Mandatory
 

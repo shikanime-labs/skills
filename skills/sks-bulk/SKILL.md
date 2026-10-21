@@ -158,23 +158,16 @@ repo (`sks-async`).
   stdout**, not stderr: a `[ -z "$low" ]` emptiness check inverts and reports
   every row as failed. Capture the expected exact name and compare
   (`[ "$low" = "expected" ]`), or pipe through `grep -qx <name>`.
-- **Backporting a workflow-parse fix revives dead workflows:** CI then runs
-  for the first time in weeks and fails on pre-existing drift (stale
-  nixpkgs against flake-checker's 30-day limit, broken composite inputs).
-  Before landing, classify branch-run reds against the default branch's run
-  history — pre-existing red is not introduced by the backport, but merging
-  with red needs an explicit operator call and a follow-up fix wave.
+- **Backporting a workflow-parse fix revives dead workflows.** CI then runs
+  for the first time in weeks and fails on pre-existing drift. Classify
+  branch-run reds against the default branch's run history before landing —
+  recipe: `references/ruleset-bypass.md`.
 - **Dependabot warnings on push** (vulnerability alerts) are noted in the
   report, not treated as push failures and not auto-fixed.
 - **Operator-authorized ruleset bypass:** `bypass_mode_actors` PUTs are
-  silently dropped on repo rulesets — instead snapshot the ruleset
-  (`gh api repos/<o>/<r>/rulesets/<id>`), PUT a body that flips the gating
-  parameters (`require_code_owner_review`, `require_last_push_approval`,
-  `require_extra_approval_for_unattributed_changes`, and drop the
-  `required_status_checks` rule) to open, `gh pr merge --squash --admin`,
-  then PUT the snapshot's `{name,target,enforcement,conditions,rules}`
-  back and re-read the ruleset to confirm restoration. Gates re-arm
-  instantly on the restore PUT.
+  silently dropped on repo rulesets — snapshot, open the gates, merge
+  `--squash --admin`, restore, re-read. Full recipe:
+  `references/ruleset-bypass.md`.
 - **`gh api --input -` is mandatory for stdin bodies.** Newer `gh api` ignores
   a piped body without it: every POST in a delete+recreate loop lands as
   `422 data cannot be null` while every DELETE succeeds — half the mutation

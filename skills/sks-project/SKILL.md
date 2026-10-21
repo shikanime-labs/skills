@@ -43,15 +43,22 @@ and take the next card from the rightmost active column. Re-scoping or a new
 priority signal updates the card immediately — the board reflects reality
 before other work proceeds.
 
+Rare paths live in `references/provisioning-audit.md` — read it when no
+pertinent board exists for the family (template-board clone via
+`copyProjectV2`) or when auditing Status drift across a whole board.
+
 ## Board resolution (from context)
 
 Pick the board from the unit's family, never by habit. The board-per-family
 table — and the per-team default each org falls back to when no family
-matches — are org facts (read `references/shikanime.md`).
+matches — are org facts (read `references/shikanime.md`); the template board
+to clone and the destination owner's node id live with the provisioning
+recipe in `references/provisioning-audit.md`.
 
 Ambiguous context: `gh project list --owner <board-owner>`, read the titles,
 and ask the user once if still unresolved. A unit lives on exactly one board.
-No pertinent board exists: provision one (below), never misfile a unit onto
+No pertinent board exists: provision one
+(`references/provisioning-audit.md`), never misfile a unit onto
 an unrelated board.
 
 ## Phase map
@@ -73,31 +80,6 @@ The `review` signal fires once, at the review request — not on every push to
 the branch. Do not reset a merged PR's card to a backlog column when the
 issue that spawned it stays open for follow-on work: that issue gets its own
 card.
-
-## Provisioning a board
-
-When no pertinent board exists, clone the org's template board (which one,
-per `references/shikanime.md`). The copy inherits the template's views with
-real kanban
-grouping (the API cannot set `verticalGroupByFields` on a fresh project),
-the Priority/Size fields, and the lifecycle Status vocabulary:
-
-```bash
-# ownerId = the destination owner's node id: the ORG node for a per-team
-# board, the user id for a family board (per references/shikanime.md)
-gh api graphql -f query='mutation{ copyProjectV2(input:{
-  projectId:"<template-project-node-id>"
-  ownerId:"<owner-node-id>"
-  title:"<team-or-family>" }){
-  projectV2 { id number } } }'
-```
-
-The copy carries the template's Status option ids verbatim. No template
-board in the context: `gh project create --owner <board-owner> --title
-"<family>"` and reshape the default `Todo`/`In Progress`/`Done` options
-with `updateProjectV2Field` (the field itself cannot be deleted;
-`description` is required per option). Either path, resolve the vocabulary
-at runtime below.
 
 ## Vocabulary discovery (per board, at runtime)
 
@@ -191,20 +173,6 @@ The printed status equals the intended column, or the move did not happen.
 - **Stale output lies after merge.** `gh pr merge` success lines prove
   nothing; flip to `done` only after re-reading
   `gh pr view <N> --json state,mergedAt`.
-
-## Audit
-
-Drift check over a whole board — cards whose Status disagrees with live
-GitHub state:
-
-```bash
-gh project item-list <number> --owner <board-owner> --limit 200 --format json \
-  --jq '.items[] | select(.status != null) |
-        {n: .content.number, url: .content.url, status}'
-```
-
-For each row, compare against the live issue/PR state and correct offenders
-with step 3. Merged PRs sitting outside `done` are the common offender.
 
 ## Bulk mutation gate
 

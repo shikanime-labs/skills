@@ -124,14 +124,7 @@ the shikanime org — `references/shikanime.md`.
 ```bash
 jj rebase -d main                      # ALWAYS rebase onto trunk before landing
 gh pr merge <M> --repo <org>/<repo> --squash --admin \
-  -b "$(cat <<'EOF'
-<body: one coherent change, no jj * bullets / --------- separators;
-trailers only: Related: [url], Signed-off-by: [user], required co-author
-trailer (see references/shikanime.md)>
-
-<required trailer lines — see references/shikanime.md>
-EOF
-)"                                     # --admin bypasses self-approval protection
+  --body-file <file>                   # --admin bypasses self-approval protection
 ```
 
 - Branch protection blocks self-approval on some repos (see
@@ -206,14 +199,9 @@ jj git remote add origin "git@github.com:$ORG/<repo>.git" 2>/dev/null || true
 jj bookmark track <branch> --remote=origin
 jj git push --remote origin
 gh pr create --repo "$ORG/<repo>" --base main --head "$ORG:<branch>" \
-  --title "TITLE" --body "$(cat <<'EOF'
-# Why
-## What
-## References
-<commits, changelogs, specs proving the solution — the issue link is
-Development metadata, added at triage>
-EOF
-)"
+  --title "TITLE" --body-file <body-file>   # # Why / ## What / ## References;
+                                            # issue link = Development metadata
+                                            # added at triage, not a body line
 ```
 
 PRs submitted from a separate jj workspace request the default reviewer (see

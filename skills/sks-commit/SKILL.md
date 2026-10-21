@@ -77,12 +77,8 @@ commit/merge:
 ```bash
 gh pr merge <M> --repo <org>/<repo> --squash \
   -t "<plain-English subject>" \
-  -b "$(cat <<'EOF'
-<coherent body; no * bullets, no --------->
-
-Co-authored-by: Automata <automata@shikanime.studio>
-EOF
-)"
+  --body-file <file>   # coherent body; no * bullets, no ----- separators;
+                        # exactly one Automata co-author trailer
 ```
 
 `-m` is the `--merge` strategy boolean, not a message flag —
