@@ -17,9 +17,6 @@ metadata:
       - pull-requests
       - metadata
     related_skills:
-      - sks-issue-triage
-      - sks-pr-triage
-      - sks-discussion-triage
       - sks-issue
       - sks-pr
       - sks-bulk
@@ -33,10 +30,11 @@ platforms:
 
 Scope-level entry point for triage: given an **org**, **repo**, **issue**, or
 **PR**, find what lacks metadata and assign every empty, context-derivable
-field — never inventing a value the repo does not offer. Per-kind deep flows
-live in `sks-issue-triage` / `sks-pr-triage`; this skill owns the scopes they
-cannot reach — repo and org — and the org issue fields and project card
-fields they predate.
+field — never inventing a value the repo does not offer. This skill is the
+single entry point for triage; per-kind deep flows live in
+`references/issue.md`, `references/pr.md`, and `references/discussion.md`.
+This body owns the scopes they cannot reach — repo and org — and the org
+issue fields and project card fields they predate.
 
 Org specifics — target orgs, default assignee, default reviewer — live in
 `references/shikanime.md`; the issue-field mechanics in
@@ -66,9 +64,9 @@ directory, not the target repo.
   evidence moved; re-derive from the current evidence (step 4).
 - Zero untriaged items found → report that and change nothing.
 
-Not for: discussions (`sks-discussion-triage`), closing unworkable issues
-(`sks-issue-triage`), rewording a PR body (`sks-pr-triage`), diagnosing a
-defect (`sks-investigate`).
+Not for: closing unworkable issues or rewording a PR body (those live in
+`references/issue.md` / `references/pr.md`), diagnosing a defect
+(`sks-investigate`). Discussions: `references/discussion.md`.
 
 ## Prerequisites
 
@@ -99,7 +97,7 @@ kind=$(gh api "repos/$R/issues/$N" \
 ```
 
 A 404 means the number is not an issue or PR; if the user said discussion,
-route to `sks-discussion-triage`.
+route to `references/discussion.md`.
 
 ### 2. Enumerate the scope
 
@@ -194,12 +192,12 @@ Two rules distinguish it from fill:
   `completed` when a linked PR delivered it, `not planned` otherwise —
   same trail comment, then the close. On an explicitly requested
   requalification this executes; during a sweep it is reported as a
-  closure candidate for `sks-issue-triage`, never auto-closed.
+  closure candidate for `references/issue.md`, never auto-closed.
 - **Links move too.** The issue↔PR Development link is metadata like the
   rest: requalification re-derives it from the current evidence — stale
   link removed (`removeCloseIssueReferences`), missing link added
   (`addCloseIssueReferences`), trail comment old → new. Mechanics in
-  `sks-pr-triage` step 5.
+  `references/pr.md` step 5.
 - **Report old → new.** Step 5 lists each requalified field with both
   values and the evidence; items whose evidence did not move are reported
   as untouched no-ops.
@@ -211,7 +209,7 @@ reason. Report a table — item, kind, assigned (or requalified, old → new)
 fields, read-back evidence —
 plus before/after untriaged counts, the untouched remainder when over CAP,
 and each failure with its reason. Never close anything during a sweep —
-closure is deliberate (`sks-issue-triage`).
+closure is deliberate (`references/issue.md`).
 
 ## Pitfalls
 
@@ -238,8 +236,8 @@ closure is deliberate (`sks-issue-triage`).
 - **Requalification without a trail comment is the defect this mode exists
   to prevent** — a changed field with no old → new comment is a silent
   metadata edit.
-- **Do not diagnose, close, or reword here.** Those are `sks-investigate` /
-  `sks-issue-triage` / `sks-pr-triage` jobs.
+- **Do not diagnose, close, or reword here.** Those are `sks-investigate`'s
+  and the per-kind references' jobs.
 - Payloads and bodies go through files (`--body-file`, `--input`), never
   inline shell arguments.
 - **`gh project item-list` truncates around 1000 rows** on large boards —
@@ -269,8 +267,8 @@ gh api "repos/$R/issues/$N" --jq '{type: (.type.name // "-"),
 
 ## See also
 
-- `sks-issue-triage` — deep single-issue flow, closure, transfer.
-- `sks-pr-triage` — deep single-PR flow, body↔diff reconciliation.
-- `sks-discussion-triage` — discussions.
+- `references/issue.md` — deep single-issue flow, closure, transfer.
+- `references/pr.md` — deep single-PR flow, body↔diff reconciliation.
+- `references/discussion.md` — discussion recategorization and conversion.
 - `sks-issue` / `sks-pr` — run triage right after creating.
 - `sks-bulk` — N-repo mutations beyond triage.

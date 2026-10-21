@@ -19,7 +19,7 @@
     },
     {
       "id": 2,
-      "expected_output": "An issue whose body stays stable for triage while research findings go to comments, then handed to sks-issue-triage.",
+      "expected_output": "An issue whose body stays stable for triage while research findings go to comments, then handed to sks-triage.",
       "files": [],
       "prompt": "File a bug in our org's devlib repo with reproduction steps and a References section, and make sure I don't leak investigation notes into the issue body.",
       "assertions": [
@@ -29,7 +29,7 @@
         "The license field is 'Apache-2.0'.",
         "The body contains at least one '##' heading.",
         "Body includes a References section holding official material for the issue.",
-        "Body delegates triage metadata to sks-issue-triage after creation."
+        "Body delegates triage metadata to sks-triage after creation."
       ]
     },
     {
@@ -95,12 +95,12 @@
         "Frontmatter 'name' equals 'sks-issue'.",
         "A 'references/cloud-pi-native.md' file exists and opens with a load condition for working in the cloud-pi-native/console repository.",
         "That references file documents the French bug/feature templates with '🐛 [BUG]' / '💡 [REQUEST]' titles and the 'Définition du fini' ledger.",
-        "The body still delegates triage metadata to sks-issue-triage after creation."
+        "The body still delegates triage metadata to sks-triage after creation."
       ]
     },
     {
       "id": 9,
-      "expected_output": "The skill is the single entry point for the issue side, orchestrating sks-issue then sks-issue-refine then sks-issue-triage.",
+      "expected_output": "The skill is the single entry point for the issue side, orchestrating sks-issue then sks-issue-refine then sks-triage.",
       "files": [],
       "prompt": "Open and set up an issue on my org's actions repo for the rwx nfs v4.0 bug before any PR.",
       "assertions": [
@@ -110,7 +110,7 @@
         "license field is 'Apache-2.0'",
         "Body contains at least one '##' heading",
         "Body is the single entry point for the issue side",
-        "Body orchestrates sks-issue, sks-issue-refine, and sks-issue-triage"
+        "Body orchestrates sks-issue, sks-issue-refine, and sks-triage"
       ]
     },
     {
@@ -161,7 +161,7 @@
         "Frontmatter parses as valid YAML.",
         "Frontmatter 'name' equals 'sks-issue'.",
         "Body defines a completion gate based on a converged `- [ ]` ledger plus triage metadata set.",
-        "Body orchestrates sks-issue, sks-issue-refine, and sks-issue-triage without creation logic of its own."
+        "Body orchestrates sks-issue, sks-issue-refine, and sks-triage without creation logic of its own."
       ]
     }
   ],

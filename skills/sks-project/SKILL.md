@@ -13,8 +13,8 @@ metadata:
       - projects-v2
       - board
     related_skills:
-      - sks-issue-triage
-      - sks-pr-triage
+      - sks-triage
+      - sks-triage
       - sks-issue
       - sks-pr
       - sks-land
@@ -117,7 +117,7 @@ gh project item-list <number> --owner <board-owner> --limit 200 --format json \
 ```
 
 A missing hit means the card is not onboarded — add it in step 2. Entry
-gate: the issue is triaged (`sks-issue-triage`) before it boards — Status
+gate: the issue is triaged (`sks-triage`) before it boards — Status
 mirrors the triaged phase, and an untriaged card has no phase to mirror.
 
 ### 2. Onboard if absent
@@ -196,8 +196,8 @@ gh project item-list <number> --owner <board-owner> --limit 200 --format json \
 
 ## See also
 
-- `sks-issue-triage` — boards a fresh issue; this skill sets its Status.
-- `sks-pr-triage` — PR metadata; `--add-project` before Status here.
+- `sks-triage` — boards a fresh issue; this skill sets its Status.
+- `sks-triage` — PR metadata; `--add-project` before Status here.
 - `sks-issue` / `sks-pr` — the phases Status mirrors.
 - `sks-land` — the merge gate that fires `done`.
 - `sks-plan` — the strategy plane whose approved unit sets this board

@@ -20,7 +20,7 @@ metadata:
       - sks-bulk
       - sks-issue
       - sks-dev
-      - sks-github-text-authoring
+      - sks-authoring
 platforms:
   - linux
   - macos
@@ -32,7 +32,7 @@ platforms:
 One small report block closes every work loop. Parallel loops means the
 operator reads N reports in one sitting; the block keeps that scan cheap.
 
-Prose style inside the sections is owned by `sks-github-text-authoring`. This
+Prose style inside the sections is owned by `sks-authoring`. This
 skill owns the sections and the destination.
 
 ## When to Use
@@ -113,4 +113,4 @@ One match per block.
 - `sks-async` — fan-out; the child contract returns this block.
 - `sks-investigate` — the finding plus proposal fills the block.
 - `sks-bulk` — N/M batch reporting; the aggregation rule.
-- `sks-github-text-authoring` — prose rules inside the sections.
+- `sks-authoring` — prose rules inside the sections.

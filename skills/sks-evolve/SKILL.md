@@ -18,7 +18,7 @@ metadata:
     related_skills:
       - sks-selfupdate
       - sks-curate
-      - sks-skill-authoring
+      - sks-authoring
       - sks-delegate
       - sks-async
       - sks-swarm
@@ -68,7 +68,7 @@ graph LR
    are the mutation source. Read-only:
    never edit memories or sessions to make a signal go away.
 2. **Decide** — select the next evolution autonomously. One signal maps to
-   one action: author a new skill (`sks-skill-authoring`), curate an existing
+   one action: author a new skill (`sks-authoring`), curate an existing
    skill or profile (`sks-curate`), run a batch catalog/profile refresh
    (`sks-selfupdate`), author a profile distribution (`sks-curate`),
    update memory, conventions (`AGENTS.md`), cron, harness, or config by
@@ -156,7 +156,7 @@ and the issue ledger is discharged N of N.
 
 - `sks-selfupdate` / `sks-curate` — the batch shell and the rework pass; both
   cover profiles alongside skills.
-- `sks-skill-authoring` — skill authoring; profiles are authored and curated
+- `sks-authoring` — skill authoring; profiles are authored and curated
   through `sks-curate`.
 - `sks-delegate` / `sks-async` / `sks-swarm` — divide-and-conquer fan-out.
 - `sks-adversarial` — the sandbox primitive the Measure panel fans out.

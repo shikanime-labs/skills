@@ -15,7 +15,7 @@ metadata:
     related_skills:
       - sks-triage
       - sks-issue
-      - sks-github-text-authoring
+      - sks-authoring
 platforms:
   - linux
   - macos
@@ -91,4 +91,4 @@ noise skipped, threads marked read.
 
 - `sks-triage` — repo-wide triage when a thread reveals a wider gap.
 - `sks-issue` — filing a follow-up issue surfaced by a thread.
-- `sks-github-text-authoring` — prose mechanics for the replies.
+- `sks-authoring` — prose mechanics for the replies.

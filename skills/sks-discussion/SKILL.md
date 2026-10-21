@@ -13,7 +13,7 @@ metadata:
       - discussions
       - rfc
     related_skills:
-      - sks-discussion-triage
+      - sks-triage
       - sks-issue
       - sks-plan
 platforms:
@@ -27,7 +27,7 @@ platforms:
 Pre-issue RFC (lifecycle **discussion → issue → issue comments → PR**, see
 `sks-dev`): converge on the problem, then derive the issue
 (`sks-issue`) and link back — do NOT keep solving here. Prose rules (English
-only, `@` escaping, no-wrap) are owned by `sks-github-text-authoring`.
+only, `@` escaping, no-wrap) are owned by `sks-authoring`.
 
 For shikanime-org specifics (discussion surfaces), read
 `references/shikanime.md` when operating in a shikanime org. For
@@ -96,14 +96,14 @@ gh api graphql -f query='query {
 ```
 
 Confirm title/body/category + body stays context + open questions. Label
-coverage mirrors `sks-discussion-triage`; a discussion has no assignee,
+coverage mirrors `sks-triage`; a discussion has no assignee,
 milestone, or project surface — labels + category are the whole metadata set.
 
 ## See also
 
-- `sks-github-text-authoring` — prose rules this skill delegates.
+- `sks-authoring` — prose rules this skill delegates.
 - `sks-issue` — derive the issue once converged.
-- `sks-discussion-triage` — triage, lifecycle routing, closure.
+- `sks-triage` — triage, lifecycle routing, closure.
 - `sks-plan` — decomposes the converged direction into a milestone.
 - `sks-discussion` — the English discussion skill (the French console twin
   is out of family scope; per `references/shikanime.md`).

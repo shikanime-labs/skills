@@ -44,7 +44,7 @@ This skill only lands.
 ## Pre-landing gates (must already hold)
 
 **Gate 1 — issue and PR triaged.** Both sides carry complete triage
-metadata (`sks-issue-triage` / `sks-pr-triage`): labels, assignee,
+metadata (`sks-triage` / `sks-triage`): labels, assignee,
 milestone, board card. Normally delivered by the `sks-pr-ready` train;
 an untriaged side routes back to its triage skill before any merge.
 

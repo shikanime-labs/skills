@@ -48,7 +48,7 @@ repo, never assume.
 
 Prose mechanics for the message (free-text body, full URLs in `Related:`,
 one clean trailer block, no formatter runs) are owned by
-`sks-github-text-authoring`. This skill owns the commit-specific shape:
+`sks-authoring`. This skill owns the commit-specific shape:
 
 - **Code repos**: plain English, imperative, capitalized title, **no prefix, no
   body**. One trailer ALWAYS, by default:
@@ -138,7 +138,7 @@ test "$(jj log -r @- --no-graph -T 'description.first_line().len()')" -le 72
 
 ## See also
 
-- `sks-github-text-authoring` — prose mechanics this skill delegates.
+- `sks-authoring` — prose mechanics this skill delegates.
 - `sks-pr` — PR title/body derived from this commit (source of truth).
 - `sks-dev` — branch discipline this feeds into.
 - cloud-pi-native commitlint rules (English conventional commits,

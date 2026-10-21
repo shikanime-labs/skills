@@ -15,9 +15,9 @@ metadata:
       - graphql
     related_skills:
       - sks-pr-resolve
-      - sks-pr-triage
-      - sks-issue-triage
-      - sks-discussion-triage
+      - sks-triage
+      - sks-triage
+      - sks-triage
       - sks-commit
 platforms:
   - linux
@@ -39,8 +39,8 @@ one mutation away from undone.
   off-topic, low-quality, spam, or abusive.
 - A hidden comment must come back — the classifier was wrong, or the
   context changed.
-- A triage pass in `sks-pr-triage`, `sks-issue-triage`, or
-  `sks-discussion-triage` flagged comments to fold.
+- A triage pass in `sks-triage`, `sks-triage`, or
+  `sks-triage` flagged comments to fold.
 
 Not this skill: deleting comments, editing content, locking
 conversations, blocking users — that is enforcement, not moderation.
@@ -179,6 +179,6 @@ state — re-read sibling comments if you batched.
 
 - `sks-pr-resolve` — resolving PR review threads, the resolve side of
   step 6.
-- `sks-pr-triage`, `sks-issue-triage`, `sks-discussion-triage` —
+- `sks-triage`, `sks-triage`, `sks-triage` —
   triage passes that surface moderation targets.
 - `sks-commit` — commit conventions for this repo.

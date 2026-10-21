@@ -36,7 +36,7 @@ rules — `git tag -s` + `git push origin vX.Y.Z`). Fetch before starting:
   - `Design:` — files or skills the change is grounded in.
   - `Related:` — companion files, issues, or PRs.
   - `Issue: #N` — the linked ticket (reference only; the PR↔issue link is
-    Development metadata, `sks-pr-triage` step 5).
+    Development metadata, `sks-triage` (`references/pr.md`) step 5).
 - Footers mandated by policy:
   - `Signed-off-by:` — required; commits must be signed (see Protect `main`).
   - `Change-Id:` — keep the originating change's id when amending.

@@ -137,7 +137,7 @@ silent scope change:
   `references/shikanime.md`)
 - jj repo: `.jj/` / `jj status` → `jj bookmark track` before push
 - issue exists and is triaged (issue-first) — else `sks-issue` then
-  `sks-issue-triage`; an untriaged issue routes there before implementation
+  `sks-triage`; an untriaged issue routes there before implementation
 - NixOS repo: `nix` available (build-verify gate)
 
 Report unmet requirements as `BLOCKED: <req> — <evidence> — <recovery>`.
@@ -234,11 +234,11 @@ Exact shapes live in the owning skills:
 | Commit     | `sks-commit`   | plain capitalized title, labeled body, org co-author trailer + repo-mandated `Signed-off-by` |
 | Issue      | `sks-issue`    | stable problem statement + `- [ ]` ledger           |
 | Discussion | `sks-discussion` | RFC: context + open question; no acceptance criteria |
-| Comment    | `sks-github-text-authoring` | findings/proofs, cited evidence, one finding per comment |
+| Comment    | `sks-authoring` | findings/proofs, cited evidence, one finding per comment |
 | PR         | `sks-pr`       | title = commit subject; body `# Why`/`## What`/`## References`; issue link = Development metadata |
 
 Prose mechanics (no-wrap, `@` escaping, full URLs, evidence style, template
-detection) are owned by `sks-github-text-authoring` — load it when drafting
+detection) are owned by `sks-authoring` — load it when drafting
 any of the above. A ledger item is command-decidable and done only once its
 check ran; close the linked issue deliberately after N-of-N verified.
 NEVER pass bodies inline via `--body "..."` — shell expansion mangles
@@ -304,7 +304,7 @@ Deep recipes live in `references/`; read the file when its condition fires:
 - `references/pitfalls.md` — dual-clone discipline (skill mirror vs the
   org repo root), dirty working copies, kustomize generator-not-found,
   two `patches:` blocks, alias-in-prose, body wrapping.
-- `sks-sops-secrets-authoring/references/sops-manifests.md` —
+- `sks-authoring/references/sops-manifests.md` —
   decrypt-editing sops files for Flux: recipient set, unwrapped binary,
   INI store traps, extension-driven format, live-config seeding.
 - `references/route-audit.md` — auditing Gateway routes: hostname dupes,
@@ -351,6 +351,6 @@ cluster), `sks-pr-review` (phase 5), `sks-pr-ready` (draft→ready flip
 before landing), `ponytail-review` (over-engineering
 lens), `sks-tldr` (end-of-loop block closes the loop).
 Authoring-convention skills apply during the write phase:
-`sks-ts-authoring` (TypeScript), `sks-nix-authoring` (Nix),
-`sks-skill-authoring` (skills), `sks-sops-secrets-authoring` (sops
+`sks-authoring` (TypeScript), `sks-authoring` (Nix),
+`sks-authoring` (skills), `sks-authoring` (sops
 secrets).

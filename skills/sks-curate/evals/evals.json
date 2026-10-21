@@ -36,14 +36,14 @@
     },
     {
       "id": 3,
-      "expected_output": "Refuses to author a brand-new skill from scratch; curation starts from an existing SKILL.md and points from-scratch authoring at sks-skill-authoring.",
+      "expected_output": "Refuses to author a brand-new skill from scratch; curation starts from an existing SKILL.md and points from-scratch authoring at sks-authoring.",
       "files": [],
       "prompt": "Write me a brand new skill from scratch for managing Kubernetes clusters.",
       "assertions": [
         "YAML frontmatter parses and 'name' equals 'sks-curate'",
         "Body contains at least one '##' heading",
         "Body frames curation as a rework of an existing skill",
-        "Body routes from-scratch authoring to 'sks-skill-authoring'"
+        "Body routes from-scratch authoring to 'sks-authoring'"
       ]
     },
     {

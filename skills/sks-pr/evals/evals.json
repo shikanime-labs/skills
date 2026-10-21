@@ -32,7 +32,7 @@
     },
     {
       "id": 3,
-      "expected_output": "The skill delegates triage metadata to sks-pr-triage and reconciles review threads on revision.",
+      "expected_output": "The skill delegates triage metadata to sks-triage and reconciles review threads on revision.",
       "files": [],
       "prompt": "Create a pull request in shikanime-studio/actions with a plain-English title.",
       "assertions": [
@@ -41,7 +41,7 @@
         "Description starts with 'Use when' and is \u003c= 200 characters",
         "license field is 'Apache-2.0'",
         "Body contains at least one '##' heading",
-        "Body delegates triage metadata to sks-pr-triage",
+        "Body delegates triage metadata to sks-triage",
         "Body reconciles review threads on revision via sks-pr-resolve"
       ]
     },
@@ -101,7 +101,7 @@
     },
     {
       "id": 9,
-      "expected_output": "Orchestrates the issue to PR to triage flow via sks-issue, sks-pr, and sks-pr-triage.",
+      "expected_output": "Orchestrates the issue to PR to triage flow via sks-issue, sks-pr, and sks-triage.",
       "files": [],
       "prompt": "I have a converged issue #42 in shikanime-studio/devlib. Open the PR for my branch and triage it.",
       "assertions": [

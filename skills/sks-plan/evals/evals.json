@@ -2,7 +2,7 @@
   "evals": [
     {
       "id": 1,
-      "expected_output": "Converges the goal (RFC gate if unconverged), decomposes into single-pass units with dependencies and fan-out groups, cuts speculative units, presents the unit table for approval before opening anything, then opens and triages issues via sks-issue/sks-issue-triage with seeded ledgers and relationship-recorded dependencies, boards every card Ready via sks-project, closes with the sks-summary block handing off to sks-iterate.",
+      "expected_output": "Converges the goal (RFC gate if unconverged), decomposes into single-pass units with dependencies and fan-out groups, cuts speculative units, presents the unit table for approval before opening anything, then opens and triages issues via sks-issue/sks-triage with seeded ledgers and relationship-recorded dependencies, boards every card Ready via sks-project, closes with the sks-summary block handing off to sks-iterate.",
       "files": [],
       "prompt": "Plan the SSO milestone — console and fleet gateways, one coherent rollout. Break it into issues we can iterate.",
       "assertions": [

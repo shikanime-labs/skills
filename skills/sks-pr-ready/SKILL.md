@@ -17,7 +17,7 @@ metadata:
       - sks-pr
       - sks-pr-review
       - sks-pr-resolve
-      - sks-pr-triage
+      - sks-triage
       - sks-land
 platforms:
   - linux
@@ -63,7 +63,7 @@ earlier gate — restart at step 1.
    - Elevate understated fixes — the real change the diff carries.
    - Apply via `gh pr edit <N> --body-file`, then re-read the stored body.
 
-   Full reconciliation procedure: `sks-pr-triage` step 7. A body written
+   Full reconciliation procedure: `sks-triage` step 7. A body written
    before the last push is stale by definition.
 
 3. **CI green on that head.**
@@ -81,7 +81,7 @@ earlier gate — restart at step 1.
    from earlier heads are resolved first (`sks-pr-resolve`) — a new commit
    voids prior reviews.
 
-5. **Triage complete.** `sks-pr-triage` has filled the empty derivable
+5. **Triage complete.** `sks-triage` has filled the empty derivable
    fields — labels, assignee, milestone — and the Development link exists:
 
    ```bash
@@ -90,7 +90,7 @@ earlier gate — restart at step 1.
    ```
 
    `closingIssuesReferences` non-empty; an empty array means the issue link
-   was never created — run `sks-pr-triage` step 5 before the flip.
+   was never created — run `sks-triage` step 5 before the flip.
 
 6. **Parity and mergeability.**
 
@@ -147,5 +147,5 @@ for the head it validated.
 - `sks-pr` — opens the draft this gate promotes.
 - `sks-pr-review` — the first-review gate (step 4).
 - `sks-pr-resolve` — resolves review threads before re-validation.
-- `sks-pr-triage` — metadata completeness and body reconciliation.
+- `sks-triage` — metadata completeness and body reconciliation.
 - `sks-land` — merges after the human approves what this skill handed over.

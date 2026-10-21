@@ -31,4 +31,4 @@ delegate_task(
 
 - Routing: open with `sks-issue`, RFC surface `sks-discussion` (before the
   problem is statable), solver `sks-pr` (links back via `Refs:`), metadata
-  via `sks-issue-triage` once converged.
+  via `sks-triage` once converged.

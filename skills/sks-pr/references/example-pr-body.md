@@ -19,5 +19,5 @@ parity without hand-editing every stacked PR.
 
 Title = commit subject (no conventional prefix). `## References` carries
 proof refs only — the issue link is Development metadata created by
-`addCloseIssueReferences` (`sks-pr-triage` step 5), never a body keyword.
+`addCloseIssueReferences` (`sks-triage` step 5), never a body keyword.
 Close deliberately after final merge (verify N-of-N).

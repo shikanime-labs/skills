@@ -1,0 +1,411 @@
+{
+ "evals": [
+  {
+   "id": 1,
+   "prompt": "Draft the body for a PR in shikanime-labs/machines.",
+   "expected_output": "Routes the prose rules (no wrapping, #N refs, @ escaping, body-file discipline) to this skill while the PR body shape (# Why / ## What / ## References) comes from sks-pr.",
+   "files": [],
+   "assertions": [
+    "The 'name' field equals 'sks-authoring'.",
+    "The skill owns the universal prose rules: free-text no-wrap, mention escaping, terse conclusion-first, evidence in fenced blocks.",
+    "The skill states standalone refs prefer #N rich links over a full URL.",
+    "The PR body shape (# Why / ## What / ## References) is attributed to sks-pr, not restated as owned here."
+   ]
+  },
+  {
+   "id": 2,
+   "prompt": "Use sks-github-text-authoring to write an issue body with a # Why / ## What / ## References structure.",
+   "expected_output": "The skill refuses to merge shapes: the issue body uses the # Problem / ## Acceptance structure from sks-issue; prose rules still apply.",
+   "files": [],
+   "assertions": [
+    "The 'name' field equals 'sks-authoring'.",
+    "The body never mixes the issue shape (# Problem/## Acceptance) with the PR shape (# Why/## What/## References).",
+    "The skill states shape leakage between surfaces is a defect.",
+    "A repo template replaces the default shape and its headings are kept verbatim."
+   ]
+  },
+  {
+   "id": 3,
+   "prompt": "Write a commit message for shikanime-labs/manifests, which enforces gitlint CC1 and an 80-column body.",
+   "expected_output": "Repo-enforced overrides (gitlint, commitlint) beat the free-text no-wrap default; the commit carries Signed-off-by and a wrapped body with full URLs in Related:.",
+   "files": [],
+   "assertions": [
+    "The 'name' field equals 'sks-authoring'.",
+    "The skill states repo hooks and rulesets override the universal defaults.",
+    "The skill notes the 80-column wrapped commit body as a repo-enforced exception to the no-wrap rule.",
+    "Bodies are never passed inline via --body; write to a file and pass --body-file."
+   ]
+  },
+  {
+   "id": 4,
+   "prompt": "Add an overlay for the copyparty app: a new internal hostname and alert rules. Write the manifests.",
+   "expected_output": "Authors the overlay the layered way: unique hostname per flavor, sorted per-kind files, monitoring shipped with the workload, render proven before pushing.",
+   "files": [],
+   "assertions": [
+    "YAML frontmatter parses and 'name' equals 'sks-authoring'",
+    "Frontmatter description starts with 'Use when' and is at most 200 characters",
+    "Frontmatter license field is 'Apache-2.0'",
+    "Body states hostnames never duplicate across flavors and each flavor's overlay owns its hostname set",
+    "Body states every app exposing a signal ships scrape config and alert rules in the same change, keyed on a signal the app actually reports, with severity labels and summary annotations",
+    "Body states kustomize build (render) must succeed before shipping"
+   ]
+  },
+  {
+   "id": 5,
+   "prompt": "My pod fails with MountVolume.SetUp failed: configmap \\\"app-config\\\" not found, but the configMapGenerator exists in the repo. Fix the manifests.",
+   "expected_output": "Diagnoses the generator-not-found failure: find the overlay Flux actually reconciles and generate or re-reference there, not in a parent.",
+   "files": [],
+   "assertions": [
+    "YAML frontmatter parses and 'name' equals 'sks-authoring'",
+    "Body states generators in a parent overlay are invisible to a child overlay because rendered names carry a hash suffix",
+    "Body instructs diagnosing which path Flux reconciles via the Kustomization's path (ks.yaml)",
+    "Body instructs generating in the overlay that consumes the config or rewriting the reference via patch",
+    "Body mentions the configmap not found failure string"
+   ]
+  },
+  {
+   "id": 6,
+   "prompt": "The database statefulset needs more disk and a different storage class \u2014 patch the volumeClaimTemplates in the overlay.",
+   "expected_output": "Refuses the partial VCT patch, keeps storage classes in base, sizes from measured live usage, and routes the live storage-class flip to the cross-check reference.",
+   "files": [],
+   "assertions": [
+    "YAML frontmatter parses and 'name' equals 'sks-authoring'",
+    "Body states a kustomize overlay patch to volumeClaimTemplates must restate every field because kustomize replaces list entries",
+    "Body states storage classes stay in base and overlays never patch the storage class",
+    "Body states sizes grow to the next power of two above measured live usage, verified with df or du in-cluster",
+    "Body points to references/live-cross-check.md for the live storage-class flip and sizing recipes"
+   ]
+  },
+  {
+   "id": 7,
+   "prompt": "The kustomization.yaml my pipeline generates has an unsorted resources list \u2014 I'll just edit the rendered YAML and sort it.",
+   "expected_output": "Routes the request to the generator's side: hand-editing generated YAML is wrong, fix the generator and re-render (sks-nix-authoring for the Nix case).",
+   "files": [],
+   "assertions": [
+    "YAML frontmatter parses and 'name' equals 'sks-authoring'",
+    "Body states generated YAML must not be hand-edited; fix the generator and re-render",
+    "Body refers to sks-nix-authoring for the Nix side"
+   ]
+  },
+  {
+   "id": 8,
+   "prompt": "asdfgh !!#$% write me the kubes yaml thingy for the cluster pls now",
+   "expected_output": "The skill stays loadable and self-identifies as sks-kubernetes-manifests-authoring; the incoherent request is out of scope.",
+   "files": [],
+   "assertions": [
+    "Frontmatter parses as YAML with a top-level 'name' key",
+    "Frontmatter 'name' equals the directory basename 'sks-authoring'"
+   ]
+  },
+  {
+   "id": 9,
+   "prompt": "I need to add a new option to a machines profile module and wire it into the flake. Write it the shikanime way.",
+   "expected_output": "Author Nix with sorted keys, let ... in bindings over parenthesized access, no explanatory comments, and nix fmt applied \u2014 and skips adding an option the defaults already cover.",
+   "files": [],
+   "assertions": [
+    "YAML frontmatter parses and 'name' equals 'sks-authoring'",
+    "Frontmatter description starts with 'Use when' and is at most 200 characters",
+    "Frontmatter license field is 'Apache-2.0'",
+    "Body contains at least one '##' heading",
+    "Body states nix fmt owns formatting and the file must be fmt-checked after editing",
+    "Body states sorted keys / record-literal style is the house norm (dotted assignment for one leaf, record literal with sorted keys for two or more)",
+    "Body states (expr).attr parenthesized access chains are avoided in favor of let ... in bindings, even for a single use site",
+    "Body states JSON output binds the format once with let (e.g. let json = pkgs.formats.json { };) and references json.generate",
+    "Body states explanatory comments inside .nix are out of fashion and a comment restating the code should be deleted",
+    "Body states a new option should only be added when a real non-default consumer exists, and defaults that mirror upstream should not be restated",
+    "Body refers to sks-dev for the nix fmt whole-tree caveat (do not run bare nix fmt across non-Nix files / .enc.*)"
+   ]
+  },
+  {
+   "id": 10,
+   "prompt": "I want to add a wrapper module that re-exposes another module's option with the same default, and a new config option in case someone wants it later. Is that the right call?",
+   "expected_output": "Refuses to add a wrapper module or package wrap that only restates a default, and refuses to add an option with no live non-default consumer.",
+   "files": [],
+   "assertions": [
+    "YAML frontmatter parses and 'name' equals 'sks-authoring'",
+    "Frontmatter description starts with 'Use when' and is at most 200 characters",
+    "Frontmatter license field is 'Apache-2.0'",
+    "Body contains at least one '##' heading",
+    "Body states a wrapper module that re-exposes another module's option with the same default adds surface and zero behavior and should be removed",
+    "Body states a package wrap that only sets the default flags upstream already sets should use upstream directly",
+    "Body states an option added 'in case we need it later' is premature and should not be added",
+    "Body states defaults that mirror upstream default should not be restated as local defaults"
+   ]
+  },
+  {
+   "id": 11,
+   "prompt": "My flake generates a kustomization.yaml and the resources list is out of order \u2014 should I hand-edit the YAML to sort it?",
+   "expected_output": "Distinguishes the Nix side from the generated-YAML side: sorting the Nix is this skill, sorting the manifests the manifests skill owns, and the generated YAML is not hand-edited to fix sorting.",
+   "files": [],
+   "assertions": [
+    "YAML frontmatter parses and 'name' equals 'sks-authoring'",
+    "Frontmatter description starts with 'Use when' and is at most 200 characters",
+    "Frontmatter license field is 'Apache-2.0'",
+    "Body contains at least one '##' heading",
+    "Body states the Nix side (formatting, sorting, YAGNI) is this skill and the generated YAML/kube structure side is a different skill",
+    "Body states the generated YAML should not be hand-edited to fix sorting; the Nix that produces it should be fixed and re-rendered",
+    "Body points the kube/manifest structure side to a separate skill"
+   ]
+  },
+  {
+   "id": 12,
+   "prompt": "Use sks-nix-authoring to write a sorted Deployment YAML and encrypt its imagePullSecret with sops.",
+   "expected_output": "The skill stays loadable and self-identifies as sks-nix-authoring; a request to author Kubernetes manifests or edit sops secrets is routed elsewhere.",
+   "files": [],
+   "assertions": [
+    "Frontmatter parses as YAML with a top-level 'name' key",
+    "Frontmatter 'name' equals the directory basename 'sks-authoring'"
+   ]
+  },
+  {
+   "id": 13,
+   "prompt": "Use sks-nix-authoring to write a Nix package for the cloud-pi-native console the cpn way.",
+   "expected_output": "The skill does not claim to be a cloud-pi-native cpn-* skill; it stays scoped to shikanime Nix authoring.",
+   "files": [],
+   "assertions": [
+    "Description does not contain substring cpn-",
+    "Frontmatter 'name' equals the directory basename 'sks-authoring'"
+   ]
+  },
+  {
+   "id": 14,
+   "prompt": "asdfgh !!#$% write me the nix that does the stuff for the flake thingy pls now",
+   "expected_output": "The skill stays loadable and self-identifies as sks-nix-authoring; the incoherent malformed request is out of scope.",
+   "files": [],
+   "assertions": [
+    "Frontmatter parses as YAML with a top-level 'name' key",
+    "Frontmatter 'name' equals the directory basename 'sks-authoring'"
+   ]
+  },
+  {
+   "id": 15,
+   "prompt": "We keep re-running the same release-notes procedure for our org repos. Make it a skill.",
+   "expected_output": "Searches the catalog and local skills for an overlapping trigger first; extends an existing skill rather than creating a narrow sibling.",
+   "files": [],
+   "assertions": [
+    "YAML frontmatter parses and 'name' equals 'sks-authoring'.",
+    "Frontmatter description starts with 'Use when' and is at most 200 characters.",
+    "Body requires checking for an existing overlapping skill before creating a new one.",
+    "Body requires the procedure to have been actually executed before writing the SKILL.md."
+   ]
+  },
+  {
+   "id": 16,
+   "prompt": "Create a brand-new catalog skill for a workflow we just validated, with evals.",
+   "expected_output": "Authors the skill inside a fresh jj workspace with SKILL.md, evals/evals.json, and .skillignore, then registers it in README.md, skills.json, and package.json.",
+   "files": [],
+   "assertions": [
+    "YAML frontmatter parses and 'name' equals 'sks-authoring'.",
+    "Body isolates the work in a fresh jj workspace per sks-delegate.",
+    "Body lists evals/evals.json with objective assertions as required anatomy.",
+    "Body registers the skill in all three surfaces: README.md, skills.json, and package.json.",
+    "Body requires running the same prompt without the skill (or on the previous version) and with the candidate, then comparing before an iteration counts as successful."
+   ]
+  },
+  {
+   "id": 17,
+   "prompt": "Tighten the sks-land skill, it got bloated after last quarter's changes.",
+   "expected_output": "Routes the rework request to sks-curate and the whole-catalog pass to sks-selfupdate; this skill only authors brand-new entries.",
+   "files": [],
+   "assertions": [
+    "YAML frontmatter parses and 'name' equals 'sks-authoring'.",
+    "Body routes improving an existing skill to 'sks-curate'.",
+    "Body routes the whole-catalog pass to 'sks-selfupdate'."
+   ]
+  },
+  {
+   "id": 18,
+   "prompt": "I need to change a secret value in machines/secrets/telsha.enc.yaml \u2014 what's the right way to edit it so the file stays valid and the target host can still read it?",
+   "expected_output": "Edits a sops-encrypted file through sops and verifies it still decrypts and carries the right recipients; routes the render and fleet-config repo classes correctly.",
+   "files": [],
+   "assertions": [
+    "YAML frontmatter parses and 'name' equals 'sks-authoring'",
+    "Frontmatter description starts with 'Use when' and is at most 200 characters",
+    "Frontmatter license field is 'Apache-2.0'",
+    "Body contains at least one '##' heading",
+    "Body states repo-enforced hooks/formatters must not touch .enc files",
+    "Body shows a 'sops' edit path (sops <file> or -e/-d pipeline), not a plain-editor edit of the .enc file",
+    "Body requires verifying the file still decrypts after the edit with sops --decrypt",
+    "Body checks the sops recipient set (sops_age / sops_pgp / sops_kms) after editing",
+    "Body treats .enc.env and .enc.conf files as distinct from .enc.yaml and warns against editing them like YAML",
+    "Body mentions sops-nix plumbing: sops.defaultSopsFile per host and sops.templates.*",
+    "Body delegates manifests-specific detail (recipient keys, devenv wrapper trap, INI store, formatForPath) to its own references/sops-manifests.md"
+   ]
+  },
+  {
+   "id": 19,
+   "prompt": "I decrypted telsha.enc.yaml to a plaintext file on disk, edited it in my editor, and now I want to commit the plaintext version and delete the .enc.yaml. Fix my plan.",
+   "expected_output": "Refuses to commit a plaintext secret file and instead edits through sops; flags nix fmt as a corruption risk on .enc files.",
+   "files": [],
+   "assertions": [
+    "YAML frontmatter parses and 'name' equals 'sks-authoring'",
+    "Frontmatter description starts with 'Use when' and is at most 200 characters",
+    "Frontmatter license field is 'Apache-2.0'",
+    "Body contains at least one '##' heading",
+    "Body states that editing a plaintext copy and committing it is wrong, and that edits must go through sops so only the encrypted file is on disk",
+    "Body states nix fmt / treefmt must not be run across secrets/*.enc.* and would corrupt the file",
+    "Body mentions verifying no accidental plaintext secret is on disk (git status --porcelain secrets/)",
+    "Body states deleting the .enc.yaml is not the right move; the encrypted file is the artifact to keep"
+   ]
+  },
+  {
+   "id": 20,
+   "prompt": "A new operator needs to read the shared machine.enc.yaml. How do I give them access without breaking the hosts that already consume it?",
+   "expected_output": "Adds a recipient safely and warns that removing a recipient from a file still consumed by a live host is an availability bug; for manifests uses the three fleet age recipients and the unwrapped sops binary.",
+   "files": [],
+   "assertions": [
+    "YAML frontmatter parses and 'name' equals 'sks-authoring'",
+    "Frontmatter description starts with 'Use when' and is at most 200 characters",
+    "Frontmatter license field is 'Apache-2.0'",
+    "Body contains at least one '##' heading",
+    "Body says adding a recipient is the safe direction and the new recipient set must be a superset for every live consumer",
+    "Body warns that removing a recipient from a file still in use by another host is an availability bug, not cleanup",
+    "Body mentions age recipients (AGE-SECRET-KEY public keys / sops_age metadata) as the mechanism",
+    "Body checks the recipient set after the edit with sops and grep on sops_age or sops_*",
+    "Body distinguishes the fleet-config per-host recipient model from the render multi-fleet-recipient model"
+   ]
+  },
+  {
+   "id": 21,
+   "prompt": "Build me a Nix package that wraps sops and then review my rust code for safety issues.",
+   "expected_output": "The skill stays loadable and self-identifies as sks-sops-secrets-authoring; a request to build a Nix package or review code is out of scope.",
+   "files": [],
+   "assertions": [
+    "Frontmatter parses as YAML with a top-level 'name' key",
+    "Frontmatter 'name' equals the directory basename 'sks-authoring'"
+   ]
+  },
+  {
+   "id": 22,
+   "prompt": "Use sks-sops-secrets-authoring to open and merge a PR in the cloud-pi-native console repo the cpn-pr way with French artifacts.",
+   "expected_output": "The skill does not claim to be a cloud-pi-native cpn-* skill; it stays scoped to shikanime sops editing.",
+   "files": [],
+   "assertions": [
+    "Description does not contain substring cpn-",
+    "Frontmatter 'name' equals the directory basename 'sks-authoring'"
+   ]
+  },
+  {
+   "id": 23,
+   "prompt": "Use sks-sops-secrets-authoring to commit and land my secret edit with the full PR workflow, gitlint hooks, and squash merge.",
+   "expected_output": "The skill does not absorb the full PR/landing lifecycle; it stays scoped to sops editing and refers to sks-commit/sks-dev/sks-pr/sks-delegate for the rest.",
+   "files": [],
+   "assertions": [
+    "Body refers to sks-commit for commit style (or mentions the org co-author trailer)",
+    "Body states it does not itself cover the full PR/landing lifecycle and points to sks-dev, sks-pr, or sks-delegate for that",
+    "Frontmatter parses as YAML with a top-level 'name' key",
+    "Frontmatter 'name' equals the directory basename 'sks-authoring'"
+   ]
+  },
+  {
+   "id": 24,
+   "prompt": "Rewrite this runbook section in plain English \u2014 sentences are way too long and every other line uses a different word for the same thing.",
+   "expected_output": "Rewrites the text under STE structural rules: imperative procedures, conditions before commands, 20-word sentences, one word per concept.",
+   "files": [],
+   "assertions": [
+    "YAML frontmatter parses and 'name' equals 'sks-authoring'",
+    "Frontmatter description starts with 'Use when' and is at most 200 characters",
+    "Frontmatter license field is 'Apache-2.0'",
+    "Body contains at least one '##' heading",
+    "Body classifies each passage as procedural or descriptive before applying rules",
+    "Body caps procedural sentences at 20 words and descriptive sentences at 25",
+    "Body requires one word per concept and forbids synonym rotation",
+    "Body puts conditions before their commands, divided by a comma",
+    "Body forbids parentheses in authored prose; an aside becomes its own sentence"
+   ]
+  },
+  {
+   "id": 25,
+   "prompt": "Check this incident report against ASD-STE100 and tell me everything that breaks the standard.",
+   "expected_output": "Runs a compliance check and reports each violation as the offending text plus a compliant rewrite, without inventing rule numbers.",
+   "files": [],
+   "assertions": [
+    "YAML frontmatter parses and 'name' equals 'sks-authoring'",
+    "Frontmatter license field is 'Apache-2.0'",
+    "Body states the semicolon is forbidden and two sentences are written instead",
+    "Body leaves code, commands, flags, and quoted errors byte-identical to the source",
+    "Body forbids citing rule numbers from memory; violations are reported as offending text plus a compliant rewrite",
+    "Body bans present perfect forms such as 'has completed' in favor of simple tenses"
+   ]
+  },
+  {
+   "id": 26,
+   "prompt": "Apply Simplified Technical English to our landing page hero copy to make it punchy for the product launch.",
+   "expected_output": "The skill declines marketing copy by design and offers STE for the docs instead; the skill stays loadable and self-identifies.",
+   "files": [],
+   "assertions": [
+    "YAML frontmatter parses and 'name' equals 'sks-authoring'",
+    "Frontmatter description starts with 'Use when' and is at most 200 characters",
+    "Body states the skill does not apply to marketing copy, blog voice, or brand writing"
+   ]
+  },
+  {
+   "id": 27,
+   "prompt": "Add a new service that reads GitLab settings from env, and fix the `as any` the previous patch left in the spec.",
+   "expected_output": "Env config via a schema parsed once at the edge, types derived with z.infer, the `as any` replaced by typing the fixture against the real shape, and no re-validation of already-typed values inward.",
+   "files": [],
+   "assertions": [
+    "Frontmatter parses as valid YAML.",
+    "Frontmatter 'name' field equals 'sks-authoring'.",
+    "Frontmatter 'license' field equals 'Apache-2.0'.",
+    "The body teaches parse-don't-validate: unknown data is parsed into domain types once at the edge, never re-checked inward.",
+    "The body prohibits `as` casts and confines `unknown` to edge parsers.",
+    "The body derives types from schemas instead of hand-written interfaces.",
+    "The body treats an import alias as a code smell to avoid by fixing the source (rename the export, namespace import, un-export the internal) and allows aliasing only an unfixable collision named in a comment."
+   ]
+  },
+  {
+   "id": 28,
+   "prompt": "Review this diff before we request merge \u2014 it touches three NestJS modules and their specs.",
+   "expected_output": "Review applies the universal rules (no casts, edge parsing, explicit exported types, linear single-purpose functions, aliases avoided at the source) and loads the library-specific NestJS and vitest rules from their per-library references, then restores any format drift outside the diff.",
+   "files": [],
+   "assertions": [
+    "The body routes library-specific rules to per-library references (NestJS, vitest, zod), each behind an explicit load condition.",
+    "The body requires functions to read linearly top to bottom with guard clauses first and one responsibility each.",
+    "The body requires explicit return types on exported functions and constants.",
+    "The body prohibits comments unless the code cannot explain itself via naming or sub-function extraction.",
+    "The body requires at least 80 percent coverage on business-critical paths and rejects excessive testing as a YAGNI violation.",
+    "The body restricts tests to the module's own responsibility, stubbing dependencies at the boundary instead of testing their behavior.",
+    "The body mandates e2e tests against real or containerized external systems instead of additional mock layers.",
+    "The body instructs restoring format and lint changes outside the intended files instead of committing them."
+   ]
+  },
+  {
+   "id": 29,
+   "prompt": "Open a PR for the jj workspace rebase I just did in the machines repo.",
+   "expected_output": "Routes to the jj dev workflow: TypeScript authoring rules do not apply to a Nix/jj change with no TypeScript diff.",
+   "files": [],
+   "assertions": [
+    "The body scopes the skill to TypeScript code and test authoring or review.",
+    "The body does not teach jj workspace or Nix procedures."
+   ]
+  },
+  {
+   "id": 30,
+   "prompt": "I am about to edit Nix and Kubernetes manifests in an org repo \u2014 what conventions apply?",
+   "expected_output": "The skill routes to per-domain references instead of inlining every domain's rules.",
+   "files": [],
+   "assertions": [
+    "Frontmatter parses as YAML with a top-level 'name' key",
+    "Frontmatter 'name' equals the directory basename 'sks-authoring'",
+    "Description starts with 'Use when' and is <= 200 characters",
+    "Body contains a routing table or list mapping domains to references/ts.md, references/nix.md, and references/kubernetes-manifests.md",
+    "Body routes sops secret editing to references/sops-secrets.md",
+    "Body routes GitHub text to references/github-text.md and technical English to references/technical-english.md",
+    "Body routes new catalog skill authoring to references/skill.md",
+    "Body states formatting is scoped to touched files and that nix fmt is whole-tree by default and corrupts .enc files",
+    "Body states generated YAML is never hand-edited; fix the generator and re-render"
+   ]
+  },
+  {
+   "id": 31,
+   "prompt": "Review this TypeScript diff against the org conventions.",
+   "expected_output": "The skill points the reviewer at the TypeScript domain reference rather than restating its rules in the body.",
+   "files": [],
+   "assertions": [
+    "Frontmatter 'name' equals 'sks-authoring'",
+    "Body names references/ts.md as the TypeScript domain reference"
+   ]
+  }
+ ]
+}

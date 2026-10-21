@@ -17,8 +17,8 @@ metadata:
     related_skills:
       - sks-issue
       - sks-fastlane
-      - sks-security-audit
-      - sks-kubernetes-manifests-authoring
+      - sks-audit
+      - sks-authoring
 platforms:
   - linux
   - macos
@@ -104,6 +104,6 @@ PRs left open, top open items re-verified.
 
 - `sks-issue` — issue body shape for filed findings.
 - `sks-fastlane` — the full eligibility gate referenced by step 5.
-- `sks-security-audit` — the defensive counterpart: GitHub alert surfaces.
-- `sks-kubernetes-manifests-authoring` — authoring the Gateway route patches
+- `sks-audit` — the defensive counterpart: GitHub alert surfaces.
+- `sks-authoring` — authoring the Gateway route patches
   findings point at.

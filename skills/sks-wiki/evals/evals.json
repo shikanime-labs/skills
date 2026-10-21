@@ -44,14 +44,14 @@
     },
     {
       "id": 4,
-      "expected_output": "Skill stays scoped to authoring wiki pages and does not claim to triage issues (sks-issue-triage's job).",
+      "expected_output": "Skill stays scoped to authoring wiki pages and does not claim to triage issues (sks-triage's job).",
       "files": [],
       "prompt": "Triage issue #55 in shikanime-studio/sk-async: assign the right labels, an owner, and a milestone.",
       "assertions": [
         "Frontmatter parses as valid YAML.",
         "The 'name' field equals 'sks-wiki'.",
-        "The description does not contain substring 'sks-issue-triage'.",
-        "Body does not contain substring 'sks-issue-triage'.",
+        "The description does not contain substring 'sks-triage'.",
+        "Body does not contain substring 'sks-triage'.",
         "The description does not contain substring 'triage'."
       ]
     },
@@ -68,14 +68,14 @@
     },
     {
       "id": 6,
-      "expected_output": "Skill stays scoped to authoring wiki pages and does not claim to triage issues (sks-issue-triage's job).",
+      "expected_output": "Skill stays scoped to authoring wiki pages and does not claim to triage issues (sks-triage's job).",
       "files": [],
       "prompt": "Triage issue #55 in shikanime-studio/sk-async: assign the right labels, an owner, and a milestone.",
       "assertions": [
         "Frontmatter parses as valid YAML.",
         "The 'name' field equals 'sks-wiki'.",
-        "The description does not contain substring 'sks-issue-triage'.",
-        "Body does not contain substring 'sks-issue-triage'."
+        "The description does not contain substring 'sks-triage'.",
+        "Body does not contain substring 'sks-triage'."
       ]
     },
     {

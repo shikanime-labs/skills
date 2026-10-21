@@ -52,7 +52,7 @@ the gh remote as canonical.
   `gh auth switch`; push to `origin` directly — `sks-sudo` owns identity
   switches when one is genuinely required.
 - Linked issue exists and is triaged (entry gates owned by `sks-issue` →
-  `sks-issue-triage`; an untriaged issue routes there before this skill
+  `sks-triage`; an untriaged issue routes there before this skill
   proceeds); verify it matches the change
   (`jj file annotate` / `jj show <commit>` if unsure).
 - Branch pushed to `origin` before opening.
@@ -72,20 +72,20 @@ squashing or when diagnosing a squash/force-push/rebase failure.
    - `## What` — one-line summary + bullet scope (what this PR delivers).
    - `## References` — commits/specs/changelogs proving the solution. The
      issue link is NOT a body line: it is Development metadata created by the
-     `addCloseIssueReferences` GraphQL mutation (`sks-pr-triage` step 5).
+     `addCloseIssueReferences` GraphQL mutation (`sks-triage` step 5).
    - See `references/example-pr-body.md` for a filled example.
    - All prose rules for the body — free text no-wrap, no formatter runs,
      `@` escaping, `#N` for standalone refs, Mermaid — are owned by
-     `sks-github-text-authoring`; load it when writing the body.
+     `sks-authoring`; load it when writing the body.
    - **Templates: detect, then conform.** Detection and fetch are owned by
-     `sks-github-text-authoring`. Template → fill every section it defines,
+     `sks-authoring`. Template → fill every section it defines,
      keep its headings verbatim, and leave checklist boxes unchecked (`- [ ]`)
      for the human author. NEVER copy the issue template's shape
      (`# Problem` / `## Acceptance`) into a PR body — that leak is a
      defect; reject and rewrite before opening.
    - Linkage is **many-to-many** (discussion → issue → comments → PR): a PR
      always solves an issue. After opening, create the Development link via
-     `addCloseIssueReferences` (`sks-pr-triage` step 5) — no closing keyword
+     `addCloseIssueReferences` (`sks-triage` step 5) — no closing keyword
      in the body. Auto-close is off (#301); close deliberately after final
      merge (verify N-of-N, then `gh issue close`) (see `sks-dev`).
 4. **Head** — `--head <org>:<branch>`; push to `origin` only.
@@ -243,8 +243,8 @@ a one-line comment, never silently; (2) re-run `sks-pr-review` if logic changed;
 
 ### 3. Apply triage metadata
 
-Delegate to `sks-pr-triage` (#N): sets empty determinable fields (labels,
-assignee, milestone, project, reviewers). Rules live in `sks-pr-triage`; don't
+Delegate to `sks-triage` (#N): sets empty determinable fields (labels,
+assignee, milestone, project, reviewers). Rules live in `sks-triage`; don't
 re-derive here.
 
 ## Post-steps
@@ -276,6 +276,6 @@ cloud-pi-native repo (origin-only pushes, French title/body, `Refs` block).
 
 ## See also
 
-- `sks-github-text-authoring` (prose rules) · `sks-commit` (parity rule) ·
+- `sks-authoring` (prose rules) · `sks-commit` (parity rule) ·
   `sks-issue-refine` (converged issue) ·
-  `sks-async` (stacked PRs) · `sks-pr-triage` (metadata).
+  `sks-async` (stacked PRs) · `sks-triage` (metadata).

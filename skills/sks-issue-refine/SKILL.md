@@ -16,7 +16,7 @@ metadata:
       - workflow
     related_skills:
       - sks-issue
-      - sks-issue-triage
+      - sks-triage
       - sks-investigate
 platforms:
   - linux
@@ -125,6 +125,6 @@ cloud-pi-native repo (French refinement comments, ledger wording).
 - `sks-discussion` — RFC/edge; use before problem is statable.
 - `sks-pr` — solver; links back via Development metadata.
 - `sks-async` — isolation for parallel `research` fan-out.
-- `sks-issue-triage` — assign metadata once converged.
+- `sks-triage` — assign metadata once converged.
 - `sks-investigate` — defect root-cause research; use it when the issue is a
   diagnosed bug needing its cause, not a foggy problem needing framing.

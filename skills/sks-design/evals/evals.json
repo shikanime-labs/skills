@@ -30,13 +30,13 @@
     },
     {
       "id": 3,
-      "expected_output": "Declines the backend refactor as outside design scope and routes it to sks-dev and sks-ts-authoring.",
+      "expected_output": "Declines the backend refactor as outside design scope and routes it to sks-dev and sks-authoring.",
       "files": [],
       "prompt": "Refactor the auth service to parse JWTs with zod.",
       "assertions": [
         "YAML frontmatter parses and 'name' equals 'sks-design'",
         "Body scopes the skill to visual design and excludes backend work, pure refactors, and copy-only edits",
-        "Body routes code work to sks-dev and prose to sks-text-authoring",
+        "Body routes code work to sks-dev and prose to sks-authoring",
         "Body does not teach JWT or zod parsing"
       ]
     }

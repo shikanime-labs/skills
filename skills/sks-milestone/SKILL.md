@@ -16,8 +16,8 @@ metadata:
       - release-management
     related_skills:
       - sks-triage
-      - sks-issue-triage
-      - sks-pr-triage
+      - sks-triage
+      - sks-triage
       - sks-project
       - sks-plan
       - sks-bulk
@@ -149,7 +149,7 @@ gh api repos/<R>/issues/<N> --jq .milestone.title       # assignment landed
 
 ## See also
 
-- `sks-triage` / `sks-issue-triage` / `sks-pr-triage` — per-item assignment
+- `sks-triage` / `sks-triage` / `sks-triage` — per-item assignment
   during sweeps; this skill is the provisioning plane behind them.
 - `sks-project` — the board plane (cards and Status); milestones track
   releases, boards track work.

@@ -70,11 +70,11 @@ gh issue create --repo <org>/<repo> --title "<summary>" --label <type> --body ".
 ### 2. Body = problem statement only
 
 Prose rules (free text, no wrapping, no formatter runs, `@` escaping,
-evidence style, comment etiquette) come from `sks-github-text-authoring` —
+evidence style, comment etiquette) come from `sks-authoring` —
 load it for any body or comment writing; they are not restated here.
 
 - A bare `@name` in prose pings that user/team — wrap any literal `@` in a
-  code span (rule owned by `sks-github-text-authoring`).
+  code span (rule owned by `sks-authoring`).
 
 Body = clean problem statement (Description, reproduction steps, affected
 version, impact). Post root-cause / investigation findings as a **comment**
@@ -85,7 +85,7 @@ chatter; interim comments deletable after convergence.
 
 Encourage a Mermaid diagram (e.g. `flowchart TD`) in the body when a visual
 aids the reader — rendered inline by GitHub (rule owned by
-`sks-github-text-authoring`); the diagram is optional reinforcement, never a
+`sks-authoring`); the diagram is optional reinforcement, never a
 substitute for the prose.
 
 Acceptance criteria: a `- [ ]` tasklist, each item phrased so a command can
@@ -93,7 +93,7 @@ decide it. An item is done only once its check ran, never from memory; an
 impossible criterion is struck with a comment, never dropped. Candidate
 solutions belong in comments, not tasklist/body.
 
-Comments follow the prose rules in `sks-github-text-authoring`: lead with the
+Comments follow the prose rules in `sks-authoring`: lead with the
 conclusion, cite evidence, stop. One subject per comment — split unrelated
 findings into separate comments.
 
@@ -125,7 +125,7 @@ final merge.
 
 ### 3. Triage metadata
 
-Delegate to `sks-issue-triage`: sets each empty, determinable field (type,
+Delegate to `sks-triage`: sets each empty, determinable field (type,
 labels, assignee, milestone, project); rules live there.
 
 ## Pitfalls
@@ -161,7 +161,7 @@ gates).
 
 ## See also
 
-`sks-github-text-authoring` (prose rules), `sks-discussion`, `sks-pr` (links
-back via Development metadata), `sks-issue-refine`, `sks-issue-triage` (run
+`sks-authoring` (prose rules), `sks-discussion`, `sks-pr` (links
+back via Development metadata), `sks-issue-refine`, `sks-triage` (run
 after creation), `sks-gist` (verified snippets too long for a comment),
 `sks-tldr` (status word closes the issue's ledger), `sks-wiki`.

@@ -18,7 +18,7 @@ metadata:
       - sks-triage
       - sks-issue
       - sks-github-notif-sweep
-      - sks-github-actions-audit
+      - sks-audit
 platforms:
   - linux
   - macos
@@ -98,4 +98,4 @@ sweep.
 - `sks-triage` — the field-assignment pass the sweep hands off to.
 - `sks-issue` — issue body shape for filed summaries.
 - `sks-github-notif-sweep` — the notification-driven counterpart.
-- `sks-github-actions-audit` — the CI-failure sweep that files per repo+workflow.
+- `sks-audit` — the CI-failure sweep that files per repo+workflow.

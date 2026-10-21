@@ -16,7 +16,7 @@ metadata:
     related_skills:
       - sks-discussion
       - sks-issue
-      - sks-issue-triage
+      - sks-triage
       - sks-milestone
       - sks-project
       - sks-iterate
@@ -76,7 +76,7 @@ owns its plane; the loop that consumes the result is `sks-iterate`.
 
    No `due_on` unless a real deadline exists: a due date is a commitment,
    never invented to fill the field (rule owned by `sks-milestone`).
-5. **Open and triage every issue** (`sks-issue` then `sks-issue-triage`):
+5. **Open and triage every issue** (`sks-issue` then `sks-triage`):
    body is the problem statement, the acceptance ledger already seeded
    command-decidable; dependencies recorded as issue relationships at
    triage, never only in the plan prose; the milestone assigned at triage.
@@ -117,7 +117,7 @@ names the hand-off to `sks-iterate`.
 ## See also
 
 - `sks-discussion` — convergence gate before decomposition.
-- `sks-issue` / `sks-issue-triage` — the artifacts this plan emits.
+- `sks-issue` / `sks-triage` — the artifacts this plan emits.
 - `sks-milestone` — release readiness; owns due-date discipline and the
   nixpkgs-release plane.
 - `sks-project` — the board the plan loads.

@@ -28,12 +28,12 @@
     },
     {
       "id": 3,
-      "expected_output": "Routes to sks-skill-authoring instead: the reusable unit is a procedure, not a snippet, so it belongs in the catalog.",
+      "expected_output": "Routes to sks-authoring instead: the reusable unit is a procedure, not a snippet, so it belongs in the catalog.",
       "files": [],
       "prompt": "I keep re-running the same five-step hotfix dance every month. Should I gist it again?",
       "assertions": [
         "YAML frontmatter parses and 'name' equals 'sks-gist'",
-        "Body routes recurring multi-step procedures to catalog skills via 'sks-skill-authoring'",
+        "Body routes recurring multi-step procedures to catalog skills via 'sks-authoring'",
         "Body defines a recurrence threshold of three or more sessions"
       ]
     }

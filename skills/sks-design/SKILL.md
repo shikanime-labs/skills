@@ -18,7 +18,7 @@ metadata:
       - redesign
     related_skills:
       - sks-adversarial
-      - sks-skill-authoring
+      - sks-authoring
       - sks-curate
       - sks-dev
 platforms:
@@ -47,7 +47,7 @@ fallback.
 - A redesign or restyle: "less corporate", "more playful", "like Ko-fi".
 - A design review where the output must be checked against a named direction.
 - Not for backend work, pure refactors, or copy-only edits. Route code work
-  to `sks-dev`; route prose to `sks-text-authoring`.
+  to `sks-dev`; route prose to `sks-authoring`.
 
 ## Procedure
 
@@ -128,6 +128,6 @@ README, skills.json, and package.json, and fmt/rumdl are clean.
 ## See also
 
 - `sks-adversarial` — sandbox for a design comparison or a risky restyle.
-- `sks-skill-authoring` — the authoring anatomy this skill follows.
+- `sks-authoring` — the authoring anatomy this skill follows.
 - `sks-curate` — rework pass for an existing skill.
 - `sks-dev` — the shipping loop.

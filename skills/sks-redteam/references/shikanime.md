@@ -11,5 +11,5 @@
 - mTLS-gated inference endpoints return curl `000` by design — that is the
   gateway rejecting an unauthenticated client, never a finding.
 - Fastlane merge mechanics and receipt comment are `sks-fastlane`'s.
-- Cross-reference GitHub-side alerts with `sks-security-audit` findings before
+- Cross-reference GitHub-side alerts with `sks-audit` findings before
   filing; already-tracked findings are listed, not re-filed.

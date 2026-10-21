@@ -73,7 +73,7 @@ repository (French artifacts, co-author trailer, draft PRs with `Refs #N`).
   (base first). Open each PR per `sks-pr` (body via `--body-file`, never
   inline `--body`).
 - PR↔issue linkage per `sks-pr`: Development metadata
-  (`addCloseIssueReferences`, `sks-pr-triage` step 5) — no body keyword.
+  (`addCloseIssueReferences`, `sks-triage` step 5) — no body keyword.
 - Before opening each PR, run the `sks-pr` step 2b duplicate/stack check — an
   existing open PR covering the unit means push to it or stack on it, never a
   second PR for the same change.

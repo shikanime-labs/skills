@@ -16,7 +16,7 @@ metadata:
       - distillation
     related_skills:
       - sks-selfupdate
-      - sks-skill-authoring
+      - sks-authoring
       - sks-dev
       - sks-pr-review
       - caveman-compress
@@ -45,7 +45,7 @@ is to make that procedure sharper and cheaper to load.
 - "Curate the catalog before shipping the next batch of skills."
 - A review found the skill wordy, redundant, or drifting from the procedure.
 
-Don't use for authoring a brand-new skill (`sks-skill-authoring`); curation
+Don't use for authoring a brand-new skill (`sks-authoring`); curation
 starts from an existing `SKILL.md`.
 
 ## How a skill earns its keep
@@ -218,7 +218,7 @@ Flip the curating PR's board card to `Done` (`sks-project`).
 ## See also
 
 - `sks-selfupdate` — orchestrates curation → dev-workflow → local resync.
-- `sks-skill-authoring` — authoring a new skill (curation starts from an
+- `sks-authoring` — authoring a new skill (curation starts from an
   existing one).
 - `sks-dev` — the loop curation changes ship through.
 - `sks-pr-review` — review lens that often flags skills worth curating.

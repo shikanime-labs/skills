@@ -1,0 +1,243 @@
+
+# Nix Authoring
+
+When editing Nix in an org repo, read `references/nix-shikanime.md`
+for the concrete repo names, paths, and shapes.
+
+Write Nix in an org repo (the machines- and manifests-class repos, and any
+other flake-parts / nixpkgs consumer) the way the repo already reads it:
+sorted, minimal, no prose in the source, no option surface that only covers a
+case the defaults already handle.
+
+## When to Use
+
+- Writing or changing `.nix` in an org repo — profile modules, flake
+  outputs, package wraps, kustomization renders, any Nix surface.
+- Deciding whether a new option, wrapper, or helper is worth adding.
+- Applying `nix fmt` and verifying the result did not corrupt a non-Nix file.
+
+Don't use for: editing the YAML/Kubernetes side of a manifests app — that is
+the manifests skill. Don't use for sops-encrypted secret files — that is
+`references/sops-secrets.md` (and `nix fmt` must not touch `.enc.*`).
+
+## The defaults that already cover most things
+
+The repo norm is boring on purpose: the tooling enforces the mechanical pieces
+and the reviewer enforces the YAGNI piece. Before you add anything, check that
+the default stack does not already cover it:
+
+- **Formatting** — `nix fmt` (treefmt) owns formatting. Do not hand-align,
+  do not hand-sort keys, do not invent a custom style on top of it. If a
+  file you touch
+  is Nix, `nix fmt` it. If a file is not Nix, do not run `nix fmt` across it —
+  see the gotcha about `.enc.*` and the broader `nix fmt` whole-tree caveat in
+  `sks-dev`.
+- **Sorting** — sorted keys are the house style, enforced by `nix fmt`/treefmt
+  where configured and by reviewer otherwise. Write sorted; do not write
+  unsorted and promise to "sort later".
+- **Comments** — explanatory comments inside `.nix` are out of fashion in these
+  repos. The house convention is "no explanatory comments in `.nix` files".
+  A comment that restates what the line does is noise; a comment that
+  records WHY a non-obvious choice was made can earn its place, but prefer
+  naming and structure over prose first. If the code is clear, the comment goes.
+- **JSON output** — when a module needs to emit JSON, bind the format once
+  at the top of the file (`let json = pkgs.formats.json { };`) and reference
+  `json.generate` — never an inline `pkgs.formats.json { }` at each use site
+  and never a `(pkgs.formats.json { }).generate` parenthesized-access chain;
+  the repo style is `let ... in`, even for a single use site.
+- **Module/function header** — the top-level parameter is `{ ... }:` when
+  anything is bound (ellipsis catch-all, not `_:`), and when a file's
+  top-level lambda binds nothing the header is dropped entirely:
+  `_: ...body` becomes just the body. An unused `_:` is a defect, not a
+  placeholder.
+- **New options / new attrs** — add only when a real consumer needs a distinct
+  knob. An option that duplicates a default, wraps another option with no added
+  behavior, or exists "in case we need it" is tech debt, not insurance.
+
+The rule of thumb: if the default already does it, do not add a layer.
+
+## The highest available abstraction first
+
+Before writing any custom machinery — a oneshot unit, a tmpfiles copy
+rule, a refresh timer, a wrapper script — enumerate the declarative
+surfaces that may already solve it, top down:
+
+1. **The NixOS module option tree** — `users.groups.<name>.gid`,
+   `users.users.<name>.extraGroups`, `fileSystems`,
+   `systemd.services.<name>.*` options, `systemd.tmpfiles.rules`. Most "make the
+   system do X" asks are one option assignment. When a tmpfiles rule IS the
+   right tool, it goes through `systemd.tmpfiles.rules` — the option wired into
+   `systemd-tmpfiles-setup.service` — not a hand-dropped
+   `environment.etc."tmpfiles.d/*.conf".text`.
+2. **Options beyond the ones already known** — search before inventing:
+   `nix eval .#nixosConfigurations.<host>.options`, or grep the nixpkgs
+   module sources for the resource about to be hand-rolled.
+3. **Hand-written units, scripts, and copy logic** — last resort, only
+   when no option composes what is needed.
+
+Every copy of a credential is a rotation hazard and a second thing that
+can break; reading in place usually deletes the whole problem.
+
+- Real example (service user could not read a projected token at mode `640`
+  `root:107`): discarded drafts — a oneshot copy unit, a tmpfiles `C+` rule
+  plus refresh timer — all replaced by reading in place:
+
+```nix
+users.groups.kubernetes-token.gid = 107;
+users.users.hermes.extraGroups = [ "kubernetes-token" ];
+```
+
+Rule: a file-permission denial for a service user is almost always a
+missing group declaration (right gid) plus an `extraGroups` membership —
+not copy/sync machinery.
+
+## Style checklist
+
+1. **Run `nix fmt` on the files you touched.** One scope at a time for nix
+   repos that carry non-Nix files — a whole-tree `nix fmt` rewrites unrelated
+   files and can corrupt `.enc.*` in manifests. Scope it:
+
+   ```bash
+   nix fmt apps/<app>          # nix files only in that tree
+   ```
+
+   For a single-file edit in a repo that is all-Nix (e.g. a profile module),
+   `nix fmt <file>` is fine.
+2. **Every attrset in a `.nix` file is key-sorted, and dotted assignments
+   fuse at their common ancestor.** Sorting is systematic: any record in a
+   file you touch is sorted, including pre-existing ones you did not author —
+   sort them in the same change rather than leaving them for later. Dot
+   notation is reserved for a path with no sibling: the moment two or more
+   assignments share an ancestor path, they fuse into one record literal at
+   that ancestor (keys sorted). Pattern:
+
+   ```nix
+   # `foo.bar` has no sibling — dotted stays
+   foo.bar = v;
+
+   # two entries share ancestor `foo.bar` — fuse there, keys sorted
+   foo.bar = {
+     baz = v1;
+     qux = v2;
+   };
+   ```
+
+   The ancestor is the longest path the entries share; fuse at that depth,
+   not higher. When editing an existing parent that already uses a record
+   literal, keep the merged record even if you are only touching one leaf:
+   always merge into the attrset rather than splitting a record into dotted
+   single-leaf assignments.
+3. **`let ... in` over parenthesized access.** Never write an
+   `(expr).attr` access chain (e.g. `(pkgs.formats.json { }).generate`);
+   bind the expression to a name in a `let` and select on the name, even
+   for a single use site. The binding site is where a reader looks for what
+   the value is.
+4. **No explanatory comments. Name the intermediate instead.** A comment that
+   exists only to label a chunk of a list or expression is a symptom that the
+   chunk should be named. Prefer:
+
+   ```nix
+   let
+     svcAccountResources = [ sa.yaml rbac.yaml ];
+     probeResources = [ liveness.yaml readyness.yaml ];
+   in  svcAccountResources ++ probeResources
+   ```
+
+   over a commented concatenation:
+
+   ```nix
+   # few stuffs related sa a b c
+   [ sa.yaml rbac.yaml ]
+   # other stuffs related probes y i
+   ++ [ liveness.yaml readyness.yaml ]
+   ```
+
+   The name `svcAccountResources` carries what the comment would have said,
+   and a reader does not have to match a comment to the lines beneath it.
+   Comments that survive this refactoring — a name cannot capture a
+   non-obvious WHY — are the rare justified ones; the rest are deleted.
+5. **Single-responsibility functions and values.** When a derivation, function,
+   or let-binding does two things that could be described with two names, split
+   it. A value named for what it *is* (e.g. `baseImage`, `extraArgs`,
+   `monitoringResources`) is cheaper to review than a value named for how it is
+   *used* (e.g. `finalImage` with a body that also adds args). Split until
+   each name answers "what is this?" in one breath; if the answer reads
+   "this is X and also Y", it is two values.
+6. **One logical change per commit.** A Nix refactor that also renames ten attrs
+   and adds a new option and retires an old one is four changes. Split so the
+   diff reads as one decision each.
+7. **New option = real consumer.** Before adding an option, argument, or config
+   knob, ask: is there a consumer that will use a non-default value here? If the
+   answer is "maybe later", the option is premature. Default it, do not expose
+   it.
+
+## What not to add (YAGNI catalog)
+
+These are the recurring over-additions this skill is here to cut. If you catch
+yourself doing one, stop and ask whether the default already covers it.
+
+- **A wrapper module that re-exposes another module's option with the same
+  default.** That is one line that adds surface and zero behavior. Remove it.
+- **A package wrap that only sets the default flags the upstream wrapper already
+  sets.** If the upstream already builds what you want, use it directly.
+- **An `(expr).attr` access chain.** Bind with `let ... in` and select on the
+  name, single use site or not.
+- **A comment that restates the code.** Delete it.
+- **A `with` import used to shave a few keystrokes across a wide scope.**
+  Explicit is better than implicit here; `with` obscures where names come
+  from. Prefer explicit references unless the scope is genuinely small and
+  obvious.
+- **A default that mirrors upstream default.** If the Nixpkgs default is already
+  what you want, do not restate it as a local default — that is a future drift
+  source.
+
+## Repo shape differences (machines vs manifests Nix)
+
+The style is the same; the surface differs. Concrete org repos behind the
+"machines"/"manifests" class names live in `references/nix-shikanime.md`; the
+per-class details (sops-nix wiring on machines flakes, generated-YAML
+discipline on manifests flakes) live in
+`references/repo-shapes.md` — read it when the repo could be either class
+and the edit touches sops wiring or rendered YAML.
+
+## Pitfalls
+
+- **`nix fmt` is whole-tree by default in these flakes.** A bare `nix fmt` in a
+  repo that also carries non-Nix files rewrites everything treefmt owns and can
+  corrupt `.enc.*`. Scope it to the Nix trees you touched. See
+  `sks-dev` "Formatting: nix fmt + markdown".
+- **`nix fmt` does not sort the way a human would sort a mixed record.** If
+  treefmt's nix formatter is configured, it owns sorting; do not hand-sort
+  around it. If it is not configured for a given repo, sorting is a reviewer
+  check, and the written file should already be sorted.
+- **A comment that survives `nix fmt` is not automatically a justified
+  comment.** The formatter keeps it; the reviewer still asks why it exists.
+  If the answer is "it explains the line", delete it.
+- **Adding an option is cheap now and expensive later.** Every option is a
+  contract: someone must document it, someone must test it, and someone must
+  retire it if it becomes wrong. Only add it when a non-default value is
+  actually in flight.
+
+## Verification
+
+```bash
+# Nix files you touched are fmt-clean
+nix fmt -- --check   # or scoped: nix fmt <path>
+
+# no explanatory comments left on the lines you added
+grep -nE '^\s*# ' <file>.nix      # review the survivors; delete the obvious ones
+
+# new option has a real consumer
+grep -rn "<new-option>" .          # one non-default consumer, or drop it
+
+# staged diff is only the Nix you intended
+jj diff --git | grep -E '^diff --git a/.*\.nix'
+```
+
+## See also
+
+- `sks-delegate` — isolate this unit in a fresh jj workspace before editing.
+- `sks-commit` — commit shape with the org co-author trailer.
+- `sks-dev` — branch / push / landing; carries the
+  `nix fmt` whole-tree caveat.
+- `sks-pr-review` — the reviewer lens that enforces YAGNI on the PR.
