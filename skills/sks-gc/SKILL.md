@@ -38,7 +38,7 @@ first.
 
 ## Available script
 
-- `scripts/discover.sh [REPO_DIR]` — print every GC candidate: dangling
+- `scripts/discover.py [REPO_DIR]` — print every GC candidate: dangling
   bookmarks (not trunk, no open PR) and skill workspaces with a clean/dirty
   guard per workspace. Dry-run only; never forgets or removes. Run it first,
   review the list, then apply manually (steps 2–4).
@@ -74,7 +74,7 @@ first.
    cd "$(jj workspace root)"   # or the repo root; see
                                # references/shikanime.md for the
                                # canonical checkout location
-   bash <skill-dir>/scripts/discover.sh   # scripts/ resolves against the
+   <skill-dir>/scripts/discover.py   # scripts/ resolves against the
                                           # skill dir, not the target repo
    ```
 
@@ -153,7 +153,7 @@ first.
 - **jj 0.43 output formats.** `jj workspace list` default lines have no path
   column, and `jj bookmark list` prints `name: changeid desc` plus indented
   `@origin` continuation lines — parsing those with `awk '{print $1}'` yields
-  trailing colons and `@origin` noise. `discover.sh` templates the exact fields
+  trailing colons and `@origin` noise. `discover.py` templates the exact fields
   (`-T 'name ++ "\t" ++ root'` for workspaces, `-T 'name ++ "\n"'` for
   bookmarks); don't revert to awk on the default output.
 - **Remote-branch staleness is per-repo.** The default branch name varies
