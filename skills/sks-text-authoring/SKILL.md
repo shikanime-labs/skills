@@ -14,6 +14,7 @@ metadata:
       - documentation
       - asd-ste100
     related_skills:
+      - sks-comment
       - sks-github-text-authoring
       - sks-commit
       - sks-pr
@@ -41,7 +42,9 @@ dictionary: one word, one meaning, one part of speech.
 
 `sks-github-text-authoring` owns prose mechanics for GitHub text: line
 wrapping, `@` escaping, body transport. This skill owns sentence content.
-Both apply when drafting a commit, issue, or PR body.
+Both apply when drafting a commit, issue, or PR body; `sks-comment` owns
+the comment mechanism on those surfaces and routes comment sentence
+content here.
 
 ## When to Use
 

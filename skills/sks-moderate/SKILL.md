@@ -14,6 +14,7 @@ metadata:
       - github
       - graphql
     related_skills:
+      - sks-comment
       - sks-pr-resolve
       - sks-pr-triage
       - sks-issue-triage
@@ -44,6 +45,9 @@ one mutation away from undone.
 
 Not this skill: deleting comments, editing content, locking
 conversations, blocking users — that is enforcement, not moderation.
+Extraction of comments, the directed-value bar a comment must pass, and
+the update/rectification paths live in `sks-comment`; triage passes that
+surface moderation targets route their fold decisions here.
 
 ## Surfaces and classifiers
 

@@ -234,7 +234,7 @@ Exact shapes live in the owning skills:
 | Commit     | `sks-commit`   | plain capitalized title, labeled body, org co-author trailer + repo-mandated `Signed-off-by` |
 | Issue      | `sks-issue`    | stable problem statement + `- [ ]` ledger           |
 | Discussion | `sks-discussion` | RFC: context + open question; no acceptance criteria |
-| Comment    | `sks-github-text-authoring` | findings/proofs, cited evidence, one finding per comment |
+| Comment    | `sks-comment`  | findings/proofs, cited evidence, one finding per comment; directed-value bar and look-back owned there |
 | PR         | `sks-pr`       | title = commit subject; body `# Why`/`## What`/`## References`; issue link = Development metadata |
 
 Prose mechanics (no-wrap, `@` escaping, full URLs, evidence style, template

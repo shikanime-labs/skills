@@ -14,6 +14,7 @@ metadata:
       - prose
     related_skills:
       - sks-commit
+      - sks-comment
       - sks-issue
       - sks-pr
       - sks-discussion
@@ -31,7 +32,9 @@ formatting, mention escaping, link hygiene, evidence style, template
 detection, and the org identity envelope. `sks-commit` (commit message),
 `sks-issue` (issue body/comments), `sks-pr` (PR body), and `sks-discussion`
 (RFC) own their surface's structure and procedure; they hand the writing
-rules to this skill instead of restating them.
+rules to this skill instead of restating them. `sks-comment` owns the
+comment mechanism — extraction, the directed-value bar, look-back loop,
+update/rectification — and hands its prose rules here.
 
 ## When to Use
 
@@ -108,6 +111,10 @@ offers — never add headings it lacks. No template → the surface skill's
 default shape.
 
 ## Comment etiquette (issues and PRs)
+
+The mechanics of a comment — extraction, the directed-value bar,
+look-back, update/rectification — are owned by `sks-comment`; the
+writing rules below apply to every comment posted through it.
 
 - Comments address the human reviewer/coder: findings, blockers, and
   decisions they must act on. No agent bookkeeping — status narration, CI

@@ -1,0 +1,56 @@
+{
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "Extracts all comment surfaces with the correct endpoints — issues/\u003cN\u003e/comments for conversation comments, pulls/\u003cN\u003e/comments for review-thread comments, pulls/\u003cN\u003e/reviews for review summaries, GraphQL for discussion replies — keeps bot comments (user.type == Bot) in the extraction, and merges the results into one list.",
+      "files": [],
+      "prompt": "Pull every comment on PR #42 in shikanime-labs/skills so I can see the whole conversation.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-comment'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body states discussion comments are read and written through GraphQL only, with no REST endpoint",
+        "Body routes per-usage mechanics to three self-contained references: references/conversation-comments.md, references/pr-review-comments.md, references/discussion-comments.md",
+        "references/conversation-comments.md and references/pr-review-comments.md each carry their own identity rules, extraction command, and mutation list",
+        "Body keeps bot comments (detected via user.type == \"Bot\") in extraction and exempts them from moderation",
+        "Body carries a store table with type prefixes and routes each store's mechanics to one self-contained reference",
+        "references/discussion-comments.md nests replies under each discussion comment node's replies connection and names replyToId as the addDiscussionComment input"
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "Runs the look-back loop before posting: extracts existing comments, finds the value already present or drifted, then updates own comment in place (updateIssueComment / updatePullRequestReviewComment / updateDiscussionComment) or rectifies it with an inline Edit marker instead of posting a duplicate.",
+      "files": [],
+      "prompt": "I already commented the rollback plan on issue #7 last week but the plan changed — fix my comment instead of adding another one.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-comment'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body defines the directed-value bar with all three gates: directed toward a reader and objective, carries information or value, not prose or status narration",
+        "Body owns a look-back loop that extracts existing comments before posting",
+        "Body routes own stale-but-alive comments to in-place update through the store's own mutation rather than posting a second copy",
+        "Body routes a factually wrong own comment to rectification with an inline Edit marker, never a silent edit",
+        "Someone else's wrong comment: post the rectification citing the proof, hide the stale one with sks-moderate, never edit theirs"
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "Routes elsewhere: this is a review verdict on a diff line — severity labels and inline anchoring belong to sks-pr-review, which posts through sks-comment's mechanics; bodies belong to the surface skills.",
+      "files": [],
+      "prompt": "Review PR #12 and post severity-tagged findings inline at each diff line.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-comment'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body places review severity labels and inline diff-line anchors under sks-pr-review",
+        "Body places thread resolution under sks-pr-resolve",
+        "Body places hiding/unhiding under sks-moderate and runs it as the maintenance pass",
+        "Body places issue, PR, and discussion bodies under their surface skills, never under this skill"
+      ]
+    }
+  ],
+  "skill_name": "sks-comment"
+}
