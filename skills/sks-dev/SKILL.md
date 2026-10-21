@@ -4,7 +4,7 @@ description:
   "Use when running the local dev loop in a target org's repos: branching in a
   fresh jj workspace, push-to-origin, jj bookmark tracking, and landing via
   plain gh pr merge or direct push."
-version: 0.10.2
+version: 0.10.3
 author: Automata
 license: Apache-2.0
 metadata:
@@ -303,17 +303,6 @@ output:
 | jj repo (`.jj/`)                           | `jj bookmark track <branch> --remote=origin` before push         |
 | NixOS/infra (org examples: read             | `nix eval`/`nix build` before switch; control-plane needs quorum |
 | `references/shikanime.md`)                  |                                                                  |
-
-## Formatting: nix fmt + markdown
-
-- `nix fmt` (treefmt) reformats the WHOLE tree on every run (~64 unrelated
-  files dirty). Scope it (`nix fmt apps/<app>`); after a whole-tree run,
-  restore everything outside your scope before finalizing — a whole-tree
-  stage/amend on that tree collapses the PR and GitHub auto-closes
-  the zero-diff head.
-- Repo markdown wraps at 80 columns (rumdl MD013); never skip the markdown
-  formatters. GitHub issue/PR bodies are exempt free text — never wrap them,
-  never run `nix fmt` / `mdformat` over a body.
 
 ## Keep AGENTS.md current
 
