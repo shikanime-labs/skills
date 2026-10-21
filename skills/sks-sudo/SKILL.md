@@ -97,6 +97,12 @@ Not for git/jj commit identity — `gh auth switch` does not touch
   shared keyring does not yield tokens to a copied `hosts.yml` —
   bootstrapping one needs an interactive `gh auth login` per account. Ask
   the operator before relying on it.
+- **An exported `GH_TOKEN`/`GITHUB_TOKEN` in a persistent shell overrides
+  `gh auth switch`** — the switch reports success while every call still
+  authenticates as the env token's account. Unset both `GH_TOKEN` and
+  `GITHUB_TOKEN` before the switched section — either overrides the stored
+  credentials — and prove the flip with `gh api user` before operating,
+  not only after.
 
 ## Verification
 

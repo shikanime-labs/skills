@@ -138,6 +138,11 @@ git ls-remote git@github.com:OWNER/REPO.wiki.git HEAD
 - **`git ls-remote` inside a `while read` loop returns empty.** The ssh
   transport consumes the loop's stdin. Guard each invocation with
   `</dev/null`, or verify with direct per-repo commands.
+- **`<repo>.wiki` jj-workspace collision** — a catalog workspace named
+  `<repo>.wiki` (e.g. `skills.wiki`) is a repo working copy, not the wiki:
+  no `.git`, and wiki commands there fail with "not a git repository". Do
+  not keep a lookalike workspace; fresh-clone `<repo>.wiki.git` per
+  operation instead.
 
 ## Verification
 
