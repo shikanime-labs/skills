@@ -15,6 +15,7 @@
         "Body requires refreshing evals",
         "Body requires a contrastive probe over the unchanged assertion set",
         "Body distinguishes 'invariant' and 'domain' edit axes",
+        "Body requires assertions 'FIRST' derived from the old body",
         "Body keeps safety and gate steps during compression"
       ]
     },
