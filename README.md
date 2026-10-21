@@ -114,6 +114,7 @@ specification, compatible with the
 | `sks-converge` | Use when jj conflicts or divergent changes block a jj repo after a tree move — resolve conflicted revisions and divergent twins until pushable. |
 | `sks-curate` | Use when updating, improving, compressing, or token-optimizing a skill or profile in a skills catalog: rework the body, tighten it, refresh evals, and keep it loadable. |
 | `sks-delegate` | Use when isolating one unit of work in a fresh jj workspace — the mandatory entry to implementation for every unit, so concurrent WIP never folds in and bookmarks/pushes stay scoped. |
+| `sks-design` | Use when designing or redesigning an interface — landing page, app screen, dashboard, deck, or report — with a taste anchor, a real component system, and screenshot verification. |
 | `sks-dev` | Use when running the local dev loop in a target org's repos: branching in a fresh jj workspace, push-to-origin, jj bookmark tracking, and landing via plain gh pr merge or direct push. |
 | `sks-discussion` | Use when opening an RFC Discussion in the target org as the pre-issue stage: converge on the problem, then derive the issue. |
 | `sks-discussion-triage` | Use when triaging an existing org discussion: category, body shape, Q&A answer, and conversion to an issue. |
