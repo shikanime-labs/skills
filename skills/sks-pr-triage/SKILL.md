@@ -14,6 +14,7 @@ metadata:
       - pull-requests
     related_skills:
       - sks-pr
+      - sks-triage
       - sks-investigate
 platforms:
   - linux
@@ -155,4 +156,5 @@ cloud-pi-native repo (French triage output, quality-gate checks).
 
 ## See also
 
+- `sks-triage` — the scope-level umbrella: repo/org sweeps.
 - `sks-investigate` — root-cause research before any fix.

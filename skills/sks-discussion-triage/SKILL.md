@@ -16,6 +16,7 @@ metadata:
     related_skills:
       - sks-discussion
       - sks-issue
+      - sks-triage
 platforms:
   - linux
   - macos
@@ -78,4 +79,5 @@ gh api graphql -f query='query($n:Int!){repository(owner:"<OWNER>",'\
 
 ## See also
 
+- `sks-triage` — the scope-level umbrella: repo/org sweeps.
 - `sks-investigate` — root-cause research before any fix.
