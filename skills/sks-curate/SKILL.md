@@ -4,7 +4,7 @@ description:
   "Use when updating, improving, compressing, or token-optimizing a skill or
   profile in a skills catalog: rework the body, tighten it, refresh evals,
   and keep it loadable."
-version: 0.4.0
+version: 0.4.1
 author: Automata
 license: Apache-2.0
 metadata:
@@ -90,8 +90,11 @@ place. Four properties decide whether a body is worth its weight:
    reference detail into `references/` with an explicit load condition ("read
    `references/api-errors.md` when the API returns a non-200"), never a generic
    "see references/".
-4. **Refresh `evals/evals.json`.** The assertions must stay self-consistent
-   with the new body. Re-run the assertions programmatically
+4. **Refresh `evals/evals.json`.** Write the new assertions FIRST, derived
+   from the old body plus the intended delta — never after reading the
+   reworked body (self-authored exams grade themselves as passing); then
+   make them self-consistent with the final body. Re-run the assertions
+   programmatically
    (case-insensitive for prose checks); assert scope behavior, not the absence
    of a string that legitimately appears (a skill's own name, its
    `related_skills`). Update `expected_output` for any prompt whose behavior
