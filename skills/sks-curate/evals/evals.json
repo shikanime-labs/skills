@@ -14,6 +14,7 @@
         "Body mentions a token budget",
         "Body requires refreshing evals",
         "Body requires a contrastive probe over the unchanged assertion set",
+        "Body distinguishes 'invariant' and 'domain' edit axes",
         "Body keeps safety and gate steps during compression"
       ]
     },

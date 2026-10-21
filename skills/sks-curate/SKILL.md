@@ -4,7 +4,7 @@ description:
   "Use when updating, improving, compressing, or token-optimizing a skill or
   profile in a skills catalog: rework the body, tighten it, refresh evals,
   and keep it loadable."
-version: 0.3.0
+version: 0.4.0
 author: Automata
 license: Apache-2.0
 metadata:
@@ -80,7 +80,10 @@ place. Four properties decide whether a body is worth its weight:
      lists over sentences, delete content that repeats `related_skills`.
    - **Update** — the workflow it describes changed: revise commands, gates,
      and pitfalls; reconcile the `## When to Use` triggers.
-3. **Apply the distillation pass.** Rework the body against the four
+3. **Apply the distillation pass.** Classify each edit by axis: invariant
+   edits fix cross-domain agentic deficiencies (planning, tool use, context
+   management, delegation); domain edits carry the knowledge, procedures,
+   and constraints of the skill's own domain. Rework the body against the four
    properties above and the compression checklist below. Use
    progressive disclosure: keep `SKILL.md` under ~500 lines / ~5,000
    tokens and push
