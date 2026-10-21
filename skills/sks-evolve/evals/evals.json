@@ -12,6 +12,7 @@
         "Body contains at least one '##' heading",
         "Body presents the loop as sense -\u003e decide -\u003e act -\u003e measure",
         "Body mines memory or session history as the signal source",
+        "Body treats external sources (upstream releases, papers, sibling catalogs) as evolution signals too",
         "Body delegates execution to sks-curate, sks-selfupdate, or sks-skill-authoring",
         "Body never merges or lands its own PR"
       ]
@@ -58,6 +59,7 @@
         "Body contains at least one '##' heading",
         "Body forbids self-merging or chaining cycles past a PR",
         "Body requires measured before/after fitness numbers",
+        "Body requires judge parity: baseline and candidate graded under identical conditions",
         "Body mentions open manufacturing or self-accumulation"
       ]
     }

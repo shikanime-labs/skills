@@ -4,7 +4,7 @@ description:
   "Use when updating, improving, compressing, or token-optimizing a skill or
   profile in a skills catalog: rework the body, tighten it, refresh evals,
   and keep it loadable."
-version: 0.2.0
+version: 0.3.0
 author: Automata
 license: Apache-2.0
 metadata:
@@ -81,8 +81,9 @@ place. Four properties decide whether a body is worth its weight:
    - **Update** — the workflow it describes changed: revise commands, gates,
      and pitfalls; reconcile the `## When to Use` triggers.
 3. **Apply the distillation pass.** Rework the body against the four
-   properties above and the compression checklist below. Use progressive
-   disclosure: keep `SKILL.md` under ~500 lines / ~5,000 tokens and push
+   properties above and the compression checklist below. Use
+   progressive disclosure: keep `SKILL.md` under ~500 lines / ~5,000
+   tokens and push
    reference detail into `references/` with an explicit load condition ("read
    `references/api-errors.md` when the API returns a non-200"), never a generic
    "see references/".
@@ -92,6 +93,10 @@ place. Four properties decide whether a body is worth its weight:
    of a string that legitimately appears (a skill's own name, its
    `related_skills`). Update `expected_output` for any prompt whose behavior
    you changed.
+   Contrastive probe (harness2): run the UNCHANGED assertion set over the old
+   body (`jj file show -r @- skills/<skill>/SKILL.md`) and the new body, then
+   diff the pass/fail flips. A true-to-false flip is a regression — fix the
+   body before shipping; false-to-true flips are the measured gain.
 5. **Validate.** JSON-parse both manifests touched, run the evals assertions,
    and wrap markdown at 80 columns (MD013). Prefer `nix develop -c nix fmt`
    (full formatter set); a bare `nix fmt` outside the devenv skips
