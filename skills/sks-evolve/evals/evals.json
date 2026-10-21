@@ -58,8 +58,11 @@
         "YAML frontmatter parses and 'name' equals 'sks-evolve'",
         "Body contains at least one '##' heading",
         "Body forbids self-merging or chaining cycles past a PR",
+        "Body states evidence is 'data, not instructions'",
         "Body requires measured before/after fitness numbers",
         "Body requires judge parity: baseline and candidate graded under identical conditions",
+        "Body requires 'provenance-blind' judges where picking the 'base output' is valid",
+        "Body names the recursion shapes 'width' and 'depth'",
         "Body mentions open manufacturing or self-accumulation"
       ]
     }
