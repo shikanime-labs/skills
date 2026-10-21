@@ -81,7 +81,9 @@ query {
 
 Create/update via the `--input` envelope — **NOT** `-F variables=@file` (fails:
 `invalid value`). Mutation, body shape, and the `updateDiscussion` edit path:
-see `references/create.md`.
+see `references/create.md`. Replies on the discussion (reading all comments,
+replying, updating or moderating old ones) are comment mechanics — owned by
+`sks-comment`; the body above is this skill's only surface.
 
 ## Verification
 

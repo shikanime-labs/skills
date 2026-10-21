@@ -16,6 +16,7 @@ metadata:
       - github
       - pull-requests
     related_skills:
+      - sks-comment
       - sks-pr-resolve
       - sks-land
       - sks-pr
@@ -139,6 +140,11 @@ finding. Full paragraphs only for security/architecture findings; resume the
 one-line format after.
 
 ## Posting (PRs)
+
+Review output — severity labels, inline anchoring at the diff line, one
+review per head — is this skill's; the comment mechanics it posts
+through (look-back before posting, directed-value bar, update of stale
+comments) are `sks-comment`'s.
 
 ONE review on the PR, inline comments per line
 (`references/inline-comments.md`), not a block: each at its `path`/`line`,

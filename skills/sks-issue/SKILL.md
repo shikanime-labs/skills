@@ -79,7 +79,9 @@ load it for any body or comment writing; they are not restated here.
 Body = clean problem statement (Description, reproduction steps, affected
 version, impact). Post root-cause / investigation findings as a **comment**
 (`gh issue comment <N> --repo <org>/<repo> --body-file <file>`), never in the
-body — it must stay stable for triage. The issue is a clean conversation, not a
+body — it must stay stable for triage. Comment mechanics — the
+directed-value bar, look-back loop, and update/rectification — are owned by
+`sks-comment`. The issue is a clean conversation, not a
 notebook: concluded findings + open questions only, never raw reasoning/status
 chatter; interim comments deletable after convergence.
 
@@ -93,7 +95,8 @@ decide it. An item is done only once its check ran, never from memory; an
 impossible criterion is struck with a comment, never dropped. Candidate
 solutions belong in comments, not tasklist/body.
 
-Comments follow the prose rules in `sks-github-text-authoring`: lead with the
+Comments follow the prose rules in `sks-github-text-authoring` and the
+comment policy in `sks-comment`: lead with the
 conclusion, cite evidence, stop. One subject per comment — split unrelated
 findings into separate comments.
 
@@ -161,7 +164,8 @@ gates).
 
 ## See also
 
-`sks-github-text-authoring` (prose rules), `sks-discussion`, `sks-pr` (links
+`sks-github-text-authoring` (prose rules), `sks-comment` (comment
+mechanics), `sks-discussion`, `sks-pr` (links
 back via Development metadata), `sks-issue-refine`, `sks-issue-triage` (run
 after creation), `sks-gist` (verified snippets too long for a comment),
 `sks-tldr` (status word closes the issue's ledger), `sks-wiki`.

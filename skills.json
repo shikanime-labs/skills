@@ -30,6 +30,11 @@
       "path": "skills/sks-bulk"
     },
     {
+      "name": "sks-comment",
+      "description": "Use when reading, writing, updating, or moderating comments on issues, PRs, or discussions: cross-surface extraction, the directed-value bar, the look-back loop, and update/rectification routing.",
+      "path": "skills/sks-comment"
+    },
+    {
       "name": "sks-commit",
       "description": "Use when committing in a target-org repo: plain-English imperative titles and repo-enforced hooks (gitlint, DCO) win.",
       "path": "skills/sks-commit"

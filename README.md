@@ -110,6 +110,7 @@ specification, compatible with the
 | `sks-adversarial` | Use when probing uncertain results in a disposable sandbox — large investigation, development, debugging, testing, UAT, white-room, or data validation before promoting a change. |
 | `sks-async` | Use when splitting multi-unit work into parallel, isolated jj workspaces (depth-tree fan-out) and landing as independent plain `gh pr` merges. |
 | `sks-bulk` | Use when applying one instruction to many targets — repos, issues, PRs, orgs, or any enumerable agentic batch: enumerate targets, drive the batch from a plan file, and verify every result. |
+| `sks-comment` | Use when reading, writing, updating, or moderating comments on issues, PRs, or discussions: cross-surface extraction, the directed-value bar, the look-back loop, and update/rectification routing. |
 | `sks-commit` | Use when committing in a target-org repo: plain-English imperative titles and repo-enforced hooks (gitlint, DCO) win. |
 | `sks-converge` | Use when jj conflicts or divergent changes block a jj repo after a tree move — resolve conflicted revisions and divergent twins until pushable. |
 | `sks-curate` | Use when updating, improving, compressing, or token-optimizing a skill or profile in a skills catalog: rework the body, tighten it, refresh evals, and keep it loadable. |
