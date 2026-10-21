@@ -211,6 +211,10 @@ In the fleet-config repo, hosts consume secrets through `sops-nix`:
    sops secrets/<host>.enc.yaml | grep -A2 '^sops:'
    ```
 
+   For a SHARED file, audit recipient coverage per consumer host — derive
+   each host's age recipient from its ssh host key and diff against the
+   ciphertext's own recipient list (offline host: its known_hosts entry
+   works too). Recipe: `references/recipient-coverage-audit.md`.
 3. Commit per `sks-commit` with the org co-author trailer (org value in
    `references/shikanime.md`). A secret edit
    often pairs with a module edit (`sopsFile` path, template, systemd unit that
@@ -273,20 +277,6 @@ In the fleet-config repo, hosts consume secrets through `sops-nix`:
 ```bash
 # decrypts cleanly
 sops --decrypt secrets/<host>.enc.yaml >/dev/null && echo ok
-
-# recipient coverage audit for a SHARED file: derive each consumer host's
-# age recipient from its ssh host key and diff against the ciphertext's
-# own recipient list (offline host: its known_hosts entry works too)
-for h in <hosts>; do
-  ssh-keyscan -t ed25519 "$h" 2>/dev/null | grep -v '^#' \
-    | ssh-to-age
-done | sort -u > /tmp/want
-grep -o 'recipient: age1[0-9a-z]*' secrets/<shared>.enc.yaml \
-  | awk '{print $2}' | sort -u > /tmp/got
-diff /tmp/want /tmp/got   # empty = every consumer can decrypt
-
-# recipient set matches expectation (age example)
-sops secrets/<host>.enc.yaml | grep -E '^sops_age' | sort
 
 # no plaintext secret file accidentally on disk
 git status --porcelain secrets/ | grep -v '\.enc\.'

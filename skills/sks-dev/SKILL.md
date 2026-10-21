@@ -33,9 +33,7 @@ End-to-end local dev loop for the target org's repos: branching, pushing to
 `origin`, jj bookmark tracking, landing (PR vs direct push). Environment facts
 (org identity, repo paths, toolchain, branch protection, push policy, pre-work
 probes) live in `references/sks-env.md` — read it when operating in shikanime
-repos. Cloud-pi-native
-console repo facts (checkout path, layout, French artifacts, toolchain,
-migration parity, jj/git desync recipes) live in
+repos. Cloud-pi-native console repo facts live in
 `references/cloud-pi-native.md` — read it when working in the
 cloud-pi-native/console repository. Deep recovery recipes live in
 `references/` behind the load conditions in "Pitfall index".
@@ -142,56 +140,32 @@ silent scope change:
   `sks-issue-triage`; an untriaged issue routes there before implementation
 - NixOS repo: `nix` available (build-verify gate)
 
-Report `BLOCKED: <req> — <evidence> — <recovery>`. Independent unblocked
-streams may fan out (`sks-async`) while the blocker is surfaced.
+Report unmet requirements as `BLOCKED: <req> — <evidence> — <recovery>`.
+Independent unblocked streams may fan out (`sks-async`) while the blocker is
+surfaced.
 
 ## Branch discipline
 
 - Branch off `main`: `fix/<slug>`, `feat/...`. Some repos protect `main`
   (org examples in `references/sks-env.md`) — never commit there; land via
   PR.
-- **Detect protection via RULESETS, not classic branch protection.** The
-  classic endpoint `gh api repos/<org>/<repo>/branches/main/protection`
-  returns 404 on ruleset-backed repos, which misleadingly reads as
-  "not protected". Fetch each ruleset id — the list endpoint omits
-  the rules:
-
-  ```bash
-  gh api repos/<org>/<repo>/rulesets -q '.[] | "\(.id)  \(.name)"'
-  gh api repos/<org>/<repo>/rulesets/<id> -q '.rules[]'
-  ```
-
-- A `pull_request` rule with `require_code_owner_review` (an org
-  "Landing protections" ruleset — org examples in `references/sks-env.md`)
-  blocks self-approval — that is what forces
-  `gh pr merge --squash --admin` once approval is given (org approval
-  practice: read `references/shikanime.md` when operating in a shikanime
-  org).
-- Gitlint-enforced repos (org classes: read `references/shikanime.md`
-  when operating in a shikanime org): CC1 rejects any commit without
-  `Signed-off-by` (full envelope:
-  `references/manifests-git-commit-pitfalls.md`).
+- **Detect protection via RULESETS, not classic branch protection** — the
+  classic endpoint 404s on ruleset-backed repos and misleadingly reads as
+  "not protected"; the `require_code_owner_review` rule is what forces
+  `--squash --admin`, and gitlint CC1 rejects commits without
+  `Signed-off-by`. Full probe commands and org examples:
+  `references/branch-protection.md` — read it when probing protection or a
+  push/merge is rejected.
 
 ## Rebuilding a branch whose bookmark is immutable
 
 A pushed bookmark is immutable — `jj rebase -d main -r <branch>` fails with
-"Commit ... is immutable". Recovery (verified pattern):
-
-```bash
-jj git fetch                        # get latest main@origin
-jj new -m "<same description>" -r main@origin   # fresh commit on trunk
-jj restore --from <old-branch> --to @ <file1> <file2> ...  # ONLY intended files
-jj diff -r @ --stat                # MANDATORY: diff vs base, not vs old branch
-jj bookmark set <branch> -r @ --allow-backwards
-jj git push --remote origin -b <branch>   # lease semantics: fails on fetch mismatch
-```
-
-`jj restore --from` copies whatever the OLD commit holds for each listed
-path — unrelated edits to the same file ride along. Always compare the new
-commit's diff against `main` (file list AND hunk size) before pushing. If
-scope creep slipped through a merged PR, split it out with a revert PR —
-then mine the reverted diff for reusable parts before discarding it
-(recipe: `references/jj-recovery.md`).
+"Commit ... is immutable". Rebuild on a fresh trunk commit with
+`jj restore --from` (ONLY the intended files — unrelated edits to the same
+file ride along, so diff against `main` before pushing), then
+`jj bookmark set --allow-backwards` and push (lease semantics). Full
+recipe: `references/jj-recovery.md` ("Rebuilding a branch whose bookmark is
+immutable").
 
 ## Push flow
 
@@ -255,28 +229,21 @@ anchor can get duplicated — remove the stray copy before pushing.
 English across the family; `#N` for standalone refs; commit↔PR parity.
 Exact shapes live in the owning skills:
 
-- **Commit** → `sks-commit` — plain capitalized title, labeled body
-  (`Design:` / `Related:` / `Issue:` per repo AGENTS.md),
-  the org `Co-authored-by` trailer plus repo-mandated `Signed-off-by`
-  (gitlint CC1 rejects its absence — org examples in
-  `references/sks-env.md`).
-- **Issue** → `sks-issue` — stable problem statement + `- [ ]` ledger.
-- **Discussion** → `sks-discussion` — RFC: context + open question; no
-  acceptance criteria (that is issue scope).
-- **Comment** — findings/proofs in comments; cite concrete evidence (diff
-  lines, command output). Terse: one finding per comment, code spans for
-  commands, no nested parentheticals.
-- **PR** → `sks-pr` — title = commit subject; body `# Why`/`## What`/
-  `## References` restating the commit; issue link = Development metadata
-  (`addCloseIssueReferences`).
+| Surface    | Owner          | Shape                                                |
+| ---------- | -------------- | ---------------------------------------------------- |
+| Commit     | `sks-commit`   | plain capitalized title, labeled body, org co-author trailer + repo-mandated `Signed-off-by` |
+| Issue      | `sks-issue`    | stable problem statement + `- [ ]` ledger           |
+| Discussion | `sks-discussion` | RFC: context + open question; no acceptance criteria |
+| Comment    | `sks-github-text-authoring` | findings/proofs, cited evidence, one finding per comment |
+| PR         | `sks-pr`       | title = commit subject; body `# Why`/`## What`/`## References`; issue link = Development metadata |
 
-Cross-cutting: prose mechanics (no-wrap, `@` escaping, full URLs, evidence
-style, template detection) are owned by `sks-github-text-authoring` — load it
-when drafting any of the above. A ledger item is command-decidable and done
-only once its check ran; close the linked issue deliberately after N-of-N
-verified. NEVER pass bodies inline via `--body "..."` — shell expansion
-mangles backticks/`$` (bodies silently truncated or empty). Write to a file,
-pass `--body-file`, then re-read the stored body.
+Prose mechanics (no-wrap, `@` escaping, full URLs, evidence style, template
+detection) are owned by `sks-github-text-authoring` — load it when drafting
+any of the above. A ledger item is command-decidable and done only once its
+check ran; close the linked issue deliberately after N-of-N verified.
+NEVER pass bodies inline via `--body "..."` — shell expansion mangles
+backticks/`$`. Write to a file, pass `--body-file`, then re-read the stored
+body.
 
 ## Done is proven, not asserted
 
@@ -315,6 +282,10 @@ shorthand → use full URL). Skip per-task detail.
 
 Deep recipes live in `references/`; read the file when its condition fires:
 
+- `references/branch-protection.md` — probing whether `main` is protected,
+  or a push/merge is rejected: ruleset-based detection (classic endpoint
+  404s), `require_code_owner_review` forcing `--squash --admin`, gitlint
+  CC1 sign-off.
 - `references/jj-recovery.md` — a jj op errors: immutable bookmark, silent
   push no-op, `describe -F`/`checkout`/`add` absent, divergent change, lost
   workspace, rebase onto moved `main`, stale working-copy clobber,

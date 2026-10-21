@@ -231,3 +231,24 @@ do not retry the push.
   `jj log -r '<prefix>'`. Grep `jj log -T` if the exact rev does not resolve.
 - `committer()` does not exist in the template language — use `author.*`
   fields, or `git log -1 --format='%cn <%ce>'` from the original checkout.
+
+## Rebuilding a branch whose bookmark is immutable
+
+A pushed bookmark is immutable — `jj rebase -d main -r <branch>` fails with
+"Commit ... is immutable". Recovery (verified pattern):
+
+```bash
+jj git fetch                        # get latest main@origin
+jj new -m "<same description>" -r main@origin   # fresh commit on trunk
+jj restore --from <old-branch> --to @ <file1> <file2> ...  # ONLY intended files
+jj diff -r @ --stat                # MANDATORY: diff vs base, not vs old branch
+jj bookmark set <branch> -r @ --allow-backwards
+jj git push --remote origin -b <branch>   # lease semantics: fails on fetch mismatch
+```
+
+`jj restore --from` copies whatever the OLD commit holds for each listed
+path — unrelated edits to the same file ride along. Always compare the new
+commit's diff against `main` (file list AND hunk size) before pushing. If
+scope creep slipped through a merged PR, split it out with a revert PR —
+then mine the reverted diff for reusable parts before discarding it
+("Mine a reverted diff before discarding it" below).

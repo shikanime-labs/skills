@@ -104,12 +104,9 @@ surfaces that may already solve it, top down:
 Every copy of a credential is a rotation hazard and a second thing that
 can break; reading in place usually deletes the whole problem.
 
-Real example: a service user cannot read a projected token at mode `640`
-`root:107` — the guest lacks gid 107. Discarded drafts: a oneshot copy
-unit; a tmpfiles `C+` rule plus a refresh timer (`C+` does not overwrite
-an existing file, so rotation handling is fragile). The fix is two lines,
-no copy, no timer, no rotation handling, because the file is read in
-place:
+- Real example (service user could not read a projected token at mode `640`
+  `root:107`): discarded drafts — a oneshot copy unit, a tmpfiles `C+` rule
+  plus refresh timer — all replaced by reading in place:
 
 ```nix
 users.groups.kubernetes-token.gid = 107;
@@ -222,21 +219,12 @@ yourself doing one, stop and ask whether the default already covers it.
 
 ## Repo shape differences (machines vs manifests Nix)
 
-The style is the same; the surface differs. (Concrete org repos behind the
-"machines"/"manifests" class names live in
-`references/shikanime.md`.)
-
-- **machines-class flakes** (NixOS / nix-darwin / Home Manager,
-  flake-parts + the shared lib): the flake carries sops-nix, per-host
-  `secrets/<host>.enc.yaml`, and the shared modules under `modules/`. When
-  you touch sops-nix wiring, the sops side (recipients, templates,
-  `sopsFile`) is a secret edit — involve `sks-sops-secrets-authoring`
-  for the `.enc.*` part. The Nix part is this skill.
-- **manifests-class flakes** (kustomize / Flux render, kustomization YAML as
-  Nix output): the Nix here generates YAML. Sorting and formatting still
-  apply to the Nix; the generated YAML sorting and structure are the
-  manifests skill's territory. Do not hand-edit the generated YAML to
-  "fix" sorting — fix the Nix that produces it, then re-render.
+The style is the same; the surface differs. Concrete org repos behind the
+"machines"/"manifests" class names live in `references/shikanime.md`; the
+per-class details (sops-nix wiring on machines flakes, generated-YAML
+discipline on manifests flakes) live in
+`references/repo-shapes.md` — read it when the repo could be either class
+and the edit touches sops wiring or rendered YAML.
 
 ## Pitfalls
 

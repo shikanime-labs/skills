@@ -32,11 +32,10 @@ independent PR or stacked chain. Distills unlazy depth-tree delegation fan-out
 onto jj's commit DAG as plain `gh pr` merges. Core splitting component of
 `sks-dev`.
 
-For shikanime-org specifics (co-author trailer, remote split), read
-`references/shikanime.md` when operating in a shikanime org. For
-cloud-pi-native specifics (French artifacts, co-author trailer, draft PRs with
-`Refs #N`), read `references/cloud-pi-native.md` when working in the
-cloud-pi-native/console repository.
+Org specifics live in `references/`: `references/shikanime.md` when operating
+in a shikanime org (co-author trailer, remote split);
+`references/cloud-pi-native.md` when working in the cloud-pi-native/console
+repository (French artifacts, co-author trailer, draft PRs with `Refs #N`).
 
 ## When to Use
 
@@ -71,26 +70,8 @@ cloud-pi-native/console repository.
    - Independent unit → own bookmark + standalone PR (or single-member stack).
 
 - Dependent chain → one bookmark per link; land links in dependency order
-  (base first). Example:
-
-```bash
-jj bookmark set <next> -r <next>
-gh pr create --repo <org>/<repo> --base main --head "<org>:<next>" \
-  --title "<subject>" \
-  --body "$(cat <<'EOF'
-## Why
-<linked issue: why now>
-
-## What
-<brief bullet scope of this chain link>
-
-## References
-
-<commits/specs proving the solution>
-EOF
-)"
-```
-
+  (base first). Open each PR per `sks-pr` (body via `--body-file`, never
+  inline `--body`).
 - PR↔issue linkage per `sks-pr`: Development metadata
   (`addCloseIssueReferences`, `sks-pr-triage` step 5) — no body keyword.
 - Before opening each PR, run the `sks-pr` step 2b duplicate/stack check — an
@@ -127,6 +108,4 @@ has in-workspace evidence.
 - `sks-commit` / `sks-pr` — commit shape (co-author trailer) and PR linkage.
 - `sks-tldr` — the end-of-loop block each child returns and the parent
   re-emits per unit.
-- Cloud-pi-native specifics (French artifacts, co-author trailer, draft PRs
-  with `Refs #N`): `references/cloud-pi-native.md`.
 - Model, pitfalls, dispatch skeleton: `references/sks-async-delegate.md`.
