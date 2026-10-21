@@ -66,10 +66,11 @@ or by reading the URL directly (`https://github.com/shikanime-labs/manifests/pul
 
 ## Anti-patterns to avoid
 
-- **NEVER `git commit --amend` on a tree touched by `nix fmt`** — nix fmt
-dirts ~64 unrelated files; amending collapses the PR into base and GitHub
-auto-closes it. Recipe: whole-tree `nix fmt`, then `git checkout --` everything
-outside your scope before staging.
+- **NEVER `git commit --amend` on a tree touched by `nix fmt`** — a
+formatting sweep must not ride along in a scoped PR; amending collapses the
+PR into base and GitHub auto-closes it. Recipe: whole-tree `nix fmt` on its
+own branch, commit the formatting there, then `git checkout --` everything
+outside your scope before returning to the scoped branch.
 - **NEVER inline `--body "..."` in gh pr create** — shell expansion silently
 executes backticks/`$` as commands. Write body to file, pass `--body-file`.
 
