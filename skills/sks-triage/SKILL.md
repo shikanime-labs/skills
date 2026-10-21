@@ -2,9 +2,10 @@
 name: sks-triage
 description:
   "Use when triaging a target org, repo, issue, or PR: sweep the scope for
-  untriaged items, then assign every empty, context-derivable field — type,
-  labels, assignee, fields, project card fields."
-version: 0.2.0
+  untriaged items, assign every empty, context-derivable field, and
+  requalify items whose evidence moved after triage — type, labels,
+  assignee, fields, project card fields."
+version: 0.3.0
 author: Automata
 license: Apache-2.0
 metadata:
@@ -61,6 +62,8 @@ directory, not the target repo.
   missing metadata, then assign what each one is missing.
 - "Triage issue #N / PR #N" — assign all empty, derivable fields on one item.
 - "Assign metadata (type, labels, assignee, fields, card fields) to #N."
+- "Requalify #N" / "its type is stale" — the item is already triaged but its
+  evidence moved; re-derive from the current evidence (step 4).
 - Zero untriaged items found → report that and change nothing.
 
 Not for: discussions (`sks-discussion-triage`), closing unworkable issues
@@ -171,10 +174,36 @@ gh pr edit "$N" --repo "$R" --add-label bug --add-assignee "$ASSIGNEE" \
 **Verify** each item by re-reading it; every assigned value must appear in
 the read-back. A rejected write is a reported failure, never a silent skip.
 
-### 4. Report
+### 4. Requalify a previously triaged item
+
+Fill-empty and requalify are the two modes of steps 2–3. An item already
+carrying metadata re-enters triage when its **evidence moved**: the body
+edited after triage, comments stating facts the metadata predates, a linked
+PR's diff outgrowing its labels, or — discussions — replies changing the
+lifecycle state. Per-kind evidence classes live in the child skills.
+
+Requalification runs the same discover-first guard and meaning-match rules,
+over the current evidence, changing only fields whose derivation changed.
+Two rules distinguish it from fill:
+
+- **Never silent.** Every changed field posts a trail comment on the item —
+  field, old → new, and the evidence that forced it. Fill only adds;
+  requalification mutates metadata a reader may have relied on.
+- **State is a field too.** When the moved evidence shows the item is done
+  or not workable, requalification's outcome is the closure itself:
+  `completed` when a linked PR delivered it, `not planned` otherwise —
+  same trail comment, then the close. On an explicitly requested
+  requalification this executes; during a sweep it is reported as a
+  closure candidate for `sks-issue-triage`, never auto-closed.
+- **Report old → new.** Step 5 lists each requalified field with both
+  values and the evidence; items whose evidence did not move are reported
+  as untouched no-ops.
+
+### 5. Report
 
 Done when every processed item has a read-back and every skipped item a
-reason. Report a table — item, kind, assigned fields, read-back evidence —
+reason. Report a table — item, kind, assigned (or requalified, old → new)
+fields, read-back evidence —
 plus before/after untriaged counts, the untouched remainder when over CAP,
 and each failure with its reason. Never close anything during a sweep —
 closure is deliberate (`sks-issue-triage`).
@@ -201,6 +230,9 @@ closure is deliberate (`sks-issue-triage`).
   any column the gap-check treats as emptiness.
 - **Sweeps are bounded.** More than CAP items → touch CAP, report the rest;
   never let an unattended run scale with the backlog.
+- **Requalification without a trail comment is the defect this mode exists
+  to prevent** — a changed field with no old → new comment is a silent
+  metadata edit.
 - **Do not diagnose, close, or reword here.** Those are `sks-investigate` /
   `sks-issue-triage` / `sks-pr-triage` jobs.
 - Payloads and bodies go through files (`--body-file`, `--input`), never
@@ -210,6 +242,10 @@ closure is deliberate (`sks-issue-triage`).
   ORG --format json | .items.totalCount` and enumerate via GraphQL paging
   (`organization.projectV2.items(first:100, after:$cursor)`, Int vars with `-F`,
   cursor with `-f`).
+- **The issue-field `PUT` read-back is a bare array** — the write endpoint
+  returns `issue_field_values` itself, so `--jq '.issue_field_values[] | ...'`
+  fails with "expected an object but got: array" and any `&&` chain after it
+  silently dies. Read back with a `GET` (envelope) or jq the array root.
 - **Skill scripts may ship non-executable** (`Permission denied`) — invoke as
   `bash <skill-dir>/scripts/foo.sh`.
 - **`repos/<R>/releases` and `/tags` can 404 on private org repos** even with

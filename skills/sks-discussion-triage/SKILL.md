@@ -2,8 +2,9 @@
 name: sks-discussion-triage
 description:
   "Use when triaging an existing org discussion: category, body shape,
-  Q&A answer, and conversion to an issue."
-version: 0.1.1
+  Q&A answer, conversion to an issue; requalify the category when replies
+  move the lifecycle."
+version: 0.2.0
 author: Automata
 license: Apache-2.0
 metadata:
@@ -53,6 +54,12 @@ Fetch: `references/fetch-query.md` (GraphQL).
 - **Recategorize** (mismatch): RFC/design → `Ideas`; threads/decision →
   `General`; questions → `Q&A`:
   `updateDiscussion(input:{discussionId:$id, categoryId:$c})`
+- **Requalify on moved evidence**: replies can obsolete the original
+  category — an Ideas thread that converged, a Q&A that grew a design
+  debate. Re-run the same category rules over the full thread, not the
+  body alone; the mutation is the same `updateDiscussion` call. Post a
+  rationale comment first — old → new category and the reply that forced
+  it; a recategorization without one is a silent metadata edit.
 - **Body shape**: keep context + open questions (see `sks-discussion`); trim
   solution scaffolding via `updateDiscussion` body edit.
 - **Converged → issue**: if open questions resolved, comment so and route to
