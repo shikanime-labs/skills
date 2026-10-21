@@ -4,7 +4,7 @@ description:
   "Use when updating, improving, compressing, or token-optimizing a skill or
   profile in a skills catalog: rework the body, tighten it, refresh evals,
   and keep it loadable."
-version: 0.4.1
+version: 0.4.2
 author: Automata
 license: Apache-2.0
 metadata:
@@ -100,8 +100,10 @@ place. Four properties decide whether a body is worth its weight:
    `related_skills`). Update `expected_output` for any prompt whose behavior
    you changed.
    Contrastive probe: run the UNCHANGED assertion set over the old
-   body (`jj file show -r @- skills/<skill>/SKILL.md`) and the new body, then
-   diff the pass/fail flips. A true-to-false flip is a regression — fix the
+   body (`jj file show -r @- skills/<skill>/SKILL.md`) and the new body,
+   then diff the pass/fail flips — `python3 skills/sks-curate/scripts/probe.py
+   old.md new.md evals.json` (exit 1 on any regression). A true-to-false flip
+   is a regression — fix the
    body before shipping; false-to-true flips are the measured gain.
 5. **Validate.** JSON-parse both manifests touched, run the evals assertions,
    and wrap markdown at 80 columns (MD013). Prefer `nix develop -c nix fmt`

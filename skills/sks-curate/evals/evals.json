@@ -14,6 +14,7 @@
         "Body mentions a token budget",
         "Body requires refreshing evals",
         "Body requires a contrastive probe over the unchanged assertion set",
+        "Body points at 'scripts/probe.py' for the contrastive probe",
         "Body distinguishes 'invariant' and 'domain' edit axes",
         "Body requires assertions 'FIRST' derived from the old body",
         "Body keeps safety and gate steps during compression"
