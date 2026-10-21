@@ -22,6 +22,7 @@ metadata:
       - sks-delegate
       - sks-issue
       - sks-dev
+      - sks-wiki
       - ponytail-audit
       - sks-context
 platforms:
@@ -48,6 +49,7 @@ critical method, and flags where each step is commonly misapplied.
 ## Iron Law
 
 ```text
+NO FIXES WITHOUT ROOT CAUSE.
 THIS SKILL RESEARCHES AND PROPOSES. IT NEVER APPLIES A FIX.
 ```
 
@@ -72,6 +74,8 @@ cannot declare a root cause before you have reproduced the failure on demand.
 - Reproduce consistently with the exact command (`pytest -q tests/test_x.py::t`,
   the precise build invocation). A bug you cannot reproduce on demand cannot be
   explained, only guessed at — and a guess is not a finding.
+- Check the repo wiki first (`sks-wiki`): technical docs, runbooks, and known
+  cycles live there — exhaust documented knowledge before re-deriving.
 - Read the whole error: stack trace, line, exit status, the frames in order.
   Skimming the first line and guessing is the primary cause of wrong
   conclusions.
