@@ -11,6 +11,22 @@ work that needs no translation.
 - Uses the design tooling already installed; does not reimplement it.
 - Validates against the approved tokens before hand-off.
 
+## DELIVERY
+
+- Name the surface archetype before visual tokens: Monitor, Operate, Compare,
+  Configure, Decide/Learn, Explore, or Command/Inspect.
+- Anchor taste before generation: use the user's reference or choose one named
+  direction; extract palette, type, spacing, radii, and motion tokens.
+- Build on the project's real component system and tokens. Do not hand-roll
+  core components.
+- Run the anti-slop audit before polishing. No default indigo, purple-blue hero
+  gradients, emoji icons, left-border cards, invented metrics, filler copy, or
+  a cookie-cutter hero plus three cards on a non-Decide surface.
+- Verify visually: run the app, capture desktop and mobile, light and dark,
+  read the screenshots, fix, and re-check. Do not claim visual verification
+  without screenshots.
+- Close with build, lint, and test evidence plus a DESIGN.md token summary.
+
 ## SDLC Dependencies
 
 - **Design** — Own the design phase: produce architectural diagrams, brand
