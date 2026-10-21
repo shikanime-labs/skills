@@ -1,28 +1,3 @@
----
-name: sks-ts-authoring
-description:
-  "Use when writing or reviewing TypeScript: parse-don't-validate boundaries,
-  cast-free explicit types, linear single-purpose functions, and schema-first
-  inputs."
-version: 0.1.0
-author: Automata
-license: Apache-2.0
-metadata:
-  hermes:
-    tags:
-      - typescript
-      - conventions
-      - code-review
-    related_skills:
-      - sks-pr-review
-      - sks-dev
-      - sks-context
-platforms:
-  - linux
-  - macos
-  - windows
----
-
 # TypeScript Authoring
 
 TypeScript written and reviewed to the org strictness bar: unknown data is

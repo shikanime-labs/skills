@@ -19,7 +19,6 @@ metadata:
       - sks-discussion
       - sks-bulk
       - sks-adversarial
-      - sks-skill-authoring
       - sks-context
 platforms:
   - linux
@@ -32,8 +31,9 @@ platforms:
 Turn a verified artifact (command sequence, script, config, probe output) into
 a secret GitHub gist when it would otherwise be retyped or re-derived, and
 link the gist from the issue, discussion, PR, or transcript that produced it.
-One-way capture: reusable **content** ships as a gist; a reusable
-**procedure** ships as a catalog skill via `sks-skill-authoring` instead.
+One-way capture: reusable **content** ships as a gist; a reusable **procedure**
+ships as a catalog skill via `sks-edit` references/skill-authoring/guide.md
+instead.
 
 ## When to Use
 
@@ -72,7 +72,8 @@ One-way capture: reusable **content** ships as a gist; a reusable
 ## Promotion path
 
 - A snippet reused across three or more sessions → author it as a catalog
-  skill (`sks-skill-authoring`), grounded in the gist's edit history.
+  skill (`sks-edit` references/skill-authoring/guide.md), grounded in the gist's
+  edit history.
 - A one-shot probe → discard instead; a gist nobody links is clutter.
 
 ## Pitfalls
@@ -98,7 +99,8 @@ gh gist view <id> --files      # file list matches what you published
 
 ## See also
 
-- `sks-skill-authoring` — promotion path when a snippet becomes a procedure.
+- `sks-edit` references/skill-authoring/guide.md — promotion path when a snippet
+becomes a procedure.
 - `sks-investigate` — common producer of reusable artifacts.
 - `sks-issue` / `sks-discussion` — where gists get linked.
 - `sks-bulk` — batch runs consuming a gist-hosted helper.

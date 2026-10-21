@@ -1,7 +1,7 @@
 ---
 name: sks-edit
-description: "Use when a write-phase change needs an authoring skill: identify which authoring convention applies to the files being edited, then apply the matched family skill for detail."
-version: 0.1.0
+description: "Use when a write-phase change needs authoring conventions: identify the matching family (TypeScript, Nix, skill authoring, sops secrets, Kubernetes manifests, plain English, wiki) and apply its fused rules in this skill."
+version: 0.2.0
 author: Automata
 license: Apache-2.0
 metadata:
@@ -15,84 +15,72 @@ metadata:
       - sks-dev
       - sks-commit
       - sks-pr
-      - sks-ts-authoring
-      - sks-nix-authoring
-      - sks-skill-authoring
-      - sks-sops-secrets-authoring
-      - sks-kubernetes-manifests-authoring
-      - sks-text-authoring
-      - sks-wiki
+      - sks-github-text-authoring
 platforms:
   - linux
   - macos
   - windows
 ---
 
-# sks-edit — Authoring-skill identification
+# sks-edit — Fused authoring conventions
 
-`sks-edit` is the fused umbrella for the individual authoring skills. During the
-write phase of any target-org repo (see `sks-dev`), match the files being edited
-to the row below; the matching row tells you which family skill to load for the
-detail. If several rows match, prefer the most specific. If a file is a TypeScript
-file on the NestJS server it is TypeScript-only — do not additionally apply Nix.
+`sks-edit` owns all authoring conventions for target-org repos: identification
+(match table below), family rule sets (each in `references/<family>/guide.md`),
+and the shared write conventions. During the write phase of any target-org repo
+(see `sks-dev`), match the files being edited to the table, then apply the
+matched family. If several rows match, prefer the most specific.
 
-## Identify the authoring skill (match table)
+## Identify the authoring family (match table)
 
-| File / trigger | Matches | Apply (detail) |
+| File / trigger | Family | Detail reference |
 | --- | --- | --- |
-| `.ts` / `.tsx` under `apps/` or a shared package | TypeScript authoring | `sks-ts-authoring` |
-| `.nix` in a flake / module / devshell | Nix authoring | `sks-nix-authoring` |
-| New skill / profile under `skills/` | Skill authoring | `sks-skill-authoring` |
-| `secrets/*.enc.*`, `*.enc.env`, `*.enc.conf` | sops secrets authoring | `sks-sops-secrets-authoring` |
-| Kubernetes manifests, `kustomization.yaml`, overlays, `Deployment` / `STS` | manifests authoring | `sks-kubernetes-manifests-authoring` |
-| Docs, runbooks, commit / PR / issue body (STE prose), error messages | plain English authoring | `sks-text-authoring` |
-| GitHub wiki pages (`Home.md`, `*.md` under `.wiki`) | wiki authoring | `sks-wiki` |
+| `.ts` / `.tsx` under `apps/` or a shared package | TypeScript | `references/typescript/guide.md` |
+| `.nix` in a flake / module / devshell | Nix | `references/nix/guide.md` |
+| New skill / profile under `skills/` | Skill authoring | `references/skill-authoring/guide.md` |
+| `secrets/*.enc.*`, `*.enc.env`, `*.enc.conf` | sops secrets | `references/sops-secrets/guide.md` |
+| Kubernetes manifests, `kustomization.yaml`, overlays, `Deployment` / `STS` | Kubernetes manifests | `references/kubernetes-manifests/guide.md` |
+| Docs, runbooks, commit / PR / issue body (STE prose), error messages | Plain English | `references/text/guide.md` |
+| GitHub wiki pages (`Home.md`, `*.md` under `.wiki`) | Wiki | `references/wiki/guide.md` |
 
-Do not double-apply: if a `.nix` module emits YAML (`sopsFile`, `secretGenerator`),
-it is Nix-only — the generated YAML is the manifests skill's surface, not a second
-edit. If a secret file is consumed by a Nix `sopsFile`, the Nix side is
-`sks-nix-authoring` and the secret edit is `sks-sops-secrets-authoring` — two
-distinct files, two distinct skills.
+Do not double-apply: if a `.nix` module emits YAML (`sopsFile`,
+`secretGenerator`), it is Nix-only — the generated YAML is the
+Kubernetes-manifests family's surface, not a second edit. If a secret file is
+consumed by a Nix `sopsFile`, the Nix side uses the Nix family and the secret
+edit uses the sops-secrets family — two distinct files, two distinct families.
 
-## Apply the matched skill
+## Apply the matched family
 
-1. Load the matched family skill (`sks-ts-authoring`, `sks-nix-authoring`,
-   `sks-skill-authoring`, `sks-sops-secrets-authoring`, `sks-kubernetes-manifests-authoring`,
-   `sks-text-authoring`, or `sks-wiki`). That skill's body and `references/` are the
-   detail source of truth.
-2. For `sks-ts-authoring`, `sks-nix-authoring`, `sks-sops-secrets-authoring`, and
-   `sks-kubernetes-manifests-authoring`, their `references/shikanime.md` is the org
-   convention entry point for concrete repo names and paths.
-3. Keep `sks-dev` gates (branch protection, jj bookmark tracking, push-to-origin,
-   PR draft→ready) in force for every authored change.
+1. Load the family guide from the table above; it and its sibling files under
+   the same `references/<family>/` directory are the detail source of truth.
+2. Org-convention entry points for concrete repo names and paths:
+   - `references/shikanime.md` — the shikanime org map (applies to all
+     families when operating in a shikanime repo).
+   - `references/typescript/cloud-pi-native-console.md` — the
+     cloud-pi-native/console TypeScript surface.
+3. Keep `sks-dev` gates (branch protection, jj bookmark tracking,
+   push-to-origin, PR draft→ready) in force for every authored change.
 
-## Write conventions
+## Write conventions (all families)
 
 - Plain English across the family; `#N` for standalone refs; commit↔PR parity.
-- For prose (docs, runbooks, commit / PR / issue bodies) apply `sks-text-authoring`
-  (ASD-STE100) — it owns sentence content; `sks-github-text-authoring` owns prose
-  mechanics (wrapping, `@` escaping, body transport).
-- Do NOT pass bodies inline via `--body "..."` — shell expansion mangles backticks
-  and `$`. Write the body to a file and pass `--body-file`.
+- For prose (docs, runbooks, commit / PR / issue bodies) the plain-English
+  family (ASD-STE100) owns sentence content; `sks-github-text-authoring` owns
+  prose mechanics (wrapping, `@` escaping, body transport).
+- Do NOT pass bodies inline via `--body "..."` — shell expansion mangles
+  backticks and `$`. Write the body to a file and pass `--body-file`.
 
 ## See also
 
-`ske-dev` (dev loop write phase), `sks-skill-authoring` (creating a new skill),
-`sks-github-text-authoring` (prose mechanics), `sks-commit`, `sks-pr`, `sks-context`
-(org conventions).
+`sks-dev` (dev loop write phase), `sks-github-text-authoring` (prose
+mechanics), `sks-commit`, `sks-pr`, `sks-context` (org conventions).
 
 ## Verification
 
-```bash
-# Routing smoke test: confirm sks-edit loads and the family skill resolves.
-# Each family skill owns its own verification block; sks-edit only routes.
-sks-edit (identification) — no standalone command; the matched family skill
-carries the check.
-```
+No standalone command: each family guide carries its own verification block;
+this skill only routes to it.
 
 ## evals routing
 
-The file `evals/evals.json` carries three prompts that grade the identification
-routing (two trigger phrasings + one edge case that must route elsewhere).
-Run with the repository's eval harness; the assertions check scope routing, not
-trivia.
+`evals/evals.json` carries three prompts grading identification routing (two
+trigger phrasings + one no-double-apply edge case). Run with the repository's
+eval harness; assertions check scope routing, not trivia.

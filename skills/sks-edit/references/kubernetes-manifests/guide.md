@@ -1,33 +1,3 @@
----
-name: sks-kubernetes-manifests-authoring
-description:
-  "Use when authoring or editing Kubernetes manifests or kustomize overlays in
-  a GitOps repo: placement, patches, generators, labels, probes, and
-  live-cluster cross-checks."
-version: 0.2.0
-author: Automata
-license: Apache-2.0
-metadata:
-  hermes:
-    tags:
-      - kubernetes
-      - kustomize
-      - flux
-      - gitops
-    related_skills:
-      - sks-delegate
-      - sks-commit
-      - sks-dev
-      - sks-nix-authoring
-      - sks-sops-secrets-authoring
-      - sks-pr-review
-      - sks-context
-platforms:
-  - linux
-  - macos
-  - windows
----
-
 # Kubernetes Manifests Authoring
 
 Author YAML manifests and kustomize overlays in a manifests-class repo
@@ -53,11 +23,11 @@ CRDs), read `references/shikanime.md` when operating in a shikanime org.
   recipes).
 
 Don't use for: the Nix side of a render flake — that is
-`sks-nix-authoring`. sops-encrypted `.enc.*` files — that is
-`sks-sops-secrets-authoring`. Workspace, commit, and PR mechanics —
-`sks-delegate` / `sks-commit` / `sks-pr`. Deep recipes for Gateway
-route audits, image digest pinning, and infrastructure migrations live in
-`sks-dev`'s `references/` behind explicit load conditions.
+`sks-edit` references/nix/guide.md. sops-encrypted `.enc.*` files — that is
+`sks-edit` references/sops-secrets/guide.md. Workspace, commit, and PR mechanics
+— `sks-delegate` / `sks-commit` / `sks-pr`. Deep recipes for Gateway route
+audits, image digest pinning, and infrastructure migrations live in `sks-dev`'s
+`references/` behind explicit load conditions.
 
 ## Procedure
 
@@ -161,7 +131,7 @@ route audits, image digest pinning, and infrastructure migrations live in
   delete it, never build on it.
 - **Do not hand-edit generated YAML** (e.g. sorting a rendered
   kustomization): fix the generator (Nix, Helm, or script) and re-render
-  (`sks-nix-authoring` for the Nix case).
+  (`sks-edit` references/nix/guide.md for the Nix case).
 - **Never run a bare whole-tree `nix fmt` in a mixed repo.** It rewrites
   every treefmt-owned file and can corrupt `.enc.*`; scope it to the Nix
   trees you touched.
@@ -187,9 +157,9 @@ interact with live state — the live cross-check passed
 
 ## See also
 
-- `sks-nix-authoring` — the Nix side of a render flake; the generated-YAML
+- `sks-edit` references/nix/guide.md — the Nix side of a render flake; the generated-YAML
   surface is this skill.
-- `sks-sops-secrets-authoring` — decrypt-editing the `.enc.*` sources.
+- `sks-edit` references/sops-secrets/guide.md — decrypt-editing the `.enc.*` sources.
 - `sks-dev` — branch/push/land loop; carries the route-audit,
   image-pinning, and migration references.
 - `sks-commit` / `sks-pr` — commit shape and PR envelope.

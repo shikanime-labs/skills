@@ -1,31 +1,3 @@
----
-name: sks-skill-authoring
-description:
-  "Use when creating a brand-new skill or profile for a skills
-  catalog: grounded body, evals, manifests, and ship through the dev workflow."
-version: 0.3.0
-author: Automata
-license: Apache-2.0
-metadata:
-  hermes:
-    tags:
-      - skill-authoring
-      - catalog
-      - evals
-    related_skills:
-      - sks-curate
-      - sks-selfupdate
-      - sks-dev
-      - sks-adversarial
-      - sks-commit
-      - sks-pr
-      - sks-context
-platforms:
-  - linux
-  - macos
-  - windows
----
-
 # Skill Authoring
 
 Create a NEW skill for the catalog: distill a real execution into a grounded

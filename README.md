@@ -120,9 +120,8 @@ specification, compatible with the
 | `sks-dev` | Use when running the local dev loop in a target org's repos: branching in a fresh jj workspace, push-to-origin, jj bookmark tracking, and landing via plain gh pr merge or direct push. |
 | `sks-discussion` | Use when opening an RFC Discussion in the target org as the pre-issue stage: converge on the problem, then derive the issue. |
 | `sks-discussion-triage` | Use when triaging an existing org discussion: category, body shape, Q&A answer, and conversion to an issue. |
-| `sks-wiki` | Use when documenting a project's technical knowledge in its GitHub wiki: enabling the wiki, seeding or syncing pages after a behavior-changing PR, and backfilling per-repo technical documentation. |
 | `sks-evolve` | Use when evolving the agent substrate without a hand-named target: mine experience for signals, evolve skills, profiles, memory, conventions, cron, or config, and repeat the fitness loop. |
-| `sks-edit` | Use when a write-phase change needs an authoring skill: identify which authoring convention applies to the files being edited, then apply the matched family skill for detail. |
+| `sks-edit` | Use when a write-phase change needs authoring conventions: identify the matching family (TypeScript, Nix, skill authoring, sops secrets, Kubernetes manifests, plain English, wiki) and apply its fused rules in this skill. |
 | `sks-gc` | Use when reclaiming resources leaked by agent workflows: dangling jj bookmarks, skill-created workspaces, leftover working-copy dirs, and stale merged branches on GitHub remotes. |
 | `sks-github-actions-audit` | Use when auditing CI health across an org's GitHub repos: failed workflow runs in the last 24h, filing new failures as issues, fastlaning trivial CI fixes. |
 | `sks-gist` | Use when a verified command, script, config, or output would be retyped or re-derived later — publish it as a gist for DRY reuse and link it from the artifact that motivated it. |
@@ -157,14 +156,8 @@ specification, compatible with the
 | `sks-restack` | Use when rebasing a jj stack onto moved main leaves conflicts — restack, then resolve each conflicted revision with edit/resolve until pushable. |
 | `sks-split` | Use when one jj commit or in-flight stack has grown multiple responsibilities and must be split into parallel sibling units or a parent/child stack, decided per unit pair by dependency. |
 | `sks-iterate` | Use when running a board-driven work loop across cards: pull the next card, apply the coordination ladder per card, stop on empty column, BLOCKED parking, or budget exhaustion. |
-| `sks-kubernetes-manifests-authoring` | Use when authoring or editing Kubernetes manifests or kustomize overlays in a GitOps repo: placement, patches, generators, labels, probes, and live-cluster cross-checks. |
-| `sks-nix-authoring` | Use when authoring or editing Nix in an org repo: nixfmt-sorted style, single-use let bindings, no explanatory comments, YAGNI on new options. |
-| `sks-text-authoring` | Use when writing or revising technical English — docs, runbooks, commits, PR and issue bodies, error messages — under ASD-STE100 Simplified Technical English rules. |
-| `sks-sops-secrets-authoring` | Use when editing sops-encrypted files: decrypt-and-edit workflow, re-encryption guards, and sops-nix secret plumbing. |
-| `sks-skill-authoring` | Use when creating a brand-new skill or profile for a skills catalog: grounded body, evals, manifests, and ship through the dev workflow. |
 | `sks-sudo` | Use when a gh operation must run under a different org identity: lock, switch to the agent account, confirm the flip, restore the operator. |
 | `sks-swarm` | Use when distributing a task across a cluster of agents over A2A — route by capability need, machine resource, and runner pressure, optionally in a disposable sks-adversarial sandbox. |
-| `sks-ts-authoring` | Use when writing or reviewing TypeScript: parse-don't-validate boundaries, cast-free explicit types, linear single-purpose functions, and schema-first inputs. |
 | `sks-repo` | Use when creating a new org repo: apply the 5-ruleset protection template, bootstrap the devlib devenv scaffold, and tag v0.1.0. |
 | `sks-triage` | Use when triaging a target org, repo, issue, or PR: sweep the scope for untriaged items, then assign every empty, context-derivable field — type, labels, assignee, fields. |
 | `sks-selfupdate` | Use when updating skills or profiles in a skills catalog: curate every skill by default (or named ones only), land through the dev workflow, and resync to local Hermes agents. |

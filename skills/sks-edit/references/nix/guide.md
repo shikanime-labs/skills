@@ -1,31 +1,3 @@
----
-name: sks-nix-authoring
-description:
-  "Use when authoring or editing Nix in an org repo: nixfmt-sorted style,
-  single-use let bindings, no explanatory comments, YAGNI on new options."
-version: 0.2.0
-author: Automata
-license: Apache-2.0
-metadata:
-  hermes:
-    tags:
-      - nix
-      - nixos
-      - nix-darwin
-      - style
-      - sorting
-    related_skills:
-      - sks-delegate
-      - sks-commit
-      - sks-dev
-      - sks-pr-review
-      - sks-context
-platforms:
-  - linux
-  - macos
-  - windows
----
-
 # Nix Authoring
 
 When editing Nix in an org repo, read `references/shikanime.md`
@@ -45,7 +17,7 @@ case the defaults already handle.
 
 Don't use for: editing the YAML/Kubernetes side of a manifests app — that is
 the manifests skill. Don't use for sops-encrypted secret files — that is
-`sks-sops-secrets-authoring` (and `nix fmt` must not touch `.enc.*`).
+`sks-edit` references/sops-secrets/guide.md.
 
 ## The defaults that already cover most things
 

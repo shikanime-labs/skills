@@ -95,11 +95,6 @@
         "path": "skills/sks-discussion-triage"
       },
       {
-        "name": "sks-wiki",
-        "description": "Use when documenting a project's technical knowledge in its GitHub wiki: enabling the wiki, seeding or syncing pages after a behavior-changing PR, and backfilling per-repo technical documentation.",
-        "path": "skills/sks-wiki"
-      },
-      {
         "name": "sks-evolve",
         "description": "Use when evolving the agent substrate without a hand-named target: mine experience for signals, evolve skills, profiles, memory, conventions, cron, or config, and repeat the fitness loop.",
         "path": "skills/sks-evolve"
@@ -180,11 +175,6 @@
         "path": "skills/sks-k8s-audit"
       },
       {
-        "name": "sks-kubernetes-manifests-authoring",
-        "description": "Use when authoring or editing Kubernetes manifests or kustomize overlays in a GitOps repo: placement, patches, generators, labels, probes, and live-cluster cross-checks.",
-        "path": "skills/sks-kubernetes-manifests-authoring"
-      },
-      {
         "name": "sks-land",
         "description": "Use when landing a target-org PR after reconciliation (sks-pr-resolve) and review approval gates pass; closes the linked issue deliberately.",
         "path": "skills/sks-land"
@@ -203,11 +193,6 @@
         "name": "sks-moderate",
         "description": "Use when hiding, unhiding, or moderating comments on GitHub issues, PRs, or discussions with the Hide feature: classifier choice, GraphQL mutations, verification.",
         "path": "skills/sks-moderate"
-      },
-      {
-        "name": "sks-nix-authoring",
-        "description": "Use when authoring or editing Nix in an org repo: nixfmt-sorted style, single-use let bindings, no explanatory comments, YAGNI on new options.",
-        "path": "skills/sks-nix-authoring"
       },
       {
         "name": "sks-pr",
@@ -275,16 +260,6 @@
         "path": "skills/sks-selfupdate"
       },
       {
-        "name": "sks-skill-authoring",
-        "description": "Use when creating a brand-new skill or profile for a skills catalog: grounded body, evals, manifests, and ship through the dev workflow.",
-        "path": "skills/sks-skill-authoring"
-      },
-      {
-        "name": "sks-sops-secrets-authoring",
-        "description": "Use when editing sops-encrypted files: decrypt-and-edit workflow, re-encryption guards, and sops-nix secret plumbing.",
-        "path": "skills/sks-sops-secrets-authoring"
-      },
-      {
         "name": "sks-split",
         "description": "Use when one jj commit or in-flight stack has grown multiple responsibilities and must be split into parallel sibling units or a parent/child stack, decided per unit pair by dependency.",
         "path": "skills/sks-split"
@@ -304,23 +279,13 @@
         "path": "skills/sks-swarm"
       },
       {
-        "name": "sks-text-authoring",
-        "description": "Use when writing or revising technical English \u2014 docs, runbooks, commits, PR and issue bodies, error messages \u2014 under ASD-STE100 Simplified Technical English rules.",
-        "path": "skills/sks-text-authoring"
-      },
-      {
         "name": "sks-triage",
         "description": "Use when triaging a target org, repo, issue, or PR: sweep the scope for untriaged items, then assign every empty, context-derivable field \u2014 type, labels, assignee, fields.",
         "path": "skills/sks-triage"
       },
       {
-        "name": "sks-ts-authoring",
-        "description": "Use when writing or reviewing TypeScript: parse-don't-validate boundaries, cast-free explicit types, linear single-purpose functions, and schema-first inputs.",
-        "path": "skills/sks-ts-authoring"
-      },
-      {
         "name": "sks-edit",
-        "description": "Use when a write-phase change needs an authoring skill: identify which authoring convention applies to the files being edited, then apply the matched family skill for detail.",
+        "description": "Use when a write-phase change needs authoring conventions: identify the matching family (TypeScript, Nix, skill authoring, sops secrets, Kubernetes manifests, plain English, wiki) and apply its fused rules in this skill.",
         "path": "skills/sks-edit"
       }
     ]

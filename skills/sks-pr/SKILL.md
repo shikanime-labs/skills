@@ -18,7 +18,6 @@ metadata:
       - sks-pr-resolve
       - sks-pr-ready
       - sks-land
-      - sks-wiki
       - sks-context
 platforms:
   - linux
@@ -259,7 +258,7 @@ re-derive here.
 - **Direct landing**: user authorizing "push to main" / "land it" overrides the
   PR path — push directly, don't open a PR.
 - **Docs follow-up**: if this PR changes user-facing behavior or adds a feature,
-  plan a `sks-wiki` update (repo wiki) after merge.
+  plan a `sks-edit` (`references/wiki/guide.md`) wiki update after merge.
 
 ## Verification
 

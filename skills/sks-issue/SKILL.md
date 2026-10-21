@@ -13,7 +13,6 @@ metadata:
       - github
       - issues
     related_skills:
-      - sks-wiki
       - sks-issue-refine
       - sks-pr
       - sks-context
@@ -169,4 +168,4 @@ gates).
 mechanics), `sks-discussion`, `sks-pr` (links
 back via Development metadata), `sks-issue-refine`, `sks-issue-triage` (run
 after creation), `sks-gist` (verified snippets too long for a comment),
-`sks-tldr` (status word closes the issue's ledger), `sks-wiki`.
+`sks-tldr` (status word closes the issue's ledger), `sks-edit` references/wiki/guide.md.

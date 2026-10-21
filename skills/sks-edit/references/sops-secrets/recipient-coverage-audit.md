@@ -1,6 +1,6 @@
 # Recipient coverage audit for a shared secret file
 
-Loaded by `sks-sops-secrets-authoring` when verifying a SHARED `.enc.*`
+Loaded by `sks-edit` references/sops-secrets/guide.md when verifying a SHARED `.enc.*`
 file lists every consumer host's recipient. The per-file checks (decrypts,
 recipient set present) live in the main flow.
 

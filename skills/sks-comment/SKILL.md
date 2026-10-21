@@ -38,7 +38,7 @@ Boundary map:
 
 - Prose mechanics (no-wrap, `@` escaping, `--body-file` transport):
   `sks-github-text-authoring`; sentence content (STE):
-  `sks-text-authoring`.
+  `sks-edit` references/text/guide.md.
 - Bodies are owned by their surface skills: `sks-issue`, `sks-pr`,
   `sks-discussion` — this skill covers comments, never a body.
 - Review output (severity labels, inline anchors, one review per head):
@@ -152,8 +152,8 @@ references.
 ## See also
 
 - `sks-moderate` — hiding/unhiding; the maintenance pass lands here.
-- `sks-github-text-authoring` — prose mechanics; `sks-text-authoring` —
-  sentence content under STE.
+- `sks-github-text-authoring` — prose mechanics; `sks-edit`
+references/text/guide.md — sentence content under STE.
 - `sks-pr-review` — review verdicts and inline anchors on the diff.
 - `sks-pr-resolve` — resolving review threads after comments land.
 - `sks-issue`, `sks-discussion`, `sks-pr` — the surface bodies.

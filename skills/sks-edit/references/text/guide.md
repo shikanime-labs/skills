@@ -1,32 +1,3 @@
----
-name: sks-text-authoring
-description:
-  "Use when writing or revising technical English — docs, runbooks, commits,
-  PR and issue bodies, error messages — under ASD-STE100 Simplified Technical
-  English rules."
-version: 0.1.0
-author: Automata
-license: Apache-2.0
-metadata:
-  hermes:
-    tags:
-      - writing
-      - documentation
-      - asd-ste100
-    related_skills:
-      - sks-comment
-      - sks-github-text-authoring
-      - sks-commit
-      - sks-pr
-      - sks-wiki
-      - sks-issue
-      - sks-context
-platforms:
-  - linux
-  - macos
-  - windows
----
-
 # Plain English
 
 Write technical English under ASD-STE100 Simplified Technical English. STE
@@ -171,4 +142,5 @@ the self-check findings fixed.
 
 - `sks-github-text-authoring` — prose mechanics for GitHub text.
 - `sks-commit`, `sks-pr`, `sks-issue` — the surfaces this style feeds.
-- `sks-wiki` — repo-wiki workflow that carries the final text.
+- `sks-edit` references/wiki/guide.md — repo-wiki workflow that carries the
+final text.

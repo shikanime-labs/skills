@@ -1,31 +1,3 @@
----
-name: sks-sops-secrets-authoring
-description:
-  "Use when editing sops-encrypted files: decrypt-and-edit workflow,
-  re-encryption guards, and sops-nix secret plumbing."
-version: 0.3.0
-author: Automata
-license: Apache-2.0
-metadata:
-  hermes:
-    tags:
-      - sops
-      - sops-nix
-      - secrets
-      - encrypted-yaml
-    related_skills:
-      - sks-commit
-      - sks-dev
-      - sks-pr
-      - sks-pr-review
-      - sks-delegate
-      - sks-context
-platforms:
-  - linux
-  - macos
-  - windows
----
-
 # sops Secret Editing
 
 Edit sops-encrypted files (`*.enc.yaml`, `*.enc.env`, `*.enc.conf`) in the
