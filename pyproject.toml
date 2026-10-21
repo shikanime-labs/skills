@@ -3,13 +3,6 @@ name = "shikanime-skills"
 version = "0.0.0"
 requires-python = ">=3.11"
 
-[tool.ruff]
-line-length = 88
-extend-exclude = ["profiles"]
-
-[tool.ruff.lint]
-extend-ignore = ["EXE005"]
-
 [tool.ruff.lint.per-file-ignores]
 # nix-shell dependency shebangs are line 2 by necessity
 "skills/*/scripts/*.py" = ["EXE005"]
