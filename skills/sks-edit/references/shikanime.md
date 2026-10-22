@@ -1,13 +1,8 @@
 # sks-edit — Shikanime org conventions
 
 Org map for the fused `sks-edit` skill when operating in a shikanime org repo.
-Concrete repos live at `~/Source/Repos/github.com/shikanime-labs/<repo>` (see
-`sks-context` for the ecosystem map).
-
-## Commit conventions
-
-Commits carry the org co-author trailer
-`Co-authored-by: Automata <automata@shikanime.studio>` (`sks-commit`).
+Shared environment facts live in `sks-context`: org identity, checkout paths,
+commit trailers, remote split, toolchain. Do not restate them here.
 
 ## Paths
 
@@ -27,7 +22,8 @@ Commits carry the org co-author trailer
 | Plain English | `text/guide.md` | — |
 
 Load this file when a write-phase change touches a shikanime org repo and you
-need the concrete repo names, paths, or the family-to-reference routing.
+need the concrete repo names or the family-to-reference routing. Load
+`sks-context` for the ecosystem map.
 
 - Working doctrine: long-term solutions over short-term fixes — fix the root
   cause, never land a tactical patch that accrues debt. No hard SLA
