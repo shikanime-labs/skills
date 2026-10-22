@@ -14,3 +14,7 @@ shikanime orgs (`shikanime-labs`, `shikanime-studio`):
   body — the defect the mandatory-notes gate exists to prevent).
 - `machines` cuts releases the same way (`v1.0.0`); `manifests` and
   `cloud-pi-native-core` ship no releases — do not cut there.
+- Working doctrine: long-term solutions over short-term fixes — fix the root
+  cause, never land a tactical patch that accrues debt. No hard SLA
+  constraints: correctness and durability outrank turnaround time; take the
+  time to do it properly.

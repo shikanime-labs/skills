@@ -14,3 +14,7 @@ Shikanime-org specifics for `sks-commit`:
 - Gitlint-strict repo example: `manifests` enforces a required **body** (B6
   "body message is missing") and a `Signed-off-by` (CC1); a commit with both
   and a full-URL `Related:` passes.
+- Working doctrine: long-term solutions over short-term fixes — fix the root
+  cause, never land a tactical patch that accrues debt. No hard SLA
+  constraints: correctness and durability outrank turnaround time; take the
+  time to do it properly.

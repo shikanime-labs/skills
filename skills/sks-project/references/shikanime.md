@@ -32,3 +32,8 @@ per-team board, the `shikanime` user id
 otherwise. The copy inherits its five views with real kanban grouping (the
 API cannot set `verticalGroupByFields` on a fresh project), the
 Priority/Size fields, and the lifecycle Status vocabulary.
+
+- Working doctrine: long-term solutions over short-term fixes — fix the root
+  cause, never land a tactical patch that accrues debt. No hard SLA
+  constraints: correctness and durability outrank turnaround time; take the
+  time to do it properly.

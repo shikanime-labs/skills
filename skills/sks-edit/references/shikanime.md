@@ -28,3 +28,8 @@ Commits carry the org co-author trailer
 
 Load this file when a write-phase change touches a shikanime org repo and you
 need the concrete repo names, paths, or the family-to-reference routing.
+
+- Working doctrine: long-term solutions over short-term fixes — fix the root
+  cause, never land a tactical patch that accrues debt. No hard SLA
+  constraints: correctness and durability outrank turnaround time; take the
+  time to do it properly.

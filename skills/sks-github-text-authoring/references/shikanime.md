@@ -12,3 +12,7 @@
   trailer: `Co-authored-by: Automata <automata@shikanime.studio>`.
 - DCO: gitlint CC1 enforces `Signed-off-by` on the `manifests` and `skills`
   repos; hooks always win over the defaults.
+- Working doctrine: long-term solutions over short-term fixes — fix the root
+  cause, never land a tactical patch that accrues debt. No hard SLA
+  constraints: correctness and durability outrank turnaround time; take the
+  time to do it properly.

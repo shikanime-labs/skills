@@ -26,3 +26,8 @@ and shared tooling.
 
 English for every triage artifact: sweep reports, comments, and any body
 edits. Keep repo values (labels, milestones, field options) exactly as stored.
+
+- Working doctrine: long-term solutions over short-term fixes — fix the root
+  cause, never land a tactical patch that accrues debt. No hard SLA
+  constraints: correctness and durability outrank turnaround time; take the
+  time to do it properly.
