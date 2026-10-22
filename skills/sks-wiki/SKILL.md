@@ -4,7 +4,7 @@ description:
   Use when documenting a project's technical knowledge in its GitHub wiki:
   enabling the wiki, seeding or syncing pages after a behavior-changing PR,
   and backfilling per-repo technical documentation.
-version: 0.4.0
+version: 0.4.1
 author: Automata
 license: Apache-2.0
 metadata:
@@ -51,7 +51,10 @@ of duplicating.
 
 1. **Wiki is the per-repo knowledge base.** Technical documentation lives in
    the target repo's wiki, not in a central skill or a third repo. Per-repo
-   detail stays with the repo it describes.
+   detail stays with the repo it describes. Scope is strictly SELF: pages
+   document THIS repo's own internals — never another repo's automation,
+   jobs, or machinery (user-corrected). Cross-repo topics belong to their
+   own repo's docs; at most link them.
 2. **One UI-only gate.** The wiki flag is API-settable (`gh repo edit
    --enable-wiki`), but the FIRST page can only be created in the web UI — no
    REST or GraphQL endpoint covers page creation, and the `.wiki.git` remote
