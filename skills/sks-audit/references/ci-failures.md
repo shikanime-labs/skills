@@ -1,4 +1,4 @@
-# Shikanime scope — sks-github-actions-audit
+# Shikanime targets — CI failures
 
 - Orgs: `shikanime-labs` and `shikanime-studio`.
 - Failures file in the repo where they failed; assignee `yorha-operator`

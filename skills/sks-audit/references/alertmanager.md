@@ -1,4 +1,4 @@
-# Shikanime targets — sks-grafana-audit
+# Shikanime targets — alertmanager alerts
 
 - Orgs: `shikanime-labs` and `shikanime-studio`.
 - Filing repo for fleet alerts: `shikanime-labs/manifests`.
