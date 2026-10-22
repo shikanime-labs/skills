@@ -1,31 +1,3 @@
----
-name: sks-github-text-authoring
-description:
-  "Use when writing any GitHub text in the target org's repos — commit message,
-  issue or PR body, discussion RFC, review or issue comment. Owns all shared
-  prose rules; surface skills handle procedure."
-version: 0.2.1
-author: Automata
-license: Apache-2.0
-metadata:
-  hermes:
-    tags:
-      - github
-      - prose
-    related_skills:
-      - sks-commit
-      - sks-comment
-      - sks-issue
-      - sks-pr
-      - sks-discussion
-      - sks-dev
-      - sks-context
-platforms:
-  - linux
-  - macos
-  - windows
----
-
 # GitHub Text Authoring
 
 Single home for the prose rules every GitHub surface repeats: body
