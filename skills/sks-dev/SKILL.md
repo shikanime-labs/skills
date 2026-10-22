@@ -246,6 +246,15 @@ NEVER pass bodies inline via `--body "..."` — shell expansion mangles
 backticks/`$`. Write to a file, pass `--body-file`, then re-read the stored
 body.
 
+## Authoring-skill identification (write phase)
+
+When the unit writes code or docs, first identify the authoring skill that
+matches the files being edited. `sks-edit` is the fused umbrella for all
+authoring families and carries the identification logic (match table,
+when-to-match, no-double-apply rules) plus each family's rule set under its
+`references/<family>/guide.md` — load `sks-edit` and apply the matched family
+for detail.
+
 ## Done is proven, not asserted
 
 "`pushed` / `landed` / `merged`" are claims until verified against real
@@ -305,7 +314,7 @@ Deep recipes live in `references/`; read the file when its condition fires:
 - `references/pitfalls.md` — dual-clone discipline (skill mirror vs the
   org repo root), dirty working copies, kustomize generator-not-found,
   two `patches:` blocks, alias-in-prose, body wrapping.
-- `sks-sops-secrets-authoring/references/sops-manifests.md` —
+- `skills/sks-edit/references/sops-secrets/sops-manifests.md` —
   decrypt-editing sops files for Flux: recipient set, unwrapped binary,
   INI store traps, extension-driven format, live-config seeding.
 - `references/route-audit.md` — auditing Gateway routes: hostname dupes,
@@ -351,7 +360,5 @@ jj status && jj log -r @ -T 'bookmarks ++ " "'
 cluster), `sks-pr-review` (phase 5), `sks-pr-ready` (draft→ready flip
 before landing), `ponytail-review` (over-engineering
 lens), `sks-tldr` (end-of-loop block closes the loop).
-Authoring-convention skills apply during the write phase:
-`sks-ts-authoring` (TypeScript), `sks-nix-authoring` (Nix),
-`sks-skill-authoring` (skills), `sks-sops-secrets-authoring` (sops
-secrets).
+Authoring conventions apply during the write phase via the fused `sks-edit`
+skill (identification + all family rule sets in one skill).

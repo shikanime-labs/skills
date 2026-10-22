@@ -18,7 +18,6 @@ metadata:
       - sks-pr-review
       - sks-pr
       - sks-land
-      - sks-wiki
       - sks-issue
       - sks-investigate
       - sks-context
@@ -151,7 +150,8 @@ Readiness verdict:
 - Conversations: every thread resolved with one-line rationale, or list needing
   author decision.
 - CI: green / pending / failing.
-- Docs: flag ops/architecture changes for post-land `sks-wiki` update.
+- Docs: flag ops/architecture changes for post-land `sks-edit`
+references/wiki/guide.md update.
 
 Then stop — merging is `sks-land`'s job.
 

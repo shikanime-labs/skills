@@ -16,7 +16,6 @@ metadata:
       - sks-dev
       - sks-pr
       - sks-land
-      - sks-skill-authoring
       - sks-context
 platforms:
   - linux

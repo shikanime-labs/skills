@@ -17,7 +17,6 @@ metadata:
     related_skills:
       - sks-issue
       - sks-fastlane
-      - sks-kubernetes-manifests-authoring
       - sks-grafana-audit
       - sks-context
 platforms:
@@ -99,6 +98,6 @@ objects listed, PRs left open.
 
 - `sks-issue` — issue body shape for filed failures.
 - `sks-fastlane` — the full eligibility gate referenced by step 5.
-- `sks-kubernetes-manifests-authoring` — overlay/patch conventions when a fix
-  is authored.
+- `sks-edit` references/kubernetes-manifests/guide.md — overlay/patch
+conventions when a fix is authored.
 - `sks-grafana-audit` — the companion alerting audit.
