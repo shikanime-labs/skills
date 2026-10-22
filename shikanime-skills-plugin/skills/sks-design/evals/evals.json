@@ -1,0 +1,45 @@
+{
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "Names the surface archetype, extracts tokens from the Ko-fi/Vgen/Booth references, themes the existing component system, runs the anti-slop audit, captures desktop and mobile screenshots, and records the direction in DESIGN.md.",
+      "files": [],
+      "prompt": "Redesign the Hikari landing page to feel less corporate and more playful, like Ko-fi, Vgen, or Booth.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-design'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body names the surface archetypes Monitor, Operate, Compare, Configure, Decide/Learn, Explore, and Command/Inspect",
+        "Body requires extracting 6-10 tokens from a reference before writing CSS",
+        "Body requires screenshot verification at 1440 desktop and 390 mobile, light and dark",
+        "Body forbids a hero plus three cards on a non-Decide surface"
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "Routes the dashboard to the Monitor archetype, keeps it dense, themes the real component system, covers loading/empty/error states, and verifies the rendered screenshots.",
+      "files": [],
+      "prompt": "Build a dense dashboard for monitoring live trades.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-design'",
+        "Body defines Monitor as a dense surface with rows, sparklines, and status pills",
+        "Body requires loading, empty, error, and happy-path states for data surfaces",
+        "Body requires reading screenshots instead of relying on a DOM snapshot",
+        "Body requires the project's real component library and theme tokens instead of a parallel CSS system"
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "Declines the backend refactor as outside design scope and routes it to sks-dev and `sks-edit` references/typescript/guide.md.",
+      "files": [],
+      "prompt": "Refactor the auth service to parse JWTs with zod.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-design'",
+        "Body scopes the skill to visual design and excludes backend work, pure refactors, and copy-only edits",
+        "Body routes code work to sks-dev and prose to `sks-edit` references/text/guide.md",
+        "Body does not teach JWT or zod parsing"
+      ]
+    }
+  ],
+  "skill_name": "sks-design"
+}

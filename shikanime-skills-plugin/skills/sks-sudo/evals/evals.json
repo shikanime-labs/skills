@@ -1,0 +1,41 @@
+{
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "The skill takes the identity lock, records the active identity, switches with an explicit user and hostname, verifies the flip with gh api user, runs the reads, restores the operator identity immediately, and verifies the restore with gh auth status.",
+      "files": [],
+      "prompt": "Run this batch of gh API reads as the automata agent account, then put everything back the way it was.",
+      "assertions": [
+        "Frontmatter 'name' equals the directory basename 'sks-sudo'",
+        "Description starts with 'Use when' and is \u003c= 200 characters",
+        "Body contains at least one '##' heading",
+        "Body acquires the identity lock before switching",
+        "Body verifies the flip with 'gh api user' before any dependent command",
+        "Body restores the default identity immediately after the scoped operation and verifies with 'gh auth status'"
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "gh has no GH_USER account selection; gh auth switch under the identity lock is the mechanism, and per-account GH_CONFIG_DIR dirs would drop the lock but need an interactive gh auth login per account.",
+      "files": [],
+      "prompt": "Why can't I just export GH_USER to make this script use the other gh account?",
+      "assertions": [
+        "Body states gh has no GH_USER account selection",
+        "Body names gh auth switch as the identity-switch mechanism under the lock",
+        "Body states a per-account GH_CONFIG_DIR dir needs an interactive gh auth login per account"
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "Out of scope: gh auth switch changes gh's active account only and does not touch git or jj commit identity; the skill declines that part and points at VCS config.",
+      "files": [],
+      "prompt": "Switch us over and set the git commit author to the agent account for this repo.",
+      "assertions": [
+        "Frontmatter 'name' equals the directory basename 'sks-sudo'",
+        "license field is 'Apache-2.0'",
+        "Body states gh auth switch does not change git or jj commit identity"
+      ]
+    }
+  ],
+  "skill_name": "sks-sudo"
+}

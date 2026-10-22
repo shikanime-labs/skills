@@ -1,0 +1,26 @@
+# Shikanime org conventions
+
+- Scope: `shikanime-labs/*` / `shikanime-studio/*`.
+- Mandatory approver (`$APPROVER` in Gate 3): `yorha-operator`. Locally it is
+  a second `gh` account — `gh auth switch -h github.com -u yorha-automata`
+  posts as `yorha-operator`; switch back to `shikanime` immediately after and
+  confirm with `gh auth status --hostname github.com`. Request the review with
+  `gh pr edit <M> -R "$R" --add-reviewer yorha-operator`. The
+  switch-verify-restore sequence follows `sks-sudo`.
+- Self-approval is blocked by branch protection on e.g.
+  `shikanime-labs/skills` and `nix-containers`; there, a verbal `lgtm` from
+  the operator (the user who owns the approver account) satisfies Gate 3,
+  landed via `gh pr merge --squash --admin`.
+- Required merge trailer: `Co-authored-by: Automata
+  <automata@shikanime.studio>` (alongside `Signed-off-by`); Gate 5's trailer
+  check matches it.
+- Branch protection requires linear history + signed commits; squash-merge
+  only.
+- Infra deploy step for machine-config repos: `nixos-rebuild switch`
+  (Flux reconcile for manifest repos).
+- The `gh stack` extension is removed in the org; plain `gh pr` for stacking
+  and landing alike.
+- Working doctrine: long-term solutions over short-term fixes — fix the root
+  cause, never land a tactical patch that accrues debt. No hard SLA
+  constraints: correctness and durability outrank turnaround time; take the
+  time to do it properly.

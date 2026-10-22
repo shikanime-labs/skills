@@ -1,0 +1,2 @@
+# Scanner: exclude adversarial eval fixtures from the install gate
+evals/

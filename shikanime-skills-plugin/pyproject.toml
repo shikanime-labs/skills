@@ -1,0 +1,13 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "shikanime-skills-plugin"
+version = "0.1.0"
+requires-python = ">=3.11"
+description = "Hermes plugin bundling the shikanime-labs/skills catalog."
+dependencies = ["hermes-agent", "PyYAML"]
+
+[tool.setuptools.packages.find]
+where = ["."]

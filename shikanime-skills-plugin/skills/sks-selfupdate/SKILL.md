@@ -1,0 +1,151 @@
+---
+name: sks-selfupdate
+description:
+  "Use when updating skills or profiles in a skills catalog:
+  curate every skill by default (or named ones only), land through the dev
+  workflow, and resync to local Hermes agents."
+version: 0.3.0
+author: Automata
+license: Apache-2.0
+metadata:
+  hermes:
+    tags:
+      - skill-update
+      - curation
+      - resync
+      - workflow
+    related_skills:
+      - sks-curate
+      - sks-dev
+      - sks-delegate
+      - sks-commit
+      - sks-pr
+      - sks-land
+      - sks-context
+platforms:
+  - linux
+  - macos
+  - windows
+---
+
+# Skill Update
+
+End-to-end update of the catalog: curate each skill and profile
+(`sks-curate`), ship the improvements through the dev loop, and resync the
+landed skills to local agents. This is the orchestration shell —
+curation and shipping delegate to their owning skills.
+
+Read `references/shikanime.md` when operating in a shikanime org
+(the org's skills catalog repo); family list, commit trailer, and resync
+tap live there.
+
+**Default scope: every skill and profile in the catalog.** Only narrow
+when the user explicitly lists skills ("update sks-commit only"). "Update the
+catalog / all skills / sync everything" all mean the full pass. Never silently
+curate one skill when the user asked for all, and never silently expand to all
+when the user named one.
+
+## When to Use
+
+- "Update / improve / resync the catalog" or "all skills" — full pass.
+- "Update / improve / resync <skill>" — that skill only (or a named subset).
+- "Ship skill improvements and pull them into my local agents."
+- "Run the skill maintenance loop after a batch of corrections."
+
+## Procedure
+
+1. **Scope.** Decide the target set:
+   - Full pass (default): enumerate the catalog from `README.md` (or the
+     `skills/` tree) — every catalog `SKILL.md` and `profiles/<name>/`
+     distribution (families per `references/shikanime.md`).
+   - Explicit subset: only the skills the user named.
+   Record the set. Do not skip skills silently; a skipped one is a reported
+   reason, not an omission.
+2. **Audit every skill in scope.** For each, run an automated check and record
+   the defects (these are the evidence the curation acts on):
+   - `SKILL.md` YAML frontmatter parses; `name` equals the directory.
+   - Description is an imperative trigger (`Use when …` / `À utiliser quand`)
+     under 200 characters.
+   - `evals/evals.json` exists, parses, `skill_name` matches, and assertions
+     are self-consistent with the body.
+   - `.skillignore` present (so the scanner skips `evals/`).
+   - No lines over 80 columns (MD013); run `rumdl check` / `nix fmt` to catch
+     it.
+   - Body within budget (~500 lines / ~5,000 tokens).
+   - Profile in scope: `distribution.yaml` parses and `SOUL.md` is present.
+     Curate `SOUL.md` with the body: persona prose follows the same MD013
+     wrap as every other file; stale persona and token bloat are curated out
+     the same as a skill body.
+3. **Curate per skill.** Load `sks-curate`; apply improvement/compression/
+   update to each audited defect, and refresh its `evals/evals.json`. Record
+   the baseline and before/after delta for each. Do not ship un-curated edits;
+   the curation pass is what keeps the catalog lean.
+4. **Ship through the dev workflow** — Follow `sks-dev` for the
+   branch/commit/PR/land path:
+   - Isolate in a fresh workspace at `main@origin` (`sks-delegate`) so foreign
+     WIP is never folded in.
+   - Commit per `sks-commit` (plain-English title, org co-author trailer,
+     `Signed-off-by:`; AGENTS.md repos add labeled `Design:`/`Related:` body).
+   - Push to origin, open the PR per `sks-pr` (`--head <org>:<branch>`,
+     base `main`; Development link per `sks-pr-triage` step 5). A full pass is
+     one atomic PR
+     carrying the whole curated set (one objective, reviewed in one sitting);
+     split into stacked PRs only when the change set grows past a comfortable
+     review size.
+   - Run `sks-pr-review` before requesting merge, then land per `sks-land`
+     (or `sks-dev` landing rules). Verify the merge:
+     `gh pr view <N> --json state,url`.
+5. **Resync to local agents** — After the change lands on `main`, pull
+   every updated skill into local agents so future sessions load the new body:
+
+   - Use your harness's skill-manager update. Standard registry path:
+     `npx skills@<version> add shikanime-labs/skills -g` — pin the version
+     (`npm view skills version`), never resolve an unpinned package.
+     Harness-specific tap, manual copy, and profile installs (Hermes):
+     `references/hermes-resync.md`.
+
+   - Verify the resync: list the installed skills and diff one against the
+     repo (or read the stored file) to confirm the new body landed.
+
+6. **Manual user acceptance (deployment gate).** A green merge plus a
+   successful resync is a claim, not a verified outcome. After the resync
+   lands in local agents, surface the deployed change for inspection — the
+   stored body of each updated skill (a diff or file read) — and ask the user
+   to validate it behaves as asked. Do NOT report the update complete on
+   merge/resync alone; only the user can confirm the deployed behavior. If
+   the user rejects, treat it as a reported defect and loop back to step 3
+   (curate) or step 4 (re-ship), then re-deploy and re-request acceptance.
+
+## Resync pitfalls
+
+- **Harness-specific traps** (bundled vs hub-installed skills, profile-aware
+  paths): `references/hermes-resync.md`.
+- **Resync is only meaningful after landing.** Installing a branch's skill
+  into local agents before the PR merges loads un-reviewed content. Land
+  first, resync second.
+- **Manual acceptance after deployment.** Green merge + successful resync is
+  not the end state. Surface the deployed change (the stored body) and wait
+  for explicit user acceptance before reporting the update complete;
+  automated gates cannot confirm the change behaves as asked.
+- **Audit drives the pass, not taste.** Curate what the audit flags; leave
+  healthy skills untouched so the full pass stays a small, reviewable diff
+  rather than a rewrite of everything.
+
+## Verification
+
+Complete when every in-scope skill or profile is curated (delta reported
+per skill), merged to `main` (`gh pr view <N> --json state` = `MERGED`),
+local agents
+load the new bodies (installed-skill list + content check), **and the user has
+explicitly accepted the deployed change** (manual acceptance, step 6). Any
+unmet step is a blocker — say `BLOCKED:` with evidence and recovery, never
+silently skip. After a curation wave lands, run the board audit once
+(`sks-project`): every merged card reads `Done`, stragglers get corrected.
+
+## See also
+
+- `sks-curate` — the per-skill curation pass (step 3).
+- `sks-dev` — the shipping loop (step 4).
+- `sks-delegate`, `sks-commit`, `sks-pr`, `sks-land` — the pieces of
+  step 4.
+- `hermes-agent` — local agent configuration and skills management.

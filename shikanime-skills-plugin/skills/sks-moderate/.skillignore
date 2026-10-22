@@ -1,0 +1,3 @@
+# Scanner: exclude eval fixtures (intentional edge-case prompts).
+# SKILL.md is always scanned and cannot be ignored.
+evals/

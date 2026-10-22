@@ -1,0 +1,41 @@
+{
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "Verifies green main at the remote tip, bumps the version fields of skills.json and package.json in a landed commit, then creates the signed annotated tag vX.Y.Z and pushes it from the main checkout via plain git, publishes the release with mined notes via --notes-file, verifies body length \u003e 0.",
+      "files": [],
+      "prompt": "main is green and 158 commits ahead of v2.0.0, mostly new skills. Cut v2.1.0.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-release'",
+        "Body bumps the version fields of skills.json and package.json in a landed commit BEFORE tagging",
+        "Body creates a signed annotated tag (git tag -s) and pushes it via plain git from the main checkout, citing the jj pre_receive failure",
+        "Body publishes notes via --notes-file with a mandatory body-length readback gate",
+        "Body picks minor for new skills/features, patch for fixes only"
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "Cuts vX.Y.Z-rc.N with --prerelease, iterates N per validation round, promotes by running the full procedure at the final version (fresh tag and release, never editing the RC).",
+      "files": [],
+      "prompt": "Ship a release candidate so we can validate the catalog before the final cut.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-release'",
+        "Body uses the RC tag shape vX.Y.Z-rc.N and gh release create --prerelease",
+        "Body warns an RC without --prerelease hijacks Latest",
+        "Body promotes to the final cut as a fresh tag and release, never by editing the published RC"
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "Routes elsewhere: milestone provisioning and item assignment belong to sks-milestone; this skill only cuts the catalog release and hands milestone close-off to sks-milestone.",
+      "files": [],
+      "prompt": "Create the 26.11 milestones across our Nix repos before the release.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-release'",
+        "Body's When to Use excludes milestone provisioning and assigns it to sks-milestone",
+        "Body hands milestone close-off to sks-milestone by name instead of restating it"
+      ]
+    }
+  ],
+  "skill_name": "sks-release"
+}

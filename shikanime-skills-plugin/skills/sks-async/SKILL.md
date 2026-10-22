@@ -1,0 +1,112 @@
+---
+name: sks-async
+description:
+  Use when splitting multi-unit work into parallel, isolated jj workspaces
+  (depth-tree fan-out) and landing as independent plain `gh pr` merges.
+version: 0.1.1
+author: Automata
+license: Apache-2.0
+metadata:
+  hermes:
+    tags:
+      - jj
+      - workspaces
+      - parallel
+      - stacked-prs
+      - gh-stack
+      - delegation
+      - github
+    related_skills:
+      - sks-dev
+      - sks-pr
+      - sks-context
+platforms:
+  - linux
+  - macos
+  - windows
+---
+
+# Parallel Streams
+
+Decompose a multi-unit change into parallel, isolated streams; land each as an
+independent PR or stacked chain. Distills unlazy depth-tree delegation fan-out
+onto jj's commit DAG as plain `gh pr` merges. Core splitting component of
+`sks-dev`.
+
+Org specifics live in `references/`: `references/shikanime.md` when operating
+in a shikanime org (co-author trailer, remote split);
+`references/cloud-pi-native.md` when working in the cloud-pi-native/console
+repository (French artifacts, co-author trailer, draft PRs with `Refs #N`).
+
+## When to Use
+
+- Several units, some independent.
+- Parallel agents (delegation fan-out) must not share a working copy.
+- Shape: B needs A → depth (stack); C needs A AND B → join.
+
+## Procedure
+
+1. **Tree before work** — decompose vs issue ledger; record tree in plan/`todo`
+   with leaf gates fixed BEFORE fan-out (contracts before delegation).
+2. **Fan out** — ALWAYS a NEW jj workspace; never an existing one (default is
+   for trunk observation). One workspace per unit, rooted at trunk; name
+   `<repo-name>.<unit>` (repo-global, dot-qualified):
+
+   ```bash
+   jj workspace add ../<repo-name>.<unit> --name <repo-name>.<unit>
+   ```
+
+   New workspace's working copy is a child of `@`; for depth > 1 root with
+   `jj new <parent>`.
+3. **Work each stream** in its dir; commit per `sks-commit` — every commit
+   carries the org co-author trailer (org value per
+   `references/shikanime.md`):
+
+   ```bash
+   jj describe -m "<subject>" -m "<co-author trailer>"
+   ```
+
+4. **Land** (push to `origin`, PRs with `--head <org>:<branch>`; see
+   `sks-dev`):
+   - Independent unit → own bookmark + standalone PR (or single-member stack).
+
+- Dependent chain → one bookmark per link; land links in dependency order
+  (base first). Open each PR per `sks-pr` (body via `--body-file`, never
+  inline `--body`).
+- PR↔issue linkage per `sks-pr`: Development metadata
+  (`addCloseIssueReferences`, `sks-pr-triage` step 5) — no body keyword.
+- Before opening each PR, run the `sks-pr` step 2b duplicate/stack check — an
+  existing open PR covering the unit means push to it or stack on it, never a
+  second PR for the same change.
+
+5. **Verify bottom-up** — each leaf's checks run IN its workspace; dispatcher
+   re-runs them (subagent self-reports aren't evidence). Retire with
+   `jj workspace forget <name>`; refresh idle with `jj workspace update-stale`.
+
+## Fan-out via delegation
+
+Each child: workspace path, unit gates, commit shape (plain English + the org
+co-author trailer). Parent re-verifies every gate via `terminal` in each
+workspace before reporting done. Dispatch the harness delegation primitive
+(mapping: `references/harness-delegation.md`): **one task per leaf**, the
+goal carries the contract; never bundle two leaves (defeats isolation).
+Skeleton: `references/sks-async-delegate.md`.
+
+## Verification
+
+```bash
+jj workspace list && jj log -r 'all()' --limit 20   # tree shape on screen
+gh pr list --repo <org>/<repo> --state open          # PRs exist per leaf
+```
+
+DAG matches planned tree; every leaf has a PR linked to its issue; every gate
+has in-workspace evidence.
+
+## See also
+
+- `sks-dev` — parent; run its assumption-validation gate BEFORE
+  fan-out.
+- `sks-commit` / `sks-pr` — commit shape (co-author trailer) and PR linkage.
+- `sks-tldr` — the end-of-loop block each child returns and the parent
+  re-emits per unit.
+- Model, pitfalls, dispatch skeleton: `references/sks-async-delegate.md`.

@@ -1,0 +1,82 @@
+{
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "Classifies the upgrade as a runtime (lane B) change, opens a tracking issue with a command-decidable ledger including the post-merge running-state checks, records the rollback target, then applies it in an isolated jj workspace before the PR.",
+      "files": [],
+      "prompt": "Bump RKE2 in knix to the new upstream release and roll it out to the cluster.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-maintenance'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains a '## Two lanes' section proving a dependency bump with 'the repo's CI on the exact head' and a runtime version only by reading the system",
+        "Body states a one-line diff is 'lane B' when a running system consumes the version",
+        "Body opens the tracking issue before the PR and puts the post-merge running-state checks in its ledger",
+        "Body requires the rollback target before the change is applied"
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "Lands the language bump only with its lockfile on the exact head, per the ecosystem table in references/renovate.md, and never hand-rebases the renovate branch or merges past a red required check.",
+      "files": [],
+      "prompt": "Land the open renovate lockfile bumps across the org.",
+      "assertions": [
+        "Frontmatter 'name' equals the directory basename 'sks-maintenance'",
+        "Body points at 'references/renovate.md' for the dependency pass",
+        "Body proves a dependency bump with 'the repo's CI on the exact head'",
+        "Body lists 'renovate' among the triggers it fires on"
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "Refuses to call the upgrade done at merge: it converges the deploy, reads the running state, and only then closes the ledger N of N with the evidence.",
+      "files": [],
+      "prompt": "The nixpkgs bump PR merged — mark the upgrade done.",
+      "assertions": [
+        "Frontmatter 'name' equals the directory basename 'sks-maintenance'",
+        "Body states a merge is a 'claim' until the running system is re-read",
+        "Body validates the host with 'comin status' and the unit timestamps",
+        "Body states the local mirror resync is the deploy for agent and skill repos",
+        "Body closes the issue 'N of N' only with the validation evidence"
+      ]
+    },
+    {
+      "id": 4,
+      "expected_output": "Fails validation honestly: the rejected version stays recorded, the board card reopens, and the fleet is not left half-applied.",
+      "files": [],
+      "prompt": "One node is still on the old runtime after the upgrade — just report it as done.",
+      "assertions": [
+        "Frontmatter parses as YAML with a top-level 'name' key",
+        "Frontmatter 'name' equals the directory basename 'sks-maintenance'",
+        "Body reopens the card and leaves its ledger item unchecked on a failed validation",
+        "Body never leaves the fleet half-applied: finish the rollout or return to the previous version"
+      ]
+    },
+    {
+      "id": 5,
+      "expected_output": "Enumerates open renovate PRs per org repo, triages each by check state, lands only the eligible ones under the standing authorization, and reports the rest with their blocking reasons.",
+      "files": [],
+      "prompt": "Do the daily renovate sweep across shikanime-labs and shikanime-studio.",
+      "assertions": [
+        "Frontmatter 'name' equals the directory basename 'sks-maintenance'",
+        "Body sends the dependency pass to 'references/renovate.md'",
+        "The renovate pass enumerates open PRs per repo with 'gh pr list'",
+        "The renovate pass lands only PRs with green checks on the 'exact head'",
+        "The renovate pass reports non-landed PRs with their 'blocking reason'"
+      ]
+    },
+    {
+      "id": 6,
+      "expected_output": "Fails honesty and escalation: a red required check is never merged past, and a PR red for days on the same error becomes one summary issue instead of a repeated report.",
+      "files": [],
+      "prompt": "This same renovate PR has been failing with the same error since Monday — what does the pass do about it?",
+      "assertions": [
+        "Frontmatter 'name' equals the directory basename 'sks-maintenance'",
+        "The renovate pass escalates a PR red '3+ consecutive days' into one summary issue",
+        "The summary issue is assigned to 'yorha-operator' where eligible",
+        "The renovate pass re-checks a head that moved after the checks ran"
+      ]
+    }
+  ],
+  "skill_name": "sks-maintenance"
+}

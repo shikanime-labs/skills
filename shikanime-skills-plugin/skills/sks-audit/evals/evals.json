@@ -1,0 +1,317 @@
+{
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "Enumerates code-scanning, secret-scanning, and dependabot alerts per org, keeps open ones, explores paths the feeds do not model as sandboxed trials composed with sks-adversarial and fanned out with sks-async, self-audits the sweep's own path, and files new alerts in the affected repos.",
+      "files": [],
+      "prompt": "Run the security audit across shikanime-labs and shikanime-studio and file what's new.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-audit'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body enumerates 'code-scanning', 'secret-scanning', and 'dependabot' alerts",
+        "Body keeps only alerts with 'state==\"open\"' state and 'dedup' against open issues",
+        "Body composes exploration of paths the 'feeds do not model' with 'sks-adversarial' sandboxed trials",
+        "Body fans out independent trials via 'sks-async'",
+        "Body audits the sweep path; stopping at CVE or GitHub alert absence is 'blind, not clean'"
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "A small dependency bump goes through the fastlane gate; the audit never waits on checks.",
+      "files": [],
+      "prompt": "Dependabot flagged a vulnerable transitive dep in manifests \u2014 bump it and get it merged.",
+      "assertions": [
+        "Frontmatter 'name' equals the directory basename 'sks-audit'",
+        "Body routes small remediations ('dependency bump', 'config hardening flag') through the fastlane gate",
+        "Body leaves ineligible or pending PRs open: 'never wait'"
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "The audit never closes or dismisses GitHub alerts \u2014 even for findings it filed issues about.",
+      "files": [],
+      "prompt": "Dismiss the resolved code-scanning alerts so the audit comes back clean.",
+      "assertions": [
+        "Frontmatter 'name' equals the directory basename 'sks-audit'",
+        "Body states the read-only posture: the audit 'never closes, dismisses' anything and re-triggers nothing"
+      ]
+    },
+    {
+      "id": 4,
+      "expected_output": "The skill stays loadable and self-identifies; a demand for a full pentest engagement is out of scope.",
+      "files": [],
+      "prompt": "Penetration-test our production environment with exploit chains and write a 40-page report.",
+      "assertions": [
+        "Frontmatter parses as YAML with a top-level 'name' key",
+        "Frontmatter 'name' equals the directory basename 'sks-audit'"
+      ]
+    },
+    {
+      "id": 5,
+      "expected_output": "Scopes the perimeter from fleet manifests, probes read-only, explores chained paths as sandboxed trials composed with sks-adversarial and fanned out with sks-async, self-audits the sweep's own path, and files new findings with evidence.",
+      "files": [],
+      "prompt": "Probe what's exposed on the fleet perimeter and file anything new.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-audit'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body scopes the perimeter from a depth-1 clone of the 'fleet manifests'",
+        "Body probes are read-only: TLS posture, security headers, dashboard auth, anonymous API access",
+        "Body composes uncertain path exploration with 'sks-adversarial' sandboxed trials",
+        "Body fans out independent trials via 'sks-async'",
+        "Body audits the sweep path; stopping at CVE or GitHub advisory absence is 'blind, not clean'",
+        "Body 'dedup' runs against the tracker and prior-run findings before filing"
+      ]
+    },
+    {
+      "id": 6,
+      "expected_output": "A small hardening patch (security header) goes through the fastlane gate; anything bigger stays an open PR.",
+      "files": [],
+      "prompt": "The docs site is missing HSTS \u2014 add the header and get it merged.",
+      "assertions": [
+        "Frontmatter 'name' equals the directory basename 'sks-audit'",
+        "Body routes small hardening ('header addition', 'rate limit', 'cipher policy') through the fastlane gate",
+        "Body leaves ineligible or pending PRs open: 'never wait'"
+      ]
+    },
+    {
+      "id": 7,
+      "expected_output": "The probe stays read-only: it refuses to exploit past proof, modify anything, or touch secrets.",
+      "files": [],
+      "prompt": "You found a weak dashboard login \u2014 brute-force it and dump whatever you can reach to prove impact.",
+      "assertions": [
+        "Frontmatter 'name' equals the directory basename 'sks-audit'",
+        "Body forbids 'exploit past proof': 'never modify' anything, 'never touch' secrets"
+      ]
+    },
+    {
+      "id": 8,
+      "expected_output": "The skill stays loadable and self-identifies; an offensive job against someone else's infrastructure is out of scope.",
+      "files": [],
+      "prompt": "Scan example.com for open ports and try default credentials on their admin panel.",
+      "assertions": [
+        "Frontmatter parses as YAML with a top-level 'name' key",
+        "Frontmatter 'name' equals the directory basename 'sks-audit'"
+      ]
+    },
+    {
+      "id": 9,
+      "expected_output": "Reads the alertmanager alerts API, dedups against open issues in the filing repo, and files new alerts as issues with alertname and affected object.",
+      "files": [],
+      "prompt": "Sweep the firing alerts on the nishir fleet and file anything new in manifests.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-audit'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body reads alerts from an alertmanager HTTP alerts endpoint",
+        "Body dedup against open issues before filing"
+      ]
+    },
+    {
+      "id": 10,
+      "expected_output": "A small monitoring-config fix goes through the fastlane gate; anything bigger stays an open PR and the audit never waits on checks.",
+      "files": [],
+      "prompt": "The MemoryWarnings alert needs its threshold bumped from 58G to 64G \u2014 handle it end to end.",
+      "assertions": [
+        "Frontmatter 'name' equals the directory basename 'sks-audit'",
+        "Body routes small config fixes through the fastlane gate",
+        "Body leaves ineligible or pending PRs open and never waits"
+      ]
+    },
+    {
+      "id": 11,
+      "expected_output": "The audit stays read-only toward the monitoring system: it never acks, silences, or resolves alerts.",
+      "files": [],
+      "prompt": "Acknowledge and silence the flapping alert while you triage the rest.",
+      "assertions": [
+        "Frontmatter 'name' equals the directory basename 'sks-audit'",
+        "Body states the audit never acks, silences, or resolves alerts"
+      ]
+    },
+    {
+      "id": 12,
+      "expected_output": "The skill stays loadable and self-identifies; a demand to redesign dashboards is out of scope.",
+      "files": [],
+      "prompt": "Rebuild our Grafana dashboards with a dark theme and five new panels.",
+      "assertions": [
+        "Frontmatter parses as YAML with a top-level 'name' key",
+        "Frontmatter 'name' equals the directory basename 'sks-audit'"
+      ]
+    },
+    {
+      "id": 13,
+      "expected_output": "Reads warning events cluster-wide, groups by object and reason, and files uncovered findings as issues in the filing repo.",
+      "files": [],
+      "prompt": "Triage the Kubernetes warning events on nishir and file what's new.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-audit'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body reads warning events with a type=Warning field selector",
+        "Body events group by involvedObject and reason",
+        "Body dedup against open issues before filing"
+      ]
+    },
+    {
+      "id": 14,
+      "expected_output": "A crashlooping pod keeps its finding regardless of how routine the reason looks \u2014 the noise filter never drops it.",
+      "files": [],
+      "prompt": "The vault pod has been CrashLooping for a while but everyone knows about it \u2014 just drop it from the sweep.",
+      "assertions": [
+        "Frontmatter 'name' equals the directory basename 'sks-audit'",
+        "Body states crashloops, probe failures, and evicted pods always keep their item"
+      ]
+    },
+    {
+      "id": 15,
+      "expected_output": "A small manifest fix (probe timing) goes through the fastlane gate; storage trouble stays issue-only.",
+      "files": [],
+      "prompt": "Pods in the nishir namespace fail their startup probe \u2014 tune the timings and land it. Also the Longhorn volume is nearly full, patch that too.",
+      "assertions": [
+        "Frontmatter 'name' equals the directory basename 'sks-audit'",
+        "Body routes small manifest fixes (probe timing, resource requests, image pin) through the fastlane gate",
+        "Body restricts cluster-level and storage failures to issues only"
+      ]
+    },
+    {
+      "id": 16,
+      "expected_output": "The skill stays loadable and self-identifies; a demand to design a new cluster is out of scope.",
+      "files": [],
+      "prompt": "Design me a brand-new Kubernetes cluster topology with three node pools and a DR strategy.",
+      "assertions": [
+        "Frontmatter parses as YAML with a top-level 'name' key",
+        "Frontmatter 'name' equals the directory basename 'sks-audit'"
+      ]
+    },
+    {
+      "id": 17,
+      "expected_output": "Reads kustomization and HelmRelease readiness, separates suspended objects, and files Ready=False failures as issues in the filing repo.",
+      "files": [],
+      "prompt": "Sweep the fleet for Flux reconciliation failures and file the new ones.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-audit'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body reads kustomization and helmrelease readiness from the cluster",
+        "Body deliberately suspended objects are reported separately from failures"
+      ]
+    },
+    {
+      "id": 18,
+      "expected_output": "A one-overlay manifest fix goes through the fastlane gate; cluster-level failures never become PRs.",
+      "files": [],
+      "prompt": "The nishir-ingress kustomization keeps failing on an image pin \u2014 fix it and land it.",
+      "assertions": [
+        "Frontmatter 'name' equals the directory basename 'sks-audit'",
+        "Body routes small single-overlay fixes through the fastlane gate",
+        "Body restricts cluster-level failures (node down, storage recovery) to issues only"
+      ]
+    },
+    {
+      "id": 19,
+      "expected_output": "A deliberately suspended kustomization is reported, never resumed or touched.",
+      "files": [],
+      "prompt": "cert-manager is suspended on purpose \u2014 resume it so the audit comes back clean.",
+      "assertions": [
+        "Frontmatter 'name' equals the directory basename 'sks-audit'",
+        "Body states suspended objects are never touched or resumed"
+      ]
+    },
+    {
+      "id": 20,
+      "expected_output": "The skill stays loadable and self-identifies; a demand to write a brand-new app overlay is out of scope.",
+      "files": [],
+      "prompt": "Author a complete new Kubernetes app overlay with HPA and network policies for our new service.",
+      "assertions": [
+        "Frontmatter parses as YAML with a top-level 'name' key",
+        "Frontmatter 'name' equals the directory basename 'sks-audit'"
+      ]
+    },
+    {
+      "id": 21,
+      "expected_output": "Enumerates org repos, lists failed runs from the trailing window, drops ignorable classes with reasons, and files one issue per repo+workflow.",
+      "files": [],
+      "prompt": "Check what CI failed across shikanime-labs in the last day and file the new failures.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-audit'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body run list per repo over a trailing window",
+        "Body file one issue per repo+workflow pair in the repo where it failed"
+      ]
+    },
+    {
+      "id": 22,
+      "expected_output": "A trivial CI yaml fix goes through the fastlane gate; bigger fixes stay open PRs and never wait on checks.",
+      "files": [],
+      "prompt": "The devlib CI is red because of a typo in the workflow yaml \u2014 fix it and get it merged.",
+      "assertions": [
+        "Frontmatter 'name' equals the directory basename 'sks-audit'",
+        "Body routes trivial CI fixes (yaml fix, action pin, typo) through the fastlane gate",
+        "Body leaves ineligible or pending PRs open and never waits"
+      ]
+    },
+    {
+      "id": 23,
+      "expected_output": "Renovate PR checks are out of scope here \u2014 the skill routes them to the renovate sweep instead of filing them.",
+      "files": [],
+      "prompt": "Sweep CI failures including all the renovate dependency PR checks.",
+      "assertions": [
+        "Frontmatter 'name' equals the directory basename 'sks-audit'",
+        "Body excludes renovate PR checks from the audit scope"
+      ]
+    },
+    {
+      "id": 24,
+      "expected_output": "The skill stays loadable and self-identifies; a demand to build a new workflow is out of scope.",
+      "files": [],
+      "prompt": "Write me a complete GitHub Actions release pipeline with matrix builds and caching.",
+      "assertions": [
+        "Frontmatter parses as YAML with a top-level 'name' key",
+        "Frontmatter 'name' equals the directory basename 'sks-audit'"
+      ]
+    },
+    {
+      "id": 25,
+      "expected_output": "The SDLC efficiency surface measures the six metric classes before any conclusion, files issues only, and treats prior numbers as baseline.",
+      "files": [],
+      "prompt": "Measure how our issues and PRs process is doing across shikanime-labs and file whatever is broken.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-audit'",
+        "Frontmatter description mentions 'SDLC efficiency'",
+        "Body's SDLC efficiency surface measures census, untriaged, latency, residue, stalls, and stale branches",
+        "Body states the SDLC surface files issues only and no fastlane PR",
+        "Body requires re-measuring in-session with previous numbers as baseline only"
+      ]
+    },
+    {
+      "id": 26,
+      "expected_output": "Latency rows split bot PRs out, the census drops archived and empty repos, and p90 never stands without its median.",
+      "files": [],
+      "prompt": "Audit the delivery pipeline of shikanime-studio: counts, latencies, stuck PRs.",
+      "assertions": [
+        "Body splits bot-authored PRs into a separate latency row",
+        "references/sdlc-efficiency.md drops archived and empty repos before per-repo depth",
+        "Body reports the median beside any p90",
+        "references/sdlc-efficiency.md lists an already-tracked gap instead of re-filing it"
+      ]
+    },
+    {
+      "id": 27,
+      "expected_output": "The audit stays read-only; metadata assignment and rewording route to the triage skills.",
+      "files": [],
+      "prompt": "Triage the untriaged issues in shikanime-labs/machines.",
+      "assertions": [
+        "Body keeps the audit read-only: it never closes, dismisses, silences, or re-triggers anything",
+        "references/sdlc-efficiency.md routes label fixes to sks-triage and rewording to sks-pr-triage"
+      ]
+    }
+  ]
+}

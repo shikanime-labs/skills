@@ -1,0 +1,17 @@
+name: shikanime-skills
+version: 0.1.0
+description: >
+  Hermes plugin bundling the shikanime-labs/skills catalog plus a
+  sks-gc on_session_end hook. Skills are read-only, registered via
+  register(ctx).
+author: "Shikanime Deva <william.phetsinorath@shikanime.studio>"
+kind: standalone
+platforms:
+  - linux
+  - macos
+  - windows
+python_dependencies:
+  - hermes-agent
+  - PyYAML
+provides_hooks:
+  - on_session_end

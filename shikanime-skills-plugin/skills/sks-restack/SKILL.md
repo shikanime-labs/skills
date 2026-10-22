@@ -1,0 +1,163 @@
+---
+name: sks-restack
+description:
+  Use when rebasing a jj stack onto moved main leaves conflicts — restack,
+  then resolve each conflicted revision with edit/resolve until pushable.
+version: 0.3.0
+author: Automata
+license: Apache-2.0
+metadata:
+  hermes:
+    tags:
+      - jj
+      - rebase
+      - conflicts
+      - restack
+    related_skills:
+      - sks-converge
+      - sks-dev
+      - sks-delegate
+      - sks-async
+      - sks-gc
+      - sks-context
+platforms:
+  - linux
+  - macos
+  - windows
+---
+
+# jj Restack
+
+Rebase a jj stack (bookmarked commits above `main`) onto a moved trunk, then
+resolve every conflict the move produced. `jj restack` in these environments is
+an alias — `jj config get aliases` shows
+`restack = ["rebase", "--onto", "trunk()", "--source",
+"roots(trunk()..) & mutable()", "--simplify-parents"]`
+— so it rebases all mutable roots onto trunk. Where the alias is undefined,
+the scoped equivalent is `jj rebase -b <branch> --onto main@origin` per
+bookmark. This skill covers the full loop: restack → resolve → push.
+
+For org-specific conventions (local checkout layout, push signing), read
+`references/shikanime.md` when operating in a shikanime org.
+
+## When to Use
+
+- Trunk moved (squash-landed PR, cascading rebase) and your stack must follow:
+  "restack and resolve the conflicts".
+- "Rebase my jj stack onto main and fix the conflicts."
+- Post-restack `jj git push` fails `Won't push commit ... since it has
+  conflicts` — come here before improvising.
+- Multi-link stacks: resolve bottom-up so each fix's parent stays stable.
+
+## Prerequisites
+
+- jj repo (`.jj/`); the stack's bookmarks exist (`jj bookmark list`).
+- Trunk is current: `jj git fetch --remote origin` first, or you restack onto
+  a stale `main@origin`.
+
+## Procedure
+
+1. **Baseline.**
+
+   ```bash
+   cd <local checkout>
+   jj git fetch --remote origin
+   jj bookmark list && jj log -r 'trunk()..mutable()' --limit 15
+   ```
+
+   Completion: bookmark set known; every stack rev visible.
+
+2. **Restack.** Alias when defined, else scoped per bookmark:
+
+   ```bash
+   jj config get aliases | grep -q restack \
+     && jj restack \
+     || jj rebase -b <branch> --onto main@origin
+   ```
+
+   Rebase auto-moves bookmarks — confirm with `jj bookmark list` after.
+   Completion: no "skipped" lines for your revs.
+
+3. **Converge via `sks-converge`.** Resolving conflicts (and any divergence
+   the fetch reveals) is that skill's reusable loop: locate with
+   `conflicts()` / `divergent()`, resolve per revision, repoint bookmarks.
+   Load `sks-converge` and follow it; do not re-derive resolution here.
+
+4. **Return to your working copy** if `sks-converge` moved `@` (its Procedure
+   A step 3): `jj edit <original @ change-id>`.
+
+5. **Push gate.** `sks-converge` exits pushable; re-assert here:
+
+   ```bash
+   jj log -r 'conflicts()' --no-graph   # MUST print nothing
+   jj git push --remote origin -b <branch>
+   ```
+
+   A restacked bookmark already on origin is rewritten non-FF: the push output
+   reads `[move sideways from <old> to <new>]` — expected shape, not an error.
+   Where the org's host setup requires it, push with
+   `--config signing.behavior=drop --config git.sign-on-push=false` (org
+   signing setup in `references/shikanime.md`); GitHub squash-merge
+   re-signs server-side.
+
+6. **Reclaim.** Run `sks-gc`: restacking rewrites commits, so the old revs
+   turn up empty (`jj log -r 'empty()'`) and any isolation workspace whose
+   unit is finished is now stale. Dry-run first, then forget the finished
+   artifacts.
+
+7. **Hand off.** Rewritten stack PRs land via `sks-land` / `sks-pr`.
+
+## Pitfalls
+
+- **Marker dialect, `jj resolve --list` limits, `jj edit` re-parenting** —
+  all resolution mechanics live in `sks-converge`; load it rather than
+  improvising.
+- **Push rejects conflicts.** `Won't push commit ... since it has conflicts`
+  is the gate doing its job; resolve, never bypass.
+- **`[move sideways from X to Y]`** on push = bookmark moved non-FF by the
+  restack; expected for an already-pushed branch.
+- **Stale trunk.** Restacking without `jj git fetch` rebases onto old
+  `main@origin` — wasted resolution work.
+- **Clean-added files under the moved tree.** Trunk commits that ADD files
+  inside the directory your PR relocated merge cleanly at the old (flat) path
+  — `jj resolve --list` never shows them. After clearing markers, sweep the
+  old layout for stragglers, relocate them into the layer, and rewrite their
+  internal relative imports (out-of-layer `../x` becomes `../../x`);
+  `eslint --fix` handles import order.
+- **tsc parity needs built workspace deps.** Diffing `tsc --noEmit` error sets
+  against the old head is meaningless until workspace packages
+  (`@cpn-console/shared`, `hooks`, …) are built: unbuilt deps resolve as
+  TS2307 and silently suppress downstream errors, faking a cleaner baseline.
+  Build them in BOTH trees before comparing; accept an error as pre-existing
+  only after a counterfactual run on pristine trunk shows it.
+- **Shared working copy.** The alias's `roots(trunk()..) & mutable()` restacks
+  every mutable root, including other sessions' WIP; with concurrent editors,
+  prefer the scoped `jj rebase -b <branch> --onto main@origin`.
+- **Immutable PR-internal history.** A long-lived PR stack can carry commits
+  older than `trunk()` that jj marks immutable (pushed via an earlier remote
+  bookmark position or covered by `tags()`/`untracked_remote_bookmarks()`);
+  `jj rebase -s <root> -d main` then fails `N immutable commits`. Rebasing
+  only the bookmark-visible top commits silently orphans the rest — the PR
+  push then lands a truncated stack missing schema/module commits. Diagnose
+  with `jj log -r '::@ & mutable()'` vs the original depth, then rebase the
+  true root with `jj rebase --ignore-immutable` (this repo's own PR branch —
+  never shared history).
+
+## Verification
+
+```bash
+jj log -r 'conflicts()' --no-graph           # empty
+jj status                                    # @ restored, no stray M files
+jj bookmark list                             # bookmark on the rewritten rev
+jj git push --remote origin -b <branch>      # accepted, no conflict rejection
+```
+
+## See also
+
+- `sks-converge` — the reusable conflict/divergence resolution loop this
+  skill hands off to after the rebase.
+- `sks-dev` — the landing gates this feeds; never force-push stack
+  branches.
+- `sks-delegate` — isolate before resolving when the main checkout is crowded.
+- `sks-async` — multi-link stacks whose streams each need this loop.
+- `sks-gc` — reclaim empty revs and stale isolation workspaces afterwards.
