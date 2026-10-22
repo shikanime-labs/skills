@@ -59,7 +59,7 @@
         "Frontmatter license field is 'Apache-2.0'",
         "Body contains at least one '##' heading",
         "Body scopes the perimeter from a depth-1 clone of the 'fleet manifests'",
-        "Body probes read-only: TLS posture, security headers, dashboard auth, anonymous API access",
+        "Body probes are read-only: TLS posture, security headers, dashboard auth, anonymous API access",
         "Body composes uncertain path exploration with 'sks-adversarial' sandboxed trials",
         "Body fans out independent trials via 'sks-async'",
         "Body audits the sweep path; stopping at CVE or GitHub advisory absence is 'blind, not clean'",
@@ -108,7 +108,7 @@
         "Frontmatter license field is 'Apache-2.0'",
         "Body contains at least one '##' heading",
         "Body reads alerts from an alertmanager HTTP alerts endpoint",
-        "Body dedups against open issues before filing"
+        "Body dedup against open issues before filing"
       ]
     },
     {
@@ -119,7 +119,7 @@
       "assertions": [
         "Frontmatter 'name' equals the directory basename 'sks-audit'",
         "Body routes small config fixes through the fastlane gate",
-        "Body states ineligible or pending PRs are left open and never waited on"
+        "Body leaves ineligible or pending PRs open and never waits"
       ]
     },
     {
@@ -153,8 +153,8 @@
         "Frontmatter license field is 'Apache-2.0'",
         "Body contains at least one '##' heading",
         "Body reads warning events with a type=Warning field selector",
-        "Body groups events by involvedObject and reason",
-        "Body dedups against open issues before filing"
+        "Body events group by involvedObject and reason",
+        "Body dedup against open issues before filing"
       ]
     },
     {
@@ -199,7 +199,7 @@
         "Frontmatter license field is 'Apache-2.0'",
         "Body contains at least one '##' heading",
         "Body reads kustomization and helmrelease readiness from the cluster",
-        "Body separates deliberately suspended objects from failures"
+        "Body deliberately suspended objects are reported separately from failures"
       ]
     },
     {
@@ -243,8 +243,8 @@
         "Frontmatter description starts with 'Use when' and is at most 200 characters",
         "Frontmatter license field is 'Apache-2.0'",
         "Body contains at least one '##' heading",
-        "Body enumerates repos and failed workflow runs for a trailing window",
-        "Body files one issue per repo+workflow pair in the repo where it failed"
+        "Body run list per repo over a trailing window",
+        "Body file one issue per repo+workflow pair in the repo where it failed"
       ]
     },
     {
@@ -255,7 +255,7 @@
       "assertions": [
         "Frontmatter 'name' equals the directory basename 'sks-audit'",
         "Body routes trivial CI fixes (yaml fix, action pin, typo) through the fastlane gate",
-        "Body states ineligible or pending PRs are left open and never waited on"
+        "Body leaves ineligible or pending PRs open and never waits"
       ]
     },
     {
