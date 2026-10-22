@@ -59,9 +59,9 @@ Org-specific scope (org names, assignee policy) live in
 3. **Dedup against the affected repo.** `gh issue list -R <repo> --state
    open`; tracked alerts are listed, never re-filed.
 
-4. **File each new alert.** One issue in the affected repo: title
-   `<type>: <CVE or rule>`, body with severity, affected path, first-seen,
-   alert link. Assign per repo policy where eligible.
+4. **File each new alert** via `sks-issue`: free-text title, bug label, plus
+   `security` only when the repo has it. Assign per repo policy where
+   eligible.
 
 5. **Fastlane small remediations.** Eligible scope: dependency bump, config
    hardening flag. Must pass the `sks-fastlane` gate in full. Ineligible or
@@ -69,6 +69,11 @@ Org-specific scope (org names, assignee policy) live in
 
 6. **Note resolutions.** Alerts resolved since the last sweep are listed;
    never close or dismiss alerts from the audit.
+
+7. **Memory loop.** Before reporting, honcho_search "security audit" and
+   honcho_context for recurring context (alert types that recur,
+   remediations already in flight); honcho_conclude one line per durable
+   lesson.
 
 ## Pitfalls
 
