@@ -142,5 +142,5 @@ the self-check findings fixed.
 
 - `sks-github-text-authoring` — prose mechanics for GitHub text.
 - `sks-commit`, `sks-pr`, `sks-issue` — the surfaces this style feeds.
-- `sks-edit` references/wiki/guide.md — repo-wiki workflow that carries the
+- `sks-wiki` — repo-wiki workflow that carries the
 final text.

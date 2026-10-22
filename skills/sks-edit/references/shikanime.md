@@ -25,7 +25,6 @@ Commits carry the org co-author trailer
 | sops secrets | `sops-secrets/guide.md` | Flux manifests: `sops-secrets/sops-manifests.md` |
 | Kubernetes manifests | `kubernetes-manifests/guide.md` | live cross-check: `kubernetes-manifests/live-cross-check.md` |
 | Plain English | `text/guide.md` | — |
-| GitHub wiki | `wiki/guide.md` | Home seeding: `wiki/wiki-home-cdp.md` |
 
 Load this file when a write-phase change touches a shikanime org repo and you
 need the concrete repo names, paths, or the family-to-reference routing.

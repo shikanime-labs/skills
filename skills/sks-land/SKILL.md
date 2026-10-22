@@ -232,7 +232,7 @@ EOF
    `git ls-remote` HEAD (guard stdin with `</dev/null`; wiki remotes
    default to `master`). Wiki pushes bypass review — accepted trade-off.
    Skip only when the change is purely internal to what the wiki does not
-   cover. Full mechanics: `sks-edit` `references/wiki/guide.md`.
+   cover. Full mechanics: `sks-wiki`.
 6. **Teardown the landing bookmark.** GitHub drops the remote branch on merge,
    but the local `jj` bookmark and its `origin` tracking ref linger and clutter
    the workspace. Remove both:

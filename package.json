@@ -31,7 +31,7 @@
       },
       {
         "name": "sks-adversarial",
-        "description": "Use when probing uncertain results in a disposable sandbox \u2014 large investigation, development, debugging, testing, UAT, white-room, or data validation before promoting a change.",
+        "description": "Use when probing uncertain results in a disposable sandbox — large investigation, development, debugging, testing, UAT, white-room, or data validation before promoting a change.",
         "path": "skills/sks-adversarial"
       },
       {
@@ -41,7 +41,7 @@
       },
       {
         "name": "sks-bulk",
-        "description": "Use when applying one instruction to many targets \u2014 repos, issues, PRs, orgs, or any enumerable agentic batch: enumerate targets, drive the batch from a plan file, and verify every result.",
+        "description": "Use when applying one instruction to many targets — repos, issues, PRs, orgs, or any enumerable agentic batch: enumerate targets, drive the batch from a plan file, and verify every result.",
         "path": "skills/sks-bulk"
       },
       {
@@ -61,7 +61,7 @@
       },
       {
         "name": "sks-converge",
-        "description": "Use when jj conflicts or divergent changes block a jj repo after a tree move \u2014 resolve conflicted revisions and divergent twins until pushable.",
+        "description": "Use when jj conflicts or divergent changes block a jj repo after a tree move — resolve conflicted revisions and divergent twins until pushable.",
         "path": "skills/sks-converge"
       },
       {
@@ -71,12 +71,12 @@
       },
       {
         "name": "sks-delegate",
-        "description": "Use when isolating one unit of work in a fresh jj workspace \u2014 the mandatory entry to implementation for every unit, so concurrent WIP never folds in and bookmarks/pushes stay scoped.",
+        "description": "Use when isolating one unit of work in a fresh jj workspace — the mandatory entry to implementation for every unit, so concurrent WIP never folds in and bookmarks/pushes stay scoped.",
         "path": "skills/sks-delegate"
       },
       {
         "name": "sks-design",
-        "description": "Use when designing or redesigning an interface \u2014 landing page, app screen, dashboard, deck, or report \u2014 with a taste anchor, a real component system, and screenshot verification.",
+        "description": "Use when designing or redesigning an interface — landing page, app screen, dashboard, deck, or report — with a taste anchor, a real component system, and screenshot verification.",
         "path": "skills/sks-design"
       },
       {
@@ -95,6 +95,11 @@
         "path": "skills/sks-discussion-triage"
       },
       {
+        "name": "sks-wiki",
+        "description": "Use when documenting a project's technical knowledge in its GitHub wiki: enabling the wiki, seeding or syncing pages after a behavior-changing PR, and backfilling per-repo technical documentation.",
+        "path": "skills/sks-wiki"
+      },
+      {
         "name": "sks-evolve",
         "description": "Use when evolving the agent substrate without a hand-named target: mine experience for signals, evolve skills, profiles, memory, conventions, cron, or config, and repeat the fitness loop.",
         "path": "skills/sks-evolve"
@@ -111,7 +116,7 @@
       },
       {
         "name": "sks-gc",
-        "description": "Use when reclaiming resources leaked by jj-based agent workflows \u2014 dangling bookmarks, skill-created jj workspaces, and leftover working-copy dirs from sks-async/sks-dev.",
+        "description": "Use when reclaiming resources leaked by jj-based agent workflows — dangling bookmarks, skill-created jj workspaces, and leftover working-copy dirs from sks-async/sks-dev.",
         "path": "skills/sks-gc"
       },
       {
@@ -121,7 +126,7 @@
       },
       {
         "name": "sks-gist",
-        "description": "Use when a verified command, script, config, or output would be retyped or re-derived later \u2014 publish it as a gist for DRY reuse and link it from the artifact that motivated it.",
+        "description": "Use when a verified command, script, config, or output would be retyped or re-derived later — publish it as a gist for DRY reuse and link it from the artifact that motivated it.",
         "path": "skills/sks-gist"
       },
       {
@@ -136,7 +141,7 @@
       },
       {
         "name": "sks-github-text-authoring",
-        "description": "Use when writing any GitHub text in the target org's repos \u2014 commit message, issue or PR body, discussion RFC, review or issue comment. Owns all shared prose rules; surface skills handle procedure.",
+        "description": "Use when writing any GitHub text in the target org's repos — commit message, issue or PR body, discussion RFC, review or issue comment. Owns all shared prose rules; surface skills handle procedure.",
         "path": "skills/sks-github-text-authoring"
       },
       {
@@ -146,7 +151,7 @@
       },
       {
         "name": "sks-investigate",
-        "description": "Use when investigating a bug, test failure, build break, or unexpected behavior \u2014 find root cause, form a hypothesis, and propose a solution, never apply the fix itself.",
+        "description": "Use when investigating a bug, test failure, build break, or unexpected behavior — find root cause, form a hypothesis, and propose a solution, never apply the fix itself.",
         "path": "skills/sks-investigate"
       },
       {
@@ -246,7 +251,7 @@
       },
       {
         "name": "sks-restack",
-        "description": "Use when rebasing a jj stack onto moved main leaves conflicts \u2014 restack, then resolve each conflicted revision with edit/resolve until pushable.",
+        "description": "Use when rebasing a jj stack onto moved main leaves conflicts — restack, then resolve each conflicted revision with edit/resolve until pushable.",
         "path": "skills/sks-restack"
       },
       {
@@ -270,17 +275,17 @@
       },
       {
         "name": "sks-tldr",
-        "description": "Use when ending any agent work loop \u2014 investigation, dev unit, batch, or delegation fan-out: emit the fixed report block so status, evidence, and handoff stay uniform across parallel tasks.",
+        "description": "Use when ending any agent work loop — investigation, dev unit, batch, or delegation fan-out: emit the fixed report block so status, evidence, and handoff stay uniform across parallel tasks.",
         "path": "skills/sks-tldr"
       },
       {
         "name": "sks-swarm",
-        "description": "Use when distributing a task across a cluster of agents over A2A \u2014 route by capability need, machine resource, and runner pressure, optionally in a disposable sks-adversarial sandbox.",
+        "description": "Use when distributing a task across a cluster of agents over A2A — route by capability need, machine resource, and runner pressure, optionally in a disposable sks-adversarial sandbox.",
         "path": "skills/sks-swarm"
       },
       {
         "name": "sks-triage",
-        "description": "Use when triaging a target org, repo, issue, or PR: sweep the scope for untriaged items, then assign every empty, context-derivable field \u2014 type, labels, assignee, fields.",
+        "description": "Use when triaging a target org, repo, issue, or PR: sweep the scope for untriaged items, then assign every empty, context-derivable field — type, labels, assignee, fields.",
         "path": "skills/sks-triage"
       },
       {
