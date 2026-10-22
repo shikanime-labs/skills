@@ -1,6 +1,6 @@
 ---
 name: sks-edit
-description: "Use when a write-phase change needs authoring conventions: identify the matching family (TypeScript, Nix, skill authoring, sops secrets, Kubernetes manifests, plain English, wiki) and apply its fused rules in this skill."
+description: "Use when a write-phase change needs authoring conventions: identify the matching family (TypeScript, Nix, skill authoring, sops secrets, Kubernetes manifests, plain English) and apply its fused rules in this skill."
 version: 0.2.0
 author: Automata
 license: Apache-2.0
@@ -40,7 +40,6 @@ matched family. If several rows match, prefer the most specific.
 | `secrets/*.enc.*`, `*.enc.env`, `*.enc.conf` | sops secrets | `references/sops-secrets/guide.md` |
 | Kubernetes manifests, `kustomization.yaml`, overlays, `Deployment` / `STS` | Kubernetes manifests | `references/kubernetes-manifests/guide.md` |
 | Docs, runbooks, commit / PR / issue body (STE prose), error messages | Plain English | `references/text/guide.md` |
-| GitHub wiki pages (`Home.md`, `*.md` under `.wiki`) | Wiki | `references/wiki/guide.md` |
 
 Do not double-apply: if a `.nix` module emits YAML (`sopsFile`,
 `secretGenerator`), it is Nix-only — the generated YAML is the

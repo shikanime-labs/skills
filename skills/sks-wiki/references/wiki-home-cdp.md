@@ -1,12 +1,11 @@
 # Creating the first wiki page via CDP
 
-The full procedure for the one UI-only wiki step from `sks-edit`
-references/wiki/guide.md — creating `Home` on
-`https://github.com/<org>/<repo>/wiki` from the shell. No REST, GraphQL, or CLI
-endpoint covers page creation (REST `repos/.../wiki/pages` 404s; GraphQL
-introspection yields only `hasWikiEnabled`); and the `<repo>.wiki.git` remote
-does not exist until a first page is saved. Works for one repo at bootstrap or a
-backfill sweep over many.
+The full procedure for the one UI-only wiki step from `sks-wiki` — creating
+`Home` on `https://github.com/<org>/<repo>/wiki` from the shell. No REST,
+GraphQL, or CLI endpoint covers page creation (REST `repos/.../wiki/pages`
+404s; GraphQL introspection yields only `hasWikiEnabled`); and the
+`<repo>.wiki.git` remote does not exist until a first page is saved. Works
+for one repo at bootstrap or a backfill sweep over many.
 
 ## Prerequisites
 

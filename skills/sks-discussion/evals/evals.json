@@ -81,13 +81,13 @@
     },
     {
       "id": 7,
-      "expected_output": "Skill stays scoped to opening RFC Discussions and does not claim to author wiki pages (`sks-edit` references/wiki/guide.md's job).",
+      "expected_output": "Skill stays scoped to opening RFC Discussions and does not claim to author wiki pages (`sks-wiki`'s job).",
       "files": [],
       "prompt": "Add an architecture page and a runbook to the wiki of shikanime-studio/sk-async after the refactor.",
       "assertions": [
         "YAML frontmatter parses and 'name' equals 'sks-discussion'",
-        "Frontmatter description does not contain substring '`sks-edit` references/wiki/guide.md'",
-        "Body does not contain substring '`sks-edit` references/wiki/guide.md'"
+        "Frontmatter description does not contain substring '`sks-wiki`'",
+        "Body does not contain substring '`sks-wiki`'"
       ]
     },
     {
