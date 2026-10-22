@@ -41,7 +41,7 @@
       },
       {
         "name": "sks-audit",
-        "description": "Use when auditing fleet or org health - security alerts, perimeter redteam, CI failures, alerting, Flux readiness, Kubernetes events: read the surface, dedup, file findings, fastlane fixes.",
+        "description": "Use when auditing fleet or org health - security alerts, redteam, CI failures, alerting, Flux readiness, Kubernetes events, SDLC efficiency: read the surface, dedup, file findings, fastlane fixes.",
         "path": "skills/sks-audit"
       },
       {
@@ -208,11 +208,6 @@
         "name": "sks-pr-triage",
         "description": "Use when triaging an existing org PR: labels, assignee, milestone, and reviewers.",
         "path": "skills/sks-pr-triage"
-      },
-      {
-        "name": "sks-sdlc-efficiency",
-        "description": "Use when measuring a GitHub org's SDLC delivery process with facts and metrics: counts of open and untriaged issues and PRs, review and merge latency, and gap conclusions filed as proposals.",
-        "path": "skills/sks-sdlc-efficiency"
       },
       {
         "name": "sks-project",

@@ -14,7 +14,12 @@
 
 Per-surface targets live in the sibling reference named by the surface
 section (`github-security.md`, `redteam.md`, `ci-failures.md`,
-`alertmanager.md`, `flux.md`, `kubernetes-events.md`).
+`alertmanager.md`, `flux.md`, `kubernetes-events.md`,
+`sdlc-efficiency.md`).
+
+SDLC efficiency surface targets: proposal issues file in
+`shikanime-labs/manifests`; bot identities split out of latency rows are
+`renovate[bot]`, `dependabot[bot]`, and `yorha-automata`.
 
 - Working doctrine: long-term solutions over short-term fixes — fix the root
   cause, never land a tactical patch that accrues debt. No hard SLA

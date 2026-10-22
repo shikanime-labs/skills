@@ -108,7 +108,7 @@ specification, compatible with the
 | Skill | Description |
 | --- | --- |
 | `sks-adversarial` | Use when probing uncertain results in a disposable sandbox — large investigation, development, debugging, testing, UAT, white-room, or data validation before promoting a change. |
-| `sks-audit` | Use when auditing fleet or org health - security alerts, perimeter redteam, CI failures, alerting, Flux readiness, Kubernetes events: read the surface, dedup, file findings, fastlane fixes. |
+| `sks-audit` | Use when auditing fleet or org health - security alerts, redteam, CI failures, alerting, Flux readiness, Kubernetes events, SDLC efficiency: read the surface, dedup, file findings, fastlane fixes. |
 | `sks-async` | Use when splitting multi-unit work into parallel, isolated jj workspaces (depth-tree fan-out) and landing as independent plain `gh pr` merges. |
 | `sks-bulk` | Use when applying one instruction to many targets — repos, issues, PRs, orgs, or any enumerable agentic batch: enumerate targets, drive the batch from a plan file, and verify every result. |
 | `sks-comment` | Use when reading, writing, updating, or moderating comments on issues, PRs, or discussions: cross-surface extraction, the directed-value bar, the look-back loop, and update/rectification routing. |
@@ -143,7 +143,6 @@ specification, compatible with the
 | `sks-pr-resolve` | Use when resolving a PR's review conversations, including CodeRabbit review comments, checking the DoD ledger, and reconciling before merge (no merge itself). |
 | `sks-pr-review` | Use when reviewing code in an org repo: cross-check related issues, enforce YAGNI, root-cause fixes, and project conventions before approval. |
 | `sks-pr-triage` | Use when triaging an existing org PR: labels, assignee, milestone, and reviewers. |
-| `sks-sdlc-efficiency` | Use when measuring a GitHub org's SDLC delivery process with facts and metrics: counts of open and untriaged issues and PRs, review and merge latency, and gap conclusions filed as proposals. |
 | `sks-project` | Use when tracking issue/PR advancement on an org board: resolve the board from context or provision one, set Status to the real phase, audit drift. |
 | `sks-release` | Use when cutting a release of the skills catalog: verify green main, bump manifest versions, signed tag, published notes, RC pre-release when unproven. |
 | `sks-renovate-sweep` | Use when landing or triaging open renovate PRs across an org's repos: check green on the exact head, land eligible ones, report the rest. |
