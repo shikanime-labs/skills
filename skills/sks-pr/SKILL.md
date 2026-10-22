@@ -78,9 +78,11 @@ squashing or when diagnosing a squash/force-push/rebase failure.
    - See `references/example-pr-body.md` for a filled example.
    - All prose rules for the body — free text no-wrap, no formatter runs,
      `@` escaping, `#N` for standalone refs, Mermaid — are owned by
-     `sks-github-text-authoring`; load it when writing the body.
+     `sks-edit` references/github-text/guide.md; load it when writing the body.
    - **Templates: detect, then conform.** Detection and fetch are owned by
-     `sks-github-text-authoring`. Template → fill every section it defines,
+     `sks-edit` references/github-text/guide.md. Template → fill every section
+     defines,
+     it
      keep its headings verbatim, and leave checklist boxes unchecked (`- [ ]`)
      for the human author. NEVER copy the issue template's shape
      (`# Problem` / `## Acceptance`) into a PR body — that leak is a
@@ -261,7 +263,7 @@ re-derive here.
 - **Direct landing**: user authorizing "push to main" / "land it" overrides the
   PR path — push directly, don't open a PR.
 - **Docs follow-up**: if this PR changes user-facing behavior or adds a feature,
-  plan a `sks-wiki` update (repo wiki) after merge.
+  plan a `sks-edit` references/wiki/guide.md update (repo wiki) after merge.
 
 ## Verification
 
@@ -279,6 +281,9 @@ cloud-pi-native repo (origin-only pushes, French title/body, `Refs` block).
 
 ## See also
 
-- `sks-github-text-authoring` (prose rules) · `sks-commit` (parity rule) ·
+- `sks-edit` references/github-text/guide.md (prose rules) · `sks-commit`
+·
+rule)
+(parity
   `sks-issue-refine` (converged issue) ·
   `sks-async` (stacked PRs) · `sks-pr-triage` (metadata).

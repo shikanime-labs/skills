@@ -14,7 +14,6 @@ metadata:
       - github
       - graphql
     related_skills:
-      - sks-github-text-authoring
       - sks-moderate
       - sks-issue
       - sks-pr-resolve
@@ -37,7 +36,7 @@ conversation surface.
 Boundary map:
 
 - Prose mechanics (no-wrap, `@` escaping, `--body-file` transport):
-  `sks-github-text-authoring`; sentence content (STE):
+  `sks-edit` references/github-text/guide.md; sentence content (STE):
   `sks-edit` references/text/guide.md.
 - Bodies are owned by their surface skills: `sks-issue`, `sks-pr`,
   `sks-discussion` — this skill covers comments, never a body.
@@ -136,7 +135,7 @@ the user (`sks-tldr`), not the thread.
   skill exists to prevent.
 - **NEVER pass a body inline via `--body`** — shell expansion mangles
   backticks and `$`; write a file, pass `--body-file`, re-read the
-  stored body (`sks-github-text-authoring`).
+  stored body (`sks-edit` references/github-text/guide.md).
 - **Negations are load-bearing**: "never edit theirs", "bots never
   moderated", "findings are hidden, not deleted" — dropping a `never`
   flips a guard.
@@ -152,7 +151,7 @@ references.
 ## See also
 
 - `sks-moderate` — hiding/unhiding; the maintenance pass lands here.
-- `sks-github-text-authoring` — prose mechanics; `sks-edit`
+- `sks-edit` references/github-text/guide.md — prose mechanics; `sks-edit`
 references/text/guide.md — sentence content under STE.
 - `sks-pr-review` — review verdicts and inline anchors on the diff.
 - `sks-pr-resolve` — resolving review threads after comments land.

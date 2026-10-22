@@ -15,7 +15,6 @@ metadata:
       - sks-dev
       - sks-commit
       - sks-pr
-      - sks-github-text-authoring
 platforms:
   - linux
   - macos
@@ -25,7 +24,8 @@ platforms:
 # Fused Authoring
 
 `sks-edit` owns all authoring conventions for target-org repos: identification
-(match table below), family rule sets (each in `references/<family>/guide.md`),
+(match table below), family rule sets (each routed by the table below to its
+`references/<family>/guide.md`),
 and the shared write conventions. During the write phase of any target-org repo
 (see `sks-dev`), match the files being edited to the table, then apply the
 matched family. If several rows match, prefer the most specific.
@@ -40,6 +40,8 @@ matched family. If several rows match, prefer the most specific.
 | `secrets/*.enc.*`, `*.enc.env`, `*.enc.conf` | sops secrets | `references/sops-secrets/guide.md` |
 | Kubernetes manifests, `kustomization.yaml`, overlays, `Deployment` / `STS` | Kubernetes manifests | `references/kubernetes-manifests/guide.md` |
 | Docs, runbooks, commit / PR / issue body (STE prose), error messages | Plain English | `references/text/guide.md` |
+| GitHub issue / PR / comment body, review threads | GitHub text | `references/github-text/guide.md` |
+| Repo wiki page, wiki home, wiki navigation | Wiki | `references/wiki/guide.md` |
 
 Do not double-apply: if a `.nix` module emits YAML (`sopsFile`,
 `secretGenerator`), it is Nix-only — the generated YAML is the
@@ -63,14 +65,14 @@ edit uses the sops-secrets family — two distinct files, two distinct families.
 
 - Plain English across the family; `#N` for standalone refs; commit↔PR parity.
 - For prose (docs, runbooks, commit / PR / issue bodies) the plain-English
-  family (ASD-STE100) owns sentence content; `sks-github-text-authoring` owns
+  family (ASD-STE100) owns sentence content; `references/github-text/guide.md` owns
   prose mechanics (wrapping, `@` escaping, body transport).
 - Do NOT pass bodies inline via `--body "..."` — shell expansion mangles
   backticks and `$`. Write the body to a file and pass `--body-file`.
 
 ## See also
 
-`sks-dev` (dev loop write phase), `sks-github-text-authoring` (prose
+`sks-dev` (dev loop write phase), `references/github-text/guide.md` (prose
 mechanics), `sks-commit`, `sks-pr`, `sks-context` (org conventions).
 
 ## Verification

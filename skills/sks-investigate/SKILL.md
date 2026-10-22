@@ -73,7 +73,7 @@ cannot declare a root cause before you have reproduced the failure on demand.
 - Reproduce consistently with the exact command (`pytest -q tests/test_x.py::t`,
   the precise build invocation). A bug you cannot reproduce on demand cannot be
   explained, only guessed at — and a guess is not a finding. - Check the repo
-  wiki first (`sks-wiki`): technical docs, runbooks,
+  wiki first (`sks-edit` references/wiki/guide.md): technical docs, runbooks,
   and known cycles live there — exhaust documented knowledge before re-deriving.
 - Read the whole error: stack trace, line, exit status, the frames in order.
   Skimming the first line and guessing is the primary cause of wrong
