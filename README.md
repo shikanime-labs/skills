@@ -108,7 +108,7 @@ specification, compatible with the
 | Skill | Description |
 | --- | --- |
 | `sks-adversarial` | Use when probing uncertain results in a disposable sandbox — large investigation, development, debugging, testing, UAT, white-room, or data validation before promoting a change. |
-| `sks-audit` | Use when auditing fleet or org health — GitHub security alerts, perimeter redteam, CI failures, alerting, Flux readiness, Kubernetes events: read the surface, dedup, file new findings as issues, fastlane small fixes. |
+| `sks-audit` | Use when auditing fleet or org health - security alerts, perimeter redteam, CI failures, alerting, Flux readiness, Kubernetes events: read the surface, dedup, file findings, fastlane fixes. |
 | `sks-async` | Use when splitting multi-unit work into parallel, isolated jj workspaces (depth-tree fan-out) and landing as independent plain `gh pr` merges. |
 | `sks-bulk` | Use when applying one instruction to many targets — repos, issues, PRs, orgs, or any enumerable agentic batch: enumerate targets, drive the batch from a plan file, and verify every result. |
 | `sks-comment` | Use when reading, writing, updating, or moderating comments on issues, PRs, or discussions: cross-surface extraction, the directed-value bar, the look-back loop, and update/rectification routing. |
