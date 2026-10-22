@@ -133,6 +133,7 @@ specification, compatible with the
 | `sks-issue-refine` | Use when iterating a problem to convergence inside its GitHub issue via research and comments before deriving the PR. |
 | `sks-issue-triage` | Use when triaging an existing org issue: assign type, labels, assignee, milestone, project, relationships, and fields; close with rationale if not workable. |
 | `sks-land` | Use when landing a target-org PR after reconciliation (sks-pr-resolve) and review approval gates pass; closes the linked issue deliberately. |
+| `sks-maintenance` | Use when maintaining the org's repos, fleet, and runtimes: renovate and language dependency bumps, nixpkgs/runtime upgrades, and the issue → PR → land → post-merge validation loop. |
 | `sks-fastlane` | Use when a hotfix, small update, or insignificant chore is too trivial for the full gate train: merge its PR without human review once CI is green. |
 | `nixpkgs-pr-review` | Use when reviewing an upstream NixOS/nixpkgs pull request: build the changed packages with nixpkgs-review and check the diff against nixpkgs conventions. |
 | `sks-milestone` | Use when provisioning nixpkgs-release-aligned milestones across the org's Nix repos: discover the flake roster, create per-release milestones, assign issues and PRs, audit drift. |
