@@ -4,7 +4,7 @@ description:
   "Use when opening an issue in an org repo: body is the
   problem statement, acceptance criteria as a command-decidable tasklist;
   owns the create → triage order."
-version: 0.2.0
+version: 0.2.1
 author: Automata
 license: Apache-2.0
 metadata:
@@ -107,9 +107,9 @@ findings/root-cause as `gh issue comment` and cite concrete evidence (the exact
 `- old` → `+ new` diff lines, or command output), not prose summaries. Interim
 comments may be deleted after convergence.
 
-The issue template (`# Problem` / `## Acceptance`) is issue-only. The PR body
-must not reuse it — the PR side uses the `# Why` / `## What` / `## References`
-shape from `sks-pr`.
+The issue shape is issue-only. The PR body must not reuse it — the PR side
+uses the `# Why` / `## What` / `## Verification` / `## References` shape from
+`sks-pr`.
 
 **Templates: detect, then conform.** Probe for repo issue templates before
 writing the body — candidate paths: `.github/ISSUE_TEMPLATE.md`,
@@ -118,6 +118,13 @@ fill its sections and keep its headings verbatim; the acceptance-criteria
 tasklist rides in whichever section fits. Cross-check the form's `labels:`
 against `gh label list` before flagging or passing a label. No template →
 the default shapes above.
+
+Org default (served by the `.github` repo to every repository without its
+own): typed issue forms — Bug report, Experiment, Improvement request, Task —
+each closing with a References field, classification carried by the form's
+prefilled labels. Pick the form matching the issue type and fill its
+sections verbatim. `blank_issues_enabled: false`: never bypass a form with a
+blank body. Questions route to Discussions, not issues.
 
 A body without a template has a **References** section: official material
 (docs, linked issues/PRs, commits, changelogs, specs); with a template, place

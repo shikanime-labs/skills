@@ -4,7 +4,7 @@ description:
   "Use when writing any GitHub text in the target org's repos — commit message,
   issue or PR body, discussion RFC, review or issue comment. Owns all shared
   prose rules; surface skills handle procedure."
-version: 0.2.0
+version: 0.2.1
 author: Automata
 license: Apache-2.0
 metadata:
@@ -84,9 +84,9 @@ update/rectification — and hands its prose rules here.
 | Surface       | Owner          | Shape                                                        |
 | ------------- | -------------- | ------------------------------------------------------------ |
 | Commit        | `sks-commit`   | Plain-English imperative title + trailers                    |
-| Issue body    | `sks-issue`    | `# Problem` / `## Acceptance` / `## References` (or template) |
+| Issue body    | `sks-issue`    | Org typed forms (bug report / experiment / improvement / task); fallback `# Problem` / `## Acceptance` / `## References` |
 | Issue comment | `sks-issue`    | One subject per comment; findings, not status chatter        |
-| PR body       | `sks-pr`       | `# Why` / `## What` / `## References`                       |
+| PR body       | `sks-pr`       | `# Why` / `## What` / `## Verification` / `## References`    |
 | Discussion    | `sks-discussion` | Context + open questions; no acceptance criteria           |
 
 Standard shapes apply when no repo template exists; a template replaces

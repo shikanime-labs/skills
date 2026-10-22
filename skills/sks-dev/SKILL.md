@@ -4,7 +4,7 @@ description:
   "Use when running the local dev loop in a target org's repos: branching in a
   fresh jj workspace, push-to-origin, jj bookmark tracking, and landing via
   plain gh pr merge or direct push."
-version: 0.10.3
+version: 0.10.4
 author: Automata
 license: Apache-2.0
 metadata:
@@ -236,7 +236,7 @@ Exact shapes live in the owning skills:
 | Issue      | `sks-issue`    | stable problem statement + `- [ ]` ledger           |
 | Discussion | `sks-discussion` | RFC: context + open question; no acceptance criteria |
 | Comment    | `sks-comment`  | findings/proofs, cited evidence, one finding per comment; directed-value bar and look-back owned there |
-| PR         | `sks-pr`       | title = commit subject; body `# Why`/`## What`/`## References`; issue link = Development metadata |
+| PR         | `sks-pr`       | title = commit subject; body `# Why`/`## What`/`## Verification`/`## References`; issue link = Development metadata |
 
 Prose mechanics (no-wrap, `@` escaping, full URLs, evidence style, template
 detection) are owned by `sks-github-text-authoring` — load it when drafting

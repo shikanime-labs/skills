@@ -1,6 +1,7 @@
 # Example issue body
 
-Two accepted shapes. Both keep the body a stable problem statement; findings
+Two accepted shapes for repos without the org typed issue forms. Both keep
+the body a stable problem statement; findings
 move to comments, never into the tasklist.
 
 ## Canonical (sections + `- [ ]` ledger)
@@ -15,7 +16,7 @@ command, so agents write divergent prose.
 ## References
 
 - gh-stack docs: <https://cli.github.com/extensibility/gh-extension>
-- sks-pr: body three-section rule
+- sks-pr: body section rules
 
 ## Acceptance
 
