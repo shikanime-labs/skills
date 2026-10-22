@@ -277,6 +277,41 @@
         "Frontmatter parses as YAML with a top-level 'name' key",
         "Frontmatter 'name' equals the directory basename 'sks-audit'"
       ]
+    },
+    {
+      "id": 25,
+      "expected_output": "The SDLC efficiency surface measures the six metric classes before any conclusion, files issues only, and treats prior numbers as baseline.",
+      "files": [],
+      "prompt": "Measure how our issues and PRs process is doing across shikanime-labs and file whatever is broken.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-audit'",
+        "Frontmatter description mentions 'SDLC efficiency'",
+        "Body's SDLC efficiency surface measures census, untriaged, latency, residue, stalls, and stale branches",
+        "Body states the SDLC surface files issues only and no fastlane PR",
+        "Body requires re-measuring in-session with previous numbers as baseline only"
+      ]
+    },
+    {
+      "id": 26,
+      "expected_output": "Latency rows split bot PRs out, the census drops archived and empty repos, and p90 never stands without its median.",
+      "files": [],
+      "prompt": "Audit the delivery pipeline of shikanime-studio: counts, latencies, stuck PRs.",
+      "assertions": [
+        "Body splits bot-authored PRs into a separate latency row",
+        "references/sdlc-efficiency.md drops archived and empty repos before per-repo depth",
+        "Body reports the median beside any p90",
+        "references/sdlc-efficiency.md lists an already-tracked gap instead of re-filing it"
+      ]
+    },
+    {
+      "id": 27,
+      "expected_output": "The audit stays read-only; metadata assignment and rewording route to the triage skills.",
+      "files": [],
+      "prompt": "Triage the untriaged issues in shikanime-labs/machines.",
+      "assertions": [
+        "Body keeps the audit read-only: it never closes, dismisses, silences, or re-triggers anything",
+        "references/sdlc-efficiency.md routes label fixes to sks-triage and rewording to sks-pr-triage"
+      ]
     }
   ]
 }

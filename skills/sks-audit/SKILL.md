@@ -1,9 +1,9 @@
 ---
 name: sks-audit
 description:
-  "Use when auditing fleet or org health - security alerts, perimeter redteam,
-  CI failures, alerting, Flux readiness, Kubernetes events: read the surface,
-  dedup, file findings, fastlane fixes."
+  "Use when auditing fleet or org health - security alerts, redteam, CI
+  failures, alerting, Flux readiness, Kubernetes events, SDLC efficiency:
+  read the surface, dedup, file findings, fastlane fixes."
 version: 1.0.0
 author: Automata
 license: Apache-2.0
@@ -176,6 +176,25 @@ pods and restart counts before reporting clean; aggregated counts reset when
 the event object rotates, so `count` is current pressure rather than lifetime
 totals; cluster-level failures (node down, storage recovery, volume trouble)
 are issue-only, never a PR from an audit run.
+
+### SDLC efficiency
+
+Process metrics over the orgs' issues and PRs. Census: `gh api
+"search/issues?q=org:<org>+is:open+type:issue" --jq .total_count` and the
+same with `type:pr`. Untriaged: open items missing derivable metadata,
+computed against what each repo supports. Latency: over merged PRs in the
+window, time to first review and time to merge, with bot-authored PRs in a
+separate row. Residue: issues still open whose linked PR already merged,
+read per PR from Development links. Stalls: open PRs with `reviewDecision`
+CHANGES_REQUESTED or REVIEW_REQUIRED, or `mergeStateStatus` BLOCKED or
+BEHIND, older than 7 days. Stale branches: heads merged or behind the
+default branch older than 7 days. Record every number before drawing any
+conclusion, and re-measure in-session — a previous run's numbers are the
+baseline, never the current value. Completion check: census, untriaged,
+latency, residue, stalls, and stale branches each carry a recorded value
+per org, with the median reported beside any p90. Cross-check the residue
+count per PR, never by repo-wide text search. Findings from this surface
+are proposals: file issues only, no fastlane PR.
 
 ## Verification
 
