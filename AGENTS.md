@@ -67,7 +67,8 @@ Signed-off-by: Shikanime Deva <william.phetsinorath@shikanime.studio>
 1. Create a directory under the appropriate category
 2. Write a `SKILL.md` following the
    [skill authoring](https://hermes-agent.nousresearch.com/docs) format and the
-   authoring practices below
+   authoring practices below; a skill shipping a `references/shikanime.md`
+   carries the working doctrine bullet
 3. Add the skill to the catalog table in `README.md` and both manifests
    (`skills.json`, `package.json` `agents.skills`)
 4. Commit with a descriptive message
