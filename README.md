@@ -21,14 +21,14 @@ skill from this repo:
 # List available skills
 npx skills add shikanime-labs/skills --list
 
-# Install all skills globally
-npx skills add shikanime-labs/skills -g -y
+# Install all skills globally (add -y to skip confirmation)
+npx skills add shikanime-labs/skills -g
 
 # Install a specific skill
 npx skills add shikanime-labs/skills --skill sks-dev -g
 
 # Install all skills for specific agents
-npx skills add shikanime-labs/skills -g -a claude-code -a cursor -y
+npx skills add shikanime-labs/skills -g -a claude-code -a cursor
 ```
 
 ### Install as a Hermes skill source
@@ -135,7 +135,7 @@ specification, compatible with the
 | `sks-issue-triage` | Use when triaging an existing org issue: assign type, labels, assignee, milestone, project, relationships, and fields; close with rationale if not workable. |
 | `sks-land` | Use when landing a target-org PR after reconciliation (sks-pr-resolve) and review approval gates pass; closes the linked issue deliberately. |
 | `sks-maintenance` | Use when maintaining the org's repos, fleet, and runtimes: renovate and language dependency bumps, nixpkgs/runtime upgrades, and the issue → PR → land → post-merge validation loop. |
-| `sks-fastlane` | Use when a hotfix, small update, or insignificant chore is too trivial for the full gate train: merge its PR without human review once CI is green. |
+| `sks-fastlane` | Use when the user designates a change as trivial and asks for an expedited merge: run the eligibility gate, then merge once CI is green. |
 | `nixpkgs-pr-review` | Use when reviewing an upstream NixOS/nixpkgs pull request: build the changed packages with nixpkgs-review and check the diff against nixpkgs conventions. |
 | `sks-milestone` | Use when provisioning nixpkgs-release-aligned milestones across the org's Nix repos: discover the flake roster, create per-release milestones, assign issues and PRs, audit drift. |
 | `sks-plan` | Use when planning a milestone from a goal: converge direction, decompose into dependency-ordered units, fill the milestone with triaged, boarded issues ready for sks-iterate. |

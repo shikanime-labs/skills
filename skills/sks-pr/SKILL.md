@@ -127,13 +127,16 @@ the shikanime org — `references/shikanime.md`.
 
 ```bash
 jj rebase -d main                      # ALWAYS rebase onto trunk before landing
-gh pr merge <M> --repo <org>/<repo> --squash --admin \
-  --body-file <file>                   # --admin bypasses self-approval protection
+gh pr merge <M> --repo <org>/<repo> --squash [--admin] \
+  --body-file <file>                   # --admin only when protection blocks
+                                       # self-approval after operator lgtm
+                                       # (see references/shikanime.md)
 ```
 
 - Branch protection blocks self-approval on some repos (see
-  `references/shikanime.md`); a verbal `lgtm` satisfies the gate — land
-  with `--squash --admin`.
+  `references/shikanime.md`); a verbal `lgtm` from the operator (the human
+  who owns the approver account) authorizes bypassing it — land
+  with `--squash --admin`, as `sks-land` Gate 3 defines.
 - **Conflict check** before merge:
   `gh pr view <N> --json mergeable,mergeStateStatus` (existing PR) or
   `jj rebase -d main` locally (conflict markers = author rebases; never push a

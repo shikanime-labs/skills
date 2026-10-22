@@ -1,9 +1,9 @@
 ---
 name: sks-wiki
 description:
-  Use when documenting a project's technical knowledge in its GitHub wiki:
+  "Use when documenting a project's technical knowledge in its GitHub wiki:
   enabling the wiki, seeding or syncing pages after a behavior-changing PR,
-  and backfilling per-repo technical documentation.
+  and backfilling per-repo technical documentation."
 version: 0.4.1
 author: Automata
 license: Apache-2.0
