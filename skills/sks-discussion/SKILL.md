@@ -28,7 +28,7 @@ platforms:
 Pre-issue RFC (lifecycle **discussion → issue → issue comments → PR**, see
 `sks-dev`): converge on the problem, then derive the issue
 (`sks-issue`) and link back — do NOT keep solving here. Prose rules (English
-only, `@` escaping, no-wrap) are owned by `sks-edit` references/github-text/guide.md.
+only, `@` escaping, no-wrap) are owned by `references/github-text/guide.md` in `sks-edit`.
 
 For shikanime-org specifics (discussion surfaces), read
 `references/shikanime.md` when operating in a shikanime org. For

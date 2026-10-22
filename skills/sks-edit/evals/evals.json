@@ -39,7 +39,7 @@
       "expected_output": "The skill refuses to merge shapes: the issue body uses the # Problem / ## Acceptance structure from sks-issue; prose rules still apply.",
       "files": [],
       "notes": "Shape leakage between surfaces is explicitly a defect.",
-      "prompt": "Use sks-github-text-authoring to write an issue body with a # Why / ## What / ## References structure.",
+      "prompt": "Write (rules in `references/github-text/guide.md`) an issue body with a # Why / ## What / ## References structure.",
       "assertions": [
         "Body routes GitHub text to `references/github-text/guide.md`"
       ]

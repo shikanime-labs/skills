@@ -75,7 +75,7 @@ evidence style, comment etiquette) come from
 comment writing — they are not restated here.
 
 - A bare `@name` in prose pings that user/team — wrap any literal `@` in a
-  code span (rule owned by `sks-edit` references/github-text/guide.md).
+  code span (rule owned by `references/github-text/guide.md` in `sks-edit`).
 
 Body = clean problem statement (Description, reproduction steps, affected
 version, impact). Post root-cause / investigation findings as a **comment**

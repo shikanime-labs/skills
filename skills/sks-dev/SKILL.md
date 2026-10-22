@@ -239,7 +239,7 @@ Exact shapes live in the owning skills:
 | PR         | `sks-pr`       | title = commit subject; body `# Why`/`## What`/`## Verification`/`## References`; issue link = Development metadata |
 
 Prose mechanics (no-wrap, `@` escaping, full URLs, evidence style, template
-detection) are owned by `sks-edit` references/github-text/guide.md — load it
+detection) are owned by `references/github-text/guide.md` in `sks-edit` — load it
 drafting
 when
 any of the above. A ledger item is command-decidable and done only once its
