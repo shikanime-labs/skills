@@ -1,0 +1,41 @@
+{
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "Org audit measures counts, untriaged items, latency, residue, stalls, and stale branches before concluding, then files at most 3 proposal issues without mutating anything.",
+      "files": [],
+      "prompt": "Measure how our issues and PRs process is doing across shikanime-labs and file whatever is broken.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-sdlc-efficiency'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Body collects the metrics table before drawing any conclusion",
+        "Body measures untriaged open items, review and merge latency, merged-PR residue, stalls, and stale branches",
+        "Body files at most 3 proposal issues per run and opens no PRs",
+        "Body forbids mutating the items the audit measures"
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "Audit splits bot PRs out of latency rows, filters archived repos from the census, and treats prior numbers as baseline only.",
+      "files": [],
+      "prompt": "Audit the delivery pipeline of shikanime-studio: counts, latencies, stuck PRs.",
+      "assertions": [
+        "Body drops archived and empty repos from the census",
+        "Body keeps bot-authored PRs in a separate latency row",
+        "Body treats previous-run numbers as baseline only and re-measures in-session",
+        "Body routes already-tracked findings to their open issue instead of re-filing"
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "Assigning missing metadata routes to sks-triage; the audit itself never mutates the items it measures.",
+      "files": [],
+      "prompt": "Triage the untriaged issues in shikanime-labs/machines.",
+      "assertions": [
+        "Body declares metadata assignment out of scope and routes it to sks-triage",
+        "Body declares rewording or closing items out of scope"
+      ]
+    }
+  ],
+  "skill_name": "sks-sdlc-efficiency"
+}
