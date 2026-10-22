@@ -73,6 +73,9 @@ Every family skill assumes, without restating:
   before reporting; success lines prove nothing.
 - Unmet assumptions surface as `BLOCKED: <req> — <evidence> — <recovery>`,
   never as a silent scope change.
+- The account's hourly GraphQL budget is shared with the fleet's cron jobs, so
+  `gh` writes can fail mid-flow while plain REST keeps working: read
+  `references/gh-api-budget.md` when any `gh` call reports a rate limit.
 
 ## How the family fits
 
