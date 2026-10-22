@@ -1,4 +1,4 @@
-# SDLC efficiency surface — details
+# SDLC Efficiency Surface
 
 Metrics pass over the orgs' issues and PRs. Facts first, conclusions after;
 the audit mutates nothing it measures.

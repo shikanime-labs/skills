@@ -1,4 +1,4 @@
-# cloud-pi-native console — repo facts, French rules, deep recipes
+# cloud-pi-native Console Facts
 
 Load when working in the cloud-pi-native/console repository.
 

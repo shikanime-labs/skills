@@ -1,4 +1,4 @@
-# cpn-release-patch — cloud-pi-native / console specifics
+# cloud-pi-native Console Specifics
 
 Load when backporting between release tags of the cloud-pi-native/console
 repository; the generic procedure in SKILL.md applies to any release-please

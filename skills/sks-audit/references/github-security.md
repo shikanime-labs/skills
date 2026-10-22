@@ -1,4 +1,4 @@
-# Shikanime targets — GitHub security alerts
+# GitHub Security Alerts
 
 - Orgs in scope: `shikanime-labs` and `shikanime-studio`.
 - Alerts file in the affected repo; assignee `yorha-operator` where eligible.

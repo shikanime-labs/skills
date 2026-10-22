@@ -1,4 +1,4 @@
-# Shikanime targets — alertmanager alerts
+# Alertmanager Alerts
 
 - Orgs: `shikanime-labs` and `shikanime-studio`.
 - Filing repo for fleet alerts: `shikanime-labs/manifests`.

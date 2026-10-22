@@ -1,4 +1,4 @@
-# Modèles de revue (commentaires inline — français)
+# Modèles de revue
 
 Pour les dépôts dont les artefacts de review sont en français. Pas de `(...)`
 dans les titres. Chaque constat est posté en commentaire inline sur SA ligne

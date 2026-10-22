@@ -76,6 +76,10 @@ fails before review.
      punctuation, no em dash and no repeat of the slug: `# Issue Creation`,
      `# jj Restack`, `# Fused Authoring`. Qualifiers the body already carries
      stay out of the H1.
+   - Reference files follow the same H1 rule: a Title Case phrase naming the
+     content, never `slug — description`; a per-surface target file is named
+     for its surface (`# Alertmanager Alerts`), not for the skill that owns
+     it.
    - Paraphrasing parentheticals (excessive parentheses) are prohibited
      unless they justify or qualify the statement — scope conditions,
      command rules, short IDs. A parenthesis that merely restates nearby

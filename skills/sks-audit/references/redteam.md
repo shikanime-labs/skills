@@ -1,4 +1,4 @@
-# Shikanime targets — perimeter redteam
+# Perimeter Redteam
 
 - Orgs: `shikanime-labs` and `shikanime-studio`.
 - Perimeter source: depth-1 clone of

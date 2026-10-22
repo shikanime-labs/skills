@@ -1,4 +1,4 @@
-# Shikanime scope — sks-github-issues-sweep
+# Shikanime Org Conventions
 
 - Orgs: `shikanime-labs` and `shikanime-studio`.
 - Staleness gates: unlabeled/unassigned past 48h, unanswered past 7 days —
