@@ -3,7 +3,7 @@ name: sks-restack
 description:
   Use when rebasing a jj stack onto moved main leaves conflicts — restack,
   then resolve each conflicted revision with edit/resolve until pushable.
-version: 0.2.0
+version: 0.3.0
 author: Automata
 license: Apache-2.0
 metadata:
@@ -100,8 +100,12 @@ For org-specific conventions (local checkout layout, push signing), read
    signing setup in `references/shikanime.md`); GitHub squash-merge
    re-signs server-side.
 
-6. **Hand off.** Rewritten stack PRs land via `sks-land` / `sks-pr`;
-   leftover `(empty)` revs and stale workspaces are `sks-gc` territory.
+6. **Reclaim.** Run `sks-gc`: restacking rewrites commits, so the old revs
+   turn up empty (`jj log -r 'empty()'`) and any isolation workspace whose
+   unit is finished is now stale. Dry-run first, then forget the finished
+   artifacts.
+
+7. **Hand off.** Rewritten stack PRs land via `sks-land` / `sks-pr`.
 
 ## Pitfalls
 
