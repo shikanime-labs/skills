@@ -186,9 +186,9 @@ Escape (per `sks-issue`, `sks-pr`, `sks-issue`, `sks-pr`):
   else renders as-is.
 - Never run `nix fmt` / `mdformat` over a body; those tools enforce an
   80-column wrap that does not belong on GitHub.
-The `# Why`/`## What`/`## References` (PR) and `# Problem`/`## Acceptance`
-(issue) headings are the only structure; the paragraph text under them stays
-unwrapped.
+The `# Why`/`## What`/`## Verification`/`## References` (PR) and
+`# Problem`/`## Acceptance` (issue) headings are the only structure; the
+paragraph text under them stays unwrapped.
 
 ## Kustomize ConfigMap/Secret not found — generator not in active overlay
 

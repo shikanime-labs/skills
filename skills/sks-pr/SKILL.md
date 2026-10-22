@@ -4,7 +4,7 @@ description:
   "Use when opening a PR in a target-org repo: push to origin,
   --head org:branch, plain-English title, issue linkage, parity with commit,
   pre-submit isolation gate, opens as a draft."
-version: 0.2.0
+version: 0.2.1
 author: Automata
 license: Apache-2.0
 metadata:
@@ -66,10 +66,12 @@ squashing or when diagnosing a squash/force-push/rebase failure.
    (`gh repo view <org>/<repo> --json defaultBranchRef`).
 2. **Title** — commit subject (plain English / `doc:`), NO conventional prefix;
    parity with commit.
-3. **Body** — restates the commit body as three fixed sections (commit is the
+3. **Body** — restates the commit body as four fixed sections (commit is the
    source of truth; restate, do NOT invent new rationale):
    - `# Why` — why now: the drift/risk/pain this closes (one short paragraph).
    - `## What` — one-line summary + bullet scope (what this PR delivers).
+   - `## Verification` — how this was proven: the exact command or check and
+     its outcome; `none` only when nothing runs (docs, comments).
    - `## References` — commits/specs/changelogs proving the solution. The
      issue link is NOT a body line: it is Development metadata created by the
      `addCloseIssueReferences` GraphQL mutation (`sks-pr-triage` step 5).
@@ -199,9 +201,10 @@ jj git remote add origin "git@github.com:$ORG/<repo>.git" 2>/dev/null || true
 jj bookmark track <branch> --remote=origin
 jj git push --remote origin
 gh pr create --repo "$ORG/<repo>" --base main --head "$ORG:<branch>" \
-  --title "TITLE" --body-file <body-file>   # # Why / ## What / ## References;
-                                            # issue link = Development metadata
-                                            # added at triage, not a body line
+  --title "TITLE" --body-file <body-file>   # # Why / ## What / ## Verification
+                                            # / ## References; issue link =
+                                            # Development metadata added at
+                                            # triage, not a body line
 ```
 
 PRs submitted from a separate jj workspace request the default reviewer (see
