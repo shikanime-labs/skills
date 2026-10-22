@@ -150,6 +150,11 @@
       "path": "skills/sks-land"
     },
     {
+      "name": "sks-maintenance",
+      "description": "Use when maintaining the org's repos, fleet, and runtimes: renovate and language dependency bumps, nixpkgs/runtime upgrades, and the issue → PR → land → post-merge validation loop.",
+      "path": "skills/sks-maintenance"
+    },
+    {
       "name": "sks-milestone",
       "description": "Use when provisioning nixpkgs-release-aligned milestones across the org's Nix repos: discover the flake roster, create per-release milestones, assign issues and PRs, audit drift.",
       "path": "skills/sks-milestone"

@@ -1,0 +1,57 @@
+{
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "Classifies the upgrade as a runtime (lane B) change, opens a tracking issue with a command-decidable ledger including the post-merge running-state checks, records the rollback target, then applies it in an isolated jj workspace before the PR.",
+      "files": [],
+      "prompt": "Bump RKE2 in knix to the new upstream release and roll it out to the cluster.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-maintenance'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains a '## Two lanes' section proving a dependency bump with 'the repo's CI on the exact head' and a runtime version only by reading the system",
+        "Body states a one-line diff is 'lane B' when a running system consumes the version",
+        "Body opens the tracking issue before the PR and puts the post-merge running-state checks in its ledger",
+        "Body requires the rollback target before the change is applied"
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "Lands the language bump only with its lockfile on the exact head, per the ecosystem table in references/renovate.md, and never hand-rebases the renovate branch or merges past a red required check.",
+      "files": [],
+      "prompt": "Land the open renovate lockfile bumps across the org.",
+      "assertions": [
+        "Frontmatter 'name' equals the directory basename 'sks-maintenance'",
+        "Body points at 'references/renovate.md' for the dependency pass",
+        "Body proves a dependency bump with 'the repo's CI on the exact head'",
+        "Body lists 'renovate' among the triggers it fires on"
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "Refuses to call the upgrade done at merge: it converges the deploy, reads the running state, and only then closes the ledger N of N with the evidence.",
+      "files": [],
+      "prompt": "The nixpkgs bump PR merged — mark the upgrade done.",
+      "assertions": [
+        "Frontmatter 'name' equals the directory basename 'sks-maintenance'",
+        "Body states a merge is a 'claim' until the running system is re-read",
+        "Body validates the host with 'comin status' and the unit timestamps",
+        "Body states the local mirror resync is the deploy for agent and skill repos",
+        "Body closes the issue 'N of N' only with the validation evidence"
+      ]
+    },
+    {
+      "id": 4,
+      "expected_output": "Fails validation honestly: the rejected version stays recorded, the board card reopens, and the fleet is not left half-applied.",
+      "files": [],
+      "prompt": "One node is still on the old runtime after the upgrade — just report it as done.",
+      "assertions": [
+        "Frontmatter parses as YAML with a top-level 'name' key",
+        "Frontmatter 'name' equals the directory basename 'sks-maintenance'",
+        "Body reopens the card and leaves its ledger item unchecked on a failed validation",
+        "Body never leaves the fleet half-applied: finish the rollout or return to the previous version"
+      ]
+    }
+  ],
+  "skill_name": "sks-maintenance"
+}
