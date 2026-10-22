@@ -32,10 +32,9 @@ platforms:
 One small report block closes every work loop. Parallel loops means the
 operator reads N reports in one sitting; the block keeps that scan cheap.
 
-Prose style inside the sections is owned by `sks-edit`
-This
-references/github-text/guide.md.
-skill owns the sections and the destination.
+Prose style inside the sections is owned by
+`references/github-text/guide.md` in `sks-edit`. This skill owns the sections
+and the destination.
 
 ## When to Use
 

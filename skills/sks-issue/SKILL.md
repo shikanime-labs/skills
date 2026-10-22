@@ -70,10 +70,9 @@ gh issue create --repo <org>/<repo> --title "<summary>" --label <type> --body ".
 ### 2. Body = problem statement only
 
 Prose rules (free text, no wrapping, no formatter runs, `@` escaping,
-evidence style, comment etiquette) come from `sks-edit`
-—
-references/github-text/guide.md
-load it for any body or comment writing; they are not restated here.
+evidence style, comment etiquette) come from
+`references/github-text/guide.md` in `sks-edit`; load it for any body or
+comment writing — they are not restated here.
 
 - A bare `@name` in prose pings that user/team — wrap any literal `@` in a
   code span (rule owned by `sks-edit` references/github-text/guide.md).
