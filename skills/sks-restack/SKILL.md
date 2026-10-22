@@ -26,7 +26,7 @@ platforms:
   - windows
 ---
 
-# jj Restack + Conflict Resolution
+# jj Restack
 
 Rebase a jj stack (bookmarked commits above `main`) onto a moved trunk, then
 resolve every conflict the move produced. `jj restack` in these environments is
@@ -118,6 +118,18 @@ For org-specific conventions (local checkout layout, push signing), read
   restack; expected for an already-pushed branch.
 - **Stale trunk.** Restacking without `jj git fetch` rebases onto old
   `main@origin` — wasted resolution work.
+- **Clean-added files under the moved tree.** Trunk commits that ADD files
+  inside the directory your PR relocated merge cleanly at the old (flat) path
+  — `jj resolve --list` never shows them. After clearing markers, sweep the
+  old layout for stragglers, relocate them into the layer, and rewrite their
+  internal relative imports (out-of-layer `../x` becomes `../../x`);
+  `eslint --fix` handles import order.
+- **tsc parity needs built workspace deps.** Diffing `tsc --noEmit` error sets
+  against the old head is meaningless until workspace packages
+  (`@cpn-console/shared`, `hooks`, …) are built: unbuilt deps resolve as
+  TS2307 and silently suppress downstream errors, faking a cleaner baseline.
+  Build them in BOTH trees before comparing; accept an error as pre-existing
+  only after a counterfactual run on pristine trunk shows it.
 - **Shared working copy.** The alias's `roots(trunk()..) & mutable()` restacks
   every mutable root, including other sessions' WIP; with concurrent editors,
   prefer the scoped `jj rebase -b <branch> --onto main@origin`.
