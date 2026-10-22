@@ -1,12 +1,12 @@
 # Renovate pass
 
-Merged here from `sks-renovate-sweep`, which stays the standalone owner of
-this pass. Load this file when landing dependency PRs across the org's repos.
+The dependency half of maintenance: a landing pass over open dependency PRs
+across the org's repos. Load this file when landing dependency PRs.
 
-A landing pass over open dependency PRs: every PR with green checks on its
-exact head lands; everything else gets one reported line with its blocking
-reason. Red-for-days PRs become summary issues. Landing runs only under
-standing operator authorization or an explicit go-ahead.
+Every PR with green checks on its exact head lands; everything else gets one
+reported line with its blocking reason. Red-for-days PRs become summary
+issues. Landing runs only under standing operator authorization or an
+explicit go-ahead.
 
 ## Procedure
 
@@ -24,13 +24,16 @@ standing operator authorization or an explicit go-ahead.
 3. **Land eligible PRs.** Under standing authorization or explicit go-ahead:
    `gh pr merge --squash --admin --match-head-commit <sha>` after the human
    gate. Never merge past a red required check or a stale head — a head sha
-   that moved after the checks ran is re-checked, never merged.
+   that moved after the checks ran is re-checked, never merged. The
+   operator's standing policy treats green renovate PRs as authorized;
+   "merge all renovate" is the explicit go-ahead form.
 
 4. **Report the rest**: one line per PR — repo, number, update, check state,
    blocking reason.
 
 5. **Escalate chronic reds.** Red 3+ consecutive days on the same error: one
-   summary issue in that repo (`sks-issue`) with the error pattern.
+   summary issue in that repo (`sks-issue`) with the error pattern, assigned
+   `yorha-operator` where eligible.
 
 ## Ecosystem payloads
 

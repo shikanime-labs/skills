@@ -16,7 +16,6 @@ metadata:
       - nix
       - validation
     related_skills:
-      - sks-renovate-sweep
       - sks-issue
       - sks-pr
       - sks-land
@@ -181,8 +180,7 @@ running-state evidence, rollback target, board card state.
 
 ## See also
 
-- `sks-renovate-sweep` — the dependency pass, detailed in
-  `references/renovate.md`.
+- `references/renovate.md` — the dependency pass, folded into this skill.
 - `sks-issue`, `sks-pr`, `sks-land` — the train each phase delegates to.
 - `sks-project` — the tracking surface the phases mirror.
 - `sks-audit` — the surface that finds maintenance work.

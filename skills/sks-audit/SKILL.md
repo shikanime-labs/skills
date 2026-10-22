@@ -22,7 +22,7 @@ metadata:
       - sks-fastlane
       - sks-adversarial
       - sks-async
-      - sks-renovate-sweep
+      - sks-maintenance
       - sks-context
 platforms:
   - linux
@@ -122,11 +122,12 @@ CVE or advisory absence is blind, not clean — audit the sweep's own path.
 
 `gh repo list <org> --limit 100 --json nameWithOwner` per org, then per repo
 `gh run list -R <repo> --status failure --created ">$(date -d '-24 hours' '+%Y-%m-%d')"`.
-Excludes renovate PR checks (owned by `sks-renovate-sweep`), draft-PR CI
-skips, and flakes that passed on rerun. Record run URL, failing job, first
-error lines and head sha; a scheduled failure with zero code changes is an
-infra finding, not a code bug. Fastlane scope: trivial CI fixes — yaml fix,
-action pin, typo.
+Excludes renovate PR checks (owned by `sks-maintenance`:
+`references/renovate.md`), draft-PR CI skips, and flakes that passed on
+rerun. Record run URL, failing job, first error lines and head sha; a
+scheduled failure with zero code changes is an infra finding, not a code
+bug. Fastlane scope: trivial CI fixes — yaml fix, action pin,
+typo.
 
 Completion check: every repo enumerated, every trailing-window failure
 recorded. File one issue per repo+workflow pair.
@@ -211,4 +212,5 @@ re-verified.
 - `sks-issue` — issue body shape for filed findings.
 - `sks-fastlane` — the full eligibility gate referenced by step 6.
 - `sks-adversarial` — disposable sandbox for uncertain reads (step 1).
-- `sks-renovate-sweep` — owns renovate PR checks; the CI surface drops them.
+- `sks-maintenance` (`references/renovate.md`) — owns renovate PR checks; the
+  CI surface drops them.

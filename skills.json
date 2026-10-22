@@ -205,11 +205,6 @@
       "path": "skills/sks-release"
     },
     {
-      "name": "sks-renovate-sweep",
-      "description": "Use when landing or triaging open renovate PRs across an org's repos: check green on the exact head, land eligible ones, report the rest.",
-      "path": "skills/sks-renovate-sweep"
-    },
-    {
       "name": "sks-repo",
       "description": "Use when creating a new org repo: apply the 5-ruleset protection template, bootstrap the devlib devenv scaffold, and tag v0.1.0.",
       "path": "skills/sks-repo"
