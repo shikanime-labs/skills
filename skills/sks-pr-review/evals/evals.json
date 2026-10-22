@@ -80,13 +80,13 @@
     },
     {
       "id": 7,
-      "expected_output": "Skill stays scoped to code review and does not claim to author wiki pages (the sks-edit wiki guide's job).",
+      "expected_output": "Skill stays scoped to code review and does not claim to author wiki pages (`sks-wiki`'s job).",
       "files": [],
       "prompt": "Write the architecture and runbook pages for the wiki of shikanime-studio/machines.",
       "assertions": [
         "YAML frontmatter parses and 'name' equals 'sks-pr-review'",
-        "Frontmatter description does not contain substring '`sks-wiki`' or 'references/wiki/guide.md' if the skill does not author wiki pages",
-        "Body does not contain substring '`sks-wiki`' or 'references/wiki/guide.md' if the skill does not author wiki pages"
+        "Frontmatter description does not contain substring '`sks-wiki`'",
+        "Body does not contain substring '`sks-wiki`'"
       ]
     },
     {

@@ -41,7 +41,6 @@ matched family. If several rows match, prefer the most specific.
 | Kubernetes manifests, `kustomization.yaml`, overlays, `Deployment` / `STS` | Kubernetes manifests | `references/kubernetes-manifests/guide.md` |
 | Docs, runbooks, commit / PR / issue body (STE prose), error messages | Plain English | `references/text/guide.md` |
 | GitHub issue / PR / comment body, review threads | GitHub text | `references/github-text/guide.md` |
-| Repo wiki page, wiki home, wiki navigation | Wiki | `references/wiki/guide.md` |
 
 Do not double-apply: if a `.nix` module emits YAML (`sopsFile`,
 `secretGenerator`), it is Nix-only — the generated YAML is the

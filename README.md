@@ -113,6 +113,7 @@ specification, compatible with the
 | `sks-bulk` | Use when applying one instruction to many targets — repos, issues, PRs, orgs, or any enumerable agentic batch: enumerate targets, drive the batch from a plan file, and verify every result. |
 | `sks-comment` | Use when reading, writing, updating, or moderating comments on issues, PRs, or discussions: cross-surface extraction, the directed-value bar, the look-back loop, and update/rectification routing. |
 | `sks-commit` | Use when committing in a target-org repo: plain-English imperative titles and repo-enforced hooks (gitlint, DCO) win. |
+| `sks-wiki` | Use when documenting a project's technical knowledge in its GitHub wiki: enabling the wiki, seeding or syncing pages after a behavior-changing PR, and backfilling per-repo technical documentation. |
 | `sks-context` | Use when working in a target org's repos: the ecosystem map, environment facts, and shared assumptions every workflow skill builds on. |
 | `sks-converge` | Use when jj conflicts or divergent changes block a jj repo after a tree move — resolve conflicted revisions and divergent twins until pushable. |
 | `sks-curate` | Use when updating, improving, compressing, or token-optimizing a skill or profile in a skills catalog: rework the body, tighten it, refresh evals, and keep it loadable. |

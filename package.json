@@ -257,6 +257,11 @@
         "name": "sks-triage",
         "description": "Use when triaging a target org, repo, issue, or PR: sweep the scope for untriaged items, then assign every empty, context-derivable field \u2014 type, labels, assignee, fields.",
         "path": "skills/sks-triage"
+      },
+      {
+        "name": "sks-wiki",
+        "description": "Use when documenting a project's technical knowledge in its GitHub wiki: enabling the wiki, seeding or syncing pages after a behavior-changing PR, and backfilling per-repo technical documentation.",
+        "path": "skills/sks-wiki"
       }
     ]
   }
