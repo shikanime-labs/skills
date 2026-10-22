@@ -60,13 +60,17 @@ Org-specific scope (manifests source, hosts, filing repo) live in
    proven; those are listed, never re-filed. Re-verify the top open items
    instead of rediscovering them.
 
-4. **File new findings.** One issue per finding in the filing repo: title
-   `redteam: <finding>`, body with severity, evidence, affected route,
-   suggested fix. Assign per repo policy where eligible.
+4. **File new findings** via `sks-issue`: free-text title, bug label, plus
+   `security` only when the repo has it. Assign per repo policy where
+   eligible.
 
 5. **Fastlane small hardening only.** Eligible scope: header addition, rate
    limit, cipher policy. Must pass the `sks-fastlane` gate in full.
    Ineligible or checks pending: leave the PR open; never wait.
+
+6. **Memory loop.** Before reporting, honcho_reasoning "Which attack paths
+   from previous probes remain unpatched?" and re-verify the top open items;
+   honcho_conclude one line per durable lesson.
 
 ## Hard rules
 
