@@ -1,4 +1,4 @@
-# Shikanime targets — sks-k8s-audit
+# Shikanime targets — kubernetes warning events
 
 - Orgs: `shikanime-labs` and `shikanime-studio`.
 - Filing repo for fleet findings: `shikanime-labs/manifests`.

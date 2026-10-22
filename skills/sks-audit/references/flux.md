@@ -1,4 +1,4 @@
-# Shikanime targets — sks-flux-audit
+# Shikanime targets — flux readiness
 
 - Orgs: `shikanime-labs` and `shikanime-studio`.
 - Filing repo for fleet GitOps failures: `shikanime-labs/manifests`.

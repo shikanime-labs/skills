@@ -108,6 +108,7 @@ specification, compatible with the
 | Skill | Description |
 | --- | --- |
 | `sks-adversarial` | Use when probing uncertain results in a disposable sandbox — large investigation, development, debugging, testing, UAT, white-room, or data validation before promoting a change. |
+| `sks-audit` | Use when auditing fleet or org health — GitHub security alerts, perimeter redteam, CI failures, alerting, Flux readiness, Kubernetes events: read the surface, dedup, file new findings as issues, fastlane small fixes. |
 | `sks-async` | Use when splitting multi-unit work into parallel, isolated jj workspaces (depth-tree fan-out) and landing as independent plain `gh pr` merges. |
 | `sks-bulk` | Use when applying one instruction to many targets — repos, issues, PRs, orgs, or any enumerable agentic batch: enumerate targets, drive the batch from a plan file, and verify every result. |
 | `sks-comment` | Use when reading, writing, updating, or moderating comments on issues, PRs, or discussions: cross-surface extraction, the directed-value bar, the look-back loop, and update/rectification routing. |
@@ -123,7 +124,6 @@ specification, compatible with the
 | `sks-evolve` | Use when evolving the agent substrate without a hand-named target: mine experience for signals, evolve skills, profiles, memory, conventions, cron, or config, and repeat the fitness loop. |
 | `sks-edit` | Use when a write-phase change needs authoring conventions: identify the matching family (TypeScript, Nix, skill authoring, sops secrets, Kubernetes manifests, plain English, wiki) and apply its fused rules in this skill. |
 | `sks-gc` | Use when reclaiming resources leaked by agent workflows: dangling jj bookmarks, skill-created workspaces, leftover working-copy dirs, and stale merged branches on GitHub remotes. |
-| `sks-github-actions-audit` | Use when auditing CI health across an org's GitHub repos: failed workflow runs in the last 24h, filing new failures as issues, fastlaning trivial CI fixes. |
 | `sks-gist` | Use when a verified command, script, config, or output would be retyped or re-derived later — publish it as a gist for DRY reuse and link it from the artifact that motivated it. |
 | `sks-github-notif-sweep` | Use when sweeping unread GitHub notifications: filter noise, act on the answerable, mark processed threads read, never re-report a thread. |
 | `sks-github-issues-sweep` | Use when sweeping GitHub issues across an org's repos: enumerate open issues, dedup against prior coverage, surface stale or silent ones, and file summary issues for systemic patterns. |
@@ -132,8 +132,6 @@ specification, compatible with the
 | `sks-issue` | Use when opening an issue in an org repo: body is the problem statement, acceptance criteria as a command-decidable tasklist. |
 | `sks-issue-refine` | Use when iterating a problem to convergence inside its GitHub issue via research and comments before deriving the PR. |
 | `sks-issue-triage` | Use when triaging an existing org issue: assign type, labels, assignee, milestone, project, relationships, and fields; close with rationale if not workable. |
-| `sks-flux-audit` | Use when auditing GitOps fleet health: Flux kustomization and HelmRelease readiness, filing failures as issues, and fastlaning small manifest fixes. |
-| `sks-grafana-audit` | Use when auditing fleet alerting health: firing alertmanager alerts, filing new alerts as issues, and fastlaning small monitoring-config fixes. |
 | `sks-land` | Use when landing a target-org PR after reconciliation (sks-pr-resolve) and review approval gates pass; closes the linked issue deliberately. |
 | `sks-fastlane` | Use when a hotfix, small update, or insignificant chore is too trivial for the full gate train: merge its PR without human review once CI is green. |
 | `nixpkgs-pr-review` | Use when reviewing an upstream NixOS/nixpkgs pull request: build the changed packages with nixpkgs-review and check the diff against nixpkgs conventions. |
@@ -148,9 +146,6 @@ specification, compatible with the
 | `sks-project` | Use when tracking issue/PR advancement on an org board: resolve the board from context or provision one, set Status to the real phase, audit drift. |
 | `sks-release` | Use when cutting a release of the skills catalog: verify green main, bump manifest versions, signed tag, published notes, RC pre-release when unproven. |
 | `sks-renovate-sweep` | Use when landing or triaging open renovate PRs across an org's repos: check green on the exact head, land eligible ones, report the rest. |
-| `sks-redteam` | Use when probing a fleet's perimeter for exposed surface: read-only checks of TLS posture, security headers, auth on dashboards, and anonymous API access. |
-| `sks-security-audit` | Use when auditing an org's GitHub security surface: code-scanning, secret-scanning, and dependabot alerts, filing new alerts as issues, fastlaning small remediations. |
-| `sks-k8s-audit` | Use when auditing Kubernetes warning events: grouping and noise-filtering events, filing new findings as issues, fastlaning small manifest fixes. |
 | `sks-tldr` | Use when ending any agent work loop — investigation, dev unit, batch, or delegation fan-out: emit the fixed report block so status, evidence, and handoff stay uniform across parallel tasks. |
 | `cpn-release-patch` | Use when backporting the commits between two release tags onto a hotfix branch in <org>/<repo>: find the patch milestone and duplicate those commits onto the tag with jj. |
 | `sks-restack` | Use when rebasing a jj stack onto moved main leaves conflicts — restack, then resolve each conflicted revision with edit/resolve until pushable. |

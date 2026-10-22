@@ -1,3 +1,0 @@
-# Scanner: exclude adversarial eval fixtures (intentional injection prompts).
-# SKILL.md is always scanned and cannot be ignored.
-evals/

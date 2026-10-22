@@ -16,7 +16,7 @@ metadata:
     related_skills:
       - sks-land
       - sks-issue
-      - sks-github-actions-audit
+      - sks-audit
       - sks-context
 platforms:
   - linux
@@ -93,4 +93,4 @@ issues filed.
 
 - `sks-land` — landing mechanics and approval gates.
 - `sks-issue` — issue body shape for chronic-red summaries.
-- `sks-github-actions-audit` — the CI-failure sweep that ignores renovate PRs.
+- `sks-audit` — the audit whose CI surface ignores renovate PRs.
