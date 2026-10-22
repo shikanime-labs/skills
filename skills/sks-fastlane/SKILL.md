@@ -1,9 +1,8 @@
 ---
 name: sks-fastlane
 description:
-  "Use when a hotfix, small update, or insignificant chore is too trivial
-  for the full gate train: merge its PR without human review once CI is
-  green."
+  "Use when the user designates a change as trivial and asks for an
+  expedited merge: run the eligibility gate, then merge once CI is green."
 version: 0.1.0
 author: Automata
 license: Apache-2.0
@@ -27,7 +26,7 @@ platforms:
 
 # Fastlane Merge
 
-Self-merge a trivial PR without human review. This is a **mutator** of
+Self-merge a PR the user designated as trivial. This is a **mutator** of
 `sks-land`: it exists to state exactly which gates drop and which never
 do. The full gate train (`sks-pr-review` → approval → `sks-land`) stays
 the default; fastlane is the exception that must justify itself against
@@ -113,8 +112,9 @@ PR to `sks-land` and say which criterion failed.
 
    ```bash
    printf '%s\n' \
-     "Fastlane: merged without human review under sks-fastlane" \
-     "(CI green, eligibility passed). Revert freely if not trivial." \
+     "Fastlane: merged via the sks-fastlane expedited path" \
+     "(operator-designated trivial, CI green, eligibility passed)." \
+     "Revert freely if not trivial." \
      > /tmp/fastlane-note.md
    gh pr comment "$M" --repo "$R" --body-file /tmp/fastlane-note.md
    ```
