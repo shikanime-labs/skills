@@ -46,14 +46,14 @@
     },
     {
       "id": 4,
-      "expected_output": "Skill stays scoped to triaging issues and does not claim to author wiki pages (the sks-edit wiki guide's job).",
+      "expected_output": "Skill stays scoped to triaging issues and does not claim to author wiki pages (`sks-wiki`'s job).",
       "files": [],
       "prompt": "Add an architecture page and a runbook to the wiki of shikanime-studio/sk-async after the refactor.",
       "assertions": [
         "Frontmatter parses as valid YAML.",
         "The 'name' field equals 'sks-issue-triage'.",
-        "The description does not contain substring '`sks-wiki`' or 'references/wiki/guide.md' if the skill does not author wiki pages.",
-        "Body does not contain substring '`sks-wiki`' or 'references/wiki/guide.md' if the skill does not author wiki pages.",
+        "The description does not contain substring '`sks-wiki`'.",
+        "Body does not contain substring '`sks-wiki`'.",
         "The description does not contain substring 'docs/'."
       ]
     },
