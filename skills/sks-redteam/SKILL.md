@@ -3,7 +3,7 @@ name: sks-redteam
 description:
   "Use when probing a fleet's perimeter for exposed surface: read-only checks
   of TLS posture, security headers, auth on dashboards, and anonymous API
-  access."
+  access, plus adversarial path exploration."
 version: 0.1.0
 author: Automata
 license: Apache-2.0
@@ -17,6 +17,8 @@ metadata:
     related_skills:
       - sks-issue
       - sks-fastlane
+      - sks-adversarial
+      - sks-async
       - sks-security-audit
       - sks-context
 platforms:
@@ -41,6 +43,8 @@ Org-specific scope (manifests source, hosts, filing repo) live in
 - "Probe the perimeter" / "what's exposed" / a recurring offensive sweep.
 - Validating that a hardening change landed (re-check the specific surface).
 - Cross-referencing an exposure rumor from an external report.
+- Chained paths to probe (a route reached only through another route, a
+  pivot, a trust path) that a single-shot probe cannot cover.
 
 ## Procedure
 
@@ -55,20 +59,42 @@ Org-specific scope (manifests source, hosts, filing repo) live in
    checks on dashboards, anonymous API access, registry tag listability.
    Record evidence (command, output excerpt) per finding.
 
-3. **Dedup before filing.** Check the tracker (`gh issue list -R <repo>
+3. **Explore uncertain paths in a sandbox.** Surface checks prove the
+   perimeter's front door; longer attack paths — a chain from a low-trust
+   endpoint to a privileged one, a pivot through a misconfigured route, a
+   trust path between two services — are uncertain results, not known ones.
+   Explore them as disposable trials: shape the trial per `sks-adversarial`,
+   run independent paths as parallel `sks-async` workspaces (one per trial,
+   dot-qualified names `<repo>.<trial>`), and record the repro command with
+   each result. A trial that survives becomes a filed finding (step 6);
+   read-only still holds inside the sandbox — no exploit past proof, no
+   modification, no secrets. A finding whose only existence proof is a
+   sandbox run stays in the report as unverified until a direct probe
+   confirms it.
+
+4. **Audit the sweep's own path.** Before filing, self-audit the surface and
+   path list you just built: which declared hostnames got no probe result,
+   which chained paths were assumed unreachable without a trial, which
+   checks were skipped. An audit that stops at CVE feeds and the GitHub
+   security advisory tab is blind, not clean — absence from those sources is
+   not evidence of absence on your perimeter. Close the gap: run the missed
+   probe, open the trial for the assumed-unreachable path. Log the audited
+   path list with the sweep report.
+
+5. **Dedup before filing.** Check the tracker (`gh issue list -R <repo>
    --state open`) and prior-run memory for findings already tracked or already
    proven; those are listed, never re-filed. Re-verify the top open items
    instead of rediscovering them.
 
-4. **File new findings** via `sks-issue`: free-text title, bug label, plus
+6. **File new findings** via `sks-issue`: free-text title, bug label, plus
    `security` only when the repo has it. Assign per repo policy where
    eligible.
 
-5. **Fastlane small hardening only.** Eligible scope: header addition, rate
-   limit, cipher policy. Must pass the `sks-fastlane` gate in full.
+7. **Fastlane small hardening only.** Eligible scope: a header addition, a
+   rate limit, or a cipher policy. Must pass the `sks-fastlane` gate in full.
    Ineligible or checks pending: leave the PR open; never wait.
 
-6. **Memory loop.** Before reporting, honcho_reasoning "Which attack paths
+8. **Memory loop.** Before reporting, honcho_reasoning "Which attack paths
    from previous probes remain unpatched?" and re-verify the top open items;
    honcho_conclude one line per durable lesson.
 
@@ -107,7 +133,9 @@ PRs left open, top open items re-verified.
 ## See also
 
 - `sks-issue` — issue body shape for filed findings.
-- `sks-fastlane` — the full eligibility gate referenced by step 5.
+- `sks-fastlane` — the full eligibility gate referenced by step 7.
+- `sks-adversarial` — sandbox shape for path-exploration trials (step 3).
+- `sks-async` — per-trial fan-out used by step 3.
 - `sks-security-audit` — the defensive counterpart: GitHub alert surfaces.
 - `sks-edit` references/kubernetes-manifests/guide.md — authoring the Gateway
 route patches findings point at.
