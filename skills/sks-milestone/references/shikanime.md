@@ -24,3 +24,7 @@ unit.
   (`references/nixpkgs-calendar.md`).
 - Org `.github` repos count: they root flakes and carry Renovate configs
   that ride the same cadence.
+- Working doctrine: long-term solutions over short-term fixes — fix the root
+  cause, never land a tactical patch that accrues debt. No hard SLA
+  constraints: correctness and durability outrank turnaround time; take the
+  time to do it properly.

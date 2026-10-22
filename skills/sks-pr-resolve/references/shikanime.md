@@ -19,3 +19,8 @@ Where branch protection blocks self-approval (e.g. `shikanime-labs/skills`,
 
 Workflow id and impact rules per org repo live in
 `references/cloud-pi-native.md` where applicable.
+
+- Working doctrine: long-term solutions over short-term fixes — fix the root
+  cause, never land a tactical patch that accrues debt. No hard SLA
+  constraints: correctness and durability outrank turnaround time; take the
+  time to do it properly.

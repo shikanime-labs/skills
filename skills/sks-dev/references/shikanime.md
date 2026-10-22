@@ -25,3 +25,7 @@ Facts extracted from the SKILL.md body (environment facts live in the
   `sks-commit`).
 - Checkouts at `~/Source/Repos/github.com/<org>/<repo>` (orgs
   `shikanime-labs`, `shikanime-studio`).
+- Working doctrine: long-term solutions over short-term fixes — fix the root
+  cause, never land a tactical patch that accrues debt. No hard SLA
+  constraints: correctness and durability outrank turnaround time; take the
+  time to do it properly.

@@ -24,3 +24,8 @@ resolution: grant the agent account push access, then have it push an empty
 `<id>+<login>@users.noreply.github.com` — org email-privacy rejects the real
 one), making the agent the last pusher so the human approval satisfies the
 rule; the squash merge discards the empty commit.
+
+- Working doctrine: long-term solutions over short-term fixes — fix the root
+  cause, never land a tactical patch that accrues debt. No hard SLA
+  constraints: correctness and durability outrank turnaround time; take the
+  time to do it properly.

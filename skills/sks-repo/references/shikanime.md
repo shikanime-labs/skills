@@ -16,3 +16,8 @@ template repo, scaffold donors, and commit trailer values.
 
 Bootstrap commit trailer: `Co-authored-by: Automata
 <automata@shikanime.studio>` plus `Signed-off-by`.
+
+- Working doctrine: long-term solutions over short-term fixes — fix the root
+  cause, never land a tactical patch that accrues debt. No hard SLA
+  constraints: correctness and durability outrank turnaround time; take the
+  time to do it properly.

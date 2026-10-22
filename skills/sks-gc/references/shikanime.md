@@ -9,3 +9,8 @@ delete the default branch, protected branches, `release/*` tags, or ghstack
 role branches of open stacks; `git`-based org repos (manifests, skills) may
 enforce gitlint — irrelevant to deletion, but confirm the branch has no open
 PR first (`gh pr list --head <branch>`).
+
+- Working doctrine: long-term solutions over short-term fixes — fix the root
+  cause, never land a tactical patch that accrues debt. No hard SLA
+  constraints: correctness and durability outrank turnaround time; take the
+  time to do it properly.
