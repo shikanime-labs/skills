@@ -150,7 +150,9 @@ Readiness verdict:
 - Conversations: every thread resolved with one-line rationale, or list needing
   author decision.
 - CI: green / pending / failing.
-- Docs: flag ops/architecture changes for post-land `sks-wiki` update.
+- Docs: flag ops/architecture changes for post-land `sks-edit`
+update.
+references/wiki/guide.md
 
 Then stop — merging is `sks-land`'s job.
 

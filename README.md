@@ -127,7 +127,7 @@ specification, compatible with the
 | `sks-gist` | Use when a verified command, script, config, or output would be retyped or re-derived later — publish it as a gist for DRY reuse and link it from the artifact that motivated it. |
 | `sks-github-notif-sweep` | Use when sweeping unread GitHub notifications: filter noise, act on the answerable, mark processed threads read, never re-report a thread. |
 | `sks-github-issues-sweep` | Use when sweeping GitHub issues across an org's repos: enumerate open issues, dedup against prior coverage, surface stale or silent ones, and file summary issues for systemic patterns. |
-| `sks-github-text-authoring` | Use when writing any GitHub text in the target org's repos — commit message, issue or PR body, discussion RFC, review or issue comment. Owns all shared prose rules; surface skills handle procedure. |
+| `sks-edit` references/github-text/guide.md | Use when writing any GitHub text in the target org's repos — commit message, issue or PR body, discussion RFC, review or issue comment. Owns all shared prose rules; surface skills handle procedure. |
 | `sks-investigate` | Use when investigating a bug, test failure, build break, or unexpected behavior — find root cause, form a hypothesis, and propose a solution, never apply the fix itself. |
 | `sks-issue` | Use when opening an issue in an org repo: body is the problem statement, acceptance criteria as a command-decidable tasklist. |
 | `sks-issue-refine` | Use when iterating a problem to convergence inside its GitHub issue via research and comments before deriving the PR. |

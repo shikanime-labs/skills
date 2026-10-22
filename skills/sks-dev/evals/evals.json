@@ -73,13 +73,13 @@
     },
     {
       "id": 6,
-      "expected_output": "Skill stays scoped to the shikanime dev loop and does not claim to author wiki pages (`sks-wiki`'s job).",
+      "expected_output": "Skill stays scoped to the shikanime dev loop and does not claim to author wiki pages (the sks-edit wiki guide's job).",
       "files": [],
       "prompt": "Write up the architecture and runbook pages for the wiki of shikanime-studio/machines.",
       "assertions": [
         "YAML frontmatter parses and 'name' equals 'sks-dev'",
-        "Frontmatter description does not contain substring '`sks-wiki`'",
-        "Body does not contain substring '`sks-wiki`'",
+        "Frontmatter description does not contain substring '`sks-wiki`' or 'references/wiki/guide.md' if the skill does not author wiki pages",
+        "Body does not contain substring '`sks-wiki`' or 'references/wiki/guide.md' if the skill does not author wiki pages",
         "Frontmatter description does not contain substring 'documentation'"
       ]
     },

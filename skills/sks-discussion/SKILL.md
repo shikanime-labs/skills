@@ -28,7 +28,7 @@ platforms:
 Pre-issue RFC (lifecycle **discussion → issue → issue comments → PR**, see
 `sks-dev`): converge on the problem, then derive the issue
 (`sks-issue`) and link back — do NOT keep solving here. Prose rules (English
-only, `@` escaping, no-wrap) are owned by `sks-github-text-authoring`.
+only, `@` escaping, no-wrap) are owned by `sks-edit` references/github-text/guide.md.
 
 For shikanime-org specifics (discussion surfaces), read
 `references/shikanime.md` when operating in a shikanime org. For
@@ -104,7 +104,7 @@ milestone, or project surface — labels + category are the whole metadata set.
 
 ## See also
 
-- `sks-github-text-authoring` — prose rules this skill delegates.
+- `sks-edit` references/github-text/guide.md — prose rules this skill delegates.
 - `sks-issue` — derive the issue once converged.
 - `sks-discussion-triage` — triage, lifecycle routing, closure.
 - `sks-plan` — decomposes the converged direction into a milestone.

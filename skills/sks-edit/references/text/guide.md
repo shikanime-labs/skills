@@ -12,7 +12,8 @@ meaning and one part of speech. ASD copyrights it; the standard itself is a
 free download at asd-ste100.org. The mechanics below apply without the
 dictionary: one word, one meaning, one part of speech.
 
-`sks-github-text-authoring` owns prose mechanics for GitHub text: line
+`sks-edit` references/github-text/guide.md owns prose mechanics for GitHub text:
+line
 wrapping, `@` escaping, body transport. This skill owns sentence content.
 Both apply when drafting a commit, issue, or PR body; `sks-comment` owns
 the comment mechanism on those surfaces and routes comment sentence
@@ -140,7 +141,7 @@ the self-check findings fixed.
 
 ## See also
 
-- `sks-github-text-authoring` — prose mechanics for GitHub text.
+- `sks-edit` references/github-text/guide.md — prose mechanics for GitHub text.
 - `sks-commit`, `sks-pr`, `sks-issue` — the surfaces this style feeds.
-- `sks-wiki` — repo-wiki workflow that carries the
+- `sks-edit` references/wiki/guide.md — repo-wiki workflow that carries the
 final text.

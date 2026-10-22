@@ -239,7 +239,9 @@ Exact shapes live in the owning skills:
 | PR         | `sks-pr`       | title = commit subject; body `# Why`/`## What`/`## Verification`/`## References`; issue link = Development metadata |
 
 Prose mechanics (no-wrap, `@` escaping, full URLs, evidence style, template
-detection) are owned by `sks-github-text-authoring` — load it when drafting
+detection) are owned by `sks-edit` references/github-text/guide.md — load it
+drafting
+when
 any of the above. A ledger item is command-decidable and done only once its
 check ran; close the linked issue deliberately after N-of-N verified.
 NEVER pass bodies inline via `--body "..."` — shell expansion mangles

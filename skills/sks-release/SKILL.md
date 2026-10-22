@@ -18,7 +18,6 @@ metadata:
       - sks-commit
       - sks-land
       - sks-milestone
-      - sks-github-text-authoring
       - sks-context
 platforms:
   - linux
@@ -129,7 +128,9 @@ gh release create vX.Y.Z -R <org>/skills \
 gh release view vX.Y.Z -R <org>/skills --json body -q '.body | length'   # > 0
 ```
 
-Body prose rules: `sks-github-text-authoring` (file, never inline; free
+Body prose rules: `sks-edit` references/github-text/guide.md (file, never
+free
+inline;
 text, never wrapped).
 
 ### 6. Milestone close-off
@@ -185,5 +186,5 @@ both manifests read the released version on main.
 
 - `sks-milestone` — the release plane this cut closes out.
 - `sks-land` — landing the version-bump commit.
-- `sks-github-text-authoring` — notes prose and tooling discipline.
+- `sks-edit` references/github-text/guide.md — notes prose and tooling discipline.
 - `sks-commit` — the bump commit's envelope.
