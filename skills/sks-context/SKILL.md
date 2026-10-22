@@ -51,6 +51,11 @@ The lifecycle is **discussion → issue → issue comments → PR**:
 - Landing is `gh pr merge --squash` in dependency order; a direct push to
   `main` needs explicit user authorization.
 
+The working stance behind every unit: prefer the long-term solution, fix the
+root cause, never land a tactical patch that accrues debt. There is no hard
+SLA — correctness and durability outrank turnaround time, so take the time to
+do it properly.
+
 Skill bodies are org-neutral; org-specific conventions load on demand from
 per-skill `references/<org>.md` files. Read `references/shikanime.md` for
 the shikanime org: identity, checkout layout, remote split, protected
