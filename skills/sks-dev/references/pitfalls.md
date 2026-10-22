@@ -1,4 +1,4 @@
-# sks-dev — Pitfalls
+# Pitfall Recipes
 
 ## Dual-clone discipline (`.hermes/skills` vs `~/Source/Repos`)
 

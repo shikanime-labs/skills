@@ -1,4 +1,4 @@
-# Shikanime scope — sks-github-notif-sweep
+# Shikanime Org Conventions
 
 - Orgs: `shikanime-labs` and `shikanime-studio`.
 - Replies post as `yorha-operator` (never approve or merge anything).

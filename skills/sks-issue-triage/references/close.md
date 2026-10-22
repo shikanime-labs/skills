@@ -1,4 +1,4 @@
-# sks-issue-triage — Close commands
+# Close Commands
 
 Resolve an issue by closing rather than assigning when fitting. Always close
 with a rationale; never silently close. Ask the user for free-text `REASON` —

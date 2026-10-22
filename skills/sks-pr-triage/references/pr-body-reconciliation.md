@@ -1,4 +1,4 @@
-# pr-triage — Reconciliation du corps↔diff
+# Réconciliation corps↔diff
 
 Quand on demande de **reformuler** le titre ou le corps d'une PR (après
 force-push, changement de périmètre, ou « reword it based on new changes »), ne

@@ -1,4 +1,4 @@
-# Shikanime targets — sks-audit
+# Shikanime Targets
 
 - Orgs in scope: `shikanime-labs` and `shikanime-studio`.
 - Fleet cluster: nishir (KubeVirt VMs behind Envoy Gateway); tailnet

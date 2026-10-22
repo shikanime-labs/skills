@@ -1,4 +1,4 @@
-# Shikanime targets — kubernetes warning events
+# Kubernetes Warning Events
 
 - Orgs: `shikanime-labs` and `shikanime-studio`.
 - Filing repo for fleet findings: `shikanime-labs/manifests`.

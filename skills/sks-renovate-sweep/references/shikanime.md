@@ -1,4 +1,4 @@
-# Shikanime scope — sks-renovate-sweep
+# Shikanime Org Conventions
 
 - Orgs: `shikanime-labs` and `shikanime-studio`.
 - Landing: `gh pr merge --squash --admin` pinned to the verified head sha

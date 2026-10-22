@@ -1,4 +1,4 @@
-# Repo-wide structural audit — dangling files, naming, consistency (2026-09-02)
+# Structural Audit
 
 Method validated on the full manifests repo (244 kustomizations, 464 dirs)
 for "review every app structure consistency, naming and dangling files".

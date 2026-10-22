@@ -1,4 +1,4 @@
-# sks-edit — Shikanime org conventions
+# Shikanime Org Conventions
 
 Org map for the fused `sks-edit` skill when operating in a shikanime org repo.
 Concrete repos live at `~/Source/Repos/github.com/shikanime-labs/<repo>` (see

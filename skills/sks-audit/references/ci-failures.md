@@ -1,4 +1,4 @@
-# Shikanime targets — CI failures
+# CI Failures
 
 - Orgs: `shikanime-labs` and `shikanime-studio`.
 - Failures file in the repo where they failed; assignee `yorha-operator`

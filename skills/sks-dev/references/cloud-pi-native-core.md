@@ -1,4 +1,4 @@
-# cloud-pi-native-core — shikanime-labs Alchemy v2 extraction library
+# cloud-pi-native-core Extraction Library
 
 Load when working in `shikanime-labs/cloud-pi-native-core` (NOT the
 cloud-pi-native/console repo — different org, different rules).

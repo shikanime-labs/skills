@@ -1,4 +1,4 @@
-# cloud-pi-native/console — application of the TypeScript rules
+# Console TypeScript Rules
 
 Load when applying the TypeScript practices in the cloud-pi-native/console
 repository.
