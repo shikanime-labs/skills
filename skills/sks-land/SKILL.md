@@ -233,17 +233,23 @@ EOF
    default to `master`). Wiki pushes bypass review — accepted trade-off.
    Skip only when the change is purely internal to what the wiki does not
    cover. Full mechanics: `sks-wiki`.
-6. **Teardown the landing bookmark.** GitHub drops the remote branch on merge,
-   but the local `jj` bookmark and its `origin` tracking ref linger and clutter
-   the workspace. Remove both:
+6. **Teardown the landing bookmark.** A merge deletes the remote branch only
+   in some repo configurations — never assume it, and never read a
+   "Nothing changed" push as proof: `jj bookmark delete` and `jj git push`
+   remove the local bookmark and its tracking ref, and say nothing about the
+   remote ref. Remove the local side, then delete the remote ref if it is
+   still there:
 
    ```bash
    jj bookmark delete <branch>
    jj git push --remote origin
+   gh api repos/<org>/<repo>/branches/<branch> >/dev/null 2>&1 \
+     && gh api -X DELETE repos/<org>/<repo>/git/refs/heads/<branch>
    ```
 
-   `delete` propagates to tracked remotes on the next push (no `--remote` flag).
-   If `push` reports nothing changed, GitHub already removed it.
+   The first call is the check: it exits 0 only while the branch exists, so
+   the deletion runs exactly when it is needed. A stale merged branch feeds
+   the stale-branch audit surface.
 7. **Drop the isolated workspace** if you used one. Landing is a remote
    `gh pr merge`; the local checkout that held the change is then dead weight.
    sks-land never auto-deletes a workspace — remove it deliberately:
