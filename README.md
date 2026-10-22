@@ -147,7 +147,6 @@ specification, compatible with the
 | `sks-pr-triage` | Use when triaging an existing org PR: labels, assignee, milestone, and reviewers. |
 | `sks-project` | Use when tracking issue/PR advancement on an org board: resolve the board from context or provision one, set Status to the real phase, audit drift. |
 | `sks-release` | Use when cutting a release of the skills catalog: verify green main, bump manifest versions, signed tag, published notes, RC pre-release when unproven. |
-| `sks-renovate-sweep` | Use when landing or triaging open renovate PRs across an org's repos: check green on the exact head, land eligible ones, report the rest. |
 | `sks-tldr` | Use when ending any agent work loop — investigation, dev unit, batch, or delegation fan-out: emit the fixed report block so status, evidence, and handoff stay uniform across parallel tasks. |
 | `cpn-release-patch` | Use when backporting the commits between two release tags onto a hotfix branch in <org>/<repo>: find the patch milestone and duplicate those commits onto the tag with jj. |
 | `sks-restack` | Use when rebasing a jj stack onto moved main leaves conflicts — restack, then resolve each conflicted revision with edit/resolve until pushable. |

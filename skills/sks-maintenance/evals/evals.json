@@ -51,6 +51,31 @@
         "Body reopens the card and leaves its ledger item unchecked on a failed validation",
         "Body never leaves the fleet half-applied: finish the rollout or return to the previous version"
       ]
+    },
+    {
+      "id": 5,
+      "expected_output": "Enumerates open renovate PRs per org repo, triages each by check state, lands only the eligible ones under the standing authorization, and reports the rest with their blocking reasons.",
+      "files": [],
+      "prompt": "Do the daily renovate sweep across shikanime-labs and shikanime-studio.",
+      "assertions": [
+        "Frontmatter 'name' equals the directory basename 'sks-maintenance'",
+        "Body sends the dependency pass to 'references/renovate.md'",
+        "The renovate pass enumerates open PRs per repo with 'gh pr list'",
+        "The renovate pass lands only PRs with green checks on the 'exact head'",
+        "The renovate pass reports non-landed PRs with their 'blocking reason'"
+      ]
+    },
+    {
+      "id": 6,
+      "expected_output": "Fails honesty and escalation: a red required check is never merged past, and a PR red for days on the same error becomes one summary issue instead of a repeated report.",
+      "files": [],
+      "prompt": "This same renovate PR has been failing with the same error since Monday — what does the pass do about it?",
+      "assertions": [
+        "Frontmatter 'name' equals the directory basename 'sks-maintenance'",
+        "The renovate pass escalates a PR red '3+ consecutive days' into one summary issue",
+        "The summary issue is assigned to 'yorha-operator' where eligible",
+        "The renovate pass re-checks a head that moved after the checks ran"
+      ]
     }
   ],
   "skill_name": "sks-maintenance"

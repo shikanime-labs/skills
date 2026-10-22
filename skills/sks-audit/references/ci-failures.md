@@ -8,5 +8,6 @@
   `gh workflow run workflow-continuous-integration.yml --ref <branch>`.
 - Draft-PR CI skips are normal on machines (`nix`/`skaffold` jobs skip draft
   PRs; `gh pr ready <n>` arms them) — not failures.
-- Renovate PR checks belong to `sks-renovate-sweep`; drop them here.
+- Renovate PR checks belong to `sks-maintenance` (`references/renovate.md`);
+  drop them here.
 - Fastlane merge mechanics and receipt comment are `sks-fastlane`'s.
