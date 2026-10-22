@@ -22,7 +22,7 @@ platforms:
   - windows
 ---
 
-# sks-edit — Fused authoring conventions
+# Fused Authoring
 
 `sks-edit` owns all authoring conventions for target-org repos: identification
 (match table below), family rule sets (each in `references/<family>/guide.md`),

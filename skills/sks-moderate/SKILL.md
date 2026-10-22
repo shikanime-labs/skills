@@ -27,7 +27,7 @@ platforms:
   - windows
 ---
 
-# Comment Moderation with GitHub Hide
+# Comment Moderation
 
 Moderate issues, PRs, and discussions with GitHub's Hide feature; the
 GraphQL operations are named minimize and unminimize. Moderation exists

@@ -72,6 +72,10 @@ fails before review.
      menu.
    - Headings state scope conditions, never paraphrase the title or a
      sibling heading; a restated title adds noise and MD024 duplicates.
+   - The body H1 is a Title Case noun phrase of at most three words, with no
+     punctuation, no em dash and no repeat of the slug: `# Issue Creation`,
+     `# jj Restack`, `# Fused Authoring`. Qualifiers the body already carries
+     stay out of the H1.
    - Paraphrasing parentheticals (excessive parentheses) are prohibited
      unless they justify or qualify the statement — scope conditions,
      command rules, short IDs. A parenthesis that merely restates nearby
