@@ -225,6 +225,11 @@
         "path": "skills/sks-pr-triage"
       },
       {
+        "name": "sks-sdlc-efficiency",
+        "description": "Use when measuring a GitHub org's SDLC delivery process with facts and metrics: counts of open and untriaged issues and PRs, review and merge latency, and gap conclusions filed as proposals.",
+        "path": "skills/sks-sdlc-efficiency"
+      },
+      {
         "name": "sks-project",
         "description": "Use when tracking issue/PR advancement on an org board: resolve the board from context or provision one, set Status to the real phase, audit drift.",
         "path": "skills/sks-project"
