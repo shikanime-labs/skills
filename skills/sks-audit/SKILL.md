@@ -1,9 +1,9 @@
 ---
 name: sks-audit
 description:
-  "Use when auditing fleet or org health — GitHub security alerts, perimeter
-  redteam, CI failures, alerting, Flux readiness, Kubernetes events: read the
-  surface, dedup, file new findings as issues, fastlane small fixes."
+  "Use when auditing fleet or org health - security alerts, perimeter redteam,
+  CI failures, alerting, Flux readiness, Kubernetes events: read the surface,
+  dedup, file findings, fastlane fixes."
 version: 1.0.0
 author: Automata
 license: Apache-2.0
@@ -21,6 +21,7 @@ metadata:
       - sks-issue
       - sks-fastlane
       - sks-adversarial
+      - sks-async
       - sks-renovate-sweep
       - sks-context
 platforms:
@@ -44,9 +45,10 @@ moved.
 
 1. **Pick the surface section** below and read its org targets. When a read
    returns something unexpected — a new failing class, state that contradicts
-   the last sweep — deepen the discovery before trusting it: probe further in
-   a disposable sandbox per `sks-adversarial` (promote findings, never the
-   sandbox).
+   the last sweep, paths the feeds do not model — deepen the discovery before
+   trusting it: probe further in a disposable sandbox per `sks-adversarial`,
+   fanning out independent trials with `sks-async` (promote findings, never
+   the sandbox).
 
 2. **Read the source** with the surface's command. Record the fields listed;
    every section names its completion check. A quiet read is not a clean
@@ -87,12 +89,12 @@ moved.
 
 `gh api /orgs/<org>/code-scanning/alerts --paginate` — same for
 `/secret-scanning/alerts` and `/dependabot/alerts`, per org in scope. Keep
-`state==\"open\"`; record alert type, repo, severity, CVE or rule id,
+`state=="open"`; record alert type, repo, severity, CVE or rule id,
 html_url, created_at. Rank critical and high first; secret-scanning alerts
 are always urgent; dependabot ranks by manifest reachability when evidenced.
 Completion check: every org × alert-type pair enumerated. Cross-check
 redteam findings before filing; already-proven findings are referenced, not
-re-filed.
+re-filed. Fastlane scope: dependency bump, config hardening flag.
 
 ### Perimeter redteam
 
@@ -104,6 +106,10 @@ for headers, auth-bypass checks, anonymous API access, registry tag
 listability. Record command + output excerpt per finding; a finding whose
 only proof is a tool's claim is re-verified by hand before filing.
 Completion check: every declared public hostname has a probe result.
+Stopping at CVE or advisory absence is blind, not clean — audit the sweep's
+own path too. Fastlane scope: header addition, rate limit, cipher policy.
+Read-only: never exploit past proof, never modify or delete anything, and
+never touch secrets.
 
 ### CI failures
 

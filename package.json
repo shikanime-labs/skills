@@ -41,7 +41,7 @@
       },
       {
         "name": "sks-audit",
-        "description": "Use when auditing fleet or org health \u2014 GitHub security alerts, perimeter redteam, CI failures, alerting, Flux readiness, Kubernetes events: read the surface, dedup, file new findings as issues, fastlane small fixes.",
+        "description": "Use when auditing fleet or org health - security alerts, perimeter redteam, CI failures, alerting, Flux readiness, Kubernetes events: read the surface, dedup, file findings, fastlane fixes.",
         "path": "skills/sks-audit"
       },
       {
