@@ -212,17 +212,9 @@ gh pr create --repo "$ORG/<repo>" --base main --head "$ORG:<branch>" \
                                             # triage, not a body line
 ```
 
-PRs submitted from a separate jj workspace request the default reviewer (see
-`references/shikanime.md`) at submission time:
-
-```bash
-gh pr edit <N> --repo "$ORG/<repo>" --add-reviewer <default-reviewer>
-```
-
-GitHub rejects a review request aimed at the PR author (422 "Review cannot
-be requested from pull request author"). When the agent submits under that
-same account, it IS the author — skip the request; the approving review must
-come from the operator.
+PRs assign no reviewer at opening: the repo's CODEOWNERS auto-requests
+the owners. Only `sks-pr-triage` requests a reviewer, and only when the
+PR carries none (`references/shikanime.md`).
 
 Use `--draft` at creation — every PR opens as a draft. Flip it to ready
 (`sks-pr-ready`) only after its full gate train passes: CI green on the

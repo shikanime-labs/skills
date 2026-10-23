@@ -7,8 +7,9 @@ still apply.
 - Default repo: `cloud-pi-native/console`.
 - Artifact language: **French** for user-facing text (sweep reports,
   comments); repo values (labels, milestones, field options) stay as stored.
-- Default reviewer: `yorha-operator` — skip when it authored the PR (GitHub
-  422) or is not a collaborator of the target repo.
+- Reviewer: fill-empty only — request `yorha-operator` when a PR carries
+  no review request; skip when it authored the PR (GitHub 422) or is not a
+  collaborator of the target repo.
 - Projects: never add draft PRs or PRs closed as "not planned" to any org
   project — abandoned work does not belong on boards.
 - In this org the Development link and the Projects section are REQUIRED

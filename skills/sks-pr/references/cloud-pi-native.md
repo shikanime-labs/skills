@@ -44,9 +44,8 @@ the generic procedure in SKILL.md still applies.
 - Linkage: `Issues liées: #XXXX` (follow, do not close). Console PRs are
   frequently mis-linked — verify the linked issue actually describes the
   change; if not, the rationale is unrecorded; say so.
-- Mandatory reviewer requested at submission: `yorha-operator` (Automata
-  account) — skip when not a collaborator of the target repo or when it
-  authored the PR (GitHub rejects author review requests, 422).
+- No reviewer requested at submission: CODEOWNERS assigns when present;
+  `sks-pr-triage` requests one only when a PR carries none.
 - console only:
   - Merge queue manually when `mergeStateStatus` = `BLOCKED` with green
     checks: `gh workflow run 243523481 --repo cloud-pi-native/console -f

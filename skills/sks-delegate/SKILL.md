@@ -38,7 +38,7 @@ fan-out and the isolation lane of `sks-dev`.
 Org specifics live in `references/`: `references/shikanime.md` when operating
 in a shikanime org (repo layout, co-author trailer);
 `references/cloud-pi-native.md` when working in the cloud-pi-native/console
-repository (checkout path, default reviewer, French artifacts, `Refs #N`).
+repository (checkout path, French artifacts, `Refs #N`).
 
 ## Mandatory
 

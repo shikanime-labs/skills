@@ -9,7 +9,7 @@ Load when working in the cloud-pi-native/console repository.
 - Artifact language (issues, PRs) is **French**; commits in English
   (conventional, SSH-signed — see `sks-commit` →
   `references/cloud-pi-native.md`).
-- Reviewer requested at PR opening: `yorha-operator` (Automata account),
-  subject to access.
+- No reviewer requested at PR opening: CODEOWNERS assigns;
+  `sks-pr-triage` fills only when none is set.
 - Push to `origin` only; PRs with `--head cloud-pi-native:<branch>`, base
   `main`, body `Refs #N` (not `Related:`).
