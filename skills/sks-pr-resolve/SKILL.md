@@ -3,7 +3,8 @@ name: sks-pr-resolve
 description:
   Use when resolving a PR's review conversations, including CodeRabbit
   review comments, checking the DoD ledger, and reconciling before merge
-  (no merge itself).
+  (no merge itself). Also resolves merge conflicts on the PR branch
+  (routing through sks-converge).
 version: 0.1.2
 author: Automata
 license: Apache-2.0
@@ -20,6 +21,7 @@ metadata:
       - sks-land
       - sks-issue
       - sks-investigate
+      - sks-converge
       - sks-context
 platforms:
   - linux
@@ -50,6 +52,14 @@ org.
 Not for opening (`sks-pr`), reviewing (`sks-pr-review`), merging (`sks-land`).
 
 ## Gates
+
+### Gate 0 — Branch resolvable
+
+If the PR conflicts with its base (`gh pr view <M> --json mergeable` =
+`CONFLICTING`), resolve first: load `sks-converge`, restack the PR branch onto
+the moved base, keep both sides' intent, and re-push. Re-run this gate until
+`mergeable` = `MERGEABLE` before reconciling threads — a conflicted diff makes
+every downstream check ambiguous.
 
 ### Gate 1 — DoD ledger
 
