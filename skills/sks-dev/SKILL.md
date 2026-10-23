@@ -236,13 +236,12 @@ Exact shapes live in the owning skills:
 | Issue      | `sks-issue`    | stable problem statement + `- [ ]` ledger           |
 | Discussion | `sks-discussion` | RFC: context + open question; no acceptance criteria |
 | Comment    | `sks-comment`  | findings/proofs, cited evidence, one finding per comment; directed-value bar and look-back owned there |
-| PR         | `sks-pr`       | title = commit subject; body `# Why`/`## What`/`## Verification`/`## References`; issue link = Development metadata |
+| PR         | `sks-pr`       | title = commit subject; body = queried repo/org template or fallback shape (`sks-edit` references/github-text/fallback-templates.md); issue link = Development metadata |
 
 Prose mechanics (no-wrap, `@` escaping, full URLs, evidence style, template
-detection) are owned by `references/github-text/guide.md` in `sks-edit` — load it
-drafting
-when
-any of the above. A ledger item is command-decidable and done only once its
+detection) are owned by `references/github-text/guide.md` in `sks-edit` —
+load it when drafting any of the above. A ledger item is
+command-decidable and done only once its
 check ran; close the linked issue deliberately after N-of-N verified.
 NEVER pass bodies inline via `--body "..."` — shell expansion mangles
 backticks/`$`. Write to a file, pass `--body-file`, then re-read the stored

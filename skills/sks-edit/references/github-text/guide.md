@@ -56,32 +56,47 @@ update/rectification — and hands its prose rules here.
 | Surface       | Owner          | Shape                                                        |
 | ------------- | -------------- | ------------------------------------------------------------ |
 | Commit        | `sks-commit`   | Plain-English imperative title + trailers                    |
-| Issue body    | `sks-issue`    | Org typed forms (bug report / experiment / improvement / task); fallback `# Problem` / `## Acceptance` / `## References` |
+| Issue body    | `sks-issue`    | Queried repo/org template; fallback shape in `fallback-templates.md` |
 | Issue comment | `sks-issue`    | One subject per comment; findings, not status chatter        |
-| PR body       | `sks-pr`       | `# Why` / `## What` / `## Verification` / `## References`    |
+| PR body       | `sks-pr`       | Queried repo/org template; fallback shape in `fallback-templates.md` |
 | Discussion    | `sks-discussion` | Context + open questions; no acceptance criteria           |
 
-Standard shapes apply when no repo template exists; a template replaces
-them and is filled with its own headings verbatim.
+Fallback shapes apply only when every probed location comes back empty; a
+template — repo or org — replaces them and is filled with its own headings
+verbatim.
 
 Structure is owned by the surface skill. This skill never merges shapes —
 an issue body never borrows the PR template and vice versa; that leak is a
 defect.
 
-## Templates: detect, then conform
+## Templates: query, then conform
 
-Probe for a repo template before writing any body:
+No body shape lives in the skills — each surface queries the repo first and
+uses whatever template GitHub presents. GitHub looks in the repo `.github/`,
+then the repo root, then `docs/`; a repo with no template of its own gets
+the org `.github` repo's templates at the same locations. Probe before
+writing:
 
 ```bash
+# PR templates — repo level; repeat with repos/<org>/.github (404 = absent)
 gh api repos/<org>/<repo>/contents/.github --jq '.[].name' \
-  | grep -iE 'issue_template|pull_request_template'   # empty = no template
+  | grep -i pull_request_template
+gh api repos/<org>/<repo>/contents/docs --jq '.[].name' \
+  | grep -i pull_request_template
+# Issue templates — repo level; repeat with repos/<org>/.github
+gh api repos/<org>/<repo>/contents/.github --jq '.[].name' \
+  | grep -i issue_template
 ```
 
 Template found → fetch its content (`gh api ... --jq` + `base64 -d`), fill
 every section it defines, keep its headings verbatim, and place the surface's
 content (acceptance tasklist, `Related:` links) inside the sections it
-offers — never add headings it lacks. No template → the surface skill's
-default shape.
+offers — never add headings it lacks. Typed issue forms (`.yml` files under
+`ISSUE_TEMPLATE/`) render each field's label as a heading — fill them;
+cross-check the form's `labels:` against `gh label list` before passing a
+label; `blank_issues_enabled: false` forbids bypassing the form.
+No template at any location → `references/fallback-templates.md` in this
+directory.
 
 ## Comment etiquette (issues and PRs)
 
