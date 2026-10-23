@@ -186,9 +186,10 @@ Escape (per `sks-issue`, `sks-pr`, `sks-issue`, `sks-pr`):
   else renders as-is.
 - Never run `nix fmt` / `mdformat` over a body; those tools enforce an
   80-column wrap that does not belong on GitHub.
-The `# Why`/`## What`/`## Verification`/`## References` (PR) and
-`# Problem`/`## Acceptance` (issue) headings are the only structure; the
-paragraph text under them stays unwrapped.
+Bodies stay unwrapped natural prose under whatever headings the queried
+template defines; with no template at any location, the fallback shapes in
+`sks-edit` references/github-text/fallback-templates.md are the only
+structure, and the paragraph text under them stays unwrapped.
 
 ## Kustomize ConfigMap/Secret not found — generator not in active overlay
 

@@ -89,10 +89,7 @@ chatter; interim comments deletable after convergence.
 Encourage a Mermaid diagram (e.g. `flowchart TD`) in the body when a visual
 aids the reader — rendered inline by GitHub (rule owned by
 `sks-edit` references/github-text/guide.md); the diagram is optional
-a
-never
-reinforcement,
-substitute for the prose.
+reinforcement, never a substitute for the prose.
 
 Acceptance criteria: a `- [ ]` tasklist, each item phrased so a command can
 decide it. An item is done only once its check ran, never from memory; an
@@ -100,44 +97,33 @@ impossible criterion is struck with a comment, never dropped. Candidate
 solutions belong in comments, not tasklist/body.
 
 Comments follow the prose rules in `sks-edit` references/github-text/guide.md
-the
-and
-comment policy in `sks-comment`: lead with the
+and the comment policy in `sks-comment`: lead with the
 conclusion, cite evidence, stop. One subject per comment — split unrelated
 findings into separate comments.
 
-Observed variant (see `references/example-issue-body.md`): `# Problem` /
-`## Acceptance` with no separate References block — same content, fewer
-headings; either shape is acceptable. Keep the body stable; post
-findings/root-cause as `gh issue comment` and cite concrete evidence (the exact
-`- old` → `+ new` diff lines, or command output), not prose summaries. Interim
-comments may be deleted after convergence.
+**Templates: query, then conform.** No body shape lives in this skill —
+query the repo before writing the body and use whatever template GitHub
+presents: `.github/ISSUE_TEMPLATE/`, `.github/ISSUE_TEMPLATE.md`, or a bare
+`ISSUE_TEMPLATE*` at the repo root, then the org `.github` repo when the
+repo ships none (probe and fetch owned by `sks-edit`
+references/github-text/guide.md). A template found at
+any location wins: fill its sections and keep its headings verbatim —
+typed forms (`.yml`) render each field label as a heading — with the
+acceptance-criteria tasklist riding in whichever section fits. Cross-check
+the form's `labels:` against `gh label list` before flagging or passing a
+label. `blank_issues_enabled: false`: never bypass a form with a blank
+body; questions route to Discussions, not issues. No template at any
+location → the fallback shape in `sks-edit`
+`references/github-text/fallback-templates.md`.
 
-The issue shape is issue-only. The PR body must not reuse it — the PR side
-uses the `# Why` / `## What` / `## Verification` / `## References` shape from
-`sks-pr`.
-
-**Templates: detect, then conform.** Probe for repo issue templates before
-writing the body — candidate paths: `.github/ISSUE_TEMPLATE.md`,
-`.github/ISSUE_TEMPLATE/`, `.github/issue_template.md`. When one exists,
-fill its sections and keep its headings verbatim; the acceptance-criteria
-tasklist rides in whichever section fits. Cross-check the form's `labels:`
-against `gh label list` before flagging or passing a label. No template →
-the default shapes above.
-
-Org default (served by the `.github` repo to every repository without its
-own): typed issue forms — Bug report, Experiment, Improvement request, Task —
-each closing with a References field, classification carried by the form's
-prefilled labels. Pick the form matching the issue type and fill its
-sections verbatim. `blank_issues_enabled: false`: never bypass a form with a
-blank body. Questions route to Discussions, not issues.
-
-A body without a template has a **References** section: official material
-(docs, linked issues/PRs, commits, changelogs, specs); with a template, place
-references in a suitable template-defined section instead of adding headings
-it lacks. More may be posted as comments to steer resolution, but proof of the
-solution belongs in the PR. Close deliberately — ledger verified N of N after
-final merge.
+Keep the body stable; post findings/root-cause as `gh issue comment` and
+cite concrete evidence (the exact `- old` → `+ new` diff lines, or command
+output), not prose summaries. Interim comments may be deleted after
+convergence. The issue shape is issue-only — the PR body must not reuse it
+(the PR side queries the same way, `sks-pr`). More references than the
+template's section holds may be posted as comments to steer resolution, but
+proof of the solution belongs in the PR. Close deliberately — ledger
+verified N of N after final merge.
 
 ### 3. Triage metadata
 

@@ -44,8 +44,8 @@ and the destination.
 
 ## The block
 
-One title with the summary under it, then four sections — same shape as the
-issue and PR templates.
+One title with the summary under it, then four sections — a fixed format
+of this skill; a repo/org template never changes this chat-side block.
 
 ```markdown
 # <Title>
