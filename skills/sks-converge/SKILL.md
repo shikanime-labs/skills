@@ -2,7 +2,8 @@
 name: sks-converge
 description:
   Use when jj conflicts or divergent changes block a jj repo after a
-  tree move — resolve conflicted revisions and divergent twins until pushable.
+  tree move, or block a PR branch from merging — resolve conflicted
+  revisions and divergent twins until pushable.
 version: 0.2.0
 author: Automata
 license: Apache-2.0
@@ -15,6 +16,7 @@ metadata:
       - recovery
     related_skills:
       - sks-restack
+      - sks-pr-resolve
       - sks-dev
       - sks-delegate
       - sks-gc
