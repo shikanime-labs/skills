@@ -6,9 +6,9 @@
   `shikanime-studio`). Checkouts live at
   `~/Source/Repos/github.com/<org>/<repo>`; jj workspaces for a repo sit as
   siblings of its checkout.
-- Mandatory reviewer: `yorha-operator` (the Automata bot account); request it
-  at submission (`gh pr edit --add-reviewer yorha-operator`) unless it is the
-  PR author.
+- Reviewers: none requested at PR opening — CODEOWNERS auto-requests the
+  owners (`* @shikanime-labs/core` on `skills`); `sks-pr-triage` requests
+  one only when a PR carries none.
 - Branch protection blocks self-approval on e.g. `shikanime-labs/skills` —
   verbal `lgtm` + `--squash --admin`. `main` is protected on e.g.
   `shikanime-studio/actions` — never commit directly.
