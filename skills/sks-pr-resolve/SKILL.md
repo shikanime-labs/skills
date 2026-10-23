@@ -53,7 +53,7 @@ Not for opening (`sks-pr`), reviewing (`sks-pr-review`), merging (`sks-land`).
 
 ## Gates
 
-### Gate 0 — Branch resolvable
+### Gate 1 — Branch resolvable
 
 If the PR conflicts with its base (`gh pr view <M> --json mergeable` =
 `CONFLICTING`), resolve first: load `sks-converge`, restack the PR branch onto
@@ -61,7 +61,7 @@ the moved base, keep both sides' intent, and re-push. Re-run this gate until
 `mergeable` = `MERGEABLE` before reconciling threads — a conflicted diff makes
 every downstream check ambiguous.
 
-### Gate 1 — DoD ledger
+### Gate 2 — DoD ledger
 
 Criteria = the `- [ ]` tasklist in the linked issue body (see `sks-issue`);
 verify each against diff/CI.
@@ -78,7 +78,7 @@ gh pr view <M> --repo <org>/<repo> --json body,state --jq .body
   confirmation.
 - **No merge here** — this gate only reports; `sks-land` acts.
 
-### Gate 2 — Approval + CI (report only)
+### Gate 3 — Approval + CI (report only)
 
 `sks-pr-review` must have run on the final head commit and approved. Re-review
 if new commits landed after the last review. Check approval via the query in
@@ -89,7 +89,7 @@ if new commits landed after the last review. Check approval via the query in
   stays in `sks-land` (`gh pr merge --squash --admin`).
 - CI: `gh pr checks <M> --repo <org>/<repo>`.
 
-### Gate 3 — Conversations reconciled (core)
+### Gate 4 — Conversations reconciled (core)
 
 Every inline review thread must be reconciled. Enumerate threads and resolve
 them with the GraphQL in `references/resolve.md`.
@@ -101,14 +101,14 @@ legitimately carry multiple commits, but each must be **relevant** — a logical
 unit of the PR's change, not stray WIP. Squash noise into their logical
 parent, split mixed units (`jj split`), reorder if the narrative is
 incoherent, drop empty commits. When in doubt about the structure, restructure
-before Gate 1–3 run; a dirty or incoherent history makes every downstream
+before Gates 2–4 run; a dirty or incoherent history makes every downstream
 verification ambiguous.
 
 For each **unresolved** thread:
 
 - **Pertinent + in ledger** — verify diff/CI addresses it; resolve, else flag
   (blocks `sks-land`).
-- **Pertinent + not in ledger** — add to issue tasklist (Gate 1), resolve if
+- **Pertinent + not in ledger** — add to issue tasklist (Gate 2), resolve if
   diff already covers it.
 - **Not pertinent** — post one comment with the rationale, then resolve. Never
   resolve silently.

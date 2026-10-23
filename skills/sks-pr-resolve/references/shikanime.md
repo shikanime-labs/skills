@@ -12,7 +12,7 @@ PRs reconciled by this skill live under `shikanime-labs/*` or
 
 Where branch protection blocks self-approval (e.g. `shikanime-labs/skills`,
 `nix-containers`), a verbal `lgtm` from the user satisfies the approval gate
-(Gate 2) — the merge itself stays in `sks-land`
+(Gate 3) — the merge itself stays in `sks-land`
 (`gh pr merge --squash --admin`).
 
 ## Manual merge queue

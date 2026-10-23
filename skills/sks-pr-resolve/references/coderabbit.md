@@ -1,6 +1,6 @@
 # CodeRabbit review comments
 
-Triage recipe for `coderabbitai[bot]` review comments during Gate 3 of
+Triage recipe for `coderabbitai[bot]` review comments during Gate 4 of
 `sks-pr-resolve`. Read when the PR carries CodeRabbit review comments.
 
 ## What CodeRabbit posts
@@ -11,14 +11,14 @@ Triage recipe for `coderabbitai[bot]` review comments during Gate 3 of
   type and severity are separate axes (a nitpick can still be a security
   finding). Read the comment, not the label.
 - PR-level summary and walkthrough comments — PR comments, not inline
-  threads; out of Gate 3's gating scope. Skim them for ledger items only.
+  threads; out of Gate 4 gating scope. Skim them for ledger items only.
 - Optional reviews and auto-approvals (`reviews.request_changes_workflow`).
-  A CodeRabbit approval is NOT the Gate 2 approval — `sks-pr-review` (or a
+  A CodeRabbit approval is NOT the Gate 3 approval — `sks-pr-review` (or a
   verbal `lgtm` per org conventions) still governs.
 
 ## The buckets apply unchanged
 
-CodeRabbit threads reconcile through the Gate 3 buckets like any other
+CodeRabbit threads reconcile through the Gate 4 buckets like any other
 thread; the author does not change the bar:
 
 - Pertinent + in ledger — verify the diff covers it, resolve with evidence.
