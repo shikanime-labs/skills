@@ -110,7 +110,7 @@
       "assertions": [
         "Frontmatter parses as YAML with a top-level 'name' key",
         "Frontmatter 'name' equals the directory basename 'sks-pr-resolve'",
-        "Body never bulk-resolves CodeRabbit comments by author; each thread gets the Gate 3 buckets",
+        "Body never bulk-resolves CodeRabbit comments by author; each thread gets the Gate 4 buckets",
         "The body never lands/merges the PR (that is sks-land)."
       ]
     }
