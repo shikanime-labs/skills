@@ -78,7 +78,7 @@ commit/merge:
 
 ```bash
 gh pr merge <M> --repo <org>/<repo> --squash \
-  -t "<plain-English subject>" \
+  -t "<plain-English subject> (#<PR number>)" \
   --body-file <file>   # coherent body; no * bullets, no ----- separators;
                         # exactly one Automata co-author trailer
 ```
@@ -97,9 +97,10 @@ grep -rl "Signed-off-by" .github/ 2>/dev/null
   and a `Signed-off-by` (CC1). A commit with both + no `Related:` passes. See
   `references/example-commit.md` for a filled example.
 - PR↔commit parity: the PR title equals the commit subject and the PR body
-  restates the commit message — unless the repo's own conventions (PR template,
-  semantic-PR-title checks, commitlint rules) say otherwise, which then wins
-  (see `sks-pr`).
+  restates the commit message — the landed squash subject appends the
+  `(#<PR number>)` suffix (below), which parity excludes — unless the repo's
+  own conventions (PR template, semantic-PR-title checks, commitlint rules)
+  say otherwise, which then wins (see `sks-pr`).
 - Any repo with `commitlint`: follow its config.
 
 ## Procedure
