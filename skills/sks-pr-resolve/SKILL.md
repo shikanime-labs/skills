@@ -1,11 +1,10 @@
 ---
 name: sks-pr-resolve
 description:
-  Use when resolving a PR's review conversations, including CodeRabbit
-  review comments, checking the DoD ledger, and reconciling before merge
-  (no merge itself). Also resolves merge conflicts on the PR branch
-  (routing through sks-converge).
-version: 0.1.2
+  Use when resolving a PR's review conversations (incl. CodeRabbit),
+  checking the DoD ledger, converging red required checks, and
+  reconciling merge conflicts before merge — never merging itself.
+version: 0.2.0
 author: Automata
 license: Apache-2.0
 metadata:
@@ -42,6 +41,8 @@ org.
 ## When to Use
 
 - "Resolve the suggestions on PR #M", "clear the review threads on #M".
+- "The PR's required check went red — converge it" — Gate 3 drives the
+  head back to green.
 - "Handle the CodeRabbit comments on #M" — evaluate the bot's proposed
   fixes and reconcile its threads.
 - "Is PR #M ready to land?" — reconcile and report, no merge.
@@ -78,7 +79,7 @@ gh pr view <M> --repo <org>/<repo> --json body,state --jq .body
   confirmation.
 - **No merge here** — this gate only reports; `sks-land` acts.
 
-### Gate 3 — Approval + CI (report only)
+### Gate 3 — Approval + CI (converge CI, report approval)
 
 `sks-review` must have run on the final head commit and approved. Re-review
 if new commits landed after the last review. Check approval via the query in
@@ -87,7 +88,25 @@ if new commits landed after the last review. Check approval via the query in
 - Where branch protection blocks self-approval, a verbal `lgtm` from the
   user satisfies this gate (see `references/shikanime.md`) — merge
   stays in `sks-land` (`gh pr merge --squash --admin`).
-- CI: `gh pr checks <M> --repo <org>/<repo>`.
+- CI: `gh pr checks <M> --repo <org>/<repo>`. Exit codes: 0 = all pass,
+  1 = failing (or no checks), 8 = pending. Non-required red checks do not
+  block landing.
+- **Red required check — converge, then re-run this gate** (same routing
+  shape as Gate 1). Classify from the failing job's log
+  (`gh run view <run> --job <job-id> --log`; per-job depth in
+  `sks-cichecks`), never from the check name:
+  - **Flake** (network hiccup, runner boot, download timeout) → one
+    bounded re-run: `gh run rerun <run> --repo <org>/<repo> --failed`.
+    A second identical failure is a real fault, not a flake — trace it.
+  - **Code-caused** (the failure names your diff) → fix at the root cause
+    in the PR workspace, `jj describe -m "<same subject>"` (re-signs,
+    re-points the bookmark), re-push, re-review the new head.
+  - **Pre-existing/infra** (fails on `main` too, or a non-200/403/
+    action-syntax error untouched by your diff) → do not change PR code;
+    surface as `BLOCKED: required check <name> — failing on main —
+    <recovery>`.
+  - A fix + re-push moves the head, which invalidates every earlier check
+    run — re-query on the current `headRefOid`, never reuse a verdict.
 
 ### Gate 4 — Conversations reconciled (core)
 
@@ -173,6 +192,11 @@ Then stop — merging is `sks-land`'s job.
 - Treating issue/PR comments as gate threads — only inline review threads gate.
 - Bulk-resolving CodeRabbit threads or applying its suggested patch unread —
   evaluate each bot comment first (`references/coderabbit.md`).
+- Trusting a green check run — runs attach to a head SHA; after a fix +
+  re-push (or a `main` advance that ejects a queued PR), re-query on the
+  current head, never reuse the verdict.
+- Unbounded re-runs — one `--failed` re-run per failure; the second
+  identical failure gets traced, not re-rolled.
 - Merging from this skill — it only reconciles; defer to `sks-land`.
 
 ## Verification
@@ -181,8 +205,13 @@ Then stop — merging is `sks-land`'s job.
 # readiness verdict re-checked: ledger N/N, approval present, threads resolved
 gh pr view "$N" --repo "$R" --json reviewDecision,state
 gh api repos/"$R"/pulls/"$N"/comments --jq '.[].isResolved' 2>/dev/null || true
+gh pr checks "$N" --repo "$R"   # exit 0 — required checks green on the head
 ```
 
 ## See also
 
+- `sks-cichecks` — per-job log tracing, `needs`-graph root-cause
+  classification, landability verification for red CI (Gate 3's depth
+  owner).
+- `sks-converge` — the jj-side loop Gate 1 routes through.
 - `sks-investigate` — root-cause research before any fix.

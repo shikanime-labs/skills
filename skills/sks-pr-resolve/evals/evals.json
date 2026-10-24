@@ -8,7 +8,7 @@
       "assertions": [
         "Frontmatter parses as YAML with a top-level 'name' key",
         "Frontmatter 'name' equals the directory basename 'sks-pr-resolve'",
-        "Description starts with 'Use when' and is \u003c= 200 characters",
+        "Description starts with 'Use when' and is <= 200 characters",
         "license field is 'Apache-2.0'",
         "Body contains at least one '##' heading",
         "Body checks the review conversations are resolved",
@@ -23,7 +23,7 @@
       "assertions": [
         "Frontmatter parses as YAML with a top-level 'name' key",
         "Frontmatter 'name' equals the directory basename 'sks-pr-resolve'",
-        "Description starts with 'Use when' and is \u003c= 200 characters",
+        "Description starts with 'Use when' and is <= 200 characters",
         "license field is 'Apache-2.0'",
         "Body contains at least one '##' heading",
         "Body checks the linked issue DoD ledger",
@@ -38,7 +38,7 @@
       "assertions": [
         "Frontmatter parses as YAML with a top-level 'name' key",
         "Frontmatter 'name' equals the directory basename 'sks-pr-resolve'",
-        "Description starts with 'Use when' and is \u003c= 200 characters",
+        "Description starts with 'Use when' and is <= 200 characters",
         "license field is 'Apache-2.0'",
         "Body contains at least one '##' heading",
         "Body enumerates unresolved inline review threads",
@@ -112,6 +112,21 @@
         "Frontmatter 'name' equals the directory basename 'sks-pr-resolve'",
         "Body never bulk-resolves CodeRabbit comments by author; each thread gets the Gate 4 buckets",
         "The body never lands/merges the PR (that is sks-land)."
+      ]
+    },
+    {
+      "id": 10,
+      "expected_output": "Gate 3 converges a red required check instead of stopping at a verdict: classify from the failing job's log (flake / code-caused / pre-existing), one bounded re-run for flakes, root-cause fix + re-push + re-review for code-caused, BLOCKED surfacing for pre-existing, re-verify on the current head; log depth stays in sks-cichecks.",
+      "files": [],
+      "prompt": "The PR's required GitHub Actions check went red — converge it.",
+      "assertions": [
+        "Frontmatter 'name' equals the directory basename 'sks-pr-resolve'",
+        "Body mentions 'gh pr checks' as the detection command",
+        "Body classifies failures into flake, code-caused, and pre-existing/infra",
+        "Body bounds automatic re-runs (one rerun; second identical failure gets traced)",
+        "Body requires re-verifying checks on the current head after a fix + re-push",
+        "Body delegates per-job log tracing depth to sks-cichecks",
+        "Body does not recommend --admin past a red required check"
       ]
     }
   ],
