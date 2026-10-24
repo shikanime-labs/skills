@@ -179,6 +179,7 @@ watch):
 ```bash
 HEAD=$(gh pr view <M> --repo <org>/<repo> --json headRefOid -q .headRefOid)
 gh pr merge <M> --repo <org>/<repo> --squash --match-head-commit "$HEAD" \
+  -t "<PR title> (#<PR number>)" \
   -b "$(cat <<'EOF'
 <body: one coherent change, no jj * bullets / --------- separators; trailers
 only: Related: [url], Signed-off-by: [user], required co-author trailer (see
@@ -196,10 +197,13 @@ EOF
 > watch and merge IS the background-merge bug. The watch reports; a separate
 > decision merges.
 
-- **Squash hygiene**: pass `-b` (see `sks-commit`); `gh pr merge --squash` has
-  **no `-m`** — the PR title is the subject. Never auto-concatenate branch
-  commits (leaks jj's `*` / `---------` artifacts). One subject + required
-  trailers (`references/shikanime.md`).
+- **Squash hygiene**: pass `-t "<PR title> (#<PR number>)"` and `-b` (see
+  `sks-commit`) — gh passes a `-t` subject verbatim and uses the bare PR
+  title when `-t` is omitted, and neither carries the `(#N)` suffix GitHub
+  appends to default squash subjects; without an explicit `-t` the landed
+  commit loses its PR back-reference (#542, #544). Never auto-concatenate
+  branch commits (leaks jj's `*` / `---------` artifacts). One subject +
+  required trailers (`references/shikanime.md`).
 - Lone, self-approval blocked (after verbal lgtm): use `--squash --admin`.
 - Stacked (multiple PRs off `main`): land each with
   `gh pr merge <PR_NUMBER> --squash --admin` in dependency order (base first).
