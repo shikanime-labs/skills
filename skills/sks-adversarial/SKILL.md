@@ -19,7 +19,7 @@ metadata:
       - sks-delegate
       - sks-async
       - sks-investigate
-      - sks-pr-review
+      - sks-review
       - sks-gc
       - sks-context
 platforms:
@@ -52,7 +52,7 @@ For org specifics, read
 - One clean change with a known shape → `sks-delegate` alone.
 - You need the root cause, not a trial → `sks-investigate` (it proposes, never
   applies). This skill may run a trial; keep the two separate.
-- A finished change awaiting review → `sks-pr-review`.
+- A finished change awaiting review → `sks-review`.
 
 ## Procedure
 
@@ -114,6 +114,6 @@ jj status && jj log -r @ -T 'bookmarks'
 - `sks-delegate` — the single-workspace primitive for one trial.
 - `sks-async` — fan-out; one workspace per trial when trials run in parallel.
 - `sks-investigate` — root-cause discipline; use before isolating a fix.
-- `sks-pr-review` — the review gate a promoted change must still pass.
+- `sks-review` — the review gate a promoted change must still pass.
 - `sks-gc` — reclaim the sandbox once the trial is done.
 - `sks-gist` — publish a probe that survived as a reusable artifact.

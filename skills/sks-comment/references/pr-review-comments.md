@@ -5,7 +5,7 @@ review comments on a PR — type `PullRequestReviewComment`, node prefix
 `PRRC_`, REST at `pulls/<N>/comments`. Review summaries
 (`pulls/<N>/reviews`) ride the same surface and are included here.
 Policy stays in `sks-comment`; inline anchoring and the review envelope
-are `sks-pr-review`'s.
+are `sks-review`'s.
 
 ## Identity
 
@@ -37,7 +37,7 @@ Mutations: `addPullRequestReviewComment`,
 `updatePullRequestReviewComment`,
 `deletePullRequestReviewComment`. Thread a reply with `in_reply_to`;
 a fresh thread needs the diff anchor (path/line payload owned by
-`sks-pr-review`).
+`sks-review`).
 
 ## Store quirks
 

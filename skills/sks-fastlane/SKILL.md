@@ -28,7 +28,7 @@ platforms:
 
 Self-merge a PR the user designated as trivial. This is a **mutator** of
 `sks-land`: it exists to state exactly which gates drop and which never
-do. The full gate train (`sks-pr-review` → approval → `sks-land`) stays
+do. The full gate train (`sks-review` → approval → `sks-land`) stays
 the default; fastlane is the exception that must justify itself against
 the eligibility gate, line by line.
 

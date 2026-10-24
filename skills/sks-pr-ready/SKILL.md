@@ -15,7 +15,7 @@ metadata:
       - review
     related_skills:
       - sks-pr
-      - sks-pr-review
+      - sks-review
       - sks-pr-resolve
       - sks-pr-triage
       - sks-land
@@ -77,7 +77,7 @@ earlier gate — restart at step 1.
    check is a gate doing its job, never flipped past. Code-quality gates
    like SonarQube count as CI here.
 
-4. **First review done.** `sks-pr-review` has run on this head and posted
+4. **First review done.** `sks-review` has run on this head and posted
    its verdict; no unresolved `blocking` finding remains. Review threads
    from earlier heads are resolved first (`sks-pr-resolve`) — a new commit
    voids prior reviews.
@@ -146,7 +146,7 @@ for the head it validated.
 ## See also
 
 - `sks-pr` — opens the draft this gate promotes.
-- `sks-pr-review` — the first-review gate (step 4).
+- `sks-review` — the first-review gate (step 4).
 - `sks-pr-resolve` — resolves review threads before re-validation.
 - `sks-pr-triage` — metadata completeness and body reconciliation.
 - `sks-land` — merges after the human approves what this skill handed over.

@@ -110,7 +110,7 @@ applied in an isolated workspace (`sks-delegate`).
    references/github-text/fallback-templates.md), where a section the
    selected shape offers names the post-merge checks step 8 will run.
    Add no heading the shape lacks. Link the issue as Development
-   metadata; review it (`sks-pr-review`) before requesting the human gate.
+   metadata; review it (`sks-review`) before requesting the human gate.
 
 7. **Land** (`sks-land`): squash pinned to the verified head, then confirm
    `main` advanced. Merge is a claim — nothing downstream follows from it

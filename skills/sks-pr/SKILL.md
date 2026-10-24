@@ -233,7 +233,7 @@ forces recompute. Don't declare done on stale `CONFLICTING`.
 
 New commits void prior review. Before done: (1) load `sks-pr-resolve`, drive
 every thread to resolved — address pertinent in diff, discard non-pertinent with
-a one-line comment, never silently; (2) re-run `sks-pr-review` if logic changed;
+a one-line comment, never silently; (2) re-run `sks-review` if logic changed;
 (3) verify the issue's DoD ledger is still N-of-N against the new head.
 
 ### 3. Apply triage metadata

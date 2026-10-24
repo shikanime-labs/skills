@@ -15,7 +15,7 @@ cloud-pi-native/console repository.
 
 - Writing new TypeScript in an org repo: modules, services, specs, shared
   packages.
-- Reviewing a TypeScript diff — `sks-pr-review` applies these as findings.
+- Reviewing a TypeScript diff — `sks-review` applies these as findings.
 - Realigning an old branch to current conventions: grep the shared packages
   for an existing type or schema before declaring a new one; a local
   re-declaration of a shared type is a review finding.
@@ -122,5 +122,5 @@ npx tsc --noEmit                                      # no new errors vs trunk
 
 ## See also
 
-- `sks-pr-review` — applies these rules as findings during review.
+- `sks-review` — applies these rules as findings during review.
 - `sks-dev` — the shipping loop this content plugs into.
