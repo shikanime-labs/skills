@@ -18,7 +18,7 @@ metadata:
       - sks-pr-ready
       - sks-sudo
       - sks-issue
-      - sks-pr-review
+      - sks-review
       - sks-context
 platforms:
   - linux
@@ -31,7 +31,7 @@ platforms:
 Land an org PR only after `sks-pr-resolve` **reconciled** it and a human
 approving review is in place — protect `main`. Scope:
 `references/shikanime.md`. Not for opening (`sks-pr`), review
-(`sks-pr-review`), the draft→ready flip (`sks-pr-ready`), reconciling
+(`sks-review`), the draft→ready flip (`sks-pr-ready`), reconciling
 (`sks-pr-resolve`), or direct "push to main".
 This skill only lands.
 
@@ -76,7 +76,7 @@ via `sks-sudo` — then re-run this gate's verification against the head SHA.
 
 `False` → `BLOCKED: <approver> approval required` — request it
 (`gh pr edit <M> -R "$R" --add-reviewer "$APPROVER"`) or obtain it verbally,
-then re-verify on the new head. In addition, `sks-pr-review`
+then re-verify on the new head. In addition, `sks-review`
 approval applies as before: approved on current head; re-review if new
 commits landed.
 
@@ -304,7 +304,7 @@ EOF
 
 - [ ] Issue tasklist N/N checked with evidence.
 - [ ] Mandatory approver approval on head (non-bypassable;
-      `references/shikanime.md`); `sks-pr-review`
+      `references/shikanime.md`); `sks-review`
       approval; human review where protection requires.
 - [ ] All conversations reconciled (`sks-pr-resolve`).
 - [ ] PR history clean AND relevant: every commit a logical unit with an

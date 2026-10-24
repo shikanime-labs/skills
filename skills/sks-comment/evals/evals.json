@@ -37,7 +37,7 @@
     },
     {
       "id": 3,
-      "expected_output": "Routes elsewhere: this is a review verdict on a diff line — severity labels and inline anchoring belong to sks-pr-review, which posts through sks-comment's mechanics; bodies belong to the surface skills.",
+      "expected_output": "Routes elsewhere: this is a review verdict on a diff line — severity labels and inline anchoring belong to sks-review, which posts through sks-comment's mechanics; bodies belong to the surface skills.",
       "files": [],
       "prompt": "Review PR #12 and post severity-tagged findings inline at each diff line.",
       "assertions": [
@@ -45,7 +45,7 @@
         "Frontmatter description starts with 'Use when' and is at most 200 characters",
         "Frontmatter license field is 'Apache-2.0'",
         "Body contains at least one '##' heading",
-        "Body places review severity labels and inline diff-line anchors under sks-pr-review",
+        "Body places review severity labels and inline diff-line anchors under sks-review",
         "Body places thread resolution under sks-pr-resolve",
         "Body places hiding/unhiding under sks-moderate and runs it as the maintenance pass",
         "Body places issue, PR, and discussion bodies under their surface skills, never under this skill"

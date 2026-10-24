@@ -25,11 +25,6 @@
         "path": "skills/cpn-release-patch"
       },
       {
-        "name": "nixpkgs-pr-review",
-        "description": "Use when reviewing an upstream NixOS/nixpkgs pull request: build the changed packages with nixpkgs-review and check the diff against nixpkgs conventions.",
-        "path": "skills/nixpkgs-pr-review"
-      },
-      {
         "name": "sks-adversarial",
         "description": "Use when probing uncertain results in a disposable sandbox \u2014 large investigation, development, debugging, testing, UAT, white-room, or data validation before promoting a change.",
         "path": "skills/sks-adversarial"
@@ -200,11 +195,6 @@
         "path": "skills/sks-pr-resolve"
       },
       {
-        "name": "sks-pr-review",
-        "description": "Use when reviewing code in an org repo: cross-check related issues, enforce YAGNI, root-cause fixes, and project conventions before approval.",
-        "path": "skills/sks-pr-review"
-      },
-      {
         "name": "sks-pr-triage",
         "description": "Use when triaging an existing org PR: labels, assignee, milestone, and reviewers.",
         "path": "skills/sks-pr-triage"
@@ -228,6 +218,11 @@
         "name": "sks-restack",
         "description": "Use when rebasing a jj stack onto moved main leaves conflicts \u2014 restack, then resolve each conflicted revision with edit/resolve until pushable.",
         "path": "skills/sks-restack"
+      },
+      {
+        "name": "sks-review",
+        "description": "Use when reviewing code, a diff, or a PR: route the org-repo pass (YAGNI lens, security scan, issue cross-check) or the upstream NixOS/nixpkgs PR review strategy.",
+        "path": "skills/sks-review"
       },
       {
         "name": "sks-selfupdate",

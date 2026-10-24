@@ -13,7 +13,7 @@ Triage recipe for `coderabbitai[bot]` review comments during Gate 4 of
 - PR-level summary and walkthrough comments — PR comments, not inline
   threads; out of Gate 4 gating scope. Skim them for ledger items only.
 - Optional reviews and auto-approvals (`reviews.request_changes_workflow`).
-  A CodeRabbit approval is NOT the Gate 3 approval — `sks-pr-review` (or a
+  A CodeRabbit approval is NOT the Gate 3 approval — `sks-review` (or a
   verbal `lgtm` per org conventions) still governs.
 
 ## The buckets apply unchanged

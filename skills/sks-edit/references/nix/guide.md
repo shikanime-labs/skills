@@ -239,4 +239,4 @@ jj diff --git | grep -E '^diff --git a/.*\.nix'
 - `sks-commit` — commit shape with the org co-author trailer.
 - `sks-dev` — branch / push / landing; carries the
   `nix fmt` whole-tree caveat.
-- `sks-pr-review` — the reviewer lens that enforces YAGNI on the PR.
+- `sks-review` — the reviewer lens that enforces YAGNI on the PR.

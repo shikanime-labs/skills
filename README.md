@@ -136,14 +136,12 @@ specification, compatible with the
 | `sks-land` | Use when landing a target-org PR after reconciliation (sks-pr-resolve) and review approval gates pass; closes the linked issue deliberately. |
 | `sks-maintenance` | Use when maintaining the org's repos, fleet, and runtimes: renovate and language dependency bumps, nixpkgs/runtime upgrades, and the issue → PR → land → post-merge validation loop. |
 | `sks-fastlane` | Use when the user designates a change as trivial and asks for an expedited merge: run the eligibility gate, then merge once CI is green. |
-| `nixpkgs-pr-review` | Use when reviewing an upstream NixOS/nixpkgs pull request: build the changed packages with nixpkgs-review and check the diff against nixpkgs conventions. |
 | `sks-milestone` | Use when provisioning nixpkgs-release-aligned milestones across the org's Nix repos: discover the flake roster, create per-release milestones, assign issues and PRs, audit drift. |
 | `sks-plan` | Use when planning a milestone from a goal: converge direction, decompose into dependency-ordered units, fill the milestone with triaged, boarded issues ready for sks-iterate. |
 | `sks-moderate` | Use when hiding, unhiding, or moderating comments on GitHub issues, PRs, or discussions with the Hide feature: classifier choice, GraphQL mutations, verification. |
 | `sks-pr` | Use when opening a PR in a target-org repo: push to origin, --head org:branch, plain-English title, issue linkage, parity with commit. |
 | `sks-pr-ready` | Use when switching an org PR from draft to ready for human review: verify CI green on the pushed head, first review done, triage complete, body reconciled with the diff, then gh pr ready. |
 | `sks-pr-resolve` | Use when resolving a PR's review conversations, including CodeRabbit review comments, checking the DoD ledger, and reconciling before merge (no merge itself). |
-| `sks-pr-review` | Use when reviewing code in an org repo: cross-check related issues, enforce YAGNI, root-cause fixes, and project conventions before approval. |
 | `sks-pr-triage` | Use when triaging an existing org PR: labels, assignee, milestone, and reviewers. |
 | `sks-project` | Use when tracking issue/PR advancement on an org board: resolve the board from context or provision one, set Status to the real phase, audit drift. |
 | `sks-release` | Use when cutting a release of the skills catalog: verify green main, bump manifest versions, signed tag, published notes, RC pre-release when unproven. |
@@ -156,6 +154,7 @@ specification, compatible with the
 | `sks-swarm` | Use when distributing a task across a cluster of agents over A2A — route by capability need, machine resource, and runner pressure, optionally in a disposable sks-adversarial sandbox. |
 | `sks-repo` | Use when creating a new org repo: apply the 5-ruleset protection template, bootstrap the devlib devenv scaffold, and tag v0.1.0. |
 | `sks-triage` | Use when triaging a target org, repo, issue, or PR: sweep the scope for untriaged items, then assign every empty, context-derivable field — type, labels, assignee, fields. |
+| `sks-review` | Use when reviewing code, a diff, or a PR: route the org-repo pass (YAGNI lens, security scan, issue cross-check) or the upstream NixOS/nixpkgs PR review strategy. |
 | `sks-selfupdate` | Use when updating skills or profiles in a skills catalog: curate every skill by default (or named ones only), land through the dev workflow, and resync to local Hermes agents. |
 
 ### Agent profiles

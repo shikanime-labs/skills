@@ -163,4 +163,4 @@ interact with live state — the live cross-check passed
 - `sks-dev` — branch/push/land loop; carries the route-audit,
   image-pinning, and migration references.
 - `sks-commit` / `sks-pr` — commit shape and PR envelope.
-- `sks-pr-review` — reviewer lens before merge.
+- `sks-review` — reviewer lens before merge.
