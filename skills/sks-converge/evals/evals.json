@@ -79,6 +79,21 @@
         "Frontmatter 'name' equals the directory basename 'sks-converge'",
         "Body does not claim to merge or land PRs itself"
       ]
+    },
+    {
+      "id": 8,
+      "expected_output": "Treats a red required GitHub Actions check on the pushed head as a convergence gate: detect via gh pr checks, classify from the failing job's log (flake vs code-caused vs pre-existing), bounded re-run for flakes, root-cause fix + re-push otherwise, re-verify on the current head.",
+      "files": [],
+      "prompt": "The jj push succeeded and conflicts() and divergent() are both empty, but the PR's required GitHub Actions check went red — converge it.",
+      "assertions": [
+        "Frontmatter 'name' equals the directory basename 'sks-converge'",
+        "Body mentions 'gh pr checks' as the detection command",
+        "Body classifies failures into transient/flake, code-caused, and pre-existing/infra",
+        "Body bounds automatic re-runs (at most one rerun of an identical failure)",
+        "Body requires re-verifying checks on the current head after a fix + re-push",
+        "Body delegates per-job log tracing and root-cause depth to sks-cichecks",
+        "Body does not recommend --admin past a red required check"
+      ]
     }
   ],
   "skill_name": "sks-converge"
