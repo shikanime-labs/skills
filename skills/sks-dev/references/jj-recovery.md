@@ -98,6 +98,38 @@ Stale-version collision: when main's version of your file is OLDER than
 yours (main STRIPPED it back), KEEP YOURS — verify by reading both versions;
 if main's is an ancestor of yours, yours is correct.
 
+## Re-applying a stale PR diff silently reverts newer main
+
+Finishing someone's (or your own) stale PR branch by `git diff origin/main
+origin/<branch> > patch && git apply --3way` re-applies the branch's view of
+EVERY touched file — including hunks that revert newer main commits in the
+same files. The apply exits 0, CI may even pass, and the revert ships as a
+quiet rider on an unrelated change (observed 2026-10-24 on machines#1626:
+finishing a PR opened before the gateway-hostname cutover and the
+hermes-agent pin reverted both — ssh host, a2a URL, flake.lock — inside a
+"user isolation" change).
+
+Rule: before applying a stale diff, diff it against current main per file and
+classify each hunk:
+
+```bash
+git diff origin/main origin/<branch> > /tmp/stale.patch
+git apply --3way /tmp/stale.patch     # apply
+git diff origin/main -- <file>        # per file: is every hunk still wanted?
+# for files where main moved past the branch, restore main's side for THOSE
+# hunks only, keeping the branch's genuinely-new work (identities wiring):
+git checkout origin/main -- <file>    # nuclear: only when EVERY hunk is stale
+```
+
+Files whose main version should win outright (reverted hostname/URL/pin
+lines) get `git checkout origin/main -- <file>` or a targeted re-edit; files
+carrying the branch's real feature stay. Grep the applied tree for tokens
+main had already replaced (`git grep '<old-token>'`) — a stale revert always
+resurrects an old token, and zero hits is the proof the rider is gone.
+
+The finished diff must be reviewed against main, not against the branch tip
+it came from: `git diff origin/main` of the RESULT, hunk by hunk.
+
 ## Squash into an already-pushed `@` is refused — the edits are already there
 
 `jj squash -r @` fails with "would rewrite N immutable commits" once `@` is

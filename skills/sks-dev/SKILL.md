@@ -300,7 +300,8 @@ Deep recipes live in `references/`; read the file when its condition fires:
 - `references/jj-recovery.md` — a jj op errors: immutable bookmark, silent
   push no-op, `describe -F`/`checkout`/`add` absent, divergent change, lost
   workspace, rebase onto moved `main`, stale working-copy clobber,
-  mine-a-revert backport.
+  mine-a-revert backport, re-applying a stale PR diff (reverts newer
+  main as a rider).
 - `references/manifests-git-commit-pitfalls.md` — any git-based repo
   (`manifests`): commit envelope (gitlint CC1), DU conflicts, autosquash
   duplicate subjects, polluted PRs, parallel agents on a shared checkout,
