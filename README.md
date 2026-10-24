@@ -124,6 +124,7 @@ specification, compatible with the
 | `sks-discussion-triage` | Use when triaging an existing org discussion: category, body shape, Q&A answer, and conversion to an issue. |
 | `sks-evolve` | Use when evolving the agent substrate without a hand-named target: mine experience for signals, evolve skills, profiles, memory, conventions, cron, or config, and repeat the fitness loop. |
 | `sks-edit` | Use when a write-phase change needs authoring conventions: identify the matching family (TypeScript, Nix, skill authoring, sops secrets, Kubernetes manifests, plain English, wiki) and apply its fused rules in this skill. |
+| `sks-experiment` | Use when converting a finding or RFC outcome into a hypothesis-gated experiment: one experiment issue per falsifiable claim, a recorded verdict, confirmed outcomes handed to sks-plan. |
 | `sks-gc` | Use when reclaiming resources leaked by agent workflows: dangling jj bookmarks, skill-created workspaces, leftover working-copy dirs, and stale merged branches on GitHub remotes. |
 | `sks-gist` | Use when a verified command, script, config, or output would be retyped or re-derived later — publish it as a gist for DRY reuse and link it from the artifact that motivated it. |
 | `sks-github-notif-sweep` | Use when sweeping unread GitHub notifications: filter noise, act on the answerable, mark processed threads read, never re-report a thread. |
