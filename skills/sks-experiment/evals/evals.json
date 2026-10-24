@@ -1,0 +1,43 @@
+{
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "Extracts the belief as one falsifiable 'We believe that' sentence with a named parent, opens the experiment issue via the org EXPERIMENT form (Hypothesis, outcome-independent Demands as a command-decidable tasklist, Protocol with measurement and duration), keeps the form's question label and triages, runs the protocol exactly as recorded, and records the verdict as an issue comment with evidence and the next move.",
+      "files": [],
+      "prompt": "Test whether swapping our renovate grouping for one-PR-per-dependency actually cuts CI minutes before we commit the fleet to it.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-experiment'",
+        "Body requires the 'We believe that' falsifiable sentence and the parent link before opening the issue",
+        "Body states Demands must hold regardless of the experiment outcome",
+        "Body runs the protocol exactly as recorded and deviating from the protocol invalidates the verdict",
+        "Body keeps the issue body stable and posts the verdict as a comment with evidence and the next move",
+        "Body runs destructive checks in the sks-adversarial sandbox"
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "Treats the register of open experiment issues as the hypothesis backlog, reads verdicts from the issues, and hands every confirmed outcome to sks-plan with the demands as seeded ledgers; invalidated outcomes close as not planned with the verdict as rationale, re-tests open fresh linked experiments.",
+      "files": [],
+      "prompt": "We have a pile of experiment issues from the last audit. Pull out the hypotheses worth developing later and line them up for planning.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-experiment'",
+        "Body names the experiment issue register as the hypothesis backlog for sks-plan milestones",
+        "Confirmed outcomes hand off to sks-plan with demands as seeded ledgers",
+        "Invalidated outcomes close as not planned with the verdict as rationale",
+        "A re-test opens a fresh experiment issue linked to the same parent"
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "Routes elsewhere: a defect crash is sks-investigate territory (root cause, never an experiment), and cutting build units from a settled direction is sks-plan — the experiment loop decides beliefs, not bugs, and never substitutes for the planning plane.",
+      "files": [],
+      "prompt": "The cron scheduler crashes every night at 3am and the milestone board never picks up its cards. Figure out why and get the pipeline fixed.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-experiment'",
+        "Body routes defect root causes to sks-investigate and unit cutting from a converged direction to sks-plan",
+        "Body routes disposable probing with no recorded claim to sks-adversarial"
+      ]
+    }
+  ],
+  "skill_name": "sks-experiment"
+}

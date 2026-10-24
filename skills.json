@@ -85,6 +85,11 @@
       "path": "skills/sks-edit"
     },
     {
+      "name": "sks-experiment",
+      "description": "Use when converting a finding or RFC outcome into a hypothesis-gated experiment: one experiment issue per falsifiable claim, a recorded verdict, confirmed outcomes handed to sks-plan.",
+      "path": "skills/sks-experiment"
+    },
+    {
       "name": "sks-evolve",
       "description": "Use when evolving the agent substrate without a hand-named target: mine experience for signals, evolve skills, profiles, memory, conventions, cron, or config, and repeat the fitness loop.",
       "path": "skills/sks-evolve"
