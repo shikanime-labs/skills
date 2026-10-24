@@ -130,6 +130,14 @@ resurrects an old token, and zero hits is the proof the rider is gone.
 The finished diff must be reviewed against main, not against the branch tip
 it came from: `git diff origin/main` of the RESULT, hunk by hunk.
 
+When the stale branch is large or the classification is ambiguous, delegate
+the finish instead of doing it inline: `sks-delegate` isolates the finish in
+a fresh jj workspace, so the per-hunk classification, the token grep, and the
+result-vs-main review happen against a clean checkout without touching the
+shared working copy. Same gates afterward (result diffed against main hunk by
+hunk, CI on the pushed head).
+
+
 ## Squash into an already-pushed `@` is refused — the edits are already there
 
 `jj squash -r @` fails with "would rewrite N immutable commits" once `@` is
