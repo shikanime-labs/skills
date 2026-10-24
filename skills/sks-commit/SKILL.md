@@ -71,8 +71,10 @@ commit/merge:
   one plain-English subject + the correct trailers:
 - Exactly ONE Automata co-author trailer
   (`Co-authored-by: Automata <automata@shikanime.studio>`), always — this is
-  the default, not conditional on the org. Never a self `Co-authored-by:` or
-  repeated `Signed-off-by:`.
+  the default, not conditional on the org. The append is idempotent: add the
+  trailer only when the assembled message does not already carry it — an
+  append onto a body that includes it lands two (PR #536). Never a self
+  `Co-authored-by:` or repeated `Signed-off-by:`.
 - `Signed-off-by: <user>` only where a hook/ruleset requires DCO.
 - Never rely on GitHub's auto-concatenation of branch commits — pass it clean:
 
@@ -80,7 +82,8 @@ commit/merge:
 gh pr merge <M> --repo <org>/<repo> --squash \
   -t "<plain-English subject>" \
   --body-file <file>   # coherent body; no * bullets, no ----- separators;
-                        # exactly one Automata co-author trailer
+                        # exactly one Automata co-author trailer — append
+                        # only if the body does not already carry it
 ```
 
 `-m` is the `--merge` strategy boolean, not a message flag —
