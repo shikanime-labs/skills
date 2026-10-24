@@ -22,7 +22,7 @@
       "assertions": [
         "YAML frontmatter parses and 'name' equals 'sks-converge'",
         "Body documents that the '%%%%%%% diff from:' block is the destination side",
-        "Body documents that the '+++++++ \u003crev\u003e' block is the rebased revision's change"
+        "Body documents that the '+++++++ <rev>' block is the rebased revision's change"
       ]
     },
     {
@@ -45,8 +45,8 @@
       "assertions": [
         "YAML frontmatter parses and 'name' equals 'sks-converge'",
         "Body mentions 'divergent()' as the locator revset",
-        "Body directs abandoning the losing twin (jj abandon \u003cid\u003e/0)",
-        "Body directs 'jj bookmark set \u003cbranch\u003e -r \u003cid\u003e/1' with the offset form"
+        "Body directs abandoning the losing twin (jj abandon <id>/0)",
+        "Body directs 'jj bookmark set <branch> -r <id>/1' with the offset form"
       ]
     },
     {
@@ -78,21 +78,6 @@
       "assertions": [
         "Frontmatter 'name' equals the directory basename 'sks-converge'",
         "Body does not claim to merge or land PRs itself"
-      ]
-    },
-    {
-      "id": 8,
-      "expected_output": "Treats a red required GitHub Actions check on the pushed head as a convergence gate: detect via gh pr checks, classify from the failing job's log (flake vs code-caused vs pre-existing), bounded re-run for flakes, root-cause fix + re-push otherwise, re-verify on the current head.",
-      "files": [],
-      "prompt": "The jj push succeeded and conflicts() and divergent() are both empty, but the PR's required GitHub Actions check went red — converge it.",
-      "assertions": [
-        "Frontmatter 'name' equals the directory basename 'sks-converge'",
-        "Body mentions 'gh pr checks' as the detection command",
-        "Body classifies failures into transient/flake, code-caused, and pre-existing/infra",
-        "Body bounds automatic re-runs (at most one rerun of an identical failure)",
-        "Body requires re-verifying checks on the current head after a fix + re-push",
-        "Body delegates per-job log tracing and root-cause depth to sks-cichecks",
-        "Body does not recommend --admin past a red required check"
       ]
     }
   ],

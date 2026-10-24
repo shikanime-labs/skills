@@ -78,16 +78,15 @@ For org-specific conventions (local checkout layout, push signing), read
    Rebase auto-moves bookmarks — confirm with `jj bookmark list` after.
    Completion: no "skipped" lines for your revs.
 
-3. **Converge via `sks-converge`.** Resolving conflicts, divergence, or red
-   required checks the fetch or push reveals is that skill's reusable loop:
-   locate with `conflicts()` / `divergent()` / `gh pr checks`, resolve per
-   revision, repoint bookmarks. Load `sks-converge` and follow it; do not
-   re-derive resolution here.
+3. **Converge via `sks-converge`.** Resolving conflicts (and any divergence
+   the fetch reveals) is that skill's reusable loop: locate with
+   `conflicts()` / `divergent()`, resolve per revision, repoint bookmarks.
+   Load `sks-converge` and follow it; do not re-derive resolution here.
 
 4. **Return to your working copy** if `sks-converge` moved `@` (its Procedure
    A step 3): `jj edit <original @ change-id>`.
 
-5. **Push gate.** `sks-converge` exits green and pushable; re-assert here:
+5. **Push gate.** `sks-converge` exits pushable; re-assert here:
 
    ```bash
    jj log -r 'conflicts()' --no-graph   # MUST print nothing
