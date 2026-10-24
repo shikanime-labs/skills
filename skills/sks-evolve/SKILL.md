@@ -63,9 +63,12 @@ graph LR
 
 1. **Sense** — mine recorded experience for evolution signals: memory
    entries, session history, correction traces, repeated pitfalls, token-cost
-   observations, eval failures — and, equally, external sources: an upstream
-   release or fix, a paper's model, a sibling catalog's convention. Signals
-   are the mutation source. Read-only:
+   observations, eval failures — the results skills produced in the wild
+   (retrospective what following each skill actually yielded: landed commits,
+   PR bodies, defects that recurred despite the rule; every gap between
+   prescribed and produced is a signal) — and, equally, external sources: an
+   upstream release or fix, a paper's model, a sibling catalog's convention.
+   Signals are the mutation source. Read-only:
    never edit memories or sessions to make a signal go away.
 2. **Decide** — select the next evolution autonomously. One signal maps to one
 action: author a new skill (`sks-edit` references/skill-authoring/guide.md),
@@ -99,7 +102,8 @@ majority revert overrides favorable self-measurement.
 
 ## Procedure (one cycle = one PR)
 
-1. **Harvest signals** — sweep memory and recent sessions; list each signal
+1. **Harvest signals** — sweep memory, recent sessions, and the results
+   recent skill-governed work produced (the retrospective); list each signal
    with its evidence (what recurred, how often, what it cost).
 2. **Rank by expected fitness gain** — frequency x cost of the friction vs.
    size of the change. Take the top of the backlog.
