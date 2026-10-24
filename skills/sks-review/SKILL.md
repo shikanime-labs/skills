@@ -1,9 +1,10 @@
 ---
-name: sks-pr-review
+name: sks-review
 description:
-  "Use when reviewing code in an org repo: cross-check related issues, enforce
-  YAGNI, root-cause fixes, and project conventions before approval."
-version: 0.4.0
+  "Use when reviewing code, a diff, or a PR: route the org-repo pass (YAGNI
+  lens, security scan, issue cross-check) or the upstream NixOS/nixpkgs PR
+  review strategy."
+version: 0.6.0
 author: Automata
 license: Apache-2.0
 metadata:
@@ -15,6 +16,7 @@ metadata:
       - security
       - github
       - pull-requests
+      - nixpkgs
     related_skills:
       - sks-comment
       - sks-pr-resolve
@@ -23,6 +25,7 @@ metadata:
       - requesting-code-review
       - caveman-review
       - ponytail-review
+      - github-code-review
       - sks-context
 platforms:
   - linux
@@ -30,13 +33,16 @@ platforms:
   - windows
 ---
 
-# PR Review
+# Review
 
-Review local diffs and GitHub PRs through the `ponytail`/YAGNI lens
-(`ponytail` plugin skills; `ponytail-review` is the over-engineering-only
-pass), enforcing review practice and repo conventions. Reports
-only — never auto-commit/merge/fix. Uses `jj`, `gh`, and standard Hermes
-tools.
+Route a review request to the matching strategy. Two review domains ship
+here: the org-repo PR pass below — the `ponytail`/YAGNI lens
+(`ponytail-review` is the over-engineering-only pass), the security scan,
+the issue cross-check, and GitHub posting — and the upstream
+NixOS/nixpkgs PR strategy (`references/nixpkgs.md`): build every changed
+package with `nixpkgs-review`, then check the diff against nixpkgs
+conventions. Reports only — never auto-commit/merge/fix. Uses `jj`, `gh`,
+and standard Hermes tools.
 
 Read `references/conventions.md` when the repo under review uses the org's
 standard stack (auth trust boundaries). Read `references/cloud-pi-native.md`
@@ -49,9 +55,28 @@ The mechanics below (added-line security scan, independent fail-closed reviewer)
 are distilled from `requesting-code-review` and adapted to the
 human-gated flow: the agent posts findings and a verdict, a human approves.
 
+## Strategy routing
+
+| Request | Strategy |
+| --- | --- |
+| Local diff or org-repo PR — "review this diff", "review PR #N", check before push/merge | PR pass below, steps 1-6 |
+| Upstream NixOS/nixpkgs PR — "review this nixpkgs PR", "is this package update good to merge" | `references/nixpkgs.md` |
+| Over-engineering findings only | `ponytail-review` |
+
+Cross-strategy invariants:
+
+- Reports only — never auto-commit, merge, or fix; a human approves.
+- GitHub reviews post only on PRs (`## Posting (PRs)`); session-level
+  findings stay in the chat.
+- Findings qualify only under the `## Flag test` and carry severity labels on
+  the PR pass (its criteria assume code findings); the nixpkgs strategy
+  applies its own convention and build criteria (`references/nixpkgs.md`).
+
 ## When to Use
 
 - "review this diff", "check before pushing", "review PR #N", "look at this PR"
+- "review this nixpkgs PR", "is this package update good to merge" →
+  `references/nixpkgs.md`
 - After a task touching 2+ files
 - Before opening/merging a PR
 
@@ -180,7 +205,8 @@ body (author amends — reviewer never pushes).
 Done when: all findings posted inline (severity-prefixed) in one review, body =
 verdict + praise (2-3 sentences), corrected commit message suggested. Mapping:
 any `blocking` → `REQUEST_CHANGES`; else `APPROVE` if confident, `COMMENT`
-otherwise (`gh pr review <N> --request-changes|--approve|--comment`).
+otherwise (`gh pr review <N> --request-changes|--approve|--comment`). A
+request routed to the nixpkgs strategy verifies per `references/nixpkgs.md`.
 
 Related: `requesting-code-review`, `github-code-review`.
 

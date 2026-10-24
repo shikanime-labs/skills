@@ -90,7 +90,7 @@ Every family skill assumes, without restating:
 | Issues and the gate ledger | `sks-issue`, `sks-issue-refine`, `sks-issue-triage` |
 | Isolation for every unit   | `sks-delegate`                                    |
 | Commits                    | `sks-commit`                                      |
-| Review                     | `sks-pr-review`                                   |
+| Review                     | `sks-review`                                   |
 | PRs                        | `sks-pr`, `sks-pr-ready`, `sks-pr-triage`         |
 | Landing                    | `sks-land`                                        |
 | Fan-out and swarm          | `sks-async`, `sks-swarm`                          |

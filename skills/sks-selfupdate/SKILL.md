@@ -92,7 +92,7 @@ when the user named one.
      carrying the whole curated set (one objective, reviewed in one sitting);
      split into stacked PRs only when the change set grows past a comfortable
      review size.
-   - Run `sks-pr-review` before requesting merge, then land per `sks-land`
+   - Run `sks-review` before requesting merge, then land per `sks-land`
      (or `sks-dev` landing rules). Verify the merge:
      `gh pr view <N> --json state,url`.
 5. **Resync to local agents** — After the change lands on `main`, pull

@@ -13,7 +13,7 @@ metadata:
       - jj
       - workflow
     related_skills:
-      - sks-pr-review
+      - sks-review
       - sks-async
       - sks-delegate
       - sks-swarm
@@ -82,7 +82,7 @@ tool for the unit you already have.
 | 2   | Refine issue to convergence                  | `sks-issue-refine`   | **ledger settled**    |
 | 3   | Branch + implement (fresh jj workspace)      | `sks-delegate`          | **workspace created** |
 | 4   | Commit (plain-English + org trailer)         | `sks-commit`         | **commit shape**      |
-| 5   | Adversarial code review                      | `sks-pr-review`      | **review gate**       |
+| 5   | Adversarial code review                      | `sks-review`      | **review gate**       |
 | 6   | PR: ensure issue → open → triage             | `sks-pr`    | —                     |
 | 7   | Land (`gh pr merge --squash`)                | this / `sks-land`    | **branch protection** |
 | 8   | Close issue deliberately (N of N)            | `sks-issue`          | **ledger discharged** |
@@ -206,7 +206,7 @@ anchor can get duplicated — remove the stray copy before pushing.
   `-R <org>/<repo>` explicitly.
 - **Stacked work:** one PR per link off `main`; land in dependency order
   (base first) with `gh pr merge --squash --admin` (see `sks-land`).
-- **Run `sks-pr-review` before requesting merge** — it applies the
+- **Run `sks-review` before requesting merge** — it applies the
   ponytail/YAGNI lens; `ponytail-review` complements it when you want
   over-engineering findings only. Deliberate corner-cuts in code carry a
   `ponytail:` comment naming the ceiling and upgrade path; `ponytail-debt`
@@ -359,7 +359,7 @@ jj status && jj log -r @ -T 'bookmarks ++ " "'
 
 `sks-issue` / `sks-pr` (issue & PR sides), `sks-commit`,
 `sks-delegate` (isolation), `sks-async` (stacked PRs), `sks-swarm` (agent
-cluster), `sks-pr-review` (phase 5), `sks-pr-ready` (draft→ready flip
+cluster), `sks-review` (phase 5), `sks-pr-ready` (draft→ready flip
 before landing), `ponytail-review` (over-engineering
 lens), `sks-tldr` (end-of-loop block closes the loop).
 Authoring conventions apply during the write phase via the fused `sks-edit`

@@ -1,30 +1,4 @@
----
-name: nixpkgs-pr-review
-description:
-  "Use when reviewing an upstream NixOS/nixpkgs pull request: build the changed
-  packages with nixpkgs-review and check the diff against nixpkgs conventions."
-version: 0.1.0
-author: Automata
-license: Apache-2.0
-metadata:
-  hermes:
-    tags:
-      - nixpkgs
-      - nixpkgs-review
-      - code-review
-      - nix
-      - pull-requests
-    related_skills:
-      - sks-pr-review
-      - github-code-review
-      - sks-context
-platforms:
-  - linux
-  - macos
-  - windows
----
-
-# Nixpkgs PR Review
+# Nixpkgs PR Review — sks-review
 
 Review upstream [NixOS/nixpkgs](https://github.com/NixOS/nixpkgs) pull requests
 through the official contribution process: build every package the PR changes
@@ -32,7 +6,7 @@ with `nixpkgs-review`, then check the diff against nixpkgs conventions before
 deciding on approval. Reports only — never auto-approve or merge without the
 maintainer's go-ahead.
 
-This skill is grounded in a real modernization PR,
+This strategy is grounded in a real modernization PR,
 [NixOS/nixpkgs#557075](https://github.com/NixOS/nixpkgs/pull/557075)
 (`ghstack: modernize`), used below as the running example.
 
@@ -68,7 +42,7 @@ nixpkgs-review pr <PR#> --systems aarch64-linux
 nixpkgs-review pr <PR#> --run 'cat report.json'
 nixpkgs-review pr <PR#> --no-shell --post-result
 nixpkgs-review rev HEAD                # review a local commit/branch
-nixpkgs-review wip                     # review uncommitted working-tree changes
+nixpkgs-review wip                      # review uncommitted working-tree changes
 nixpkgs-review pr <PR#> --extra-nixpkgs-config '{ cudaSupport = true; }'
 ```
 
@@ -187,5 +161,5 @@ test hooks) were introduced.
 
 ## See also
 
-- `sks-pr-review` — same severity and verdict discipline.
+- The PR pass in `SKILL.md` — same severity and verdict discipline.
 - `github-code-review` — generic PR review mechanics.

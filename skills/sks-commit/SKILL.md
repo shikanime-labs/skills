@@ -12,7 +12,7 @@ metadata:
       - jj
       - commit
     related_skills:
-      - sks-pr-review
+      - sks-review
       - sks-dev
       - sks-pr
       - sks-context
