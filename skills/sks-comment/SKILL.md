@@ -41,7 +41,7 @@ Boundary map:
 - Bodies are owned by their surface skills: `sks-issue`, `sks-pr`,
   `sks-discussion` — this skill covers comments, never a body.
 - Review output (severity labels, inline anchors, one review per head):
-  `sks-pr-review`. Thread resolution: `sks-pr-resolve`. Hiding:
+  `sks-review`. Thread resolution: `sks-pr-resolve`. Hiding:
   `sks-moderate`, the maintenance pass landing here.
 
 ## When to Use
@@ -100,7 +100,7 @@ the user (`sks-tldr`), not the thread.
      never post a second copy.
 3. **Post** on the correct store; a finding with no line anchor goes
    as a conversation comment, a diff-anchored finding as a
-   review-thread comment per `sks-pr-review`'s posting doctrine.
+   review-thread comment per `sks-review`'s posting doctrine.
 4. **Verify by re-reading** what landed, from the store's
    authoritative surface — the command's success line proves nothing.
 5. **Maintenance pass**: re-extract, then run `sks-moderate` to fold
@@ -153,6 +153,6 @@ references.
 - `sks-moderate` — hiding/unhiding; the maintenance pass lands here.
 - `sks-edit` references/github-text/guide.md — prose mechanics; `sks-edit`
 references/text/guide.md — sentence content under STE.
-- `sks-pr-review` — review verdicts and inline anchors on the diff.
+- `sks-review` — review verdicts and inline anchors on the diff.
 - `sks-pr-resolve` — resolving review threads after comments land.
 - `sks-issue`, `sks-discussion`, `sks-pr` — the surface bodies.

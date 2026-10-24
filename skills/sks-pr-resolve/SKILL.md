@@ -16,7 +16,7 @@ metadata:
       - review-threads
       - reconcile
     related_skills:
-      - sks-pr-review
+      - sks-review
       - sks-pr
       - sks-land
       - sks-issue
@@ -49,7 +49,7 @@ org.
 - "Resolve review threads on an org PR."
 - "Check if a PR is ready to land (reconcile + report)."
 
-Not for opening (`sks-pr`), reviewing (`sks-pr-review`), merging (`sks-land`).
+Not for opening (`sks-pr`), reviewing (`sks-review`), merging (`sks-land`).
 
 ## Gates
 
@@ -80,7 +80,7 @@ gh pr view <M> --repo <org>/<repo> --json body,state --jq .body
 
 ### Gate 3 — Approval + CI (report only)
 
-`sks-pr-review` must have run on the final head commit and approved. Re-review
+`sks-review` must have run on the final head commit and approved. Re-review
 if new commits landed after the last review. Check approval via the query in
 `references/resolve.md`.
 
@@ -155,7 +155,7 @@ Workflow id and impact rules per org: `references/shikanime.md` /
 Readiness verdict:
 
 - Ledger: N of N satisfied, listing open items.
-- Approval: `sks-pr-review` approval on current head (or verbal `lgtm` per
+- Approval: `sks-review` approval on current head (or verbal `lgtm` per
   `references/shikanime.md`).
 - Conversations: every thread resolved with one-line rationale, or list needing
   author decision.

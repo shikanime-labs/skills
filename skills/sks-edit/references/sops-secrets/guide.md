@@ -267,5 +267,5 @@ jj diff --git | grep -E '^diff --git a/.*\.enc'
   keys, devenv wrapper trap, INI store rules, the `formatForPath`
   binary-store trap, and the `;` corruption.
 - `sks-pr` — open the PR from the pushed bookmark.
-- `sks-pr-review` — review a secret-swap PR before approving.
+- `sks-review` — review a secret-swap PR before approving.
 - `sks-delegate` — isolate this unit in a fresh jj workspace before editing.

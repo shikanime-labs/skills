@@ -17,7 +17,7 @@ metadata:
       - hypothesis
       - typescript
     related_skills:
-      - sks-pr-review
+      - sks-review
       - sks-async
       - sks-delegate
       - sks-issue
@@ -202,7 +202,7 @@ echo "investigation complete: root cause + hypothesis + proposed fix" \
 
 ## See also
 
-- `sks-pr-review` — the review gate enforces the same root-cause discipline on
+- `sks-review` — the review gate enforces the same root-cause discipline on
   incoming PRs.
 - `sks-async` — the isolation pattern, for parallel implementation rather than
   parallel debugging.
