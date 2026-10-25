@@ -5,7 +5,7 @@ description:
   untriaged items, assign every empty, context-derivable field, and
   requalify items whose evidence moved after triage — type, labels,
   assignee, fields, links, project card fields."
-version: 0.4.0
+version: 0.5.0
 author: Automata
 license: Apache-2.0
 metadata:
@@ -22,6 +22,8 @@ metadata:
       - sks-discussion-triage
       - sks-issue
       - sks-pr
+      - sks-plan
+      - sks-milestone
       - sks-bulk
       - sks-context
 platforms:
@@ -50,12 +52,13 @@ Run them as `<skill-dir>/scripts/...` — paths resolve against the skill
 directory, not the target repo.
 
 - `scripts/discover-metadata.sh REPO` — every triage-relevant value the repo
-  or its org offers: labels, open milestones, projects, assignees, enabled
-  issue types, org issue fields. The source of truth for step 3; never set a
-  value it does not list.
+  or its org offers: labels, projects, assignees, enabled issue types, org
+  issue fields. The source of truth for step 3; never set a value it does
+  not list.
 - `scripts/scan-untriaged.sh REPO` — open issues and PRs whose metadata is
   incomplete, computed against what the repo actually supports. Columns:
-  number, kind, missing classes.
+  number, kind, missing classes. Milestones are not a triage gap: a missing
+  milestone is `sks-plan`'s signal, never reported here.
 
 ## When to Use
 
@@ -68,8 +71,9 @@ directory, not the target repo.
 - Zero untriaged items found → report that and change nothing.
 
 Not for: discussions (`sks-discussion-triage`), closing unworkable issues
-(`sks-issue-triage`), rewording a PR body (`sks-pr-triage`), diagnosing a
-defect (`sks-investigate`).
+(`sks-issue-triage`), rewording a PR body (`sks-pr-triage`), assigning a
+milestone (`sks-plan` / `sks-milestone`), diagnosing a defect
+(`sks-investigate`).
 
 ## Prerequisites
 
@@ -140,8 +144,9 @@ context**; nothing else:
 - **assignee** — if none: the org default assignee
   (`references/shikanime.md`) when present in the eligible list; else
   `$(gh api user --jq .login)`.
-- **milestone** — only when the repo has open milestones: bug→highest open
-  patch on the current minor; enhancement→next minor/major.
+- **milestone** — never set here; milestone assignment is planning's
+  decision and belongs to `sks-plan` (or the org release plane,
+  `sks-milestone`). Leave it empty even when open milestones exist.
 - **project** — skip when ambiguous, or when the token lacks project scope.
 - **relationships** — parent, sub-issues, blockers: only when the body or
   links state them, never inferred.
@@ -273,5 +278,7 @@ gh api "repos/$R/issues/$N" --jq '{type: (.type.name // "-"),
 - `sks-issue-triage` — deep single-issue flow, closure, transfer.
 - `sks-pr-triage` — deep single-PR flow, body↔diff reconciliation.
 - `sks-discussion-triage` — discussions.
+- `sks-plan` / `sks-milestone` — milestone assignment and planning; triage
+  never sets a milestone.
 - `sks-issue` / `sks-pr` — run triage right after creating.
 - `sks-bulk` — N-repo mutations beyond triage.

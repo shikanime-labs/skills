@@ -4,7 +4,7 @@ description:
   "Use when planning a milestone from a goal: converge direction, decompose
   into dependency-ordered units, fill the milestone with triaged, boarded
   issues ready for sks-iterate."
-version: 0.1.0
+version: 0.2.0
 author: Automata
 license: Apache-2.0
 metadata:
@@ -21,7 +21,7 @@ metadata:
       - sks-project
       - sks-iterate
       - sks-dev
-      - sks-summary
+      - sks-tldr
       - sks-context
 platforms:
   - linux
@@ -80,11 +80,13 @@ owns its plane; the loop that consumes the result is `sks-iterate`.
 5. **Open and triage every issue** (`sks-issue` then `sks-issue-triage`):
    body is the problem statement, the acceptance ledger already seeded
    command-decidable; dependencies recorded as issue relationships at
-   triage, never only in the plan prose; the milestone assigned at triage.
+   triage, never only in the plan prose. This step owns the milestone
+   assignment: triage never sets one, so every unit lands on the
+   milestone here (or in step 4 when the issue already exists).
 6. **Board the set** (`sks-project`): every card Status `Ready` on the
    family board — the board is what `sks-iterate` reads; no board, no
    loop.
-7. **Close the planning loop** with the report block (`sks-summary`) and
+7. **Close the planning loop** with the report block (`sks-tldr`) and
    hand execution to `sks-iterate`.
 
 ## Pitfalls
@@ -124,4 +126,4 @@ names the hand-off to `sks-iterate`.
 - `sks-project` — the board the plan loads.
 - `sks-iterate` — the loop that consumes the plan.
 - `sks-dev` — the unit lifecycle each card runs.
-- `sks-summary` — the report block that closes the planning loop.
+- `sks-tldr` — the report block that closes the planning loop.

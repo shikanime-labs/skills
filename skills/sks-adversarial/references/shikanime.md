@@ -10,3 +10,8 @@ Generic probing procedure; shikanime-org specifics:
   cause, never land a tactical patch that accrues debt. No hard SLA
   constraints: correctness and durability outrank turnaround time; take the
   time to do it properly.
+- Sandbox image hygiene: a `:ci` tag found staged may be stale from an
+  earlier session — before running a probe against `dso-console/*:ci`, verify
+  `docker image inspect` RepoDigests against `docker buildx imagetools inspect
+  <remote>` for each image; a digest mismatch voids all evidence the probe
+  produces. Kill the run, `docker compose down -v`, re-pull, re-tag, re-run.

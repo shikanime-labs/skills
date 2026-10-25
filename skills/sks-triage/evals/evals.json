@@ -21,7 +21,7 @@
       "prompt": "Sweep shikanime-labs/skills and assign whatever metadata is missing on open issues and PRs.",
       "assertions": [
         "Body enumerates open issues and PRs with one paginated gh api call per repo",
-        "Body computes missing classes against what the repo supports (types, milestones, fields)",
+        "Body computes missing classes against what the repo supports (types, fields)",
         "Body caps the number of items touched per sweep and reports the untouched remainder",
         "Body verifies each item by re-reading it after applying",
         "Body forbids closing items during a sweep"
