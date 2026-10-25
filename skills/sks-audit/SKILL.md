@@ -197,6 +197,33 @@ per org, with the median reported beside any p90. Cross-check the residue
 count per PR, never by repo-wide text search. Findings from this surface
 are proposals: file issues only, no fastlane PR.
 
+### Resource efficiency
+
+Capacity spend over the cluster, on two axes ranked by leverage. Applicative
+first — the workload consuming less for the same output: automata runs that
+route-level or job-level primitives eliminate (webhook `deliver_only`,
+`filters`, `coalesce`; cron `no_agent` script-only jobs; skill and
+reasoning-effort pins), and chat-session primitives standing in for manual
+re-prompts (`/goal` loops, `/review` subagents, `/refine`) — slash
+subcommands are interactive-session constructs, inert in webhook and cron
+prompts. Reservation second — what the workload books: VPA targets against
+pod requests, `minAllowed` floors the recommender ignores, per-node request
+arithmetic (read the scheduler's numbers, not usage percentages). Read
+`kubectl get vpa -A -o json`, sum per-node requests from
+`kubectl get pods -A -o json`, and pull automata spend from the gateway's
+run records where a billing surface exists. Record every number before
+drawing any conclusion; a reservation number without its applicative
+counterpart is half a finding. Fastlane scope: values bump, request tweak.
+Findings that need an operator capacity call (floors, caps, replica counts)
+are issue-only.
+
+Completion check: both axes carry recorded values per cluster, each finding
+stating which axis it attacks and the evidence command behind it. Pitfalls:
+a node at "48% used" can have under 8Gi requestable (requests squat, not
+memory), so never report utilization percentages without the request
+arithmetic beside them; an agent run eliminated by a route filter is real
+CapEx saved even though no k8s metric moves.
+
 ## Verification
 
 ```bash
