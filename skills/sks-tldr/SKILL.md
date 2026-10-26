@@ -4,7 +4,7 @@ description:
   "Use when ending any agent work loop — investigation, dev unit, batch, or
   delegation fan-out: emit the fixed report block so status, evidence, and
   handoff stay uniform across parallel tasks."
-version: 0.4.0
+version: 0.5.0
 author: Automata
 license: Apache-2.0
 metadata:
@@ -84,6 +84,16 @@ of this skill; a repo/org template never changes this chat-side block.
   DONE.
 - `References` links the issues and PRs the loop touched, one bullet each,
   same convention as the templates. Omit when none.
+
+## Memory loop
+
+In environments with memory tools (Honcho), the report block is not the only
+durable output. Before writing it: `honcho_search` the loop's topic and
+`honcho_context` to reuse recurring context — findings already filed, items a
+previous run left pending on purpose, known noise to skip — so the block
+reports deltas, not repeats. After it: `honcho_conclude` one line per durable
+lesson the loop surfaced. Skip on one-shot or memory-less environments; the
+block alone is the artifact.
 
 ## Procedure
 

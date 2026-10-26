@@ -38,6 +38,18 @@
         "Body routes starting work to sks-dev or sks-issue-workflow rather than covering it",
         "Body states one report per loop, at the end, and forbids mid-loop progress notes"
       ]
+    },
+    {
+      "id": 4,
+      "expected_output": "Runs the memory loop around the report on a recurring loop in a memory-equipped environment: reuses prior context before reporting and concludes durable lessons after, while the report block stays the deliverable.",
+      "files": [],
+      "prompt": "The nightly triage sweep just finished — same loop as every night, memory tools are available. Close it out.",
+      "assertions": [
+        "Body includes a memory-loop step running before the report: honcho_search the loop's topic plus honcho_context to reuse recurring context (findings already filed, deliberately pending items, known noise)",
+        "Body includes a memory-loop step running after the report: honcho_conclude one line per durable lesson",
+        "Body keeps the report block as the artifact and treats the memory loop as an addition, not a replacement",
+        "Body states the memory loop is skipped on one-shot or memory-less environments"
+      ]
     }
   ],
   "skill_name": "sks-tldr"
