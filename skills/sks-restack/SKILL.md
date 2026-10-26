@@ -133,9 +133,6 @@ For org-specific conventions (local checkout layout, push signing), read
 - **Shared working copy.** The alias's `roots(trunk()..) & mutable()` restacks
   every mutable root, including other sessions' WIP; with concurrent editors,
   prefer the scoped `jj rebase -b <branch> --onto main@origin`.
-- **Queue-ejected PR carrying a git-style merge head.** After a merge-queue conflict ejection, an `update-branch` merge ("Merge remote-tracking branch 'origin/main' into ...") may sit on the bookmark. Flatten before restacking: `jj bookmark set <branch> -r <pr-commit> --allow-backwards && jj abandon <merge> && jj rebase -s <pr-commit> -d trunk()`; pushing the merge head re-seeds the conflict at the next queue run.
-- **`jj resolve --tool :union` is unavailable on some jj builds** (`cannot be used as a merge tool ... merge-args must be defined`). Hand-merge instead: keep destination-side lines verbatim and strip marker lines plus the `+` prefixes from the diff block; the `\` (to:) separator line matches neither a marker nor a `+` filter — sweep for `to: <rev>` residuals after the transform.
-- **Ghost workspace records.** A workspace whose sibling directory was deleted externally keeps its record (and its `@` pin); `jj st` inside the dead path silently runs against the nearest repo. `jj workspace forget <name>` clears it — the empty working-copy commit is pruned, non-empty commits survive. Scan `jj workspace list` for names whose dirs no longer exist.
 - **Immutable PR-internal history.** A long-lived PR stack can carry commits
   older than `trunk()` that jj marks immutable (pushed via an earlier remote
   bookmark position or covered by `tags()`/`untracked_remote_bookmarks()`);

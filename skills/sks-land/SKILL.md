@@ -205,12 +205,6 @@ EOF
   branch commits (leaks jj's `*` / `---------` artifacts). One subject +
   required trailers (`references/shikanime.md`).
 - Lone, self-approval blocked (after verbal lgtm): use `--squash --admin`.
-- `--admin` may be REFUSED outright when a Landing protections ruleset sets
-  `bypass_actors: []` (shikanime-labs/.github ruleset 25477751 since
-  2026-10-21): "Waiting on code owner review" even with `--admin`. The only
-  path is a real code-owner approval from a non-author account — Gate 3
-  `sks-sudo` switch, `gh pr review --approve`, restore — then merge with
-  `--match-head-commit` (plain `--squash` suffices once approval exists).
 - Stacked (multiple PRs off `main`): land each with
   `gh pr merge <PR_NUMBER> --squash --admin` in dependency order (base first).
 - Branch protection may require linear history + signed commits (org example
@@ -272,11 +266,6 @@ EOF
    `forget` takes the workspace _name_ (from `jj workspace list`), not the path.
 
 ## Pitfalls
-
-- `--match-head-commit` takes the FULL 40-char oid — a short sha fails GraphQL
-  coercion (`Could not coerce value "abc1234" to GitObjectID`) and the merge
-  silently no-ops while the command exits 0-looking. Fetch it with
-  `gh pr view <M> --json headRefOid -q .headRefOid`, never hand-truncate.
 
 - Stacked PRs (GitHub stack feature, Oct 2026+): legacy `gh pr merge`, the
   GraphQL mutation, and `--auto` all refuse with "part of a stack and must be

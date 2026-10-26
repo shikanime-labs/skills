@@ -90,11 +90,6 @@ Not for git/jj commit identity — `gh auth switch` does not touch
   BLOCKED, another switched section is live — wait, never bypass the lock.
 - **Success lines are not proof.** Only `gh api user` proves the flip and
   `gh auth status` proves the restore.
-- **A switch can succeed while the next call still authenticates as the old
-  account** (observed once on the gh keyring, 2026-10-22): verify with
-  `gh api user` and retry the switch once before falling back to a single
-  `GH_TOKEN=$(gh auth token --user <target>)` REST call for token-scoped
-  operations.
 - **`GH_ACCOUNT=` and inline `GH_TOKEN=` do not cover git.** The HTTPS
   credential helper follows the ACTIVE account; prefer a locked switch when
   git operations ride along.
@@ -102,8 +97,7 @@ Not for git/jj commit identity — `gh auth switch` does not touch
   shared keyring does not yield tokens to a copied `hosts.yml` —
   bootstrapping one needs an interactive `gh auth login` per account. Ask
   the operator before relying on it.
-- **A keyring entry can resolve to another account's token.** `gh auth status` lists `yorha-operator` while `gh auth token --user yorha-automata` returned a `shikanime` token (observed 2026-10-23; both switches "succeeded"). Token-only fallback is safe only after proving identity: `T=$(gh auth token --user <acct>) && GH_TOKEN=$T gh api user` must echo `<acct>`. A third keyring account can be the working fallback — inventory with `gh auth status` before assuming failure.
-- An exported `GH_TOKEN`/`GITHUB_TOKEN` in a persistent shell overrides `gh auth switch`
+- **An exported `GH_TOKEN`/`GITHUB_TOKEN` in a persistent shell overrides
   `gh auth switch`** — the switch reports success while every call still
   authenticates as the env token's account. Unset both `GH_TOKEN` and
   `GITHUB_TOKEN` before the switched section — either overrides the stored
