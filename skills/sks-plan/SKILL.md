@@ -4,7 +4,7 @@ description:
   "Use when planning a milestone from a goal: converge direction, decompose
   into dependency-ordered units, fill the milestone with triaged, boarded
   issues ready for sks-iterate."
-version: 0.1.0
+version: 0.2.0
 author: Automata
 license: Apache-2.0
 metadata:
@@ -66,7 +66,12 @@ owns its plane; the loop that consumes the result is `sks-iterate`.
    writing anything: opening issues is a gated batch (`sks-bulk` shape).
 4. **Fill the milestone.** Attach the milestone the user names when one
    exists; otherwise create one titled after the goal — in every repo
-   holding units when the set spans repos:
+   holding units when the set spans repos — but only where the repo
+   tracks no release milestones: a repo on semver release trains takes
+   the next minor/major for capacity (the highest open patch of the
+   current minor for defects), and a goal-titled milestone minted there
+   splits the train. Which convention applies is an org fact (the owning
+   skill's `references/<org>.md`).
 
    ```bash
    # payload.json: {"title": "<goal>", "state": "open",
@@ -82,7 +87,10 @@ owns its plane; the loop that consumes the result is `sks-iterate`.
    command-decidable; dependencies recorded as issue relationships at
    triage, never only in the plan prose. This step owns the milestone
    assignment: triage never sets one, so every unit lands on the
-   milestone here (or in step 4 when the issue already exists).
+   milestone here (or in step 4 when the issue already exists). The
+   assignment survives the lifecycle: a unit's PR triages onto its
+   issue's milestone (`sks-pr-triage` owns the mechanics) — a milestone
+   dropped at PR open is the plan's decision lost.
 6. **Board the set** (`sks-project`): every card Status `Ready` on the
    family board — the board is what `sks-iterate` reads; no board, no
    loop.
@@ -100,6 +108,10 @@ owns its plane; the loop that consumes the result is `sks-iterate`.
   gone next session; triage writes it onto the issues as relationships.
 - **Planning an unconverged goal.** The RFC gate is cheaper than re-cutting
   the unit set after direction shifts.
+- **A goal-titled milestone in a release-train repo.** A repo tracking
+  semver release milestones takes its next train; a parallel goal-titled
+  milestone orphans the units from the train and fragments the release
+  audit.
 - **Inventing a due date.** The milestone carries a date only when a real
   deadline exists; an empty field is honest.
 
