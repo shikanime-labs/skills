@@ -53,14 +53,6 @@ the generic procedure in SKILL.md still applies.
   - Husky `pre-push` runs `vitest` — unit tests must pass before
     `jj git push`.
   - Quality Gate: SonarQube Code Analysis (0 new issues) via `gh pr checks`.
-  - The CI Docker build typechecks strictly (`pnpm --filter
-    @cpn-console/server-nestjs run build`); vitest's esbuild accepts looser
-    types — run the build locally before pushing test/utils changes, after
-    the workspace chain builds (`logger` → `shared` → `hooks` → `prisma
-    generate`).
-  - Test factories are always `make<Type>` in `<module>-testing.utils`,
-    never inline in specs; fresh specs take `mockDeep` over `vi.fn` and no
-    `as` casts — build real mocks typed on the consumer's contract.
 - Commits are conventional **only if the repo enforces it**
   (commitlint + Husky `commit-msg`); else follow the repo's established
   commit style.

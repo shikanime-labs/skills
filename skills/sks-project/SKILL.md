@@ -169,8 +169,8 @@ The printed status equals the intended column, or the move did not happen.
 - **`item-delete` in scripts** needs the project number positional plus
   `--owner` — omit either and it refuses: "project number is required when
   not running interactively".
-- **Unset Status after `item-add`** is silent: no error, no column. Always follow an add with an edit.
-- **`item-edit --url <pr-url> --field Status --value "In progress"` fails with "is not an item in project N" even when the card exists and was just added** — and an `item-list` immediately after `item-add` can race the card into existence (empty hit → empty `$CARD` → the edit no-ops with the usage dump). Reliable shape: `item-add` (its output IS the item id), `sleep 3`, `item-list` → `.id`, then `item-edit --id <id> --project-id <pid> --field-id <fid> --single-select-option-id <oid>`. Verify with a final `item-list` read-back; a FAILED line next to a later read-back showing the right status means the first attempt failed and the retry worked — reconcile before reporting.
+- **Unset Status after `item-add`** is silent: no error, no column. Always
+  follow an add with an edit.
 - **Stale output lies after merge.** `gh pr merge` success lines prove
   nothing; flip to `done` only after re-reading
   `gh pr view <N> --json state,mergedAt`.

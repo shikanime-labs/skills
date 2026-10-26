@@ -16,7 +16,3 @@
   cause, never land a tactical patch that accrues debt. No hard SLA
   constraints: correctness and durability outrank turnaround time; take the
   time to do it properly.
-- "Always think longterm" (2026-10-22): every change names the end-state it
-  moves toward; short-term steps must be reversible steps on that path. A fix
-  that mortgages a later decision (one-shot resources, constraints the durable
-  shape will remove, format migrations) is rejected even when cheapest today.
