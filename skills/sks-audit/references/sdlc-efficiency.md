@@ -9,7 +9,7 @@ the audit mutates nothing it measures.
   "search/issues?q=org:<org>+is:open+type:issue&per_page=1" --jq
   .total_count` (repeat with `type:pr`); drop archived and empty repos
   before any per-repo depth.
-- Untriaged — run `sks-triage`'s `scripts/scan-untriaged.sh` per repo
+- Untriaged — run `sks-triage`'s `scripts/scan-untriaged.py` per repo
   instead of re-deriving the gap classes; it computes missing metadata
   against what the repo actually supports.
 - Latency — merged PRs in the window (default 30): time to first review and

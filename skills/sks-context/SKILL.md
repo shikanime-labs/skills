@@ -54,7 +54,13 @@ The lifecycle is **discussion → issue → issue comments → PR**:
 The working stance behind every unit: prefer the long-term solution, fix the
 root cause, never land a tactical patch that accrues debt. There is no hard
 SLA — correctness and durability outrank turnaround time, so take the time to
-do it properly.
+do it properly. "Always think longterm" (user-emphasised 2026-10-22): before
+executing any change, name the end-state it moves toward and confirm the
+short-term step is a reversible step on that path. A fix that mortgages a
+later decision — burns a one-shot resource, hardcodes a constraint the
+durable shape will remove, or locks in a format migration — is rejected even
+when it is the cheapest fix today. Proposals state the long-term consequence,
+not just the immediate effect.
 
 Skill bodies are org-neutral; org-specific conventions load on demand from
 per-skill `references/<org>.md` files. Read `references/shikanime.md` for
