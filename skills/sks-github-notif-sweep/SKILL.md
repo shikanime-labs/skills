@@ -3,7 +3,7 @@ name: sks-github-notif-sweep
 description:
   "Use when sweeping unread GitHub notifications: filter noise, act on the
   answerable, mark processed threads read, never re-report a thread."
-version: 0.1.0
+version: 0.1.1
 author: Automata
 license: Apache-2.0
 metadata:
@@ -86,6 +86,14 @@ gh api notifications/threads/<id> --jq '.read'   # true for every processed thre
 
 Report states: threads read, acted (links to replies), human-gated bullets,
 noise skipped, threads marked read.
+
+## Memory loop
+
+In memory-equipped environments, close the loop around the report:
+`honcho_search "notification sweep"` and `honcho_context` before reporting
+reuse recurring context (threads a previous run answered, noise patterns
+to skip); `honcho_conclude` after it records one line per durable lesson.
+Memory-less environments skip this section.
 
 ## See also
 

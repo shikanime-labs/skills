@@ -4,7 +4,7 @@ description:
   "Use when documenting a project's technical knowledge in its GitHub wiki:
   enabling the wiki, seeding or syncing pages after a behavior-changing PR,
   and backfilling per-repo technical documentation."
-version: 0.4.1
+version: 0.4.2
 author: Automata
 license: Apache-2.0
 metadata:
@@ -139,6 +139,15 @@ gh api repos/OWNER/REPO --jq .has_wiki   # true (flag: gh repo edit --enable-wik
 git ls-remote git@github.com:OWNER/REPO.wiki.git HEAD
 # Home renders in the UI and lists every page
 ```
+
+## Memory loop
+
+In memory-equipped environments, close the loop around the report:
+`honcho_search "docs sync"` and `honcho_context` before reporting reuse
+recurring context (wikis that keep lagging, pages that keep drifting,
+ground-truth sources that settled past drift); `honcho_conclude` after it
+records one line per durable lesson. Memory-less environments skip this
+section.
 
 ## See also
 
