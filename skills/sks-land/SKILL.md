@@ -221,9 +221,23 @@ EOF
    issue or report the landing complete on merge alone; only the user confirms
    the running change. If the user rejects, treat it as a reported defect: fix
    via a new PR, re-deploy, and re-request acceptance.
-3. Close the issue **deliberately**: confirm tasklist N/N and user acceptance
-   (step 2), then `gh issue close <N> --repo <org>/<repo> -c "Discharged by
-   <PR URL>"`.
+3. Close the issue **deliberately**: re-read the live ledger — the Gate 2
+   read went stale the moment it ran —
+
+   ```bash
+   gh issue view <N> --repo <org>/<repo> --json body --jq .body
+   ```
+
+   advance met items in the issue body from verified evidence only
+   (`gh issue edit <N> --repo <org>/<repo> --body-file <updated body>`),
+   then close only when zero unchecked `- [ ]` items remain (impossible
+   items struck with a comment per `sks-issue`, never dropped):
+
+   ```bash
+   gh issue close <N> --repo <org>/<repo> -c "Discharged by <PR URL>"
+   ```
+
+   A ledger that will not reach N/N is a reported defect, not a close.
 4. Rebase downstream: if other PRs sit on top of the merged branch, rebase them
    onto the new `main` (`jj rebase -d main`).
 5. **Sync the wiki (shikanime org: mandatory when the change has a wiki
