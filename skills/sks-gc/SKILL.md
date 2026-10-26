@@ -4,7 +4,7 @@ description:
   "Use when reclaiming resources leaked by agent workflows: dangling jj
   bookmarks, skill-created workspaces, leftover working-copy dirs, and stale
   merged branches on GitHub remotes."
-version: 0.3.0
+version: 0.3.1
 author: Automata
 license: Apache-2.0
 metadata:
@@ -172,6 +172,14 @@ jj workspace list && jj bookmark list
 gh pr list --state open   # confirm no protected bm forgotten, canonical wc untouched
 gh api repos/<repo>/branches --paginate --jq '.[].name'   # deleted branches absent
 ```
+
+## Memory loop
+
+In memory-equipped environments, close the loop around the report:
+`honcho_search "stale branch cleanup"` and `honcho_context` before
+reporting reuse recurring context (branches a previous run flagged blocked
+and why); `honcho_conclude` after it records one line per durable lesson.
+Memory-less environments skip this section.
 
 ## See also
 

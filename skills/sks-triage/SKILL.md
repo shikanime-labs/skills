@@ -5,7 +5,7 @@ description:
   untriaged items, assign every empty, context-derivable field, and
   requalify items whose evidence moved after triage — type, labels,
   assignee, fields, links, project card fields."
-version: 0.5.0
+version: 0.5.1
 author: Automata
 license: Apache-2.0
 metadata:
@@ -272,6 +272,14 @@ gh api "repos/$R/issues/$N" --jq '{type: (.type.name // "-"),
     "\(.issue_field_name)=\(.single_select_option.name // .value)"]}'
 <skill-dir>/scripts/scan-untriaged.sh "$R"  # untriaged set shrank
 ```
+
+## Memory loop
+
+In memory-equipped environments, close the loop around the report:
+`honcho_search "GitHub triage"` and `honcho_context` before reporting reuse
+recurring context (systemic findings already filed, items a previous run
+left pending on purpose); `honcho_conclude` after it records one line per
+durable lesson. Memory-less environments skip this section.
 
 ## See also
 

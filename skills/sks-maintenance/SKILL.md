@@ -4,7 +4,7 @@ description:
   "Use when maintaining the org's repos, fleet, and runtimes: renovate and
   language dependency bumps, nixpkgs/runtime upgrades, and the issue → PR →
   land → post-merge validation loop."
-version: 0.1.0
+version: 0.1.1
 author: Automata
 license: Apache-2.0
 metadata:
@@ -179,6 +179,15 @@ kubectl get nodes -o wide && kubectl rollout status deploy/<name> -n <ns>
 
 Report states: component, lane, issue and PR links, the validated
 running-state evidence, rollback target, board card state.
+
+## Memory loop
+
+In memory-equipped environments, close the loop around the report:
+`honcho_search "renovate sweep"` and `honcho_context` before reporting
+reuse recurring context (PRs reported in previous runs and why they are
+stuck, repos with known renovate CI quirks); `honcho_conclude` after it
+records one line per durable lesson. Memory-less environments skip this
+section.
 
 ## See also
 
