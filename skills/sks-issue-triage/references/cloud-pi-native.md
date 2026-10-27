@@ -31,5 +31,5 @@ generic procedure in SKILL.md is unchanged; these are the org overrides.
   (`gh project item-add`); the generic "skip when ambiguous" exemption does
   not apply — Socle is the unambiguous default board.
 - Fallback assignee is the same `yorha-operator` account (see the generic
-  `shikanime.md`), still only when it appears in the repo's assignee
-  list.
+  `shikanime.md`), still gated on machine-routable work and only when it
+  appears in the repo's assignee list.

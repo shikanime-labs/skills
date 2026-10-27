@@ -2,7 +2,7 @@
   "evals": [
     {
       "id": 1,
-      "expected_output": "The skill assigns labels, assignee, and milestone to an existing shikanime org PR using only repo-existing values.",
+      "expected_output": "The skill assigns labels, an assignee for machine-routable work, and milestone to an existing shikanime org PR using only repo-existing values.",
       "files": [],
       "prompt": "Triage PR #21 in shikanime-studio/actions: add labels, assignee, milestone.",
       "assertions": [

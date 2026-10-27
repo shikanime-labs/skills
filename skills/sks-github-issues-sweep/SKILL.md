@@ -55,8 +55,10 @@ Org-specific scope (org names, assignee policy) live in
    `updatedAt` against the last run's coverage (cron output dir or run memory
    when the harness has it).
 
-3. **Detect the actionable classes.** Unlabeled or unassigned issues older
-   than 48h; issues awaiting a first reply for 7+ days; duplicate clusters
+3. **Detect the actionable classes.** Unlabeled issues older than 48h;
+   unassigned issues a human must handle older than 48h (unassignment is
+   a doctrine choice for machine-routable work — triage assigns those);
+   issues awaiting a first reply for 7+ days; duplicate clusters
    (same root cause filed multiple times). Record per item: repo, number,
    class, age.
 

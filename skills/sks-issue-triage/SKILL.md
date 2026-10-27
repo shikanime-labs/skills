@@ -4,7 +4,7 @@ description:
   "Use when triaging an existing org issue: assign type, labels,
   assignee, milestone, project, relationships, and fields; requalify when
   the evidence moved after triage; close with rationale if not workable."
-version: 0.5.0
+version: 0.6.0
 author: Automata
 license: Apache-2.0
 metadata:
@@ -94,10 +94,12 @@ mean those fields stay empty.
 - **labels** — best match by meaning (defect→`bug`, new
   capability→`enhancement`, doc→`documentation`); add an area label only if
   it exists. Drop any not in the step-2 list — never invent.
-- **assignee** — if none: the org's default assignee (rule in
-  `references/shikanime.md`), but only when it appears in the step-2
-  assignee list; else `ASSIGNEE=$(gh api user --jq .login)`. GitHub accepts
-  assigning the author on issues.
+- **assignee** — if none: assign only when the work is machine-routable
+  (an agent can act without human credentials, hardware, or spending):
+  the org's default assignee (rule in `references/shikanime.md`), but
+  only when it appears in the step-2 assignee list; else
+  `ASSIGNEE=$(gh api user --jq .login)`. Not machine-routable → leave
+  empty and record the reason in the report; never assign for form.
 - **milestone** — if none and milestones exist: which convention applies is an
   org fact (`references/shikanime.md`); apply it, never a hardcoded scheme.
 - **project** — if a Projects V2 board exists and this is unboarded:

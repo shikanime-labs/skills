@@ -4,7 +4,7 @@ description:
   "Use when opening an issue in an org repo: body is the
   problem statement, acceptance criteria as a command-decidable tasklist;
   owns the create → triage order."
-version: 0.2.1
+version: 0.3.0
 author: Automata
 license: Apache-2.0
 metadata:
@@ -147,7 +147,9 @@ gh issue view <N> --repo <org>/<repo> \
 
 Confirm title + label set; issue in org repo. Set-up is complete when
 the body is a stable problem statement with a converged `- [ ]` ledger
-and triage metadata is set: labels non-empty, assignee present, and a
+and triage metadata is set: labels non-empty, an assignee when the work
+is machine-routable (triage leaves human-only work unassigned
+deliberately), and a
 board card with Status `Ready` (`Backlog` only with a parked rationale)
 — the authoritative check is `gh project item-list <board> --owner
 <owner> --format json` filtered to the issue number (shows Status +

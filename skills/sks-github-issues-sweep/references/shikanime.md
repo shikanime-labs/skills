@@ -1,10 +1,11 @@
 # Shikanime Org Conventions
 
 - Orgs: `shikanime-labs` and `shikanime-studio`.
-- Staleness gates: unlabeled/unassigned past 48h, unanswered past 7 days —
-  measured on last activity, not creation.
+- Staleness gates: unlabeled past 48h, unanswered past 7 days — measured on
+  last activity, not creation. Unassigned is a gap only for work a human
+  must handle; machine-routable items are assigned at triage.
 - Summary issues land in the repo where the pattern belongs; assignee
-  `yorha-operator` where eligible.
+  `yorha-operator` where eligible and the work is machine-routable.
 - Field assignment (labels, assignee, milestone) is `sks-triage`'s job; the
   sweep detects and hands off, it does not set fields.
 - Where prior-run coverage is needed: the cron run output dir holds previous

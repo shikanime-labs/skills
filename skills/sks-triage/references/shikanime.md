@@ -9,9 +9,11 @@ and shared tooling.
 
 ## Defaults
 
-- Default assignee: `yorha-operator` (the Automata account) when it appears in
-  the repo's eligible assignee list; else the current user
-  (`gh api user --jq .login`).
+- Default assignee: `yorha-operator` (the Automata account) — only for
+  machine-routable work (no human credentials, hardware, or spending) —
+  when it appears in the repo's eligible assignee list; else the current
+  user (`gh api user --jq .login`) under the same gate. Human-only work
+  stays unassigned.
 - Reviewer (PRs): fill-empty only — CODEOWNERS auto-assigns at opening;
   when a PR carries no request, `yorha-operator` unless they authored it,
   then another collaborator; skip if none works.

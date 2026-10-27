@@ -5,7 +5,7 @@ description:
   untriaged items, assign every empty, context-derivable field, and
   requalify items whose evidence moved after triage — type, labels,
   assignee, fields, links, project card fields."
-version: 0.5.1
+version: 0.6.0
 author: Automata
 license: Apache-2.0
 metadata:
@@ -141,9 +141,11 @@ context**; nothing else:
 - **labels** — meaning match: defect→`bug`, capability→`enhancement`,
   doc→`documentation`; area label from touched paths only when it exists. Add
   with `--add-label`, never `--label`.
-- **assignee** — if none: the org default assignee
+- **assignee** — if none: only when the work is machine-routable (no human
+  credentials, hardware, or spending) — the org default assignee
   (`references/shikanime.md`) when present in the eligible list; else
-  `$(gh api user --jq .login)`.
+  `$(gh api user --jq .login)`. Otherwise leave empty with a recorded
+  reason.
 - **milestone** — never set here; milestone assignment is planning's
   decision and belongs to `sks-plan` (or the org release plane,
   `sks-milestone`). Leave it empty even when open milestones exist.

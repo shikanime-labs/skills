@@ -4,7 +4,7 @@ description:
   "Use when triaging an existing org PR: labels, assignee, milestone,
   and reviewers; requalify after new commits move the diff; relink the
   Development link when the evidence moved it."
-version: 0.4.0
+version: 0.5.0
 author: Automata
 license: Apache-2.0
 metadata:
@@ -69,7 +69,10 @@ gh api repos/"$R"/assignees --jq '.[].login'
 - **labels**: match title/body meaning to step-2 list (defect→`bug`,
   capability→`enhancement`, docs→`documentation`); add area label from touched
   paths only if it exists. Never invent; drop anything absent from the list.
-- **assignee**: if none, `ASSIGNEE=$(gh api user --jq .login)`.
+- **assignee**: if none, `ASSIGNEE=$(gh api user --jq .login)` — only when
+  the work is machine-routable (an agent can act without human
+  credentials, hardware, or spending); otherwise leave empty with a
+  recorded reason.
 - **milestone**: which convention applies is an org fact
   (`references/shikanime.md`); apply it, never a hardcoded scheme.
 - **project**: if repo boards and PR unboarded, `--add-project <number>`; skip

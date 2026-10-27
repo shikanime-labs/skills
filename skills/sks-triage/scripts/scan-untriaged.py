@@ -4,8 +4,10 @@
 
 Computed against what the repo or its org actually supports: a class with
 no supported values is never a gap. Milestones are not a triage class —
-sks-plan / sks-milestone own their assignment. One paginated call per
-repo. Output: TSV number, kind, missing classes.
+sks-plan / sks-milestone own their assignment. Assignment follows the
+triage doctrine: machine-routable work gets an assignee, human-only work
+stays unassigned — an unassigned item is never a gap. One paginated call
+per repo. Output: TSV number, kind, missing classes.
 
 Usage:
     scan-untriaged.py OWNER/REPO
@@ -49,8 +51,6 @@ def gaps_for(item: dict, types: int, fields: int) -> list[str]:
         gaps.append("type")
     if not item.get("labels"):
         gaps.append("labels")
-    if not item.get("assignees"):
-        gaps.append("assignee")
     if kind == "issue" and fields and not item.get("issue_field_values"):
         gaps.append("fields")
     return gaps
@@ -83,11 +83,13 @@ def _self_check() -> None:
         "assignees": [{"login": "a"}],
         "issue_field_values": [],
     }
-    assert gaps_for(pr, 1, 1) == ["labels", "assignee"]  # no type/fields on PRs
+    assert gaps_for(pr, 1, 1) == [
+        "labels"
+    ]  # no type/fields on PRs; assignee never a gap
     assert gaps_for(issue, 1, 0) == []  # fields unsupported → not a gap
     assert gaps_for(dict(issue, issue_field_values=None), 1, 1) == ["fields"]
     stripped = dict(issue, labels=[], assignees=[], type=None)
-    assert gaps_for(stripped, 0, 0) == ["labels", "assignee"]  # types off: no type gap
+    assert gaps_for(stripped, 0, 0) == ["labels"]  # unassigned is not a gap
     print("self-check: pass")
 
 
