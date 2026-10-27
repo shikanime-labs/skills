@@ -47,9 +47,11 @@ the generic procedure in SKILL.md still applies.
 - No reviewer requested at submission: CODEOWNERS assigns when present;
   `sks-pr-triage` requests one only when a PR carries none.
 - console only:
-  - Merge queue manually when `mergeStateStatus` = `BLOCKED` with green
-    checks: `gh workflow run 243523481 --repo cloud-pi-native/console -f
-    PR_NUMBER=<N>`.
+  - Landing: the `main` merge-queue ruleset is the only lane
+    (`gh pr merge --auto --rebase`; squash rejected — mechanics in
+    `sks-land/references/cloud-pi-native.md`). Fallback when
+    `mergeStateStatus` = `BLOCKED` with green checks: `gh workflow run
+    243523481 --repo cloud-pi-native/console -f PR_NUMBER=<N>`.
   - Husky `pre-push` runs `vitest` — unit tests must pass before
     `jj git push`.
   - Quality Gate: SonarQube Code Analysis (0 new issues) via `gh pr checks`.
