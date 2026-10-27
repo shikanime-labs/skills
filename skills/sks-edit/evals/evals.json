@@ -12,13 +12,11 @@
       "id": "route-nix",
       "expected_output": "The Nix family of sks-edit (references/nix/guide.md). Match: .nix in a flake / module.",
       "prompt": "I'm adding a devshell and a module option to shikanime-labs/machines. Which authoring skill applies?",
-      "assertions": [
-        "Body routes Nix rules to `references/nix/guide.md`"
-      ]
+      "assertions": ["Body routes Nix rules to `references/nix/guide.md`"]
     },
     {
       "id": "route-edge-no-double-apply",
-      "expected_output": "No double-apply. The .nix uses the Nix family; the generated YAML would be the Kubernetes-manifests family's surface, but they are different files \u2014 the Nix side is Nix-only.",
+      "expected_output": "No double-apply. The .nix uses the Nix family; the generated YAML would be the Kubernetes-manifests family's surface, but they are different files — the Nix side is Nix-only.",
       "prompt": "A .nix module emits YAML via sopsFile. Does it also need the Kubernetes-manifests family for the generated file?",
       "assertions": [
         "Body states each family rule set is the detail source of truth"

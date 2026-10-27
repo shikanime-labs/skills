@@ -137,7 +137,6 @@ result-vs-main review happen against a clean checkout without touching the
 shared working copy. Same gates afterward (result diffed against main hunk by
 hunk, CI on the pushed head).
 
-
 ## Squash into an already-pushed `@` is refused — the edits are already there
 
 `jj squash -r @` fails with "would rewrite N immutable commits" once `@` is

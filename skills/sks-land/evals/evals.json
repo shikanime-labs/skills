@@ -8,7 +8,7 @@
       "assertions": [
         "Frontmatter parses as YAML with a top-level 'name' key",
         "Frontmatter 'name' equals the directory basename 'sks-land'",
-        "Description starts with 'Use when' and is <= 200 characters",
+        "Description starts with 'Use when' and is \u003c= 200 characters",
         "license field is 'Apache-2.0'",
         "Body contains at least one '##' heading",
         "Body lands a PR only after sks-pr-resolve reconciled it",
@@ -23,7 +23,7 @@
       "assertions": [
         "Frontmatter parses as YAML with a top-level 'name' key",
         "Frontmatter 'name' equals the directory basename 'sks-land'",
-        "Description starts with 'Use when' and is <= 200 characters",
+        "Description starts with 'Use when' and is \u003c= 200 characters",
         "license field is 'Apache-2.0'",
         "Body contains at least one '##' heading",
         "Body exposes '## Pre-landing gates (must already hold)'",
@@ -40,7 +40,7 @@
       "assertions": [
         "Frontmatter parses as YAML with a top-level 'name' key",
         "Frontmatter 'name' equals the directory basename 'sks-land'",
-        "Description starts with 'Use when' and is <= 200 characters",
+        "Description starts with 'Use when' and is \u003c= 200 characters",
         "license field is 'Apache-2.0'",
         "Body contains at least one '##' heading",
         "Body states this skill only lands and is not for opening or reviewing"
@@ -94,7 +94,7 @@
       "assertions": [
         "Frontmatter parses as valid YAML.",
         "Frontmatter 'name' equals 'sks-land'.",
-        "A 'references/cloud-pi-native.md' file exists and states that in cloud-pi-native repos the commit carries a conventional prefix and the PR title/body are French with 'Refs: <#N>' present.",
+        "A 'references/cloud-pi-native.md' file exists and states that in cloud-pi-native repos the commit carries a conventional prefix and the PR title/body are French with 'Refs: \u003c#N\u003e' present.",
         "That references file names SonarQube Quality Gate as the org CI check.",
         "Body still requires mandatory approver approval on the current head before merge."
       ]
