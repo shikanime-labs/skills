@@ -2,7 +2,8 @@
 
 - Orgs: `shikanime-labs` and `shikanime-studio`.
 - Failures file in the repo where they failed; assignee `yorha-operator`
-  where eligible.
+  where eligible and the fix is machine-routable; human-only fixes stay
+  unassigned.
 - Console quirk (`cloud-pi-native/console`): push branches touching only
   `apps/server` run no CI — re-arm with
   `gh workflow run workflow-continuous-integration.yml --ref <branch>`.

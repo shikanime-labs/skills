@@ -9,7 +9,8 @@
 - vmalert rules `:8080/api/v1/rules`; vmselect `:8481`.
 - Grafana HTTP API is OIDC-only (login form disabled, no API-key path): read
   the vm* APIs, never Grafana's.
-- Assignee for filed issues: `yorha-operator` where eligible.
+- Assignee for filed issues: `yorha-operator` where eligible and the
+  finding is machine-routable; human-only findings stay unassigned.
 - Fastlane merge mechanics and receipt comment are `sks-fastlane`'s; the
   manifests repo adds `Signed-off-by: Shikanime Deva
   <william.phetsinorath@shikanime.studio>` to commit envelopes.

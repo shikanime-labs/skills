@@ -2,9 +2,11 @@
 
 - Scope: triage runs against `shikanime-labs/*` / `shikanime-studio/*` repos
   only; outside both, confirm the target repo with the user first.
-- Default assignee: `yorha-operator` (the Automata bot account). Prefer it
-  when it appears in the repo's eligible assignee list; otherwise fall back
-  to the current user (`gh api user --jq .login`).
+- Default assignee: `yorha-operator` (the Automata bot account) — only for
+  machine-routable work (no human credentials, hardware, or spending).
+  Prefer it when it appears in the repo's eligible assignee list; otherwise
+  fall back to the current user (`gh api user --jq .login`) under the same
+  gate. Human-only work stays unassigned.
 - Milestone convention: Nix repos (root a `flake.nix`) follow
   `sks-milestone` — assign the current nixpkgs release milestone when the
   issue moves the nixpkgs baseline; unrelated work stays milestone-less.

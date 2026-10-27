@@ -12,7 +12,7 @@
         "Body contains at least one '##' heading",
         "Body enumerates repos and open issues per repo",
         "Body dedups against prior run coverage",
-        "Body detects unlabeled, unassigned, and unanswered issues by age"
+        "Body detects unlabeled, unanswered, and human-only unassigned issues by age"
       ]
     },
     {

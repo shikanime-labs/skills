@@ -5,7 +5,8 @@
   `https://github.com/shikanime-labs/manifests` — public endpoints, Envoy
   Gateway routes, TLS hostnames.
 - Filing repo for findings: `shikanime-labs/manifests`; assignee
-  `yorha-operator` where eligible.
+  `yorha-operator` where eligible and the finding is machine-routable;
+  human-only findings stay unassigned.
 - Fleet: nishir (KubeVirt VMs behind Envoy Gateway); tailnet hostnames under
   `*.i.shikanime.studio`.
 - mTLS-gated inference endpoints return curl `000` by design — that is the

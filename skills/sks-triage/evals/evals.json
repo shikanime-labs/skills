@@ -10,7 +10,7 @@
         "Frontmatter description starts with 'Use when' and is at most 200 characters",
         "Body sets issue fields through the org issue-fields discovery and the issue-field-values write",
         "Body requires reading current field values and merging before the write that replaces them",
-        "Body assigns the org default assignee (references/shikanime.md) only when present in the repo's eligible assignee list",
+        "Body assigns the org default assignee (references/shikanime.md) only for machine-routable work and only when present in the repo's eligible assignee list",
         "Body uses '--add-label', not '--label'"
       ]
     },

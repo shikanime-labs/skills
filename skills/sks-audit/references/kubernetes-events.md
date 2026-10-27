@@ -5,7 +5,8 @@
 - Fleet cluster: nishir. Kubectl context `automata` on the VM host, credentials
   from the projected service-account volume at
   `/var/run/secrets/kubernetes.io/serviceaccount`.
-- Assignee for filed issues: `yorha-operator` where eligible.
+- Assignee for filed issues: `yorha-operator` where eligible and the
+  finding is machine-routable; human-only findings stay unassigned.
 - Fastlane merge mechanics and receipt comment are `sks-fastlane`'s; the
   manifests repo adds `Signed-off-by: Shikanime Deva
   <william.phetsinorath@shikanime.studio>` to commit envelopes.

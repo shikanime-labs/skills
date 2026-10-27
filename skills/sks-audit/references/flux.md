@@ -7,7 +7,8 @@
   `/var/run/secrets/kubernetes.io/serviceaccount`.
 - Each app overlay has its own Flux kustomization; rendered manifests exclude
   certs — fastlane patches target the source overlay, never rendered output.
-- Assignee for filed issues: `yorha-operator` where eligible.
+- Assignee for filed issues: `yorha-operator` where eligible and the
+  finding is machine-routable; human-only findings stay unassigned.
 - Fastlane merge mechanics and receipt comment are `sks-fastlane`'s; the
   manifests repo adds `Signed-off-by: Shikanime Deva
   <william.phetsinorath@shikanime.studio>` to commit envelopes.
