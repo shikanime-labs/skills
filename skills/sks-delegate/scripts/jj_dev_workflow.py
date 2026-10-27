@@ -119,12 +119,11 @@ def _find_repo(path: Path | None) -> Path:
         found = find_repo()
         if found is not None:
             return found
-    raise StepError(
-        ["jj"], 127, "", f"no jj checkout found near {path or 'cwd'}"
-    )
+    raise StepError(["jj"], 127, "", f"no jj checkout found near {path or 'cwd'}")
 
 
 # --- isolated-workspace open -----------------------------------------------
+
 
 def snapshot_wip(wip_files: list[Path], dest: Path = WIP_DEST) -> list[Path]:
     """Copy *wip_files* into *dest* (sibling workspace dir of the checkout)."""
@@ -169,24 +168,30 @@ def open_isolation_workspace(
 
 # --- bookmark + push -------------------------------------------------------
 
+
 def create_bookmark(branch: str) -> subprocess.CompletedProcess[str]:
     """``jj bookmark create <branch> -r @`` — brand-new branch FIRST."""
     return run(["jj", "bookmark", "create", branch, "-r", "@"])
 
 
-def track_bookmark(branch: str, remote: str = "origin") -> subprocess.CompletedProcess[str]:
+def track_bookmark(
+    branch: str, remote: str = "origin"
+) -> subprocess.CompletedProcess[str]:
     """``jj bookmark track <branch> --remote=origin`` — mandatory; jj will
     reject a push without it."""
     return run(["jj", "bookmark", "track", branch, "--remote", remote])
 
 
-def push_branch(branch: str, remote: str = "origin") -> subprocess.CompletedProcess[str]:
+def push_branch(
+    branch: str, remote: str = "origin"
+) -> subprocess.CompletedProcess[str]:
     """``jj git push --remote origin -b <branch>`` — no force; pushes the
     bookmark ref sideways."""
     return run(["jj", "git", "push", "--remote", remote, "-b", branch])
 
 
 # --- post-push verification (DONE IS PROVEN, NOT ASSERTED) -------------------
+
 
 @dataclass
 class PushVerification:
@@ -248,9 +253,12 @@ def verify_push(org: str, repo: str, branch: str) -> PushVerification:
 
     gh = run(
         [
-            "gh", "pr", "view",
+            "gh",
+            "pr",
+            "view",
             f"-R {org}/{repo}",
-            "--json", "headRefOid",
+            "--json",
+            "headRefOid",
         ],
     )
     if gh.returncode != 0:
@@ -271,13 +279,18 @@ def verify_push(org: str, repo: str, branch: str) -> PushVerification:
     )
     v.local_oid = lj.stdout.strip() or None
     acc.append("local @ = " + str(v.local_oid))
-    if v.head_ref_oid is not None and v.local_oid is not None and v.head_ref_oid != v.local_oid:
+    if (
+        v.head_ref_oid is not None
+        and v.local_oid is not None
+        and v.head_ref_oid != v.local_oid
+    ):
         v.ok = False
     v.evidence = acc
     return v
 
 
 # --- jj recovery (immutable bookmark) --------------------------------------
+
 
 def rebuild_immutable_bookmark(
     branch: str, main_rev: str = "main@origin"
@@ -296,6 +309,7 @@ def rebuild_immutable_bookmark(
 
 # --- gh assumption-validation gates ----------------------------------------
 
+
 def probe_gh_identity() -> str:
     """``gh api user --jq .login`` — the gh identity gate."""
     r = run(["gh", "api", "user", "--jq", ".login"])
@@ -312,8 +326,11 @@ def probe_push_rights(org: str, repo: str) -> bool:
     """
     r = run(
         [
-            "gh", "api", f"repos/{org}/{repo}",
-            "--jq", ".permissions.push",
+            "gh",
+            "api",
+            f"repos/{org}/{repo}",
+            "--jq",
+            ".permissions.push",
         ]
     )
     if r.returncode != 0:
@@ -322,9 +339,7 @@ def probe_push_rights(org: str, repo: str) -> bool:
     if val not in ("true", "false", "null"):
         raise StepError(r.cmd, 127, r.stdout, "unexpected jq output")
     if val == "false":
-        raise StepError(
-            r.cmd, 1, r.stdout, f"no push right on {org}/{repo}"
-        )
+        raise StepError(r.cmd, 1, r.stdout, f"no push right on {org}/{repo}")
     return True
 
 
@@ -341,7 +356,9 @@ def _build_parser() -> argparse.ArgumentParser:
     sub = p.add_subparsers(dest="command", required=True)
 
     sp = sub.add_parser("workspace", help="open an isolation workspace")
-    sp.add_argument("repo", nargs="?", help="jj checkout root (auto-detected if omitted)")
+    sp.add_argument(
+        "repo", nargs="?", help="jj checkout root (auto-detected if omitted)"
+    )
     sp.add_argument("unit", help="short slug, e.g. feat-hpci")
     sp.add_argument("--wip", nargs="*", help="WIP files to snapshot first")
     sp.add_argument("--source-rev", default="main@origin")
