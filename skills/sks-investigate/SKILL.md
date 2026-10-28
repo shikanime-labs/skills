@@ -4,7 +4,7 @@ description:
   Use when investigating a bug, test failure, build break, or unexpected
   behavior — find root cause, form a hypothesis, and propose a solution,
   never apply the fix itself.
-version: 0.3.0
+version: 0.3.1
 author: Automata
 license: Apache-2.0
 metadata:
@@ -17,6 +17,7 @@ metadata:
       - hypothesis
       - typescript
     related_skills:
+      - sks-wiki
       - sks-review
       - sks-async
       - sks-delegate
@@ -66,15 +67,15 @@ misunderstood, so you re-understand; isolation surfaces a new theory. Hold the
 phases as a checklist, not a pipeline. The only non-negotiable ordering: you
 cannot declare a root cause before you have reproduced the failure on demand.
 
-### 1. Understand — observed vs expected, then reproduce
+### 1. Understand — documented knowledge, observed vs expected, then reproduce
 
+- Check the repo wiki first (`sks-wiki`): technical docs, runbooks, and known
+  cycles live there — exhaust documented knowledge before re-deriving.
 - State the contract: what should happen, what does, and the smallest delta
   between them.
 - Reproduce consistently with the exact command (`pytest -q tests/test_x.py::t`,
   the precise build invocation). A bug you cannot reproduce on demand cannot be
-  explained, only guessed at — and a guess is not a finding. - Check the repo
-  wiki first (`sks-wiki`): technical docs, runbooks,
-  and known cycles live there — exhaust documented knowledge before re-deriving.
+  explained, only guessed at — and a guess is not a finding.
 - Read the whole error: stack trace, line, exit status, the frames in order.
   Skimming the first line and guessing is the primary cause of wrong
   conclusions.
@@ -158,7 +159,10 @@ single-threaded hypothesis testing inside it.
 ## Known cycles (reuse before re-deriving)
 
 Recurring patterns from past investigations — recognize the signature, then
-propose the known resolution; do not re-debug from zero:
+propose the known resolution; do not re-debug from zero. When an investigation
+surfaces a new recurring pattern, record it here and mirror it into the repo
+wiki's known-cycles page (`sks-wiki`) so the next investigation starts from
+documented knowledge, not a cold read.
 
 - **Verify-after-write.** Any file edit can report success without landing on
   disk (large file, many prior edits, fuzzy match). Read back and assert the new
@@ -202,6 +206,8 @@ echo "investigation complete: root cause + hypothesis + proposed fix" \
 
 ## See also
 
+- `sks-wiki` — the per-repo knowledge base read first in phase 1 and mirrored
+  with new known cycles after a finding.
 - `sks-review` — the review gate enforces the same root-cause discipline on
   incoming PRs.
 - `sks-async` — the isolation pattern, for parallel implementation rather than

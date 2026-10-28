@@ -4,6 +4,11 @@ A compact routing aid for the four research phases. Start at the top; each
 answer picks the next move. This skill _researches and proposes_ — it never
 applies a fix. The full method and known cycles live in `SKILL.md`.
 
+- **Is the answer already documented?**
+  - Yes (repo wiki, runbook, known cycles) → reuse it; verify it still holds
+    before proposing.
+  - No → continue.
+
 - **Can you reproduce on demand?**
   - No → capture the live trace / add observability. Do not propose blind.
   - Yes → continue.
