@@ -3,7 +3,7 @@ name: sks-commit
 description:
   "Use when committing in a target-org repo: plain-English imperative titles
   and repo-enforced hooks (gitlint, DCO) win."
-version: 0.3.1
+version: 0.4.0
 author: Automata
 license: Apache-2.0
 metadata:
@@ -52,8 +52,11 @@ one clean trailer block, no formatter runs) are owned by
 `sks-edit` references/github-text/guide.md. This skill owns the commit-specific
 shape:
 
-- **Code repos**: plain English, imperative, capitalized title, **no prefix, no
-  body**. One trailer ALWAYS, by default:
+- **Code repos**: plain English, imperative, capitalized title, **no prefix**.
+  The body explains the atomic change: what it does and why, in the commit
+  message — never in code comments (comment policy: `sks-edit`). Code comments
+  only where the code structurally cannot carry the why (a workaround's
+  reason, an external contract's quirk). One trailer ALWAYS, by default:
   `Co-authored-by: Automata <automata@shikanime.studio>`. One logical fix per
   commit. Subject ≤ 72 chars — GitHub's `messageHeadline` truncates the first
   line at 72 bytes with `…`, breaking title-parity checks downstream.
@@ -109,10 +112,11 @@ grep -rl "Signed-off-by" .github/ 2>/dev/null
 ## Procedure
 
 1. Stage only the intended files.
-2. Commit; two `-m` blocks = subject + trailer paragraph:
+2. Commit; three `-m` blocks = subject + body + trailer paragraph:
 
 ```bash
 jj describe -m "<subject>" \
+  -m "<body: what the atomic change does and why>" \
   -m "Co-authored-by: Automata <automata@shikanime.studio>"
 ```
 

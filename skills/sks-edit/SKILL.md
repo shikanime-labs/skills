@@ -1,7 +1,7 @@
 ---
 name: sks-edit
 description: "Use when a write-phase change needs authoring conventions: identify the matching family (TypeScript, Nix, skill authoring, sops secrets, Kubernetes manifests, plain English) and apply its fused rules in this skill."
-version: 0.2.0
+version: 0.2.1
 author: Automata
 license: Apache-2.0
 metadata:
@@ -63,6 +63,9 @@ edit uses the sops-secrets family — two distinct files, two distinct families.
 ## Write conventions (all families)
 
 - Plain English across the family; `#N` for standalone refs; commit↔PR parity.
+- Minimal code comments. The commit body, not a comment, explains an atomic
+  change. Comment only what code structurally cannot carry — a workaround's
+  why, an external contract's quirk. A comment restating the code is deleted.
 - For prose (docs, runbooks, commit / PR / issue bodies) the plain-English
   family (ASD-STE100) owns sentence content; `references/github-text/guide.md` owns
   prose mechanics (wrapping, `@` escaping, body transport).
