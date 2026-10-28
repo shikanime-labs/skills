@@ -12,6 +12,7 @@
         "Body contains at least one '##' heading",
         "Body contains the Iron Law substring 'NO FIXES WITHOUT ROOT CAUSE'",
         "Body says to read the full error and reproduce before fixing",
+        "Body says to check the repo wiki (sks-wiki) before re-deriving",
         "Body routes phase decisions through references/investigation-decision.md"
       ]
     },
