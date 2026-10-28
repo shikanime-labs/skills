@@ -37,6 +37,9 @@ rules — `git tag -s` + `git push origin vX.Y.Z`). Fetch before starting:
   - `Related:` — companion files, issues, or PRs.
   - `Issue: #N` — the linked ticket (reference only; the PR↔issue link is
     Development metadata, `sks-pr-triage` step 5).
+  - Free prose explains the atomic change: what and why. Code carries no
+    matching comment — comment only what code structurally cannot say
+    (a workaround's why, an external contract's quirk).
 - Footers mandated by policy:
   - `Signed-off-by:` — required; commits must be signed (see Protect `main`).
   - `Change-Id:` — keep the originating change's id when amending.
