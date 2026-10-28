@@ -3,8 +3,9 @@ name: sks-gc
 description:
   "Use when reclaiming resources leaked by agent workflows: dangling jj
   bookmarks, skill-created workspaces, leftover working-copy dirs, and stale
-  merged branches on GitHub remotes."
-version: 0.3.1
+  merged branches on GitHub remotes. Also fleet node disk cleanup when a
+  Longhorn disk reports DiskPressure."
+version: 0.4.0
 author: Automata
 license: Apache-2.0
 metadata:
@@ -51,6 +52,8 @@ first.
 - "Clean up my dangling branches / orphan jj workspaces."
 - "Delete the merged branches on GitHub" — the org-wide remote-branch sweep.
 - Periodic hygiene on a repo worked across many parallel streams.
+- A Longhorn disk reports `Schedulable=False reason=DiskPressure` — free-space
+  fleet sweep (Fleet node disk cleanup, below).
 
 ## Hard rules
 
@@ -129,6 +132,41 @@ first.
    ```
 
    Branches of closed-but-unmerged PRs are deleted only after 30 days idle.
+
+## Fleet node disk cleanup (Longhorn DiskPressure)
+
+The 25% DiskPressure floor (`MinimalAvailable = 25% of Storage Max` on
+`nodes.longhorn.io` disks) is physical: `storageReserved` tuning cannot pass
+it; only free space does. Signature: `Schedulable=False` with
+`reason=DiskPressure` and `CurrentAvailable <= MinimalAvailable`.
+Non-destructive per-node sweep (reclaims containerd layers, journals, nix
+store only — never user data):
+
+```bash
+ssh root@<node> '
+  df -BM / | tail -1
+  journalctl --vacuum-size=500M
+  timeout 240 nix-store --gc
+  export PATH=$PATH:/var/lib/rancher/rke2/bin \
+          CRI_CONFIG_FILE=/var/lib/rancher/rke2/agent/etc/crictl.yaml
+  timeout 300 crictl rmi --prune
+  df -BM / | tail -1'
+```
+
+- The rke2 PATH + `CRI_CONFIG_FILE` export is mandatory — bare `crictl`
+  targets the wrong socket or exits 127 in scripted shells.
+- `df` right after `rmi --prune` LAGS: containerd deletes blobs
+  asynchronously; re-check `df` (or Longhorn `storageAvailable`) minutes
+  later before judging the pass failed. Large layers report
+  `DeadlineExceeded` yet still complete.
+- Small MMC-boot nodes (fushi/minish/nemishi class) have little reclaimable
+  overhead; the big wins live on NVMe nodes running inference images.
+- Verify fleet-wide after: every `nodes.longhorn.io` disk `Schedulable=True`,
+  every k8s node `DiskPressure=False`.
+- Worked case: a disk blocked at 19% free crossed the floor after the sweep
+  (~300 GiB reclaimed; async blob GC kept landing for minutes after the
+  prune), flipping a pinned volume's `LocalReplicaSchedulingFailure` to
+  `Scheduled=True` with no other action.
 
 ## What "resources from other skills" covers
 
