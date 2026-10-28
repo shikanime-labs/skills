@@ -4,7 +4,7 @@ description:
   "Use when provisioning nixpkgs-release-aligned milestones across the org's
   Nix repos: discover the flake roster, create per-release milestones, assign
   issues and PRs, audit drift."
-version: 0.2.0
+version: 0.3.0
 author: Automata
 license: Apache-2.0
 metadata:
@@ -62,6 +62,44 @@ cloud-pi-native.
 One milestone per release per repo — no patch granulation; the nixpkgs
 cadence is the only cadence. Provisioning the next release closes the
 previous release's milestone on every roster repo.
+
+## Title convention
+
+Milestone titles follow the same title standard as every other org surface
+(`sks-commit` subject, `sks-pr` title, `sks-issue` title): plain-English
+capitalized text, version identifiers verbatim, no conventional prefixes, no
+kebab slugs — the milestone is not the surface to decorate or slugify them.
+
+| Milestone class | Title shape                        | Example                     |
+| --------------- | ---------------------------------- | --------------------------- |
+| Release         | `YY.MM` verbatim                   | `26.11`                     |
+| Semver train    | `X.Y.Z` verbatim                   | `9.28.0`                    |
+| Product train   | `vX.Y — <Qualifier>`               | `v1.2 — Open World & Progression` |
+| Goal            | plain English, capitalized, ≤ 72 chars | `Hetzner inference support` |
+
+- Never retitle a version identifier into prose: a `YY.MM`, `X.Y.Z`, or
+  `vX.Y — <Qualifier>` title already conforms — adding a `Release` prefix,
+  a code name, or any other decoration breaks the addressing contract
+  (`gh issue edit --milestone` and `gh pr edit --milestone` take the title
+  verbatim).
+- A goal title is capitalized text, not a slug: `Hetzner inference support`,
+  never `hetzner-inference-support` or `Add the Hetzner inference support
+  milestone`. No conventional prefix (`feat:`) — the family bans prefixes on
+  every surface.
+
+### Backfill rename
+
+Fixing a drifted title is a PATCH on the milestone — the number is stable,
+items and audit history follow the title:
+
+```bash
+gh api repos/<org>/<repo>/milestones/<number> -X PATCH \
+  -F title="<conforming title>"        # -F: no expansion; the title is literal
+gh api repos/<org>/<repo>/milestones  --jq '.[].title'   # read back
+```
+
+Batch shape: every rename lands behind the gated sks-bulk table — repo,
+milestone number, old title, new title — approved before the first PATCH.
 
 ## Procedure
 
@@ -140,18 +178,44 @@ milestone is still open; items whose diff bumps nixpkgs but sit milestone-less
   roots a `flake.nix`.
 - **A due date is a commitment.** It comes from the calendar reference only;
   never invent one to fill the field.
+- **Version identifiers are titles — never retitle them into prose.** A
+  `YY.MM`, `X.Y.Z`, or `vX.Y — <Qualifier>` title already conforms;
+  decorating it (`Release 26.03`) breaks the by-title addressing contract
+  (Title convention).
+- **A rename is a PATCH, never delete-and-recreate.** The PATCH keeps the
+  number, and items keep their milestone through a title change; recreating
+  drops assignments and the audit trail (Backfill rename).
 
 ## Verification
 
 ```bash
 gh api repos/<org>/<repo>/milestones --jq '.[].title'   # plane present
-gh api repos/<R>/issues/<N> --jq .milestone.title       # assignment landed
+gh api repos/<org>/<repo>/issues/<N> --jq .milestone.title   # assignment landed
 ```
+
+Conformance audit — every title across both orgs against the Title
+convention table:
+
+```bash
+for org in shikanime-labs shikanime-studio; do
+  for r in $(gh repo list "$org" --limit 300 --json name,isArchived \
+      --jq '.[] | select(.isArchived==false) | .name'); do
+    gh api "repos/$org/$r/milestones?state=all" \
+      --jq '.[] | .title
+      | select(test("^[a-z]|^Release") and (test("^v[0-9]") | not))' \
+      | sed "s|^|$org/$r: |"
+  done
+done
+```
+
+An empty audit output means every title conforms.
 
 ## See also
 
 - `sks-triage` / `sks-issue-triage` / `sks-pr-triage` — per-item assignment
   during sweeps; this skill is the provisioning plane behind them.
+- `sks-commit` / `sks-pr` / `sks-issue` — the family title standard this
+  skill's Title convention extends to milestones.
 - `sks-project` — the board plane (cards and Status); milestones track
   releases, boards track work.
 - `sks-plan` — fills a work milestone with planned units; provisioning the

@@ -35,6 +35,17 @@
         "Body (or its cloud-pi-native reference) states cloud-pi-native repos never take release milestones — semver per repo, tracking the org-owned Socle project",
         "Body routes the cloud-pi-native exception through references/cloud-pi-native.md with an explicit load condition in the intro"
       ]
+    },
+    {
+      "id": 4,
+      "expected_output": "Audits every milestone title across the shikanime orgs against the title convention, presents the rename table as a gated batch, and PATCHes each drifted title to conform without deleting or recreating milestones.",
+      "prompt": "Standardize milestone naming across the shikanime orgs to match the sks-commit/sks-pr/sks-issue title standard, and backfill every existing milestone to conform.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-milestone'",
+        "Body carries the title convention table — release YY.MM, semver X.Y.Z, product vX.Y — <Qualifier>, goal plain-English capitalized — extending the family title standard",
+        "Body states version identifiers are never retitled into prose (decorating a version title breaks by-title addressing)",
+        "Body renames via PATCH on repos/<org>/<repo>/milestones/<number>, never delete-and-recreate, and routes the batch through a gated sks-bulk table"
+      ]
     }
   ],
   "skill_name": "sks-milestone"
