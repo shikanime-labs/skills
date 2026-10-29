@@ -161,7 +161,7 @@
     },
     {
       "name": "sks-moderate",
-      "description": "Use when hiding, unhiding, or moderating comments on GitHub issues, PRs, or discussions with the Hide feature: classifier choice, GraphQL mutations, verification.",
+      "description": "Use when hiding, unhiding, or moderating comments on GitHub issues, PRs, or discussions, or locking and unlocking conversations: Hide-feature classifiers and GraphQL mutations, REST conversation locks, verification.",
       "path": "skills/sks-moderate"
     },
     {

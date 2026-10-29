@@ -110,6 +110,18 @@
         "Body routes the milestone derivation to an org fact in references (shikanime.md) instead of hardcoding a semver scheme",
         "Body filters labels against the discovered repo metadata (gh label list / discover script) and never invents a value."
       ]
+    },
+    {
+      "id": 10,
+      "prompt": "Pin issue #42 in shikanime-labs/devlib to the repo front page, then unpin it — verify both operations. Also confirm that a full repo triage sweep of shikanime-labs/devlib never pins or unpins anything.",
+      "assertions": [
+        "Resolves the issue's node ID via the REST issues endpoint before any pin mutation; never guesses a GraphQL ID.",
+        "Pins with the GraphQL pinIssue mutation taking issueId, never a REST call, and reads the result back from repository.pinnedIssues instead of trusting the mutation return.",
+        "Unpins with the GraphQL unpinIssue mutation taking the same issue node ID and verifies the issue is absent from repository.pinnedIssues.",
+        "Reports the pin list read-back for both directions, matching the explicit operator instruction.",
+        "During the sweep portion, performs no pin or unpin mutation on any item and leaves the repo's pin list unchanged.",
+        "Never attempts pinIssue on a pull request node."
+      ]
     }
   ],
   "skill_name": "sks-issue-triage"

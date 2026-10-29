@@ -4,7 +4,7 @@ description:
   "Use when hiding, unhiding, or moderating comments on GitHub issues, PRs,
   or discussions with the Hide feature: classifier choice, GraphQL
   mutations, verification."
-version: 0.1.0
+version: 0.2.1
 author: Automata
 license: Apache-2.0
 metadata:
@@ -44,11 +44,42 @@ one mutation away from undone.
 - A triage pass in `sks-pr-triage`, `sks-issue-triage`, or
   `sks-discussion-triage` flagged comments to fold.
 
-Not this skill: deleting comments, editing content, locking
-conversations, blocking users — that is enforcement, not moderation.
+Not this skill: deleting comments or editing content — that is
+enforcement, not moderation. Locking a conversation IS this skill when
+the operator asks for it (below); blocking users is not.
 Extraction of comments, the directed-value bar a comment must pass, and
 the update/rectification paths live in `sks-comment`; triage passes that
 surface moderation targets route their fold decisions here.
+
+## Locking conversations
+
+A lock freezes new participation; existing comments stay visible. Lock
+when a thread is beyond readability repair — a flamewar, a flood of
+duplicates after the answer landed, an off-topic magnet — never as a
+first response to a single bad comment (hide it instead). Ask the
+operator when the thread is merely heated; lock is a participation
+cut-off, not a fold.
+
+```bash
+# REST lock/unlock (issues and PRs; needs lock reason support)
+gh api -X PUT repos/<org>/<repo>/issues/<N>/lock \
+  -f lock_reason=resolved     # off-topic | too heated | resolved | spam
+gh api -X DELETE repos/<org>/<repo>/issues/<N>/lock
+# read-back is the truth: the PUT returns 204 with no body
+gh api repos/<org>/<repo>/issues/<N> --jq .active_lock_reason
+```
+
+`.active_lock_reason` covers issues and PRs only. Discussions lock
+through GraphQL (`lockLockable` / `unlockLockable`, taking the
+discussion's node ID) and verify through the same node —
+`isLocked` / `activeLockReason` on the discussion read-back; issue
+types and discussion categories with conversation-locked settings are
+outside this procedure.
+
+Verify after locking: `.active_lock_reason` reads back the reason (null
+when unlocked). A lock without a stated reason in the report is a
+silent moderation action — record which thread, which reason, and who
+asked, same trail discipline as a hide.
 
 ## Surfaces and classifiers
 
@@ -165,6 +196,12 @@ what a reader gains:
 - **Discussions must be enabled** on the repo. Check with
   `gh api repos/<org>/<repo> --jq .has_discussions`; the rest works
   on any repo you can moderate.
+- **Lock and hide are different powers.** Hiding needs moderation
+  rights; locking additionally needs push/triage-level write on the
+  issue or PR (REST lock: 422 if the reason string is invalid, 403
+  without permission). Verify the lock with `.active_lock_reason` —
+  `gh api` exits 0 on a 204 empty body, so the read-back is the only
+  truth, same as a hide.
 
 ## Verification
 
