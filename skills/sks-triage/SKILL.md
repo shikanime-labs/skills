@@ -5,7 +5,7 @@ description:
   untriaged items, assign every empty, context-derivable field, and
   requalify items whose evidence moved after triage — type, labels,
   assignee, fields, links, project card fields."
-version: 0.6.0
+version: 0.7.1
 author: Automata
 license: Apache-2.0
 metadata:
@@ -164,6 +164,11 @@ context**; nothing else:
   Priority/Effort derivation onto the card via `sks-project` mechanics —
   onboarding a card is `sks-project`'s job, never here. Resolve the board,
   field, and option ids per board at runtime; ids are never portable.
+- **pinned (issues only, explicit instruction only)** — a pin is a
+  repo-level front-page decision; during a sweep, never pin or unpin.
+  On a named issue, per instruction: GraphQL `pinIssue` / `unpinIssue`
+  (REST has no endpoint) — mechanics and read-back in `sks-issue-triage`
+  step 3.
 - **reviewers (PR only)** — none requested → the org default reviewer
   (`references/shikanime.md`) unless they authored the PR (GitHub
   422); then another collaborator; skip if none works.

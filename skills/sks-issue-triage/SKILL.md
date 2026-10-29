@@ -4,7 +4,7 @@ description:
   "Use when triaging an existing org issue: assign type, labels,
   assignee, milestone, project, relationships, and fields; requalify when
   the evidence moved after triage; close with rationale if not workable."
-version: 0.6.0
+version: 0.7.1
 author: Automata
 license: Apache-2.0
 metadata:
@@ -121,6 +121,25 @@ mean those fields stay empty.
   date). Decided is the bar, not filled — a silent skip is the defect. Set
   via `gh project item-edit` / GraphQL (`updateProjectV2ItemFieldValue`);
   org-level issue fields follow `sks-triage/references/issue-fields.md`.
+- **pinned** — the repo's pin list is not a metadata field `gh` reads;
+  pin only on explicit instruction (the operator names the issue), never
+  as a sweep side effect. GraphQL only — REST has no pin endpoint:
+
+  ```bash
+  # read: which issues are pinned
+  gh api graphql -f query='{ repository(owner:"<org>", name:"<repo>")
+    { pinnedIssues(last:20) { nodes { issue { number } } } } }'
+  # both mutations take the ISSUE's node id (issues/<N> .node_id);
+  # pinIssue on a PR node fails NOT_FOUND — issues only
+  NODE=$(gh api repos/"$R"/issues/"$N" --jq .node_id)
+  gh api graphql -f query='mutation($i:ID!){ pinIssue(input:{issueId:$i})
+    { issue { number } } }' -f i="$NODE"
+  gh api graphql -f query='mutation($i:ID!){ unpinIssue(input:{issueId:$i})
+    { issue { number } } }' -f i="$NODE"
+  # the payload return field is `issue` — `pinnedIssue` /
+  # `pinnedIssues` error with undefinedField (observed live)
+  ```
+
 - **transfer** — if the issue clearly belongs in another org repo (wrong
   repo, not merely a wrong label), move it rather than triaging in place.
   Transfer preserves comments, labels, and the cross-link:
@@ -146,6 +165,7 @@ gh issue edit "$N" --repo "$R" --milestone "<title>"
 gh issue edit "$N" --repo "$R" --add-project "Roadmap"        # title, not number
 gh issue edit "$N" --repo "$R" --parent <number>             # only if derivable
 gh issue edit "$N" --repo "$R" --add-blocked-by <n> --add-sub-issue <n>,<n>
+# pin: only on explicit instruction — pinIssue/unpinIssue, step 3
 # fields: only after --add-project, via `gh project item-edit` / GraphQL
 ```
 
@@ -156,6 +176,9 @@ gh issue view "$N" --repo "$R" --json number,title,labels,assignees,milestone,pr
 gh api repos/"$R"/issues/"$N" \
   --jq '{type: (.type // ""), parent: (.parent_issue.number // null)}' \
   # confirm type + parent landed
+gh api graphql -f query='{ repository(owner:"<org>", name:"<repo>")
+  { pinnedIssues(last:20) { nodes { issue { number } } } } }' \
+  # confirm pin landed (or came off) in the read-back — never the mutation return
 ```
 
 ### 6. Close issues that will not be worked
@@ -174,6 +197,9 @@ gh project item-list <number> --owner <board-owner> --limit 200 --format json \
   --jq '.items[] | select(.content.number == <N>)'
 # board read-back: every custom field on the card is decided — set, or
 # skip recorded with its reason; unset-and-unnamed fails triage
+gh api graphql -f query='{ repository(owner:"<org>", name:"<repo>")
+  { pinnedIssues(last:20) { nodes { issue { number } } } } }'
+# pin read-back: the issue appears in (or is absent from) the pin list
 ```
 
 ### 7. Requalify from moved evidence
@@ -198,6 +224,16 @@ then close as `completed` or `not planned`
 
 Read `references/cloud-pi-native.md` when triaging issues in a
 cloud-pi-native repo (French close rationales, per-repo labels).
+
+## Pitfalls
+
+- **Pin and unpin are GraphQL-only** — REST has no endpoint. `pinIssue`
+  and `unpinIssue` both take the issue's node ID and both return
+  `issue`; no `unpinPinnedIssue` mutation exists (`undefinedField`,
+  observed live). `pinIssue` on a PR node fails `NOT_FOUND` — issues
+  only. A pin is a repo-level display decision on the front page —
+  explicit instruction only, never a sweep side effect, and a
+  requalified pin change gets a trail comment like any other field.
 
 ## See also
 
