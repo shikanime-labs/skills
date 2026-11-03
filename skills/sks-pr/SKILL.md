@@ -264,6 +264,21 @@ gh pr view <N> --repo <org>/<repo> --json title,baseRefName,body
 Confirm base is `main` (or repo default), title is plain-English/`doc:`, body
 links the correct issue, and `mergeable="MERGEABLE"` (step 2d).
 
+## Pitfalls
+
+- **`nix build` in the repo root drops a `result` symlink that jj
+  auto-tracks into the change.** `nix build` writes `result ->
+  /nix/store/<drv>` into the CWD; in a jj repo the new file enters the
+  working-copy commit immediately — a later push ships it even though the
+  isolation gate ran earlier. One diagnostic build turns a scoped 4-file PR
+  into a 5-file merge. Rule: run `nix build`/`nix flake check` with output
+  out of the working tree, or re-run the isolation gate (`jj diff -r @
+  --stat`, step 2) after any build command and before the final push —
+  `rm result` when it appears. Never absorb it with a `.gitignore` line
+  inside the same PR: an unrelated ignore rule breaks isolation the same
+  way the symlink did ( landed exactly this way in shikanime-labs/machines
+  #1705; cleanup in #1709).
+
 ## Repo-specific notes
 
 Read `references/cloud-pi-native.md` when opening a PR in a
