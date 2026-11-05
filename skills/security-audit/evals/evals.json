@@ -1,0 +1,64 @@
+{
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "Runs the full audit workflow: reconnaissance, coverage plan, hunting waves, independent validation, structured findings, report.",
+      "files": [],
+      "prompt": "Do a full security audit of this codebase and give me a report.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'security-audit'",
+        "Frontmatter description starts with 'Use when'",
+        "Body distinguishes guidance mode from full audit mode",
+        "Body defines all six phases of the full audit procedure",
+        "Body requires the validating agent to differ from the hunting agent",
+        "Body requires an OS-enforced sandbox before running target code",
+        "Body defines confirmed, needs_validation, and rejected verdict contracts",
+        "Body forbids severity on needs_validation records",
+        "Body provides severity anchors including critical and high",
+        "Body routes domain companions by a table of target surfaces",
+        "Body requires reporting an incomplete run with its exact reason"
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "Applies the candidate gate: names the boundary failure fields, requires source trace and bounded local evidence, no severity inflation.",
+      "files": [],
+      "prompt": "I think I found a vulnerability in this auth module - can you check it following your security methodology?",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'security-audit'",
+        "The candidate gate requires a lower-trust principal and a crossed boundary",
+        "The candidate gate forbids strengthening a crash into code execution",
+        "A fact outside source and the sandbox routes to needs_validation with the exact missing fact",
+        "A missing best practice with no affected principal is hardening, not a finding",
+        "Body names references/attack-classes.md as read in every audit",
+        "Body names references/web-protocol-auth.md for HTTP and identity targets"
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "Routes to guidance mode and the matching companion; no run files or multi-agent workflow for a focused question.",
+      "files": [],
+      "prompt": "What are the most common security pitfalls for an MCP server that calls tools on behalf of users?",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'security-audit'",
+        "Guidance mode writes no run files and spawns no agents",
+        "An ambiguous request gets one focused question before file creation",
+        "Body names references/ai-llm.md for LLM, agent, RAG, or MCP targets",
+        "The AI companion requires a code-level boundary failure, not prompt injection alone"
+      ]
+    },
+    {
+      "id": 4,
+      "expected_output": "Declines to expand impact beyond the observed effect; keeps the candidate at the demonstrated boundary.",
+      "files": [],
+      "prompt": "This parser crashes on malformed input - surely that means remote code execution, rate it critical.",
+      "assertions": [
+        "Body forbids reporting an effect stronger than observed",
+        "Overall severity never exceeds demonstrated impact",
+        "The discriminator separates full control defeat from weakening",
+        "A generic parser crash with no affected principal is not a confirmed finding"
+      ]
+    }
+  ],
+  "skill_name": "security-audit"
+}

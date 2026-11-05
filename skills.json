@@ -10,6 +10,11 @@
       "path": "skills/cpn-release-patch"
     },
     {
+      "name": "security-audit",
+      "description": "Use when auditing code for security vulnerabilities: web, API, auth, crypto, client-side, supply chain, cloud, availability, tenant isolation, or LLM targets - hunt, validate, report.",
+      "path": "skills/security-audit"
+    },
+    {
       "name": "sks-adversarial",
       "description": "Use when probing uncertain results in a disposable sandbox — large investigation, development, debugging, testing, UAT, white-room, or data validation before promoting a change.",
       "path": "skills/sks-adversarial"
