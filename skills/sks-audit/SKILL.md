@@ -2,9 +2,10 @@
 name: sks-audit
 description:
   "Use when auditing fleet or org health - security alerts, redteam, CI
-  failures, alerting, Flux readiness, Kubernetes events, SDLC efficiency:
-  read the surface, dedup, file findings, fastlane fixes."
-version: 1.0.0
+  failures, alerting, Flux readiness, Kubernetes events, SDLC efficiency,
+  source-code vulnerability audits and pen tests: read the surface, dedup,
+  file findings, fastlane fixes."
+version: 1.1.0
 author: Automata
 license: Apache-2.0
 metadata:
@@ -200,6 +201,52 @@ latency, residue, stalls, and stale branches each carry a recorded value
 per org, with the median reported beside any p90. Cross-check the residue
 count per PR, never by repo-wide text search. Findings from this surface
 are proposals: file issues only, no fastlane PR.
+
+### Source-code security audit
+
+Full vulnerability hunt over a codebase — distinct from the sweep surfaces
+above, which read live org/fleet state; this one reads source. Distilled
+from Cloudflare's security-audit-skill (MIT). Guidance is the default:
+candidate gate, verdict contracts, and the matching domain companion
+answer focused security questions without run artifacts. A full audit
+(six phases: recon, coverage plan, hunting waves, coverage critic,
+independent validation, report) runs only on an explicit audit, pen-test,
+or report request; it writes an output directory outside the target and
+never modifies target source. Delegated hunters and verifiers run in
+isolated scratch directories; the validating agent is never the hunting
+agent; target code executes only inside an OS-enforced sandbox with no
+network, allowlisted env, scratch-only writes, and resource limits — a
+missing control is a `needs_validation` blocker, never a reason to run
+unsandboxed. Verdicts are disjoint: `confirmed` requires a bounded local
+observed result plus impact across a stated boundary and carries the only
+severity; `needs_validation` carries an exact missing fact and a safe
+check; `rejected` records a disproved claim. Severity anchors and the
+high/medium discriminator live in
+`references/security-audit/validation-reporting.md` — load it, plus
+`references/security-audit/attack-classes.md`, before any audit-phase
+work.
+
+Companion routing under `references/security-audit/` (select by the
+boundary reconnaissance finds, never by language or dependency name):
+
+- `memory-safety-binary.md` — memory-unsafe or privileged native code
+- `ai-llm.md` — LLM, agent, RAG, or MCP trust decisions
+- `references/security-audit/web-protocol-auth.md` — HTTP framing, cache,
+  sessions, identity
+- `client-side.md` — browser, extension, service worker
+- `supply-chain-release.md` — dependencies, CI, release, plugins
+- `cloud-deployment.md` — IAM, IaC, containers, ingress
+- `protocols-rpc-messaging.md` — RPC, queues, webhooks, serialization
+- `resource-exhaustion.md` — untrusted work on shared resources
+- `data-isolation.md` — multi-tenant stores, export, deletion
+- `desktop-local-ipc.md` — desktop, mobile, webview, local IPC
+
+Completion check: coverage plan enumerated before hunting; every candidate
+independently validated; report states confirmed, needs-validation, and
+rejected counts plus the coverage statement. Pitfalls: severity on a
+`needs_validation` record; guessing deployment facts source cannot
+establish; reporting an effect stronger than observed; prose disagreeing
+with the records.
 
 ## Verification
 
