@@ -96,9 +96,10 @@ Completion check: every org × alert-type pair enumerated. Pitfalls: org-level
 endpoints need ownership scopes, so a 404/403 is permission rather than zero
 alerts; dependabot's endpoint is the flakiest of the three, so a truncated
 page looks like a clean repo — reconcile repo counts when the run matters.
-Secret-scanning 404s on a non-admin identity are permanent — the endpoint
-needs org or repo admin and free-plan orgs expose no security-manager role —
-so record the pair as unreadable with that reason, never as zero alerts.
+Secret-scanning 404s from an identity without organization administrator
+or security-manager access mean the pair is unreadable for this run.
+Repository-admin access alone does not authorize the organization
+endpoint. Record the pair as unreadable, never as zero alerts.
 
 ### Perimeter redteam
 
