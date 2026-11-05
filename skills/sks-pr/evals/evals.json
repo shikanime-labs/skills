@@ -27,7 +27,10 @@
         "license field is 'Apache-2.0'",
         "Body contains at least one '##' heading",
         "Body enforces PR title/body parity with the commit",
-        "Body probes for a repo PR template and conforms to its sections when present."
+        "Body probes for a repo PR template and conforms to its sections when present.",
+        "Body probes BOTH the repo .github/ and the org .github repo for the PR template",
+        "Body states that gh pr create --body bypasses template auto-application",
+        "Body forbids drafting the PR body before the template probe returns"
       ]
     },
     {

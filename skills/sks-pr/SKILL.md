@@ -82,6 +82,15 @@ squashing or when diagnosing a squash/force-push/rebase failure.
    free text no-wrap, no formatter runs, `@` escaping, `#N` for standalone
    refs, Mermaid — are owned by `sks-edit` references/github-text/guide.md;
    load it when writing the body.
+   - Two template rules hold even without loading the reference: (1) the
+     probe covers BOTH locations — the repo's `.github/` and the org
+     `.github` repo (`gh api repos/<org>/.github/contents/.github
+     --jq '.[].name' | grep -i pull_request_template`; 404 = absent) — a
+     repo-local-only `ls` is the known miss (PR #584 opened without the
+     org template this way); (2) `gh pr create --body/--body-file`
+     bypasses template auto-application — GitHub never presents the
+     template, so the probe is its only source. Never draft the body
+     before the probe returns.
    - Linkage is **many-to-many** (discussion → issue → comments → PR): a PR
      always solves an issue. After opening, create the Development link via
      `addCloseIssueReferences` (`sks-pr-triage` step 5) — no closing keyword
@@ -101,7 +110,10 @@ Probe the target repo before enforcing any single org's rules elsewhere:
 REPO=<org>/<repo>
 gh api repos/$REPO/branches/main/protection >/dev/null 2>&1 \
   && echo "protected" || echo "no protection"
-ls .github/PULL_REQUEST_TEMPLATE* 2>/dev/null || echo "no template"
+ls .github/PULL_REQUEST_TEMPLATE* 2>/dev/null || echo "no repo template"
+ORG_ONLY=${REPO%/*}   # <org> from <org>/<repo>
+gh api repos/$ORG_ONLY/.github/contents/.github --jq '.[].name' \
+  2>/dev/null | grep -i pull_request_template || echo "no org template"
 grep -rilE "commitlint|release-please|@commitlint" . \
   --include=package.json --include=*.cjs --include=*.json 2>/dev/null \
   | grep -v node_modules || echo "no conventional tooling"
