@@ -4,7 +4,7 @@ description:
   "Use when opening a PR in a target-org repo: push to origin,
   --head org:branch, plain-English title, issue linkage, parity with commit,
   pre-submit isolation gate, opens as a draft."
-version: 0.2.2
+version: 0.2.3
 author: Automata
 license: Apache-2.0
 metadata:
@@ -189,16 +189,23 @@ jj rebase -d main
 
 ### 2b. Duplicate / stack check (MANDATORY before `gh pr create`)
 
-Before opening ANY new PR, enumerate what already exists:
+Same bar as `sks-issue` step 0, on the PR side. Search open AND recently-closed
+(~30d) PRs by title keywords before opening ANY new PR:
 
 ```bash
+gh pr list --repo "$ORG/<repo>" --state all \
+  --search "<title keywords> updated:>=<30 days ago>" \
+  --json number,title,state
 gh pr list --repo "$ORG/<repo>" --state open --json number,title,headRefName \
   --jq '.[] | "\(.number)\t\(.title)\t\(.headRefName)"'
 ```
 
-- **Duplicate** — an open PR already delivers this change (same files/intent):
-  do NOT open another. Push your revision onto that PR's branch or comment
-  instead.
+- **Duplicate (halt)** — an open PR with a near-identical title already
+  delivers this change (same files/intent): HALT, report the `#N`, do NOT
+  open a second PR. Push your revision onto that PR's branch or comment
+  instead. A recently-closed PR with an identical title+body means the work
+  already shipped or was rejected — halt and surface it to the operator;
+  never silently re-open it.
 - **Stack required** — an open PR touches the same area and your change depends
   on it (or conflicts without it): base your branch ON that PR's head branch,
   not `main`. Open yours `--base <their-branch>` (re-base to `main` after theirs
@@ -277,6 +284,13 @@ Confirm base is `main` (or repo default), title is plain-English/`doc:`, body
 links the correct issue, and `mergeable="MERGEABLE"` (step 2d).
 
 ## Pitfalls
+
+- **Step 2b missed a re-issue of the same unit.** Two PRs were opened with
+  byte-identical title and body; the duplicate was closed after a full CI
+  churn — merged in shikanime-labs/skills #589, its twin closed as #584.
+  An open-only enumeration does not catch it: a near-identical title against
+  an open PR, or an identical title+body against a recently-closed one, is a
+  halt, not a second `gh pr create`.
 
 - **`nix build` in the repo root drops a `result` symlink that jj
   auto-tracks into the change.** `nix build` writes `result ->
