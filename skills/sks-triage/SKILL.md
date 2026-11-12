@@ -275,6 +275,31 @@ closure is deliberate (`sks-issue-triage`).
 - **`repos/<R>/releases` and `/tags` can 404 on private org repos** even with
   repo scope — derive the current minor from `git ls-remote --tags
   --sort=-v:refname` instead.
+- **`gh project item-add` takes `--url`, not `--content`** (v2.102) — an
+  unknown flag is a per-item fail, easy to miss in a loop; the GraphQL
+  `addProjectV2ItemById(contentId:)` mutation is the node-id path.
+- **`gh project field-list --format json` can emit raw hex database ids for
+  single-select options** (e.g. `39d98c76`, not a node ID). Passing one as an
+  `-F` GraphQL variable into `singleSelectOptionId` fails with "Type mismatch
+  (ID! / String)" — inline the option id into the query string instead, or
+  fetch option ids via GraphQL `projectV2.field(...)` first.
+- **`updateProjectV2ItemFieldValue` input fields are `projectId`, `itemId`,
+  `fieldId`** (lower d) — the CLI-era `projectV2Id`/`itemID`/`fieldID` casing
+  is rejected; introspect `__type(name:"UpdateProjectV2ItemFieldValueInput")`
+  when in doubt.
+- **`gh` mutations can exit 0 and change nothing** — `--add-reviewer` /
+  `--add-assignee` for a login that is not a collaborator is a silent no-op
+  (no error, no effect); the read-back is the only truth.
+- **List endpoints reflect token scopes** — `type` and
+  `issue_field_values` vanish from the issues LIST and
+  `orgs/<org>/issue-fields` 404s without `admin:org`, so the scan prints
+  `fields=0` and under-reports gaps; scan with the highest-scope token.
+  On cpn, `yorha-operator` lacks `admin:org` — export
+  `GH_TOKEN=$(gh auth token --user shikanime)` for discovery/field writes
+  (it carries `admin:org`), and keep it for the whole run.
+- **Check the repo's `/labels` before every `--add-label`** — label sets
+  differ per repo; a name that exists in one repo may not exist in a
+  sibling.
 
 ## Verification
 
