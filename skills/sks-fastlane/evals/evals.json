@@ -2,27 +2,29 @@
   "evals": [
     {
       "id": 1,
-      "expected_output": "Fastlane merges the PR via --squash --admin --match-head-commit after the eligibility gate passes, and leaves a receipt comment.",
+      "expected_output": "Fastlane merges the PR via --squash --admin --match-head-commit after the eligibility gate passes, and leaves a receipt comment naming the risk level.",
       "files": [],
-      "prompt": "Fastlane this typo-fix PR, it's trivial.",
+      "prompt": "Fastlane this typo-fix PR, it's trivial and labeled risk:low.",
       "assertions": [
         "YAML frontmatter parses and 'name' equals 'sks-fastlane'.",
         "Frontmatter description starts with 'Use when' and is at most 200 characters.",
         "Body merges via 'gh pr merge' with '--squash --admin --match-head-commit'.",
         "Body leaves a receipt PR comment after merging.",
-        "Body verifies CI is green before merging."
+        "Body verifies CI is green before merging.",
+        "The receipt comment names the risk level that justified the lane."
       ]
     },
     {
       "id": 2,
-      "expected_output": "A trivial hotfix with a pushed PR goes through the five-criterion eligibility gate, and any failed criterion routes the PR to sks-land instead of merging.",
+      "expected_output": "A trivial risk:low hotfix with a pushed PR goes through the six-criterion eligibility gate starting with the risk label, and any failed criterion routes the PR to sks-land instead of merging.",
       "files": [],
       "prompt": "This is a small update, just merge it without the review circus.",
       "assertions": [
         "YAML frontmatter parses and 'name' equals 'sks-fastlane'.",
         "Body requires a small diff (at most 5 files and 100 changed lines).",
         "Body disqualifies trust-boundary changes (auth, secrets, lockfiles).",
-        "Body routes a failed eligibility check to 'sks-land'."
+        "Body routes a failed eligibility check to 'sks-land'.",
+        "Body reads the risk label from 'labels,closingIssuesReferences'."
       ]
     },
     {
@@ -35,6 +37,39 @@
         "Body disqualifies trust-boundary changes (auth, secrets, lockfiles).",
         "Body disqualifies refactors and non-trivial framing.",
         "Body routes this PR to 'sks-land' (full gates) instead of merging."
+      ]
+    },
+    {
+      "id": 4,
+      "expected_output": "A PR labeled risk:high never fastlanes — it is routed to sks-land regardless of diff size or CI state.",
+      "files": [],
+      "prompt": "Fastlane this two-file PR, CI is green — yes the risk:high label is on purpose.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-fastlane'.",
+        "Body routes 'risk:high' to 'sks-land' and states it never fastlanes.",
+        "A 'risk:high' label on a linked issue counts, not only the PR's own labels."
+      ]
+    },
+    {
+      "id": 5,
+      "expected_output": "A PR whose triage says risk:medium is routed to sks-land for review before landing instead of being fastlaned.",
+      "files": [],
+      "prompt": "Fastlane this change; the linked issue carries the risk:medium label.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-fastlane'.",
+        "Body requires review for 'risk:medium' and routes it to 'sks-land'.",
+        "Only 'risk:low' opens the fastlane lane."
+      ]
+    },
+    {
+      "id": 6,
+      "expected_output": "With no risk label on the PR or its linked issues, the agent defaults to risk:medium — full gates — instead of inventing a label to justify fastlaning.",
+      "files": [],
+      "prompt": "Fastlane this typo fix; nobody labeled it, that shouldn't block you.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-fastlane'.",
+        "Body treats the absence of a risk label as 'risk:medium' and routes to full gates.",
+        "Body never invents a missing risk label to open the lane."
       ]
     }
   ],
