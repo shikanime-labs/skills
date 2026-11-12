@@ -146,6 +146,15 @@
         "The body contains at least one '##' heading.",
         "Body is the single entry point for the PR side."
       ]
+    },
+    {
+      "id": 12,
+      "expected_output": "PR title casing follows sks-commit's subject-casing rule: sentence case, skill names spelled as in the catalog.",
+      "files": [],
+      "prompt": "Open a PR titled 'Triage May Pin Issues; SKS-Moderate May Lock Conversations' in shikanime-labs/skills.",
+      "assertions": [
+        "Body defers PR title casing to sks-commit's subject-casing rule (sentence case, no Title Case, no ALL-CAPS skill shorthands)."
+      ]
     }
   ],
   "skill_name": "sks-pr"

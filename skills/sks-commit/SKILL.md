@@ -3,7 +3,7 @@ name: sks-commit
 description:
   "Use when committing in a target-org repo: plain-English imperative titles
   and repo-enforced hooks (gitlint, DCO) win."
-version: 0.4.0
+version: 0.5.0
 author: Automata
 license: Apache-2.0
 metadata:
@@ -52,6 +52,9 @@ one clean trailer block, no formatter runs) are owned by
 `sks-edit` references/github-text/guide.md. This skill owns the commit-specific
 shape:
 
+- **Subject casing**: sentence case — first word capitalized, the rest lowercase
+  except proper nouns and skill names spelled as in the catalog
+  (`sks-moderate`, never `SKS-Moderate`). No Title Case, no ALL-CAPS.
 - **Code repos**: plain English, imperative, capitalized title, **no prefix**.
   The body explains the atomic change: what it does and why, in the commit
   message — never in code comments (comment policy: `sks-edit`). Code comments
