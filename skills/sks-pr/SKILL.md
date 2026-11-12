@@ -4,7 +4,7 @@ description:
   "Use when opening a PR in a target-org repo: push to origin,
   --head org:branch, plain-English title, issue linkage, parity with commit,
   pre-submit isolation gate, opens as a draft."
-version: 0.2.1
+version: 0.2.2
 author: Automata
 license: Apache-2.0
 metadata:
