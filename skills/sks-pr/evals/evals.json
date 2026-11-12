@@ -12,7 +12,8 @@
         "license field is 'Apache-2.0'",
         "Body contains at least one '##' heading",
         "Body opens a PR against the target org's repos",
-        "Body pushes to origin and opens with --head \u003corg\u003e:\u003cbranch\u003e"
+        "Body pushes to origin and opens with --head \u003corg\u003e:\u003cbranch\u003e",
+        "Before gh pr create the body searches open and recently-closed PRs by title similarity and halts on a duplicate title instead of opening a second PR"
       ]
     },
     {
