@@ -11,7 +11,8 @@
         "Body sets issue fields through the org issue-fields discovery and the issue-field-values write",
         "Body requires reading current field values and merging before the write that replaces them",
         "Body assigns the org default assignee (references/shikanime.md) only for machine-routable work and only when present in the repo's eligible assignee list",
-        "Body uses '--add-label', not '--label'"
+        "Body uses '--add-label', not '--label'",
+        "Body assigns exactly one risk:* label derived from blast radius (auth/secrets/migration/public API or schema high, shipped behavior change medium, docs or internal-only low), only when the repo offers that label, and defers the fastlane gate to sks-fastlane"
       ]
     },
     {

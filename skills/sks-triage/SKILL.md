@@ -5,7 +5,7 @@ description:
   untriaged items, assign every empty, context-derivable field, and
   requalify items whose evidence moved after triage — type, labels,
   assignee, fields, links, project card fields."
-version: 0.7.1
+version: 0.8.0
 author: Automata
 license: Apache-2.0
 metadata:
@@ -140,7 +140,13 @@ context**; nothing else:
   when the repo has no enabled types.
 - **labels** — meaning match: defect→`bug`, capability→`enhancement`,
   doc→`documentation`; area label from touched paths only when it exists. Add
-  with `--add-label`, never `--label`.
+  with `--add-label`, never `--label`. Every triaged item also carries exactly
+  one `risk:*` label, derived from blast radius: trust boundary, auth,
+  secrets, a migration, or a public API/schema change→`risk:high`; behavior
+  change in shipped surface→`risk:medium`; docs, comments, typos,
+  internal-only→`risk:low`. Only set a risk label when the repo offers it
+  (discover step above) — never invent one. `sks-fastlane` consumes the label
+  as an eligibility input; its gate is its own.
 - **assignee** — if none: only when the work is machine-routable (no human
   credentials, hardware, or spending) — the org default assignee
   (`references/shikanime.md`) when present in the eligible list; else
