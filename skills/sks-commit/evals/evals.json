@@ -82,6 +82,15 @@
       "assertions": [
         "Frontmatter 'name' equals the directory basename 'sks-commit'"
       ]
+    },
+    {
+      "id": 8,
+      "expected_output": "Rewrites the Title Case subject to sentence case per the subject-casing rule.",
+      "files": [],
+      "prompt": "Commit my change with the subject 'Triage May Pin Issues; SKS-Moderate May Lock Conversations'.",
+      "assertions": [
+        "Body requires sentence-case subjects: first word capitalized, the rest lowercase except proper nouns and catalog skill names (sks-moderate, never SKS-Moderate); no Title Case, no ALL-CAPS"
+      ]
     }
   ],
   "skill_name": "sks-commit"

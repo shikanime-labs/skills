@@ -65,7 +65,7 @@ squashing or when diagnosing a squash/force-push/rebase failure.
 1. **Base** — `main` unless the default differs
    (`gh repo view <org>/<repo> --json defaultBranchRef`).
 2. **Title** — commit subject (plain English / `doc:`), NO conventional prefix;
-   parity with commit.
+   parity with commit; casing follows sks-commit's subject-casing rule.
 3. **Body** — no fixed shape in this skill: query the repo for a PR
    template and use whatever GitHub presents — repo `.github/`, then the
    org `.github` repo (probe and fetch owned by `sks-edit`
