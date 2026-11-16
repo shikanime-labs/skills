@@ -50,3 +50,87 @@ Source: agentskills.io best practices (`skill-creation/best-practices`,
   baseline, review with a human, fix, rerun. Stop when feedback is empty or
   improvement plateaus. `skill-creator` automates the loop (run → grade →
   benchmark → eval-viewer).
+
+## Tier costs and loading levels
+
+Content loads in three levels with distinct token costs. Design around them,
+not around topics:
+
+| Level | Content | When loaded | Cost |
+|---|---|---|---|
+| 1 | name and description | Always, at startup | ~chars/4 + 25 tokens |
+| 2 | SKILL.md body | When the skill triggers | Keep under ~5k tokens |
+| 3 | references/, scripts/ | On demand while executing | What is read |
+
+A skill's bundled context is effectively unbounded — the agent reads files on
+demand — so level-3 size is not a constraint; level-1 and level-2 discipline
+is.
+
+## Single file versus references/
+
+Default to a single SKILL.md. Split into `references/` only when BOTH hold:
+
+1. **Conditional loading** — a meaningful chunk serves only a subset of
+   invocations (e.g. a forms guide most PDF tasks never touch). If every
+   invocation reads everything, splitting adds Read round-trips and saves
+   nothing.
+2. **Size pressure** — the body exceeds budget (recommended 25k chars, hard
+   ceiling 50k; measure with `wc -c`, chars track tokens at ~4/char — line
+   counts are not a metric).
+
+**Distribution is a veto.** A skill that must travel as one file (CLI-embedded,
+printed by a subcommand, shared by paste) stays single-file regardless of size
+— condense instead. Condensing cuts redundancy while preserving every
+load-bearing instruction; losing substance to hit a line count is the failure
+mode, not the fix.
+
+## Reference hygiene
+
+- References one level deep from SKILL.md — depth is the reference CHAIN
+  (a.md → b.md → c.md), not directory nesting. Partial reads miss content in
+  deep chains.
+- Over ~100 lines, a reference gets a table of contents at the top.
+- Split large references by subtopic so each task pulls only what it needs; a
+  single many-hundred-line reference defeats progressive disclosure.
+- Code can be executable tool or reference documentation — state explicitly
+  whether a script is run or read.
+
+## Testing descriptions
+
+The description is the routing surface; the body cannot help if the trigger
+fails. Test with:
+
+- 8-10 realistic should-trigger prompts (casual phrasing, typos, file paths).
+- 8-10 near misses that should NOT trigger, including adjacent skills the
+  description might steal from.
+- Skills under-trigger more often than they over-trigger — be assertive in
+  the description for true positives.
+
+## Workflow shapes
+
+Name the shape explicitly in the body rather than assuming the agent infers
+it: sequential (numbered steps with exact commands), decision tree (route on
+task type up front), feedback loop (validate → fix → re-validate, exits only
+on pass), checklist (long tasks copy and tick items).
+
+## Degrees of freedom
+
+Match instruction rigidity to task fragility: text guidelines when several
+good approaches exist; pseudocode/templates when a stable pattern holds;
+exact scripts and schemas when correctness depends on exact values. Hard
+MUST constraints only near real cliffs — security, irreversible writes,
+schema field names, data loss.
+
+## Anti-patterns
+
+- Description as narrative ("this skill helps with X") instead of a routing
+  rule ("use when the user asks for X").
+- All content inline — reference material stuffed into SKILL.md taxes every
+  invocation.
+- Blurred categories — disparate domains combined in one skill.
+- Anticipatory authoring — writing skills for hypothetical needs instead of
+  extracting from successful runs.
+- Rigidity where judgment works — locking the agent into strict rules where
+  context should decide.
+- README.md inside a skill folder — confuses loaders; SKILL.md is the only
+  entry point.
