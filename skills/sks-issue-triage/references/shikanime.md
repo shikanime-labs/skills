@@ -1,20 +1,7 @@
-# Shikanime org conventions
+# Shikanime Org Conventions
 
-- Scope: triage runs against `shikanime-labs/*` / `shikanime-studio/*` repos
-  only; outside both, confirm the target repo with the user first.
-- Default assignee: `yorha-operator` (the Automata bot account) — only for
-  machine-routable work (no human credentials, hardware, or spending).
-  Prefer it when it appears in the repo's eligible assignee list; otherwise
-  fall back to the current user (`gh api user --jq .login`) under the same
-  gate. Human-only work stays unassigned.
-- Milestone convention: Nix repos (root a `flake.nix`) follow
-  `sks-milestone` — assign the current nixpkgs release milestone when the
-  issue moves the nixpkgs baseline; unrelated work stays milestone-less.
-  Repos with open semver milestones but no release plane: bug→highest open
-  patch on current minor (max `Z`); enhancement→next minor/major.
-- Artifact language: triage artifacts (titles, bodies, close comments) are
-  written in English.
-- Working doctrine: long-term solutions over short-term fixes — fix the root
-  cause, never land a tactical patch that accrues debt. No hard SLA
-  constraints: correctness and durability outrank turnaround time; take the
-  time to do it properly.
+Issue-triage conventions live in `sks-triage`
+`references/triage-conventions.md` — default assignee
+(`yorha-operator`, machine-routable work only), milestone convention,
+issue and card field rules. Scope, artifact language, and working
+doctrine live in `sks-context` `references/org-scope.md`.
