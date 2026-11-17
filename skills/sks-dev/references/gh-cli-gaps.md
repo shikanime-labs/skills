@@ -5,8 +5,7 @@
 - [Flag gaps](#flag-gaps)
 - [Body envelopes](#body-envelopes)
 - [Head-branch immutability and re-pointing](#head-branch-immutability-and-re-pointing)
-- [2051): `gh pr edit` has no `--head` flag, and GraphQL `updatePullRequest`](#2051-gh-pr-edit-has-no---head-flag-and-graphql-updatepullrequest)
-- [Inline review comments (verified 2026-10-07, PR #2807)](#inline-review-comments-verified-2026-10-07-pr-2807)
+- [Inline review comments (PR #2807)](#inline-review-comments-pr-2807)
 The installed `gh` (≥ 2.0) rejects some flags the online docs imply exist —
 and some failures are silent or misleading. Verified on this machine.
 
@@ -36,30 +35,29 @@ and some failures are silent or misleading. Verified on this machine.
   `RATE_LIMIT "API rate limit already exceeded"`) while REST still has
   quota (`gh api rate_limit` shows healthy `.resources.core` but near-zero
   graphql remaining). Every `gh pr` subcommand fails through GraphQL's
-  "check for existing pull request" preflight. Verified 2026-10-20 on
-  skills #433. Recovery: create via REST —
+  "check for existing pull request" preflight (skills #433). Recovery:
+  create via REST —
   `gh api repos/<org>/<repo>/pulls -X POST --input payload.json` with
   `{"title", "head", "base", "body", "draft"}` (`head` = the plain branch
   name when the branch lives on the org repo itself; `shikanime:<branch>`
   422s with "invalid head"). The same GraphQL lock also blocks
   `gh pr ready` (draft flip is GraphQL-only; REST PATCH on the PR echoes
-  `draft` back unchanged — even with healthy quota (verified 2026-10-20 on
-  skills #434); only the CLI `gh pr ready <n>` (GraphQL) flips it, and CI
+  `draft` back unchanged — even with healthy quota (skills #434); only the
+  CLI `gh pr ready <n>` (GraphQL) flips it, and CI
   jobs that skip draft PRs arm only after the flip lands.
 - `gh issue create` fails through the same GraphQL preflight with the same
   "API rate limit already exceeded" while REST create still works:
   `gh api repos/<org>/<repo>/issues -X POST --input payload.json` with
-  `{"title", "body"}`. Verified 2026-10-20 on skills #432.
+  `{"title", "body"}` (skills #432).
 - `gh pr view --json draft` → `Unknown JSON field: "draft"`. The field is
   `isDraft` (`gh pr view <n> --json isDraft`); the REST field stays `draft`
-  (`gh api repos/<org>/<repo>/pulls/<n> --jq .draft`). Verified
-  2026-10-20 on skills #434.
+  (`gh api repos/<org>/<repo>/pulls/<n> --jq .draft`) (skills #434).
 
 ## Body envelopes
 
 - NEVER pass issue/PR bodies inline via `--body "..."`. Shell expansion
-  silently mangles Markdown with backticks/`$`: verified 2026-09-03 an
-  inline `gh issue create --body "..."` exited 0 while creating NOTHING
+  silently mangles Markdown with backticks/`$`: an inline `gh issue create
+  --body "..."` exited 0 while creating NOTHING
   (backticked spans executed as commands), and `gh pr create --body` shipped
   a truncated body with the `Closes #N` footer lost. Always write the body
   to a file and pass `--body-file`.
@@ -71,9 +69,8 @@ and some failures are silent or misleading. Verified on this machine.
 
 ## Head-branch immutability and re-pointing
 
-A PR's HEAD BRANCH IS IMMUTABLE after creation (verified 2026-09-01 on
-
-## 2051): `gh pr edit` has no `--head` flag, and GraphQL `updatePullRequest`
+A PR's HEAD BRANCH IS IMMUTABLE after creation. `gh pr edit` has no
+`--head` flag, and GraphQL `updatePullRequest`
 
 rejects `headRefName` (`argumentNotAccepted`). To move an existing PR onto
 refactored work, RE-POINT THE PR'S EXISTING BRANCH:
@@ -131,7 +128,7 @@ work as a plain PR with `--base gh/shikanime/<tip#>/base`; GitHub retargets
 it to main automatically as lower PRs land. Landing a stacked PR into its
 stack base with `gh pr merge --squash --admin` works fine.
 
-## Inline review comments (verified 2026-10-07, PR #2807)
+## Inline review comments (PR #2807)
 
 `comments` MUST arrive as a JSON array. `gh api -F 'comments=@file.ndjson'`
 sends the file's text as a string (422 "is not an array" even for a valid

@@ -22,7 +22,7 @@ False positives to re-check by hand before deleting (both bit this session):
 Final arbiter: `git grep <basename>` across the repo; only files with zero
 matches anywhere are truly dangling.
 
-## Classified findings (2026-09-02, @ d75a7aaa4)
+## Classified findings (@ d75a7aaa4)
 
 1. **27 orphaned tailnet `patch-netpol.yaml`** — SMP template adding
    envoy-gateway-system + vmagent ingress; unwired since the netpol
@@ -50,7 +50,7 @@ matches anywhere are truly dangling.
 - **Append-directive violation sweep** (post-#2079): grep tailnet
   kustomizations for `op: replace` IMMEDIATELY followed by
   `path: /spec/hostnames$` (member form replaces the whole list).
-  As of 2026-09-02 the sole violator is authelia tailnet (not deployed).
+  The sole violator is authelia tailnet (not deployed).
 - **Resource list ordering** per AGENTS.md ("listed sorted") is violated in
   ~50 dirs (`netpol.yaml` before `httproute.yaml`) — cosmetic, low priority.
 - **Rule-reference check for probe/patch port names**: render overlay, diff

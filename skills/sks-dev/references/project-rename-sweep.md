@@ -1,4 +1,4 @@
-# Project rename sweep (repo-internal rename, verified 2026-09-08, PR #96)
+# Project rename sweep (repo-internal rename, PR #96)
 
 Pattern for renaming a project across a whole repo (module path, CLI binary,
 package dir, flake outputs, docs) in an isolated jj workspace. Verified on

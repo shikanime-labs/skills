@@ -205,7 +205,7 @@ successfully, but the error itself is unrelated to module restructuring.
   rm -f .devenv/state/tasks.db .devenv/state/tasks.db-shm .devenv/state/tasks.db-wal
   ```
 
-  Verified 2026-09-04 (websites #335): `devlib:ghstack:hooks:install` kept
+  Verified (websites #335): `devlib:ghstack:hooks:install` kept
   failing post-bump until the cache was cleared; then 6/6 tasks green.
 - **Run devenv/nix from the MAIN checkout, never a jj workspace.** A
   `jj workspace add` sibling has no `.git`, and devenv's nix evaluation

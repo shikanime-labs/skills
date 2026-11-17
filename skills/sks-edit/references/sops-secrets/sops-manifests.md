@@ -82,9 +82,9 @@ reconciled since the breakage (stale live config).
 Its parser treats a `;` as a line continuation: any plaintext value
 containing one gets split at the `;` and the store rejoins the halves with a
 NEWLINE (verified empirically: `"a;b"` stores as `"a\nb"`; Qt quotes and
-backslash-escapes do NOT survive). If a live config key carries `;`
-(qBittorrent `WebUI\ServerDomains`), TWO lossless forms exist — re-verified
-2026-09-04, sops 3.13.3, PR #2155:
+backslash-escapes do NOT survive; re-verified on sops 3.13.3, PR #2155).
+If a live config key carries `;` (qBittorrent `WebUI\ServerDomains`), TWO
+lossless forms exist:
 
 1. Ciphertext: add the key to `encrypted_regex` (base64 has no `;`).
 2. BACKTICK-quote the value in the plaintext (`key = \`"a; b"\``):
@@ -92,7 +92,7 @@ backslash-escapes do NOT survive). If a live config key carries `;`
    AND decrypt intact, store stays INI. Double quotes and `\;` split;
    backticks are the only inline quoting that holds.
 
-## Pull-the-live-config pattern (2026-09-03 user directive)
+## Pull-the-live-config pattern (user directive)
 
 Seed from the live pod and keep live values in the seed — the seed IS the
 GitOps source; restart converges the PVC to Git, so rotations land via the

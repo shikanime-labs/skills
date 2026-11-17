@@ -10,8 +10,8 @@ TXT** is invisible to the reconciliation loop regardless of policy:
 - `--policy=sync` will not delete it (not ours)
 - Log still ends with `All records are already up to date`
 
-The record drifts forever while external-dns reports healthy. Verified
-2026-09-03 on nishir: `inference.i.shikanime.studio` served a dead Tailscale
+The record drifts forever while external-dns reports healthy. Observed on
+nishir: `inference.i.shikanime.studio` served a dead Tailscale
 VIP (`100.103.240.115`, no matching peer, TCP connect timeout) for days. The
 live LB was `100.110.197.5`. Sibling records (authelia, forgejo) also lacked
 TXTs but happened to hold correct values — they were equally orphaned, just

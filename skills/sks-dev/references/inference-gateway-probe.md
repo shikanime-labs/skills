@@ -26,7 +26,7 @@ Three distinct failure layers — diagnose in this order:
    A mismatch (e.g. DNS says `100.103.240.115`, LB says `100.110.197.5`) is a
    stale/orphaned Cloudflare record — see the external-dns orphaned-record
    recipe in `book-external-dns` `references/orphaned-record-drift.md`.
-   Verified 2026-09-03: `inference.i.shikanime.studio` served a dead VIP for
+   `inference.i.shikanime.studio` served a dead VIP for
    days while the gateway itself was healthy.
 2. **000 with TLS CertificateRequest abort** = mTLS required (below). The 000
    is the signal to present a client cert, not to retry.
@@ -58,7 +58,7 @@ kubectl --context nishir-k8s-operator.taila659a.ts.net -n shikanime \
   | base64 -d > /tmp/inf-client.key
 ```
 
-Two more requirements the 2026-10-06 probes proved:
+Two more requirements live probes proved:
 
 - **Send the real hostname.** The Gateway routes on hostnames
   (`inference.i.shikanime.studio`); a probe with `localhost` as `:authority`
@@ -72,14 +72,14 @@ Two more requirements the 2026-10-06 probes proved:
   Gateway's ClusterIP with `--resolve inference.i.shikanime.studio:443:<ip>`.
   Delete the pod afterwards.
 
-Verified 2026-10-06 end-to-end: cert + `guest` key + `x-ai-eg-model:
+End-to-end verified: cert + `guest` key + `x-ai-eg-model:
 qwen/qwen3-embedding-8b` → `POST /v1/embeddings` → 200 with embedding vector,
 served by llama-cpp priority 0 (log-proven, not failover).
 
 ## Probe recipe (Mac → localhost via port-forward)
 
 The Tailscale LoadBalancer VIP (`svc/inference` in ns `envoy-gateway-system`;
-live shape 2026-09-03: `100.110.197.5` / `inference-proxy.taila659a.ts.net`)
+live shape: `100.110.197.5` / `inference-proxy.taila659a.ts.net`)
 drops plain HTTP/2 probes from the Mac; use `kubectl port-forward` and force
 HTTP/1.1. The envoy pod is distroless (no `sh`/`curl`) so `exec` probes are
 impossible — port-forward from the Mac. NOTE: the namespace is
@@ -129,7 +129,7 @@ Read the Envoy access log (`kubectl logs <envoy-pod> -n envoy-gateway-system
 
 ## Known defects (do not "fix" in manifests)
 
-- **AIGatewayRoute parentRefs patch silently misses** (found 2026-09-03): the
+- **AIGatewayRoute parentRefs patch silently misses**: the
   nishir kustomization JSON6902 patch that binds the `/v1` route to
   `Gateway/inference` targets `name: inference, kind: AIGatewayRoute`, but the
   actual AIGatewayRoute (from `apps/llama-cpp/base/aigatewayroute.yaml`) is
@@ -157,15 +157,15 @@ Read the Envoy access log (`kubectl logs <envoy-pod> -n envoy-gateway-system
 - **llama-cpp pods Pending** (nodeSelector `minisforum-ms-s1` matches 0 nodes,
   kushira/sashina absent): `/v1` 500s via `direct_response` are expected while
   the backend floor is down — remote-provider tiers still work if routed.
-- **Anthropic-schema backends unreachable via `/v1/*`** (verified 2026-09-05,
-  source-level): ai-gateway v1.1.0 ships Anthropic→OpenAI translation
+- **Anthropic-schema backends unreachable via `/v1/*`** (source-level):
+  ai-gateway v1.1.0 ships Anthropic→OpenAI translation
   (`anthropic_openai.go`) but NOT OpenAI→Anthropic (no `openai_anthropic.go`);
   `/v1/chat/completions` for a `schema: Anthropic` backend (z-ai) returns 500
   `unsupported API schema: backend={Anthropic api/anthropic/v1}{via_upstream}`.
   Reach such backends ONLY via `/anthropic/v1/messages`. No fixed release yet
   (v1.1.0 is latest); also api.z.ai OpenAI-compatible endpoint had zero
   balance (429 code 1113), so rerouting z-ai to `api/paas/v4` was not viable.
-- **Client auth = gateway-issued `sk-infer` keys only** (verified 2026-09-05):
+- **Client auth = gateway-issued `sk-infer` keys only**:
   keys from `Secret/inference-gateway-apikey` authenticate on BOTH `/v1` and
   `/anthropic` paths (x-api-key and Bearer both accepted); upstream provider
   keys (nous/z-ai/openrouter) 401 as client creds. Cloudflare in front of
