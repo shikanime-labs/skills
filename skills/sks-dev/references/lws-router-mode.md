@@ -1,5 +1,12 @@
 # LWS (LeaderWorkerSet) + llama.cpp Router Mode
 
+## Contents
+
+- [Architecture](#architecture)
+- [Verified LWS spec (apps/llama-cpp/inference/base/lws.yaml)](#verified-lws-spec-appsllama-cppinferencebaselwsyaml)
+- [LWS install (infrastructure/lws/)](#lws-install-infrastructurelws)
+- [Capacity table (AMD Strix Halo, 128GB RAM, best-fit unsloth quant)](#capacity-table-amd-strix-halo-128gb-ram-best-fit-unsloth-quant)
+- [models-preset.ini shape](#models-presetini-shape)
 Verified reference for the shikanime inference refactor on nishir. The two
 Strix Halo MS-S1 machines are `kushira` and `sashina`, labeled
 `node.kubernetes.io/instance-type: minisforum-ms-s1` (set in

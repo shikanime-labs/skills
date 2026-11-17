@@ -1,5 +1,13 @@
 # cloud-pi-native Console Facts
 
+## Contents
+
+- [Org identity](#org-identity)
+- [Board tracking](#board-tracking)
+- [Checkout et layout](#checkout-et-layout)
+- [Toolchain et commandes](#toolchain-et-commandes)
+- [Deep recipes (load on demand, cloud-pi-native/console only)](#deep-recipes-load-on-demand-cloud-pi-nativeconsole-only)
+- [Pitfalls (console-specific, load on demand)](#pitfalls-console-specific-load-on-demand)
 Load when working in the cloud-pi-native/console repository.
 
 ## Org identity

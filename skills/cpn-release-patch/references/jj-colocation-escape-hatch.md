@@ -1,5 +1,10 @@
 # jj Colocation Escape Hatch for CPN Release Patches
 
+## Contents
+
+- [Why this exists](#why-this-exists)
+- [Procedure](#procedure)
+- [Key constraints](#key-constraints)
 When `jj duplicate --onto @` fails due to stale colocation state, an empty
 working copy, or any jj error that blocks the duplicate path.
 

@@ -1,5 +1,9 @@
 # Squash, author/sign, verify, and pitfalls (PR finalize detail)
 
+## Contents
+
+- [Squash + author/sign a finalized PR commit](#squash--authorsign-a-finalized-pr-commit)
+- [Pitfalls](#pitfalls)
 Load from `SKILL.md` before squashing a finalized PR branch, or when
 diagnosing a squash / rebase / force-push failure. Covers finalizing a PR's
 commit and the gotchas that recur when squashing / rebase / force-pushing.

@@ -1,5 +1,11 @@
 # Creating the first wiki page via CDP
 
+## Contents
+
+- [Prerequisites](#prerequisites)
+- [Procedure](#procedure)
+- [Backfill sweep shape](#backfill-sweep-shape)
+- [Pitfalls](#pitfalls)
 The full procedure for the one UI-only wiki step from `sks-wiki` — creating
 `Home` on `https://github.com/<org>/<repo>/wiki` from the shell. No REST,
 GraphQL, or CLI endpoint covers page creation (REST `repos/.../wiki/pages`

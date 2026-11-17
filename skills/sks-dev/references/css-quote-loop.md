@@ -1,5 +1,15 @@
 # treefmt vs antfu-eslint formatter war (websites repo, generalizable)
 
+## Contents
+
+- [Class](#class)
+- [Verified symptom (2026-09-03, shikanime-studio/websites PR #332)](#verified-symptom-2026-09-03-shikanime-studiowebsites-pr-332)
+- [Landed resolution (PR #332, commit 7f874236)](#landed-resolution-pr-332-commit-7f874236)
+- [Ship gate — push must be a fixed point of BOTH tools](#ship-gate--push-must-be-a-fixed-point-of-both-tools)
+- [Debugging pattern for the next contested rule](#debugging-pattern-for-the-next-contested-rule)
+- [Formatter DEGRADATION is a different failure class — exclude, never commit](#formatter-degradation-is-a-different-failure-class--exclude-never-commit)
+- [`astro check` parallel collision — false check failure (websites)](#astro-check-parallel-collision--false-check-failure-websites)
+
 ## Class
 
 Any repo that runs BOTH `nix fmt` (treefmt, via devenv `enterShell`/git-hooks)

@@ -1,7 +1,10 @@
 ---
 name: sks-edit
-description: "Use when a write-phase change needs authoring conventions: identify the matching family (TypeScript, Nix, skill authoring, sops secrets, Kubernetes manifests, plain English) and apply its fused rules in this skill."
-version: 0.2.1
+description:
+  "Use when a write-phase change needs authoring conventions: identify the
+  matching family — TypeScript, Nix, skills, secrets, manifests, plain
+  English — and apply its fused rules."
+version: 0.2.2
 author: Automata
 license: Apache-2.0
 metadata:

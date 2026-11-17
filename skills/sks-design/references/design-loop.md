@@ -1,5 +1,13 @@
 # Design Loop
 
+## Contents
+
+- [Surface Archetypes](#surface-archetypes)
+- [Taste Directions](#taste-directions)
+- [Token Extraction](#token-extraction)
+- [Redesign Protocol](#redesign-protocol)
+- [Screenshot Checklist](#screenshot-checklist)
+- [DESIGN.md Template](#designmd-template)
 Read this when the harness lacks `claude-design`, `popular-web-designs`, or
 `design-md`, or when the surface archetype or direction is unclear.
 

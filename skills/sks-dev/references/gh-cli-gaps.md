@@ -1,5 +1,12 @@
 # gh CLI gaps and envelope pitfalls (installed build)
 
+## Contents
+
+- [Flag gaps](#flag-gaps)
+- [Body envelopes](#body-envelopes)
+- [Head-branch immutability and re-pointing](#head-branch-immutability-and-re-pointing)
+- [2051): `gh pr edit` has no `--head` flag, and GraphQL `updatePullRequest`](#2051-gh-pr-edit-has-no---head-flag-and-graphql-updatepullrequest)
+- [Inline review comments (verified 2026-10-07, PR #2807)](#inline-review-comments-verified-2026-10-07-pr-2807)
 The installed `gh` (≥ 2.0) rejects some flags the online docs imply exist —
 and some failures are silent or misleading. Verified on this machine.
 

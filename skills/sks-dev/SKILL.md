@@ -4,7 +4,7 @@ description:
   "Use when running the local dev loop in a target org's repos: branching in a
   fresh jj workspace, push-to-origin, jj bookmark tracking, and landing via
   plain gh pr merge or direct push."
-version: 0.10.4
+version: 0.10.5
 author: Automata
 license: Apache-2.0
 metadata:
@@ -348,6 +348,11 @@ Deep recipes live in `references/`; read the file when its condition fires:
   cloud-pi-native/console repository: French artifacts, checkout path and
   layout, toolchain commands, unsalted-token/ArgoCD/GitLab-409 pitfalls,
   migration parity, jj/git snapshot desync.
+- `references/orphaned-record.md` — orphaned jj operation records after a
+  workspace move (load when `jj log` and origin disagree).
+- `references/probe-port-name-drop.md` — Gateway HTTPRoute probe
+  `port:` names dropped against declared `ports[].name` (load when a
+  route silently stops matching).
 
 ## Verification
 

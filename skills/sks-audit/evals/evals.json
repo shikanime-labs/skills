@@ -14,7 +14,8 @@
         "Body keeps only alerts with 'state==\"open\"' state and 'dedup' against open issues",
         "Body composes exploration of paths the 'feeds do not model' with 'sks-adversarial' sandboxed trials",
         "Body fans out independent trials via 'sks-async'",
-        "Body audits the sweep path; stopping at CVE or GitHub alert absence is 'blind, not clean'"
+        "Body audits the sweep path; stopping at CVE or GitHub alert absence is 'blind, not clean'",
+        "Body names `references/sdlc-efficiency.md` behind an explicit load condition (deep-dive commands)"
       ]
     },
     {

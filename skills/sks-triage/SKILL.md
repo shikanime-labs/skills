@@ -1,11 +1,10 @@
 ---
 name: sks-triage
 description:
-  "Use when triaging a target org, repo, issue, or PR: sweep the scope for
-  untriaged items, assign every empty, context-derivable field, and
-  requalify items whose evidence moved after triage — type, labels,
-  assignee, fields, links, project card fields."
-version: 0.8.0
+  "Use when triaging a target org, repo, issue, or PR: sweep for untriaged
+  items, assign empty, context-derivable fields, and requalify items whose
+  evidence moved — type, labels, assignee, fields, links."
+version: 0.8.1
 author: Automata
 license: Apache-2.0
 metadata:

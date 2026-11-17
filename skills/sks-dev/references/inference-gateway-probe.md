@@ -1,5 +1,15 @@
 # Inference gateway probe (nishir)
 
+## Contents
+
+- [Triage ladder: "Connection error" vs HTTP 000 vs 5xx](#triage-ladder-connection-error-vs-http-000-vs-5xx)
+- [The gateway enforces mTLS — bare probes return 000 by design](#the-gateway-enforces-mtls--bare-probes-return-000-by-design)
+- [Get the test client cert](#get-the-test-client-cert)
+- [Probe recipe (Mac → localhost via port-forward)](#probe-recipe-mac--localhost-via-port-forward)
+- [Localizing a 500 on /mcp/<route> or /v1/*](#localizing-a-500-on-an-mcp-or-v1-endpoint)
+- [Known defects (do not "fix" in manifests)](#known-defects-do-not-fix-in-manifests)
+- [Quick health checks](#quick-health-checks)
+
 ## Triage ladder: "Connection error" vs HTTP 000 vs 5xx
 
 Three distinct failure layers — diagnose in this order:
@@ -98,7 +108,7 @@ JSON
 - Use `--http1.1`: the gateway's HTTP/2 frontend is finicky from the Mac TLS
   stack even with a valid cert; HTTP/1.1 is reliable.
 
-## Localizing a 500 on /mcp/<route> or /v1/*
+## Localizing a 500 on an MCP or v1 endpoint
 
 Read the Envoy access log (`kubectl logs <envoy-pod> -n envoy-gateway-system
 -c envoy --tail=N`; find the pod with
