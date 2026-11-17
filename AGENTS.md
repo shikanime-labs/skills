@@ -38,8 +38,11 @@ rules — `git tag -s` + `git push origin vX.Y.Z`). Fetch before starting:
   - `Issue: #N` — the linked ticket (reference only; the PR↔issue link is
     Development metadata, `sks-pr-triage` step 5).
   - Free prose explains the atomic change: what and why. Code carries no
-    matching comment — comment only what code structurally cannot say
-    (a workaround's why, an external contract's quirk).
+    matching comment — zero comments by default, extract structure
+    (subfunction, named intermediate) instead; a comment only for facts
+    unreachable from the repository (workaround trick, algorithm source,
+    external service error quirk, non-obvious invariant), per
+    `sks-edit` references/comment-policy.md.
 - Footers mandated by policy:
   - `Signed-off-by:` — required; commits must be signed (see Protect `main`).
   - `Change-Id:` — keep the originating change's id when amending.
