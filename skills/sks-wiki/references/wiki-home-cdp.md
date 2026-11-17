@@ -24,33 +24,17 @@ for one repo at bootstrap or a backfill sweep over many.
 
 ## Procedure
 
-1. **Find a GitHub tab** — the debug port lists targets; reuse a logged-in tab
-   rather than opening a new one:
+1. **Attach** per `sks-dev` `references/cdp-attach.md`: find the
+   logged-in GitHub tab on the debug port, connect with
+   `suppress_origin=True`.
 
-   ```bash
-   curl -s http://localhost:9222/json/list
-   # pick the entry with "type": "page" whose "url" starts with https://github.com/
-   # note its "webSocketDebuggerUrl"
-   ```
-
-2. **Connect with Origin suppressed.** Chrome 155+ rejects WebSocket
-   handshakes carrying an `Origin` header (403 "Rejected an incoming WebSocket
-   connection"); `websocket-client` sends one by default.
-   `suppress_origin=True` is mandatory:
-
-   ```python
-   import websocket
-
-   ws = websocket.create_connection(ws_url, timeout=30, suppress_origin=True)
-   ```
-
-3. **Navigate to the new-page editor** over the same connection —
+2. **Navigate to the new-page editor** over the same connection —
    `Page.enable`, `Page.navigate` to
    `https://github.com/<org>/<repo>/wiki/_new`, then wait ~4s for render. If
    the wiki flag is still off this URL 404s — flip
    `gh repo edit <org>/<repo> --enable-wiki` first and re-navigate.
 
-4. **Fill title and body** by id — the editor ids are stable even when
+3. **Fill title and body** by id — the editor ids are stable even when
    surrounding DOM shifts:
 
    ```js
@@ -64,18 +48,13 @@ for one repo at bootstrap or a backfill sweep over many.
    })()
    ```
 
-5. **Scroll, then click Save.** The commit-summary field and the Save button
-   sit below the fold; `scrollIntoView({block: 'center'})` the button, wait
-   ~0.5s, re-read its rect, then dispatch both halves of the click at the
-   same viewport coords. The button's label is `Save page` (verified
-   2026-10-20 live run) — match on it explicitly, not on `'Save'`:
+4. **Scroll, then click Save.** The commit-summary field and the Save button
+   sit below the fold. The button's label is `Save page` (verified
+   2026-10-20 live run) — match on it explicitly, not on `'Save'`; then the
+   shared scroll-then-click dispatch (`sks-dev`
+   `references/cdp-attach.md`).
 
-   ```python
-   ws: Input.dispatchMouseEvent type=mousePressed  x, y, button=left, clickCount=1
-   ws: Input.dispatchMouseEvent type=mouseReleased x, y, button=left, clickCount=1
-   ```
-
-6. **Verify by remote materialization, not DOM.** The wiki remote only
+5. **Verify by remote materialization, not DOM.** The wiki remote only
    exists once a page is saved — its appearance IS the proof:
 
    ```bash
@@ -111,15 +90,14 @@ before/after per repo to a JSONL as you go. At the auto-close sweep's scale
   window and races the user's focus (a Hermes dashboard stole one Tab
   mid-walk). Expect focus walks (click textarea → Tab to Edit message →
   Tab to Save → Enter) to be the last resort, never the plan.
-- **403 on WS connect** — Origin header present; fix is `suppress_origin=True`
-  (do NOT restart Chrome with `--remote-allow-origins=*`; that flag widens the
-  debug port to any local process for the browser's lifetime).
-- **Click misses** — element below the fold; `scrollIntoView` before reading
-  coordinates, and re-read the rect AFTER the scroll.
 - **Editor id drift** — if `#gollum-editor-*` is gone, re-locate by label
   text ("Page title", the markdown textarea) the way the auto-close recipe
   finds its checkbox; never trust a hardcoded CSS path twice.
-- **Sweep races** — drive ONE tab per run; navigating a shared tab from two
-  loops races page loads.
 - **`curl` cannot create pages** — same class as the auto-close checkbox:
   server-rendered per session, no parseable API surface.
+
+The connect-and-click machinery — finding the GitHub tab on the
+debug port, connecting with `suppress_origin=True`, the
+scroll-then-click dispatch, and the shared pitfalls — lives in
+`sks-dev` `references/cdp-attach.md`; this recipe covers only
+its surface-specific steps.
