@@ -83,14 +83,14 @@ Not for price-monitoring products or news digests.
    isolation — one dead source never sinks the run, and no listing is ever
    invented.
 6. Persist a multi-week hunt in a tracking repo structured like
-   enhancement-proposal catalogs: `criteria.md` (authoritative spec +
-   sources), numbered candidate directories (`<NNNN>-<slug>/` with a yaml
-   frontmatter file + README per proposition, status taxonomy, nothing
-   deleted), `research/` (market anchors, transport facts, traps),
-   `visits/`, `decision.md`, `automation.md` (job id, sources, pipeline,
-   state paths). The repo, not the chat, is the memory. When criteria
-   change, file them in `criteria.md` first, then mirror into the sweep
-   script/prompt.
+   enhancement-proposal catalogs: an authoritative criteria section
+   (e.g. the repo's `AGENTS.md`), numbered candidate directories
+   (`<NNNN>-<slug>/` with a yaml frontmatter file + README per
+   proposition, status taxonomy, nothing deleted), `research/` (market
+   anchors, transport facts, traps), `visits/`, `decision.md`,
+   `automation.md` (job id, sources, pipeline, state paths). The repo,
+   not the chat, is the memory. When criteria change, file them in that
+   criteria section first, then mirror into the sweep script/prompt.
 
 ## Pitfalls
 
