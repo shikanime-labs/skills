@@ -180,6 +180,13 @@ no line anchor. No local-only summary — every finding lands on the PR. If
 commits violate conventions, suggest a corrected plain-English message in the
 body (author amends — reviewer never pushes).
 
+When the PR author is a bot that will not act on review feedback
+(Renovate, Dependabot, agent-generated PRs), review comments alone are a
+dead end — the reviewer takes the lead: none or non-blocking findings
+merge the PR; a blocking finding pushes the fix to the PR branch or
+closes it. A human approves — this changes who acts on the findings,
+never the reports-only verdict itself.
+
 ## Pitfalls
 
 - Empty diff → check `jj status`, tell user nothing to verify.
