@@ -110,16 +110,6 @@
       "path": "skills/sks-gist"
     },
     {
-      "name": "sks-github-issues-sweep",
-      "description": "Use when sweeping GitHub issues across an org's repos: enumerate open issues, dedup against prior coverage, surface stale or silent ones, and file summary issues for systemic patterns.",
-      "path": "skills/sks-github-issues-sweep"
-    },
-    {
-      "name": "sks-github-notif-sweep",
-      "description": "Use when sweeping unread GitHub notifications: filter noise, act on the answerable, mark processed threads read, never re-report a thread.",
-      "path": "skills/sks-github-notif-sweep"
-    },
-    {
       "name": "sks-investigate",
       "description": "Use when investigating a bug, test failure, build break, or unexpected behavior — find root cause, form a hypothesis, and propose a solution, never apply the fix itself.",
       "path": "skills/sks-investigate"
@@ -138,6 +128,11 @@
       "name": "sks-issue-triage",
       "description": "Use when triaging an existing org issue: assign type, labels, assignee, milestone, project, relationships, and fields; close with rationale if not workable.",
       "path": "skills/sks-issue-triage"
+    },
+    {
+      "name": "sks-issues-sweep",
+      "description": "Use when sweeping GitHub issues across an org's repos: enumerate open issues, dedup against prior coverage, surface stale or silent ones, and file summary issues for systemic patterns.",
+      "path": "skills/sks-issues-sweep"
     },
     {
       "name": "sks-iterate",
@@ -163,6 +158,11 @@
       "name": "sks-moderate",
       "description": "Use when hiding, unhiding, or moderating comments on GitHub issues, PRs, or discussions, or locking and unlocking conversations: Hide-feature classifiers and GraphQL mutations, REST conversation locks, verification.",
       "path": "skills/sks-moderate"
+    },
+    {
+      "name": "sks-notif-sweep",
+      "description": "Use when sweeping unread GitHub notifications: filter noise, act on the answerable, mark processed threads read, never re-report a thread.",
+      "path": "skills/sks-notif-sweep"
     },
     {
       "name": "sks-plan",

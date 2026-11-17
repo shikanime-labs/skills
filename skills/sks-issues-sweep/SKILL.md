@@ -1,5 +1,5 @@
 ---
-name: sks-github-issues-sweep
+name: sks-issues-sweep
 description:
   "Use when sweeping GitHub issues across an org's repos: enumerate open
   issues, dedup against prior coverage, surface stale or silent ones, and
@@ -17,7 +17,7 @@ metadata:
     related_skills:
       - sks-triage
       - sks-issue
-      - sks-github-notif-sweep
+      - sks-notif-sweep
       - sks-audit
       - sks-context
 platforms:
@@ -69,7 +69,7 @@ Org-specific scope (org names, assignee policy) live in
 
 5. **Hand off, never close.** Field assignment (type/area labels, assignee,
    milestone) routes to `sks-triage`; answerable question comments route to
-   `sks-github-notif-sweep` rules. The sweep closes nothing and notes items
+   `sks-notif-sweep` rules. The sweep closes nothing and notes items
    resolved since the last pass.
 
 ## Pitfalls
@@ -100,5 +100,5 @@ sweep.
 
 - `sks-triage` — the field-assignment pass the sweep hands off to.
 - `sks-issue` — issue body shape for filed summaries.
-- `sks-github-notif-sweep` — the notification-driven counterpart.
+- `sks-notif-sweep` — the notification-driven counterpart.
 - `sks-audit` — the audit whose CI surface files per repo+workflow.

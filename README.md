@@ -127,19 +127,19 @@ specification, compatible with the
 | `sks-experiment` | Use when converting a finding or RFC outcome into a hypothesis-gated experiment: one experiment issue per falsifiable claim, a recorded verdict, confirmed outcomes handed to sks-plan. |
 | `sks-gc` | Use when reclaiming resources leaked by agent workflows: dangling jj bookmarks, skill-created workspaces, leftover working-copy dirs, and stale merged branches on GitHub remotes. |
 | `sks-gist` | Use when a verified command, script, config, or output would be retyped or re-derived later — publish it as a gist for DRY reuse and link it from the artifact that motivated it. |
-| `sks-github-notif-sweep` | Use when sweeping unread GitHub notifications: filter noise, act on the answerable, mark processed threads read, never re-report a thread. |
-| `sks-github-issues-sweep` | Use when sweeping GitHub issues across an org's repos: enumerate open issues, dedup against prior coverage, surface stale or silent ones, and file summary issues for systemic patterns. |
 | `sks-edit` references/github-text/guide.md | Use when writing any GitHub text in the target org's repos — commit message, issue or PR body, discussion RFC, review or issue comment. Owns all shared prose rules; surface skills handle procedure. |
 | `sks-investigate` | Use when investigating a bug, test failure, build break, or unexpected behavior — find root cause, form a hypothesis, and propose a solution, never apply the fix itself. |
 | `sks-issue` | Use when opening an issue in an org repo: body is the problem statement, acceptance criteria as a command-decidable tasklist. |
 | `sks-issue-refine` | Use when iterating a problem to convergence inside its GitHub issue via research and comments before deriving the PR. |
 | `sks-issue-triage` | Use when triaging an existing org issue: assign type, labels, assignee, milestone, project, relationships, and fields; close with rationale if not workable. |
+| `sks-issues-sweep` | Use when sweeping GitHub issues across an org's repos: enumerate open issues, dedup against prior coverage, surface stale or silent ones, and file summary issues for systemic patterns. |
 | `sks-land` | Use when landing a target-org PR after reconciliation (sks-pr-resolve) and review approval gates pass; closes the linked issue deliberately. |
 | `sks-maintenance` | Use when maintaining the org's repos, fleet, and runtimes: renovate and language dependency bumps, nixpkgs/runtime upgrades, and the issue → PR → land → post-merge validation loop. |
 | `sks-fastlane` | Use when the user designates a change as trivial and asks for an expedited merge: run the eligibility gate, then merge once CI is green. |
 | `sks-milestone` | Use when provisioning nixpkgs-release-aligned milestones across the org's Nix repos: discover the flake roster, create per-release milestones, assign issues and PRs, audit drift. |
 | `sks-plan` | Use when planning a milestone from a goal: converge direction, decompose into dependency-ordered units, fill the milestone with triaged, boarded issues ready for sks-iterate. |
 | `sks-moderate` | Use when hiding, unhiding, or moderating comments on GitHub issues, PRs, or discussions, or locking and unlocking conversations: Hide-feature classifiers and GraphQL mutations, REST conversation locks, verification. |
+| `sks-notif-sweep` | Use when sweeping unread GitHub notifications: filter noise, act on the answerable, mark processed threads read, never re-report a thread. |
 | `sks-pr` | Use when opening a PR in a target-org repo: push to origin, --head org:branch, plain-English title, issue linkage, parity with commit. |
 | `sks-pr-ready` | Use when switching an org PR from draft to ready for human review: verify CI green on the pushed head, first review done, triage complete, body reconciled with the diff, then gh pr ready. |
 | `sks-pr-resolve` | Use when resolving a PR's review conversations, including CodeRabbit review comments, checking the DoD ledger, and reconciling before merge (no merge itself). |
