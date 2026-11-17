@@ -57,9 +57,11 @@ shape:
   (`sks-moderate`, never `SKS-Moderate`). No Title Case, no ALL-CAPS.
 - **Code repos**: plain English, imperative, capitalized title, **no prefix**.
   The body explains the atomic change: what it does and why, in the commit
-  message — never in code comments (comment policy: `sks-edit`). Code comments
-  only where the code structurally cannot carry the why (a workaround's
-  reason, an external contract's quirk). One trailer ALWAYS, by default:
+  message — never in code comments. Zero comments by default: extract a
+  subfunction or named intermediate instead; a comment passes only the
+  unreachable-fact bar (workaround trick, algorithm source, external
+  service error quirk, non-obvious invariant) in
+  `sks-edit` references/comment-policy.md. One trailer ALWAYS, by default:
   `Co-authored-by: Automata <automata@shikanime.studio>`. One logical fix per
   commit. Subject ≤ 72 chars — GitHub's `messageHeadline` truncates the first
   line at 72 bytes with `…`, breaking title-parity checks downstream.

@@ -34,11 +34,13 @@ the default stack does not already cover it:
 - **Sorting** — sorted keys are the house style, enforced by `nix fmt`/treefmt
   where configured and by reviewer otherwise. Write sorted; do not write
   unsorted and promise to "sort later".
-- **Comments** — explanatory comments inside `.nix` are out of fashion in these
-  repos. The house convention is "no explanatory comments in `.nix` files".
-  A comment that restates what the line does is noise; a comment that
-  records WHY a non-obvious choice was made can earn its place, but prefer
-  naming and structure over prose first. If the code is clear, the comment goes.
+- **Comments** — prohibited by default. Extract a subfunction or bind a
+  named intermediate; structure carries what a comment would have said
+  (see rule 4 below). A comment passes only the unreachable-fact bar —
+  workaround trick, algorithm source, external service error quirk,
+  non-obvious invariant — stated once in
+  `../comment-policy.md`. A comment that restates what the line does is
+  deleted on sight.
 - **JSON output** — when a module needs to emit JSON, bind the format once
   at the top of the file (`let json = pkgs.formats.json { };`) and reference
   `json.generate` — never an inline `pkgs.formats.json { }` at each use site
@@ -153,8 +155,9 @@ not copy/sync machinery.
 
    The name `svcAccountResources` carries what the comment would have said,
    and a reader does not have to match a comment to the lines beneath it.
-   Comments that survive this refactoring — a name cannot capture a
-   non-obvious WHY — are the rare justified ones; the rest are deleted.
+   Comments that survive this refactoring are the closed classes of
+   `../comment-policy.md` — facts unreachable from the repository; the
+   rest are deleted.
 5. **Single-responsibility functions and values.** When a derivation, function,
    or let-binding does two things that could be described with two names, split
    it. A value named for what it *is* (e.g. `baseImage`, `extraArgs`,

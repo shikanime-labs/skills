@@ -8,7 +8,8 @@ these concrete repos.
 - machines-class fleet-config repo: `shikanime-labs/machines` — NixOS /
   nix-darwin / Home Manager flake (flake-parts + devlib), carries sops-nix
   with per-host `secrets/<host>.enc.yaml` and shared modules `modules/`.
-  Convention from this repo: "no explanatory comments in `.nix` files".
+  Convention from this repo: no explanatory comments in `.nix` files —
+  the closed-class bar in `../comment-policy.md` governs.
 - manifests-class render repo: `shikanime-labs/manifests` — kustomize /
   Flux render; Nix generates kustomization YAML (`apps/<app>` trees carry
   `.enc.*` files a whole-tree `nix fmt` can corrupt).

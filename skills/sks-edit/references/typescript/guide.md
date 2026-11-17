@@ -51,10 +51,12 @@ cloud-pi-native/console repository.
    single linear main path — no mid-function pivots between concerns, no
    nesting beyond two levels. Style: prefer pure data-in/data-out
    transforms; mutation stays local to one function, never shared state.
-   Comments: prohibited. If a comment seems needed, the code failed to
-   explain itself — extract a well-named sub-function or variable instead;
-   the only exception is a note the code structurally cannot carry (a
-   workaround's why, an external contract's quirk).
+   Comments: prohibited by default — if a comment seems needed, the code
+   failed to explain itself; extract a well-named sub-function or
+   variable instead. The only survivors are the closed classes in
+   `../comment-policy.md` (workaround trick, algorithm source, external
+   service error quirk, non-obvious invariant) — facts unreachable
+   from the repository, one line each.
    Check: a new function reads linearly from top to bottom and does one
    thing the name states, with no comments.
 5. **Schema-first inputs.** Every input shape gets one schema; derive types

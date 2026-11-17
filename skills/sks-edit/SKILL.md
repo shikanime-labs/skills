@@ -63,9 +63,18 @@ edit uses the sops-secrets family — two distinct files, two distinct families.
 ## Write conventions (all families)
 
 - Plain English across the family; `#N` for standalone refs; commit↔PR parity.
-- Minimal code comments. The commit body, not a comment, explains an atomic
-  change. Comment only what code structurally cannot carry — a workaround's
-  why, an external contract's quirk. A comment restating the code is deleted.
+- Zero code comments by default. Before writing one, move the intent into
+  structure — a subfunction or a named intermediate carries what the comment
+  would have said. A comment passes only if it names a fact unreachable from
+  the repository: a workaround trick, an algorithm's source, an external
+  service's error quirk, a non-obvious invariant. If a competent dev could
+  recover the fact from the code in about a minute, the comment fails —
+  refactor instead. The commit body, not a comment, explains an atomic
+  change. Full policy: `references/comment-policy.md`.
+- Ponytail-based edits obey the hard prose caps in
+  `references/comment-policy.md` (comment 1 line, commit body 10, PR/issue
+  body 30, reply 5, review finding 3, per-unit summary 10) — exceeding a
+  cap moves the content to a linked artifact, never inline.
 - For prose (docs, runbooks, commit / PR / issue bodies) the plain-English
   family (ASD-STE100) owns sentence content; `references/github-text/guide.md` owns
   prose mechanics (wrapping, `@` escaping, body transport).
