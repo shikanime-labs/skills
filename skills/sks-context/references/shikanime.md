@@ -19,7 +19,6 @@ Environment facts for running the workflow family in shikanime repos
   dependency order (see `sks-land`).
 - Toolchain: jj + `gh` (no bare git remote inside jj isolation workspaces —
   pass `-R <org>/<repo>`); `nix` for NixOS-class repos.
-- Working doctrine: long-term solutions over short-term fixes — fix the root
-  cause, never land a tactical patch that accrues debt. No hard SLA
-  constraints: correctness and durability outrank turnaround time; take the
-  time to do it properly.
+
+Scope, artifact language, and working doctrine shared across surfaces:
+`references/org-scope.md`.
