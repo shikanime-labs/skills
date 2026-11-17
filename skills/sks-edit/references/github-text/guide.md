@@ -43,6 +43,18 @@ update/rectification — and hands its prose rules here.
 - **Evidence over narration**: cite concrete proof — the exact `- old` →
   `+ new` diff lines, or command output through a fenced block — never a
   prose summary of what the output "shows".
+- **Disclosure color follows journalism practice**: classify every fact
+  before it enters a public surface — black, gray, or white. Black (off the
+  record: credentials, tokens, keys, personal data, internal-only documents)
+  never appears, not even redacted-by-name. Gray (background: true but not
+  for attribution — internal hostnames, unreleased features, incidents,
+  financial figures, partner names under NDA) is generalized or abstracted
+  until the detail is no longer attributable, or moved to a private surface.
+  White (on the record: already public — merged diffs, public docs, CI
+  output) is cited as-is. Same rule for corporate information: internal
+  business facts are gray by default until the org publishes them. When the
+  color is unsure, it is gray — asking is cheap, republishing a retraction
+  is not.
 - **Mermaid**: encourage a diagram (`flowchart TD` and friends) when a
   visual aids the reader — GitHub renders Mermaid inline in issue and PR
   bodies. It reinforces the prose, never substitutes for it.
@@ -159,7 +171,8 @@ jj log -r @ --no-graph -T description
 ```
 
 Confirm: no hard wraps, standalone refs use `#N` (cross-repo full URL),
-no unescaped `@`, one co-author trailer, template headings verbatim.
+no unescaped `@`, one co-author trailer, template headings verbatim, and no
+fact past its color — pasted command output is the usual leak vector.
 
 ## See also
 
