@@ -84,10 +84,18 @@ fails before review.
      unless they justify or qualify the statement — scope conditions,
      command rules, short IDs. A parenthesis that merely restates nearby
      text is deleted.
-   - Commands exactly as run, in fenced blocks. Reference sibling skills by
-     name instead of re-teaching them.
-   - Push detail past ~5,000 tokens into `references/<topic>.md` with an
-     explicit load condition ("read `references/x.md` when Y happens").
+   - Commands exactly as run, in fenced blocks.
+   - Progressive discovery: SKILL.md is the routing skeleton — triggers,
+     procedure steps, gate names. Background, tables, and worked detail
+     live in `references/<topic>.md` with an explicit load condition
+     ("read `references/x.md` when Y happens"); move detail there past
+     ~5,000 tokens. A fact stated in a reference is never restated in
+     SKILL.md — the body links, the reference states.
+   - Graph linking: a process another skill owns is referenced by name
+     (`sks-land` owns the merge gates), never re-taught inline — the
+     mention IS the link. A convention two skills need lives in its
+     owning skill's references; the other links across. Duplication
+     between skills is a routing defect: fix by linking, not copying.
 4. **Write `evals/evals.json`.** Three prompts: two varied phrasings of the
    trigger, one edge case (adjacent task that should route elsewhere).
    Assertions check the body, not trivia: scope routing, pinned flags, gate
