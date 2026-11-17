@@ -10,7 +10,7 @@
 
 ## The fleet is mixed-arch — pin INDEX digests, never platform digests
 
-nishir node arch split (verified 2026-09-07, `kubectl get nodes`):
+nishir node arch split (`kubectl get nodes`):
 
 - **amd64**: ashira, manash, nalsha, sashina
 - **arm64**: fushi, minish, nemishi

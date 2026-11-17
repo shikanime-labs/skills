@@ -41,7 +41,7 @@ cloud-pi-native/console repo — different org, different rules).
   `allowedCommands: ["nix fmt"], commands: ["nix fmt"], executionMode:
   "branch", fileFilters: ["**/*.nix"], installTools: { "nix": {} }`.
   `postUpgradeTasks.nixFmt` is NOT a valid option — it freezes all
-  Renovate PRs repo-wide (observed on 2026-10-07, fixed in PR 18).
+  Renovate PRs repo-wide (fixed in PR 18).
 
 ## Board / lifecycle
 

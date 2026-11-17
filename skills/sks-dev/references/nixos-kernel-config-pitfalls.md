@@ -1,6 +1,6 @@
 # NixOS kernel option/patch pitfalls (nixos-hardware RPi kernels)
 
-Verified 2026-09-02 on `shikanime-labs/machines` (fushi/minish RPi4,
+Verified on `shikanime-labs/machines` (fushi/minish RPi4,
 kernel `linux-rpi-6.18.34-stable_20260609`, nixos-hardware `raspberry-pi-4`).
 Companion to the `boot.kernelPatches` entry in the `nix-flake-authoring` skill.
 
@@ -54,7 +54,7 @@ progress signal.
 -E "pending|fail"` in a sleep loop instead of repeating the identical call —
 the runtime flags 3+ identical foreground calls.
 
-## Fix-verification options evaluated for the VA_BITS fix (2026-09-02)
+## Fix-verification options evaluated for the VA_BITS fix
 
 All tested against `nixos-hardware` `raspberry-pi/common/kernel.nix`
 (`buildLinux (args // {literals} // (args.argsOverride or {})).overrideAttrs`):

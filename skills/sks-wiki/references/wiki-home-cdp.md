@@ -49,8 +49,8 @@ for one repo at bootstrap or a backfill sweep over many.
    ```
 
 4. **Scroll, then click Save.** The commit-summary field and the Save button
-   sit below the fold. The button's label is `Save page` (verified
-   2026-10-20 live run) — match on it explicitly, not on `'Save'`; then the
+   sit below the fold. The button's label is `Save page` (verified in a
+   live run) — match on it explicitly, not on `'Save'`; then the
    shared scroll-then-click dispatch (`sks-dev`
    `references/cdp-attach.md`).
 

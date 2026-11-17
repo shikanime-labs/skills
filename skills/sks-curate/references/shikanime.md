@@ -14,8 +14,8 @@ Curation notes specific to the shikanime org:
 
 - Repo doctrine ships only the `sks` and `cpn` skill families; local
   mirror-only categories stay untracked (see body gotchas).
-- Mirror catalog lives untracked; syncs can cull it silently. Verified
-  2026-09-08: `origin/main` tracks only a subset of the operational catalog
+- Mirror catalog lives untracked; syncs can cull it silently. `origin/main`
+  tracks only a subset of the operational catalog
   (~196 `SKILL.md` dirs on disk); whole categories (`apple/`, `media/`,
   `productivity/`, most `devops/` books) exist only as untracked mirror
   files. An `export from jj` sync left the mirror HEAD on a stale tree and

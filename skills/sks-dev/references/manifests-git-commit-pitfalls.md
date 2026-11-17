@@ -3,8 +3,8 @@
 ## Contents
 
 - [Detached HEAD → create branch before push](#detached-head--create-branch-before-push)
-- [Commit convention (verified 2026-09-07)](#commit-convention-verified-2026-09-07)
-- [Push + PR envelope (verified 2026-09-07)](#push--pr-envelope-verified-2026-09-07)
+- [Commit convention](#commit-convention)
+- [Push + PR envelope](#push--pr-envelope)
 - [Anti-patterns to avoid](#anti-patterns-to-avoid)
 The `manifests` repo uses plain `git` (not jj). The `sks-dev` skill's
 jj recipes don't apply — use these git-specific rules.
@@ -18,7 +18,7 @@ git checkout -b <branch-name> && git push -u origin <branch-name>
 On the first push, omit the `-u` on the initial `git push` and use
 `git push -u origin <branch>` on the second call.
 
-## Commit convention (verified 2026-09-07)
+## Commit convention
 
 **MANDATORY:** `Co-authored-by: Automata <automata@shikanime.studio>` AND
 `Signed-off-by: Shikanime Deva <william.phetsinorath@shikanime.studio>`.
@@ -36,7 +36,7 @@ Co-authored-by: Automata <automata@shikanime.studio>
 Signed-off-by: Shikanime Deva <william.phetsinorath@shikanime.studio>"
 ```
 
-## Push + PR envelope (verified 2026-09-07)
+## Push + PR envelope
 
 ```bash
 # Stage only your intended files — never git add -A after a formatter
@@ -80,7 +80,7 @@ outside your scope before returning to the scoped branch.
 - **NEVER inline `--body "..."` in gh pr create** — shell expansion silently
 executes backticks/`$` as commands. Write body to file, pass `--body-file`.
 
-### OIDC SecurityPolicy naming convention (verified 2026-09-07)
+### OIDC SecurityPolicy naming convention
 
 The `SecurityPolicy` `metadata.name` field MUST match the `clientSecret.name`
 field in the same resource (e.g. both `sonarr-oidc-client`). Having

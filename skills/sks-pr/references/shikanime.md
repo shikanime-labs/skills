@@ -19,8 +19,8 @@
 - Org PR template: `shikanime-labs/.github` at
   `.github/PULL_REQUEST_TEMPLATE.md` — headings `# Why` / `## What` /
   `## Verification` / `## References`, `Related:` full issue URL. No
-  repo-level templates exist (manifests/tailscale-gateway/devlib checked
-  2026-10-27); this template wins over the fallback shape for every labs
+  repo-level templates exist (manifests/tailscale-gateway/devlib checked);
+  this template wins over the fallback shape for every labs
   repo.
 - The `gh stack` extension is removed in the org; plain `gh pr` for stacking
   and landing alike.

@@ -61,7 +61,7 @@ The WIP parent (e.g. `88e3e876`) stays intact on its bookmark.
 `jj describe -F <file>` errors with a bare "Usage:" in jj 0.44 — there is no
 `-F` (file) flag. The file-based form is `jj describe --stdin < <file>` (reads
 the message from stdin; multi-line bodies with trailers are safer via a file,
-same reason gh `--body-file` beats inline `--body`). Verified 2026-09-04.
+same reason gh `--body-file` beats inline `--body`).
 Also: passing `-r @` before `--stdin` works, but bare `jj describe --stdin`
 (default rev `@`) is sufficient in a single-change workspace.
 
@@ -120,7 +120,7 @@ Finishing someone's (or your own) stale PR branch by `git diff origin/main
 origin/<branch> > patch && git apply --3way` re-applies the branch's view of
 EVERY touched file — including hunks that revert newer main commits in the
 same files. The apply exits 0, CI may even pass, and the revert ships as a
-quiet rider on an unrelated change (observed 2026-10-24 on machines#1626:
+quiet rider on an unrelated change (machines#1626:
 finishing a PR opened before the gateway-hostname cutover and the
 hermes-agent pin reverted both — ssh host, a2a URL, flake.lock — inside a
 "user isolation" change).
@@ -216,7 +216,7 @@ module before pushing.
 
 The host disk can hit 100% mid-session and macOS (or cleanup sweeps) purge
 whole workspace directories (`~/Source/Repos/manifests-<unit>` gone; hit
-TWICE in one session 2026-09-03). Do not panic — the jj repo store is shared:
+TWICE in one session). Do not panic — the jj repo store is shared:
 the commit (by change-id) lives in the main checkout's `.jj`, so nothing
 authored+described is lost. Recovery (verified):
 

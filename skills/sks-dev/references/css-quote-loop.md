@@ -3,7 +3,7 @@
 ## Contents
 
 - [Class](#class)
-- [Verified symptom (2026-09-03, shikanime-studio/websites PR #332)](#verified-symptom-2026-09-03-shikanime-studiowebsites-pr-332)
+- [Verified symptom (shikanime-studio/websites PR #332)](#verified-symptom-shikanime-studiowebsites-pr-332)
 - [Landed resolution (PR #332, commit 7f874236)](#landed-resolution-pr-332-commit-7f874236)
 - [Ship gate — push must be a fixed point of BOTH tools](#ship-gate--push-must-be-a-fixed-point-of-both-tools)
 - [Debugging pattern for the next contested rule](#debugging-pattern-for-the-next-contested-rule)
@@ -16,7 +16,7 @@ Any repo that runs BOTH `nix fmt` (treefmt, via devenv `enterShell`/git-hooks)
 AND `@antfu/eslint-config` linting over the same files. The two tools disagree
 on style, and CI enforces both in the order treefmt-then-lint.
 
-## Verified symptom (2026-09-03, shikanime-studio/websites PR #332)
+## Verified symptom (shikanime-studio/websites PR #332)
 
 Every push flip-flopped a red gate:
 
@@ -101,7 +101,7 @@ committing the formatter's output:
 - **GitHub workflow YAML**: treefmt's YAML formatter strips the deliberate
   `%YAML 1.1` directive (present so GitHub's YAML 1.2 parser reads `on:` as a
   string key, not a boolean `True:`) and reflows `${{ }}` expressions across
-  lines. Verified 2026-09-04 on websites PR #333: `nix fmt` rewrote all 8
+  lines. Verified on websites PR #333: `nix fmt` rewrote all 8
   files under `.github/workflows/` on first run — main's committed state was
   intentionally NOT treefmt-canonical.
 - **Generated lockfiles** (`pnpm-lock.yaml`): prettier reflows them on every

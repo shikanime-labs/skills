@@ -2,7 +2,7 @@
 
 ## Roster snapshot
 
-Nix repos (root a `flake.nix`, non-archived; verified 2026-10-15 by live
+Nix repos (root a `flake.nix`, non-archived; verified by live
 scan — GitHub repo list ∩ `flake.nix` probe):
 
 - `shikanime-labs`: .github, actions, algorithm, colemak, cpin-operator,
