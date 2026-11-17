@@ -4,7 +4,7 @@ description:
   "Use when triaging a target org, repo, issue, or PR: sweep for untriaged
   items, assign empty, context-derivable fields, and requalify items whose
   evidence moved — type, labels, assignee, fields, links."
-version: 0.8.1
+version: 0.9.0
 author: Automata
 license: Apache-2.0
 metadata:
@@ -131,6 +131,14 @@ its size is recorded; anything above CAP stays reported as untouched.
 source of truth. A missing section means that class stays empty; never invent
 a value.
 
+**Study in depth before any verdict** — read the live body with its `- [ ]`
+ledger, comments since the last triage, linked issues and PRs with their
+state, the PR diff and required checks when a fix exists, and the board
+card's Status. For a PR the ledger lives on its linked issue. A label, a
+stale memory, or an old comment cannot mark a criterion met or declare an
+item ready, completed, duplicate, blocked, or out of scope; a ledger tick
+needs verified diff/check evidence (`sks-pr-resolve` Gate 2).
+
 **Decide** - every field **empty on the item** and **derivable from
 its context**; nothing else. Discover first via
 `<skill-dir>/scripts/discover-metadata.sh` - a missing section means
@@ -168,12 +176,21 @@ Two rules distinguish it from fill:
 - **Never silent.** Every changed field posts a trail comment on the item —
   field, old → new, and the evidence that forced it. Fill only adds;
   requalification mutates metadata a reader may have relied on.
-- **State is a field too.** When the moved evidence shows the item is done
-  or not workable, requalification's outcome is the closure itself:
-  `completed` when a linked PR delivered it, `not planned` otherwise —
-  same trail comment, then the close. On an explicitly requested
-  requalification this executes; during a sweep it is reported as a
-  closure candidate for `sks-issue-triage`, never auto-closed.
+- **State is a field too.** Study first; the verdict drives the acceptance
+  ledger before any close. Ticks come only from verified evidence
+  (`sks-pr-resolve` Gate 2); impossible criteria are struck with a comment,
+  never dropped (`sks-issue`). During a sweep report the verdict and close
+  nothing — deliberate closure is `sks-issue-triage`'s job.
+
+  - **ready** — metadata set, card Status `Ready`; ledger stays open.
+  - **completed** — tick each criterion from verified diff/check evidence;
+    close `completed` only at zero `- [ ]`.
+  - **duplicate** — comment naming the existing issue, strike unmet
+    criteria with a comment, close `not planned`.
+  - **not planned** — comment with rationale, strike unmet criteria, close
+    `not planned`.
+  - **blocked by another issue** — `--add-blocked-by` for the named
+    blocker, card Status `parked`, ledger untouched, comment naming it.
 - **Links move too.** The issue↔PR Development link is metadata like the
   rest: requalification re-derives it from the current evidence — stale
   link removed (`removeCloseIssueReferences`), missing link added
