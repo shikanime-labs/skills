@@ -6,8 +6,13 @@
   "skills": [
     {
       "name": "cpn-release-patch",
-      "description": "Use when backporting the commits between two release tags onto a hotfix branch in \u003corg\u003e/\u003crepo\u003e: find the patch milestone and duplicate those commits onto the tag with jj.",
+      "description": "Use when backporting the commits between two release tags onto a hotfix branch in <org>/<repo>: find the patch milestone and duplicate those commits onto the tag with jj.",
       "path": "skills/cpn-release-patch"
+    },
+    {
+      "name": "fr-rental-listing-search",
+      "description": "Use when hunting French rental or property listings: portal access map, budget/commute gates, QPV check, and a deterministic rerank pipeline.",
+      "path": "skills/fr-rental-listing-search"
     },
     {
       "name": "sks-adversarial",
@@ -76,7 +81,7 @@
     },
     {
       "name": "sks-discussion-triage",
-      "description": "Use when triaging an existing org discussion: category, body shape, Q\u0026A answer, and conversion to an issue.",
+      "description": "Use when triaging an existing org discussion: category, body shape, Q&A answer, and conversion to an issue.",
       "path": "skills/sks-discussion-triage"
     },
     {
@@ -85,14 +90,14 @@
       "path": "skills/sks-edit"
     },
     {
-      "name": "sks-experiment",
-      "description": "Use when converting a finding or RFC outcome into a hypothesis-gated experiment: one experiment issue per falsifiable claim, a recorded verdict, confirmed outcomes handed to sks-plan.",
-      "path": "skills/sks-experiment"
-    },
-    {
       "name": "sks-evolve",
       "description": "Use when evolving the agent substrate without a hand-named target: mine experience for signals, evolve skills, profiles, memory, conventions, cron, or config, and repeat the fitness loop.",
       "path": "skills/sks-evolve"
+    },
+    {
+      "name": "sks-experiment",
+      "description": "Use when converting a finding or RFC outcome into a hypothesis-gated experiment: one experiment issue per falsifiable claim, a recorded verdict, confirmed outcomes handed to sks-plan.",
+      "path": "skills/sks-experiment"
     },
     {
       "name": "sks-fastlane",

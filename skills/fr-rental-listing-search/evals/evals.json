@@ -1,0 +1,46 @@
+{
+  "evals": [
+    {
+      "id": 1,
+      "expected_output": "Pins budget semantics (total vs per-person, CC vs HC) before scraping, maps Institut Pasteur to metro lines 6+12, and proposes communes on a direct line.",
+      "files": [],
+      "prompt": "Find us a flat near Paris for two people, around 700 euros, one of us works at Institut Pasteur.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'fr-rental-listing-search'",
+        "Frontmatter description starts with 'Use when' and is at most 200 characters",
+        "Frontmatter license field is 'Apache-2.0'",
+        "Body contains at least one '##' heading",
+        "Body pins budget semantics (per-person vs combined, CC vs HC) before the first scrape",
+        "Body maps destinations to transit lines and prefers communes on a direct line",
+        "Body verifies employers by name via SIRENE and refuses to guess addresses"
+      ]
+    },
+    {
+      "id": 2,
+      "expected_output": "Routes the daily sweep through the aggregator (web_extract) plus a deterministic script for geocode/QPV/commute/score, with per-source failure isolation.",
+      "files": [],
+      "prompt": "Set up a daily cron that rescans the portals and reranks every new listing against our commute rules.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'fr-rental-listing-search'",
+        "Body splits parsing duties: agent emits structured JSON, script does deterministic math",
+        "Body references references/commute-reranker.md for the rerank recipe",
+        "Body requires cron state under ~/.hermes/cron/state/, never scratch",
+        "Body embeds a fixed digest output contract in the cron prompt"
+      ]
+    },
+    {
+      "id": 3,
+      "expected_output": "Applies the QPV-2024 point-in-polygon check with the socio-economic caveat, drops bail civil and La Reunion postal traps, and keeps a dropped log with reasons.",
+      "files": [],
+      "prompt": "This shortlist has some quartiers locals warn about, one ad says bail civil, and a few Saint-Denis listings look suspicious.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'fr-rental-listing-search'",
+        "Body uses the official ANCT QPV-2024 layer with the WGS84 file and states the not-a-crime-map caveat",
+        "Body excludes bail civil listings from primary-residence hunts",
+        "Body validates 5-digit postal codes against overseas twins (Saint-Denis 974xx)",
+        "Body keeps a dropped-listing log so nothing is re-litigated"
+      ]
+    }
+  ],
+  "skill_name": "fr-rental-listing-search"
+}
