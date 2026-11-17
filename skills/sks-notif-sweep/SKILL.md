@@ -1,5 +1,5 @@
 ---
-name: sks-github-notif-sweep
+name: sks-notif-sweep
 description:
   "Use when sweeping unread GitHub notifications: filter noise, act on the
   answerable, mark processed threads read, never re-report a thread."

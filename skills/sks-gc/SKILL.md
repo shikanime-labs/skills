@@ -21,7 +21,7 @@ metadata:
       - sks-async
       - sks-dev
       - sks-land
-      - sks-github-notif-sweep
+      - sks-notif-sweep
       - sks-context
 platforms:
   - linux
@@ -188,4 +188,4 @@ Memory-less environments skip this section.
 - `sks-dev` — isolation workspace pattern (`../<repo>.fix`).
 - `sks-land` — lands PRs (this skill only reclaims after landing, never
   merges).
-- `sks-github-notif-sweep` — the companion org-wide GitHub hygiene sweep.
+- `sks-notif-sweep` — the companion org-wide GitHub hygiene sweep.
