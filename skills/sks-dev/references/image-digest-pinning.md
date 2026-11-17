@@ -1,5 +1,13 @@
 # Image digest pinning on a mixed-arch fleet (nishir)
 
+## Contents
+
+- [The fleet is mixed-arch — pin INDEX digests, never platform digests](#the-fleet-is-mixed-arch--pin-index-digests-never-platform-digests)
+- [Root-cause chain (hermes-agent, PR #2169)](#root-cause-chain-hermes-agent-pr-2169)
+- [Correct pin: the multi-arch OCI index digest](#correct-pin-the-multi-arch-oci-index-digest)
+- [Registry blob integrity check (suspect a corrupted pull)](#registry-blob-integrity-check-suspect-a-corrupted-pull)
+- [Post-merge: CrashLoopBackOff STS pods do NOT roll on template change](#post-merge-crashloopbackoff-sts-pods-do-not-roll-on-template-change)
+
 ## The fleet is mixed-arch — pin INDEX digests, never platform digests
 
 nishir node arch split (verified 2026-09-07, `kubectl get nodes`):

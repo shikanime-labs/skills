@@ -1,5 +1,11 @@
 # Manifests repo: git commit and PR pitfalls
 
+## Contents
+
+- [Detached HEAD → create branch before push](#detached-head--create-branch-before-push)
+- [Commit convention (verified 2026-09-07)](#commit-convention-verified-2026-09-07)
+- [Push + PR envelope (verified 2026-09-07)](#push--pr-envelope-verified-2026-09-07)
+- [Anti-patterns to avoid](#anti-patterns-to-avoid)
 The `manifests` repo uses plain `git` (not jj). The `sks-dev` skill's
 jj recipes don't apply — use these git-specific rules.
 

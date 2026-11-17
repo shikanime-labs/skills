@@ -1,5 +1,22 @@
 # Pitfall Recipes
 
+## Contents
+
+- [Dual-clone discipline (`.hermes/skills` vs `~/Source/Repos`)](#dual-clone-discipline-hermesskills-vs-sourcerepos)
+- [Reused branch names land on wrong `@`](#reused-branch-names-land-on-wrong-)
+- [`git checkout <path>` wipes untracked new files](#git-checkout-path-wipes-untracked-new-files)
+- [Uncommitted working-copy clutter from prior sessions](#uncommitted-working-copy-clutter-from-prior-sessions)
+- [`jj squash` into an immutable branch](#jj-squash-into-an-immutable-branch)
+- [jj working-copy → bookmark mismatch after squash-abandon](#jj-working-copy--bookmark-mismatch-after-squash-abandon)
+- [Recovering working-copy state after `jj abandon`](#recovering-working-copy-state-after-jj-abandon)
+- [GitHub additions count is real — never call it "context"](#github-additions-count-is-real--never-call-it-context)
+- [Bash aliases in prose (`$K`, `jj`, etc.)](#bash-aliases-in-prose-k-jj-etc)
+- [Recovering from missing CLI tools (brew on macOS)](#recovering-from-missing-cli-tools-brew-on-macos)
+- [`gh pr create` stdout is empty when PR is created](#gh-pr-create-stdout-is-empty-when-pr-is-created)
+- [GitHub issue/PR bodies are free text — never 80-column wrap](#github-issuepr-bodies-are-free-text--never-80-column-wrap)
+- [Kustomize ConfigMap/Secret not found — generator not in active overlay](#kustomize-configmapsecret-not-found--generator-not-in-active-overlay)
+- [Two `patches:` blocks in a kustomization (app overlays)](#two-patches-blocks-in-a-kustomization-app-overlays)
+
 ## Dual-clone discipline (`.hermes/skills` vs `~/Source/Repos`)
 
 The shikanime-labs/skills repository exists in two working clones:

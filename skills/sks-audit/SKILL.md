@@ -1,11 +1,10 @@
 ---
 name: sks-audit
 description:
-  "Use when auditing fleet or org health - security alerts, redteam, CI
-  failures, alerting, Flux readiness, Kubernetes events, SDLC efficiency,
-  source-code vulnerability audits and pen tests: read the surface, dedup,
-  file findings, fastlane fixes."
-version: 1.1.0
+  "Use when auditing fleet or org health: security alerts, redteam, CI
+  failures, alerting, Flux readiness, k8s events, SDLC efficiency, source-code
+  audits — dedup, file findings, fastlane fixes."
+version: 1.1.1
 author: Automata
 license: Apache-2.0
 metadata:
@@ -102,6 +101,9 @@ or security-manager access mean the pair is unreadable for this run.
 Repository-admin access alone does not authorize the organization
 endpoint. Record the pair as unreadable, never as zero alerts.
 
+Deep-dive commands: read `references/github-security.md` when alert feeds
+return 404/403 or org and repo counts disagree.
+
 ### Perimeter redteam
 
 Depth-1 clone of the fleet manifests for public endpoints, Envoy Gateway
@@ -123,6 +125,9 @@ route and port before re-filing; a repo can read as exposed because its
 classic protection endpoint 404s while rulesets still protect it; stopping at
 CVE or advisory absence is blind, not clean — audit the sweep's own path.
 
+Deep-dive commands: read `references/redteam.md` when classifying a route or
+port as exposed.
+
 ### CI failures
 
 `gh repo list <org> --limit 100 --json nameWithOwner` per org, then per repo
@@ -142,6 +147,9 @@ when precision matters; `--log-failed` returns empty while sibling jobs still
 run, so fall back to `gh api repos/<repo>/actions/jobs/<id>/logs`;
 `--limit 100` silently truncates bigger orgs, so page with `--paginate`.
 
+Deep-dive commands: read `references/ci-failures.md` when a required check
+is red and the fix is not obvious.
+
 ### Alertmanager alerts
 
 `curl -s <alertmanager>/api/v2/alerts`, parsed with python3; record
@@ -152,6 +160,9 @@ alerts. Fastlane scope: values bump, threshold.
 Completion check: every active alert has a recorded line. Pitfalls: Grafana's
 HTTP API is a different surface — when it is OIDC-only with no API-key path,
 read the vm* APIs instead, never scraping dashboards.
+
+Deep-dive commands: read `references/alertmanager.md` when querying
+Alertmanager alerts for the org.
 
 ### Flux readiness
 
@@ -168,6 +179,9 @@ conditions rather than the summary column; a bare `kubectl get flux` noun
 errors, so use the CRD plural or the flux CLI's server-side print; fastlane
 patches target the source overlay, never rendered output.
 
+Deep-dive commands: read `references/flux.md` when auditing Flux
+Kustomization readiness.
+
 ### Kubernetes warning events
 
 `kubectl get events -A --field-selector type=Warning -o json`, parsed with
@@ -182,6 +196,9 @@ pods and restart counts before reporting clean; aggregated counts reset when
 the event object rotates, so `count` is current pressure rather than lifetime
 totals; cluster-level failures (node down, storage recovery, volume trouble)
 are issue-only, never a PR from an audit run.
+
+Deep-dive commands: read `references/kubernetes-events.md` when harvesting
+warning events fleet-wide.
 
 ### SDLC efficiency
 
@@ -201,6 +218,9 @@ latency, residue, stalls, and stale branches each carry a recorded value
 per org, with the median reported beside any p90. Cross-check the residue
 count per PR, never by repo-wide text search. Findings from this surface
 are proposals: file issues only, no fastlane PR.
+
+Deep-dive commands: read `references/sdlc-efficiency.md` when measuring PR
+and dependency cycle-time signals.
 
 ### Source-code security audit
 

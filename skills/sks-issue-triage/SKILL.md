@@ -1,10 +1,10 @@
 ---
 name: sks-issue-triage
 description:
-  "Use when triaging an existing org issue: assign type, labels,
-  assignee, milestone, project, relationships, and fields; requalify when
-  the evidence moved after triage; close with rationale if not workable."
-version: 0.7.1
+  "Use when triaging an existing org issue: assign type, labels, assignee,
+  milestone, project, relationships, fields; requalify when the evidence
+  moved; close with rationale if not workable."
+version: 0.7.2
 author: Automata
 license: Apache-2.0
 metadata:

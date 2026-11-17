@@ -1,5 +1,14 @@
 # Nixpkgs PR Review — sks-review
 
+## Contents
+
+- [When to Use](#when-to-use)
+- [Prerequisites](#prerequisites)
+- [Quick Reference](#quick-reference)
+- [Procedure](#procedure)
+- [Pitfalls](#pitfalls)
+- [Verification](#verification)
+- [See also](#see-also)
 Review upstream [NixOS/nixpkgs](https://github.com/NixOS/nixpkgs) pull requests
 through the official contribution process: build every package the PR changes
 with `nixpkgs-review`, then check the diff against nixpkgs conventions before

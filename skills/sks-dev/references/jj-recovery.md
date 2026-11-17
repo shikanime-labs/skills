@@ -1,5 +1,21 @@
 # jj recovery recipes (shikanime checkouts)
 
+## Contents
+
+- [Committed directly to protected `main`](#committed-directly-to-protected-main)
+- [Stray edit landed on a foreign WIP commit](#stray-edit-landed-on-a-foreign-wip-commit)
+- [`jj describe -F` does not exist](#jj-describe--f-does-not-exist)
+- [`jj checkout` does not exist](#jj-checkout-does-not-exist)
+- [`git ls-files` reflects the stale checked-out tree](#git-ls-files-reflects-the-stale-checked-out-tree)
+- [Rebase an open PR onto moved main (single recipe, verified on #2048 → #2049)](#rebase-an-open-pr-onto-moved-main-single-recipe-verified-on-2048--2049)
+- [Re-applying a stale PR diff silently reverts newer main](#re-applying-a-stale-pr-diff-silently-reverts-newer-main)
+- [Squash into an already-pushed `@` is refused — the edits are already there](#squash-into-an-already-pushed--is-refused--the-edits-are-already-there)
+- [Stale working-copy clobber under a moving bookmark](#stale-working-copy-clobber-under-a-moving-bookmark)
+- [Mine a reverted diff before discarding it](#mine-a-reverted-diff-before-discarding-it)
+- [Workspace dir vanishes mid-task (disk-full purge) — commit survives](#workspace-dir-vanishes-mid-task-disk-full-purge--commit-survives)
+- [Verifying push landing inside an isolation workspace (no `.git`)](#verifying-push-landing-inside-an-isolation-workspace-no-git)
+- [jj version quirks (this build)](#jj-version-quirks-this-build)
+- [Rebuilding a branch whose bookmark is immutable](#rebuilding-a-branch-whose-bookmark-is-immutable)
 Verified patterns for the jj-managed checkouts under
 `~/Source/Repos/<host>/<orga>/<repo>`. The checked-out git working copy is
 jj-controlled: git `main`/`HEAD` refs can lag `origin/main`, and a foreign WIP

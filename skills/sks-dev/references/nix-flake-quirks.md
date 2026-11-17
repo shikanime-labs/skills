@@ -1,5 +1,15 @@
 # Nix flake quirks in shikanime repos (machines, nix-containers, manifests)
 
+## Contents
+
+- [devenv `env` template escaping — the 1-backslash rule](#devenv-env-template-escaping--the-1-backslash-rule)
+- [Flake eval verification](#flake-eval-verification)
+- [Building / verifying a devenv shell (no NixOS build)](#building--verifying-a-devenv-shell-no-nixos-build)
+- [Verifying a shared-module change against real host configs (no full build)](#verifying-a-shared-module-change-against-real-host-configs-no-full-build)
+- [`nix fmt` check mode](#nix-fmt-check-mode)
+- [Flattening module directory structure — relative path adjustment](#flattening-module-directory-structure--relative-path-adjustment)
+- [devenv tasks: cache invalidation + workspace compatibility](#devenv-tasks-cache-invalidation--workspace-compatibility)
+- [Containerdisk module notes (machines)](#containerdisk-module-notes-machines)
 Verified against `shikanime-labs/machines` (flake-parts + devenv + sops-nix)
 and `shikanime-labs/manifests` (devenv flake module, no NixOS system build).
 
