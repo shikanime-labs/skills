@@ -200,6 +200,27 @@ are issue-only, never a PR from an audit run.
 Deep-dive commands: read `references/kubernetes-events.md` when harvesting
 warning events fleet-wide.
 
+### Fleet host health
+
+Node-exporter-first, ssh for depth: enumerate `kubectl get nodes -o name`,
+then read per-node root-fs use% (flag >= 90%, SD-card devices named),
+failed units (drop `session-*.scope`), `nixos-upgrade.service`, and comin
+flags (`up{job="comin"}`, `comin_last_build_failed`,
+`comin_last_deployment_failed`) from the vmselect service proxy; ssh probes
+explain a flagged host (`comin status`, `readlink /run/current-system`) —
+never enumerate by ssh, the degraded host rotates day to day. Record per
+host: node name, upgrade unit state, comin generation age, image-fs use%,
+failed units. Dedup key: node + unit. Fastlane scope: none — host
+remediation is operator-side, issue-only.
+
+Completion check: every node carries a recorded line with its image-fs
+percentage. Pitfalls: info-gauge DeployStale expressions are always-true,
+comin never retries a failed build, and unrelabeled comin targets collapse
+into one `127.0.0.1:4243` bucket.
+
+Deep-dive commands: read `references/fleet-host-health.md` when sweeping
+fleet host health or explaining a flagged host.
+
 ### SDLC efficiency
 
 Process metrics over the orgs' issues and PRs. Census: `gh api
