@@ -21,7 +21,7 @@ metadata:
       - sks-project
       - sks-iterate
       - sks-dev
-      - sks-summary
+      - sks-tldr
       - sks-context
 platforms:
   - linux
@@ -94,7 +94,7 @@ owns its plane; the loop that consumes the result is `sks-iterate`.
 6. **Board the set** (`sks-project`): every card Status `Ready` on the
    family board — the board is what `sks-iterate` reads; no board, no
    loop.
-7. **Close the planning loop** with the report block (`sks-summary`) and
+7. **Close the planning loop** with the report block (`sks-tldr`) and
    hand execution to `sks-iterate`.
 
 ## Pitfalls
@@ -138,4 +138,4 @@ names the hand-off to `sks-iterate`.
 - `sks-project` — the board the plan loads.
 - `sks-iterate` — the loop that consumes the plan.
 - `sks-dev` — the unit lifecycle each card runs.
-- `sks-summary` — the report block that closes the planning loop.
+- `sks-tldr` — the report block that closes the planning loop.

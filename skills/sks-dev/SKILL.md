@@ -348,11 +348,6 @@ Deep recipes live in `references/`; read the file when its condition fires:
   cloud-pi-native/console repository: French artifacts, checkout path and
   layout, toolchain commands, unsalted-token/ArgoCD/GitLab-409 pitfalls,
   migration parity, jj/git snapshot desync.
-- `references/orphaned-record.md` — orphaned jj operation records after a
-  workspace move (load when `jj log` and origin disagree).
-- `references/probe-port-name-drop.md` — Gateway HTTPRoute probe
-  `port:` names dropped against declared `ports[].name` (load when a
-  route silently stops matching).
 
 ## Verification
 

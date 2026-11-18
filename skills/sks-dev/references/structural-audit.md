@@ -54,8 +54,7 @@ matches anywhere are truly dangling.
 - **Resource list ordering** per AGENTS.md ("listed sorted") is violated in
   ~50 dirs (`netpol.yaml` before `httproute.yaml`) — cosmetic, low priority.
 - **Rule-reference check for probe/patch port names**: render overlay, diff
-  probe `port:` names against declared `ports[].name` (see
-  `references/probe-port-name-drop.md`).
+  probe `port:` names against declared `ports[].name`.
 - **Secret-file duplication** across nishir/nishir-tailnet: `cmp -s` each
   `<overlay>/<sub>/*.enc.*` against its nishir sibling; identical copies are
   drift candidates (none found this pass).
