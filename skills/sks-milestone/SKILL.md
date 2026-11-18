@@ -197,7 +197,7 @@ Conformance audit — every title across both orgs against the Title
 convention table:
 
 ```bash
-for org in shikanime-labs shikanime-studio; do
+for org in shikanime-labs shikanime-studio shikanime-x; do
   for r in $(gh repo list "$org" --limit 300 --json name,isArchived \
       --jq '.[] | select(.isArchived==false) | .name'); do
     gh api "repos/$org/$r/milestones?state=all" \
