@@ -17,7 +17,7 @@ metadata:
       - hypothesis
       - typescript
     related_skills:
-      - sks-wiki
+      - sks-doc
       - sks-review
       - sks-async
       - sks-delegate
@@ -68,8 +68,9 @@ cannot declare a root cause before you have reproduced the failure on demand.
 
 ### 1. Understand — documented knowledge, observed vs expected, then reproduce
 
-- Check the repo wiki first (`sks-wiki`): technical docs, runbooks, and known
-  cycles live there — exhaust documented knowledge before re-deriving.
+- Check the repo's canonical `docs/` first (`sks-doc`): technical docs,
+  runbooks, and known cycles live there — exhaust documented knowledge before
+  re-deriving. Follow the wiki index when one exists.
 - State the contract: what should happen, what does, and the smallest delta
   between them.
 - Reproduce consistently with the exact command (`pytest -q tests/test_x.py::t`,
@@ -158,9 +159,9 @@ single-threaded hypothesis testing inside it.
 
 Recurring patterns from past investigations — recognize the signature, then
 propose the known resolution; do not re-debug from zero. When an investigation
-surfaces a new recurring pattern, record it here and mirror it into the repo
-wiki's known-cycles page (`sks-wiki`) so the next investigation starts from
-documented knowledge, not a cold read.
+surfaces a new recurring pattern, record it in the repo's canonical `docs/`
+page (`sks-doc`) and link the wiki index to it, so the next investigation starts
+from documented knowledge, not a cold read.
 
 - **Verify-after-write.** Any file edit can report success without landing on
   disk (large file, many prior edits, fuzzy match). Read back and assert the new
@@ -204,8 +205,8 @@ echo "investigation complete: root cause + hypothesis + proposed fix" \
 
 ## See also
 
-- `sks-wiki` — the per-repo knowledge base read first in phase 1 and mirrored
-  with new known cycles after a finding.
+- `sks-doc` — the per-repo canonical docs read first in phase 1 and updated
+  with new known cycles, with the wiki index linking to them.
 - `sks-review` — the review gate enforces the same root-cause discipline on
   incoming PRs.
 - `sks-async` — the isolation pattern, for parallel implementation rather than

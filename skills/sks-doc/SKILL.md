@@ -1,10 +1,10 @@
 ---
-name: sks-wiki
+name: sks-doc
 description:
-  "Use when documenting a project's technical knowledge in its GitHub wiki:
-  enabling the wiki, seeding or syncing pages after a behavior-changing PR,
-  and backfilling per-repo technical documentation."
-version: 0.4.2
+  "Use when documenting a project's technical knowledge in its in-repo docs/
+  and GitHub wiki: writing canonical docs/, enabling and indexing the wiki,
+  and syncing both after a behavior-changing PR."
+version: 0.5.0
 author: Automata
 license: Apache-2.0
 metadata:
@@ -24,11 +24,12 @@ platforms:
   - windows
 ---
 
-# Project Wiki
+# Project Documentation
 
-Maintain a project's technical documentation in its GitHub wiki — per-repo
-pages rendered by GitHub, searchable, and pushed over the normal
-`<repo>.wiki.git` remote. Two zones:
+Maintain a project's technical documentation in two coupled surfaces. In-repo
+`docs/` is canonical and PR-reviewed; it holds the detail agents and
+maintainers read. The GitHub wiki is a rendered human index that links to it.
+Two zones:
 
 - **Technical documentation** (always) — architecture, delegation and
   fan-out mechanics, runbooks, procedure detail too heavy for a skill body.
@@ -38,6 +39,7 @@ pages rendered by GitHub, searchable, and pushed over the normal
 
 ## When to Use
 
+- "Write or update the canonical `docs/` page for <repo>."
 - "Set up / enable the wiki for <repo>."
 - "Add a page to <repo>'s wiki."
 - "Backfill <repo>'s technical documentation into its wiki."
@@ -49,12 +51,12 @@ of duplicating.
 
 ## Doctrine
 
-1. **Wiki is the per-repo knowledge base.** Technical documentation lives in
-   the target repo's wiki, not in a central skill or a third repo. Per-repo
-   detail stays with the repo it describes. Scope is strictly SELF: pages
-   document THIS repo's own internals — never another repo's automation,
-   jobs, or machinery (user-corrected). Cross-repo topics belong to their
-   own repo's docs; at most link them.
+1. **In-repo `docs/` is canonical.** Agent-facing and technical detail lives
+   in the target repo's `docs/`, versioned and PR-reviewed. The wiki is a
+   rendered human index that links outward — link, never fork. Scope is
+   strictly SELF: pages document THIS repo's own internals, never another
+   repo's automation. Cross-repo topics belong to their own repo's docs; at
+   most link them.
 2. **One UI-only gate.** The wiki flag is API-settable (`gh repo edit
    --enable-wiki`), but the FIRST page can only be created in the web UI — no
    REST or GraphQL endpoint covers page creation, and the `.wiki.git` remote
@@ -90,7 +92,15 @@ Open `https://github.com/OWNER/REPO/wiki` in a browser and create `Home`
 with a one-line index. This is the only manual step; record it as such
 ("manual: Home created in UI"). Skip if the wiki already renders.
 
-### 3. Seed or sync pages (normal git from here)
+### 3. Write the canonical `docs/` page first
+
+Author the detail in the target repo's `docs/` under a normal PR, reviewed and
+versioned with the code. Keep each wiki page to a summary that links to it.
+When technical detail already lives in the wiki from the earlier wiki-first
+doctrine, move that body into `docs/` in the same PR, leave a linking stub on
+the wiki, and delete the duplicate — never keep two copies.
+
+### 4. Seed or sync index pages (normal git from here)
 
 ```bash
 git clone git@github.com:OWNER/REPO.wiki.git && cd REPO.wiki.git
@@ -99,15 +109,16 @@ $EDITOR Home.md Page.md
 git add . && git commit -m "Add <page>" && git push
 ```
 
-Seeding a full docset (backfill): write all pages locally first, then land
-them in ONE commit — `Home.md` index plus one page per concern. Link pages
-with relative Markdown links. Head each page:
+Seeding a full docset (backfill): write every index page locally first, then
+land them in ONE commit — `Home.md` index plus one page per concern. Each page
+links to the canonical `docs/` detail rather than repeating it. Link pages with
+relative Markdown links. Head each page:
 
 ```markdown
 <!-- owner: <team-or-person> | zone: technical|user | purpose: <one line> -->
 ```
 
-### 4. Verify
+### 5. Verify
 
 ```bash
 git -C REPO.wiki.git log --oneline -1        # push landed
@@ -123,9 +134,8 @@ git ls-remote git@github.com:OWNER/REPO.wiki.git HEAD
   then.
 - **Wiki pushes bypass review.** No ruleset, no branch protection, no PR.
   Deliberate trade-off — do not use the wiki for content that needs review.
-- **Duplicating in-repo `docs/`** — if the repo already keeps `docs/`
-  (in-repo, PR-reviewed), either keep that canonical and link it from
-  `Home`, or migrate deliberately and delete the source. Never fork both.
+- **Duplicating in-repo `docs/`** — `docs/` is canonical once it exists.
+  Link it from wiki pages; never fork the same fact into both surfaces.
 - **Stale `Home` index** — a page added but missing from `Home.md` is
   unreachable. Update the index on every add/move.
 - **Unowned pages** — add the owner/zone/purpose comment or the page rots.

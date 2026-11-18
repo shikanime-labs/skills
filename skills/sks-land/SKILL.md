@@ -104,7 +104,7 @@ queue-enforced repos) lives in `references/landing-gates.md`.
    `git ls-remote` HEAD (guard stdin with `</dev/null`; wiki remotes
    default to `master`). Wiki pushes bypass review — accepted trade-off.
    Skip only when the change is purely internal to what the wiki does not
-   cover. Full mechanics: `sks-wiki`.
+   cover. Full mechanics: `sks-doc`.
 6. **Teardown the landing bookmark.** A merge deletes the remote branch only
    in some repo configurations — never assume it, and never read a
    "Nothing changed" push as proof: `jj bookmark delete` and `jj git push`
