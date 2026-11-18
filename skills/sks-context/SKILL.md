@@ -130,6 +130,8 @@ test -d .jj && jj log -r 'main@origin' -n 1 --no-graph -T 'commit_id.short()'
 
 ## See also
 
+- `docs/agent-workflow.md` — load when the task spans several `sks-*` skills
+  or needs the family map and coordination ladder.
 - `sks-dev` — the full dev loop this context underpins.
 - `sks-delegate` — the isolation entry every unit passes through.
 - `sks-commit` / `sks-land` — the commit and landing shapes.

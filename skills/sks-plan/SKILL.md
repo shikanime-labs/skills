@@ -143,6 +143,8 @@ carry this plan's values, and the report block names the hand-off to
 
 ## See also
 
+- `docs/agent-workflow.md` — load when the unit depends on other skills or
+  when the milestone spans more than one concern.
 - `sks-discussion` — convergence gate before decomposition.
 - `sks-issue` / `sks-issue-triage` — the artifacts this plan emits.
 - `sks-milestone` — release readiness; owns due-date discipline and the
