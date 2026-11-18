@@ -47,7 +47,7 @@ change does and why — never as comments distributed through the diff.
 When a reviewer needs context, the commit message is the support
 surface; the diff stays prose-free.
 
-## Prose caps (edits based on the ponytail skill)
+## Prose caps
 
 Every text artifact the edit produces is capped. These are hard
 limits, not guidance:

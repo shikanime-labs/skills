@@ -18,9 +18,6 @@ metadata:
       - sks-selfupdate
       - sks-dev
       - sks-review
-      - caveman-compress
-      - ponytail-review
-      - ponytail-audit
       - sks-context
 platforms:
   - linux
@@ -174,12 +171,11 @@ naming the ceiling and the upgrade path.
   disclosure — create `<x>.md` with the extracted content and keep the
   load-on-demand pointer. Deleting the pointer loses the documented detail;
   creating preserves it.
-- **Run the ponytail ladder on the body itself.** Before adding guidance,
+- **Run the laziness ladder on the body itself.** Before adding guidance,
   check rung 2 (already in a sibling skill / reference?) — extraction beats
   duplication, and the compression checklist above is the ladder applied to
-  prose. `ponytail-review` finds the bloat; this skill removes it.
-  For a whole-repo bloat pass, `ponytail-audit` is the analog of this
-  skill's structural audit.
+  prose. This skill finds and removes the bloat; the structural audit step
+  applies the same lens whole-repo.
 - **The local skill mirror drifts ahead of the repo.** The operational clone
   routinely runs hundreds of lines ahead of its repo twin — months of session
   learnings accumulated only in the operational clone. When curating, DIFF BOTH
@@ -222,6 +218,3 @@ Flip the curating PR's board card to `Done` (`sks-project`).
 (curation starts from an existing one).
 - `sks-dev` — the loop curation changes ship through.
 - `sks-review` — review lens that often flags skills worth curating.
-- `ponytail-review` — over-engineering-only pass over a diff.
-- `ponytail-audit` — same lens, whole repo; template for the structural
-  audit step.

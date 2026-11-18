@@ -1,9 +1,9 @@
 # Security Scan (added lines only)
 
 Run against the staged/working diff. Any match is `blocking` — reported, not
-fixed (reviewer never patches). Reuse the patterns from `requesting-code-review`
-(they already encode the shikanime trust-boundary lessons: Keycloak/JWKS
-timeouts, client-binding on `aud`/`azp`, Prisma vs contract types).
+fixed (reviewer never patches). The shikanime trust-boundary lessons are
+encoded here: Keycloak/JWKS timeouts, client-binding on `aud`/`azp`, Prisma
+vs contract types.
 
 ```bash
 # scope the added lines

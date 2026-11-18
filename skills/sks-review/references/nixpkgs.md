@@ -171,4 +171,3 @@ test hooks) were introduced.
 ## See also
 
 - The PR pass in `SKILL.md` — same severity and verdict discipline.
-- `github-code-review` — generic PR review mechanics.

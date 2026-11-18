@@ -20,7 +20,6 @@ metadata:
       - sks-commit
       - sks-pr
       - sks-land
-      - ponytail-review
       - sks-context
 platforms:
   - linux
@@ -207,10 +206,9 @@ anchor can get duplicated — remove the stray copy before pushing.
 - **Stacked work:** one PR per link off `main`; land in dependency order
   (base first) with `gh pr merge --squash --admin` (see `sks-land`).
 - **Run `sks-review` before requesting merge** — it applies the
-  ponytail/YAGNI lens; `ponytail-review` complements it when you want
-  over-engineering findings only. Deliberate corner-cuts in code carry a
-  `ponytail:` comment naming the ceiling and upgrade path; `ponytail-debt`
-  harvests them. Reports only — a human approves.
+  YAGNI lens and flags over-engineering. Deliberate corner-cuts in code carry
+  a `ponytail:` comment naming the ceiling and upgrade path. Reports only — a
+  human approves.
 - **Direct push to `main`:** ONLY when the user explicitly says "push to
   main" / "land it".
 - **Merge:** some org repos require `gh pr merge --squash --admin` when
@@ -360,7 +358,6 @@ jj status && jj log -r @ -T 'bookmarks ++ " "'
 `sks-issue` / `sks-pr` (issue & PR sides), `sks-commit`,
 `sks-delegate` (isolation), `sks-async` (stacked PRs), `sks-swarm` (agent
 cluster), `sks-review` (phase 5), `sks-pr-ready` (draft→ready flip
-before landing), `ponytail-review` (over-engineering
-lens), `sks-tldr` (end-of-loop block closes the loop).
+before landing), `sks-tldr` (end-of-loop block closes the loop).
 Authoring conventions apply during the write phase via the fused `sks-edit`
 skill (identification + all family rule sets in one skill).
