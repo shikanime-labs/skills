@@ -1,5 +1,15 @@
 # Shikanime org conventions
 
+## Label taxonomy and issue fields
+
+- Canonical org-wide labels live in `<org>/.github`. Probe with `gh api repos/<org>/.github/labels?per_page=100`; GitHub exposes no org-label REST or GraphQL endpoint. A repo is in sync when its labels match that set exactly.
+- Org label sets differ by design: `shikanime-x` carries `accessibility`, which the other two lack. Reproduce metadata moved to a field; `risk:*` stays a label family with `high`, `medium`, and `low` values. `area:*` stayed a repo-scoped label family in `shikanime-studio/hakurei` after field trials; domain vocabulary belongs to the owning repo.
+- Structured metadata belongs in org-level issue fields, not labels: `Priority`, `Effort`, `Start date`, `Target date`, `Reproduce`. `Effort` is `single_select` with options `High`, `Medium`, `Low`; `Reproduce` is `single_select` with `Always`, `Often`, `Rare`, `None`. Do not recreate `Review effort N/5` or `reproduce:*` labels.
+- Domain-specific labels stay in the owning repo, such as `area:*` and `recette`. Removed org-wide: `auto`, `ghstack`, `stale`, `photoshoot`, `ready-for-agent`, `Possible security concern`, `autorelease: pending`.
+- Backfill every label usage into its field before deleting the source label. Post `{"issue_field_values":[{"field_id":<id>,"value":"High"}]}` to `/repos/<org>/<repo>/issues/<n>/issue-field-values`. Deleting a label strips it from every issue and PR.
+- Field creation needs org admin plus `admin:org` scope. REST `POST /orgs/<org>/issue-fields` returns 404 and GraphQL `createIssueField` returns FORBIDDEN for a member token, even one holding `admin:org`.
+- Archived repos are read-only: label writes return 403 or 404, so gap fixes skip them.
+
 ## Targets
 
 Orgs: `shikanime-labs` (infrastructure, config, catalog repos) and
