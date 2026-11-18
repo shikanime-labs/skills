@@ -3,7 +3,8 @@
 Environment facts for running the workflow family in shikanime repos
 (loaded by `sks-context` when operating in shikanime repos):
 
-- Org identity: `shikanime-labs` and `shikanime-studio` GitHub orgs.
+- Org identity: `shikanime-labs`, `shikanime-studio` and `shikanime-x`
+  GitHub orgs.
 - Repo paths: `~/Source/Repos/github.com/<org>/<repo>`; dual-clone
   discipline with the `.hermes/skills` mirror.
 - Remote split: local path may say `shikanime-labs` while the gh remote is
