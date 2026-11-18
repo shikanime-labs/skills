@@ -14,7 +14,6 @@ metadata:
       - devlib
     related_skills:
       - sks-dev
-      - github-workflow-generation
       - sks-context
 platforms:
   - linux
@@ -235,5 +234,5 @@ gh api repos/<org>/<repo>/tags -q '.[].name'
 
 - `sks-dev` — the loop this bootstrap feeds into (workspace, commit,
   PR, land).
-- `github-workflow-generation` — the generated workflows land as rendered
-  YAML; behavior changes go to the devlib generator, not the repo.
+- Generated workflows land as rendered YAML; behavior changes go to the
+  devlib generator, not the repo.

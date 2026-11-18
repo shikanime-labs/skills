@@ -23,7 +23,6 @@ metadata:
       - sks-delegate
       - sks-issue
       - sks-dev
-      - ponytail-audit
       - sks-context
 platforms:
   - linux
@@ -115,11 +114,10 @@ step that would have shown the failure is in the network layer, not the handler.
 - Propose the solution as a concrete plan: the single change at the source where
   all callers route through (not a guard in every caller), sketched as a diff or
   PR description. Note the regression test that would lock it shut.
-- Pass the proposal through the `ponytail` ladder (laziest fix that works). When
-  the root cause traces to over-engineering — speculative abstraction, dead
-  flexibility, reinvented stdlib — run `ponytail-review` (diff) or
-  `ponytail-audit` (whole repo) on the failing component; its ranked
-  delete/simplify list doubles as the fix plan.
+- Pass the proposal through the laziest-fix-that-works ladder. When the
+  root cause traces to over-engineering — speculative abstraction, dead
+  flexibility, reinvented stdlib — let the delete/simplify list double as the
+  fix plan.
 - Record it in the linked issue. The proposal is verified when the repro
   confirms the theory and the proposed change addresses the source — not when
   code is merged. Hand off the application.
@@ -213,8 +211,6 @@ echo "investigation complete: root cause + hypothesis + proposed fix" \
 - `sks-async` — the isolation pattern, for parallel implementation rather than
   parallel debugging.
 - `sks-delegate` — canonical single-workspace isolation recipe before a fix.
-- `ponytail-audit` — when the defect's root cause is accidental complexity, its
-  ranked simplification list seeds the proposal.
 - `sks-gist` — publish a verified probe script or recovery sequence for reuse
   instead of letting it die in the transcript.
 - `sks-tldr` — the end-of-loop block the finding and proposal fill.

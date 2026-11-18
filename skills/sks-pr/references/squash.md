@@ -59,7 +59,7 @@ empty output. Verify via `jj file show` and cross-check counts:
 ```bash
 ROOT=$(jj root)
 jj file show -r <commit> <path> | grep -c "it('should"      # test count
-# AI-marker sweep (ponytail: corner-cut markers; ledger via ponytail-debt)
+# AI-marker sweep (corner-cut markers via `ponytail:` comments)
 jj file show -r <commit> <path> | grep -l "ponytail"        # per-file
 # signature present
 jj log -r <commit> --no-graph -T 'if(signature, "signed", "UNSIGNED")'

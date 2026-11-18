@@ -22,10 +22,6 @@ metadata:
       - sks-pr-resolve
       - sks-land
       - sks-pr
-      - requesting-code-review
-      - caveman-review
-      - ponytail-review
-      - github-code-review
       - sks-context
 platforms:
   - linux
@@ -36,8 +32,7 @@ platforms:
 # Review
 
 Route a review request to the matching strategy. Two review domains ship
-here: the org-repo PR pass below — the `ponytail`/YAGNI lens
-(`ponytail-review` is the over-engineering-only pass), the security scan,
+here: the org-repo PR pass below — the YAGNI lens, the security scan,
 the issue cross-check, and GitHub posting — and the upstream
 NixOS/nixpkgs PR strategy (`references/nixpkgs.md`): build every changed
 package with `nixpkgs-review`, then check the diff against nixpkgs
@@ -52,8 +47,8 @@ shikanime org, read `references/shikanime.md` for the org stack
 mapping.
 
 The mechanics below (added-line security scan, independent fail-closed reviewer)
-are distilled from `requesting-code-review` and adapted to the
-human-gated flow: the agent posts findings and a verdict, a human approves.
+follow the human-gated flow: the agent posts findings and a verdict, a human
+approves.
 
 ## Strategy routing
 
@@ -61,7 +56,6 @@ human-gated flow: the agent posts findings and a verdict, a human approves.
 | --- | --- |
 | Local diff or org-repo PR — "review this diff", "review PR #N", check before push/merge | PR pass below, steps 1-6 |
 | Upstream NixOS/nixpkgs PR — "review this nixpkgs PR", "is this package update good to merge" | `references/nixpkgs.md` |
-| Over-engineering findings only | `ponytail-review` |
 
 Cross-strategy invariants:
 
@@ -112,9 +106,8 @@ assumption memory already covers the area.
   one path the ticket named;
 - (4) test strategy present and owned by the right unit?
 
-Full ladder: the `ponytail` skill. Deliberate corner-cuts found here should
-carry a `ponytail:` comment (ceiling + upgrade path) — `ponytail-debt`
-harvests them.
+Apply the laziest-fix-that-works ladder. Deliberate corner-cuts found here
+carry a `ponytail:` comment (ceiling + upgrade path).
 
 **3 — Security scan (added lines).** Run `references/security-scan.md`. Any
 match = `blocking`. Covers hard-coded secrets, shell/SQL injection,
@@ -214,8 +207,6 @@ verdict + praise (2-3 sentences), corrected commit message suggested. Mapping:
 any `blocking` → `REQUEST_CHANGES`; else `APPROVE` if confident, `COMMENT`
 otherwise (`gh pr review <N> --request-changes|--approve|--comment`). A
 request routed to the nixpkgs strategy verifies per `references/nixpkgs.md`.
-
-Related: `requesting-code-review`, `github-code-review`.
 
 ## See also
 
