@@ -161,9 +161,11 @@ section.
 
 ## See also
 
+- `docs/agent-workflow.md` — load when the documentation task needs the
+  family map or the coordination ladder.
 - `sks-repo` — new-repo bootstrap; flips the wiki flag and records the
   Home-in-UI step.
 - `sks-issue` / `sks-pr` — code changes still go through issue → PR; the
   wiki documents the result.
 - `sks-async` — fan-out mechanics; its per-repo technical detail belongs in
-  each repo's wiki under this skill.
+  each repo's `docs/` under this skill, with the wiki as an index.

@@ -213,6 +213,8 @@ Flip the curating PR's board card to `Done` (`sks-project`).
 
 ## See also
 
+- `docs/agent-workflow.md` — load when deciding which skill owns a change or
+  when curating a skill that other skills point at.
 - `sks-selfupdate` — orchestrates curation → dev-workflow → local resync.
 - `sks-edit` references/skill-authoring/guide.md — authoring a new skill
 (curation starts from an existing one).
