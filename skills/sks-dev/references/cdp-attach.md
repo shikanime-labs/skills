@@ -2,7 +2,7 @@
 
 The shared attach procedure for driving a GitHub page through Chrome's
 debug port — used by the UI-only GitHub recipes (auto-close checkbox in
-`sks-repo`, wiki bootstrap in `sks-wiki`). Each recipe owns its
+`sks-repo`, wiki bootstrap in `sks-doc`). Each recipe owns its
 surface-specific steps (what to fill, what proves success); this file
 owns the connect-and-click machinery they all repeat.
 
