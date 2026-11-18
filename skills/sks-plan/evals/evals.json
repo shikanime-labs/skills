@@ -29,13 +29,13 @@
     },
     {
       "id": 3,
-      "expected_output": "Routes elsewhere: nixpkgs-release milestone provisioning is sks-milestone's plane, and a single ticket is sks-dev straight — sks-plan only decomposes multi-unit goals into boarded issue sets.",
+      "expected_output": "Routes elsewhere: nixpkgs-release milestone provisioning is sks-milestone's plane; a single ticket runs this same plane without decomposition or a new milestone — sks-plan no longer defers it to sks-dev.",
       "files": [],
       "prompt": "Create the 26.11 milestones across our Nix repos, and also plan this one feature ticket #415.",
       "assertions": [
         "YAML frontmatter parses and 'name' equals 'sks-plan'",
         "When to Use excludes release-milestone provisioning and assigns it to sks-milestone",
-        "When to Use excludes single units and assigns them to sks-dev",
+        "When to Use allows a single unit through the same plane without decomposition or a new milestone",
         "Body distinguishes work planning from the release milestone plane"
       ]
     }

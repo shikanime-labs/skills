@@ -181,7 +181,7 @@
       },
       {
         "name": "sks-plan",
-        "description": "Use when planning a milestone from a goal: converge direction, decompose into dependency-ordered units, fill the milestone with triaged, boarded issues ready for sks-iterate.",
+        "description": "Use when planning a milestone from a goal or a single unit: converge direction, decompose into dependency-ordered units, fill the milestone with triaged, boarded issues ready for sks-iterate.",
         "path": "skills/sks-plan"
       },
       {

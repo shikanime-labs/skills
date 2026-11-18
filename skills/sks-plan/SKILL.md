@@ -1,10 +1,10 @@
 ---
 name: sks-plan
 description:
-  "Use when planning a milestone from a goal: converge direction, decompose
-  into dependency-ordered units, fill the milestone with triaged, boarded
-  issues ready for sks-iterate."
-version: 0.2.0
+  "Use when planning a milestone from a goal or a single unit: converge
+  direction, decompose into dependency-ordered units, fill the milestone
+  with triaged, boarded issues ready for sks-iterate."
+version: 0.3.0
 author: Automata
 license: Apache-2.0
 metadata:
@@ -46,12 +46,16 @@ owns its plane; the loop that consumes the result is `sks-iterate`.
 - "Plan the <goal> milestone" / a goal too large for one unit — decompose
   and fill the milestone.
 - An RFC just converged (`sks-discussion`) and its direction needs units.
-- Not for a single unit — that is `sks-dev` straight, no planning plane.
+- A single unit that wants a plan — same plane, no decomposition or new
+  milestone; converge → issue → board → `sks-dev`.
 - Not for minting the nixpkgs-release milestone plane across repos — that
   is `sks-milestone`; this skill fills a milestone with units, that one
   owns the release calendar.
 
 ## Procedure
+
+For a single unit, steps 2–3 collapse to the one unit and step 4 creates no
+new milestone; converge → issue → board still apply.
 
 1. **Converge the goal.** Unconverged direction goes to `sks-discussion`
    first; units cut before the direction settles are rework. Converged

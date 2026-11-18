@@ -137,7 +137,7 @@ specification, compatible with the
 | `sks-maintenance` | Use when maintaining the org's repos, fleet, and runtimes: renovate and language dependency bumps, nixpkgs/runtime upgrades, and the issue → PR → land → post-merge validation loop. |
 | `sks-fastlane` | Use when the user designates a change as trivial and asks for an expedited merge: run the eligibility gate, then merge once CI is green. |
 | `sks-milestone` | Use when provisioning nixpkgs-release-aligned milestones across the org's Nix repos: discover the flake roster, create per-release milestones, assign issues and PRs, audit drift. |
-| `sks-plan` | Use when planning a milestone from a goal: converge direction, decompose into dependency-ordered units, fill the milestone with triaged, boarded issues ready for sks-iterate. |
+| `sks-plan` | Use when planning a milestone from a goal or a single unit: converge direction, decompose into dependency-ordered units, fill the milestone with triaged, boarded issues ready for sks-iterate. |
 | `sks-moderate` | Use when hiding, unhiding, or moderating comments on GitHub issues, PRs, or discussions, or locking and unlocking conversations: Hide-feature classifiers and GraphQL mutations, REST conversation locks, verification. |
 | `sks-notif-sweep` | Use when sweeping unread GitHub notifications: filter noise, act on the answerable, mark processed threads read, never re-report a thread. |
 | `sks-pr` | Use when opening a PR in a target-org repo: push to origin, --head org:branch, plain-English title, issue linkage, parity with commit. |
