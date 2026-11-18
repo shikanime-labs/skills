@@ -128,7 +128,11 @@ verified N of N after final merge.
 ### 3. Triage metadata
 
 Delegate to `sks-issue-triage`: sets each empty, determinable field (type,
-labels, assignee, milestone, project); rules live there.
+labels, assignee, milestone, project); rules live there. Every org-level issue
+field applicable to the issue type must be filled before setup is complete.
+Use `sks-triage/references/issue-fields.md` for defaults and applicability:
+`Reproduce` belongs to `Bug` only, the other four fields apply to every
+issue type. An empty applicable field is drift.
 
 ## Pitfalls
 
@@ -147,7 +151,8 @@ gh issue view <N> --repo <org>/<repo> \
 
 Confirm title + label set; issue in org repo. Set-up is complete when
 the body is a stable problem statement with a converged `- [ ]` ledger
-and triage metadata is set: labels non-empty, an assignee when the work
+and triage metadata is set: labels non-empty, every org-level issue field
+applicable to the issue type has a value, an assignee when the work
 is machine-routable (triage leaves human-only work unassigned
 deliberately), and a
 board card with Status `Ready` (`Backlog` only with a parked rationale)

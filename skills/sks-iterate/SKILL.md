@@ -41,6 +41,13 @@ Entry gate: `sks-plan` ran to done — the loop consumes a planned, boarded
 milestone. An empty board or an unplanned backlog routes back to `sks-plan`,
 never into improvised card pulls.
 
+## Plan lookup
+
+Before working an item, read the `sks-plan` that produced it and use its unit
+table and dates. The plan owns Start date and Target date; never replace them
+with a guess. If no plan exists, say so and route the item back to `sks-plan`
+before proceeding.
+
 ## When to Use
 
 - "Keep working the board" / "take the next cards" — run the loop.

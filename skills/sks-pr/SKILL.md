@@ -32,6 +32,13 @@ push to `origin`, open with `--head <org>:<branch>`, base `main`, plain-English
 (or `doc:`) title, issue linkage. Repo enforcement (branch protection, CI,
 hooks) is detected per repo.
 
+## Plan lookup
+
+Before working an item, read the `sks-plan` that produced it and use its unit
+table and dates. The plan owns Start date and Target date; never replace them
+with a guess. If no plan exists, say so and route the item back to `sks-plan`
+before proceeding.
+
 ## When to Use
 
 - "Open a PR in a target-org repo."

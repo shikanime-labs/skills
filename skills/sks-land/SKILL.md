@@ -35,6 +35,13 @@ approving review is in place — protect `main`. Scope:
 (`sks-pr-resolve`), or direct "push to main".
 This skill only lands.
 
+## Plan lookup
+
+Before working an item, read the `sks-plan` that produced it and use its unit
+table and dates. The plan owns Start date and Target date; never replace them
+with a guess. If no plan exists, say so and route the item back to `sks-plan`
+before proceeding.
+
 ## When to Use
 
 - "Land an org PR after DoD gates pass."

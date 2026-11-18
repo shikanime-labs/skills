@@ -46,6 +46,13 @@ the harness delegation primitive (mapping:
 `sks-async/references/harness-delegation.md`) do the delivery. It does NOT
 replace them.
 
+## Plan lookup
+
+Before working an item, read the `sks-plan` that produced it and use its unit
+table and dates. The plan owns Start date and Target date; never replace them
+with a guess. If no plan exists, say so and route the item back to `sks-plan`
+before proceeding.
+
 ## When to Use
 
 - One task fragments into units that need different capabilities (model, tool,

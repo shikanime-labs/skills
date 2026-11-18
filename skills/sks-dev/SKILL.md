@@ -38,6 +38,13 @@ operating in any target-org repo. Cloud-pi-native console repo facts live in
 cloud-pi-native/console repository. Deep recovery recipes live in
 `references/` behind the load conditions in "Pitfall index".
 
+## Plan lookup
+
+Before working an item, read the `sks-plan` that produced it and use its unit
+table and dates. The plan owns Start date and Target date; never replace them
+with a guess. If no plan exists, say so and route the item back to `sks-plan`
+before proceeding.
+
 ## When to Use
 
 - "Start working on a repo of the org" — end-to-end dev loop from discussion

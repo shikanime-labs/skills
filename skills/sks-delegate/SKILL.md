@@ -47,6 +47,13 @@ never in the cloned checkout. `sks-dev` inherits this requirement; the
 checkout is a read-only reference surface. A unit that skips `sks-delegate`
 has not entered the dev loop.
 
+## Plan lookup
+
+Before working an item, read the `sks-plan` that produced it and use its unit
+table and dates. The plan owns Start date and Target date; never replace them
+with a guess. If no plan exists, say so and route the item back to `sks-plan`
+before proceeding.
+
 ## When to Use
 
 - Every implementation unit of the target org — even on a clean checkout. This
