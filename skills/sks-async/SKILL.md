@@ -38,6 +38,13 @@ in a shikanime org (co-author trailer, remote split);
 `references/cloud-pi-native.md` when working in the cloud-pi-native/console
 repository (French artifacts, co-author trailer, draft PRs with `Refs #N`).
 
+## Plan lookup
+
+Before working an item, read the `sks-plan` that produced it and use its unit
+table and dates. The plan owns Start date and Target date; never replace them
+with a guess. If no plan exists, say so and route the item back to `sks-plan`
+before proceeding.
+
 ## When to Use
 
 - Several units, some independent.

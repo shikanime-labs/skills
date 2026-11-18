@@ -1,9 +1,14 @@
 # Issue fields
 
-Org-level structured metadata on issues: **Priority** and **Effort**
-(single-select) plus **Start date** and **Target date** (dates) on both
-shikanime orgs. Load when the target org defines issue fields and an item has
-empty or incomplete values.
+Org-level structured metadata on issues: **Priority**, **Effort**,
+**Reproduce** (single-select) plus **Start date** and **Target date** (dates)
+in every shikanime org. Blast radius is a `risk:*` label family, not a field.
+Load when the target org defines issue fields and an
+item has empty or incomplete values.
+
+Every applicable field is filled when an issue is created or triaged. An empty
+applicable field is drift, not a placeholder for later. Fields outside the
+item's issue type stay unset by decision.
 
 Scope: issues only. The write endpoint technically accepts a PR's issue
 object, but org PRs stay empty — never set field values on a PR.
@@ -20,21 +25,37 @@ by exact option name. **Fetch field ids live at runtime**: the write payload
 keys are `field_id` + `value`, resolved from this listing — never from memory
 or stale examples, ids are org-scoped numerals.
 
+## Applicability
+
+Field visibility is pinned per issue type in org Settings → Planning →
+Issue fields → Field visibility: choose which issue types show the field
+when viewing and creating issues. Target pins are `Reproduce` → `Bug`, and
+`Priority`, `Effort`, `Start date`, `Target date` → all three types.
+Read the live configuration with GraphQL `IssueType.pinnedFields`; GitHub
+exposes no public REST or GraphQL mutation for changing it.
+
+A field not pinned to the item's type stays unset.
+
 ## Derive
 
-- **Priority** — blocking severity: blocks other work or red on trunk →
-  `High`; drop-everything → `Urgent`; routine queue → `Medium`; cosmetically
-  deferred → `Low`.
+- **Priority** — blocking severity: blocks other work or red on trunk → `High`;
+drop-everything → `Urgent`; routine queue → `Medium`; cosmetically deferred →
+`Low`. Default when evidence is silent: `Medium`.
 - **Effort** — scope and risk: multi-file or risky → `High`; moderate →
-  `Medium`; bounded and cosmetic → `Low`.
-- **Start date** — only when the context signals work begins (actively picked
-  up → today).
-- **Target date** — only for a stated deadline or commitment; never invented.
+`Medium`; bounded and cosmetic → `Low`. Default: `Medium`.
+- **Reproduce** — `Bug` only: `Always`, `Often`, `Rare`, or `None` when
+reproduction fails. Default for a bug with no evidence: `None`.
+- **Start date** — when work begins: today when picked up. Default for a new
+issue with no schedule: today.
+- **Target date** — stated deadline or commitment when one exists. Default when
+none is stated: seven days after Start date, a planning horizon to revise when a
+real commitment appears.
 
 ## Read, merge, write
 
 The `PUT` write replaces **all** field values, so never send only the new
-one. The endpoint demands a literal field-id numeral in `field_id` and the option
+one. The endpoint demands a literal field-id numeral in `field_id` and the
+option
 **name** as a string in `value` — an id in `value` or an option id in a
 `single_select_option_id` key is a 422:
 
@@ -61,10 +82,11 @@ Dates take ISO `YYYY-MM-DD`; single-select takes the option name.
 
 ## Worked example
 
-Issue shikanime-labs/skills#292 — a requested catalog addition, no blocker,
-work picked up the same day: Priority `Medium`, Effort `Medium`, Start date
-`2026-09-29`, Target date `2026-09-30`. The `PUT` echoed all four values back
-with their `single_select_option` names.
+Issue shikanime-labs/skills#292 — a requested catalog addition typed `Feature`,
+no blocker, work picked up the same day: Priority `Medium`, Effort `Medium`,
+Reproduce unset because the type is not `Bug`, Start date `2026-09-29`, Target
+date `2026-10-06`. The `PUT` echoed all four set values back with their
+`single_select_option` names.
 
 ## Runtime id resolution
 

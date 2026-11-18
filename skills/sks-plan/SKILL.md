@@ -95,6 +95,13 @@ new milestone; converge → issue → board still apply.
    assignment survives the lifecycle: a unit's PR triages onto its
    issue's milestone (`sks-pr-triage` owns the mechanics) — a milestone
    dropped at PR open is the plan's decision lost.
+
+   Set `Start date` and `Target date` on every unit here. The plan owns
+   those fields because it owns the sequence: Start date is the planned
+   begin, Target date the planned finish. Read both from the unit table
+   or the milestone window. Never leave either empty and never inherit a
+   triage default when a plan exists. Use
+   `sks-triage/references/issue-fields.md` for the write mechanics.
 6. **Board the set** (`sks-project`): every card Status `Ready` on the
    family board — the board is what `sks-iterate` reads; no board, no
    loop.
@@ -130,8 +137,9 @@ gh project item-list <board> --owner <board-owner> --limit 200 --format json \
 ```
 
 Done when every approved unit is an open, triaged issue on the milestone,
-boarded `Ready`, dependencies sit on the issues, and the report block
-names the hand-off to `sks-iterate`.
+boarded `Ready`, dependencies sit on the issues, Start date and Target date
+carry this plan's values, and the report block names the hand-off to
+`sks-iterate`.
 
 ## See also
 
