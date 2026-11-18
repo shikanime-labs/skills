@@ -37,6 +37,12 @@ update/rectification — and hands its prose rules here.
   interface expands it to show the issue title text. Prefer it over a URL.
   Cross-repo refs carry their owner: full URL or `owner/repo#N`. Mid-sentence
   `#N` only highlights, which is fine — leave it.
+- **Clickable links**: a real URL in prose is an inline Markdown link, never
+  a bare URL or a URL inside a code span — those do not render as links. Put
+  the URL in the link text (`[https://...](https://...)`) when the URL is the
+  reference, so the displayed text is clickable; a shorter descriptive label
+  is fine when clearer. Placeholder and template URLs (`<org>`, `OWNER/REPO`,
+  `<host>`) and URLs that are part of a command or config stay literal.
 - **Terse, conclusion first**: lead with the conclusion, back it with cited
   evidence, stop. No nested parentheticals — an aside becomes its own
   sentence. Asides that recur become sections; asides that don't, get cut.
@@ -171,7 +177,8 @@ jj log -r @ --no-graph -T description
 ```
 
 Confirm: no hard wraps, standalone refs use `#N` (cross-repo full URL),
-no unescaped `@`, one co-author trailer, template headings verbatim, and no
+real URLs render as clickable Markdown links, no unescaped `@`, one co-author
+trailer, template headings verbatim, and no
 fact past its color — pasted command output is the usual leak vector.
 
 ## See also
