@@ -68,6 +68,7 @@ Distinguishing signals:
 
 2. Wait one reconcile interval (`--interval=1m` here) — external-dns
    recreates it fresh with an ownership TXT pointing at the current target.
+
 3. Verify: `dig +short <host> @1.1.1.1` equals the live LB IP, and a TXT query
    now returns the ownership record.
 

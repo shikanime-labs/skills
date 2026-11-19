@@ -176,6 +176,7 @@ Two rules distinguish it from fill:
 - **Never silent.** Every changed field posts a trail comment on the item —
   field, old → new, and the evidence that forced it. Fill only adds;
   requalification mutates metadata a reader may have relied on.
+
 - **State is a field too.** Study first; the verdict drives the acceptance
   ledger before any close. Ticks come only from verified evidence
   (`sks-pr-resolve` Gate 2); impossible criteria are struck with a comment,
@@ -191,11 +192,13 @@ Two rules distinguish it from fill:
     `not planned`.
   - **blocked by another issue** — `--add-blocked-by` for the named
     blocker, card Status `parked`, ledger untouched, comment naming it.
+
 - **Links move too.** The issue↔PR Development link is metadata like the
   rest: requalification re-derives it from the current evidence — stale
   link removed (`removeCloseIssueReferences`), missing link added
   (`addCloseIssueReferences`), trail comment old → new. Mechanics in
   `sks-pr-triage` step 5.
+
 - **Report old → new.** Step 5 lists each requalified field with both
   values and the evidence; items whose evidence did not move are reported
   as untouched no-ops.

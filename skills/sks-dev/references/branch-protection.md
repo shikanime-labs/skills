@@ -19,6 +19,7 @@ merge is rejected by protection:
   self-approval — that is what forces
   `gh pr merge --squash --admin` once approval is given (org approval
   practice: `references/shikanime.md` when operating in a shikanime org).
+
 - Gitlint-enforced repos (org classes: `references/shikanime.md` when
   operating in a shikanime org): CC1 rejects any commit without
   `Signed-off-by` (full envelope:

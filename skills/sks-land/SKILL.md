@@ -67,6 +67,7 @@ queue-enforced repos) lives in `references/landing-gates.md`.
 ## Post-merge
 
 1. Verify: `gh pr view <M> --repo <org>/<repo> --json state`.
+
 2. **Run the acceptance gate (deployment gate).** A merged PR is a claim, not a
    verified outcome — the gate runs, it is not assumed. Deploy first: resync
    for agent/skill repos, apply for infra (the repo's deploy step — org
@@ -75,6 +76,7 @@ queue-enforced repos) lives in `references/landing-gates.md`.
    issue or report the landing complete on merge alone; only the user confirms
    the running change. If the user rejects, treat it as a reported defect: fix
    via a new PR, re-deploy, and re-request acceptance.
+
 3. Close the issue **deliberately**: re-read the live ledger — the Gate 2
    read went stale the moment it ran —
 
@@ -92,8 +94,10 @@ queue-enforced repos) lives in `references/landing-gates.md`.
    ```
 
    A ledger that will not reach N/N is a reported defect, not a close.
+
 4. Rebase downstream: if other PRs sit on top of the merged branch, rebase them
    onto the new `main` (`jj rebase -d main`).
+
 5. **Sync the wiki (shikanime org: mandatory when the change has a wiki
    surface).** The repo wiki is the canonical home of technical docs —
    in-repo `docs/` was migrated away (machines/manifests/tailnet); never
@@ -105,6 +109,7 @@ queue-enforced repos) lives in `references/landing-gates.md`.
    default to `master`). Wiki pushes bypass review — accepted trade-off.
    Skip only when the change is purely internal to what the wiki does not
    cover. Full mechanics: `sks-doc`.
+
 6. **Teardown the landing bookmark.** A merge deletes the remote branch only
    in some repo configurations — never assume it, and never read a
    "Nothing changed" push as proof: `jj bookmark delete` and `jj git push`
@@ -122,6 +127,7 @@ queue-enforced repos) lives in `references/landing-gates.md`.
    The first call is the check: it exits 0 only while the branch exists, so
    the deletion runs exactly when it is needed. A stale merged branch feeds
    the stale-branch audit surface.
+
 7. **Drop the isolated workspace** if you used one. Landing is a remote
    `gh pr merge`; the local checkout that held the change is then dead weight.
    sks-land never auto-deletes a workspace — remove it deliberately:

@@ -28,8 +28,10 @@ Three distinct failure layers — diagnose in this order:
    recipe in `book-external-dns` `references/orphaned-record-drift.md`.
    `inference.i.shikanime.studio` served a dead VIP for
    days while the gateway itself was healthy.
+
 2. **000 with TLS CertificateRequest abort** = mTLS required (below). The 000
    is the signal to present a client cert, not to retry.
+
 3. **5xx** = read the Envoy access log (section below).
 
 ## The gateway enforces mTLS — bare probes return 000 by design
