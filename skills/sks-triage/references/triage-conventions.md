@@ -7,11 +7,17 @@ the triage skills route to.
 
 ## Defaults
 
-- Default assignee: `yorha-operator` (the Automata bot account) — only
-  for machine-routable work (no human credentials, hardware, or
-  spending). Prefer it when it appears in the repo's eligible assignee
-  list; otherwise fall back to the current user (`gh api user --jq
-  .login`) under the same gate. Human-only work stays unassigned.
+- Default assignee on every new issue and PR: `yorha-operator` (the
+  Automata bot account) — always, unconditionally. The assignee role
+  is participation: take part in the discussion and co-work with the
+  author; never take the work over unless explicitly asked. Assign when
+  the account appears in the repo's eligible assignee list; when it
+  does not, fall back to the current user (`gh api user --jq .login`).
+  Triage also assigns: unassigned incoming issues and PRs get the
+  default assignee with the same participation role.
+- Assignment is a role, not a claim of machine-routability: a
+  discussion-participant assignee is correct even when the fix needs
+  human credentials, hardware, or spending.
 - Reviewer (PRs): fill-empty only — CODEOWNERS auto-assigns at
   opening; when a PR carries no request, `yorha-operator` unless they
   authored it, then another collaborator; skip if none works.

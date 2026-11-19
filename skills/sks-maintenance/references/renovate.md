@@ -33,8 +33,7 @@ explicit go-ahead.
 
 5. **Escalate chronic reds.** Red 3+ consecutive days on the same error: one
    summary issue in that repo (`sks-issue`) with the error pattern, assigned
-   `yorha-operator` where eligible and the fix is machine-routable;
-   otherwise unassigned.
+   `yorha-operator` where eligible — always (participation role).
 
 ## Ecosystem payloads
 

@@ -157,9 +157,8 @@ Confirm title + label set; issue in org repo. Set-up is complete when
 the body is a stable problem statement with a converged `- [ ]` ledger
 and triage metadata is set: issue type set, labels non-empty (labels
 alone are the known miss, not triage), every org-level issue field
-applicable to the issue type has a value, an assignee when the work
-is machine-routable (triage leaves human-only work unassigned
-deliberately), and a
+applicable to the issue type has a value, the default assignee
+(participation role — always set), and a
 board card with Status `Ready` (`Backlog` only with a parked rationale)
 — the authoritative check is `gh project item-list <board> --owner
 <owner> --format json` filtered to the issue number (shows Status +
