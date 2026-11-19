@@ -4,7 +4,7 @@ description:
   "Use when opening an issue in an org repo: body is the
   problem statement, acceptance criteria as a command-decidable tasklist;
   owns the create → triage order."
-version: 0.4.0
+version: 0.4.1
 author: Automata
 license: Apache-2.0
 metadata:
@@ -125,12 +125,15 @@ template's section holds may be posted as comments to steer resolution, but
 proof of the solution belongs in the PR. Close deliberately — ledger
 verified N of N after final merge.
 
-### 3. Triage metadata — mandatory, not optional
+### 3. Triage metadata
 
 Delegate to `sks-issue-triage` before this skill is done: it sets every
 empty, determinable field (type, labels, assignee, milestone, project);
-rules live there. Never leave triage as a "next step" — an issue without
-its metadata is a half-created issue. NEVER FORGET to self-triage.
+rules live there. Labels ride step 1's create command — type, assignee,
+milestone, project, and issue fields exist only after this step. A
+labels-only issue is the known miss, not a triaged one; the verification
+read-back must cover every class or triage did not happen. NEVER FORGET
+to self-triage.
 Use `sks-triage/references/issue-fields.md` for defaults and applicability:
 `Reproduce` belongs to `Bug` only, the other four fields apply to every
 issue type. An empty applicable field is drift.
@@ -147,12 +150,13 @@ issue type. An empty applicable field is drift.
 
 ```bash
 gh issue view <N> --repo <org>/<repo> \
-  --json number,title,labels,assignees,milestone,projectItems
+  --json number,title,labels,assignees,milestone,projectItems,issueType
 ```
 
 Confirm title + label set; issue in org repo. Set-up is complete when
 the body is a stable problem statement with a converged `- [ ]` ledger
-and triage metadata is set: labels non-empty, every org-level issue field
+and triage metadata is set: issue type set, labels non-empty (labels
+alone are the known miss, not triage), every org-level issue field
 applicable to the issue type has a value, an assignee when the work
 is machine-routable (triage leaves human-only work unassigned
 deliberately), and a
