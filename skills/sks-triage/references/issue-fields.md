@@ -29,8 +29,9 @@ or stale examples, ids are org-scoped numerals.
 
 Field visibility is pinned per issue type in org Settings → Planning →
 Issue fields → Field visibility: choose which issue types show the field
-when viewing and creating issues. Target pins are `Reproduce` → `Bug`, and
-`Priority`, `Effort`, `Start date`, `Target date` → all three types.
+when viewing and creating issues. Current pins are `Reproduce` → `Bug`,
+`Start date` and `Target date` → `Feature`, and `Priority` and `Effort` →
+all three types. This layout is consistent across every shikanime org.
 Read the live configuration with GraphQL `IssueType.pinnedFields`; GitHub
 exposes no public REST or GraphQL mutation for changing it.
 
