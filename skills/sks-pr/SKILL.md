@@ -4,7 +4,7 @@ description:
   "Use when opening a PR in a target-org repo: push to origin,
   --head org:branch, plain-English title, issue linkage, parity with commit,
   pre-submit isolation gate, opens as a draft."
-version: 0.2.3
+version: 0.3.0
 author: Automata
 license: Apache-2.0
 metadata:
@@ -180,11 +180,13 @@ every thread to resolved — address pertinent in diff, discard non-pertinent wi
 a one-line comment, never silently; (2) re-run `sks-review` if logic changed;
 (3) verify the issue's DoD ledger is still N-of-N against the new head.
 
-### 3. Apply triage metadata
+### 3. Apply triage metadata — mandatory, not optional
 
-Delegate to `sks-pr-triage` (#N): sets empty determinable fields (labels,
-assignee, milestone, project, reviewers). Rules live in `sks-pr-triage`; don't
-re-derive here.
+Delegate to `sks-pr-triage` (#N) before this skill is done: it sets every
+empty determinable field (labels, assignee, milestone, project,
+reviewers). Rules live in `sks-pr-triage`; don't re-derive here. Never
+leave triage as a "next step" — a PR without its metadata is a
+half-opened PR. NEVER FORGET to self-triage.
 
 ## Post-steps
 
@@ -203,11 +205,14 @@ re-derive here.
 ## Verification
 
 ```bash
-gh pr view <N> --repo <org>/<repo> --json title,baseRefName,body
+gh pr view <N> --repo <org>/<repo> \
+  --json title,baseRefName,body,labels,assignees,milestone
 ```
 
 Confirm base is `main` (or repo default), title is plain-English/`doc:`, body
-links the correct issue, and `mergeable="MERGEABLE"` (step 2d).
+links the correct issue, and `mergeable="MERGEABLE"` (step 2d). Step 3
+read-back: labels non-empty and assignee present — a PR that fails this
+is untriaged; run `sks-pr-triage` before reporting done.
 
 ## Pitfalls
 
