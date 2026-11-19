@@ -49,6 +49,14 @@ and some failures are silent or misleading. Verified on this machine.
   "API rate limit already exceeded" while REST create still works:
   `gh api repos/<org>/<repo>/issues -X POST --input payload.json` with
   `{"title", "body"}` (skills #432).
+- Bulk label mutations through `gh issue edit` / `gh pr edit --add-label`
+  fail under the same GraphQL point lock ("API rate limit already exceeded
+  for user ID …") while REST still has quota. Drive label backfills through
+  `gh api repos/<org>/<repo>/issues/<n>/labels -X POST -f "labels[]=<name>"`
+  instead: the endpoint is additive and idempotent, so a re-entrant plan
+  file can retry failed rows without duplicating labels. A batch can start
+  green and exhaust its GraphQL budget partway through, so re-list labels
+  at the end rather than trusting the first writes' exit codes.
 - `gh pr view --json draft` → `Unknown JSON field: "draft"`. The field is
   `isDraft` (`gh pr view <n> --json isDraft`); the REST field stays `draft`
   (`gh api repos/<org>/<repo>/pulls/<n> --jq .draft`) (skills #434).
