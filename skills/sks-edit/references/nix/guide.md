@@ -104,6 +104,7 @@ not copy/sync machinery.
 
    For a single-file edit in a repo that is all-Nix (e.g. a profile module),
    `nix fmt <file>` is fine.
+
 2. **Every attrset in a `.nix` file is key-sorted, and dotted assignments
    fuse at their common ancestor.** Sorting is systematic: any record in a
    file you touch is sorted, including pre-existing ones you did not author —
@@ -128,11 +129,13 @@ not copy/sync machinery.
    literal, keep the merged record even if you are only touching one leaf:
    always merge into the attrset rather than splitting a record into dotted
    single-leaf assignments.
+
 3. **`let ... in` over parenthesized access.** Never write an
    `(expr).attr` access chain (e.g. `(pkgs.formats.json { }).generate`);
    bind the expression to a name in a `let` and select on the name, even
    for a single use site. The binding site is where a reader looks for what
    the value is.
+
 4. **No explanatory comments. Name the intermediate instead.** A comment that
    exists only to label a chunk of a list or expression is a symptom that the
    chunk should be named. Prefer:
@@ -158,6 +161,7 @@ not copy/sync machinery.
    Comments that survive this refactoring are the closed classes of
    `../comment-policy.md` — facts unreachable from the repository; the
    rest are deleted.
+
 5. **Single-responsibility functions and values.** When a derivation, function,
    or let-binding does two things that could be described with two names, split
    it. A value named for what it *is* (e.g. `baseImage`, `extraArgs`,
@@ -165,9 +169,11 @@ not copy/sync machinery.
    *used* (e.g. `finalImage` with a body that also adds args). Split until
    each name answers "what is this?" in one breath; if the answer reads
    "this is X and also Y", it is two values.
+
 6. **One logical change per commit.** A Nix refactor that also renames ten attrs
    and adds a new option and retires an old one is four changes. Split so the
    diff reads as one decision each.
+
 7. **New option = real consumer.** Before adding an option, argument, or config
    knob, ask: is there a consumer that will use a non-default value here? If the
    answer is "maybe later", the option is premature. Default it, do not expose

@@ -44,9 +44,12 @@ acceptance criteria converge (wayfinder's fog cycle on the thread).
 ## Model: the issue comment thread is the iteration space
 
 - **Destination** — the converged problem statement the body should hold.
+
 - **Fog of war** — questions you can state but not answer; research until
   precise, then resolve.
+
 - **Frontier** — open resolvable questions; clear one at a time.
+
 - **Four question kinds** (only `research` fans out; `grilling` is strictly
   serial with the human):
 

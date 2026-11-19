@@ -61,6 +61,7 @@ when the user named one.
    - Explicit subset: only the skills the user named.
    Record the set. Do not skip skills silently; a skipped one is a reported
    reason, not an omission.
+
 2. **Audit every skill in scope.** For each, run an automated check and record
    the defects (these are the evidence the curation acts on):
    - `SKILL.md` YAML frontmatter parses; `name` equals the directory.
@@ -76,10 +77,12 @@ when the user named one.
      Curate `SOUL.md` with the body: persona prose follows the same MD013
      wrap as every other file; stale persona and token bloat are curated out
      the same as a skill body.
+
 3. **Curate per skill.** Load `sks-curate`; apply improvement/compression/
    update to each audited defect, and refresh its `evals/evals.json`. Record
    the baseline and before/after delta for each. Do not ship un-curated edits;
    the curation pass is what keeps the catalog lean.
+
 4. **Ship through the dev workflow** — Follow `sks-dev` for the
    branch/commit/PR/land path:
    - Isolate in a fresh workspace at `main@origin` (`sks-delegate`) so foreign
@@ -95,6 +98,7 @@ when the user named one.
    - Run `sks-review` before requesting merge, then land per `sks-land`
      (or `sks-dev` landing rules). Verify the merge:
      `gh pr view <N> --json state,url`.
+
 5. **Resync to local agents** — After the change lands on `main`, pull
    every updated skill into local agents so future sessions load the new body:
 
