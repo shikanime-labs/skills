@@ -21,11 +21,10 @@ context**; nothing else:
   internal-only→`risk:low`. Only set a risk label when the repo offers it
   (discover step above) — never invent one. `sks-fastlane` consumes the label
   as an eligibility input; its gate is its own.
-- **assignee** — if none: only when the work is machine-routable (no human
-  credentials, hardware, or spending) — the org default assignee
+- **assignee** — if none: the org default assignee
   (`references/shikanime.md`) when present in the eligible list; else
-  `$(gh api user --jq .login)`. Otherwise leave empty with a recorded
-  reason.
+  `$(gh api user --jq .login)`. Always assign — the role is
+  participation, not machine-routability.
 - **milestone** — never set here; milestone assignment is planning's
   decision and belongs to `sks-plan` (or the org release plane,
   `sks-milestone`). Leave it empty even when open milestones exist.

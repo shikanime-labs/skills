@@ -96,12 +96,10 @@ mean those fields stay empty.
   capability→`enhancement`, doc→`documentation`); add an area label only if
   it exists. Drop any not in the step-2 list — never invent.
 
-- **assignee** — if none: assign only when the work is machine-routable
-  (an agent can act without human credentials, hardware, or spending):
-  the org's default assignee (rule in `references/shikanime.md`), but
-  only when it appears in the step-2 assignee list; else
-  `ASSIGNEE=$(gh api user --jq .login)`. Not machine-routable → leave
-  empty and record the reason in the report; never assign for form.
+- **assignee** — if none: the org's default assignee (rule in
+  `references/shikanime.md`) when it appears in the step-2 assignee
+  list; else `ASSIGNEE=$(gh api user --jq .login)`. Always assign —
+  the role is participation, not machine-routability.
 
 - **milestone** — if none and milestones exist: which convention applies is an
   org fact (`references/shikanime.md`); apply it, never a hardcoded scheme.

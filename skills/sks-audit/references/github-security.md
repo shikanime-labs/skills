@@ -1,8 +1,8 @@
 # GitHub Security Alerts
 
 - Orgs in scope: `shikanime-labs` and `shikanime-studio`.
-- Alerts file in the affected repo; assignee `yorha-operator` where eligible
-  and the fix is machine-routable; human-only fixes stay unassigned.
+- Alerts file in the affected repo; assignee `yorha-operator` where
+  eligible — always (participation role).
 - Secret-scanning alerts are always urgent; the issue carries the alert link
   and location, never the secret value.
 - Probe fallback: a secret-scanning 404 from an identity without organization

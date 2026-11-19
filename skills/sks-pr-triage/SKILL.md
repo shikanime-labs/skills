@@ -69,10 +69,10 @@ gh api repos/"$R"/assignees --jq '.[].login'
 - **labels**: match title/body meaning to step-2 list (defect→`bug`,
   capability→`enhancement`, docs→`documentation`); add area label from touched
   paths only if it exists. Never invent; drop anything absent from the list.
-- **assignee**: if none, `ASSIGNEE=$(gh api user --jq .login)` — only when
-  the work is machine-routable (an agent can act without human
-  credentials, hardware, or spending); otherwise leave empty with a
-  recorded reason.
+- **assignee**: if none, the org default assignee
+  (`references/shikanime.md`) when in the repo's eligible list, else
+  `ASSIGNEE=$(gh api user --jq .login)` — always assign; the role is
+  participation, not machine-routability.
 - **milestone**: which convention applies is an org fact
   (`references/shikanime.md`); apply it, never a hardcoded scheme.
 - **project**: if repo boards and PR unboarded, `--add-project <number>`; skip

@@ -7,9 +7,8 @@
   service-account volume at `/var/run/secrets/kubernetes.io/serviceaccount`.
 - Workstation-side reads go through
   `kubectl get --raw <svc-http:port:port/proxy/...>`.
-- Assignee for filed issues: `yorha-operator` where eligible and the work
-  is machine-routable (no human credentials, hardware, or spending);
-  otherwise leave unassigned.
+- Assignee for filed issues: `yorha-operator` where eligible — always;
+  the assignee role is participation, not machine-routability.
 - Fastlane merge mechanics and receipt comment are `sks-fastlane`'s; the
   manifests repo adds `Signed-off-by: Shikanime Deva
   <william.phetsinorath@shikanime.studio>` to commit envelopes.
