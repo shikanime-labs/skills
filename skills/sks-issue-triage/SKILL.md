@@ -91,28 +91,34 @@ mean those fields stay empty.
   (defect/regression→`Bug`, new capability→`Feature`,
   task/tracking→`Task`). Set only a name from the step-2 issue-types list —
   never invent. Apply with `gh issue edit "$N" --repo "$R" --type <name>`.
+
 - **labels** — best match by meaning (defect→`bug`, new
   capability→`enhancement`, doc→`documentation`); add an area label only if
   it exists. Drop any not in the step-2 list — never invent.
+
 - **assignee** — if none: assign only when the work is machine-routable
   (an agent can act without human credentials, hardware, or spending):
   the org's default assignee (rule in `references/shikanime.md`), but
   only when it appears in the step-2 assignee list; else
   `ASSIGNEE=$(gh api user --jq .login)`. Not machine-routable → leave
   empty and record the reason in the report; never assign for form.
+
 - **milestone** — if none and milestones exist: which convention applies is an
   org fact (`references/shikanime.md`); apply it, never a hardcoded scheme.
+
 - **project** — if a Projects V2 board exists and this is unboarded:
   `--add-project "<title>"` (title, not number). Skip if ambiguous.
   After onboarding set Status `Ready` on the card (ids in `sks-project`)
   when triage is complete; leave it in `Backlog` only with a parked
   rationale.
+
 - **relationships** — set only when derivable from content/links, never
   invent:
   - parent: `--parent <number>` if the issue is clearly a child of `#M`.
   - sub-issues: `--add-sub-issue <n>,<n>` for explicitly listed children.
   - blockers: `--add-blocked-by <n>` / `--add-blocking <n>` only when the body
     or a linked issue states the dependency. Empty + no textual signal → skip.
+
 - **fields** — custom fields live on the _project item_, not the issue; the
   step-2 repo probe cannot see them. After adding to a project, take the
   inventory from the board itself — `gh project field-list <number>
@@ -121,6 +127,7 @@ mean those fields stay empty.
   date). Decided is the bar, not filled — a silent skip is the defect. Set
   via `gh project item-edit` / GraphQL (`updateProjectV2ItemFieldValue`);
   org-level issue fields follow `sks-triage/references/issue-fields.md`.
+
 - **pinned** — the repo's pin list is not a metadata field `gh` reads;
   pin only on explicit instruction (the operator names the issue), never
   as a sweep side effect. GraphQL only — REST has no pin endpoint:

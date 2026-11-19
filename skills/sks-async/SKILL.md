@@ -55,6 +55,7 @@ before proceeding.
 
 1. **Tree before work** — decompose vs issue ledger; record tree in plan/`todo`
    with leaf gates fixed BEFORE fan-out (contracts before delegation).
+
 2. **Fan out** — ALWAYS a NEW jj workspace; never an existing one (default is
    for trunk observation). One workspace per unit, rooted at trunk; name
    `<repo-name>.<unit>` (repo-global, dot-qualified):
@@ -65,6 +66,7 @@ before proceeding.
 
    New workspace's working copy is a child of `@`; for depth > 1 root with
    `jj new <parent>`.
+
 3. **Work each stream** in its dir; commit per `sks-commit` — every commit
    carries the org co-author trailer (org value per
    `references/shikanime.md`):

@@ -7,10 +7,12 @@ the generic procedure in SKILL.md still applies.
 - Repos: `cloud-pi-native/*`; strictest is `cloud-pi-native/console`; doc
   repos `documentation` / `documentation-interne-socle` require `doc:`-prefixed
   commit subjects (conventional PR title still expected everywhere).
+
 - PR title is **conventional** (`feat:`/`fix:`/`docs:`/`chore:`/`refactor:`/
   `revert:`/`build:`); Release Please derives the version bump from the type
   where configured. Branch prefix matches the type
   (`feat/`/`fix/`/`chore/`/`docs/`/`refactor`/`revert`/`build/`).
+
 - Artifact language is **French**. Canonical body (use the repo's
   `PULL_REQUEST_TEMPLATE.md` verbatim when present):
 
@@ -44,8 +46,10 @@ the generic procedure in SKILL.md still applies.
 - Linkage: `Issues liées: #XXXX` (follow, do not close). Console PRs are
   frequently mis-linked — verify the linked issue actually describes the
   change; if not, the rationale is unrecorded; say so.
+
 - No reviewer requested at submission: CODEOWNERS assigns when present;
   `sks-pr-triage` requests one only when a PR carries none.
+
 - console only:
   - Landing: the `main` merge-queue ruleset is the only lane
     (`gh pr merge --auto --rebase`; squash rejected — mechanics in
@@ -55,8 +59,10 @@ the generic procedure in SKILL.md still applies.
   - Husky `pre-push` runs `vitest` — unit tests must pass before
     `jj git push`.
   - Quality Gate: SonarQube Code Analysis (0 new issues) via `gh pr checks`.
+
 - Commits are conventional **only if the repo enforces it**
   (commitlint + Husky `commit-msg`); else follow the repo's established
   commit style.
+
 - Never self-merge on console: a separate collaborator's approving review is
   required.

@@ -25,9 +25,11 @@ error: syntax error, unexpected '}', expecting '.' or '='
 ```
 
 - 1 byte `\` + `${{` → valid; interpolates the devenv secret into the string.
+
 - 2 bytes `\\` + `${{` → Nix sees `\\` as an escaped backslash, then `{{`
   outside an interpolation → syntax error. This breaks EVERY flake eval, not
   just the one host.
+
 - Verify byte count, not eyeballs — editor/terminal renders can lie:
 
   ```bash
@@ -45,6 +47,7 @@ error: syntax error, unexpected '}', expecting '.' or '='
   anywhere (devenv included) fails every attribute. `nix flake show` trips on
   devShells first — use `--all-systems` to skip darwin-only errors, or eval
   the target attr directly.
+
 - Target a specific output, e.g. catbox containerdisk:
 
   ```bash
@@ -57,6 +60,7 @@ error: syntax error, unexpected '}', expecting '.' or '='
   under `packages.<system>.catbox` (`modules/flake/nixos.nix`). Eval'ing
   `.nixosConfigurations.catbox` fails with "attribute 'catbox' missing";
   don't chase that path.
+
 - SOPS-protected flakes need the age key in env before eval:
 
   ```bash
@@ -85,6 +89,7 @@ devShell output and prove the binary is wired in.
   eval and the build succeeds. Setting `export PWD=...` / `export
   DEVENV_ROOT=...` alone does NOT fix it — the sandbox still drops them;
   `--impure` is the actual switch.
+
 - The built `devenv-shell` output is a single ~32K activation script (NOT a
   directory, and `$OUT/bin/flux` will report "Not a directory" — that is
   expected, not a missing binary). To prove a package is present, grep the
@@ -101,6 +106,7 @@ devShell output and prove the binary is wired in.
   `optionalValue`/assertion plumbing and returns a misleading error; build
   instead. This matches the dev-workflow rule: devenv packages are verified by
   `nix build`, not `nix eval`.
+
 - **YAGNI check first:** before editing `flake.nix` to "add" a package, grep the
   existing `shells.default.packages` list — the requested tool is often already
   there (e.g. `pkgs.fluxcd` was already present at `flake.nix:187`); a second
@@ -121,6 +127,7 @@ nix eval --system $SYS .#nixosConfigurations.<host>.config.<attr>
   `aarch64-darwin` and `nixosConfigurations` errors with "does not provide
   attribute 'packages.aarch64-darwin.nixosConfigurations.<host>...'". Force
   the Linux system even when only inspecting a NixOS config.
+
 - **`nix eval --apply` has ONLY `builtins` in scope** — `lib` is not
   available, so `lib.strings.splitString` raises "unknown variable 'lib'".
   Extract sub-values by grepping the raw output instead, or pre-compute in the
@@ -207,6 +214,7 @@ successfully, but the error itself is unrelated to module restructuring.
 
   Verified (websites #335): `devlib:ghstack:hooks:install` kept
   failing post-bump until the cache was cleared; then 6/6 tasks green.
+
 - **Run devenv/nix from the MAIN checkout, never a jj workspace.** A
   `jj workspace add` sibling has no `.git`, and devenv's nix evaluation
   requires one: `nix flake lock`/`nix flake check` fail with `opening Git
@@ -218,6 +226,7 @@ successfully, but the error itself is unrelated to module restructuring.
   push the branch from the workspace (`jj git push -b <branch>`), then in
   the main checkout `jj git fetch && jj new <branch>@origin` so verification
   runs against the change; return with `jj new main@origin` afterwards.
+
 - **flake.lock rebase conflicts:** after `jj rebase -d main@origin -r @` marks
   flake.lock conflicted, do NOT hand-resolve conflict markers. Instead:
   `jj restore --from main@origin --to @ flake.lock` (take main's version),

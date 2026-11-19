@@ -84,6 +84,7 @@ PR to `sks-land` and say which criterion failed.
 2. **Trivial framing.** The change is a hotfix, small update, or
    insignificant chore. Feature work, refactors, and behavior changes
    beyond the minimal fix never fastlane.
+
 3. **Small diff.** ≤5 files and ≤100 changed lines:
 
    ```bash
@@ -103,6 +104,7 @@ PR to `sks-land` and say which criterion failed.
    ```
 
 5. **No schema, migration, or public API surface change.**
+
 6. **CI green on the current head** — a red or pending check never
    fastlanes:
 
@@ -115,8 +117,10 @@ PR to `sks-land` and say which criterion failed.
 1. **PR exists and is pushed.** Fastlane merges; it does not build. No
    PR yet means ship the unit first (`sks-delegate` → `sks-commit` →
    `sks-pr`), then come back.
+
 2. **Run the eligibility gate** — risk label first. Any fail →
    `sks-land` (full gates).
+
 3. **Keep the conventions gate** (`sks-land` Gate 5): commit subject
    plain-English imperative, no conventional prefix, PR title equals
    the commit subject. Verify before merging:
@@ -129,6 +133,7 @@ PR to `sks-land` and say which criterion failed.
    `messageHeadline` arrives truncated (~70 chars + `…`) for long subjects;
    a truncated headline that prefixes the title is parity, not a mismatch.
    Run the mechanical check via `sks-land`'s Gate 5 block, which accepts it.
+
 4. **Merge pinned to the verified head:**
 
    ```bash
@@ -140,6 +145,7 @@ PR to `sks-land` and say which criterion failed.
    `--admin` bypasses the branch protection on `main`;
    `--match-head-commit` binds the merge to the exact head whose CI was
    verified — a push landing between check and merge cannot hijack it.
+
 5. **Leave the receipt.** The PR comment is the audit trail proving a
    deliberate fastlane, not an unaccountable self-merge. It names the
    risk level that justified the lane:

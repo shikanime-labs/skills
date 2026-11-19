@@ -188,12 +188,14 @@ In the fleet-config repo, hosts consume secrets through `sops-nix`:
    each host's age recipient from its ssh host key and diff against the
    ciphertext's own recipient list (offline host: its known_hosts entry
    works too). Recipe: `references/recipient-coverage-audit.md`.
+
 3. Commit per `sks-commit` with the org co-author trailer (org value in
    `references/shikanime.md`). A secret edit
    often pairs with a module edit (`sopsFile` path, template, systemd unit that
    reads the decrypted path) — keep them in the same commit when they are one
    logical change, not a secret commit followed by a plumbing commit that lands
    later and leaves the host between states.
+
 4. No `nix fmt` / treefmt on `.enc.*` files. The formatter doesn't know the file
    is sops-wrapped and can corrupt the wire encoding or the metadata block.
    Exclude `secrets/*.enc.*` from formatting. Never run a formatter across a
