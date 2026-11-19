@@ -4,7 +4,7 @@ description:
   "Use when opening an issue in an org repo: body is the
   problem statement, acceptance criteria as a command-decidable tasklist;
   owns the create → triage order."
-version: 0.3.0
+version: 0.4.0
 author: Automata
 license: Apache-2.0
 metadata:
@@ -125,11 +125,12 @@ template's section holds may be posted as comments to steer resolution, but
 proof of the solution belongs in the PR. Close deliberately — ledger
 verified N of N after final merge.
 
-### 3. Triage metadata
+### 3. Triage metadata — mandatory, not optional
 
-Delegate to `sks-issue-triage`: sets each empty, determinable field (type,
-labels, assignee, milestone, project); rules live there. Every org-level issue
-field applicable to the issue type must be filled before setup is complete.
+Delegate to `sks-issue-triage` before this skill is done: it sets every
+empty, determinable field (type, labels, assignee, milestone, project);
+rules live there. Never leave triage as a "next step" — an issue without
+its metadata is a half-created issue. NEVER FORGET to self-triage.
 Use `sks-triage/references/issue-fields.md` for defaults and applicability:
 `Reproduce` belongs to `Bug` only, the other four fields apply to every
 issue type. An empty applicable field is drift.
