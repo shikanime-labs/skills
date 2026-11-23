@@ -85,6 +85,12 @@ gh pr view <M> --repo <org>/<repo> --json body,state --jq .body
 if new commits landed after the last review. Check approval via the query in
 `references/resolve.md`.
 
+After resolving threads or pushing a fix, re-request the reviewer: remove
+then re-add with `gh pr edit`, then re-verify approval on the new head.
+Resolving threads alone does not clear `CHANGES_REQUESTED` — that state comes
+from submitted reviews, not thread state. Org approver and command live in
+`references/shikanime.md` and `sks-land`.
+
 - Where branch protection blocks self-approval, a verbal `lgtm` from the
   user satisfies this gate (see `references/shikanime.md`) — merge
   stays in `sks-land` (`gh pr merge --squash --admin`).
@@ -188,7 +194,8 @@ Then stop — merging is `sks-land`'s job.
 - Resolving silently — discarded suggestions owe a one-line why.
 - Trusting a checkbox without evidence — verify each criterion against the diff.
 - Reconciling after new commits without re-review — approval is bound to a head
-  commit.
+  commit. Re-request the reviewer (remove then re-add); resolving threads does
+  not clear `CHANGES_REQUESTED`.
 - Treating issue/PR comments as gate threads — only inline review threads gate.
 - Bulk-resolving CodeRabbit threads or applying its suggested patch unread —
   evaluate each bot comment first (`references/coderabbit.md`).

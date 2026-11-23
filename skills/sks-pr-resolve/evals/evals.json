@@ -12,7 +12,8 @@
         "license field is 'Apache-2.0'",
         "Body contains at least one '##' heading",
         "Body checks the review conversations are resolved",
-        "Body reconciles inline review threads before merge but never lands the PR"
+        "Body reconciles inline review threads before merge but never lands the PR",
+        "Body re-requests the reviewer after resolving threads or pushing a fix because resolving threads does not clear CHANGES_REQUESTED"
       ]
     },
     {
