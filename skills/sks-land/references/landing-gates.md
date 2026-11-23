@@ -116,6 +116,9 @@ Land a lone PR with `gh pr merge --squash [--admin]`. For a stacked PR, land
 the TOP-most unmerged PR: `gh stack merge <top-pr> --yes --squash`. GitHub
 merges that PR and every unmerged layer below it in ONE all-or-nothing stack
 merge, bottom-up internally — never merge links one at a time from the base.
+On a merge-queue base the command enqueues the PRs instead; the queue chooses
+the merge method and `--squash` is ignored. Link base-chained PRs into a
+native stack before calling it — base chaining alone is not a stack.
 Org tooling state: `references/shikanime.md`.
 Never force-push. **Watch and merge are two separate steps — never one
 background chain.** A merge that fires unattended from a watcher is a
@@ -168,10 +171,12 @@ EOF
   branch commits (leaks jj's `*` / `---------` artifacts). One subject +
   required trailers (`references/shikanime.md`).
 - Lone, self-approval blocked (after verbal lgtm): use `--squash --admin`.
-- Stacked (multiple PRs off `main`): resolve the stack, then merge the TOP
-  PR with `gh stack merge <top-pr> --yes --squash`. The waterfall lands that
-  PR and all unmerged parents below in one action — never base first. Stack
-  merges cannot bypass merge requirements; satisfy every gate, no `--admin`.
+- Stacked (multiple PRs off `main`): Step 2's `gh pr merge` is for a lone PR.
+  For a stack, link the PRs, run Gates 2–5 for every PR the merge will land,
+  then merge the TOP PR with `gh stack merge <top-pr> --yes --squash`. The
+  waterfall lands that PR and all unmerged parents below in one action —
+  never base first. Stack merges cannot bypass merge requirements; no
+  `--admin`.
 - Branch protection may require linear history + signed commits (org example
   in `references/shikanime.md`); squash-merge satisfies both.
 

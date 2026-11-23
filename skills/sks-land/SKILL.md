@@ -60,10 +60,11 @@ landing and re-verify on the current head.
 ## Merge
 
 `gh pr merge --squash [--admin]` for a lone PR, base `main` — watch and
-merge are two separate steps, never one chain. For a stacked PR, land the
-TOP-most unmerged PR: `gh stack merge <top-pr> --yes --squash` waterfalls it
-and every parent below in one action. Never merge links base first. The
-procedure lives in `references/landing-gates.md`.
+merge are two separate steps, never one chain. For a stacked PR, run the
+gates for every PR being landed, then land the TOP-most unmerged PR with
+`gh stack merge <top-pr> --yes --squash`; it waterfalls that PR and every
+parent below in one action. Never merge links base first. The procedure
+lives in `references/landing-gates.md`.
 
 ## Post-merge
 

@@ -73,8 +73,9 @@ grep -rilE "commitlint|release-please|@commitlint" . \
 Stacks: where the `gh stack` extension is installed, use it to create, rebase,
 and submit stacks of branches; land the TOP PR with
 `gh stack merge <top-pr> --yes --squash` so GitHub waterfalls every parent
-below in one action (see `sks-land`). Squash-merge keeps a linear history and
-preserves PR↔commit parity
+below in one action — on a merge-queue base the command enqueues the PRs
+instead and the queue picks the merge method (see `sks-land`). Squash-merge
+keeps a linear history and preserves PR↔commit parity
 (title = commit subject, body = commit message). The extension is removed in
 the shikanime org — `references/shikanime.md`.
 

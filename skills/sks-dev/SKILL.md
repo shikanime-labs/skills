@@ -213,10 +213,12 @@ anchor can get duplicated — remove the stray copy before pushing.
   one already delivers the change; stack on that PR's branch when your change
   depends on it. Inside a jj isolation workspace gh has no git remote — pass
   `-R <org>/<repo>` explicitly.
-- **Stacked work:** one PR per link off `main`; land the TOP-most PR with
+- **Stacked work:** one PR per link off `main`; where the `gh stack` extension
+  is installed, land the TOP-most PR with
   `gh stack merge <top-pr> --yes --squash` — GitHub waterfalls it and every
   parent below in one action. Never merge links one at a time base first
-  (see `sks-land`).
+  (see `sks-land`). The extension is removed in the shikanime org —
+  `references/shikanime.md`.
 - **Recheck every stacked link's live merge state before the top-first merge,
   and again after any link lands** — a merge rewrites the remaining children
   and can leave a link `mergeable: CONFLICTING` or `mergeStateStatus: DIRTY`.
