@@ -245,6 +245,7 @@
         "Frontmatter license field is 'Apache-2.0'",
         "Body contains at least one '##' heading",
         "Body run list per repo over a trailing window",
+        "Body: dropping archived repos and repos without a default branch",
         "Body file one issue per repo+workflow pair in the repo where it failed"
       ]
     },
@@ -294,12 +295,13 @@
     },
     {
       "id": 26,
-      "expected_output": "Latency rows split bot PRs out, the census drops archived and empty repos, and p90 never stands without its median.",
+       "expected_output": "Latency rows split bot PRs out, the census drops archived and empty repos, and p90 never stands without its median.",
       "files": [],
       "prompt": "Audit the delivery pipeline of shikanime-studio: counts, latencies, stuck PRs.",
       "assertions": [
         "Body splits bot-authored PRs into a separate latency row",
         "references/sdlc-efficiency.md drops archived and empty repos before per-repo depth",
+        "references/sdlc-efficiency.md census intersected with the repo set",
         "Body reports the median beside any p90",
         "references/sdlc-efficiency.md lists an already-tracked gap instead of re-filing it"
       ]

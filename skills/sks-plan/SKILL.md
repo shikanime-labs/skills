@@ -4,7 +4,7 @@ description:
   "Use when planning a milestone from a goal or a single unit: converge
   direction, decompose into dependency-ordered units, fill the milestone
   with triaged, boarded issues ready for sks-iterate."
-version: 0.3.0
+version: 0.3.1
 author: Automata
 license: Apache-2.0
 metadata:
@@ -71,7 +71,8 @@ new milestone; converge → issue → board still apply.
    table — unit, depends on, fan-out group — and wait for approval before
    writing anything: opening issues is a gated batch (`sks-bulk` shape).
 
-4. **Fill the milestone.** Attach the milestone the user names when one
+4. **Fill the milestone.** Org-wide planning skips archived and empty repos
+   per `sks-context`. Attach the milestone the user names when one
    exists; otherwise create one titled after the goal — in every repo
    holding units when the set spans repos — but only where the repo
    tracks no release milestones: a repo on semver release trains takes

@@ -4,7 +4,7 @@ description:
   "Use when sweeping GitHub issues across an org's repos: enumerate open
   issues, dedup against prior coverage, surface stale or silent ones, and
   file summary issues for systemic patterns."
-version: 0.1.0
+version: 0.1.1
 author: Automata
 license: Apache-2.0
 metadata:
@@ -44,11 +44,14 @@ Org-specific scope (org names, assignee policy) live in
 
 ## Procedure
 
-1. **Enumerate per repo.** `gh repo list <org> --limit 100 --json
-   nameWithOwner` per org, then `gh issue list -R <repo> --state open --json
+1. **Enumerate per repo.** Drop archived and empty repos in the query:
+   `gh repo list <org> --limit 100 --json
+   nameWithOwner,isArchived,defaultBranchRef --jq '.[] | select(.isArchived
+   | not) | select(.defaultBranchRef != null) | .nameWithOwner'` per org,
+   then `gh issue list -R <repo> --state open --json
    number,title,labels,assignees,createdAt,updatedAt` (PRs are a different
-   surface — this sweep reads issues only). Completion check: every repo
-   scanned, every open issue recorded.
+   surface — this sweep reads issues only). Completion check: every
+   non-archived repo scanned, every open issue recorded.
 
 2. **Dedup against prior coverage.** An issue already labeled, assigned, or
    covered by a previous run is listed, not re-processed. Cross-check
@@ -88,7 +91,10 @@ Org-specific scope (org names, assignee policy) live in
 ## Verification
 
 ```bash
-gh repo list <org> --limit 100 --json nameWithOwner --jq 'length'
+gh repo list <org> --limit 100 --json \
+  nameWithOwner,isArchived,defaultBranchRef \
+  --jq '[.[] | select(.isArchived | not) |
+    select(.defaultBranchRef != null)] | length'
 gh issue list -R <repo> --state open --json number --jq 'length'
 ```
 

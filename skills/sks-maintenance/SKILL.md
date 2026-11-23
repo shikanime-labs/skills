@@ -4,7 +4,7 @@ description:
   "Use when maintaining the org's repos, fleet, and runtimes: renovate and
   language dependency bumps, nixpkgs/runtime upgrades, and the issue → PR →
   land → post-merge validation loop."
-version: 0.1.1
+version: 0.1.2
 author: Automata
 license: Apache-2.0
 metadata:

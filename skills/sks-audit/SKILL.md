@@ -4,7 +4,7 @@ description:
   "Use when auditing fleet or org health: security alerts, redteam, CI
   failures, alerting, Flux readiness, k8s events, SDLC efficiency, source-code
   audits — dedup, file findings, fastlane fixes."
-version: 1.1.1
+version: 1.1.2
 author: Automata
 license: Apache-2.0
 metadata:
@@ -130,8 +130,11 @@ port as exposed.
 
 ### CI failures
 
-`gh repo list <org> --limit 100 --json nameWithOwner` per org, then per repo
-`gh run list -R <repo> --status failure --created ">$(date -d '-24 hours' '+%Y-%m-%d')"`.
+Enumerate per org with `gh repo list <org> --limit 100 --json
+nameWithOwner,isArchived,defaultBranchRef`, dropping archived repos and
+repos without a default branch; then per repo
+`gh run list -R <repo> --status failure --created
+">$(date -d '-24 hours' '+%Y-%m-%d')"`.
 Excludes renovate PR checks (owned by `sks-maintenance`:
 `references/renovate.md`), draft-PR CI skips, and flakes that passed on
 rerun. Record run URL, failing job, first error lines and head sha; a
@@ -225,16 +228,18 @@ fleet host health or explaining a flagged host.
 
 Process metrics over the orgs' issues and PRs. Census: `gh api
 "search/issues?q=org:<org>+is:open+type:issue" --jq .total_count` and the
-same with `type:pr`. Untriaged: open items missing derivable metadata,
-computed against what each repo supports. Latency: over merged PRs in the
-window, time to first review and time to merge, with bot-authored PRs in a
-separate row. Residue: issues still open whose linked PR already merged,
-read per PR from Development links. Stalls: open PRs with `reviewDecision`
-CHANGES_REQUESTED or REVIEW_REQUIRED, or `mergeStateStatus` BLOCKED or
-BEHIND, older than 7 days. Stale branches: heads merged or behind the
-default branch older than 7 days. Record every number before drawing any
-conclusion, and re-measure in-session — a previous run's numbers are the
-baseline, never the current value. Completion check: census, untriaged,
+same with `type:pr`; intersect both counts with the non-archived repo
+list, since the search API has no archived filter. Untriaged: open items
+missing derivable metadata, computed against what each repo supports.
+Latency: over merged PRs in the window, time to first review and time to
+merge, with bot-authored PRs in a separate row. Residue: issues still open
+whose linked PR already merged, read per PR from Development links.
+Stalls: open PRs with `reviewDecision` CHANGES_REQUESTED or
+REVIEW_REQUIRED, or `mergeStateStatus` BLOCKED or BEHIND, older than 7 days.
+Stale branches: heads merged or behind the default branch older than 7
+days. Record every number before drawing any conclusion, and re-measure
+in-session — a previous run's numbers are the baseline, never the current
+value. Completion check: census, untriaged,
 latency, residue, stalls, and stale branches each carry a recorded value
 per org, with the median reported beside any p90. Cross-check the residue
 count per PR, never by repo-wide text search. Findings from this surface
