@@ -4,7 +4,7 @@ description:
   "Use when running the local dev loop in a target org's repos: branching in a
   fresh jj workspace, push-to-origin, jj bookmark tracking, and landing via
   plain gh pr merge or direct push."
-version: 0.10.5
+version: 0.10.6
 author: Automata
 license: Apache-2.0
 metadata:
@@ -20,6 +20,7 @@ metadata:
       - sks-commit
       - sks-pr
       - sks-land
+      - sks-restack
       - sks-context
 platforms:
   - linux
@@ -50,6 +51,8 @@ before proceeding.
 - "Start working on a repo of the org" — end-to-end dev loop from discussion
   to landing.
 - "Push to origin and land this PR" — landing path (branch protection, stack).
+- "Recheck a stacked PR before landing it" — re-read every link's live merge
+  state; rebase a conflicting link onto the new base.
 - "Isolate this one unit in a clean workspace" — `sks-delegate` (concurrent WIP
   must not fold in).
 - "Fan out this work into parallel streams" — `sks-async` parallel split.
@@ -212,6 +215,14 @@ anchor can get duplicated — remove the stray copy before pushing.
   `-R <org>/<repo>` explicitly.
 - **Stacked work:** one PR per link off `main`; land in dependency order
   (base first) with `gh pr merge --squash --admin` (see `sks-land`).
+- **Recheck every stacked link's live merge state before each merge, and again
+  after every base lands** — a base merge rewrites children and can leave a
+  link `mergeable: CONFLICTING` or `mergeStateStatus: DIRTY`. Read it with
+  `gh pr view <n> -R <org>/<repo> --json mergeable,mergeStateStatus`.
+  A conflicting state is `BLOCKED`: do not merge. Rebase the link onto the new
+  base (`sks-restack`; if the base branch was deleted, retarget its base to
+  `main` first), re-push, re-approve on the new head, re-run CI, and recheck
+  until the state reads `MERGEABLE` / `CLEAN`.
 - **Run `sks-review` before requesting merge** — it applies the
   YAGNI lens and flags over-engineering. Deliberate corner-cuts in code carry
   a `ponytail:` comment naming the ceiling and upgrade path. Reports only — a
