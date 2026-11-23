@@ -184,14 +184,10 @@ Two rules distinguish it from fill:
   nothing — deliberate closure is `sks-issue-triage`'s job.
 
   - **ready** — metadata set, card Status `Ready`; ledger stays open.
-  - **completed** — tick each criterion from verified diff/check evidence;
-    close `completed` only at zero `- [ ]`.
-  - **duplicate** — comment naming the existing issue, strike unmet
-    criteria with a comment, close `not planned`.
-  - **not planned** — comment with rationale, strike unmet criteria, close
-    `not planned`.
-  - **blocked by another issue** — `--add-blocked-by` for the named
-    blocker, card Status `parked`, ledger untouched, comment naming it.
+  - **completed** / **duplicate** / **not planned** / **blocked by another
+    issue** — report the verdict only. Verdict mechanics, criterion strikes,
+    close reasons, blocked-by links and card moves belong to
+    `sks-issue-triage`.
 
 - **Links move too.** The issue↔PR Development link is metadata like the
   rest: requalification re-derives it from the current evidence — stale

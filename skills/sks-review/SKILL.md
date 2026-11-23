@@ -175,10 +175,9 @@ body (author amends — reviewer never pushes).
 
 When the PR author is a bot that will not act on review feedback
 (Renovate, Dependabot, agent-generated PRs), review comments alone are a
-dead end — the reviewer takes the lead: none or non-blocking findings
-merge the PR; a blocking finding pushes the fix to the PR branch or
-closes it. A human approves — this changes who acts on the findings,
-never the reports-only verdict itself.
+dead end — hand the PR to `sks-land` when findings are non-blocking, or to
+`sks-pr` / `sks-commit` when a fix is needed. The reviewer stays report-only;
+a human approves.
 
 ## Pitfalls
 

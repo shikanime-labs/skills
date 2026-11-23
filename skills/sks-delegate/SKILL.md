@@ -102,10 +102,7 @@ before proceeding.
    jj git push --remote origin -b <branch>
    ```
 
-4. **Hand off to `sks-pr`** to open the PR (`--head <org>:<branch>`,
-   base `main`; the issue link is Development metadata added at triage, not a
-   body line; run its step 2b duplicate/stack check
-   first — skip the PR if one already exists, stack if yours must sit on top).
+4. **Hand off to `sks-pr`** to open the PR and run its duplicate/stack check.
    Do NOT merge here.
 
 ## Pitfalls

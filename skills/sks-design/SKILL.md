@@ -117,13 +117,11 @@ fallback.
 ```bash
 nix develop -c nix fmt
 uvx rumdl check skills/sks-design/
-python3 -c "import json; json.load(open('skills.json')); \
-json.load(open('package.json')); print('manifests ok')"
-grep -c '"sks-design"' skills.json package.json
 ```
 
-Done when: frontmatter matches the anatomy, evals pass, the skill appears in
-README, skills.json, and package.json, and fmt/rumdl are clean.
+Done when: frontmatter matches the anatomy, the design checks pass, and
+fmt/rumdl are clean. Manifest registration and eval checks belong to
+`sks-selfupdate`.
 
 ## See also
 

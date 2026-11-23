@@ -54,24 +54,29 @@ owns its plane; the loop that consumes the result is `sks-iterate`.
 
 ## Procedure
 
-For a single unit, steps 2–3 collapse to the one unit and step 4 creates no
-new milestone; converge → issue → board still apply.
+For a single unit, steps 3–4 collapse to the one unit and step 5 creates no
+new milestone; triage → converge → issue → board still apply.
 
-1. **Converge the goal.** Unconverged direction goes to `sks-discussion`
+1. **Triage the target first if not done.** Before cutting units, run
+   `sks-triage` on the target repo or org unless its scan already reports
+   zero gaps. Planning on an untriaged backlog re-cuts units around stale
+   metadata. Field rules stay in `sks-triage`; never restate them here.
+
+2. **Converge the goal.** Unconverged direction goes to `sks-discussion`
    first; units cut before the direction settles are rework. Converged
    means the RFC closed or the user stated the goal as fact.
 
-2. **Decompose into units.** One unit is one issue's worth of work,
+3. **Decompose into units.** One unit is one issue's worth of work,
    complete in a single `sks-dev` pass. For each unit name its
    dependencies and mark the independent ones — they form the fan-out
    groups the loop will route together.
 
-3. **Cut the set.** Drop every unit not required to reach the goal;
+4. **Cut the set.** Drop every unit not required to reach the goal;
    speculative units are re-planned when they become real. Present the
    table — unit, depends on, fan-out group — and wait for approval before
    writing anything: opening issues is a gated batch (`sks-bulk` shape).
 
-4. **Fill the milestone.** Org-wide planning skips archived and empty repos
+5. **Fill the milestone.** Org-wide planning skips archived and empty repos
    per `sks-context`. Attach the milestone the user names when one
    exists; otherwise create one titled after the goal — in every repo
    holding units when the set spans repos — but only where the repo
@@ -81,22 +86,18 @@ new milestone; converge → issue → board still apply.
    splits the train. Which convention applies is an org fact (the owning
    skill's `references/<org>.md`).
 
-   ```bash
-   # payload.json: {"title": "<goal>", "state": "open",
-   #                "description": "<one-line goal>"} — no due_on
-   gh api repos/<org>/<repo>/milestones --input payload.json
-   gh api repos/<org>/<repo>/milestones --jq '.[].title'   # read back
-   ```
+   Create or attach the milestone per `sks-milestone`, which owns the
+   creation command, payload shape and due-date discipline.
 
    No `due_on` unless a real deadline exists: a due date is a commitment,
    never invented to fill the field (rule owned by `sks-milestone`).
 
-5. **Open and triage every issue** (`sks-issue` then `sks-issue-triage`):
+6. **Open and triage every issue** (`sks-issue` then `sks-issue-triage`):
    body is the problem statement, the acceptance ledger already seeded
    command-decidable; dependencies recorded as issue relationships at
    triage, never only in the plan prose. This step owns the milestone
    assignment: triage never sets one, so every unit lands on the
-   milestone here (or in step 4 when the issue already exists). The
+   milestone here (or in step 5 when the issue already exists). The
    assignment survives the lifecycle: a unit's PR triages onto its
    issue's milestone (`sks-pr-triage` owns the mechanics) — a milestone
    dropped at PR open is the plan's decision lost.
@@ -108,11 +109,11 @@ new milestone; converge → issue → board still apply.
    triage default when a plan exists. Use
    `sks-triage/references/issue-fields.md` for the write mechanics.
 
-6. **Board the set** (`sks-project`): every card Status `Ready` on the
+7. **Board the set** (`sks-project`): every card Status `Ready` on the
    family board — the board is what `sks-iterate` reads; no board, no
    loop.
 
-7. **Close the planning loop** with the report block (`sks-tldr`) and
+8. **Close the planning loop** with the report block (`sks-tldr`) and
    hand execution to `sks-iterate`.
 
 ## Pitfalls
@@ -143,7 +144,8 @@ gh project item-list <board> --owner <board-owner> --limit 200 --format json \
   --jq '.items[] | select(.status == "Ready") | .content.number'
 ```
 
-Done when every approved unit is an open, triaged issue on the milestone,
+Done when the triage gate passed and every approved unit is an open,
+triaged issue on the milestone,
 boarded `Ready`, dependencies sit on the issues, Start date and Target date
 carry this plan's values, and the report block names the hand-off to
 `sks-iterate`.

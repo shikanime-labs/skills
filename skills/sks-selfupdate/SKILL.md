@@ -62,21 +62,8 @@ when the user named one.
    Record the set. Do not skip skills silently; a skipped one is a reported
    reason, not an omission.
 
-2. **Audit every skill in scope.** For each, run an automated check and record
-   the defects (these are the evidence the curation acts on):
-   - `SKILL.md` YAML frontmatter parses; `name` equals the directory.
-   - Description is an imperative trigger (`Use when …` / `À utiliser quand`)
-     under 200 characters.
-   - `evals/evals.json` exists, parses, `skill_name` matches, and assertions
-     are self-consistent with the body.
-   - `.skillignore` present (so the scanner skips `evals/`).
-   - No lines over 80 columns (MD013); run `rumdl check` / `nix fmt` to catch
-     it.
-   - Body within budget (~500 lines / ~5,000 tokens).
-   - Profile in scope: `distribution.yaml` parses and `SOUL.md` is present.
-     Curate `SOUL.md` with the body: persona prose follows the same MD013
-     wrap as every other file; stale persona and token bloat are curated out
-     the same as a skill body.
+2. **Audit every skill in scope.** Run `sks-curate`'s audit per skill and
+   record the defects it reports; curation acts on that evidence.
 
 3. **Curate per skill.** Load `sks-curate`; apply improvement/compression/
    update to each audited defect, and refresh its `evals/evals.json`. Record
@@ -87,11 +74,7 @@ when the user named one.
    branch/commit/PR/land path:
    - Isolate in a fresh workspace at `main@origin` (`sks-delegate`) so foreign
      WIP is never folded in.
-   - Commit per `sks-commit` (plain-English title, org co-author trailer,
-     `Signed-off-by:`; AGENTS.md repos add labeled `Design:`/`Related:` body).
-   - Push to origin, open the PR per `sks-pr` (`--head <org>:<branch>`,
-     base `main`; Development link per `sks-pr-triage` step 5). A full pass is
-     one atomic PR
+   - Ship the pass through `sks-dev`. A full pass is one atomic PR
      carrying the whole curated set (one objective, reviewed in one sitting);
      split into stacked PRs only when the change set grows past a comfortable
      review size.

@@ -63,8 +63,15 @@ landing and re-verify on the current head.
 merge are two separate steps, never one chain. For a stacked PR, run the
 gates for every PR being landed, then land the TOP-most unmerged PR with
 `gh stack merge <top-pr> --yes --squash`; it waterfalls that PR and every
-parent below in one action. Never merge links base first. The procedure
-lives in `references/landing-gates.md`.
+parent below in one action.
+Before that merge, and again after any link lands, recheck every remaining
+link's live state via
+`gh pr view <n> -R <org>/<repo> --json mergeable,mergeStateStatus`.
+A `CONFLICTING` / `DIRTY` link is `BLOCKED`: rebase onto the new base
+(`sks-restack`; if the base was deleted, retarget to `main` first), re-push,
+re-approve on the new head, re-run CI, and recheck until `MERGEABLE` / `CLEAN`.
+Never merge links base first. The procedure lives in
+`references/landing-gates.md`.
 
 ## Post-merge
 

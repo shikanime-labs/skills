@@ -12,7 +12,8 @@
         "license field is 'Apache-2.0'",
         "Body contains at least one '##' heading",
         "Body lands a PR only after sks-pr-resolve reconciled it",
-        "Body closes the linked issue deliberately"
+        "Body closes the linked issue deliberately",
+        "Body rechecks mergeable and mergeStateStatus on stacked links before and after landing"
       ]
     },
     {

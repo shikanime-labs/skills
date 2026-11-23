@@ -62,10 +62,9 @@ moved.
    never on message text — flapping sources re-file every sweep otherwise.
    Tracked findings are listed in the report, never re-filed.
 
-5. **File each new finding** via `sks-issue`: free-text title, bug label,
-   plus `security` only when the repo has it. Assign per repo policy where
-   eligible. One issue per stable object, updated by later runs — never one
-   issue per occurrence.
+5. **File each new finding** via `sks-issue`, then `sks-issue-triage` for
+   labels and assignment. One issue per stable object, updated by later runs
+   — never one issue per occurrence.
 
 6. **Fastlane small fixes** in the surface's eligible scope through the
    `sks-fastlane` gate, which applies in full. Ineligible or checks pending

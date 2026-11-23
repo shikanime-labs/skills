@@ -43,8 +43,8 @@
         "Body makes PR the default landing path",
         "Body mentions 'gh stack merge' for stacked work",
         "Body restricts direct push to main to explicit user authorization",
-        "Body requires 'mergeable' and 'mergeStateStatus' rechecked before landing each stacked PR",
-        "Body treats 'CONFLICTING' and 'DIRTY' as a blocked stacked PR",
+        "Body points to sks-land for stacked landing and merge-state rechecks",
+        "Body routes blocked stacked links to sks-land",
         "Body restacks a conflicting link with 'sks-restack' then rechecks until 'MERGEABLE' and 'CLEAN'"
       ]
     },
@@ -58,7 +58,7 @@
         "Frontmatter description starts with 'Use when' and is at most 200 characters",
         "Frontmatter license field is 'Apache-2.0'",
         "Body contains at least one '##' heading",
-        "Body probes gh identity and push permission before work",
+        "Body points to sks-context for environment probes before work",
         "Body reports unmet requirements as 'BLOCKED' with evidence and recovery",
         "Body treats 'pushed' or 'merged' as unproven until verified"
       ]
