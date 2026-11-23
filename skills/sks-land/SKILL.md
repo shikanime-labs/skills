@@ -59,10 +59,11 @@ landing and re-verify on the current head.
 
 ## Merge
 
-`gh pr merge --squash [--admin]`, one squash-merge per PR, base
-`main` — watch and merge are two separate steps, never one chain. The
-procedure (watch/merge split, `-t`/`-b` squash hygiene, stacked and
-queue-enforced repos) lives in `references/landing-gates.md`.
+`gh pr merge --squash [--admin]` for a lone PR, base `main` — watch and
+merge are two separate steps, never one chain. For a stacked PR, land the
+TOP-most unmerged PR: `gh stack merge <top-pr> --yes --squash` waterfalls it
+and every parent below in one action. Never merge links base first. The
+procedure lives in `references/landing-gates.md`.
 
 ## Post-merge
 
@@ -161,9 +162,9 @@ live in `references/landing-gates.md`.
 - [ ] CI green.
 - [ ] Watch and merge ran as separate steps (no `watch && merge` background
       chain); gates re-verified on the head that merged.
-- [ ] Merged via
-      `gh pr merge --squash [--admin if protection blocks     self-approval]`
-      (lone or stacked — one squash-merge per PR, base `main`).
+- [ ] Merged a lone PR via `gh pr merge --squash [--admin]`; a stacked PR
+      via `gh stack merge <top-pr> --yes --squash` — top first, all parents
+      in one action, never link by link from the base.
 - [ ] Issue closed deliberately with rationale.
 - [ ] Landing bookmark removed locally and reconciled on origin.
 - [ ] Board card flipped to `Done` (`sks-project`) after `mergedAt`

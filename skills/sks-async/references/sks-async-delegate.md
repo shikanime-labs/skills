@@ -9,7 +9,8 @@ parallel fan-out (Hermes primitive; other harnesses:
 
 - **Fan-out** — N children of one trunk commit = parallel independent units.
 - **Depth** — child of a child = dependent unit; each root-to-leaf chain is a
-  DEPENDENT CHAIN, each link its own PR (land base-first).
+  DEPENDENT CHAIN, each link its own PR (land the top link; GitHub
+  waterfalls every parent in one stack merge).
 - **Join** — `jj new <a> <b>` (multiple parents) = depends on several units;
   lands after them.
 - **Isolation** — each stream in its OWN jj workspace (separate working copy +

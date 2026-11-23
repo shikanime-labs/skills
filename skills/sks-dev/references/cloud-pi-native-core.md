@@ -48,5 +48,6 @@ cloud-pi-native/console repo — different org, different rules).
 - Issues carry `- [ ]` ledgers; verify each item with `gh api` evidence
   before closing (issue #3 closed with rulesets/tag/lockfiles evidence).
 - Landing: `gh pr merge --squash --admin` (Landing protections ruleset
-  blocks self-approval); stacks land base-first; restack children with
-  `jj rebase -r <child-change-id> -d <new-parent-head>` + sideways push.
+  blocks self-approval); stacks land top-first via `gh stack merge`; restack
+  children with `jj rebase -r <child-change-id> -d <new-parent-head>` +
+  sideways push.

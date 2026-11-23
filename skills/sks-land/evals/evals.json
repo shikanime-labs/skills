@@ -17,7 +17,7 @@
     },
     {
       "id": 2,
-      "expected_output": "The skill gates on pre-landing checks and lands all PRs (lone or stacked, base-first) via gh pr merge --squash.",
+      "expected_output": "The skill gates on pre-landing checks, lands a lone PR via gh pr merge --squash, and lands a stacked PR by merging the top PR with gh stack merge so all parents land in one action.",
       "files": [],
       "prompt": "Merge my PR after reconciliation and close the linked issue deliberately.",
       "assertions": [
@@ -28,7 +28,7 @@
         "Body contains at least one '##' heading",
         "Body exposes '## Pre-landing gates (must already hold)'",
         "Body requires the org's mandatory approver approval on the current head before merge and forbids bypassing that gate with --admin",
-        "Body lands every PR via gh pr merge --squash (stacked ones base-first)",
+        "Body lands a stacked PR by merging the top PR with gh stack merge so all parent layers land in one action",
         "Body shows the explicit 'gh api -X DELETE' teardown for a branch that survives the merge"
       ]
     },

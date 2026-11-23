@@ -79,9 +79,10 @@ before proceeding.
    `sks-dev`):
    - Independent unit → own bookmark + standalone PR (or single-member stack).
 
-- Dependent chain → one bookmark per link; land links in dependency order
-  (base first). Open each PR per `sks-pr` (body via `--body-file`, never
-  inline `--body`).
+- Dependent chain → one bookmark per link; open each PR per `sks-pr` (body
+  via `--body-file`, never inline `--body`), then land the TOP link with
+  `gh stack merge <top-pr> --yes --squash` — GitHub waterfalls every parent
+  below in one action (see `sks-land`).
 - PR↔issue linkage per `sks-pr`: Development metadata
   (`addCloseIssueReferences`, `sks-pr-triage` step 5) — no body keyword.
 - Before opening each PR, run the `sks-pr` step 2b duplicate/stack check — an
