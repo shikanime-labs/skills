@@ -61,6 +61,7 @@
         "Frontmatter 'name' equals the directory basename 'sks-maintenance'",
         "Body sends the dependency pass to 'references/renovate.md'",
         "The renovate pass enumerates open PRs per repo with 'gh pr list'",
+        "The renovate pass: drop archived and empty repos in the query",
         "The renovate pass lands only PRs with green checks on the 'exact head'",
         "The renovate pass reports non-landed PRs with their 'blocking reason'"
       ]

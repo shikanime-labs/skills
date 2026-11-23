@@ -11,6 +11,7 @@
         "Frontmatter license field is 'Apache-2.0'",
         "Body states the discussion, issue, issue comments, PR lifecycle",
         "Body probes gh identity and push permission before work",
+        "Body states org-wide sweeps skip archived and empty repos",
         "Body routes unmet assumptions to 'BLOCKED' reporting",
         "Body points org specifics at references/shikanime.md"
       ]

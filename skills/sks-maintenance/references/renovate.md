@@ -10,10 +10,13 @@ explicit go-ahead.
 
 ## Procedure
 
-1. **Enumerate.** `gh repo list <org> --limit 100 --json nameWithOwner` per
-   org, then `gh pr list -R <repo> --author app/renovate --state open --json
+1. **Enumerate.** Drop archived and empty repos in the query:
+   `gh repo list <org> --limit 100 --json
+   nameWithOwner,isArchived,defaultBranchRef --jq '.[] | select(.isArchived
+   | not) | select(.defaultBranchRef != null) | .nameWithOwner'` per org,
+   then `gh pr list -R <repo> --author app/renovate --state open --json
    number,title,headRefName,updatedAt,statusCheckRollup`. Completion check:
-   every repo scanned, every open PR recorded.
+   every non-archived repo scanned, every open PR recorded.
 
 2. **Triage per PR.** Green checks on the exact head → eligible. Red → read
    `gh pr checks <n>` and the failing job's first error lines

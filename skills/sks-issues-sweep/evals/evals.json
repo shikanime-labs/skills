@@ -11,6 +11,7 @@
         "Frontmatter license field is 'Apache-2.0'",
         "Body contains at least one '##' heading",
         "Body enumerates repos and open issues per repo",
+        "Body requires a drop of archived and empty repos in the query",
         "Body dedups against prior run coverage",
         "Body detects unlabeled, unanswered, and unassigned issues by age"
       ]

@@ -3,7 +3,7 @@ name: sks-context
 description:
   "Use when working in a target org's repos: the ecosystem map, environment
   facts, and shared assumptions every workflow skill builds on."
-version: 0.1.0
+version: 0.1.1
 author: Automata
 license: Apache-2.0
 metadata:
@@ -68,6 +68,10 @@ Every family skill assumes, without restating:
 - Work runs as an agent account with org membership. Probe before work:
   `gh api user --jq .login` and
   `gh api repos/<org>/<repo> --jq .permissions.push`.
+- Org-wide sweeps skip archived and empty repos. Enumerate with
+  `gh repo list <org> --json name,isArchived,defaultBranchRef`, and intersect
+  `search/issues?q=org:` counts with that filtered set — the search API has
+  no archived filter and counts archived repos.
 - Trunk is `main@origin` and may be protected by rulesets — the classic
   branch-protection endpoint reads ruleset-backed repos as unprotected.
 - Every implementation unit runs in a fresh jj workspace pinned to
