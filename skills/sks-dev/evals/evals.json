@@ -32,7 +32,7 @@
     },
     {
       "id": 3,
-      "expected_output": "Lands via PR by default, rechecks every stacked link's live merge state and rebases conflicts before landing, and allows direct push only when authorized.",
+      "expected_output": "Lands via PR by default, rechecks every stacked link's live merge state and rebases conflicts before a top-first gh stack merge that lands all parent layers in one action, and allows direct push only when authorized.",
       "files": [],
       "prompt": "The stack is ready — how do I land these branches in shikanime-studio without bypassing protections?",
       "assertions": [
@@ -41,7 +41,7 @@
         "Frontmatter license field is 'Apache-2.0'",
         "Body contains at least one '##' heading",
         "Body makes PR the default landing path",
-        "Body mentions dependency-order gh pr merge --squash for stacked work",
+        "Body mentions 'gh stack merge' for stacked work",
         "Body restricts direct push to main to explicit user authorization",
         "Body requires 'mergeable' and 'mergeStateStatus' rechecked before landing each stacked PR",
         "Body treats 'CONFLICTING' and 'DIRTY' as a blocked stacked PR",

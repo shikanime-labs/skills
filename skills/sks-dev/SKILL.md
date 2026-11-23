@@ -213,14 +213,19 @@ anchor can get duplicated — remove the stray copy before pushing.
   one already delivers the change; stack on that PR's branch when your change
   depends on it. Inside a jj isolation workspace gh has no git remote — pass
   `-R <org>/<repo>` explicitly.
-- **Stacked work:** one PR per link off `main`; land in dependency order
-  (base first) with `gh pr merge --squash --admin` (see `sks-land`).
-- **Recheck every stacked link's live merge state before each merge, and again
-  after every base lands** — a base merge rewrites children and can leave a
-  link `mergeable: CONFLICTING` or `mergeStateStatus: DIRTY`. Read it with
+- **Stacked work:** one PR per link off `main`; where the `gh stack` extension
+  is installed, land the TOP-most PR with
+  `gh stack merge <top-pr> --yes --squash` — GitHub waterfalls it and every
+  parent below in one action. Never merge links one at a time base first
+  (see `sks-land`). The extension is removed in the shikanime org —
+  `references/shikanime.md`.
+- **Recheck every stacked link's live merge state before the top-first merge,
+  and again after any link lands** — a merge rewrites the remaining children
+  and can leave a link `mergeable: CONFLICTING` or `mergeStateStatus: DIRTY`.
+  Read it with
   `gh pr view <n> -R <org>/<repo> --json mergeable,mergeStateStatus`.
-  A conflicting state is `BLOCKED`: do not merge. Rebase the link onto the new
-  base (`sks-restack`; if the base branch was deleted, retarget its base to
+  A conflicting state is `BLOCKED`: rebase the link onto the new base
+  (`sks-restack`; if the base branch was deleted, retarget its base to
   `main` first), re-push, re-approve on the new head, re-run CI, and recheck
   until the state reads `MERGEABLE` / `CLEAN`.
 - **Run `sks-review` before requesting merge** — it applies the

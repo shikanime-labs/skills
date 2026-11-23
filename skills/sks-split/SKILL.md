@@ -99,8 +99,9 @@ already know is single (`sks-delegate`).
    then reports "Nothing changed" with exit 0 — a silent no-op.
 
 5. **Bookmark per unit, push, land.** One bookmark per unit; each unit gets
-   its own PR per `sks-pr`. Siblings land in any order; a stack
-   lands base first (`sks-land`). Commit descriptions follow `sks-commit`.
+   its own PR per `sks-pr`. Siblings land in any order; a native stack lands
+   top-first with `gh stack merge` (`sks-land`). Commit descriptions follow
+   `sks-commit`.
 
 ## Pitfalls
 

@@ -112,11 +112,14 @@ deciding.
 
 ## Merge procedure
 
-Land with plain `gh pr merge`. A `gh stack` extension, where installed, may
-create and maintain stacks; landing itself stays plain `gh pr merge` (org
-tooling state in `references/shikanime.md`). For a lone PR use
-`gh pr merge --squash [--admin]`; never `gh pr merge` on a stacked PR — but
-stacked PRs are landed the same way now (one squash-merge per PR, base `main`).
+Land a lone PR with `gh pr merge --squash [--admin]`. For a stacked PR, land
+the TOP-most unmerged PR: `gh stack merge <top-pr> --yes --squash`. GitHub
+merges that PR and every unmerged layer below it in ONE all-or-nothing stack
+merge, bottom-up internally — never merge links one at a time from the base.
+On a merge-queue base the command enqueues the PRs instead; the queue chooses
+the merge method and `--squash` is ignored. Link base-chained PRs into a
+native stack before calling it — base chaining alone is not a stack.
+Org tooling state: `references/shikanime.md`.
 Never force-push. **Watch and merge are two separate steps — never one
 background chain.** A merge that fires unattended from a watcher is a
 recurring incident class: by the time it lands, gates may have moved (new
@@ -168,8 +171,12 @@ EOF
   branch commits (leaks jj's `*` / `---------` artifacts). One subject +
   required trailers (`references/shikanime.md`).
 - Lone, self-approval blocked (after verbal lgtm): use `--squash --admin`.
-- Stacked (multiple PRs off `main`): land each with
-  `gh pr merge <PR_NUMBER> --squash --admin` in dependency order (base first).
+- Stacked (multiple PRs off `main`): Step 2's `gh pr merge` is for a lone PR.
+  For a stack, link the PRs, run Gates 2–5 for every PR the merge will land,
+  then merge the TOP PR with `gh stack merge <top-pr> --yes --squash`. The
+  waterfall lands that PR and all unmerged parents below in one action —
+  never base first. Stack merges cannot bypass merge requirements; no
+  `--admin`.
 - Branch protection may require linear history + signed commits (org example
   in `references/shikanime.md`); squash-merge satisfies both.
 
@@ -177,9 +184,10 @@ EOF
 
 - Stacked PRs (GitHub stack feature, Oct 2026+): legacy `gh pr merge`, the
   GraphQL mutation, and `--auto` all refuse with "part of a stack and must be
-  merged using the asynchronous merge REST API". Use
-  `PUT /repos/{o}/{r}/pulls/<n>/merge-async` body
-  `{merge_method, merge_action:"direct_merge", commit_message, sha,
+  merged using the asynchronous merge REST API". Prefer
+  `gh stack merge <top-pr> --yes --squash`, which asks GitHub to waterfall the
+  whole stack. API fallback: `PUT /repos/{o}/{r}/pulls/<top-pr>/merge-async`
+  body `{merge_method, merge_action:"direct_merge", commit_message, sha,
   bypass_rules}` then poll `GET .../merge-async/<uuid>` until status !=
   `pending`. `bypass_rules` is the async API's `--admin`.
 - Mid-stack async merges can land the squash onto the stack-LINK base branch
@@ -197,8 +205,8 @@ EOF
   bookmark ("no longer reachable"); `jj undo` restores them. Never fetch
   between a merge and the next push of the stack.
 - Unchecked criterion — discharge or escalate, don't merge.
-- Merging a dependent stacked PR before its base lands — go in dependency order,
-  base first.
+- Landing stacked links one by one from the base — old procedure. Merge the
+  top PR with `gh stack merge` so GitHub waterfalls every parent in one action.
 - Merge after new commits without re-review — approval binds to a head commit.
 - Joining the CI watch and the merge with a shell conjunction in one
   background terminal — the merge fires unattended while gates move. Watch

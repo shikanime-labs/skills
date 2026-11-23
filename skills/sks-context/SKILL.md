@@ -48,8 +48,9 @@ The lifecycle is **discussion → issue → issue comments → PR**:
   N-of-N.
 - The PR↔issue link is Development metadata added at triage, never a body
   line.
-- Landing is `gh pr merge --squash` in dependency order; a direct push to
-  `main` needs explicit user authorization.
+- Landing is `gh pr merge --squash` for a lone PR; a native stack lands
+  top-first with `gh stack merge` (`sks-land`). A direct push to `main`
+  needs explicit user authorization.
 
 The working stance behind every unit: prefer the long-term solution, fix the
 root cause, never land a tactical patch that accrues debt. There is no hard
