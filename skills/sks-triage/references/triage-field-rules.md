@@ -117,6 +117,13 @@ context**; nothing else:
   On cpn, `yorha-operator` lacks `admin:org` — export
   `GH_TOKEN=$(gh auth token --user shikanime)` for discovery/field writes
   (it carries `admin:org`), and keep it for the whole run.
+  Write permission also splits per token, per repo — verify with one
+  cheap mutation before a loop: on cpn, `yorha-operator` is refused on
+  issue-field writes ("Must have admin rights to Repository") while the
+  shikanime token succeeds, and its label/reviewer/assignee edits
+  silently no-op. Run every mutation of the run as
+  `GH_TOKEN=$(gh auth token --user shikanime)` — switching tokens
+  mid-run to "diagnose" wastes the loop budget.
 - **Check the repo's `/labels` before every `--add-label`** — label sets
   differ per repo; a name that exists in one repo may not exist in a
   sibling.

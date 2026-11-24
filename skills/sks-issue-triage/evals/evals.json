@@ -15,7 +15,8 @@
         "Body inventories board custom fields from gh project field-list and decides every field — filled when derivable, human-owned ones skipped with a named reason.",
         "Body never invents a repo-lacking label and only fills fields empty on the issue.",
         "Body assigns the org default assignee (per references/shikanime.md), falling back to the current user, always — the role is participation (discuss and co-work, never take over unless asked) — and only when the assignee appears in the repo's eligible assignee list.",
-        "Body carries an explicit load condition to read references/cloud-pi-native.md when triaging in a cloud-pi-native repo"
+        "Body carries an explicit load condition to read references/cloud-pi-native.md when triaging in a cloud-pi-native repo",
+        "Body contains 'Audit body completeness first.' and posts one comment asking the author to fill missing sections instead of deriving a field from an absent section"
       ]
     },
     {

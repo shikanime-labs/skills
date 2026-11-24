@@ -4,7 +4,7 @@ description:
   "Use when triaging an existing org issue: assign type, labels, assignee,
   milestone, project, relationships, fields; requalify when the evidence
   moved; close with rationale if not workable."
-version: 0.7.2
+version: 0.8.0
 author: Automata
 license: Apache-2.0
 metadata:
@@ -43,6 +43,8 @@ repo-lacking value.
 - "Triage an existing org issue."
 - "Assign metadata (type, labels, assignee, milestone, project, relationships,
   fields)."
+- "Audit whether #N is complete" — compare the body with the repo's issue
+  template and report missing sections; never derive fields from gaps.
 - "Requalify issue #N" — the issue is triaged but its body, comments, or
   linked PR moved the evidence since; re-derive the fields (step 7).
 - "Close an issue with a rationale if it will not be worked."
@@ -86,6 +88,20 @@ assignees, issue types, fields. Missing sections (no milestones, no projects)
 mean those fields stay empty.
 
 ### 3. Decide each field (apply only if empty + value exists in repo)
+
+**Audit body completeness first.** Before deriving any field from the
+content, compare the body with the template the repo actually ships: the
+query order and fallback shape live in `sks-issue` ("Templates: query,
+then conform"), never hardcoded here. A required section that is absent,
+empty, or still placeholder text is a completeness gap: post one comment
+naming the exact sections (`gh issue comment --body-file`, one subject per
+comment per `sks-comment`) and ask the author to fill them. Never rewrite
+the body during triage — authoring is `sks-issue`'s job — and never derive
+a field from a section that is missing; fields come from the content that
+is actually present plus other evidence. Report the gap in the triage
+result. In requalification (step 7), a body edited to close a
+completeness gap is moved evidence: re-derive only fields whose
+derivation changed.
 
 - **type** — if empty and the repo has issue types: map by meaning
   (defect/regression→`Bug`, new capability→`Feature`,
@@ -202,6 +218,9 @@ gh project item-list <number> --owner <board-owner> --limit 200 --format json \
   --jq '.items[] | select(.content.number == <N>)'
 # board read-back: every custom field on the card is decided — set, or
 # skip recorded with its reason; unset-and-unnamed fails triage
+gh issue view "$N" --repo "$R" --json body
+# completeness: every required template section is present and filled, or
+# one comment names the exact gaps — never a field inference from emptiness
 gh api graphql -f query='{ repository(owner:"<org>", name:"<repo>")
   { pinnedIssues(last:20) { nodes { issue { number } } } } }'
 # pin read-back: the issue appears in (or is absent from) the pin list
