@@ -28,6 +28,16 @@ Load when working in the cloud-pi-native/console repository.
 - Lifecycle: discussion → issue (French problem statement + `Définition du
   fini` ledger) → issue comments → PR. Discussion RFC first when the problem
   is unconverged.
+- Multi-ticket chantiers: the dedicated « 🌈 Épic » issue form (added by
+  console#3095) creates the epic; sub-tickets attach as native sub-issues,
+  and the epic's « Références » section cites only non-sub-ticket context:
+  the sub-issue tree is the source of truth for the work set.
+  `[EPIC]`/`[BUG]` title prefixes on old issues are legacy; classification
+  lives in labels.
+- `yorha-operator` files issues but cannot open PRs on console (not a
+  collaborator): author PRs under `shikanime` — attribution still comes
+  from the commit (William author + Automata trailer), and the author /
+  approver account split is what the approval rules expect.
 
 ## Board tracking
 
@@ -43,6 +53,17 @@ Load when working in the cloud-pi-native/console repository.
   separate system from board fields; the REST org-fields endpoint 404s for
   non-admin org members, and nothing populates them on `gh issue create`.
   An empty sidebar Fields section is normal, not a sync failure.
+- Board state is identity-scoped: under `yorha-operator`, project graphs,
+  `issue.projectItems`, and project item nodes return NOT_FOUND or empty —
+  silently, indistinguishable from real deletion. Read card existence and
+  Status under `shikanime` only; write proofs live there too. Cheap
+  single-node read-back: keep the item id from `gh project item-add`, query
+  that node's `fieldValueByName(name:"Status")`, probe its `__typename`
+  first (this gateway's type is `ProjectV2ItemFieldSingleSelectValue`; both
+  standard inline-fragment names fail), then select on that.
+- `gh project item-list` over the 2000+-item board burns enough of the
+  hourly GraphQL budget that a same-hour verification listing trips the
+  limiter; use the single-node path above instead of any bulk listing.
 
 ## Checkout et layout
 
