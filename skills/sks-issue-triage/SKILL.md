@@ -4,7 +4,7 @@ description:
   "Use when triaging an existing org issue: assign type, labels, assignee,
   milestone, project, relationships, fields; requalify when the evidence
   moved; close with rationale if not workable."
-version: 0.8.0
+version: 0.9.0
 author: Automata
 license: Apache-2.0
 metadata:
@@ -241,7 +241,7 @@ is a silent metadata edit: the defect this step exists to prevent.
 State is one of those fields: when the evidence shows the issue already
 landed (linked merged PR), is invalid, or is a duplicate, the outcome is
 the state move — trail comment first (old → new state plus evidence),
-then close as `completed` or `not planned`
+then close as `completed`, `not planned`, or `duplicate`
 (`references/close.md`); never close silently.
 
 ## Repo-specific notes
@@ -250,6 +250,14 @@ Read `references/cloud-pi-native.md` when triaging issues in a
 cloud-pi-native repo (French close rationales, per-repo labels).
 
 ## Pitfalls
+
+- **Statuses are per repository, set over the API** — every issue carries a
+  planning status (`Backlog`, `Todo`, `In progress`, `In review`, `Done`,
+  `Not planned`, `Duplicate`) beside `state`/`state_reason`. `gh issue
+  close` sets only the reason; the status moves via the GraphQL
+  `setIssueStatus` mutation or a REST PATCH with `status`, and its ids
+  differ per repo — list them with `repository.planningStatuses` first.
+  Full recipes: `references/close.md`.
 
 - **Pin and unpin are GraphQL-only** — REST has no endpoint. `pinIssue`
   and `unpinIssue` both take the issue's node ID and both return

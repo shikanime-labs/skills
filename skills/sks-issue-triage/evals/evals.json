@@ -30,8 +30,11 @@
         "The description starts with 'Use when' and is at most 200 characters.",
         "The license field is 'Apache-2.0'.",
         "The body contains at least one '##' heading.",
-        "Body closes unworkable issues with a rationale comment, never silently.",
-        "Body transfers wrong-repo issues via gh issue transfer rather than triaging in place."
+        "Body closes unworkable issues with a 'rationale' comment, never silently.",
+        "Body transfers wrong-repo issues via 'gh issue transfer' rather than triaging in place.",
+        "Body documents the issue statuses 'Backlog', 'Todo', 'In progress', 'In review', 'Done', 'Not planned', 'Duplicate' alongside 'state_reason'.",
+        "Body sets the status through the 'setIssueStatus' mutation or a 'REST PATCH' with 'status'.",
+        "Body closes duplicates with '--reason duplicate' and '--duplicate-of'."
       ]
     },
     {
