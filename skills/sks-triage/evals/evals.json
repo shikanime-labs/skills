@@ -25,7 +25,8 @@
         "Body computes missing classes against what the repo supports (types, fields)",
         "Body caps the number of items touched per sweep and reports the untouched remainder",
         "Body verifies each item by re-reading it after applying",
-        "Body forbids closing items during a sweep"
+        "Body forbids closing items during a sweep",
+        "Body contains 'Report the gap; never rewrite the body during a sweep.' and audits an empty or missing issue body per sks-issue-triage step 3"
       ]
     },
     {

@@ -4,7 +4,7 @@ description:
   "Use when triaging a target org, repo, issue, or PR: sweep for untriaged
   items, assign empty, context-derivable fields, and requalify items whose
   evidence moved — type, labels, assignee, fields, links."
-version: 0.9.0
+version: 0.10.0
 author: Automata
 license: Apache-2.0
 metadata:
@@ -54,9 +54,9 @@ directory, not the target repo.
   or its org offers: labels, projects, assignees, enabled issue types, org
   issue fields. The source of truth for step 3; never set a value it does
   not list.
-- `scripts/scan-untriaged.sh REPO` — open issues and PRs whose metadata is
-  incomplete, computed against what the repo actually supports. Columns:
-  number, kind, missing classes. Milestones are not a triage gap: a missing
+- `scripts/scan-untriaged.py REPO` — open issues and PRs whose metadata is
+  incomplete, including `body` (empty or missing body). Columns: number,
+  kind, missing classes. Milestones are not a triage gap: a missing
   milestone is `sks-plan`'s signal, never reported here.
 
 ## When to Use
@@ -111,7 +111,7 @@ route to `sks-discussion-triage`.
 - **repo** → one paginated call, keeping only rows with gaps:
 
 ```bash
-<skill-dir>/scripts/scan-untriaged.sh "$R"
+<skill-dir>/scripts/scan-untriaged.py "$R"
 ```
 
 - **org** → enumerate repos (drop archived and empty), then scan each:
@@ -137,7 +137,11 @@ state, the PR diff and required checks when a fix exists, and the board
 card's Status. For a PR the ledger lives on its linked issue. A label, a
 stale memory, or an old comment cannot mark a criterion met or declare an
 item ready, completed, duplicate, blocked, or out of scope; a ledger tick
-needs verified diff/check evidence (`sks-pr-resolve` Gate 2).
+needs verified diff/check evidence (`sks-pr-resolve` Gate 2). For an
+issue, a `body` class from the scan — or a section missing against the
+repo's template — is a completeness gap: audit it per `sks-issue-triage`
+step 3, comment asking the author to fill it, and derive no field from
+the absence. Report the gap; never rewrite the body during a sweep.
 
 **Decide** - every field **empty on the item** and **derivable from
 its context**; nothing else. Discover first via
@@ -145,7 +149,9 @@ its context**; nothing else. Discover first via
 the class stays empty, never invent a value. The per-field rules
 (type, labels + `risk:*`, assignee, milestone never here, project,
 relationships, issue fields, card fields, pinned, reviewers) live in
-`references/triage-field-rules.md`.
+`references/triage-field-rules.md`; card-gap mechanics (detection,
+onboarding, GraphQL shapes) load from `references/project-v2-cards.md`
+when the gap lives on a board card.
 
 **Apply** (additive only):
 
@@ -223,7 +229,7 @@ gh api "repos/$R/issues/$N" --jq '{type: (.type.name // "-"),
   labels: [.labels[].name], assignees: [.assignees[].login],
   fields: [.issue_field_values[] |
     "\(.issue_field_name)=\(.single_select_option.name // .value)"]}'
-<skill-dir>/scripts/scan-untriaged.sh "$R"  # untriaged set shrank
+<skill-dir>/scripts/scan-untriaged.py "$R"  # untriaged set shrank
 ```
 
 ## Memory loop

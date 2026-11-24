@@ -6,8 +6,10 @@ Computed against what the repo or its org actually supports: a class with
 no supported values is never a gap. Milestones are not a triage class —
 sks-plan / sks-milestone own their assignment. Assignment follows the
 triage doctrine: every open item carries the default assignee
-(participation role), so an unassigned item is a gap. One paginated call
-per repo. Output: TSV number, kind, missing classes.
+(participation role), so an unassigned item is a gap. `body` flags an
+empty or missing body — section-level completeness against the repo's
+issue template is judged per item in SKILL.md step 3, not here. One
+paginated call per repo. Output: TSV number, kind, missing classes.
 
 Usage:
     scan-untriaged.py OWNER/REPO
@@ -47,6 +49,8 @@ def gaps_for(item: dict, types: int, fields: int) -> list[str]:
     """Missing triage classes for one issue/PR API object."""
     kind = "pr" if "pull_request" in item else "issue"
     gaps = []
+    if not (item.get("body") or "").strip():
+        gaps.append("body")
     if kind == "issue" and types and not item.get("type"):
         gaps.append("type")
     if not item.get("labels"):
@@ -77,9 +81,16 @@ def scan(repo: str) -> int:
 
 
 def _self_check() -> None:
-    pr = {"number": 1, "pull_request": {}, "labels": [], "assignees": []}
+    pr = {
+        "number": 1,
+        "pull_request": {},
+        "body": "Body",
+        "labels": [],
+        "assignees": [],
+    }
     issue = {
         "number": 2,
+        "body": "Body",
         "type": {"name": "Bug"},
         "labels": [{"name": "bug"}],
         "assignees": [{"login": "a"}],
@@ -90,6 +101,8 @@ def _self_check() -> None:
         "assignee",
     ]  # no type/fields on PRs
     assert gaps_for(issue, 1, 0) == []  # fields unsupported → not a gap
+    for empty in (None, "", " \n "):
+        assert gaps_for(dict(issue, body=empty), 1, 0) == ["body"]
     assert gaps_for(dict(issue, issue_field_values=None), 1, 1) == ["fields"]
     stripped = dict(issue, labels=[], assignees=[], type=None)
     assert gaps_for(stripped, 0, 0) == [
