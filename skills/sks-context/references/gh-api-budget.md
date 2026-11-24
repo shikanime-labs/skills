@@ -19,3 +19,15 @@ is exhausted, stay on REST, which has its own budget:
 
 A `gh issue create` that dies on its label fetch may have created the issue
 already: list open issues by title before retrying, or you file a duplicate.
+
+Bulk reads are the usual self-inflicted cause: `gh project item-list` over a
+2000+-item board can consume enough of the hourly budget that the
+verification read trips the limit within the same hour. Verify a single
+board card from the item id kept in the `item-add` response instead — one
+GraphQL node query, no listing. That path still needs budget: with the
+hourly pool exhausted, even a single-node query is limited — wait for the
+reset, then read back. Board visibility is identity-scoped on
+cloud-pi-native: project graphs return NOT_FOUND / empty under an account
+without board access, which reads exactly like deletion. Conclude
+"deleted" only from a read under the account that can see the board (on
+console, `shikanime`); never from an empty response elsewhere.

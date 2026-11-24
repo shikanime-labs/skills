@@ -102,6 +102,12 @@ new milestone; triage → converge → issue → board still apply.
    issue's milestone (`sks-pr-triage` owns the mechanics) — a milestone
    dropped at PR open is the plan's decision lost.
 
+   Units that already exist as open issues are attached, not re-opened:
+   reuse the issue and complete its triage instead. Link it to the parent
+   epic with GraphQL `addSubIssue` (`issueId` is the parent, `subIssueId`
+   the child; `addParentIssue` does not exist on this API) and read the
+   parent back per unit before reporting the tree.
+
    Set `Start date` and `Target date` on every unit here. The plan owns
    those fields because it owns the sequence: Start date is the planned
    begin, Target date the planned finish. Read both from the unit table
@@ -133,6 +139,15 @@ new milestone; triage → converge → issue → board still apply.
   audit.
 - **Inventing a due date.** The milestone carries a date only when a real
   deadline exists; an empty field is honest.
+- **Epic bodies restate the work set.** When units hang off a parent
+  epic, its body and Références carry only non-sub-ticket context; the
+  sub-issue tree is the work set. A second in-body ticket list drifts the
+  day an external actor attaches or detaches a unit.
+- **Shared trackers mutate between reads.** Re-read the linkage set
+  (parents, sub-issues, board items) immediately before a batch of
+  relationship writes and diff live against intended: another session,
+  teammate, or bot can attach or detach in between. Never remove an
+  external actor's attachment without instruction; report it.
 
 ## Verification
 
