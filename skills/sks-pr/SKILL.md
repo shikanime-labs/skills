@@ -155,12 +155,8 @@ PRs assign no reviewer at opening: the repo's CODEOWNERS auto-requests
 the owners. Only `sks-pr-triage` requests a reviewer, and only when the
 PR carries none (`references/shikanime.md`).
 
-Use `--draft` at creation — every PR opens as a draft. Flip it to ready
-(`sks-pr-ready`) only after its full gate train passes: CI green on the
-verified head, first review done, triage complete, body reconciled with
-the diff, mergeable — then `gh pr ready`. Code-quality gates like the
-SonarQube Quality Gate (0 new issues) count as CI there; verify via
-`gh pr checks <N>` before the flip.
+Use `--draft` at creation — every PR opens as a draft. The promotion gate
+train belongs to `sks-pr-ready`; this skill does not flip the draft.
 
 ### 2d. Verify mergeable after submit
 

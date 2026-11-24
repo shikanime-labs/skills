@@ -129,11 +129,8 @@ jj describe -m "<subject>" \
 
 ## Push / landing
 
-- Push to `origin`; open PRs from `--head <org>:<branch>` (`sks-pr`).
-- NEVER push to `main` unless the user explicitly authorizes ("push to main" /
-  "land it") — then push directly, no PR.
-- Protected `main` repos → PR; direct push rejected (org examples in
-  `references/shikanime.md`).
+See `sks-dev` for the push-to-origin and landing path. This skill owns the
+commit only.
 
 ## Pitfalls
 

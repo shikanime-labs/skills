@@ -141,10 +141,8 @@ gh pr view <n> -R <org>/<repo> --json headRefOid   # must equal @
 Probe and RECORD each; an unmet requirement is a reported blocker, never a
 silent scope change:
 
-- gh identity: `gh api user --jq .login`
-- push right: `gh api repos/<org>/<repo> --jq .permissions.push` (needs
-  `true`; some orgs return an empty `.viewerPermission` — org quirks per
-  `references/shikanime.md`)
+- `sks-context` owns the gh identity and push-right probes, with the org
+  quirks behind them
 - jj repo: `.jj/` / `jj status` → `jj bookmark track` before push
 - issue exists and is triaged (issue-first) — else `sks-issue` then
   `sks-issue-triage`; an untriaged issue routes there before implementation
@@ -219,15 +217,8 @@ anchor can get duplicated — remove the stray copy before pushing.
   parent below in one action. Never merge links one at a time base first
   (see `sks-land`). The extension is removed in the shikanime org —
   `references/shikanime.md`.
-- **Recheck every stacked link's live merge state before the top-first merge,
-  and again after any link lands** — a merge rewrites the remaining children
-  and can leave a link `mergeable: CONFLICTING` or `mergeStateStatus: DIRTY`.
-  Read it with
-  `gh pr view <n> -R <org>/<repo> --json mergeable,mergeStateStatus`.
-  A conflicting state is `BLOCKED`: rebase the link onto the new base
-  (`sks-restack`; if the base branch was deleted, retarget its base to
-  `main` first), re-push, re-approve on the new head, re-run CI, and recheck
-  until the state reads `MERGEABLE` / `CLEAN`.
+- **Stacked links:** recheck live merge state before and after landing and
+  resolve conflicts per `sks-land`.
 - **Run `sks-review` before requesting merge** — it applies the
   YAGNI lens and flags over-engineering. Deliberate corner-cuts in code carry
   a `ponytail:` comment naming the ceiling and upgrade path. Reports only — a

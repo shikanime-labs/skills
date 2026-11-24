@@ -60,12 +60,8 @@ earlier gate — restart at step 1.
    the body must be reconciled before the flip — diff is the source of
    truth, never copy the old body with touch-ups:
 
-   - Delete every claim absent from the current diff.
-   - Elevate understated fixes — the real change the diff carries.
-   - Apply via `gh pr edit <N> --body-file`, then re-read the stored body.
-
-   Full reconciliation procedure: `sks-pr-triage` step 7. A body written
-   before the last push is stale by definition.
+   Reconciliation rules and commands are owned by `sks-pr-triage` step 7. A
+   body written before the last push is stale by definition.
 
 3. **CI green on that head.**
 

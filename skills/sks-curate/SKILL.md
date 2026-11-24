@@ -153,6 +153,10 @@ naming the ceiling and the upgrade path.
 - **Evals rot with the body.** The most common curation failure is editing the
   body and leaving assertions that now fail or assert stale behavior. Refresh
   them in the same pass, in the same commit.
+- **Eval JSON round-trips widen the diff.** Loading and dumping
+  `evals/evals.json` unescapes `\u003c` and rewrites assertions you never
+  touched. Insert new assertions by raw string replacement after an anchor
+  line, then JSON-parse the result to verify.
 - **Budget is per-load, not per-edit.** A skill can grow when improving; the
   budget is the final body. Improve-then-compress so the result lands lean.
 - **Don't break the trigger by over-tightening.** Cutting the description to

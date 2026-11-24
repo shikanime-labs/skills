@@ -26,7 +26,7 @@
         "Body contains at least one '##' heading",
         "Body drives curation from an automated audit",
         "Body leaves healthy skills untouched",
-        "Body mentions 'evals' and 'skillignore' in the audit"
+        "Body delegates the per-skill audit to sks-curate"
       ]
     },
     {

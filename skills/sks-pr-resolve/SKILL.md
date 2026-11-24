@@ -123,11 +123,9 @@ them with the GraphQL in `references/resolve.md`.
 before reconciling: `gh pr view <M> --json commits` — every commit subject
 passes `sks-commit` shape, no fixup/wip/rebase artifacts. Stacked PRs
 legitimately carry multiple commits, but each must be **relevant** — a logical
-unit of the PR's change, not stray WIP. Squash noise into their logical
-parent, split mixed units (`jj split`), reorder if the narrative is
-incoherent, drop empty commits. When in doubt about the structure, restructure
-before Gates 2–4 run; a dirty or incoherent history makes every downstream
-verification ambiguous.
+unit of the PR's change, not stray WIP. Route history cleanup to `sks-commit`
+/ `sks-split` before Gates 2–4 run; a dirty or incoherent history makes every
+downstream verification ambiguous.
 
 For each **unresolved** thread:
 

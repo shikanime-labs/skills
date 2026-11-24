@@ -12,7 +12,9 @@
         "Body seeds command-decidable ledgers at issue creation and records dependencies as issue relationships at triage",
         "Body skips archived and empty repos in org-wide planning",
         "Body fills the milestone: attaches the named one or creates it titled after the goal, never inventing a due date",
-        "Body boards every unit Ready via sks-project and hands execution to sks-iterate"
+        "Body boards every unit Ready via sks-project and hands execution to sks-iterate",
+        "Body runs sks-triage before decomposition when the backlog is untriaged",
+        "Body skips the triage gate when the scan reports zero gaps"
       ]
     },
     {

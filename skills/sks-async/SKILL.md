@@ -84,11 +84,8 @@ before proceeding.
   native stack, then land the TOP link with
   `gh stack merge <top-pr> --yes --squash` — GitHub waterfalls every parent
   below in one action (see `sks-land`). Base chaining alone is not a stack.
-- PR↔issue linkage per `sks-pr`: Development metadata
-  (`addCloseIssueReferences`, `sks-pr-triage` step 5) — no body keyword.
-- Before opening each PR, run the `sks-pr` step 2b duplicate/stack check — an
-  existing open PR covering the unit means push to it or stack on it, never a
-  second PR for the same change.
+- PR↔issue linkage and duplicate/stack checks belong to `sks-pr`;
+  Development-link mechanics to `sks-pr-triage`.
 
 5. **Verify bottom-up** — each leaf's checks run IN its workspace; dispatcher
    re-runs them (subagent self-reports aren't evidence). Retire with

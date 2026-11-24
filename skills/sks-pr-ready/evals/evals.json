@@ -30,7 +30,7 @@
         "license field is 'Apache-2.0'",
         "Body contains at least one '##' heading",
         "Body reconciles the body with the diff on every push or update",
-        "Body deletes claims absent from the current diff",
+        "Body points to sks-pr-triage step 7 for body↔diff reconciliation",
         "Body restarts the gate train at step 1 after any push"
       ]
     },

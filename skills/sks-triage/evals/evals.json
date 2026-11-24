@@ -82,7 +82,7 @@
       "prompt": "Triage an issue whose linked PR merged, whose ledger still has unchecked boxes, and whose comments name a duplicate and a blocker.",
       "assertions": [
         "Body requires reading the live body ledger, comments since last triage, linked PR state, diff and required checks, and board Status before a verdict",
-        "Body maps ready, completed, duplicate, not planned and blocked to explicit ledger and metadata moves",
+        "Body reports ready, completed, duplicate, not planned and blocked verdicts and points closure to sks-issue-triage",
         "Body permits ledger ticks only from verified diff/check evidence and strikes impossible criteria with a comment instead of dropping them",
         "Body leaves the ledger untouched when blocked and reports closure candidates during a sweep instead of closing"
       ]
