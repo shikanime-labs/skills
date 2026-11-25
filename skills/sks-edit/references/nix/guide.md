@@ -218,6 +218,16 @@ and the edit touches sops wiring or rendered YAML.
   treefmt's nix formatter is configured, it owns sorting; do not hand-sort
   around it. If it is not configured for a given repo, sorting is a reviewer
   check, and the written file should already be sorted.
+- **Entering a dev shell is itself a write.** `nix develop` (and anything that
+  needs the shell, such as a devenv task listing) runs the shell's enter hook,
+  which regenerates the tree. On one flake repo it rewrote 17 unrelated files
+  including `secrets/*.enc.yaml`. Never enter the shell to prove something
+  about a diff. Gate with `jj diff -r @ --summary` straight after, and
+  `jj restore --from @-` every path that is not yours. Prove a
+  workflow-generator change by comparing the generator block names with the
+  rendered `.github/workflows/` list instead of by evaluating
+  `devShells.<system>.default.config`: a devenv shell derivation exposes no
+  `config`.
 - **A comment that survives `nix fmt` is not automatically a justified
   comment.** The formatter keeps it; the reviewer still asks why it exists.
   If the answer is "it explains the line", delete it.
