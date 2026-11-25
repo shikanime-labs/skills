@@ -222,12 +222,17 @@ and the edit touches sops wiring or rendered YAML.
   needs the shell, such as a devenv task listing) runs the shell's enter hook,
   which regenerates the tree. On one flake repo it rewrote 17 unrelated files
   including `secrets/*.enc.yaml`. Never enter the shell to prove something
-  about a diff. Gate with `jj diff -r @ --summary` straight after, and
-  `jj restore --from @-` every path that is not yours. Prove a
-  workflow-generator change by comparing the generator block names with the
-  rendered `.github/workflows/` list instead of by evaluating
-  `devShells.<system>.default.config`: a devenv shell derivation exposes no
-  `config`.
+  about a diff. Run `jj diff -r @ --summary` before and straight after, and
+  restore only the paths the second listing added. Restoring every path that is
+  not yours also discards changes that predate the shell.
+- **Generator names prove which workflows exist, not their content.**
+  Comparing a generator's block names with the rendered
+  `.github/workflows/` list shows that a workflow was added or removed. A step
+  edited inside an existing workflow keeps its name, so that comparison passes
+  while the committed file stays stale: diff the rendered file against the
+  generator's output as well. Do not evaluate
+  `devShells.<system>.default.config` for this; a devenv shell derivation
+  exposes no `config`.
 - **A comment that survives `nix fmt` is not automatically a justified
   comment.** The formatter keeps it; the reviewer still asks why it exists.
   If the answer is "it explains the line", delete it.
