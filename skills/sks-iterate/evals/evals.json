@@ -2,20 +2,21 @@
   "evals": [
     {
       "id": 1,
-      "expected_output": "Reads the board via sks-project, pulls the rightmost active card, routes defect cards through sks-investigate then the ladder (sks-delegate one card, sks-async independent cards), runs sks-dev's lifecycle, closes each iteration with one status block, stops on empty column / BLOCKED parking / budget exhaustion.",
+      "expected_output": "Reads the board via sks-project, pulls the rightmost active card, routes defect cards through sks-investigate then the ladder (sks-delegate one card, sks-async independent cards), runs sks-dev's lifecycle, closes each iteration with one status block, and repeats without asking. It stops only when the rightmost active column is empty, a BLOCKED card is parked with rationale, the iteration budget is exhausted, or a decision only the user can make is reached, which it asks with its evidence. A finding that may derive work beyond its card stops it for feedback too.",
       "files": [],
       "prompt": "Keep working the board — take cards until you run out.",
       "assertions": [
         "YAML frontmatter parses and 'name' equals 'sks-iterate'",
         "Body references sks-dev's lifecycle by name without restating its phase table (grep -c 'Phase' shows no restated table)",
-        "Body states the three stop conditions: rightmost active column empty, BLOCKED card parked with rationale, iteration budget exhausted",
+        "Body states the stop conditions: rightmost active column empty, BLOCKED card parked with rationale, iteration budget exhausted",
         "Body applies the coordination ladder per card: one card sks-delegate, independent cards sks-async",
-        "Body routes defect cards through sks-investigate before the ladder"
+        "Body routes defect cards through sks-investigate before the ladder",
+        "Body makes a user-only decision a suspending condition: 'the user can make'"
       ]
     },
     {
       "id": 2,
-      "expected_output": "Runs the loop on remaining cards; at milestone end closes the milestone via sks-milestone and hands the release cut to sks-release, RC first when validation is unproven; never cuts the release itself.",
+      "expected_output": "Runs the loop on remaining cards; at milestone end closes the milestone via sks-milestone and hands the release cut to sks-release, RC first when validation unproven; never cuts the release itself.",
       "files": [],
       "prompt": "The milestone board is nearly drained. Finish the remaining cards, then wrap up the release.",
       "assertions": [
@@ -34,6 +35,61 @@
         "YAML frontmatter parses and 'name' equals 'sks-iterate'",
         "Body's When to Use excludes single units and assigns them to sks-dev",
         "Body owns only the loop, stop conditions, and per-card ladder application — no restated lifecycle"
+      ]
+    },
+    {
+      "id": 4,
+      "expected_output": "Continues the in-flight card without pulling a fresh one or inventing one. It names the card that is open, reads the board to confirm it is the rightmost active one, and reports the card id in the status block.",
+      "files": [],
+      "prompt": "/sks-iterate",
+      "assertions": [
+        "Body requires an in-flight unit to be continued, not a fresh pull: 'do not pull a fresh one and do not invent one'",
+        "Body binds the continuation to a board read: 'read the board to confirm it is the rightmost active one'",
+        "Body reports the card id in the status block: 'Report the card id in the'"
+      ]
+    },
+    {
+      "id": 5,
+      "expected_output": "Resolves the number across issues and PRs, titles, bodies and branch names of every org repo before acting, then names the resolved target back to the user: repo, number, type, title, state.",
+      "files": [],
+      "prompt": "continue 1787",
+      "assertions": [
+        "Body treats a bare number as 'an unresolved reference'",
+        "Body resolves it with the unified issues endpoint: 'issues/<N>'",
+        "Body requires the resolved target named back before acting: 'Name the resolved target back to the user before acting on it'"
+      ]
+    },
+    {
+      "id": 6,
+      "expected_output": "Keeps the approved PR head pinned. The mid-loop steer is filed as a new unit, developed on a stacked branch off the approved commit, and named as the new card in the status block. Nothing is appended to the approved PR.",
+      "files": [],
+      "prompt": "Cards are landing. One PR is already approved; add this new feature to it before you merge it. Then keep going with the board.",
+      "assertions": [
+        "Body treats a mid-loop steer that changes the product as 'a new unit'",
+        "Body requires the steer developed 'on a stacked branch'",
+        "Body pins the approved head so the stacked unit leaves it untouched: 'already-approved PR'",
+        "Body names the stacked unit in the status block: 'The status block then names the new card'"
+      ]
+    },
+    {
+      "id": 7,
+      "expected_output": "Does not stop to ask for permission between cards. Resolves each next step from the board, the plan and the issue ledger, and keeps pulling until a stop condition fires.",
+      "files": [],
+      "prompt": "Two cards are ready on the board and neither is blocked. Both plans and ledgers are settled. Should I have you take the second one after the first lands?",
+      "assertions": [
+        "Body resolves what the board, plan or ledger can settle instead of stopping: 'resolve it and continue'",
+        "Body requires the next pull without a check-in: 'pull again without asking for permission'"
+      ]
+    },
+    {
+      "id": 8,
+      "expected_output": "Stops and asks for feedback. It reports the finding with its evidence and the work it may derive, then waits: the finding is neither absorbed into the current unit nor filed unasked.",
+      "files": [],
+      "prompt": "Mid-loop, a review finding on the current card shows that a sibling skill's gate blocks planned feature cards. Keep going.",
+      "assertions": [
+        "YAML frontmatter parses and 'name' equals 'sks-iterate'",
+        "Body makes a finding that may derive work a suspending condition: 'A finding that may derive work beyond its card'",
+        "Body neither absorbs the finding into the current unit nor files it unasked: 'neither absorbed into the current unit nor filed unasked'"
       ]
     }
   ],
